@@ -1,0 +1,13 @@
+{
+  "specification_source": "https://github.com/globe-and-atlas/gridcore-spec",
+  "specification_commit": "972790d64ba6fe09f927f08163af413e37a37d4f",
+  "demo_source": "gridcore-demo/src",
+  "demo_commit": "166e86b6a5cfac30ded2079e7f28d70d5aa176db",
+  "scope": "Local copies only; source projects untouched. Demo adapted to buildless relative paths; reduced-motion guard, pressed-state labels, synthetic-data notice added.",
+  "specification_hashes": {
+    "03-spectral.md": "2450c81fec7266d837af549f5e6667a6b63eb589eedf811cc1af08bb186b719e",
+    "01-standard.md": "e50924775748515bad67ca5973479e3cf902c332f14e6b250d61e2e270398e26",
+    "02-lowpoly.md": "8d88965072142af540437260750e2580e7127ca87abde1079b12801c2d68c23d",
+    "04-lowpoly-spectral.md": "aed97b2cdd210401e484e81e4a591efd0628e9fa32e079bbcde0b58eb66c6957"
+  }
+}

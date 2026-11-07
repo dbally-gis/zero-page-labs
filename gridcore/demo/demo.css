@@ -1,0 +1,421 @@
+:root {
+  color-scheme: dark;
+  --void: #000000;
+  --amber: #ffb300;
+  --amber-dim: rgba(255, 179, 0, 0.2);
+  --amber-soft: rgba(255, 179, 0, 0.08);
+  --ink: #f7ecd0;
+  --muted: rgba(247, 236, 208, 0.68);
+  --panel: #080806;
+  --line: rgba(255, 179, 0, 0.42);
+  --green: #33ff57;
+  --cyan: #00ffff;
+  --red: #ff4500;
+  --yellow: #ffff00;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--void);
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  min-width: 320px;
+  background:
+    linear-gradient(90deg, rgba(255, 179, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 179, 0, 0.05) 1px, transparent 1px),
+    var(--void);
+  background-size: 34px 34px, 34px 34px, 100% 100%;
+  color: var(--ink);
+  font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.shell {
+  width: min(1560px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 20px 0 34px;
+  min-width: 0;
+}
+
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
+  gap: 18px;
+  align-items: stretch;
+  min-height: 150px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--amber);
+}
+
+.eyebrow,
+.label,
+.artifact-label,
+.mode-button span,
+.channel-row code,
+.status-panel span,
+.status-panel small {
+  margin: 0;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 980px;
+  margin: 10px 0 0;
+  color: var(--amber);
+  font-size: 7.8rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.86;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(255, 179, 0, 0.18);
+}
+
+.status-panel,
+.readout-panel,
+.lower-ledger article {
+  border: 1px solid var(--line);
+  background: rgba(255, 179, 0, 0.035);
+}
+
+.status-panel {
+  display: grid;
+  align-content: space-between;
+  padding: 16px;
+  min-height: 136px;
+}
+
+.status-panel span,
+.status-panel small {
+  color: var(--muted);
+}
+
+.status-panel strong {
+  color: var(--amber);
+  font-size: 3.4rem;
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.control-rack {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  padding: 12px 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--amber-dim);
+}
+
+.mode-group {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.mode-button {
+  min-height: 64px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  text-transform: uppercase;
+  transition: border-color 140ms ease, background 140ms ease, color 140ms ease;
+}
+
+.mode-button span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--muted);
+}
+
+.mode-button:hover,
+.mode-button.is-active {
+  border-color: var(--amber);
+  background: var(--amber);
+  color: var(--void);
+}
+
+.mode-button:hover span,
+.mode-button.is-active span {
+  color: var(--void);
+}
+
+.instrument-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.52fr) minmax(340px, 0.48fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.artifact-frame {
+  position: relative;
+  min-height: 520px;
+  border: 1px solid var(--amber);
+  background: var(--void);
+  overflow: hidden;
+  box-shadow: inset 0 0 32px rgba(255, 179, 0, 0.11);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 680;
+}
+
+.artifact-label {
+  position: absolute;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--amber);
+  pointer-events: none;
+}
+
+.top-left {
+  top: 12px;
+  left: 12px;
+}
+
+.bottom-right {
+  right: 12px;
+  bottom: 12px;
+}
+
+.readout-panel {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding: 16px;
+}
+
+h2 {
+  margin: 0;
+  color: var(--amber);
+  font-size: 2.4rem;
+  line-height: 0.96;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.48;
+}
+
+.channel-table {
+  display: grid;
+  gap: 8px;
+}
+
+.channel-row {
+  display: grid;
+  grid-template-columns: 12px minmax(70px, 0.7fr) minmax(110px, 1fr);
+  gap: 9px;
+  align-items: center;
+  padding: 9px;
+  border: 1px solid var(--amber-dim);
+  background: rgba(0, 0, 0, 0.38);
+}
+
+.channel-row i {
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--void);
+  box-shadow: 0 0 8px currentColor;
+}
+
+.channel-row strong {
+  color: var(--ink);
+  font-size: 0.83rem;
+  text-transform: uppercase;
+}
+
+.channel-row span {
+  color: var(--muted);
+  font-size: 0.83rem;
+}
+
+.channel-row code {
+  grid-column: 2 / -1;
+  color: var(--amber);
+}
+
+.rule-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rule-list li,
+.fail-grid span {
+  min-height: 34px;
+  padding: 8px;
+  border: 1px solid var(--amber-dim);
+  color: var(--ink);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.lower-ledger {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.lower-ledger article {
+  padding: 16px;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0 0;
+}
+
+dl div {
+  padding: 10px;
+  border: 1px solid var(--amber-dim);
+  background: rgba(0, 0, 0, 0.36);
+}
+
+dt {
+  color: var(--amber);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+dd {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.fail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+@media (max-width: 1120px) {
+  .masthead,
+  .instrument-grid,
+  .lower-ledger {
+    grid-template-columns: 1fr;
+  }
+
+  .mode-group {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  dl,
+  .fail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 660px) {
+  .shell {
+    width: min(100% - 18px, 1560px);
+    padding-top: 12px;
+  }
+
+  .masthead {
+    min-height: auto;
+  }
+
+  h1 {
+    font-size: 3.2rem;
+    overflow-wrap: anywhere;
+  }
+
+  .control-rack {
+    position: static;
+  }
+
+  .mode-group,
+  .rule-list,
+  dl,
+  .fail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .artifact-frame {
+    min-height: 300px;
+  }
+
+  .channel-row {
+    grid-template-columns: 12px minmax(0, 1fr);
+  }
+
+  .channel-row span,
+  .channel-row code {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 430px) {
+  .shell {
+    width: min(100% - 16px, 1560px);
+  }
+
+  h1 {
+    font-size: 2.62rem;
+  }
+
+  .status-panel strong {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  .artifact-label {
+    max-width: calc(100% - 24px);
+    font-size: 0.62rem;
+  }
+}
+
+.demo-context{width:min(100% - 32px,1560px);margin:16px auto;font:12px/1.7 monospace;color:#c8c0ad}.demo-context a{color:#ffb300}.mode-button:focus-visible,a:focus-visible{outline:2px solid #fff;outline-offset:4px}
+/* Keep the instrument visible before the explanatory ledger. */
+.masthead{min-height:84px;grid-template-columns:minmax(0,1fr) 260px;align-items:center}
+h1{font-size:clamp(28px,3vw,43px);line-height:1.06;max-width:760px;text-shadow:none}
+.status-panel{min-height:80px;gap:8px;padding:12px}.status-panel strong{font-size:23px}
+.mode-button{min-height:52px}.readout-panel h2{font-size:25px}
+@media(max-width:700px){.masthead{grid-template-columns:1fr;min-height:0;gap:10px}.status-panel{display:none}h1{font-size:30px;line-height:1.08}.mode-group{grid-template-columns:1fr 1fr}.mode-button{min-height:48px;font-size:11px}.mode-button span{font-size:8px}.mode-button:last-child{grid-column:1/-1}.control-rack{position:static}.artifact-frame{min-height:0}.artifact-label{font-size:8px}.demo-context{font-size:10px}.shell{padding-top:8px}}

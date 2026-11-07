@@ -6,7 +6,7 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 # Zero Page Labs
 Daniel Bally’s independent playground for wild projects and ideas. Separate from Globe & Atlas.
 
-Launch: Thumbwords project page and fifteen Pebble watchfaces. No future-project placeholders.
+Projects: Thumbwords, the current public Pebble watchface catalog, and Gridcore (specification-led experiment with a companion interactive demo). No future-project placeholders.
 
 ## Develop
 ```sh

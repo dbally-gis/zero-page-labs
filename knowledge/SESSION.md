@@ -28,6 +28,7 @@ Feynman gap: Build, browser flows, independent review, HTTPS routes, and www red
 
 - 2026-11-07 16:45 — commit: Refresh Thumbwords screenshots and use Pebble Time 2 hardware | assets/pebble-time-2-frame.png,assets/thumbwords-codebreaker-current.jpg,assets/thumbwords-codebreaker.jpg,assets/thumbwords-library-current.jpg,assets/thumbwords-number-hunt-current.jpg
 - 2026-11-07 16:45 — commit: Record imagery provenance and verification | knowledge/SESSION.md,knowledge/domain/content.md,task.md
+- 2026-11-07 16:47 — commit: Confirm live imagery refresh | DEPLOY.md,knowledge/SESSION.md,task.md
 ## Imagery refresh complete
 User requested current Thumbwords screenshots and actual Pebble Time2 hardware. Official frame found at https://apps.repebble.com/images/screenshot_slider_background_emery_v2.png. Generic CSS watch cases will be replaced by layered source assets. Current Thumbwords source remains read-only during another release session.
 
@@ -35,3 +36,10 @@ Imagery refresh checkpoint: library/Codebreaker/NumberHunt screenshots integrate
 
 S.D.G.: Zero Page Labs visitors now see Daniel’s current Thumbwords handset interface and the Pebble faces on recognizable Time2 hardware.
 Feynman gap: Desktop/mobile browser QA, independent hash/source review, and live imagery loading passed; physical-watch color fidelity remains unverified.
+
+## Complete catalog and Gridcore — in progress
+User supplied current developer page; browser loaded both pages to terminal38entries (34Faces,4apps). Source snapshot:data/developer-catalog.json. Prior fifteen-face release-batch assumption was wrong. ClassicLCD/Triangle/Lume no longer appear; direct pages have generic Application titles/no native previews; ClassicLCD browser explicitly says Application not found. Current34Faces are imported, including T9Time. No installation-success claim is made for T9.
+
+Gridcore: user clarified specification primary, companion demo welcome. Copied original four spec files from gridcore-spec; source untouched. Local demo copy adapted from gridcore-demo with synthetic-data note and reduced-motion guard. SpecGitHub default branch verifiedmaster. Current catalog count derives from data; verifier compares faceIDs to observed public catalog and rejects omissions. Five API failure/completeness tests pass; live34asset acquisition passes.
+
+Checkpoint: Complete34face import passed5resilience/completeness tests; native dimensions validated. Gridcore project/specdownloads/demo built. Independent review PASS. Browser desktop Illustratedfilter6, Gridcore Spectral/LOWPOLYSpectral/Standard reset, routeback, consoleclean PASS.375px gallery/Gridcore/demo no page overflow; demo canvas357px wide within375px. Demo masthead compressed in localcopy to keep artifact visible. Awaiting Render deployment.

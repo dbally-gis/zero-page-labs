@@ -5,6 +5,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import json
 import sys
+from sync_catalog import catalog_errors, native_size
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -47,19 +48,30 @@ def verify() -> None:
             elif parts.fragment and target in pages and parts.fragment not in pages[target].ids:
                 errors.append(f'Missing fragment: {ref}')
     faces = json.loads((ROOT / 'data/watchfaces.json').read_text())
-    if len(faces) != 15: errors.append('Expected fifteen watchfaces')
-    if len({f['url'] for f in faces}) != 15: errors.append('Duplicate store link')
+    snapshot = json.loads((ROOT / 'data/developer-catalog.json').read_text())
+    errors.extend(catalog_errors(faces, snapshot))
+    if not faces: errors.append('Empty watchface catalog')
+    if len({f['url'] for f in faces}) != len(faces): errors.append('Duplicate store link')
     gallery = (output / 'watchfaces/index.html').read_text()
     for face in faces:
         if face['url'] not in gallery: errors.append(f"Missing link: {face['name']}")
         image = output / face['image'].lstrip('/')
-        if not image.read_bytes().startswith(b'\x89PNG'): errors.append(f'Invalid PNG: {image}')
+        try:
+            if native_size(image.read_bytes()) != (200, 228): errors.append(f'Non-native Time2 image: {image}')
+        except ValueError as error:
+            errors.append(f'{image}: {error}')
+    if gallery.count('class="pebble-hardware"') != len(faces): errors.append('Hardware frame count differs from catalog')
+    if f'>{len(faces)} faces<' not in gallery: errors.append('Gallery count differs from catalog')
+    if f'{len(faces)} faces /' not in (output / 'index.html').read_text(): errors.append('Home count differs from catalog')
+    for document, digest in json.loads((ROOT / 'data/gridcore-provenance.json').read_text())['specification_hashes'].items():
+        import hashlib
+        if hashlib.sha256((output / 'gridcore/specs' / document).read_bytes()).hexdigest() != digest: errors.append(f'Gridcore specification changed: {document}')
     forbidden = {'.env', 'AGENTS.md', 'SESSION.md', 'task.md', 'config.example.js'}
     for file in output.rglob('*'):
         if file.name in forbidden or '.tmp' in file.parts: errors.append(f'Private scaffold shipped: {file}')
     if errors:
         print('\n'.join(errors)); sys.exit(1)
-    print(f'PASS: {len(pages)} pages; internal assets/links/fragments resolve; fifteen unique gallery links; public-only output.')
+    print(f'PASS: {len(pages)} pages; internal assets/links/fragments resolve; {len(faces)} unique gallery links; public-only output.')
 
 if __name__ == '__main__':
     verify()

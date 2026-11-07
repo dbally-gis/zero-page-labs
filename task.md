@@ -38,3 +38,16 @@ Surface: home, Thumbwords project page, gallery, asset manifest. Source projects
 - [x] Mobile375px has no page overflow.
 - [x] Independent review finds no blocking defect.
 - [x] Render serves the refreshed images.
+
+## Full catalog and Gridcore — 2026-11-07
+Source: public developer page supplied by Daniel, including its loaded pagination. Scope expands the launch catalog and includes Gridcore as a Labs experiment supporting Globe & Atlas identity.
+- [x] Published Faces entries from the complete developer-page snapshot appear in the gallery.
+- [x] Non-watchface apps are excluded from the watchface gallery.
+- [x] Each added face has a native Time2 screenshot.
+- [x] Catalog counts derive from catalog data.
+- [x] Gridcore appears as a Labs experiment.
+- [x] Gridcore copy identifies its Globe & Atlas connection.
+- [x] Catalog verifier rejects an omitted published face.
+- [x] Mobile375px gallery has no page overflow.
+- [x] Independent verification passes.
+- [ ] Render deployment serves the updated catalog.

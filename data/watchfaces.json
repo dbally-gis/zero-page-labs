@@ -1,122 +1,308 @@
 [
   {
-    "name": "PBL-2500",
-    "slug": "facet-watch",
-    "url": "https://apps.repebble.com/3403f49eadb7469d94ae292d",
-    "image": "/assets/facet-watch.png",
-    "style": "Analog",
-    "description": "A small instrument with big ambitions."
-  },
-  {
-    "name": "Hi-Fi",
-    "slug": "hi-fi-watch",
-    "url": "https://apps.repebble.com/67e59e9db94d4a2f8a981e22",
-    "image": "/assets/hi-fi-watch.png",
-    "style": "Analog",
-    "description": "Tuned to a different frequency."
-  },
-  {
-    "name": "Mono",
-    "slug": "mono-watch",
-    "url": "https://apps.repebble.com/dd61ad0599c344db8b663a80",
-    "image": "/assets/mono-watch.png",
-    "style": "Minimal",
-    "description": "A little less, right on time."
-  },
-  {
-    "name": "Lume",
-    "slug": "lume-watch",
-    "url": "https://apps.repebble.com/7730100d622c463c92fd601c",
-    "image": "/assets/lume-watch.png",
-    "style": "Analog",
-    "description": "A bright idea for your wrist."
-  },
-  {
-    "name": "Terminal",
-    "slug": "terminal-watch",
-    "url": "https://apps.repebble.com/744be00b9d1c499999cd62f3",
-    "image": "/assets/terminal-watch.png",
+    "name": "Loose Digits",
+    "slug": "loose-digits",
+    "url": "https://apps.repebble.com/loose-digits_391620b25cbf4bf39565ab49",
+    "image": "/assets/catalog-391620b25cbf4bf39565ab49.gif",
     "style": "Digital",
-    "description": "Time at the command line."
-  },
-  {
-    "name": "LCD Club",
-    "slug": "lcd-club-watch",
-    "url": "https://apps.repebble.com/71dfd4981ebc45fb932d81cb",
-    "image": "/assets/lcd-club-watch.png",
-    "style": "Digital",
-    "description": "For the digital watch romantics."
-  },
-  {
-    "name": "Rally",
-    "slug": "rally-watch",
-    "url": "https://apps.repebble.com/dfe5a3d1e2e44b5ebec727a7",
-    "image": "/assets/rally-watch.png",
-    "style": "Analog",
-    "description": "A dashboard for the everyday."
-  },
-  {
-    "name": "Railway",
-    "slug": "railway-watch",
-    "url": "https://apps.repebble.com/b882652051884d01bfcabfdf",
-    "image": "/assets/railway-watch.png",
-    "style": "Analog",
-    "description": "Always something worth catching."
-  },
-  {
-    "name": "Dot Matrix",
-    "slug": "dot-matrix-watch",
-    "url": "https://apps.repebble.com/3f9c7df9e7924d4abe6be703",
-    "image": "/assets/dot-matrix-watch.png",
-    "style": "Digital",
-    "description": "Big pixels. Clear intentions."
-  },
-  {
-    "name": "Margin",
-    "slug": "margin-watch",
-    "url": "https://apps.repebble.com/f08ced3e3a9a47efb297dd3c",
-    "image": "/assets/margin-watch.png",
-    "style": "Minimal",
-    "description": "Room to breathe. Time to spare."
-  },
-  {
-    "name": "Desk Clock",
-    "slug": "desk-clock-watch",
-    "url": "https://apps.repebble.com/d8d7cbfc9a3f4aaea111e4ca",
-    "image": "/assets/desk-clock-watch.png",
-    "style": "Digital",
-    "description": "Your nightstand, now wrist-sized."
-  },
-  {
-    "name": "Ledger",
-    "slug": "ledger-watch",
-    "url": "https://apps.repebble.com/1ee890ebe1f942a2aa708f56",
-    "image": "/assets/ledger-watch.png",
-    "style": "Minimal",
-    "description": "A tidy account of your day."
-  },
-  {
-    "name": "Classic LCD",
-    "slug": "classic-lcd-watch",
-    "url": "https://apps.repebble.com/5e610f08e13d41cf842ce8ea",
-    "image": "/assets/classic-lcd-watch.png",
-    "style": "Digital",
-    "description": "Old-school digits, still going strong."
+    "description": "Give the time a little knock.",
+    "source_image": "https://assets.repebble.com/screenshots/391620b25cbf4bf39565ab49/emery/2f70b651-c143-4c89-9812-ffb7ba58f6a7.gif"
   },
   {
     "name": "World Timer",
-    "slug": "world-timer-watch",
-    "url": "https://apps.repebble.com/dc42aa6ca1cf447785720f80",
-    "image": "/assets/world-timer-watch.png",
+    "slug": "world-timer",
+    "url": "https://apps.repebble.com/world-timer_dc42aa6ca1cf447785720f80",
+    "image": "/assets/catalog-dc42aa6ca1cf447785720f80.gif",
     "style": "Digital",
-    "description": "A wrist-sized sense of elsewhere."
+    "description": "Two cities. One departure board.",
+    "source_image": "https://assets.repebble.com/screenshots/dc42aa6ca1cf447785720f80/emery/c12f5765-2819-4140-be66-fd5bbf1be2cf.gif"
   },
   {
-    "name": "Triangle",
-    "slug": "triangle-watch",
-    "url": "https://apps.repebble.com/a78ddf0105ec4f4598c3fedc",
-    "image": "/assets/triangle-watch.png",
+    "name": "Railway",
+    "slug": "railway",
+    "url": "https://apps.repebble.com/railway_b882652051884d01bfcabfdf",
+    "image": "/assets/catalog-b882652051884d01bfcabfdf.png",
     "style": "Analog",
-    "description": "Time from another angle."
+    "description": "Always something worth catching.",
+    "source_image": "https://assets.repebble.com/screenshots/b882652051884d01bfcabfdf/emery/673402ae-9e72-449f-a941-a3b56304afc8.png"
+  },
+  {
+    "name": "Dot Matrix",
+    "slug": "dot-matrix",
+    "url": "https://apps.repebble.com/dot-matrix_3f9c7df9e7924d4abe6be703",
+    "image": "/assets/catalog-3f9c7df9e7924d4abe6be703.png",
+    "style": "Digital",
+    "description": "Big pixels. Clear intentions.",
+    "source_image": "https://assets.repebble.com/screenshots/3f9c7df9e7924d4abe6be703/emery/da3d7dcd-ad66-404a-b592-41a507400514.png"
+  },
+  {
+    "name": "PBL-2500",
+    "slug": "pbl-2500",
+    "url": "https://apps.repebble.com/pbl-2500_3403f49eadb7469d94ae292d",
+    "image": "/assets/catalog-3403f49eadb7469d94ae292d.png",
+    "style": "Analog",
+    "description": "A small instrument with big ambitions.",
+    "source_image": "https://assets.repebble.com/screenshots/3403f49eadb7469d94ae292d/emery/cd5183e8-2475-4c5b-94b5-ae87bc375e23.png"
+  },
+  {
+    "name": "Ledger",
+    "slug": "ledger",
+    "url": "https://apps.repebble.com/ledger_1ee890ebe1f942a2aa708f56",
+    "image": "/assets/catalog-1ee890ebe1f942a2aa708f56.png",
+    "style": "Minimal",
+    "description": "A tidy account of your day.",
+    "source_image": "https://assets.repebble.com/screenshots/1ee890ebe1f942a2aa708f56/emery/420b0417-ac2e-4f4f-ae75-a5fcedbce8db.png"
+  },
+  {
+    "name": "Terminal",
+    "slug": "terminal",
+    "url": "https://apps.repebble.com/terminal_744be00b9d1c499999cd62f3",
+    "image": "/assets/catalog-744be00b9d1c499999cd62f3.png",
+    "style": "Digital",
+    "description": "Time at the command line.",
+    "source_image": "https://assets.repebble.com/screenshots/744be00b9d1c499999cd62f3/emery/87fdd754-5086-4241-b2d1-c87c89c421a4.png"
+  },
+  {
+    "name": "Rally",
+    "slug": "rally",
+    "url": "https://apps.repebble.com/rally_dfe5a3d1e2e44b5ebec727a7",
+    "image": "/assets/catalog-dfe5a3d1e2e44b5ebec727a7.png",
+    "style": "Digital",
+    "description": "A dashboard for the everyday.",
+    "source_image": "https://assets.repebble.com/screenshots/dfe5a3d1e2e44b5ebec727a7/emery/446115fa-4b0d-40d4-98c9-c54729734d02.png"
+  },
+  {
+    "name": "Margin",
+    "slug": "margin",
+    "url": "https://apps.repebble.com/margin_f08ced3e3a9a47efb297dd3c",
+    "image": "/assets/catalog-f08ced3e3a9a47efb297dd3c.png",
+    "style": "Minimal",
+    "description": "Room to breathe. Time to spare.",
+    "source_image": "https://assets.repebble.com/screenshots/f08ced3e3a9a47efb297dd3c/emery/0ba04957-1f32-48bc-9be2-88bd7d2c8a66.png"
+  },
+  {
+    "name": "Hi-Fi",
+    "slug": "hi-fi",
+    "url": "https://apps.repebble.com/hi-fi_67e59e9db94d4a2f8a981e22",
+    "image": "/assets/catalog-67e59e9db94d4a2f8a981e22.png",
+    "style": "Digital",
+    "description": "Tuned to a different frequency.",
+    "source_image": "https://assets.repebble.com/screenshots/67e59e9db94d4a2f8a981e22/emery/564e3d1f-8b47-42ee-bbcf-0fd3327c8f40.png"
+  },
+  {
+    "name": "Desk Clock",
+    "slug": "desk-clock",
+    "url": "https://apps.repebble.com/desk-clock_d8d7cbfc9a3f4aaea111e4ca",
+    "image": "/assets/catalog-d8d7cbfc9a3f4aaea111e4ca.png",
+    "style": "Digital",
+    "description": "Your nightstand, now wrist-sized.",
+    "source_image": "https://assets.repebble.com/screenshots/d8d7cbfc9a3f4aaea111e4ca/emery/eb770c5e-c30d-460a-b47b-53306c045138.png"
+  },
+  {
+    "name": "LCD Club",
+    "slug": "lcd-club",
+    "url": "https://apps.repebble.com/lcd-club_71dfd4981ebc45fb932d81cb",
+    "image": "/assets/catalog-71dfd4981ebc45fb932d81cb.png",
+    "style": "Digital",
+    "description": "For the digital watch romantics.",
+    "source_image": "https://assets.repebble.com/screenshots/71dfd4981ebc45fb932d81cb/emery/8716ce56-bb94-40d3-9e7d-8031faf3cd46.png"
+  },
+  {
+    "name": "Mono",
+    "slug": "mono",
+    "url": "https://apps.repebble.com/mono_dd61ad0599c344db8b663a80",
+    "image": "/assets/catalog-dd61ad0599c344db8b663a80.png",
+    "style": "Minimal",
+    "description": "A little less, right on time.",
+    "source_image": "https://assets.repebble.com/screenshots/dd61ad0599c344db8b663a80/emery/3e5eea61-5613-4576-b7a4-f3098b702270.png"
+  },
+  {
+    "name": "T9 Time",
+    "slug": "t9-time",
+    "url": "https://apps.repebble.com/t9-time_6641551debac4064ab47acba",
+    "image": "/assets/catalog-6641551debac4064ab47acba.png",
+    "style": "Digital",
+    "description": "Watch the time type itself, one T9 key at a time.",
+    "source_image": "https://assets.repebble.com/screenshots/6641551debac4064ab47acba/emery/ef695ba5-4d9c-41a1-b0b9-fd862db9718d.png"
+  },
+  {
+    "name": "Test Pattern",
+    "slug": "test-pattern",
+    "url": "https://apps.repebble.com/test-pattern_c069ed8a7dfa40b785a29e0e",
+    "image": "/assets/catalog-c069ed8a7dfa40b785a29e0e.png",
+    "style": "Digital",
+    "description": "Test Pattern turns a vintage calibration card into a crisp digital clock.",
+    "source_image": "https://assets.repebble.com/screenshots/c069ed8a7dfa40b785a29e0e/emery/015a6acc-934b-4437-8e64-b8f2c39b43f0.png"
+  },
+  {
+    "name": "Color Key",
+    "slug": "color-key",
+    "url": "https://apps.repebble.com/color-key_3cb45a2aebe3449097bd7604",
+    "image": "/assets/catalog-3cb45a2aebe3449097bd7604.png",
+    "style": "Digital",
+    "description": "Color Key gives the clock the energy of a classic broadcast color-bar transition.",
+    "source_image": "https://assets.repebble.com/screenshots/3cb45a2aebe3449097bd7604/emery/d4c265b2-f3a4-4100-8260-9ca66e66acc7.png"
+  },
+  {
+    "name": "Level Time",
+    "slug": "level-time",
+    "url": "https://apps.repebble.com/level-time_450af5416e634355b0e326f9",
+    "image": "/assets/catalog-450af5416e634355b0e326f9.png",
+    "style": "Digital",
+    "description": "Level Time keeps the clock easy to read as your Pebble Time 2 rolls with your wrist.",
+    "source_image": "https://assets.repebble.com/screenshots/450af5416e634355b0e326f9/emery/5a884afc-2342-4c45-ba13-17624278826a.png"
+  },
+  {
+    "name": "Rainy Bookshop",
+    "slug": "rainy-bookshop",
+    "url": "https://apps.repebble.com/rainy-bookshop_7c9514476e4e4de8ac3767e2",
+    "image": "/assets/catalog-7c9514476e4e4de8ac3767e2.png",
+    "style": "Illustrated",
+    "description": "Rainy Bookshop turns your Pebble into a warmly lit shop window.",
+    "source_image": "https://assets.repebble.com/screenshots/7c9514476e4e4de8ac3767e2/emery/51d739ce-8179-43a9-9f32-1aa3d0b8b4b4.png"
+  },
+  {
+    "name": "Clockfish",
+    "slug": "clockfish",
+    "url": "https://apps.repebble.com/clockfish_40292564f42e4f4e8763b9a1",
+    "image": "/assets/catalog-40292564f42e4f4e8763b9a1.png",
+    "style": "Illustrated",
+    "description": "A little aquarium that tells time.",
+    "source_image": "https://assets.repebble.com/screenshots/40292564f42e4f4e8763b9a1/emery/ea5f87d8-668e-4145-aa93-a4df935ec23d.png"
+  },
+  {
+    "name": "Way Back",
+    "slug": "way-back",
+    "url": "https://apps.repebble.com/way-back_370092d6402c4a0bbc8fb01b",
+    "image": "/assets/catalog-370092d6402c4a0bbc8fb01b.png",
+    "style": "Digital",
+    "description": "Digital time with a sense of depth. The front digits stay fixed while their echoes recede behind them.",
+    "source_image": "https://assets.repebble.com/screenshots/370092d6402c4a0bbc8fb01b/emery/afb1dc61-baf6-430b-b1c2-3136af6565c4.png"
+  },
+  {
+    "name": "Now / Next",
+    "slug": "now-next",
+    "url": "https://apps.repebble.com/now-next_68afcbcc6c18416c98b6a1b7",
+    "image": "/assets/catalog-68afcbcc6c18416c98b6a1b7.png",
+    "style": "Digital",
+    "description": "The time first. One useful detail for this part of your day. Now / Next keeps the Pebble Time 2 screen easy to read at a glance.",
+    "source_image": "https://assets.repebble.com/screenshots/68afcbcc6c18416c98b6a1b7/emery/ce4d98d3-b82b-425e-a42a-ad599e32f20d.png"
+  },
+  {
+    "name": "TERCOM",
+    "slug": "tercom",
+    "url": "https://apps.repebble.com/tercom_c6f081e1607448bf92df7de4",
+    "image": "/assets/catalog-c6f081e1607448bf92df7de4.png",
+    "style": "Illustrated",
+    "description": "A tiny vector landscape beneath a flight-path reticle.",
+    "source_image": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/emery/674b6b84-1279-4fe3-9b25-270ba6fabd20.png"
+  },
+  {
+    "name": "Type Foundry",
+    "slug": "type-foundry",
+    "url": "https://apps.repebble.com/type-foundry_0afb4178d396415682d4ba40",
+    "image": "/assets/catalog-0afb4178d396415682d4ba40.png",
+    "style": "Digital",
+    "description": "A new typeface for each glance. Type Foundry is a typographic clock with nine distinct treatments for Pebble Time 2.",
+    "source_image": "https://assets.repebble.com/screenshots/0afb4178d396415682d4ba40/emery/e6dbbd73-9fa0-4969-a8e5-7b5de3405bdd.png"
+  },
+  {
+    "name": "Departure Board",
+    "slug": "departure-board",
+    "url": "https://apps.repebble.com/departure-board_cd02cf5abf0a4afa927d7d5e",
+    "image": "/assets/catalog-cd02cf5abf0a4afa927d7d5e.png",
+    "style": "Digital",
+    "description": "A station clock for your wrist. Departure Board pairs a large flip-dot time display with one useful line beneath it.",
+    "source_image": "https://assets.repebble.com/screenshots/cd02cf5abf0a4afa927d7d5e/emery/f1461e72-b88c-4a37-90ef-3b4e41f0dc2a.png"
+  },
+  {
+    "name": "Change Clock",
+    "slug": "change-clock",
+    "url": "https://apps.repebble.com/change-clock_655fa627bf714bf489c4b3cc",
+    "image": "/assets/catalog-655fa627bf714bf489c4b3cc.png",
+    "style": "Digital",
+    "description": "What changed since yesterday? Change Clock shows today\u2019s sunset and temperature alongside their differences from yesterday, with a large clock above..",
+    "source_image": "https://assets.repebble.com/screenshots/655fa627bf714bf489c4b3cc/emery/f0c3bcb0-2c19-4f94-a1e0-3d30b3f9e09c.png"
+  },
+  {
+    "name": "Rain Clock",
+    "slug": "rain-clock",
+    "url": "https://apps.repebble.com/rain-clock_5210c5d1bcaa4cc48067eec9",
+    "image": "/assets/catalog-5210c5d1bcaa4cc48067eec9.png",
+    "style": "Digital",
+    "description": "See the next 90 minutes of rain without losing the clock.",
+    "source_image": "https://assets.repebble.com/screenshots/5210c5d1bcaa4cc48067eec9/emery/95b5b638-4109-4978-b7c7-a1f5eb6aab01.png"
+  },
+  {
+    "name": "Pangaea Drift",
+    "slug": "pangaea-drift",
+    "url": "https://apps.repebble.com/pangaea-drift_490fd055aa9b485c8deced5e",
+    "image": "/assets/catalog-490fd055aa9b485c8deced5e.png",
+    "style": "Illustrated",
+    "description": "A day across deep time.",
+    "source_image": "https://assets.repebble.com/screenshots/490fd055aa9b485c8deced5e/emery/50f9c9a8-94eb-46f8-bb33-a7376e8c6c2f.png"
+  },
+  {
+    "name": "Since Then",
+    "slug": "since-then",
+    "url": "https://apps.repebble.com/since-then_de8ab2e141c64ff2abecaab2",
+    "image": "/assets/catalog-de8ab2e141c64ff2abecaab2.png",
+    "style": "Digital",
+    "description": "All of history, mapped to a single 24-hour day. Midnight was the beginning. Tonight at midnight is right now.",
+    "source_image": "https://assets.repebble.com/screenshots/de8ab2e141c64ff2abecaab2/emery/869f8dde-0faa-4226-9c25-a92378566b07.png"
+  },
+  {
+    "name": "From Here",
+    "slug": "from-here",
+    "url": "https://apps.repebble.com/from-here_d9fc15a8f87746b7ba01f6ca",
+    "image": "/assets/catalog-d9fc15a8f87746b7ba01f6ca.png",
+    "style": "Illustrated",
+    "description": "Watch the place your clock points to change through the day.",
+    "source_image": "https://assets.repebble.com/screenshots/d9fc15a8f87746b7ba01f6ca/emery/1ab3e63c-a29a-4d56-803f-a53b05d46714.png"
+  },
+  {
+    "name": "Straight Ahead",
+    "slug": "straight-ahead",
+    "url": "https://apps.repebble.com/straight-ahead_a792f7d2290b4da48bb86ca5",
+    "image": "/assets/catalog-a792f7d2290b4da48bb86ca5.png",
+    "style": "Illustrated",
+    "description": "See what lies ahead when you raise your wrist.",
+    "source_image": "https://assets.repebble.com/screenshots/a792f7d2290b4da48bb86ca5/emery/533598f3-a665-44eb-998f-6484cda318b8.png"
+  },
+  {
+    "name": "Origin",
+    "slug": "origin",
+    "url": "https://apps.repebble.com/origin_21d5882443784d998674e10f",
+    "image": "/assets/catalog-21d5882443784d998674e10f.png",
+    "style": "Analog",
+    "description": "The time becomes the hand.",
+    "source_image": "https://assets.repebble.com/screenshots/21d5882443784d998674e10f/emery/1b92c5d5-dc0d-4063-bd43-70926be791e6.png"
+  },
+  {
+    "name": "Vector",
+    "slug": "vector",
+    "url": "https://apps.repebble.com/vector_bcec521af0e0444eaf8471ce",
+    "image": "/assets/catalog-bcec521af0e0444eaf8471ce.png",
+    "style": "Analog",
+    "description": "Two hands, two numbers.",
+    "source_image": "https://assets.repebble.com/screenshots/bcec521af0e0444eaf8471ce/emery/65f3aa59-85f3-45e9-9699-b6f01a7a5fa4.png"
+  },
+  {
+    "name": "Meridian",
+    "slug": "meridian",
+    "url": "https://apps.repebble.com/meridian_ec1162d2415448789ea1ba78",
+    "image": "/assets/catalog-ec1162d2415448789ea1ba78.png",
+    "style": "Analog",
+    "description": "Wear the day and night.",
+    "source_image": "https://assets.repebble.com/screenshots/ec1162d2415448789ea1ba78/emery/9a3d2566-969e-45de-9115-220bd2ab07c0.png"
+  },
+  {
+    "name": "Cardinal",
+    "slug": "cardinal",
+    "url": "https://apps.repebble.com/cardinal_9a7040247c9343898b3674c7",
+    "image": "/assets/catalog-9a7040247c9343898b3674c7.png",
+    "style": "Analog",
+    "description": "A quiet dial with four points of reference.",
+    "source_image": "https://assets.repebble.com/screenshots/9a7040247c9343898b3674c7/emery/1dc32bfb-bc2e-42b1-bc10-375dd47831c1.png"
   }
 ]

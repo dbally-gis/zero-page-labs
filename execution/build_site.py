@@ -15,9 +15,16 @@ def build() -> None:
     output.mkdir()
     for file in ('index.html', 'style.css', 'robots.txt', 'sitemap.xml', '404.html'):
         shutil.copyfile(ROOT / file, output / file)
-    for directory in ('assets', 'src', 'thumbwords', 'watchfaces'):
+    for directory in ('assets', 'src', 'thumbwords', 'watchfaces', 'gridcore'):
         shutil.copytree(ROOT / directory, output / directory)
     faces = json.loads((ROOT / 'data/watchfaces.json').read_text())
+    by_name = {face['name']: face for face in faces}
+    substitutions = {'{{WATCH_COUNT}}': str(len(faces)), '{{HIFI_IMAGE}}': by_name['Hi-Fi']['image'], '{{PBL_IMAGE}}': by_name['PBL-2500']['image']}
+    for page in output.rglob('*.html'):
+        content = page.read_text()
+        for marker, value in substitutions.items():
+            content = content.replace(marker, value)
+        page.write_text(content)
     cards = []
     for face in faces:
         d = {key: escape(value, quote=True) for key, value in face.items()}
