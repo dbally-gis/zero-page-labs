@@ -24,3 +24,7 @@ Feynman gap: Build, browser flows, independent review, HTTPS routes, and www red
 ## Checkpoint Log
 
 - 2026-11-07 16:35 — commit: Record launch verification and Render deployment | .gitignore,DEPLOY.md,data/.gitkeep,directives/_template.md,directives/bootstrap_project.md
+- 2026-11-07 16:36 — commit: Confirm custom-domain HTTPS launch | DEPLOY.md,knowledge/SESSION.md,task.md
+
+## Imagery refresh in progress
+User requested current Thumbwords screenshots and actual Pebble Time2 hardware. Official frame found at https://apps.repebble.com/images/screenshot_slider_background_emery_v2.png. Generic CSS watch cases will be replaced by layered source assets. Current Thumbwords source remains read-only during another release session.

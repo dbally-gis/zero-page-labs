@@ -1,0 +1,18 @@
+{
+  "thumbwords": {
+    "build": "1.0.2 (2026110703)",
+    "commit": "7ed1f0f63287c1dd7537001daae3668fae2ae9c9",
+    "method": "Real bundled app UI captured in isolated browser at 390x844 on 2026-11-07; no compositing or generated gameplay.",
+    "availability": "Latest development preview; site explicitly notes App Store version may differ.",
+    "assets": {
+      "thumbwords-codebreaker-current.jpg": "950127e3477b29568827f40d7ceaae742ef81f8cedc2c26711f8dd00c2f313c5",
+      "thumbwords-library-current.jpg": "1d00c1865bca717ba5ed2cbdc27f10abd18fb0a0d1ec89ca7907300abb0e6def",
+      "thumbwords-number-hunt-current.jpg": "3f4ff84ff141b57ab05acd29c09e0d7a410fc5373f993b4a6ae9064b3e14a57e"
+    }
+  },
+  "pebble": {
+    "hardware_frame": "https://apps.repebble.com/images/screenshot_slider_background_emery_v2.png",
+    "hardware_frame_sha256": "ec5f810dda6cfa769df5421c3fcbebb5bd45a36839029a6c396ea4acc7609c54",
+    "method": "Official appstore frame layered with the original 200x228 face screenshot; CSS preserves screenshot aspect ratio."
+  }
+}

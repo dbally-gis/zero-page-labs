@@ -26,3 +26,15 @@ timestamp: "2026-11-07T16:24:55.330339-06:00"
 - [x] Public Render URL serves the launch site.
 ## Progress
 - Render deployment dep-dbnqdt67bikc73d8r8hg is Live for commit b48dda8. https://zero-page-labs.onrender.com/ serves the site. Custom domains verified; certificates issued. https://zeropagelabs.com/ is live; www redirects to root. Desktop and 375px mobile browser checks passed; gallery filters and return navigation passed; console clear. Independent review passed.
+
+## Imagery refresh — 2026-11-07
+Surface: home, Thumbwords project page, gallery, asset manifest. Source projects remain read-only.
+- [ ] Thumbwords imagery shows the current illustrated handset UI.
+- [ ] Screenshot provenance names the source build.
+- [ ] Gallery renders fifteen faces inside the official Time 2 hardware frame.
+- [ ] Home watchface artwork uses the same Time 2 hardware frame.
+- [ ] Screen overlays preserve the 200×228 aspect ratio.
+- [ ] Desktop browser checks pass.
+- [ ] Mobile375px has no page overflow.
+- [ ] Independent review finds no blocking defect.
+- [ ] Render serves the refreshed images.

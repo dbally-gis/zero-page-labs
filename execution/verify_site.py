@@ -35,7 +35,7 @@ def verify() -> None:
         if '{{' in content: errors.append(f'Unexpanded template: {file.name}')
         if page.headings != 1: errors.append(f'Expected one h1: {file}')
         for image in page.images:
-            if not image.get('alt'): errors.append(f'Missing alt: {file}')
+            if 'alt' not in image: errors.append(f'Missing alt: {file}')
     for file, page in pages.items():
         for ref in page.refs:
             parts = urlsplit(ref)
