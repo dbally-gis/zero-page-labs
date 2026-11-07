@@ -50,4 +50,4 @@ Source: public developer page supplied by Daniel, including its loaded paginatio
 - [x] Catalog verifier rejects an omitted published face.
 - [x] Mobile375px gallery has no page overflow.
 - [x] Independent verification passes.
-- [ ] Render deployment serves the updated catalog.
+- [x] Render deployment serves the updated catalog.

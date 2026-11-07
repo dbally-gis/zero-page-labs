@@ -12,3 +12,6 @@ Screenshots copied byte-for-byte from `../t9-words/content/app-store/screenshots
 User requested latest Thumbwords visuals, superseding the launch v1 screenshot choice. Real390×844 captures from tagged1.0.2(2026110703), commit7ed1f0f63287c1dd7537001daae3668fae2ae9c9: library/Codebreaker Blue brick; Number Hunt Silver flip. Source projects remain read-only. The page labels screenshots as latest development previews; public six-game descriptions remain grounded in the App Store listing. Asset hashes are in data/imagery-provenance.json.
 
 Hardware frame: https://apps.repebble.com/images/screenshot_slider_background_emery_v2.png (488×700 RGBA), used by the official Pebble appstore. Screens retain native200×228 aspect ratio beneath the frame. No generated gameplay or product imagery.
+
+## 2026-11-07 — Current catalog supersedes release batch
+Current developer snapshot has34Faces and4apps. All34nativeTime2 previews are imported;32PNG/2GIF,~107KB total. Counts derive from data. ClassicLCD/Triangle/Lume current pages explicitly return Application not found despite HTTP200. The completeness contract compares IDs to data/developer-catalog.json, not a fixedcount. Gridcore is an approved cross-project experiment: specprimary, demo companion, G&A attribution retained.
