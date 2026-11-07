@@ -24,3 +24,6 @@ The existing Render hook is stored only as GitHub Actions secretRENDER_DEPLOY_HO
 Manual run: `gh workflow run sync-pebble.yml --repo dbally-gis/zero-page-labs`. Optional `-f force_deploy=true` verifies a deployment even if output is unchanged. Inspect `gh run list --workflow sync-pebble.yml --repo dbally-gis/zero-page-labs` for failures. Scheduled GitHub jobs can be delayed; invalid provider-format changes need a parser fix, not a catalog wipe.
 
 Gridcore companion source is vendored in gridcore/demo; original projects remain untouched. Original specification copies under gridcore/specs are verified by hashes in data/gridcore-provenance.json.
+
+## Verified activation — 2026-11-07
+Workflow410738005 is active. Initialpush run https://github.com/dbally-gis/zero-page-labs/actions/runs/42424934350 passed17tests, live discovery34Faces, deepimagevalidation, Renderhook deployment, and publiccommit/hash verification. Renderdep-dbnr5au7bikc73dakerg published6a6b86d. Manualrun https://github.com/dbally-gis/zero-page-labs/actions/runs/42425037120 passed with catalog_unchanged and deployment_unchanged; GitHEAD stayed6a6b86d. No localenv or Mac-owned schedule required.

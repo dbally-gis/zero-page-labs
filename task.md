@@ -64,6 +64,6 @@ Execution: public developer-page discovery, native asset acquisition, scheduled 
 - [x] Workflow checks for changes hourly.
 - [x] Workflow persists the updated catalog before deploying.
 - [x] Deployment credentials are stored in a GitHub Actions secret.
-- [ ] A manual workflow run succeeds in GitHub.
+- [x] A manual workflow run succeeds in GitHub.
 - [x] Independent verification passes.
-- [ ] Render serves the verified workflow commit.
+- [x] Render serves the verified workflow commit.

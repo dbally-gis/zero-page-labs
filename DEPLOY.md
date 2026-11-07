@@ -20,3 +20,5 @@ Custom domain: zeropagelabs.com. Read existing DNS before edits; preserve mail a
 Imagery refresh deployed2026-11-07: dep-dbnqka6417fc73efqdeg, commita31818d. Latest tagged0703 Thumbwords UI captures and official Time2 frame verified live on the custom domain.
 
 Full catalog/Gridcore deployed2026-11-07: dep-dbnqr6m7bikc73d9rucg, commit1dd67f0. Live34Faces, original spec download hash, and Gridcore Spectral interaction verified on custom domain.
+
+Automatic updates activated2026-11-07: GitHub workflow Sync Pebble gallery checks hourly at minute17. Commit6a6b86d deployed via Renderhook (dep-dbnr5au7bikc73dakerg), verified by public/deployment.json. Manualunchanged run skipped commit/deploy. Operational guidance:knowledge/procedural/deploy_site.md.
