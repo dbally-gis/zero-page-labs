@@ -9,5 +9,27 @@
     "01-standard.md": "e50924775748515bad67ca5973479e3cf902c332f14e6b250d61e2e270398e26",
     "02-lowpoly.md": "8d88965072142af540437260750e2580e7127ca87abde1079b12801c2d68c23d",
     "04-lowpoly-spectral.md": "aed97b2cdd210401e484e81e4a591efd0628e9fa32e079bbcde0b58eb66c6957"
-  }
+  },
+  "example_artwork": [
+    {
+      "file": "/assets/gridcore-terrain-wireframe.png",
+      "source": "https://github.com/user-attachments/assets/b0865faa-3032-42f2-b310-b52d971c40d7",
+      "sha256": "76c2d6cdad00c25876043784c3a0480e89cde3e75b8ed80e760bc9c8c2bd7940"
+    },
+    {
+      "file": "/assets/gridcore-lowpoly-field-guide.png",
+      "source": "https://github.com/user-attachments/assets/3a6017c2-7d23-480a-8e77-12eeeb494081",
+      "sha256": "fb81718d16a68ddd11c269ac9e87a5971924b5817255a15a6f9c7becc0248f9d"
+    },
+    {
+      "file": "/assets/gridcore-spectral-rome.png",
+      "source": "https://github.com/user-attachments/assets/4f50f27e-8541-424e-94c1-5d2b3642abef",
+      "sha256": "b4d9a9722e96a03c1066227627e26629ed93e63533c64763be934ecb51f78da5"
+    },
+    {
+      "file": "/assets/gridcore-lowpoly-spectral-field-guide.png",
+      "source": "https://github.com/user-attachments/assets/9da0ff47-ce79-4e6f-9cd6-b28bc3abd734",
+      "sha256": "b96b1378780483bdef0971984b19ed345d7662b6638fa89aed74512eacac7bda"
+    }
+  ]
 }
