@@ -1,277 +1,353 @@
 {
-  "entries": [
-    {
-      "category": "Faces",
-      "description": "Give the time a little knock.\nLoose Digits keeps a clear pixel clock at rest. Knock the watch case twice and the numbers tumble, then reassemble automatically in about three seconds.\nMake it yours:\n- Trigger: Double case knock (default), Single case knock, or Wrist roll.\n- Independent background, digit/date, and colon accent colors.\n- Animation On or Off for a completely still clock.\n- Your watch's 12-hour or 24-hour format, with AM/PM in 12-hour mode.\n- Optional date: YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\nCase knocks are detected from acceleration, not touchscreen input. For wrist-roll mode, briefly hold the watch approximately face-up, then roll sideways. A short cooldown prevents repeated tumbles; further movement cannot postpone reassembly.\nThe animated preview shows a sample tumble followed by color examples. On the watch, your chosen colors stay fixed until you change settings.\nNative layouts for Pebble Time 2, original Time Round, and Round 2. Works offline after configuration. Detection sensitivity depends on your watch and tapping motion. Verified in emulators; physical knock sensitivity and battery impact have not been measured.",
-      "name": "Loose Digits",
-      "thumbnail": "https://assets.repebble.com/screenshots/391620b25cbf4bf39565ab49/chalk/8fc46621-8bf6-4bf2-8da5-a5f4f4346d1f.gif",
-      "url": "https://apps.repebble.com/loose-digits_391620b25cbf4bf39565ab49"
-    },
-    {
-      "category": "Faces",
-      "description": "Two cities. One departure board.\nWorld Timer puts two city clocks on a clean split-flap board. Only changing digits flip on each minute change, then settle automatically.\nChoose Main and Other from 40 named cities. The signed difference beside Other is relative to Main, including daylight saving: +15H means 15 hours ahead; fractional-hour zones retain their minutes. A separate +1D or -1D marker shows a calendar-day difference.\nAmber on black is the default. Choose Olive LCD or custom background, ink and flap-border colors. Turn split-flap transitions off if you prefer a still clock.\nNative layouts for Pebble Time 2, Time Round and Round 2. Supports watch-default, 12-hour and 24-hour time, AM/PM, optional seconds, and date choices including Off, ISO, US and European formats.\nAfter updating, open settings to choose your cities. Existing city and theme choices are preserved. This departure-board version removes the previous call-hours section and map-travel gesture.\nOffline IANA 2026f time-zone rules cover 2020 through 2037. Future government changes require an app update. The animated preview shows native split-flap frames; selected colors stay steady on the watch.",
-      "name": "World Timer",
-      "thumbnail": "https://assets.repebble.com/screenshots/dc42aa6ca1cf447785720f80/chalk/0208f917-5109-45b1-81cf-4bb9c3a2bae4.gif",
-      "url": "https://apps.repebble.com/world-timer_dc42aa6ca1cf447785720f80"
-    },
-    {
-      "category": "Faces",
-      "description": "A clear analog dial inspired by railway clocks.\nBold batons, flat hands, and an optional lollipop seconds hand. Optional digital time, date, and battery percentage.\nMake it yours:\n- Six color palettes.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour main time.\n- Optional date, with ISO, US, or European numeric formats.\nThe animated preview cycles through the palettes. Your selected colors stay steady on the watch.\nNative layouts for Pebble Time 2, the original Time Round, and Round 2.",
-      "name": "Railway",
-      "thumbnail": "https://assets.repebble.com/screenshots/b882652051884d01bfcabfdf/chalk/79c2236d-31f3-4b4a-86fc-2c26e09c816c.gif",
-      "url": "https://apps.repebble.com/railway_b882652051884d01bfcabfdf"
-    },
-    {
-      "category": "Faces",
-      "description": "A dot-matrix clock with bright, crisp numerals.\nA dotted date and battery display complement the large time.\nMake it yours:\n- Six color palettes.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour main time.\n- Optional date, with ISO, US, or European numeric formats.\nThe animated preview cycles through the palettes. Your selected colors stay steady on the watch.\nNative layouts for Pebble Time 2, the original Time Round, and Round 2.",
-      "name": "Dot Matrix",
-      "thumbnail": "https://assets.repebble.com/screenshots/3f9c7df9e7924d4abe6be703/chalk/bd76d537-4a93-4614-9c4f-c6d8fdc59cd6.png",
-      "url": "https://apps.repebble.com/dot-matrix_3f9c7df9e7924d4abe6be703"
-    },
-    {
-      "category": "Faces",
-      "description": "A dimensional analog dial for your Pebble.\nPBL-2500 pairs broad luminous-style hands with faceted hour markers, a small-seconds dial at 9, and a three-cell fan calendar at 3. The dial carries the P-SHOCK wordmark.\nMake it yours:\n- Six palettes: Graphite, Steel, Olive, Ivory, Navy, and Gold.\n- Custom background, hand, and accent colors.\n- Small seconds on or off; off uses minute-only updates.\n- Fan calendar with tomorrow above today and yesterday below.\n- Optional date: Off, fan day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery percentage, with a visibility option.\n- Optional digital time footer with watch default, 12-hour, or 24-hour format. The analog dial stays twelve-hour.\nThe first preview cycles through the six palettes at a fixed sample time. Select your preferred colors in settings; the watchface keeps that palette.\nFor Pebble Time 2.",
-      "name": "PBL-2500",
-      "thumbnail": "https://assets.repebble.com/screenshots/3403f49eadb7469d94ae292d/chalk/750ef320-5f8e-42eb-8d1d-6eb5fdcf4265.png",
-      "url": "https://apps.repebble.com/pbl-2500_3403f49eadb7469d94ae292d"
-    },
-    {
-      "category": "Faces",
-      "description": "Quiet type. Clear time.\nLedger combines large serif numerals with fine rules, a centered date, and a neatly aligned battery percentage.\nMake it yours:\n- Six palettes: Paper, Cream, Night, Sage, Ice, and Blue.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery percentage, with an accent color.\nThe animated preview cycles through the six palettes at a fixed sample time. Choose your preferred colors in settings; the watchface keeps that palette.\nFor Pebble Time 2.",
-      "name": "Ledger",
-      "thumbnail": "https://assets.repebble.com/screenshots/1ee890ebe1f942a2aa708f56/chalk/4f0dc97e-82a2-4a31-abc7-c0f889d90d89.png",
-      "url": "https://apps.repebble.com/ledger_1ee890ebe1f942a2aa708f56"
-    },
-    {
-      "category": "Faces",
-      "description": "A familiar terminal, made for your wrist.\nTerminal pairs large block numerals with a prompt and a separated block cursor. The cursor briefly blinks at each minute change, then stays steady.\nMake it yours:\n- Six palettes: Mint, Amber, Ice, Rose, White, and Paper.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery icon and percentage.\nThe animated preview cycles through the six palettes at a fixed sample time. Choose your preferred colors in settings; the watchface keeps that palette.\nFor Pebble Time 2.",
-      "name": "Terminal",
-      "thumbnail": "https://assets.repebble.com/screenshots/744be00b9d1c499999cd62f3/chalk/22c20278-09c4-4bea-a54d-03464986197e.png",
-      "url": "https://apps.repebble.com/terminal_744be00b9d1c499999cd62f3"
-    },
-    {
-      "category": "Faces",
-      "description": "Scoreboard time, at a glance.\nRally puts the hour and minute in two large panels, with tall athletic numerals, a date, and a centered battery indicator.\nMake it yours:\n- Six palettes: Navy & orange, Red, Field green, Plum, Ice, and Monochrome.\n- Custom face, panel, and numeral colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery icon and percentage.\nThe animated preview cycles through the six palettes at a fixed sample time. Choose your preferred colors in settings; the watchface keeps that palette.\nFor Pebble Time 2.",
-      "name": "Rally",
-      "thumbnail": "https://assets.repebble.com/screenshots/dfe5a3d1e2e44b5ebec727a7/chalk/5b438b12-512d-4f91-ad60-0dfe9cbb25f9.png",
-      "url": "https://apps.repebble.com/rally_dfe5a3d1e2e44b5ebec727a7"
-    },
-    {
-      "category": "Faces",
-      "description": "Big time, with the details in the margin.\nMargin places oversized hours above minutes, beside a slim date and battery column. A small progress line follows the minute within the hour.\nMake it yours:\n- Six palettes: Paper, Cream, Night, Ice, Mint, and Plum.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Numeric dates stack vertically in the selected order.\n- Live battery icon and percentage.\nThe animated preview cycles through the six palettes. Select a palette in settings; the watchface keeps your chosen colors.\nFor Pebble Time 2.",
-      "name": "Margin",
-      "thumbnail": "https://assets.repebble.com/screenshots/f08ced3e3a9a47efb297dd3c/chalk/de09ec65-418e-49a7-986d-a3a0a219b790.png",
-      "url": "https://apps.repebble.com/margin_f08ced3e3a9a47efb297dd3c"
-    },
-    {
-      "category": "Faces",
-      "description": "A vintage stereo display that tells the time.\nHi-Fi combines a large seven-segment clock with two useful progress meters, a date, and a battery gauge.\nMake it yours:\n- Five palettes: Amber, Mint, Ice, Silver, and Paper.\n- Custom background, digit, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- SEC meter tracks progress through the minute; MIN meter tracks progress through the hour.\n- Turn seconds off for minute-only updates.\n- Live battery gauge and percentage.\nThe animated preview cycles through the five palettes at a fixed sample time. Select your preferred colors in settings.\nFor Pebble Time 2.",
-      "name": "Hi-Fi",
-      "thumbnail": "https://assets.repebble.com/screenshots/67e59e9db94d4a2f8a981e22/chalk/2dd3697b-405a-44e5-b1f4-cebc1d6d69cf.png",
-      "url": "https://apps.repebble.com/hi-fi_67e59e9db94d4a2f8a981e22"
-    },
-    {
-      "category": "Faces",
-      "description": "A little bedside-clock warmth for your wrist.\nDesk Clock pairs large rounded numerals with an inset display, a simple date, and a centered battery indicator.\nMake it yours:\n- Six palettes: Cream & red, Mint, Ice blue, Night cyan, Coffee, and Black & white.\n- Custom background, label, and display colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery icon and percentage.\nThe animated preview cycles through the six palettes. Select a palette in settings; the watchface keeps your chosen colors.\nFor Pebble Time 2.",
-      "name": "Desk Clock",
-      "thumbnail": "https://assets.repebble.com/screenshots/d8d7cbfc9a3f4aaea111e4ca/chalk/0dda3074-e94e-48ee-a353-cc0123b65f57.png",
-      "url": "https://apps.repebble.com/desk-clock_d8d7cbfc9a3f4aaea111e4ca"
-    },
-    {
-      "category": "Faces",
-      "description": "Retro LCD time, arranged your way.\nLCD Club pairs a large seven-segment clock with a centered battery indicator and a seven-day strip that highlights today.\nMake it yours:\n- Six row orders: put Time, Battery, and Weekdays in your preferred positions.\n- A 60-mark seconds ruler that fills through each minute and starts again with the next.\n- Turn the ruler off for minute-only updates.\n- Five LCD palettes: Classic LCD, Silver, Amber, Ice, and Night.\n- Custom background and ink colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional header date: month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Battery icon and percentage, centered together.\nThe animated preview demonstrates the seconds ruler. The other previews show alternate layouts and colors.\nFor Pebble Time 2.",
-      "name": "LCD Club",
-      "thumbnail": "https://assets.repebble.com/screenshots/71dfd4981ebc45fb932d81cb/chalk/9d59ddea-80f6-4a07-b458-eaabd29c8377.png",
-      "url": "https://apps.repebble.com/lcd-club_71dfd4981ebc45fb932d81cb"
-    },
-    {
-      "category": "Faces",
-      "description": "Big time. A little color.\nMono puts the hour above the minute in large, easy-to-read numerals, with a small accent square and a clear battery bar.\nMake it yours:\n- Six numeral fonts: Original, Geometric, Tall, Block, Serif, and Digital.\n- Six color palettes: Classic, Mint, Ice, Rose, Paper, and Black & white.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Battery bar and numeric percentage.\nThe gallery GIF shows sample font and color combinations. Choose your preferred style in settings; the watchface stays still between minute updates.\nFor Pebble Time 2.",
-      "name": "Mono",
-      "thumbnail": "https://assets.repebble.com/screenshots/dd61ad0599c344db8b663a80/chalk/357d5873-b4cd-4f9d-b627-6124cc0c8bf6.png",
-      "url": "https://apps.repebble.com/mono_dd61ad0599c344db8b663a80"
-    },
-    {
-      "category": "Faces",
-      "description": "Watch the time type itself, one T9 key at a time. The numeric clock updates immediately while the hour and minute appear in words, with playful predictive-text corrections.\nChoose your phone\n• Original: compact pixel lettering and square keys.\n• Nokia 3310: classic phone lettering and oval keys.\n• Motorola RAZR V3: sculpted rows, larger aligned digits, and Blue or Silver palettes.\nMake it yours\n• Steady typing at Quick, Classic, or Slow speed.\n• Save settings to preview your changes.\n• Wrong guesses: Off, Occasional, or Every collision.\n• Quiet hours: choose when the finished time appears instantly.\n• Time format: 12-hour or 24-hour.\n• At :00: O'CLOCK or OH ZERO.\n• Optional watch-battery icon.\n• Model palettes or custom background and text colors.\nMade for Pebble Time 2.",
-      "name": "T9 Time",
-      "thumbnail": "https://assets.repebble.com/screenshots/6641551debac4064ab47acba/emery/9a828154-1083-4992-a27d-f40f8d6932c0.gif",
-      "url": "https://apps.repebble.com/t9-time_6641551debac4064ab47acba"
-    },
-    {
-      "category": "Health & Fitness",
-      "description": "Keep the rally. Let the watch handle the serve. PickleballKeeper scores pickleball on Pebble Time 2 with two simple inputs: Up when US wins a rally, Down when THEM wins. Tap either team's score panel if you prefer touch; physical buttons always work.\nIn traditional side-out doubles, PickleballKeeper handles the opening 0-0-2 call, server 1 and server 2, side-outs, and the serving court. Singles and rally scoring are available too. Every game is win by two.\nChoose classic 11-point best-of-three, a single game to 15, a five-game pro-final format, USA Pickleball's 2026 rally option, or a 21-point school-style rally game with win-on-serve freezing. Custom settings let you choose singles or doubles, 11/15/21 points, best of one/three/five, and the scoring rule. The school preset scores one game, not a whole school team event.\nSave completed matches on the watch. Review wins and losses on a calendar, open game-by-game results, and see a relative plot of optional phone GPS locations. Undo the last rally, choose team colors, and switch touch controls off whenever you want buttons only. Scoring and saved history work without a phone connection.",
-      "name": "PickleballKeeper",
-      "thumbnail": "https://assets.repebble.com/screenshots/b0559475cc924cc3805140c5/emery/bb3023cf-6bb7-45c3-8aa1-2911d3feb217.png",
-      "url": "https://apps.repebble.com/pickleballkeeper_b0559475cc924cc3805140c5"
-    },
-    {
-      "category": "Health & Fitness",
-      "description": "Keep score at the net, then keep the match. VolleyKeeper is a volleyball scorekeeper for Pebble Time 2. Tap the US or THEM panel to score, or use the physical buttons.\nChoose 3 sets to 25/25/15, 3 sets to 25/25/25, or 5 sets to 25/25/25/25/25. Sets require a two-point lead. Save completed matches on the watch, review wins and losses on a calendar, and see saved results in match history.\nCustomize team colors and switch touch controls off when you prefer buttons. Optional phone GPS adds a location to a saved match for the on-watch places view. Scoring and match history work offline.",
-      "name": "VolleyKeeper",
-      "thumbnail": "https://assets.repebble.com/screenshots/7c886ac0ac594f5a95755c8a/emery/0807263f-8367-4339-b54e-1af837ec423c.png",
-      "url": "https://apps.repebble.com/volleykeeper_7c886ac0ac594f5a95755c8a"
-    },
-    {
-      "category": "Faces",
-      "description": "Test Pattern turns a vintage calibration card into a crisp digital clock. A bright alignment grid frames a dark circular clock field, with paired color patches in the corners and fine registration marks. A short scan line sweeps across the background after wrist movement while the time stays fixed.\nMake it yours\n• Choose Warm broadcast, Electric, Grayscale, or Night blue.\n• Follow your watch's 12/24-hour setting, or choose either style directly.\n• Show no date, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n• Show or hide the battery percentage (off by default).\n• Turn wrist motion off for a completely still face.\nMade for Pebble Time 2 and Pebble Round 2. The watchface works offline.",
-      "name": "Test Pattern",
-      "thumbnail": "https://assets.repebble.com/screenshots/c069ed8a7dfa40b785a29e0e/gabbro/b1962b98-94cb-480b-b487-9b21d84ab250.gif",
-      "url": "https://apps.repebble.com/test-pattern_c069ed8a7dfa40b785a29e0e"
-    },
-    {
-      "category": "Faces",
-      "description": "Color Key gives the clock the energy of a classic broadcast color-bar transition. The bars slide into place when you move your wrist, then settle behind a fixed, easy-to-read time.\nMake it yours\n• Choose Warm broadcast, Electric, Grayscale, or Night blue.\n• Follow your watch's 12/24-hour setting, or choose either style directly.\n• Show no date, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n• Show or hide the battery percentage.\n• Turn wrist motion off for a completely still face.\nMade for Pebble Time 2 and Pebble Round 2. The watchface works offline.",
-      "name": "Color Key",
-      "thumbnail": "https://assets.repebble.com/screenshots/3cb45a2aebe3449097bd7604/emery/83f805ab-e0cb-455e-af00-f69bef4d11b5.gif",
-      "url": "https://apps.repebble.com/color-key_3cb45a2aebe3449097bd7604"
-    },
-    {
-      "category": "Faces",
-      "description": "Level Time keeps the clock easy to read as your Pebble Time 2 rolls with your wrist. The flat digits counter-rotate inside the display, so they stay approximately level instead of tilting with the case.\nChoose a look that suits your wrist: Ink, Paper, Amber, Field, Signal, or Quiet. Each style has its own numeral design: block, serif, monospaced, bold geometric, condensed, or light. The palettes span warm paper, amber, olive, and restrained gray, with no blue required.\nChoose no date or one of three date formats. Level Time follows your watch's 12-hour or 24-hour clock preference. Amber includes a simple battery indicator.\nThe face uses the watch accelerometer, works without a phone connection, and holds its last stable angle when the watch lies nearly flat.\nMade for Pebble Time 2 (Emery).",
-      "name": "Level Time",
-      "thumbnail": "https://assets.repebble.com/screenshots/450af5416e634355b0e326f9/emery/8c596d4d-686d-42ae-a447-1bd7bbdd72de.gif",
-      "url": "https://apps.repebble.com/level-time_450af5416e634355b0e326f9"
-    },
-    {
-      "category": "Faces",
-      "description": "Rainy Bookshop turns your Pebble into a warmly lit shop window. A sleepy cat rests beside the books while rain passes outside and a coffee cup marks the chalkboard.\nNew in 0.3.0: a cleaner shop-plaque layout and a violet dusk scene. The date sits beneath the clock on a small warm plaque, and a compact battery icon replaces the percentage badge. Prefer the old look? Choose Original layout in settings.\nWhat you can choose\n• Layout: Clean shop plaque or Original\n• Scene: day, dusk, night, or automatic. Automatic uses local time: day 07:00–16:59, dusk 17:00–18:59, night 19:00–06:59.\n• Clock background: Light parchment or Dark window with warm cream digits\n• Time style: follow your watch, 12-hour, or 24-hour\n• Date: Off, YYYY-MM-DD, MM/DD/YYYY, DD/MM/YYYY, or weekday/day/month\n• Gentle scene motion and battery display: on or off\nThe cat briefly opens its eyes, then settles back to sleep. Its body and single curled tail stay still. The clock remains steady. The lead GIF accelerates the pauses between glances; pauses on the watch are much longer.\nMade for Pebble Time 2 and Pebble Round 2.",
-      "name": "Rainy Bookshop",
-      "thumbnail": "https://assets.repebble.com/screenshots/7c9514476e4e4de8ac3767e2/emery/b73467e0-b7ec-401b-b4b6-8a8d6d895550.gif",
-      "url": "https://apps.repebble.com/rainy-bookshop_7c9514476e4e4de8ac3767e2"
-    },
-    {
-      "category": "Faces",
-      "description": "A little aquarium that tells time. The clock fish carries large, upright digits inside its body while bubbles and sea creatures bring the scene to life.\r\n\r\nChoose the aquarium that feels like yours:\r\n- Six time styles: Rounded, Digital bold, Digital fine, Classic bold, Compact bold, and Tall light.\r\n- Fish and water colors you choose, or colors that change daily.\r\n- Aquarium backgrounds with kelp, reef, castle, and a grayscale look.\r\n- Still, Gentle, or Lively motion. The clock fish occasionally glides; bubbles rise, small fish swim, a jellyfish pulses, and a crab sometimes scuttles.\r\n\r\nThe time stays readable when the fish turns. A small battery fish can show the percentage. Choose day, night, or automatic display, and set the date to Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\r\n\r\nMade for Pebble Time 2 and Pebble Round 2. The animated store preview tours settings and scenes; the face uses your selected settings on the watch.",
-      "name": "Clockfish",
-      "thumbnail": "https://assets.repebble.com/screenshots/40292564f42e4f4e8763b9a1/emery/fbf98fef-a3cc-4c0b-b8e9-75ce1c131d76.gif",
-      "url": "https://apps.repebble.com/clockfish_40292564f42e4f4e8763b9a1"
-    },
-    {
-      "category": "Faces",
-      "description": "Digital time with a sense of depth. The front digits stay fixed while their echoes recede behind them.\r\n\r\nBuild your own look:\r\n- Choose from 12 numeral styles, 12 background patterns, six color looks, and eight decorations, including None.\r\n- Set 1–12 echoes and choose background, digit, depth, and grid colors.\r\n- Use separate palettes for Day, Night, and Auto modes.\r\n\r\nChoose your movement:\r\n- None holds a static trail.\r\n- Follow tilt tracks your wrist angle.\r\n- Full clockwise orbit moves through eight directions after a tilt or tap, then settles at your current angle.\r\n- Pick Quick, Classic, or Slow orbit speed.\r\n- Choose Gentle or Deliberate gesture sensitivity.\r\n- Reverse the echo direction if you prefer.\r\n\r\nSaving settings previews one orbit when Full clockwise orbit is selected.\r\n\r\nThe time follows your watch’s 12- or 24-hour setting. Date choices are Off, YYYY-MM-DD, MM/DD/YYYY, and DD/MM/YYYY.\r\n\r\nFor Pebble Time 2 and Pebble Round 2.",
-      "name": "Way Back",
-      "thumbnail": "https://assets.repebble.com/screenshots/370092d6402c4a0bbc8fb01b/emery/279ca33a-16ab-4d4e-bc8f-a5d1577d93b8.gif",
-      "url": "https://apps.repebble.com/way-back_370092d6402c4a0bbc8fb01b"
-    },
-    {
-      "category": "Faces",
-      "description": "The time first. One useful detail for this part of your day. Now / Next keeps the Pebble Time 2 screen easy to read at a glance.\r\n\r\nSet four daily periods—morning, daytime, evening, and night. For each period, choose a start hour and what appears beside the clock:\r\n- Rain chance\r\n- Current temperature\r\n- Today’s sunset\r\n- Watch battery\r\n\r\nThe footer shows what comes next and when that period begins. Choose background, clock-digit, and accent colors independently. Set the date to Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY. Time follows your watch’s 12- or 24-hour setting.\r\n\r\nWeather uses your connected phone’s location and Open-Meteo, refreshing about every 30 minutes. Missing or stale weather reads UNAVAILABLE. Temperature is shown in Fahrenheit. Made for Pebble Time 2.",
-      "name": "Now / Next",
-      "thumbnail": "https://assets.repebble.com/screenshots/68afcbcc6c18416c98b6a1b7/emery/ee263fa8-c6ae-4cfc-8641-a4977e920aea.gif",
-      "url": "https://apps.repebble.com/now-next_68afcbcc6c18416c98b6a1b7"
-    },
-    {
-      "category": "Faces",
-      "description": "A tiny vector landscape beneath a flight-path reticle. TERCOM brings a 1970s CRT-inspired terrain instrument to Pebble Time 2, with a bold digital clock and five procedural landscapes.\r\n\r\nNew in 1.1.0: clearer time, dimmer scales, four instrument palettes, refined terrain shapes, smoother flight speed and filtered tilt, plus phone settings for motion and telemetry.\r\n\r\nChoose Green phosphor, Amber terminal, Ice blue, or Monochrome. Explore Crags, a winding Canyon, Dunes, a volcanic Caldera, and layered Alpine ridges. Green remains the default.\r\n\r\nOn the watch, a single wrist tap starts a temporary flight. A rapid double tap changes tracks when enabled. Flight returns to the exact resting terrain position. In the phone settings, choose Flight Off, Short (2 seconds), or Standard (about 4.5 seconds), adjust tilt response, disable double-tap switching, or choose a track directly.\r\n\r\nThe upper-right readout can show explicitly simulated altitude (SIM), daily steps, compass heading, battery, or nothing. Choose an optional ISO, US, or European date in the lower center, daily steps, or an empty center. A dashed illustrative course line is optional. SIM is a fictional value derived from steps, not measured altitude. Landscapes and course lines are not real navigation data; unavailable compass heading shows ---.\r\n\r\nTime follows the watch's 12/24-hour setting and updates each minute while idle. The preview tours the palette and terrain choices; on the watch, those choices change only through settings or enabled track-switch taps. Made for Pebble Time 2.",
-      "name": "TERCOM",
-      "thumbnail": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/emery/46e599e2-3f47-4108-908d-65a644ff2e21.gif",
-      "url": "https://apps.repebble.com/tercom_c6f081e1607448bf92df7de4"
-    },
-    {
-      "category": "Faces",
-      "description": "A new typeface for each glance. Type Foundry is a typographic clock with nine distinct treatments for Pebble Time 2.\r\n\r\nChoose your time style:\r\n- Railway, Calculator, or Editorial\r\n- Arcade, Monument, or Ledger\r\n- Split Flap, Blueprint, or Dot Matrix\r\n\r\nChoose one of three ready-made palettes, or set the background and digit colors independently. The lower line can be hidden, show battery level, or show a date. Date formats include weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, and DD/MM/YYYY. Time follows your watch’s 12- or 24-hour setting.\r\n\r\nThe animated listing preview tours all nine styles and a custom-color example. On the watch, the face updates once per minute. For Pebble Time 2.",
-      "name": "Type Foundry",
-      "thumbnail": "https://assets.repebble.com/screenshots/0afb4178d396415682d4ba40/emery/411d6eb7-a3a8-4149-81ae-7cddbe89a4aa.gif",
-      "url": "https://apps.repebble.com/type-foundry_0afb4178d396415682d4ba40"
-    },
-    {
-      "category": "Faces",
-      "description": "A station clock for your wrist. Departure Board pairs a large flip-dot time display with one useful line beneath it.\r\n\r\nChoose the second line:\r\n- Countdown to local sunset\r\n- The next broad weather change: clear, cloud, rain, or snow\r\n\r\nChoose an amber, blue, or green terminal color. The time follows your watch’s 12- or 24-hour setting and updates each minute. Set the date to Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY; it is hidden by default.\r\n\r\nSunset and weather use your connected phone’s location and Open-Meteo forecast data. When fresh data is unavailable, the second line says so. The animated store preview cycles through colors, information choices, and a date example; the watch keeps your chosen settings. For Pebble Time 2.",
-      "name": "Departure Board",
-      "thumbnail": "https://assets.repebble.com/screenshots/cd02cf5abf0a4afa927d7d5e/emery/206dddb6-2977-4d83-a85b-8d0d02ef1d3a.gif",
-      "url": "https://apps.repebble.com/departure-board_cd02cf5abf0a4afa927d7d5e"
-    },
-    {
-      "category": "Faces",
-      "description": "What changed since yesterday? Change Clock shows today’s sunset and temperature alongside their differences from yesterday, with a large clock above.\r\n\r\nTwo comparison rows keep the answer brief:\r\n- Sunset: how today’s local sunset differs from yesterday’s.\r\n- Temperature: the change at the matching clock hour.\r\n\r\nChoose Charcoal lime, Midnight ice, or Paper ink colors. Choose Large bold or Large light clock text. Set the date to Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY; it is hidden by default. Time follows your watch’s 12- or 24-hour setting.\r\n\r\nThe face uses your phone’s location and Open-Meteo forecast data. Missing or stale phone data is marked unavailable. The animated preview tours colors and a date example. For Pebble Time 2.",
-      "name": "Change Clock",
-      "thumbnail": "https://assets.repebble.com/screenshots/655fa627bf714bf489c4b3cc/emery/7b9c4598-a58d-481a-a463-3e878204a5b5.gif",
-      "url": "https://apps.repebble.com/change-clock_655fa627bf714bf489c4b3cc"
-    },
-    {
-      "category": "Faces",
-      "description": "See the next 90 minutes of rain without losing the clock. Rain Clock keeps time large and places a six-bar precipitation strip beneath it.\r\n\r\nThe face calls out when the next rain interval begins. If the phone forecast is missing or stale, it shows an unavailable state instead of an old prediction.\r\n\r\nMake it yours:\r\n- Ocean blue, Amber night, or Paper blue colors.\r\n- Large bold or Large light clock text.\r\n- Date Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY; hidden by default.\r\n\r\nTime follows your watch’s 12- or 24-hour setting. Forecasts use the connected phone’s location and Open-Meteo. The animated preview cycles colors and a date example. For Pebble Time 2.",
-      "name": "Rain Clock",
-      "thumbnail": "https://assets.repebble.com/screenshots/5210c5d1bcaa4cc48067eec9/emery/f4d2e239-1008-46cd-9ee7-48ee334df91c.gif",
-      "url": "https://apps.repebble.com/rain-clock_5210c5d1bcaa4cc48067eec9"
-    },
-    {
-      "category": "Faces",
-      "description": "A day across deep time. In Pangaea Drift, midnight begins 252 million years ago at the Triassic dawn. At 23:59, the clock reaches the asteroid impact 66 million years ago; the final minute races through continental drift to the present.\r\n\r\nRead the Earth beneath the clock:\r\n- A digital time display, geological period, and age in millions of years.\r\n- A colored day arc for the Triassic, Jurassic, and Cretaceous, with an extinction tick and a cursor.\r\n- Reconstructed coastlines and an amber reticle carrying your current ground back on its tectonic plate.\r\n- Nearby fossil occurrences, distance, paleo coordinates, and a paleo-climate band.\r\n\r\nChoose 12- or 24-hour time and a color palette. Phone coordinates are resolved on-device and cached for offline wear. Coastline reconstruction uses plate kinematics from Merdith et al. (2021). For Pebble Time 2. Source: https://github.com/globe-and-atlas/pangaea-watch",
-      "name": "Pangaea Drift",
-      "thumbnail": "https://assets.repebble.com/screenshots/490fd055aa9b485c8deced5e/emery/b22c7668-e58a-4d38-910c-90ab78c32322.gif",
-      "url": "https://apps.repebble.com/pangaea-drift_490fd055aa9b485c8deced5e"
-    },
-    {
-      "category": "Faces",
-      "description": "All of history, mapped to a single 24-hour day. Midnight was the beginning. Tonight at midnight is right now.\r\n\r\nSince Then compresses vast spans of time into the rhythm of your day. Choose your perspective from four distinct historical lenses in settings:\r\n\r\n- Deep Time (4.54 Billion Years): The cosmic scale. Oxygen fills the atmosphere mid-morning, complex life emerges after 21:00, dinosaurs vanish at 23:39, and all of recorded human history flashes by in the final six seconds. The last minute ticks by the second.\r\n\r\n- The Holocene (11,700 Years): The story of human civilization since the end of the last ice age. Watch agriculture emerge at dawn, the pyramids rise before lunch, and modern cities form by evening (~8 years per minute).\r\n\r\n- The Common Era (2,000+ Years): Classical antiquity to the space age. The Roman world transforms at breakfast, the Renaissance arrives in mid-afternoon, and your own lifetime unfolds over the final hour of your day (~1.4 years per minute).\r\n\r\n- The Second Millennium (1,000 Years): Modern history in fast-forward. The medieval world gives way to print, science, industry, and the digital era right as you get ready for sleep (~0.7 years per minute).\r\n\r\nThroughout the day, the face updates every minute (and every second in Deep Time's final minute), advancing the timeline's age or year, the period or century, and the latest historical event with a live counter of how long ago it occurred on this clock. The face works fully offline with no phone connection needed.\r\n\r\nFeatures:\r\n- 24-hour clock keeps every timeline aligned from midnight to midnight\r\n- Choose your timeline lens and custom colors for time digits\r\n- Geologic periods follow the ICS International Chronostratigraphic Chart v2024-12 (CC BY 4.0)\r\n- Historical events sourced and verified from cited records\r\n\r\nA Pebble Time 2 and Pebble Time Round watchface by Globe & Atlas.\r",
-      "name": "Since Then",
-      "thumbnail": "https://assets.repebble.com/screenshots/de8ab2e141c64ff2abecaab2/gabbro/5d0b111e-c0a3-4fee-8133-35b88113571b.gif",
-      "url": "https://apps.repebble.com/since-then_de8ab2e141c64ff2abecaab2"
-    },
-    {
-      "category": "Tools & Utilities",
-      "description": "Explore modeled satellite geometry on Pebble Time 2. Constellation propagates public CelesTrak elements with SGP4 to show GPS, Galileo, GLONASS, and BeiDou positions. It is an educational watchapp, not a GNSS receiver or navigation fix.\r\n\r\nFour views:\r\n- Orbit globe: modeled positions with schematic orbital-plane rings.\r\n- Skyplot: modeled azimuth and elevation; bars show elevation, not signal strength.\r\n- Geometry: DOP from modeled directions, or N/A when geometry is insufficient. DOP describes geometry, not position accuracy.\r\n- World map: simplified coastlines, selected center, and modeled sub-satellite points; no reception-radius circle.\r\n\r\nChoose phone location or validated manual coordinates. A location failure is shown without substituting another place. Phone coordinates stay on-device and are not sent to CelesTrak. TLE age is shown; fresh elements need internet, while cached elements can be viewed offline. TLEs do not provide a position-accuracy estimate.\r\n\r\nHold UP/DOWN to change panes; click UP/DOWN on the globe to rotate; SELECT toggles catalog numbers; hold SELECT to refresh. Data: CelesTrak GP/TLE. Source: https://github.com/globe-and-atlas/constellation-watch",
-      "name": "Constellation",
-      "thumbnail": "https://assets.repebble.com/screenshots/10f46ae849224d009644f7e8/emery/3f56155a-a477-4798-a3cd-b1d6f4e61bc6.gif",
-      "url": "https://apps.repebble.com/constellation_10f46ae849224d009644f7e8"
-    },
-    {
-      "category": "Tools & Utilities",
-      "description": "Plan Landsat 8/9 and Sentinel-2A/B/C passes over your location on Pebble Time 2. Satellite Overpass shows a countdown, hourly cloud forecast, and modeled cross-track coverage.\r\n\r\nExplore a pass:\r\n- See your center, the selected ground track, and its nominal imaging swath on a regional map.\r\n- Review 30 days of matching Earth Search scenes, whole-scene cloud cover, and product-lag status.\r\n- Save a timestamped pin or refresh the data from the watch.\r\n\r\nA catalogue no-match does not prove no acquisition occurred. Coverage and swath-edge status are geometric heuristics, not probabilities or guarantees. The map is an overview, unavailable above 80° latitude, and not live navigation. Sentinel-2A has a partial acquisition plan; cloud forecasts beyond five days have little skill.\r\n\r\nRefresh sends current coordinates to Open-Meteo for clouds and Element 84 Earth Search for scene history. Pins stay on the phone and are not included in those requests; they can be copied as GeoJSON from settings. Fresh predictions require location permission; forecasts and scene history require internet. Cached predictions and maps remain available offline.\r\n\r\nUP/DOWN selects a pass; hold DOWN switches map/list; SELECT saves a pin; hold SELECT refreshes. Data: CelesTrak, Open-Meteo (CC BY 4.0), Element 84 Earth Search, Natural Earth (public domain). Source: https://github.com/globe-and-atlas/overpass-watch",
-      "name": "Satellite Overpass",
-      "thumbnail": "https://assets.repebble.com/screenshots/6e920a2fa6304e45b4644116/emery/9255d516-650a-4405-8d02-37ea9dc1a0b9.gif",
-      "url": "https://apps.repebble.com/satellite-overpass_6e920a2fa6304e45b4644116"
-    },
-    {
-      "category": "Faces",
-      "description": "Watch the place your clock points to change through the day. Your location is the start; at 10:42, the route reaches 10°42′ along your chosen map direction. At midnight, the journey begins at home again.\r\n\r\nMake the route yours:\r\n- Choose one of eight directions, or Auto for a path with more land and towns.\r\n- Flick your wrist among nearby Now, the default Hour view, the whole Day route, and a Globe.\r\n\r\nThe map shows the destination and names the next town ahead. Over open water, it widens to the Day view. After a minute, the default view returns. Your starting location is rounded to about 10 km and stays on the phone.\r\n\r\nFor Pebble Time 2 and Pebble Round 2, by Globe & Atlas. The Round 2 animation tours four selectable views. Map data: Natural Earth (public domain) and GeoNames (CC BY 4.0).",
-      "name": "From Here",
-      "thumbnail": "https://assets.repebble.com/screenshots/d9fc15a8f87746b7ba01f6ca/gabbro/03cb00a8-81fd-49b7-bef8-eb7481706d60.gif",
-      "url": "https://apps.repebble.com/from-here_d9fc15a8f87746b7ba01f6ca"
-    },
-    {
-      "category": "Faces",
-      "description": "See what lies ahead when you raise your wrist. Straight Ahead turns its map to your compass heading for 60 seconds. A cyan ring measures how far the day has traveled: one nautical mile outward for every minute since midnight.\r\n\r\nThe label names the city, state, country, or sea where the ring meets the direction you face. At noon, the ring is 720 nautical miles away.\r\n\r\nWhile the heading view is active, flick to see the whole Earth. After a minute, the face rests north-up to conserve power.\r\n\r\nFor Pebble Time 2 and Pebble Round 2, by Globe & Atlas. The Round 2 animated preview speeds the day ring through sample times. Map data: Natural Earth.",
-      "name": "Straight Ahead",
-      "thumbnail": "https://assets.repebble.com/screenshots/a792f7d2290b4da48bb86ca5/gabbro/75c1f69c-4f88-47f1-b076-426e64a20c4d.gif",
-      "url": "https://apps.repebble.com/straight-ahead_a792f7d2290b4da48bb86ca5"
-    },
-    {
-      "category": "Faces",
-      "description": "The time becomes the hand. In Origin, a digital time string follows a twelve-hour dial and resolves into a single upright numeral at exactly 3:00, 6:00, 9:00, and 12:00 for that minute.\r\n\r\nChoose your look:\r\n- One of 12 numeral fonts.\r\n- Hand color and width.\r\n- Optional weekday, date, month, and year at the top or bottom.\r\n\r\nOrigin is a Pebble Time 2 prototype by Globe & Atlas. The preview animation is an accelerated time-lapse; the watch updates once per minute.",
-      "name": "Origin",
-      "thumbnail": "https://assets.repebble.com/screenshots/21d5882443784d998674e10f/emery/3b9d4eb5-df11-4ce4-a285-7755caa9be5b.gif",
-      "url": "https://apps.repebble.com/origin_21d5882443784d998674e10f"
-    },
-    {
-      "category": "Faces",
-      "description": "Two hands, two numbers. Vector places the hour near the shorter hand tip and the minutes near the longer hand tip. Both numbers stay upright as the hands turn.\r\n\r\nChoose your look:\r\n- One of 12 numeral fonts.\r\n- Independent colors and widths for the hour and minute hands.\r\n- Optional weekday, date, month, and year at the top or bottom.\r\n\r\nVector is a Pebble Time 2 prototype by Globe & Atlas. The preview animation is an accelerated time-lapse; the watch updates once per minute.",
-      "name": "Vector",
-      "thumbnail": "https://assets.repebble.com/screenshots/bcec521af0e0444eaf8471ce/emery/04cef9d4-7095-4cc4-a070-c58532c34d41.gif",
-      "url": "https://apps.repebble.com/vector_bcec521af0e0444eaf8471ce"
-    },
-    {
-      "category": "Faces",
-      "description": "Wear the day and night. Meridian places a globe beneath two numbered clock hands, with calculated sunlight moving across Earth as UTC and the seasons change. The hands show your local watch time.\r\n\r\nChoose your dial:\r\n- Start with a black-and-white globe, or color the land and water.\r\n- Pick from 12 numeral fonts and style each hand independently.\r\n- Show or hide the date, battery, and Bluetooth indicators.\r\n\r\nThe globe depicts daylight, not weather. Meridian is made for Pebble Time 2 and Pebble Round 2; physical-watch validation is ongoing.\r\n\r\nThe Time 2 animated preview tours globe and hand styles. The Round 2 preview moves the minute hand in five-minute steps through a sample evening while cycling four Custom palettes and a black-and-white style. These are accelerated previews; the installed face keeps your chosen settings and updates once per minute.",
-      "name": "Meridian",
-      "thumbnail": "https://assets.repebble.com/screenshots/ec1162d2415448789ea1ba78/gabbro/b5d9edcb-3673-49df-9048-4a554c650846.gif",
-      "url": "https://apps.repebble.com/meridian_ec1162d2415448789ea1ba78"
-    },
-    {
-      "category": "Faces",
-      "description": "A quiet dial with four points of reference. Cardinal pairs fine black hands with upright hour and minute numbers and four cardinal marks.\r\n\r\nChoose your look:\r\n- One of 12 numeral fonts.\r\n- Independent hand colors and widths.\r\n- Optional weekday, date, month, and year at the top or bottom.\r\n\r\nCardinal is a Pebble Time 2 prototype by Globe & Atlas. The preview animation is an accelerated time-lapse; the watch updates once per minute.",
-      "name": "Cardinal",
-      "thumbnail": "https://assets.repebble.com/screenshots/9a7040247c9343898b3674c7/emery/40c0c3e1-7197-4473-84bd-67b2938ee8f3.gif",
-      "url": "https://apps.repebble.com/cardinal_9a7040247c9343898b3674c7"
-    }
-  ],
+  "source": "https://apps.repebble.com/apps/dev/daniel-bally_e8468a0ff28edd5791d1bced",
   "observedAt": "2026-11-07",
   "pagination": {
-    "entries": 38,
     "loadedPages": 2,
+    "entries": 38,
     "reachedBottom": true
   },
-  "source": "https://apps.repebble.com/apps/dev/daniel-bally_e8468a0ff28edd5791d1bced"
+  "entries": [
+    {
+      "name": "Loose Digits",
+      "url": "https://apps.repebble.com/loose-digits_391620b25cbf4bf39565ab49",
+      "category": "Faces",
+      "description": "Give the time a little knock.\n\nLoose Digits keeps a clear pixel clock at rest. Knock the watch case twice and the numbers tumble, then reassemble automatically in about three seconds.\n\nMake it yours:\n- Trigger: Double case knock (default), Single case knock, or Wrist roll.\n- Independent background, digit/date, and colon accent colors.\n- Animation On or Off for a completely still clock.\n- Your watch's 12-hour or 24-hour format, with AM/PM in 12-hour mode.\n- Optional date: YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n\nCase knocks are detected from acceleration, not touchscreen input. For wrist-roll mode, briefly hold the watch approximately face-up, then roll sideways. A short cooldown prevents repeated tumbles; further movement cannot postpone reassembly.\n\nThe animated preview shows a sample tumble followed by color examples. On the watch, your chosen colors stay fixed until you change settings.\n\nNative layouts for Pebble Time 2, original Time Round, and Round 2. Works offline after configuration. Detection sensitivity depends on your watch and tapping motion. Verified in emulators; physical knock sensitivity and battery impact have not been measured.",
+      "thumbnail": "https://assets.repebble.com/screenshots/391620b25cbf4bf39565ab49/chalk/8fc46621-8bf6-4bf2-8da5-a5f4f4346d1f.gif",
+      "release_version": "0.2.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/391620b25cbf4bf39565ab49/emery/2f70b651-c143-4c89-9812-ffb7ba58f6a7.gif"
+    },
+    {
+      "name": "World Timer",
+      "url": "https://apps.repebble.com/world-timer_dc42aa6ca1cf447785720f80",
+      "category": "Faces",
+      "description": "Two cities. One departure board.\n\nWorld Timer puts two city clocks on a clean split-flap board. Only changing digits flip on each minute change, then settle automatically.\n\nChoose Main and Other from 40 named cities. The signed difference beside Other is relative to Main, including daylight saving: +15H means 15 hours ahead; fractional-hour zones retain their minutes. A separate +1D or -1D marker shows a calendar-day difference.\n\nAmber on black is the default. Choose Olive LCD or custom background, ink and flap-border colors. Turn split-flap transitions off if you prefer a still clock.\n\nNative layouts for Pebble Time 2, Time Round and Round 2. Supports watch-default, 12-hour and 24-hour time, AM/PM, optional seconds, and date choices including Off, ISO, US and European formats.\n\nAfter updating, open settings to choose your cities. Existing city and theme choices are preserved. This departure-board version removes the previous call-hours section and map-travel gesture.\n\nOffline IANA 2026f time-zone rules cover 2020 through 2037. Future government changes require an app update. The animated preview shows native split-flap frames; selected colors stay steady on the watch.",
+      "thumbnail": "https://assets.repebble.com/screenshots/dc42aa6ca1cf447785720f80/chalk/0208f917-5109-45b1-81cf-4bb9c3a2bae4.gif",
+      "release_version": "0.3.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/dc42aa6ca1cf447785720f80/emery/c12f5765-2819-4140-be66-fd5bbf1be2cf.gif"
+    },
+    {
+      "name": "Railway",
+      "url": "https://apps.repebble.com/railway_b882652051884d01bfcabfdf",
+      "category": "Faces",
+      "description": "A clear analog dial inspired by railway clocks.\n\nBold batons, flat hands, and an optional lollipop seconds hand. Optional digital time, date, and battery percentage.\n\nMake it yours:\n- Six color palettes.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour main time.\n- Optional date, with ISO, US, or European numeric formats.\n\nThe animated preview cycles through the palettes. Your selected colors stay steady on the watch.\n\nNative layouts for Pebble Time 2, the original Time Round, and Round 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/b882652051884d01bfcabfdf/chalk/79c2236d-31f3-4b4a-86fc-2c26e09c816c.gif",
+      "release_version": "0.1.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/b882652051884d01bfcabfdf/emery/f38b7def-f816-4b6f-aa36-792e65349d5b.gif"
+    },
+    {
+      "name": "Dot Matrix",
+      "url": "https://apps.repebble.com/dot-matrix_3f9c7df9e7924d4abe6be703",
+      "category": "Faces",
+      "description": "A dot-matrix clock with bright, crisp numerals.\n\nA dotted date and battery display complement the large time.\n\nMake it yours:\n- Six color palettes.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour main time.\n- Optional date, with ISO, US, or European numeric formats.\n\nThe animated preview cycles through the palettes. Your selected colors stay steady on the watch.\n\nNative layouts for Pebble Time 2, the original Time Round, and Round 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/3f9c7df9e7924d4abe6be703/chalk/bd76d537-4a93-4614-9c4f-c6d8fdc59cd6.png",
+      "release_version": "0.1.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/3f9c7df9e7924d4abe6be703/emery/f75dd159-244a-4435-a1e2-f3ff9a482d3c.gif"
+    },
+    {
+      "name": "PBL-2500",
+      "url": "https://apps.repebble.com/pbl-2500_3403f49eadb7469d94ae292d",
+      "category": "Faces",
+      "description": "A dimensional analog dial for your Pebble.\n\nPBL-2500 pairs broad luminous-style hands with faceted hour markers, a small-seconds dial at 9, and a three-cell fan calendar at 3. The dial carries the P-SHOCK wordmark.\n\nMake it yours:\n- Six palettes: Graphite, Steel, Olive, Ivory, Navy, and Gold.\n- Custom background, hand, and accent colors.\n- Small seconds on or off; off uses minute-only updates.\n- Fan calendar with tomorrow above today and yesterday below.\n- Optional date: Off, fan day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery percentage, with a visibility option.\n- Optional digital time footer with watch default, 12-hour, or 24-hour format. The analog dial stays twelve-hour.\n\nThe first preview cycles through the six palettes at a fixed sample time. Select your preferred colors in settings; the watchface keeps that palette.\n\nFor Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/3403f49eadb7469d94ae292d/chalk/750ef320-5f8e-42eb-8d1d-6eb5fdcf4265.png",
+      "release_version": "0.2.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/3403f49eadb7469d94ae292d/emery/1ed8eed6-89a7-4591-ad61-c094edb4dd02.gif"
+    },
+    {
+      "name": "Ledger",
+      "url": "https://apps.repebble.com/ledger_1ee890ebe1f942a2aa708f56",
+      "category": "Faces",
+      "description": "Quiet type. Clear time.\n\nLedger combines large serif numerals with fine rules, a centered date, and a neatly aligned battery percentage.\n\nMake it yours:\n- Six palettes: Paper, Cream, Night, Sage, Ice, and Blue.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery percentage, with an accent color.\n\nThe animated preview cycles through the six palettes at a fixed sample time. Choose your preferred colors in settings; the watchface keeps that palette.\n\nFor Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/1ee890ebe1f942a2aa708f56/chalk/4f0dc97e-82a2-4a31-abc7-c0f889d90d89.png",
+      "release_version": "0.1.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/1ee890ebe1f942a2aa708f56/emery/fc1ce37a-d60c-4567-91be-ef3d10ad0fad.gif"
+    },
+    {
+      "name": "Terminal",
+      "url": "https://apps.repebble.com/terminal_744be00b9d1c499999cd62f3",
+      "category": "Faces",
+      "description": "A familiar terminal, made for your wrist.\n\nTerminal pairs large block numerals with a prompt and a separated block cursor. The cursor briefly blinks at each minute change, then stays steady.\n\nMake it yours:\n- Six palettes: Mint, Amber, Ice, Rose, White, and Paper.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery icon and percentage.\n\nThe animated preview cycles through the six palettes at a fixed sample time. Choose your preferred colors in settings; the watchface keeps that palette.\n\nFor Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/744be00b9d1c499999cd62f3/chalk/22c20278-09c4-4bea-a54d-03464986197e.png",
+      "release_version": "0.1.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/744be00b9d1c499999cd62f3/emery/4de09dfa-4b4f-4343-b5fc-db01df950f4b.gif"
+    },
+    {
+      "name": "Rally",
+      "url": "https://apps.repebble.com/rally_dfe5a3d1e2e44b5ebec727a7",
+      "category": "Faces",
+      "description": "Scoreboard time, at a glance.\n\nRally puts the hour and minute in two large panels, with tall athletic numerals, a date, and a centered battery indicator.\n\nMake it yours:\n- Six palettes: Navy & orange, Red, Field green, Plum, Ice, and Monochrome.\n- Custom face, panel, and numeral colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery icon and percentage.\n\nThe animated preview cycles through the six palettes at a fixed sample time. Choose your preferred colors in settings; the watchface keeps that palette.\n\nFor Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/dfe5a3d1e2e44b5ebec727a7/chalk/5b438b12-512d-4f91-ad60-0dfe9cbb25f9.png",
+      "release_version": "0.1.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/dfe5a3d1e2e44b5ebec727a7/emery/1adb978d-7ab3-4042-b603-afb9aef4b8d2.gif"
+    },
+    {
+      "name": "Margin",
+      "url": "https://apps.repebble.com/margin_f08ced3e3a9a47efb297dd3c",
+      "category": "Faces",
+      "description": "Big time, with the details in the margin.\n\nMargin places oversized hours above minutes, beside a slim date and battery column. A small progress line follows the minute within the hour.\n\nMake it yours:\n- Six palettes: Paper, Cream, Night, Ice, Mint, and Plum.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Numeric dates stack vertically in the selected order.\n- Live battery icon and percentage.\n\nThe animated preview cycles through the six palettes. Select a palette in settings; the watchface keeps your chosen colors.\n\nFor Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/f08ced3e3a9a47efb297dd3c/chalk/de09ec65-418e-49a7-986d-a3a0a219b790.png",
+      "release_version": "0.1.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/f08ced3e3a9a47efb297dd3c/emery/df991bb4-8a09-409f-9afc-b7023b720288.gif"
+    },
+    {
+      "name": "Hi-Fi",
+      "url": "https://apps.repebble.com/hi-fi_67e59e9db94d4a2f8a981e22",
+      "category": "Faces",
+      "description": "A vintage stereo display that tells the time.\n\nHi-Fi combines a large seven-segment clock with two useful progress meters, a date, and a battery gauge.\n\nMake it yours:\n- Five palettes: Amber, Mint, Ice, Silver, and Paper.\n- Custom background, digit, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- SEC meter tracks progress through the minute; MIN meter tracks progress through the hour.\n- Turn seconds off for minute-only updates.\n- Live battery gauge and percentage.\n\nThe animated preview cycles through the five palettes at a fixed sample time. Select your preferred colors in settings.\n\nFor Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/67e59e9db94d4a2f8a981e22/chalk/2dd3697b-405a-44e5-b1f4-cebc1d6d69cf.png",
+      "release_version": "0.1.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/67e59e9db94d4a2f8a981e22/emery/bc1bc032-ad6f-46ca-918c-f5db46c8577a.gif"
+    },
+    {
+      "name": "Desk Clock",
+      "url": "https://apps.repebble.com/desk-clock_d8d7cbfc9a3f4aaea111e4ca",
+      "category": "Faces",
+      "description": "A little bedside-clock warmth for your wrist.\n\nDesk Clock pairs large rounded numerals with an inset display, a simple date, and a centered battery indicator.\n\nMake it yours:\n- Six palettes: Cream & red, Mint, Ice blue, Night cyan, Coffee, and Black & white.\n- Custom background, label, and display colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery icon and percentage.\n\nThe animated preview cycles through the six palettes. Select a palette in settings; the watchface keeps your chosen colors.\n\nFor Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/d8d7cbfc9a3f4aaea111e4ca/chalk/0dda3074-e94e-48ee-a353-cc0123b65f57.png",
+      "release_version": "0.1.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/d8d7cbfc9a3f4aaea111e4ca/emery/38ff91b3-eccf-44e1-b990-cefa766ab79d.gif"
+    },
+    {
+      "name": "LCD Club",
+      "url": "https://apps.repebble.com/lcd-club_71dfd4981ebc45fb932d81cb",
+      "category": "Faces",
+      "description": "Retro LCD time, arranged your way.\n\nLCD Club pairs a large seven-segment clock with a centered battery indicator and a seven-day strip that highlights today.\n\nMake it yours:\n- Six row orders: put Time, Battery, and Weekdays in your preferred positions.\n- A 60-mark seconds ruler that fills through each minute and starts again with the next.\n- Turn the ruler off for minute-only updates.\n- Five LCD palettes: Classic LCD, Silver, Amber, Ice, and Night.\n- Custom background and ink colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional header date: month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Battery icon and percentage, centered together.\n\nThe animated preview demonstrates the seconds ruler. The other previews show alternate layouts and colors.\n\nFor Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/71dfd4981ebc45fb932d81cb/chalk/9d59ddea-80f6-4a07-b458-eaabd29c8377.png",
+      "release_version": "0.1.2",
+      "time2_preview": "https://assets.repebble.com/screenshots/71dfd4981ebc45fb932d81cb/emery/7d5d637a-53fb-4072-bd82-b21659de2c96.gif"
+    },
+    {
+      "name": "Mono",
+      "url": "https://apps.repebble.com/mono_dd61ad0599c344db8b663a80",
+      "category": "Faces",
+      "description": "Big time. A little color.\n\nMono puts the hour above the minute in large, easy-to-read numerals, with a small accent square and a clear battery bar.\n\nMake it yours:\n- Six numeral fonts: Original, Geometric, Tall, Block, Serif, and Digital.\n- Six color palettes: Classic, Mint, Ice, Rose, Paper, and Black & white.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Battery bar and numeric percentage.\n\nThe gallery GIF shows sample font and color combinations. Choose your preferred style in settings; the watchface stays still between minute updates.\n\nFor Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/dd61ad0599c344db8b663a80/chalk/357d5873-b4cd-4f9d-b627-6124cc0c8bf6.png",
+      "release_version": "0.2.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/dd61ad0599c344db8b663a80/emery/a89a40ca-e6a1-4b81-890e-fc96fecfd2ed.gif"
+    },
+    {
+      "name": "T9 Time",
+      "url": "https://apps.repebble.com/t9-time_6641551debac4064ab47acba",
+      "category": "Faces",
+      "description": "Watch the time type itself, one T9 key at a time. The numeric clock updates immediately while the hour and minute appear in words, with playful predictive-text corrections.\n\nChoose your phone\n\u2022 Original: compact pixel lettering and square keys.\n\u2022 Nokia 3310: classic phone lettering and oval keys.\n\u2022 Motorola RAZR V3: sculpted rows, larger aligned digits, and Blue or Silver palettes.\n\nMake it yours\n\u2022 Steady typing at Quick, Classic, or Slow speed.\n\u2022 Save settings to preview your changes.\n\u2022 Wrong guesses: Off, Occasional, or Every collision.\n\u2022 Quiet hours: choose when the finished time appears instantly.\n\u2022 Time format: 12-hour or 24-hour.\n\u2022 At :00: O'CLOCK or OH ZERO.\n\u2022 Optional watch-battery icon.\n\u2022 Model palettes or custom background and text colors.\n\nMade for Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/6641551debac4064ab47acba/emery/9a828154-1083-4992-a27d-f40f8d6932c0.gif",
+      "release_version": "0.3.3",
+      "time2_preview": "https://assets.repebble.com/screenshots/6641551debac4064ab47acba/emery/9a828154-1083-4992-a27d-f40f8d6932c0.gif"
+    },
+    {
+      "name": "PickleballKeeper",
+      "url": "https://apps.repebble.com/pickleballkeeper_b0559475cc924cc3805140c5",
+      "category": "Health & Fitness",
+      "description": "Keep the rally. Let the watch handle the serve. PickleballKeeper scores pickleball on Pebble Time 2 with two simple inputs: Up when US wins a rally, Down when THEM wins. Tap either team's score panel if you prefer touch; physical buttons always work.\n\nIn traditional side-out doubles, PickleballKeeper handles the opening 0-0-2 call, server 1 and server 2, side-outs, and the serving court. Singles and rally scoring are available too. Every game is win by two.\n\nChoose classic 11-point best-of-three, a single game to 15, a five-game pro-final format, USA Pickleball's 2026 rally option, or a 21-point school-style rally game with win-on-serve freezing. Custom settings let you choose singles or doubles, 11/15/21 points, best of one/three/five, and the scoring rule. The school preset scores one game, not a whole school team event.\n\nSave completed matches on the watch. Review wins and losses on a calendar, open game-by-game results, and see a relative plot of optional phone GPS locations. Undo the last rally, choose team colors, and switch touch controls off whenever you want buttons only. Scoring and saved history work without a phone connection.",
+      "thumbnail": "https://assets.repebble.com/screenshots/b0559475cc924cc3805140c5/emery/bb3023cf-6bb7-45c3-8aa1-2911d3feb217.png",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/b0559475cc924cc3805140c5/emery/bb3023cf-6bb7-45c3-8aa1-2911d3feb217.png"
+    },
+    {
+      "name": "VolleyKeeper",
+      "url": "https://apps.repebble.com/volleykeeper_7c886ac0ac594f5a95755c8a",
+      "category": "Health & Fitness",
+      "description": "Keep score at the net, then keep the match. VolleyKeeper is a volleyball scorekeeper for Pebble Time 2. Tap the US or THEM panel to score, or use the physical buttons.\n\nChoose 3 sets to 25/25/15, 3 sets to 25/25/25, or 5 sets to 25/25/25/25/25. Sets require a two-point lead. Save completed matches on the watch, review wins and losses on a calendar, and see saved results in match history.\n\nCustomize team colors and switch touch controls off when you prefer buttons. Optional phone GPS adds a location to a saved match for the on-watch places view. Scoring and match history work offline.",
+      "thumbnail": "https://assets.repebble.com/screenshots/7c886ac0ac594f5a95755c8a/emery/0807263f-8367-4339-b54e-1af837ec423c.png",
+      "release_version": "0.1.2",
+      "time2_preview": "https://assets.repebble.com/screenshots/7c886ac0ac594f5a95755c8a/emery/0807263f-8367-4339-b54e-1af837ec423c.png"
+    },
+    {
+      "name": "Test Pattern",
+      "url": "https://apps.repebble.com/test-pattern_c069ed8a7dfa40b785a29e0e",
+      "category": "Faces",
+      "description": "Test Pattern turns a vintage calibration card into a crisp digital clock. A bright alignment grid frames a dark circular clock field, with paired color patches in the corners and fine registration marks. A short scan line sweeps across the background after wrist movement while the time stays fixed.\n\nMake it yours\n\u2022 Choose Warm broadcast, Electric, Grayscale, or Night blue.\n\u2022 Follow your watch's 12/24-hour setting, or choose either style directly.\n\u2022 Show no date, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n\u2022 Show or hide the battery percentage (off by default).\n\u2022 Turn wrist motion off for a completely still face.\n\nMade for Pebble Time 2 and Pebble Round 2. The watchface works offline.",
+      "thumbnail": "https://assets.repebble.com/screenshots/c069ed8a7dfa40b785a29e0e/gabbro/b1962b98-94cb-480b-b487-9b21d84ab250.gif",
+      "release_version": "0.1.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/c069ed8a7dfa40b785a29e0e/emery/9eea4e34-2384-4ecb-b485-cf14520a616b.gif"
+    },
+    {
+      "name": "Color Key",
+      "url": "https://apps.repebble.com/color-key_3cb45a2aebe3449097bd7604",
+      "category": "Faces",
+      "description": "Color Key gives the clock the energy of a classic broadcast color-bar transition. The bars slide into place when you move your wrist, then settle behind a fixed, easy-to-read time.\n\nMake it yours\n\u2022 Choose Warm broadcast, Electric, Grayscale, or Night blue.\n\u2022 Follow your watch's 12/24-hour setting, or choose either style directly.\n\u2022 Show no date, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n\u2022 Show or hide the battery percentage.\n\u2022 Turn wrist motion off for a completely still face.\n\nMade for Pebble Time 2 and Pebble Round 2. The watchface works offline.",
+      "thumbnail": "https://assets.repebble.com/screenshots/3cb45a2aebe3449097bd7604/emery/83f805ab-e0cb-455e-af00-f69bef4d11b5.gif",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/3cb45a2aebe3449097bd7604/emery/83f805ab-e0cb-455e-af00-f69bef4d11b5.gif"
+    },
+    {
+      "name": "Level Time",
+      "url": "https://apps.repebble.com/level-time_450af5416e634355b0e326f9",
+      "category": "Faces",
+      "description": "Level Time keeps the clock easy to read as your Pebble Time 2 rolls with your wrist. The flat digits counter-rotate inside the display, so they stay approximately level instead of tilting with the case.\n\nChoose a look that suits your wrist: Ink, Paper, Amber, Field, Signal, or Quiet. Each style has its own numeral design: block, serif, monospaced, bold geometric, condensed, or light. The palettes span warm paper, amber, olive, and restrained gray, with no blue required.\n\nChoose no date or one of three date formats. Level Time follows your watch's 12-hour or 24-hour clock preference. Amber includes a simple battery indicator.\n\nThe face uses the watch accelerometer, works without a phone connection, and holds its last stable angle when the watch lies nearly flat.\n\nMade for Pebble Time 2 (Emery).",
+      "thumbnail": "https://assets.repebble.com/screenshots/450af5416e634355b0e326f9/emery/8c596d4d-686d-42ae-a447-1bd7bbdd72de.gif",
+      "release_version": "0.1.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/450af5416e634355b0e326f9/emery/8c596d4d-686d-42ae-a447-1bd7bbdd72de.gif"
+    },
+    {
+      "name": "Rainy Bookshop",
+      "url": "https://apps.repebble.com/rainy-bookshop_7c9514476e4e4de8ac3767e2",
+      "category": "Faces",
+      "description": "Rainy Bookshop turns your Pebble into a warmly lit shop window. A sleepy cat rests beside the books while rain passes outside and a coffee cup marks the chalkboard.\n\nNew in 0.3.0: a cleaner shop-plaque layout and a violet dusk scene. The date sits beneath the clock on a small warm plaque, and a compact battery icon replaces the percentage badge. Prefer the old look? Choose Original layout in settings.\n\nWhat you can choose\n\u2022 Layout: Clean shop plaque or Original\n\u2022 Scene: day, dusk, night, or automatic. Automatic uses local time: day 07:00\u201316:59, dusk 17:00\u201318:59, night 19:00\u201306:59.\n\u2022 Clock background: Light parchment or Dark window with warm cream digits\n\u2022 Time style: follow your watch, 12-hour, or 24-hour\n\u2022 Date: Off, YYYY-MM-DD, MM/DD/YYYY, DD/MM/YYYY, or weekday/day/month\n\u2022 Gentle scene motion and battery display: on or off\n\nThe cat briefly opens its eyes, then settles back to sleep. Its body and single curled tail stay still. The clock remains steady. The lead GIF accelerates the pauses between glances; pauses on the watch are much longer.\n\nMade for Pebble Time 2 and Pebble Round 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/7c9514476e4e4de8ac3767e2/emery/b73467e0-b7ec-401b-b4b6-8a8d6d895550.gif",
+      "release_version": "0.3.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/7c9514476e4e4de8ac3767e2/emery/b73467e0-b7ec-401b-b4b6-8a8d6d895550.gif"
+    },
+    {
+      "name": "Clockfish",
+      "url": "https://apps.repebble.com/clockfish_40292564f42e4f4e8763b9a1",
+      "category": "Faces",
+      "description": "A little aquarium that tells time. The clock fish carries large, upright digits inside its body while bubbles and sea creatures bring the scene to life.\n\nChoose the aquarium that feels like yours:\n- Six time styles: Rounded, Digital bold, Digital fine, Classic bold, Compact bold, and Tall light.\n- Fish and water colors you choose, or colors that change daily.\n- Aquarium backgrounds with kelp, reef, castle, and a grayscale look.\n- Still, Gentle, or Lively motion. The clock fish occasionally glides; bubbles rise, small fish swim, a jellyfish pulses, and a crab sometimes scuttles.\n\nThe time stays readable when the fish turns. A small battery fish can show the percentage. Choose day, night, or automatic display, and set the date to Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n\nMade for Pebble Time 2 and Pebble Round 2. The animated store preview tours settings and scenes; the face uses your selected settings on the watch.",
+      "thumbnail": "https://assets.repebble.com/screenshots/40292564f42e4f4e8763b9a1/emery/fbf98fef-a3cc-4c0b-b8e9-75ce1c131d76.gif",
+      "release_version": "0.8.2",
+      "time2_preview": "https://assets.repebble.com/screenshots/40292564f42e4f4e8763b9a1/emery/fbf98fef-a3cc-4c0b-b8e9-75ce1c131d76.gif"
+    },
+    {
+      "name": "Way Back",
+      "url": "https://apps.repebble.com/way-back_370092d6402c4a0bbc8fb01b",
+      "category": "Faces",
+      "description": "Digital time with a sense of depth. The front digits stay fixed while their echoes recede behind them.\n\nBuild your own look:\n- Choose from 12 numeral styles, 12 background patterns, six color looks, and eight decorations, including None.\n- Set 1\u201312 echoes and choose background, digit, depth, and grid colors.\n- Use separate palettes for Day, Night, and Auto modes.\n\nChoose your movement:\n- None holds a static trail.\n- Follow tilt tracks your wrist angle.\n- Full clockwise orbit moves through eight directions after a tilt or tap, then settles at your current angle.\n- Pick Quick, Classic, or Slow orbit speed.\n- Choose Gentle or Deliberate gesture sensitivity.\n- Reverse the echo direction if you prefer.\n\nSaving settings previews one orbit when Full clockwise orbit is selected.\n\nThe time follows your watch\u2019s 12- or 24-hour setting. Date choices are Off, YYYY-MM-DD, MM/DD/YYYY, and DD/MM/YYYY.\n\nFor Pebble Time 2 and Pebble Round 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/370092d6402c4a0bbc8fb01b/emery/279ca33a-16ab-4d4e-bc8f-a5d1577d93b8.gif",
+      "release_version": "0.8.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/370092d6402c4a0bbc8fb01b/emery/279ca33a-16ab-4d4e-bc8f-a5d1577d93b8.gif"
+    },
+    {
+      "name": "Now / Next",
+      "url": "https://apps.repebble.com/now-next_68afcbcc6c18416c98b6a1b7",
+      "category": "Faces",
+      "description": "The time first. One useful detail for this part of your day. Now / Next keeps the Pebble Time 2 screen easy to read at a glance.\n\nSet four daily periods\u2014morning, daytime, evening, and night. For each period, choose a start hour and what appears beside the clock:\n- Rain chance\n- Current temperature\n- Today\u2019s sunset\n- Watch battery\n\nThe footer shows what comes next and when that period begins. Choose background, clock-digit, and accent colors independently. Set the date to Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY. Time follows your watch\u2019s 12- or 24-hour setting.\n\nWeather uses your connected phone\u2019s location and Open-Meteo, refreshing about every 30 minutes. Missing or stale weather reads UNAVAILABLE. Temperature is shown in Fahrenheit. Made for Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/68afcbcc6c18416c98b6a1b7/emery/ee263fa8-c6ae-4cfc-8641-a4977e920aea.gif",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/68afcbcc6c18416c98b6a1b7/emery/ee263fa8-c6ae-4cfc-8641-a4977e920aea.gif"
+    },
+    {
+      "name": "TERCOM",
+      "url": "https://apps.repebble.com/tercom_c6f081e1607448bf92df7de4",
+      "category": "Faces",
+      "description": "A tiny vector landscape beneath a flight-path reticle. TERCOM brings a 1970s CRT-inspired terrain instrument to Pebble Time 2, with a bold digital clock and five procedural landscapes.\n\nNew in 1.1.0: clearer time, dimmer scales, four instrument palettes, refined terrain shapes, smoother flight speed and filtered tilt, plus phone settings for motion and telemetry.\n\nChoose Green phosphor, Amber terminal, Ice blue, or Monochrome. Explore Crags, a winding Canyon, Dunes, a volcanic Caldera, and layered Alpine ridges. Green remains the default.\n\nOn the watch, a single wrist tap starts a temporary flight. A rapid double tap changes tracks when enabled. Flight returns to the exact resting terrain position. In the phone settings, choose Flight Off, Short (2 seconds), or Standard (about 4.5 seconds), adjust tilt response, disable double-tap switching, or choose a track directly.\n\nThe upper-right readout can show explicitly simulated altitude (SIM), daily steps, compass heading, battery, or nothing. Choose an optional ISO, US, or European date in the lower center, daily steps, or an empty center. A dashed illustrative course line is optional. SIM is a fictional value derived from steps, not measured altitude. Landscapes and course lines are not real navigation data; unavailable compass heading shows ---.\n\nTime follows the watch's 12/24-hour setting and updates each minute while idle. The preview tours the palette and terrain choices; on the watch, those choices change only through settings or enabled track-switch taps. Made for Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/emery/46e599e2-3f47-4108-908d-65a644ff2e21.gif",
+      "release_version": "1.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/emery/46e599e2-3f47-4108-908d-65a644ff2e21.gif"
+    },
+    {
+      "name": "Type Foundry",
+      "url": "https://apps.repebble.com/type-foundry_0afb4178d396415682d4ba40",
+      "category": "Faces",
+      "description": "A new typeface for each glance. Type Foundry is a typographic clock with nine distinct treatments for Pebble Time 2.\n\nChoose your time style:\n- Railway, Calculator, or Editorial\n- Arcade, Monument, or Ledger\n- Split Flap, Blueprint, or Dot Matrix\n\nChoose one of three ready-made palettes, or set the background and digit colors independently. The lower line can be hidden, show battery level, or show a date. Date formats include weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, and DD/MM/YYYY. Time follows your watch\u2019s 12- or 24-hour setting.\n\nThe animated listing preview tours all nine styles and a custom-color example. On the watch, the face updates once per minute. For Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/0afb4178d396415682d4ba40/emery/411d6eb7-a3a8-4149-81ae-7cddbe89a4aa.gif",
+      "release_version": "0.3.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/0afb4178d396415682d4ba40/emery/411d6eb7-a3a8-4149-81ae-7cddbe89a4aa.gif"
+    },
+    {
+      "name": "Departure Board",
+      "url": "https://apps.repebble.com/departure-board_cd02cf5abf0a4afa927d7d5e",
+      "category": "Faces",
+      "description": "A station clock for your wrist. Departure Board pairs a large flip-dot time display with one useful line beneath it.\n\nChoose the second line:\n- Countdown to local sunset\n- The next broad weather change: clear, cloud, rain, or snow\n\nChoose an amber, blue, or green terminal color. The time follows your watch\u2019s 12- or 24-hour setting and updates each minute. Set the date to Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY; it is hidden by default.\n\nSunset and weather use your connected phone\u2019s location and Open-Meteo forecast data. When fresh data is unavailable, the second line says so. The animated store preview cycles through colors, information choices, and a date example; the watch keeps your chosen settings. For Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/cd02cf5abf0a4afa927d7d5e/emery/206dddb6-2977-4d83-a85b-8d0d02ef1d3a.gif",
+      "release_version": "0.2.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/cd02cf5abf0a4afa927d7d5e/emery/206dddb6-2977-4d83-a85b-8d0d02ef1d3a.gif"
+    },
+    {
+      "name": "Change Clock",
+      "url": "https://apps.repebble.com/change-clock_655fa627bf714bf489c4b3cc",
+      "category": "Faces",
+      "description": "What changed since yesterday? Change Clock shows today\u2019s sunset and temperature alongside their differences from yesterday, with a large clock above.\n\nTwo comparison rows keep the answer brief:\n- Sunset: how today\u2019s local sunset differs from yesterday\u2019s.\n- Temperature: the change at the matching clock hour.\n\nChoose Charcoal lime, Midnight ice, or Paper ink colors. Choose Large bold or Large light clock text. Set the date to Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY; it is hidden by default. Time follows your watch\u2019s 12- or 24-hour setting.\n\nThe face uses your phone\u2019s location and Open-Meteo forecast data. Missing or stale phone data is marked unavailable. The animated preview tours colors and a date example. For Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/655fa627bf714bf489c4b3cc/emery/7b9c4598-a58d-481a-a463-3e878204a5b5.gif",
+      "release_version": "0.3.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/655fa627bf714bf489c4b3cc/emery/7b9c4598-a58d-481a-a463-3e878204a5b5.gif"
+    },
+    {
+      "name": "Rain Clock",
+      "url": "https://apps.repebble.com/rain-clock_5210c5d1bcaa4cc48067eec9",
+      "category": "Faces",
+      "description": "See the next 90 minutes of rain without losing the clock. Rain Clock keeps time large and places a six-bar precipitation strip beneath it.\n\nThe face calls out when the next rain interval begins. If the phone forecast is missing or stale, it shows an unavailable state instead of an old prediction.\n\nMake it yours:\n- Ocean blue, Amber night, or Paper blue colors.\n- Large bold or Large light clock text.\n- Date Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY; hidden by default.\n\nTime follows your watch\u2019s 12- or 24-hour setting. Forecasts use the connected phone\u2019s location and Open-Meteo. The animated preview cycles colors and a date example. For Pebble Time 2.",
+      "thumbnail": "https://assets.repebble.com/screenshots/5210c5d1bcaa4cc48067eec9/emery/f4d2e239-1008-46cd-9ee7-48ee334df91c.gif",
+      "release_version": "0.3.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/5210c5d1bcaa4cc48067eec9/emery/f4d2e239-1008-46cd-9ee7-48ee334df91c.gif"
+    },
+    {
+      "name": "Pangaea Drift",
+      "url": "https://apps.repebble.com/pangaea-drift_490fd055aa9b485c8deced5e",
+      "category": "Faces",
+      "description": "A day across deep time. In Pangaea Drift, midnight begins 252 million years ago at the Triassic dawn. At 23:59, the clock reaches the asteroid impact 66 million years ago; the final minute races through continental drift to the present.\n\nRead the Earth beneath the clock:\n- A digital time display, geological period, and age in millions of years.\n- A colored day arc for the Triassic, Jurassic, and Cretaceous, with an extinction tick and a cursor.\n- Reconstructed coastlines and an amber reticle carrying your current ground back on its tectonic plate.\n- Nearby fossil occurrences, distance, paleo coordinates, and a paleo-climate band.\n\nChoose 12- or 24-hour time and a color palette. Phone coordinates are resolved on-device and cached for offline wear. Coastline reconstruction uses plate kinematics from Merdith et al. (2021). For Pebble Time 2. Source: https://github.com/globe-and-atlas/pangaea-watch",
+      "thumbnail": "https://assets.repebble.com/screenshots/490fd055aa9b485c8deced5e/emery/b22c7668-e58a-4d38-910c-90ab78c32322.gif",
+      "release_version": "1.0.1",
+      "time2_preview": "https://assets.repebble.com/screenshots/490fd055aa9b485c8deced5e/emery/b22c7668-e58a-4d38-910c-90ab78c32322.gif"
+    },
+    {
+      "name": "Since Then",
+      "url": "https://apps.repebble.com/since-then_de8ab2e141c64ff2abecaab2",
+      "category": "Faces",
+      "description": "All of history, mapped to a single 24-hour day. Midnight was the beginning. Tonight at midnight is right now.\n\nSince Then compresses vast spans of time into the rhythm of your day. Choose your perspective from four distinct historical lenses in settings:\n\n- Deep Time (4.54 Billion Years): The cosmic scale. Oxygen fills the atmosphere mid-morning, complex life emerges after 21:00, dinosaurs vanish at 23:39, and all of recorded human history flashes by in the final six seconds. The last minute ticks by the second.\n\n- The Holocene (11,700 Years): The story of human civilization since the end of the last ice age. Watch agriculture emerge at dawn, the pyramids rise before lunch, and modern cities form by evening (~8 years per minute).\n\n- The Common Era (2,000+ Years): Classical antiquity to the space age. The Roman world transforms at breakfast, the Renaissance arrives in mid-afternoon, and your own lifetime unfolds over the final hour of your day (~1.4 years per minute).\n\n- The Second Millennium (1,000 Years): Modern history in fast-forward. The medieval world gives way to print, science, industry, and the digital era right as you get ready for sleep (~0.7 years per minute).\n\nThroughout the day, the face updates every minute (and every second in Deep Time's final minute), advancing the timeline's age or year, the period or century, and the latest historical event with a live counter of how long ago it occurred on this clock. The face works fully offline with no phone connection needed.\n\nFeatures:\n- 24-hour clock keeps every timeline aligned from midnight to midnight\n- Choose your timeline lens and custom colors for time digits\n- Geologic periods follow the ICS International Chronostratigraphic Chart v2024-12 (CC BY 4.0)\n- Historical events sourced and verified from cited records\n\nA Pebble Time 2 and Pebble Time Round watchface by Globe & Atlas.",
+      "thumbnail": "https://assets.repebble.com/screenshots/de8ab2e141c64ff2abecaab2/gabbro/5d0b111e-c0a3-4fee-8133-35b88113571b.gif",
+      "release_version": "0.1.3",
+      "time2_preview": "https://assets.repebble.com/screenshots/de8ab2e141c64ff2abecaab2/emery/0b958859-bba1-4d3d-b925-242db71833bc.gif"
+    },
+    {
+      "name": "Constellation",
+      "url": "https://apps.repebble.com/constellation_10f46ae849224d009644f7e8",
+      "category": "Tools & Utilities",
+      "description": "Explore modeled satellite geometry on Pebble Time 2. Constellation propagates public CelesTrak elements with SGP4 to show GPS, Galileo, GLONASS, and BeiDou positions. It is an educational watchapp, not a GNSS receiver or navigation fix.\n\nFour views:\n- Orbit globe: modeled positions with schematic orbital-plane rings.\n- Skyplot: modeled azimuth and elevation; bars show elevation, not signal strength.\n- Geometry: DOP from modeled directions, or N/A when geometry is insufficient. DOP describes geometry, not position accuracy.\n- World map: simplified coastlines, selected center, and modeled sub-satellite points; no reception-radius circle.\n\nChoose phone location or validated manual coordinates. A location failure is shown without substituting another place. Phone coordinates stay on-device and are not sent to CelesTrak. TLE age is shown; fresh elements need internet, while cached elements can be viewed offline. TLEs do not provide a position-accuracy estimate.\n\nHold UP/DOWN to change panes; click UP/DOWN on the globe to rotate; SELECT toggles catalog numbers; hold SELECT to refresh. Data: CelesTrak GP/TLE. Source: https://github.com/globe-and-atlas/constellation-watch",
+      "thumbnail": "https://assets.repebble.com/screenshots/10f46ae849224d009644f7e8/emery/3f56155a-a477-4798-a3cd-b1d6f4e61bc6.gif",
+      "release_version": "0.2.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/10f46ae849224d009644f7e8/emery/3f56155a-a477-4798-a3cd-b1d6f4e61bc6.gif"
+    },
+    {
+      "name": "Satellite Overpass",
+      "url": "https://apps.repebble.com/satellite-overpass_6e920a2fa6304e45b4644116",
+      "category": "Tools & Utilities",
+      "description": "Plan Landsat 8/9 and Sentinel-2A/B/C passes over your location on Pebble Time 2. Satellite Overpass shows a countdown, hourly cloud forecast, and modeled cross-track coverage.\n\nExplore a pass:\n- See your center, the selected ground track, and its nominal imaging swath on a regional map.\n- Review 30 days of matching Earth Search scenes, whole-scene cloud cover, and product-lag status.\n- Save a timestamped pin or refresh the data from the watch.\n\nA catalogue no-match does not prove no acquisition occurred. Coverage and swath-edge status are geometric heuristics, not probabilities or guarantees. The map is an overview, unavailable above 80\u00b0 latitude, and not live navigation. Sentinel-2A has a partial acquisition plan; cloud forecasts beyond five days have little skill.\n\nRefresh sends current coordinates to Open-Meteo for clouds and Element 84 Earth Search for scene history. Pins stay on the phone and are not included in those requests; they can be copied as GeoJSON from settings. Fresh predictions require location permission; forecasts and scene history require internet. Cached predictions and maps remain available offline.\n\nUP/DOWN selects a pass; hold DOWN switches map/list; SELECT saves a pin; hold SELECT refreshes. Data: CelesTrak, Open-Meteo (CC BY 4.0), Element 84 Earth Search, Natural Earth (public domain). Source: https://github.com/globe-and-atlas/overpass-watch",
+      "thumbnail": "https://assets.repebble.com/screenshots/6e920a2fa6304e45b4644116/emery/9255d516-650a-4405-8d02-37ea9dc1a0b9.gif",
+      "release_version": "0.4.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/6e920a2fa6304e45b4644116/emery/9255d516-650a-4405-8d02-37ea9dc1a0b9.gif"
+    },
+    {
+      "name": "From Here",
+      "url": "https://apps.repebble.com/from-here_d9fc15a8f87746b7ba01f6ca",
+      "category": "Faces",
+      "description": "Watch the place your clock points to change through the day. Your location is the start; at 10:42, the route reaches 10\u00b042\u2032 along your chosen map direction. At midnight, the journey begins at home again.\n\nMake the route yours:\n- Choose one of eight directions, or Auto for a path with more land and towns.\n- Flick your wrist among nearby Now, the default Hour view, the whole Day route, and a Globe.\n\nThe map shows the destination and names the next town ahead. Over open water, it widens to the Day view. After a minute, the default view returns. Your starting location is rounded to about 10 km and stays on the phone.\n\nFor Pebble Time 2 and Pebble Round 2, by Globe & Atlas. The Round 2 animation tours four selectable views. Map data: Natural Earth (public domain) and GeoNames (CC BY 4.0).",
+      "thumbnail": "https://assets.repebble.com/screenshots/d9fc15a8f87746b7ba01f6ca/gabbro/03cb00a8-81fd-49b7-bef8-eb7481706d60.gif",
+      "release_version": "0.2.2",
+      "time2_preview": "https://assets.repebble.com/screenshots/d9fc15a8f87746b7ba01f6ca/emery/27435d5c-f68a-4716-9bfa-b3007a3faae9.gif"
+    },
+    {
+      "name": "Straight Ahead",
+      "url": "https://apps.repebble.com/straight-ahead_a792f7d2290b4da48bb86ca5",
+      "category": "Faces",
+      "description": "See what lies ahead when you raise your wrist. Straight Ahead turns its map to your compass heading for 60 seconds. A cyan ring measures how far the day has traveled: one nautical mile outward for every minute since midnight.\n\nThe label names the city, state, country, or sea where the ring meets the direction you face. At noon, the ring is 720 nautical miles away.\n\nWhile the heading view is active, flick to see the whole Earth. After a minute, the face rests north-up to conserve power.\n\nFor Pebble Time 2 and Pebble Round 2, by Globe & Atlas. The Round 2 animated preview speeds the day ring through sample times. Map data: Natural Earth.",
+      "thumbnail": "https://assets.repebble.com/screenshots/a792f7d2290b4da48bb86ca5/gabbro/75c1f69c-4f88-47f1-b076-426e64a20c4d.gif",
+      "release_version": "0.3.2",
+      "time2_preview": "https://assets.repebble.com/screenshots/a792f7d2290b4da48bb86ca5/emery/bcd3c239-2116-434c-8a16-276895bff5cf.gif"
+    },
+    {
+      "name": "Origin",
+      "url": "https://apps.repebble.com/origin_21d5882443784d998674e10f",
+      "category": "Faces",
+      "description": "The time becomes the hand. In Origin, a digital time string follows a twelve-hour dial and resolves into a single upright numeral at exactly 3:00, 6:00, 9:00, and 12:00 for that minute.\n\nChoose your look:\n- One of 12 numeral fonts.\n- Hand color and width.\n- Optional weekday, date, month, and year at the top or bottom.\n\nOrigin is a Pebble Time 2 prototype by Globe & Atlas. The preview animation is an accelerated time-lapse; the watch updates once per minute.",
+      "thumbnail": "https://assets.repebble.com/screenshots/21d5882443784d998674e10f/emery/3b9d4eb5-df11-4ce4-a285-7755caa9be5b.gif",
+      "release_version": "0.1.7",
+      "time2_preview": "https://assets.repebble.com/screenshots/21d5882443784d998674e10f/emery/3b9d4eb5-df11-4ce4-a285-7755caa9be5b.gif"
+    },
+    {
+      "name": "Vector",
+      "url": "https://apps.repebble.com/vector_bcec521af0e0444eaf8471ce",
+      "category": "Faces",
+      "description": "Two hands, two numbers. Vector places the hour near the shorter hand tip and the minutes near the longer hand tip. Both numbers stay upright as the hands turn.\n\nChoose your look:\n- One of 12 numeral fonts.\n- Independent colors and widths for the hour and minute hands.\n- Optional weekday, date, month, and year at the top or bottom.\n\nVector is a Pebble Time 2 prototype by Globe & Atlas. The preview animation is an accelerated time-lapse; the watch updates once per minute.",
+      "thumbnail": "https://assets.repebble.com/screenshots/bcec521af0e0444eaf8471ce/emery/04cef9d4-7095-4cc4-a070-c58532c34d41.gif",
+      "release_version": "0.1.8",
+      "time2_preview": "https://assets.repebble.com/screenshots/bcec521af0e0444eaf8471ce/emery/04cef9d4-7095-4cc4-a070-c58532c34d41.gif"
+    },
+    {
+      "name": "Meridian",
+      "url": "https://apps.repebble.com/meridian_ec1162d2415448789ea1ba78",
+      "category": "Faces",
+      "description": "Wear the day and night. Meridian places a globe beneath two numbered clock hands, with calculated sunlight moving across Earth as UTC and the seasons change. The hands show your local watch time.\n\nChoose your dial:\n- Start with a black-and-white globe, or color the land and water.\n- Pick from 12 numeral fonts and style each hand independently.\n- Show or hide the date, battery, and Bluetooth indicators.\n\nThe globe depicts daylight, not weather. Meridian is made for Pebble Time 2 and Pebble Round 2; physical-watch validation is ongoing.\n\nThe Time 2 animated preview tours globe and hand styles. The Round 2 preview moves the minute hand in five-minute steps through a sample evening while cycling four Custom palettes and a black-and-white style. These are accelerated previews; the installed face keeps your chosen settings and updates once per minute.",
+      "thumbnail": "https://assets.repebble.com/screenshots/ec1162d2415448789ea1ba78/gabbro/b5d9edcb-3673-49df-9048-4a554c650846.gif",
+      "release_version": "0.1.10",
+      "time2_preview": "https://assets.repebble.com/screenshots/ec1162d2415448789ea1ba78/emery/6c157a0f-da4e-4fb7-a791-a281bc51adf1.gif"
+    },
+    {
+      "name": "Cardinal",
+      "url": "https://apps.repebble.com/cardinal_9a7040247c9343898b3674c7",
+      "category": "Faces",
+      "description": "A quiet dial with four points of reference. Cardinal pairs fine black hands with upright hour and minute numbers and four cardinal marks.\n\nChoose your look:\n- One of 12 numeral fonts.\n- Independent hand colors and widths.\n- Optional weekday, date, month, and year at the top or bottom.\n\nCardinal is a Pebble Time 2 prototype by Globe & Atlas. The preview animation is an accelerated time-lapse; the watch updates once per minute.",
+      "thumbnail": "https://assets.repebble.com/screenshots/9a7040247c9343898b3674c7/emery/40c0c3e1-7197-4473-84bd-67b2938ee8f3.gif",
+      "release_version": "0.1.8",
+      "time2_preview": "https://assets.repebble.com/screenshots/9a7040247c9343898b3674c7/emery/40c0c3e1-7197-4473-84bd-67b2938ee8f3.gif"
+    }
+  ]
 }

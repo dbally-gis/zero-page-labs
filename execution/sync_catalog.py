@@ -5,6 +5,9 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
+import argparse
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 import concurrent.futures
 import json
 import random
@@ -29,7 +32,10 @@ def fetch(url: str, opener=urlopen, sleep=time.sleep) -> bytes:
             if error.code not in TRANSIENT or attempt == 3:
                 raise
             delay = error.headers.get('Retry-After', '') if error.headers else ''
-            wait = float(delay) if delay.isdigit() else 2 ** attempt + random.uniform(0, .25)
+            try:
+                wait = float(delay) if delay.isdigit() else max(0, (parsedate_to_datetime(delay) - datetime.now(timezone.utc)).total_seconds())
+            except (ValueError, TypeError):
+                wait = 2 ** attempt + random.uniform(0, .25)
             print(json.dumps({'event': 'retry', 'status': error.code, 'attempt': attempt + 1}))
             sleep(min(wait, 30))
         except (URLError, TimeoutError):
@@ -45,6 +51,31 @@ def native_size(payload: bytes) -> tuple[int, int]:
     if payload[:6] in {b'GIF87a', b'GIF89a'} and len(payload) >= 10:
         return struct.unpack('<HH', payload[6:10])
     raise ValueError('Preview is not a PNG or GIF')
+
+
+def validate_preview(payload: bytes) -> tuple[int, int]:
+    """Decode the entire native image before an unattended update can publish it."""
+    from io import BytesIO
+    from PIL import Image
+    if len(payload) > 5_000_000 or native_size(payload) != (200, 228):
+        raise ValueError('Preview is not a bounded native Time2 image')
+    try:
+        with Image.open(BytesIO(payload)) as image:
+            if image.format not in {'PNG', 'GIF'} or image.size != (200, 228):
+                raise ValueError('Invalid preview format')
+            image.verify()
+        with Image.open(BytesIO(payload)) as image:
+            count = getattr(image, 'n_frames', 1)
+            if count > 500:
+                raise ValueError('Preview animation exceeds frame bound')
+            for frame in range(count):
+                image.seek(frame)
+                if image.size != (200, 228):
+                    raise ValueError('Animation changes native dimensions')
+                image.load()
+    except Exception as error:
+        raise ValueError('Preview image failed complete decoding') from error
+    return (200, 228)
 
 
 def catalog_errors(faces: list[dict], snapshot: dict) -> list[str]:
@@ -68,11 +99,26 @@ STYLES = {
 }
 
 
-def sync() -> None:
-    snapshot = json.loads((ROOT / 'data/developer-catalog.json').read_text())
+def sync(refresh: bool = False, allow_large_removal: bool = False) -> bool:
+    previous_snapshot = json.loads((ROOT / 'data/developer-catalog.json').read_text())
+    if refresh:
+        from discover_catalog import discover
+        snapshot = discover()
+    else:
+        snapshot = previous_snapshot
     if not snapshot['pagination']['reachedBottom']:
         raise ValueError('Catalog snapshot does not establish end of pagination')
     entries = [entry for entry in snapshot['entries'] if entry['category'] == 'Faces']
+    old_entries = {entry['url'].rsplit('_', 1)[-1]: entry for entry in previous_snapshot['entries']}
+    old_face_count = sum(e['category'] == 'Faces' for e in previous_snapshot['entries'])
+    if not allow_large_removal and len(entries) < old_face_count * .8:
+        raise ValueError('Catalog dropped more than20%; retaining last known good catalog')
+    if not entries or len({e['url'].rsplit('_', 1)[-1] for e in entries}) != len(entries):
+        raise ValueError('Empty or duplicated face catalog')
+    stable = lambda value: {k: v for k, v in value.items() if k != 'observedAt'}
+    if refresh and stable(snapshot) == stable(previous_snapshot):
+        print(json.dumps({'event': 'catalog_unchanged', 'faces': len(entries)}))
+        return False
     if len(snapshot['entries']) != snapshot['pagination']['entries']:
         raise ValueError('Snapshot entry count mismatch')
     staging = ROOT / '.tmp/catalog-downloads'
@@ -83,6 +129,11 @@ def sync() -> None:
         app_id = entry['url'].rsplit('_', 1)[-1]
         if not re.fullmatch(r'[a-f0-9]{24}', app_id):
             raise ValueError('Malformed public app ID')
+        if old_entries.get(app_id) == entry and entry['name'] in previous:
+            face = previous[entry['name']]
+            existing = ROOT / face['image'].lstrip('/')
+            if existing.exists() and validate_preview(existing.read_bytes()) == (200, 228):
+                return face, existing
         html = fetch(entry['url']).decode()
         if 'Application not found' in html:
             raise ValueError(f"Listing unavailable: {entry['name']}")
@@ -96,7 +147,7 @@ def sync() -> None:
                 if error.code == 404:
                     continue
                 raise
-            if native_size(payload) != (200, 228):
+            if validate_preview(payload) != (200, 228):
                 continue
             slug = entry['url'].rsplit('/', 1)[-1].rsplit('_', 1)[0]
             filename = f"catalog-{app_id}.{url.rsplit('.', 1)[-1]}"
@@ -109,7 +160,7 @@ def sync() -> None:
             if entry['name'] in previous and entry['name'] != 'World Timer':
                 description = previous[entry['name']]['description']
             face = {'name': entry['name'], 'slug': slug, 'url': entry['url'],
-                    'image': f'/assets/{filename}', 'style': STYLES.get(entry['name'], 'Digital'),
+                    'image': f'/assets/{filename}', 'style': previous.get(entry['name'], {}).get('style', STYLES.get(entry['name'], 'Other')),
                     'description': description, 'source_image': url}
             return face, target
         raise ValueError(f"No native Time2 preview: {entry['name']}")
@@ -121,9 +172,20 @@ def sync() -> None:
     if errors:
         raise ValueError('; '.join(errors))
     for _, file in results:
-        shutil.copyfile(file, ROOT / 'assets' / file.name)
+        destination = ROOT / 'assets' / file.name
+        if file.resolve() != destination.resolve():
+            shutil.copyfile(file, destination)
     (ROOT / 'data/watchfaces.json').write_text(json.dumps(faces, indent=2) + '\n')
+    (ROOT / 'data/developer-catalog.json').write_text(json.dumps(snapshot, indent=2) + '\n')
     print(json.dumps({'event': 'catalog_synced', 'faces': len(faces), 'excluded_apps': len(snapshot['entries']) - len(faces)}))
+    return True
 
 if __name__ == '__main__':
-    sync()
+    import importlib.util
+    if importlib.util.find_spec('PIL') is None:
+        raise SystemExit('Install synchronization dependencies: python3 -m pip install -r requirements-sync.txt')
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--refresh', action='store_true', help='Discover current public catalog without a browser')
+    parser.add_argument('--allow-large-removal', action='store_true', help='Explicitly accept a catalog removal above20%')
+    args = parser.parse_args()
+    sync(refresh=args.refresh, allow_large_removal=args.allow_large_removal)

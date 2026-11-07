@@ -4,8 +4,9 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import json
+import argparse
 import sys
-from sync_catalog import catalog_errors, native_size
+from sync_catalog import catalog_errors, native_size, validate_preview
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -24,7 +25,7 @@ class Page(HTMLParser):
         for key in ('href', 'src'):
             if d.get(key): self.refs.append(d[key])
 
-def verify() -> None:
+def verify(deep: bool = False) -> None:
     output = ROOT / 'dist'
     errors = []
     pages = {}
@@ -57,6 +58,8 @@ def verify() -> None:
         if face['url'] not in gallery: errors.append(f"Missing link: {face['name']}")
         image = output / face['image'].lstrip('/')
         try:
+            if deep:
+                validate_preview(image.read_bytes())
             if native_size(image.read_bytes()) != (200, 228): errors.append(f'Non-native Time2 image: {image}')
         except ValueError as error:
             errors.append(f'{image}: {error}')
@@ -74,4 +77,6 @@ def verify() -> None:
     print(f'PASS: {len(pages)} pages; internal assets/links/fragments resolve; {len(faces)} unique gallery links; public-only output.')
 
 if __name__ == '__main__':
-    verify()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--deep', action='store_true', help='Fully decode previews; requires requirements-sync.txt')
+    verify(deep=parser.parse_args().deep)

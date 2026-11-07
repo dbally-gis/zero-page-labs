@@ -51,3 +51,19 @@ Source: public developer page supplied by Daniel, including its loaded paginatio
 - [x] Mobile375px gallery has no page overflow.
 - [x] Independent verification passes.
 - [x] Render deployment serves the updated catalog.
+
+## Automatic catalog synchronization — 2026-11-07
+Execution: public developer-page discovery, native asset acquisition, scheduled GitHub workflow, Render deploy hook. No Pebble sign-in or write APIs.
+- [x] Live discovery traverses the developer-page pagination without browser assistance.
+- [x] Discovery rejects a mismatched developer identity.
+- [x] Discovery rejects duplicate app IDs across pages.
+- [x] A malformed source leaves the committed catalog unchanged.
+- [x] A valid new face appears in the built gallery.
+- [x] An unchanged catalog creates no content commit.
+- [x] An unchanged built website triggers no Render deployment after initial setup.
+- [x] Workflow checks for changes hourly.
+- [x] Workflow persists the updated catalog before deploying.
+- [x] Deployment credentials are stored in a GitHub Actions secret.
+- [ ] A manual workflow run succeeds in GitHub.
+- [x] Independent verification passes.
+- [ ] Render serves the verified workflow commit.

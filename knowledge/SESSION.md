@@ -28,3 +28,12 @@ No implementation blockers. For a catalog refresh, use knowledge/procedural/depl
 
 S.D.G.: Visitors can find Daniel’s current watchface collection and explore Gridcore without losing its Globe & Atlas provenance.
 Feynman gap: The gallery matches today’s public snapshot; future store changes require a refresh.
+
+## Checkpoint Log
+
+- 2026-11-07 17:04 — commit: Record full catalog and Gridcore live verification | DEPLOY.md,knowledge/INDEX.md,knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,knowledge/archive/launch-and-catalog-20261107.md
+
+## Automatic sync in progress
+Goal: Hourly cloud-owned catalog updates and deployment without manual browser export. Plan: public server-rendered developer-page discovery with terminal pagination; existing native asset validation; idempotent GitHub Actions sync; existing Render deploy hook in an Actions secret. Last known good site remains published on any invalid discovery/acquisition/build.
+
+Automatic sync checkpoint: public pagination discovery38entries/34Faces works; unchanged refresh is a no-op.17tests include mocked new-face import→build, malformedsource, duplicatepages, ownerguards, truncatedimages, and no-change deployments. Full34image deepvalidation PASS. Independent review PASS after fixing fresh-checkout.tmp and imageintegrity blockers. ExistingRenderhook configured as GitHubsecret; temporary.env removed. Cloudrun/deploy verification pending.

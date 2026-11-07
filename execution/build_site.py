@@ -18,8 +18,16 @@ def build() -> None:
     for directory in ('assets', 'src', 'thumbwords', 'watchfaces', 'gridcore'):
         shutil.copytree(ROOT / directory, output / directory)
     faces = json.loads((ROOT / 'data/watchfaces.json').read_text())
+    if not faces:
+        raise ValueError('Cannot build an empty face catalog')
     by_name = {face['name']: face for face in faces}
-    substitutions = {'{{WATCH_COUNT}}': str(len(faces)), '{{HIFI_IMAGE}}': by_name['Hi-Fi']['image'], '{{PBL_IMAGE}}': by_name['PBL-2500']['image']}
+    featured_one = by_name.get('Hi-Fi', faces[0])
+    featured_two = by_name.get('PBL-2500', faces[min(1, len(faces)-1)])
+    styles = list(dict.fromkeys(face['style'] for face in faces))
+    order = ['Analog', 'Digital', 'Minimal', 'Illustrated', 'Other']
+    styles.sort(key=lambda style: order.index(style) if style in order else len(order))
+    filters = '<button type="button" data-filter="All" aria-pressed="true">All faces</button>' + ''.join(f'<button type="button" data-filter="{escape(style, quote=True)}" aria-pressed="false">{escape(style)}</button>' for style in styles)
+    substitutions = {'{{WATCH_COUNT}}': str(len(faces)), '{{FEATURE_ONE_IMAGE}}': featured_one['image'], '{{FEATURE_ONE_NAME}}': escape(featured_one['name']), '{{FEATURE_TWO_IMAGE}}': featured_two['image'], '{{FEATURE_TWO_NAME}}': escape(featured_two['name']), '{{WATCH_FILTERS}}': filters}
     for page in output.rglob('*.html'):
         content = page.read_text()
         for marker, value in substitutions.items():
@@ -31,6 +39,15 @@ def build() -> None:
         cards.append(f'''<article class="watch-card" data-style="{d['style']}"><a href="{d['url']}" aria-label="{d['name']} — view in the Pebble appstore"><div class="watch-image"><span class="pebble-device"><span class="pebble-glass" aria-hidden="true"></span><img class="pebble-screen" src="{d['image']}" alt="{d['name']} watchface shown on Pebble Time 2" width="200" height="228" loading="lazy"><img class="pebble-hardware" src="/assets/pebble-time-2-frame.png" alt="" width="488" height="700" loading="lazy"></span></div><div class="watch-info"><h2>{d['name']}</h2><span>{d['style'].upper()}</span></div><p>{d['description']}</p><span class="store-link">Pebble appstore ↗</span></a></article>''')
     gallery = output / 'watchfaces/index.html'
     gallery.write_text(gallery.read_text().replace('{{WATCH_CARDS}}', '\n'.join(cards)))
+    import os
+    import subprocess
+    import hashlib
+    content = hashlib.sha256()
+    for artifact in sorted(output.rglob('*')):
+        if artifact.is_file():
+            content.update(artifact.relative_to(output).as_posix().encode() + b'\0' + artifact.read_bytes() + b'\0')
+    source_commit = os.environ.get('RENDER_GIT_COMMIT') or subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+    (output / 'deployment.json').write_text(json.dumps({'source_commit': source_commit, 'content_sha256': content.hexdigest(), 'watchfaces': len(faces)}, sort_keys=True) + '\n')
     print(f'Built dist with {len(faces)} watchfaces; only public website files included.')
 
 if __name__ == '__main__':

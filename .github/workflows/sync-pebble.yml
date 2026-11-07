@@ -1,0 +1,69 @@
+name: Sync Pebble gallery
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: Verify deployment even when content is unchanged
+        required: false
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'knowledge/**'
+      - 'task.md'
+      - '*.md'
+permissions:
+  contents: write
+concurrency:
+  group: pebble-gallery-production
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Install image validation dependency
+        run: python3 -m pip install -r requirements-sync.txt
+      - name: Check deployment configuration
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: python3 -c "import os; assert os.environ.get('RENDER_DEPLOY_HOOK_URL'), 'Missing Render deployment secret'"
+      - name: Test discovery and failure behavior
+        run: python3 -m unittest discover -s execution -p 'test_*.py'
+      - name: Discover and synchronize published watchfaces
+        run: python3 execution/sync_catalog.py --refresh
+      - name: Validate refreshed site
+        run: |
+          python3 execution/build_site.py
+          python3 execution/verify_site.py --deep
+      - name: Maintain schedule activity
+        run: python3 execution/catalog_heartbeat.py
+      - name: Persist verified catalog changes
+        run: |
+          git config user.name "Zero Page Labs catalog"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/developer-catalog.json data/watchfaces.json assets/catalog-* .github/catalog-heartbeat
+          if ! git diff --cached --quiet; then
+            git commit -m "Sync published Pebble watchfaces"
+            git push origin HEAD:main
+          fi
+      - name: Deploy changed output and verify public result
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          FORCE_DEPLOY: ${{ inputs.force_deploy || 'false' }}
+        run: |
+          if [ "$FORCE_DEPLOY" = "true" ]; then
+            python3 execution/deploy_catalog.py --force
+          else
+            python3 execution/deploy_catalog.py
+          fi

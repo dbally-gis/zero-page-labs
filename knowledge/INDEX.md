@@ -14,3 +14,4 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [procedural/deploy_site.md](procedural/deploy_site.md) | procedural | 2026-11-07 | Build, checks, deployment |
 | [REFLECTIONS.jsonl](REFLECTIONS.jsonl) | reflection | 2026-11-07 | Launch lessons |
 | [archive/launch-and-catalog-20261107.md](archive/launch-and-catalog-20261107.md) | archive | 2026-11-07 | Launch, imagery, catalog and Gridcore checkpoints |
+| [domain/deps.md](domain/deps.md) | domain | 2026-11-07 | Pinned automatic-sync image validation and Actions dependencies |
