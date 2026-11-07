@@ -25,4 +25,4 @@ timestamp: "2026-11-07T16:24:55.330339-06:00"
 - [x] Render deployment reaches a successful terminal state.
 - [x] Public Render URL serves the launch site.
 ## Progress
-- Render deployment dep-dbnqdt67bikc73d8r8hg is Live for commit b48dda8. https://zero-page-labs.onrender.com/ serves the site. Custom domain DNS verified; HTTPS certificates pending. Desktop and 375px mobile browser checks passed; gallery filters and return navigation passed; console clear. Independent review passed.
+- Render deployment dep-dbnqdt67bikc73d8r8hg is Live for commit b48dda8. https://zero-page-labs.onrender.com/ serves the site. Custom domains verified; certificates issued. https://zeropagelabs.com/ is live; www redirects to root. Desktop and 375px mobile browser checks passed; gallery filters and return navigation passed; console clear. Independent review passed.

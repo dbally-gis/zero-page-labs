@@ -15,4 +15,4 @@ Custom domain: zeropagelabs.com. Read existing DNS before edits; preserve mail a
 - Service: https://dashboard.render.com/static/srv-dbnqdsu7bikc73d8r82g
 - Live URL: https://zero-page-labs.onrender.com/
 - Initial successful deployment: dep-dbnqdt67bikc73d8r8hg, commit b48dda8.
-- Namecheap A `@` → `216.24.57.1`; CNAME `www` → `zero-page-labs.onrender.com`. Existing mail settings retained. Render verified both domains. Certificate issuance pending at this checkpoint.
+- Namecheap A `@` → `216.24.57.1`; CNAME `www` → `zero-page-labs.onrender.com`. Existing mail settings retained. Render verified both domains. Certificates issued for both domains. HTTPS site and www-to-root redirect verified.
