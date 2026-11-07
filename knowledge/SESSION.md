@@ -26,5 +26,8 @@ Feynman gap: Build, browser flows, independent review, HTTPS routes, and www red
 - 2026-11-07 16:35 — commit: Record launch verification and Render deployment | .gitignore,DEPLOY.md,data/.gitkeep,directives/_template.md,directives/bootstrap_project.md
 - 2026-11-07 16:36 — commit: Confirm custom-domain HTTPS launch | DEPLOY.md,knowledge/SESSION.md,task.md
 
+- 2026-11-07 16:45 — commit: Refresh Thumbwords screenshots and use Pebble Time 2 hardware | assets/pebble-time-2-frame.png,assets/thumbwords-codebreaker-current.jpg,assets/thumbwords-codebreaker.jpg,assets/thumbwords-library-current.jpg,assets/thumbwords-number-hunt-current.jpg
 ## Imagery refresh in progress
 User requested current Thumbwords screenshots and actual Pebble Time2 hardware. Official frame found at https://apps.repebble.com/images/screenshot_slider_background_emery_v2.png. Generic CSS watch cases will be replaced by layered source assets. Current Thumbwords source remains read-only during another release session.
+
+Imagery refresh checkpoint: library/Codebreaker/NumberHunt screenshots integrated from exact0703 build. Actual Time2 frame in fifteen gallery cards plus two home renders. Desktop visual alignment PASS; mobile375px gallery/home/Thumbwords no overflow; Analog/reset filters PASS; console clean. Independent source/hash/build review PASS. Deployment pending.

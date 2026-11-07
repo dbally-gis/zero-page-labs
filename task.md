@@ -29,12 +29,12 @@ timestamp: "2026-11-07T16:24:55.330339-06:00"
 
 ## Imagery refresh — 2026-11-07
 Surface: home, Thumbwords project page, gallery, asset manifest. Source projects remain read-only.
-- [ ] Thumbwords imagery shows the current illustrated handset UI.
-- [ ] Screenshot provenance names the source build.
-- [ ] Gallery renders fifteen faces inside the official Time 2 hardware frame.
-- [ ] Home watchface artwork uses the same Time 2 hardware frame.
-- [ ] Screen overlays preserve the 200×228 aspect ratio.
-- [ ] Desktop browser checks pass.
-- [ ] Mobile375px has no page overflow.
-- [ ] Independent review finds no blocking defect.
+- [x] Thumbwords imagery shows the current illustrated handset UI.
+- [x] Screenshot provenance names the source build.
+- [x] Gallery renders fifteen faces inside the official Time 2 hardware frame.
+- [x] Home watchface artwork uses the same Time 2 hardware frame.
+- [x] Screen overlays preserve the 200×228 aspect ratio.
+- [x] Desktop browser checks pass.
+- [x] Mobile375px has no page overflow.
+- [x] Independent review finds no blocking defect.
 - [ ] Render serves the refreshed images.
