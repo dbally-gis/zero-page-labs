@@ -12,3 +12,4 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [ERRORS.md](ERRORS.md) | errors | 2026-11-07 | Image aspect-ratio fix |
 | [domain/content.md](domain/content.md) | domain | 2026-11-07 | Availability and asset provenance |
 | [procedural/deploy_site.md](procedural/deploy_site.md) | procedural | 2026-11-07 | Build, checks, deployment |
+| [REFLECTIONS.jsonl](REFLECTIONS.jsonl) | reflection | 2026-11-07 | Launch lessons |

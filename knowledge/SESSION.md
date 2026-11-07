@@ -1,16 +1,22 @@
 ---
 generated_by: "OpenAI Codex (exact model variant not exposed)"
-timestamp: "2026-11-07T16:24:55.330339-06:00"
+timestamp: "2026-11-07T16:35:29.845880-06:00"
 ---
 
-# Session
-Goal: Build the first Zero Page Labs site; deploy to Render.
+# Launch handoff
+Goal: Build Zero Page Labs; deploy to Render.
 Agent: OpenAI Codex
 Handoff-from: none
 Handoff-type: new-project
-Status: In progress
+Status: Site live; custom-domain HTTPS provisioning in progress.
 
-Scope: Thumbwords project page, fifteen-watchface gallery, personal maker introduction. Separate from Globe & Atlas. No Relic Rack or 3D printing placeholders.
-Architecture: buildless HTML/CSS/JS source, deterministic Python packaging to dist, Render static hosting. Native browser dashboard for deployment.
-Evidence: live Apple listing on 2026-11-07 advertises six games, free with in-app purchase; newer local seven-game work is not used as released evidence. Watchface source proof at ../.tmp/round-watchfaces/store/.
-Next: Implement the static site with real artwork; verify public watchface links; browser QA; independent review; deploy.
+Delivered home, dedicated Thumbwords page, fifteen-watchface gallery with category filters, maker introduction, metadata, favicon, sitemap, 404 page. Independent from Globe & Atlas. No future-project placeholders.
+
+Verification: deterministic build and link/asset/catalog verifier PASS; fresh independent review PASS; desktop project imagery, mobile375px no page overflow, filters, navigation/back, console checks PASS. Production Render routes and representative assets HTTP200. CSS height:auto fixed a browser-discovered stretched image.
+
+Render service srv-dbnqdsu7bikc73d8r82g; deploy dep-dbnqdt67bikc73d8r8hg Live on b48dda8. Public source https://github.com/dbally-gis/zero-page-labs. Namecheap web parking records replaced; mail settings preserved. Both custom domains Verified; certificate pending. Browser viewport reset.
+
+Remaining: Confirm custom-domain HTTPS issuance; final live visual evidence. Render UI workspace retains its existing globe-and-atlas account label, but this is a separate service and repository.
+
+S.D.G.: Visitors can discover Daniel’s Thumbwords game and choose a Pebble face through a distinct Zero Page Labs home.
+Feynman gap: DNS verification succeeded; custom-domain TLS issuance is still pending. Human aesthetic acceptance remains with Daniel.

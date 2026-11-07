@@ -9,3 +9,10 @@ Render static site. Build: `python3 execution/build_site.py`. Publish directory:
 Validate using `python3 execution/verify_site.py`. Native dashboard connects the source repository. For a public repository connection without a Git provider, use Manual Deploy after pushing changes unless a Blueprint or integration explicitly enables automatic deployment.
 
 Custom domain: zeropagelabs.com. Read existing DNS before edits; preserve mail and verification records. Follow the exact DNS targets reported by Render. Do not infer successful TLS from a successful build.
+
+## Live service — 2026-11-07
+- Repository: https://github.com/dbally-gis/zero-page-labs (public static website source).
+- Service: https://dashboard.render.com/static/srv-dbnqdsu7bikc73d8r82g
+- Live URL: https://zero-page-labs.onrender.com/
+- Initial successful deployment: dep-dbnqdt67bikc73d8r8hg, commit b48dda8.
+- Namecheap A `@` → `216.24.57.1`; CNAME `www` → `zero-page-labs.onrender.com`. Existing mail settings retained. Render verified both domains. Certificate issuance pending at this checkpoint.
