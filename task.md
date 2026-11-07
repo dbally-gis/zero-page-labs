@@ -37,4 +37,4 @@ Surface: home, Thumbwords project page, gallery, asset manifest. Source projects
 - [x] Desktop browser checks pass.
 - [x] Mobile375px has no page overflow.
 - [x] Independent review finds no blocking defect.
-- [ ] Render serves the refreshed images.
+- [x] Render serves the refreshed images.

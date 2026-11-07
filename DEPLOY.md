@@ -16,3 +16,5 @@ Custom domain: zeropagelabs.com. Read existing DNS before edits; preserve mail a
 - Live URL: https://zero-page-labs.onrender.com/
 - Initial successful deployment: dep-dbnqdt67bikc73d8r8hg, commit b48dda8.
 - Namecheap A `@` → `216.24.57.1`; CNAME `www` → `zero-page-labs.onrender.com`. Existing mail settings retained. Render verified both domains. Certificates issued for both domains. HTTPS site and www-to-root redirect verified.
+
+Imagery refresh deployed2026-11-07: dep-dbnqka6417fc73efqdeg, commita31818d. Latest tagged0703 Thumbwords UI captures and official Time2 frame verified live on the custom domain.
