@@ -1,0 +1,122 @@
+[
+  {
+    "name": "PBL-2500",
+    "slug": "facet-watch",
+    "url": "https://apps.repebble.com/3403f49eadb7469d94ae292d",
+    "image": "/assets/facet-watch.png",
+    "style": "Analog",
+    "description": "A small instrument with big ambitions."
+  },
+  {
+    "name": "Hi-Fi",
+    "slug": "hi-fi-watch",
+    "url": "https://apps.repebble.com/67e59e9db94d4a2f8a981e22",
+    "image": "/assets/hi-fi-watch.png",
+    "style": "Analog",
+    "description": "Tuned to a different frequency."
+  },
+  {
+    "name": "Mono",
+    "slug": "mono-watch",
+    "url": "https://apps.repebble.com/dd61ad0599c344db8b663a80",
+    "image": "/assets/mono-watch.png",
+    "style": "Minimal",
+    "description": "A little less, right on time."
+  },
+  {
+    "name": "Lume",
+    "slug": "lume-watch",
+    "url": "https://apps.repebble.com/7730100d622c463c92fd601c",
+    "image": "/assets/lume-watch.png",
+    "style": "Analog",
+    "description": "A bright idea for your wrist."
+  },
+  {
+    "name": "Terminal",
+    "slug": "terminal-watch",
+    "url": "https://apps.repebble.com/744be00b9d1c499999cd62f3",
+    "image": "/assets/terminal-watch.png",
+    "style": "Digital",
+    "description": "Time at the command line."
+  },
+  {
+    "name": "LCD Club",
+    "slug": "lcd-club-watch",
+    "url": "https://apps.repebble.com/71dfd4981ebc45fb932d81cb",
+    "image": "/assets/lcd-club-watch.png",
+    "style": "Digital",
+    "description": "For the digital watch romantics."
+  },
+  {
+    "name": "Rally",
+    "slug": "rally-watch",
+    "url": "https://apps.repebble.com/dfe5a3d1e2e44b5ebec727a7",
+    "image": "/assets/rally-watch.png",
+    "style": "Analog",
+    "description": "A dashboard for the everyday."
+  },
+  {
+    "name": "Railway",
+    "slug": "railway-watch",
+    "url": "https://apps.repebble.com/b882652051884d01bfcabfdf",
+    "image": "/assets/railway-watch.png",
+    "style": "Analog",
+    "description": "Always something worth catching."
+  },
+  {
+    "name": "Dot Matrix",
+    "slug": "dot-matrix-watch",
+    "url": "https://apps.repebble.com/3f9c7df9e7924d4abe6be703",
+    "image": "/assets/dot-matrix-watch.png",
+    "style": "Digital",
+    "description": "Big pixels. Clear intentions."
+  },
+  {
+    "name": "Margin",
+    "slug": "margin-watch",
+    "url": "https://apps.repebble.com/f08ced3e3a9a47efb297dd3c",
+    "image": "/assets/margin-watch.png",
+    "style": "Minimal",
+    "description": "Room to breathe. Time to spare."
+  },
+  {
+    "name": "Desk Clock",
+    "slug": "desk-clock-watch",
+    "url": "https://apps.repebble.com/d8d7cbfc9a3f4aaea111e4ca",
+    "image": "/assets/desk-clock-watch.png",
+    "style": "Digital",
+    "description": "Your nightstand, now wrist-sized."
+  },
+  {
+    "name": "Ledger",
+    "slug": "ledger-watch",
+    "url": "https://apps.repebble.com/1ee890ebe1f942a2aa708f56",
+    "image": "/assets/ledger-watch.png",
+    "style": "Minimal",
+    "description": "A tidy account of your day."
+  },
+  {
+    "name": "Classic LCD",
+    "slug": "classic-lcd-watch",
+    "url": "https://apps.repebble.com/5e610f08e13d41cf842ce8ea",
+    "image": "/assets/classic-lcd-watch.png",
+    "style": "Digital",
+    "description": "Old-school digits, still going strong."
+  },
+  {
+    "name": "World Timer",
+    "slug": "world-timer-watch",
+    "url": "https://apps.repebble.com/dc42aa6ca1cf447785720f80",
+    "image": "/assets/world-timer-watch.png",
+    "style": "Digital",
+    "description": "A wrist-sized sense of elsewhere."
+  },
+  {
+    "name": "Triangle",
+    "slug": "triangle-watch",
+    "url": "https://apps.repebble.com/a78ddf0105ec4f4598c3fedc",
+    "image": "/assets/triangle-watch.png",
+    "style": "Analog",
+    "description": "Time from another angle."
+  }
+]

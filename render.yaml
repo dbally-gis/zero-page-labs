@@ -1,0 +1,13 @@
+services:
+  - type: web
+    runtime: static
+    name: zero-page-labs
+    buildCommand: python3 execution/build_site.py
+    staticPublishPath: dist
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
