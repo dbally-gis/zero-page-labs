@@ -427,4 +427,4 @@ Scope: sort curated/followed tags by descending count; fresh default starts in a
 - [x] Node tests pass.
 - [x] Browser checks pass.
 - [x] Independent verifier finds no blockers.
-- [ ] Live deployment is verified.
+- [x] Live deployment is verified.

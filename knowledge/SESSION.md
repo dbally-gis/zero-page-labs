@@ -313,3 +313,12 @@ Feynman gap:92tests, desktop/phone direct browser checks and live deployment pas
 ### Maritime twelve encounters — release ready
 12encounters,60chapters,36questions. Source-backed5sunk records plusSultana capture. Selectable thick X/Sunk markers in3DandSVG, stoppedhulls/wakes/engine smoke, fateinspector/source andoutcomejumpcontrols; reversescrubrestores. Sunk/captured ships excluded from synthetic targeting/firing; sectorssuppressed. Newnativechooser fits12entries. Homepage/directory/metadatacopy updated.
 189JS tests and deep10page verifier pass. Independent source review PASS after3Doverlay parity, labels/copy, and explicitReinaCristina scuttling fixes. Browser1280x900 confirmed all12models/counts, Manila twoXs, reverse restoration, classic2Xs/2hiddenhulls.375x812pagewidth375,12options;Sultana capture retains hull/noX. Consoleclean. Currentlocalpreview5189 server session56848. Preparingauthorizedrelease; concurrentLexicalsourceleftuntouched.
+
+## Whole-book introduction — verified implementation
+Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation. Goal: count-sorted meaningful tags and full-book/all-mapped-word intro before focused selection. Keep Holmes active; add reversible overview entry and saved/share state.
+
+Overview checkpoint:95tests/build/deep verifier pass. Desktop fresh intro contains54,411points/218pages, sorted tags, Holmes active. Follow/tag/search transitions and replay pass;375px intro fits full book, focused editor restores, fullscreen regions do not overlap. Console clean. Independent source verifier accepted camera-refit fix; final phone scope recheck PASS.
+
+Live664f8de verified: fresh intro, Holmes1/462, descending count tags, Follow→focus and Show whole book replay. Screenshot:/private/tmp/lexical-overview-intro-live.png. Workflow42533064671 tests/validation pass; public fingerprint poll finishing.
+S.D.G.: New readers see the complete book before tracing individual words, with common starter words easiest to find.
+Feynman gap:95tests, independent review, desktop/phone checks and live flow passed; physical-touch Safari remains untested.
