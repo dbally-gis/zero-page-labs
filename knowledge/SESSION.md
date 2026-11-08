@@ -36,6 +36,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-07 21:31 — commit: Rebuild Lexical as a connected reading playground | data/experiments-build.json,directives/publish_experiments.md,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/BookMatrix.jsx
 - 2026-11-07 21:33 — commit: Record verified Lexical playground deployment | knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,task.md
 - 2026-11-07 21:38 — commit: Promote full passage access to top of Lexical reader | data/experiments-build.json,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-B8hiIk7e.js,experiments/lexical/assets/index-Bt2qb0ns.css
+- 2026-11-07 22:59 — commit: Build reviewed Maritime naval battle atlas | .github/workflows/sync-pebble.yml,assets/experiment-maritime.svg,directives/publish_experiments.md,execution/test_maritime.mjs,experiments/index.html
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -91,3 +92,19 @@ The signed-in GitHub upload page was reachable, but fileChooser.setFiles was rej
 
 S.D.G.: Visitors will be able to explore naval formations through a source-linked atlas once publication is authorized.
 Feynman gap:84JS/17Python tests, desktop/375px/768px browser checks and independent review passed; public deployment is blocked by declined GitHub upload permission, physical Safari remains untested.
+
+## Maritime deployment resumed — 2026-11-08
+User explicitly authorized GitHub upload and requested completion. Reviewed source6f4e2da122e95774b2f0ed7c43a14b416a32dbd5 pushed to main using approved git push. GitHub run42492853378 confirmed in progress. Prior permission blocker is resolved. Public fingerprint and interactive checks pending.
+
+## Maritime — published 2026-11-08
+Goal: Build, independently review, fix recommendations, deploy Maritime to Zero Page Labs.
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: complete. User explicitly authorized GitHub publication. Source6f4e2da122e95774b2f0ed7c43a14b416a32dbd5 pushed; GitHub run42492853378 passed Python tests,84JavaScript tests, build, deep static checks, Render deployment and public fingerprint verification.
+
+Public URL: https://zeropagelabs.com/experiments/maritime/
+Public deployment.json source_commit matches6f4e2da; content_sha256 c25effe9ca033208be1da2c608e09a54ea58e3bd7df74b6d61acb700e523c3f0 matches local reviewed dist. Live browser exercised chapter3 for Lepanto/Trafalgar/Hampton Roads/Yalu; 14/18/3/12markers rendered. Curated guide updated explanation and ship selection. Sources preserved Yalu. No horizontal overflow in desktop check; console warnings/errors empty. Prior375px/768px local checks remain valid for the identical published content. Independent review findings are resolved in the deployed source. No live generative endpoint is claimed.
+
+S.D.G.: Curious visitors can now explore naval formations and technology through four source-linked encounters on the public site.
+Feynman gap: Reviewed source, production workflow, exact content fingerprint and live browser interactions verified; physical Safari and touch remain untested.

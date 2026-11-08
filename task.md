@@ -166,5 +166,7 @@ Execution: browser-native HTML/CSS/ES modules in experiments/maritime; existing 
 - [x] Deep static publication verification passes.
 - [x] A fresh review-app reviewer assesses the original request against the final artifact.
 - [x] Review release blockers are resolved.
-- [ ] Production deployment fingerprint matches the reviewed output.
-- [ ] The public Maritime route renders.
+- [x] Production deployment fingerprint matches the reviewed output.
+- [x] The public Maritime route renders.
+
+Maritime published 2026-11-08: source6f4e2da122e95774b2f0ed7c43a14b416a32dbd5; GitHub run42492853378 succeeded; public fingerprint c25effe9ca033208be1da2c608e09a54ea58e3bd7df74b6d61acb700e523c3f0 matches local reviewed output. Four battle chapter flows and curated guide/source navigation verified on https://zeropagelabs.com/experiments/maritime/ with clean console.
