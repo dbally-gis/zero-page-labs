@@ -25,3 +25,5 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [domain/trafalgar-evidence.md](domain/trafalgar-evidence.md) | domain | 2026-11-08 | Source-linked selected gunfire episodes, timber damage and attributed stern fire limits |
 
 | [domain/lexical-workspace-flow.md](domain/lexical-workspace-flow.md) | domain | 2026-11-08 | Clear custom-text entry, single chart workspace, focused reader and dedication |
+
+| [domain/lexical-url-framing.md](domain/lexical-url-framing.md) | domain | 2026-11-08 | Responsive spreads, tight camera fitting, layout migration and bounded URL import |

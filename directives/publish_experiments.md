@@ -33,3 +33,6 @@ Maritime scene.mjs is an optional local ES module using the vendored pinned Thre
 
 ## Learnings — 2026-11-08 Shot effects
 Run node --test execution/test_experiments.mjs execution/test_maritime.mjs execution/test_maritime_combat.mjs. Keep shot events replay-derived rather than wall-clock particles, so pause/scrub remain exact. Miss clearance must include enlarged rotated hulls and neighbouring vessels. Bring the chart into view instantly before starting a short muzzle flash. Use Watch a salvo for the browser shot-to-hit check; verify Fire & smoke off and classic fallback. These effects are illustrative.
+
+## Learnings — 2026-11-08 URL intake and camera framing
+Verify the default URL from the public origin, choose a later section, edit preview, map it and restore a saved view. Preserve the complete Gutenberg source/license and provenance hash when updating its bundled default. Confirm both chart modes fill their stage, phone spreads fit, and saved camera poses re-fit across layout revisions or Atlas column transitions. External URLs that deny CORS should show the direct paste/file alternative; do not add a third-party relay.

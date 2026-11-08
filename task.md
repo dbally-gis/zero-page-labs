@@ -266,3 +266,20 @@ Target: public Lexical adaptation. Scripts: build_experiments.py, build_site.py,
 - [x] Independent review passes.
 - [x] Public deployment serves the verified update.
 - [x] Footer contains the exact dedication in memory of Jeff McGuire.
+
+## Lexical chart framing and URL import — 2026-11-08
+Scope: responsive chart presentation plus browser-only URL intake. Default Gutenberg book is a bundled public-domain copy with its license retained. No proxy/backend.
+- [x] Default Atlas occupies at least75% of the chart width on a wide desktop.
+- [x] Camera reset fits the responsive sheet spread.
+- [x] Phone framing shows the complete sheet spread.
+- [x] URL input is prefilled with the requested Gutenberg URL.
+- [x] The default URL imports successfully on the public domain.
+- [x] Long sources expose a bounded section chooser.
+- [x] Imported passage preview is editable before mapping.
+- [x] URL requests have a timeout.
+- [x] URL responses are bounded to2MiB.
+- [x] Closing intake aborts an active request.
+- [x] Blocked cross-origin URLs show a usable error.
+- [x] Automated framing/import tests pass.
+- [x] Independent verification passes.
+- [ ] Public deployment serves the update.

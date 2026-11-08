@@ -29,3 +29,6 @@ Approved direction: predominantly tactical overhead watch-and-explore experience
 
 ## Lexical workspace consolidation — 2026-11-08
 User feedback favored an obvious custom-text action and fewer competing scroll areas. The default surface is now one chart, with selected words and compact occurrence controls. Reading and view options use separate native dialogs. Excerpt sidebar removed; recurrence analysis is optional within settings. On phones/short screens, one page scroll preserves usable chart height rather than clipping controls. See domain/lexical-workspace-flow.md.
+
+## Lexical responsive chart and browser URL import — 2026-11-08
+Use landscape sheet spreads and projected camera fitting to fill the chart rather than magnifying overlapping portrait planes. Preserve canonical occurrence identity. URL import remains browser-only; bundle the specifically requested Gutenberg default with its original license because its endpoint does not permit cross-origin browser reads. Other URLs require permission from their origin. Split long sources into explicit editable20k sections instead of silently truncating or rendering an unbounded whole book.

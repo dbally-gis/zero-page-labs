@@ -34,3 +34,6 @@ Error: Trafalgar shot event28 was labelled a miss, but its water splash lay insi
 
 ## 2026-11-08 — Sustained fire must not use transient impact growth
 The first reported-fire renderer reused impactAge scaling; over a long condition it produced an enormous floating flame and smoke cloud. Bound the visual age of the reported fire independently of its replay duration. Verified late-replay rendering separately from a brief impact. Evidence boundary: knowledge/domain/trafalgar-evidence.md.
+
+## Saved camera cropping after responsive layout changes — resolved2026-11-08
+Old portrait-stack poses crop new landscape spreads. New layoutRevision2 re-fits legacy poses. Aspect metadata also re-fits substantial aspect changes and column-count transitions; a small3.9→3.7 resize can change8sheets from4to3columns and crop vertically despite passing a ratio threshold. Regression covers the transition. Graduated to domain/lexical-url-framing.md.
