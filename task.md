@@ -295,4 +295,4 @@ User correction: the dimensional book is the primary experience; do not replace 
 - [x] URL import remains available.
 - [x] Existing reader controls still work.
 - [x] Independent review passes.
-- [ ] Public deployment serves the restored book.
+- [x] Public deployment serves the restored book.
