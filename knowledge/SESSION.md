@@ -70,6 +70,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 14:50 — commit: Record verified active-thread emphasis release | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 - 2026-11-08 14:59 — commit: Add solo active-word toggle to Lexical book | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/FlatView.jsx,experiments-source/lexical/src/components/PlaygroundScene.jsx
 - 2026-11-08 15:01 — commit: Record solo-thread verification and review gap | knowledge/ERRORS.md,knowledge/INDEX.md,knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
+- 2026-11-08 16:39 — commit: Expose word search and full text in default book view | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-BMdQHD3a.js,experiments/lexical/assets/index-DBFdnNYf.js
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -293,7 +294,15 @@ Solo toggle published44f8e78; workflow42522910110 passed Render/public fingerpri
 S.D.G.: Readers can remove competing paths entirely while tracing one word across the full book.
 Feynman gap:92tests, direct3D/2D/mobile checks and live deployment passed; independent review remains unavailable due account usage limit.
 
-## Discoverable book controls — active
+## Discoverable book controls — implemented
 Agent: OpenAI Codex. User sees onlywhich because desktop focus hides word picker. Show chart-owned search/ten tags in normal desktop focus; suppress duplicate occurrence overlay. Explicit Read full text header and full-book coverage caption. Phone keeps existing visible picker.
 
 Discovery checkpoint: default desktop visibly exposes search/ten tags/54,411full-book caption; Holmes selection and Read full text access verified.375px search/chips visible, document width375.92tests/build/deep verifier passed. Independent review unavailable due account usage limit. Publishing.
+
+## Maritime twelve encounters — active
+Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation.
+User requests twelve famous/critical battles and sunk indicators. Keep1400–1900scope. Proposed collection: Diu,Lepanto,Gravelines,Downs,Quiberon,Chesapeake,Nile,Trafalgar,Hampton,Lissa,Yalu,Manila. Add finite source-backed loss data independent of illustrative combat. Do not infer unnamed marker fates or confuse captured/scuttled/later storm losses with battle sinkings. Preserve concurrent Lexical source and knowledge changes.
+
+Published3f2afc1; workflow42531292102 passed tests/Render/public fingerprint. Fresh live page exposes search/ten tags/Read full text without fullscreen. Clicking Holmes reports1/462 and aria-pressedtrue. Proof:/private/tmp/lexical-visible-word-controls-live.png.
+S.D.G.: First-time readers can discover other words and the full text directly from the default book.
+Feynman gap:92tests, desktop/phone direct browser checks and live deployment passed; independent review remains unavailable due account usage limit.

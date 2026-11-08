@@ -43,3 +43,6 @@ Error: search and ten-word chip row expanded to592px inside a347px panel, causin
 
 ## Independent verifier unavailable — 2026-11-08
 The solo-thread toggle verifier failed before reviewing source because the account usage limit was reached. Direct browser checks and92tests passed, but they do not satisfy independent creator-verifier coverage. Keep this change marked independently unverified until a fresh review is available; do not claim the verifier passed.
+
+## Book focus hid word discovery — 2026-11-08
+Symptom: default desktop appeared to offer onlywhich, so the full map and other words seemed inaccessible. Cause: larger-canvas focus CSS hid the word picker while searchable chart controls rendered only in fullscreen. Fix: render the same chart-owned search/tag panel in normal desktop book focus; state complete-book coverage; label the header reader action Read full text. Keep the normal phone picker. Graduated-to: domain/lexical-book-identity.md.
