@@ -19,3 +19,5 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [archive/pre-experiments-20261107.md](archive/pre-experiments-20261107.md) | archive | 2026-11-07 | Prior hourly catalog automation handoff preserved before Experiments work |
 | [domain/experiments-readiness.md](domain/experiments-readiness.md) | domain | 2026-11-07 | Release rubric, resolved blockers, evidence and physical-device follow-up |
 | [domain/maritime-readiness.md](domain/maritime-readiness.md) | domain | 2026-11-08 | Maritime review rubric, resolved blockers, browser and release evidence |
+
+| [domain/lexical-passage-selection.md](domain/lexical-passage-selection.md) | domain | 2026-11-08 | Direct reader selection, explicit short words and stable character offsets |
