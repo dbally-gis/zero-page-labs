@@ -17,3 +17,6 @@ Daniel explicitly approved Gridcore in Labs as an experiment supporting Globe & 
 
 ## 2026-11-07 — Hourly cloud synchronization
 Use deterministic GitHub Actions instead of a laptop-owned timer or recurring LLM task. Discover via the public developer page’s serverdata; keep the static website fast. Commit validated source before calling the existing Render deployment hook. Compare output hashes to skip unchanged deployments and recover failed ones. Store the hook in a GitHub Actions secret. Preserve the last successful site on discovery/acquisition/build/deploy failure.
+
+## 2026-11-07 — Browser-native public experiments
+Publish curated adaptations within the existing static Render site. Retro's Python/Streamlit runtime was ported to Canvas and a module worker, avoiding a new backend and keeping images local. Lexical's production bundle is committed with the adapted source plus a correspondence manifest, allowing Python-only Render builds. Remove URL imports instead of shipping the local /proxy or external content relays. Keep local paste/file intake, bounded inputs, original sample, self-hosted font, graphics fallback, and a Labs return route. Original workshop apps remain untouched. User explicitly authorized public launch.

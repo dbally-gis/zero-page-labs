@@ -9,13 +9,15 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def build() -> None:
     """Package source and expand the watchface catalog without runtime requests."""
+    from build_experiments import verify as verify_experiments
+    verify_experiments(ROOT)
     output = ROOT / 'dist'
     if output.exists():
         shutil.rmtree(output)
     output.mkdir()
     for file in ('index.html', 'style.css', 'robots.txt', 'sitemap.xml', '404.html'):
         shutil.copyfile(ROOT / file, output / file)
-    for directory in ('assets', 'src', 'thumbwords', 'watchfaces', 'gridcore'):
+    for directory in ('assets', 'src', 'thumbwords', 'watchfaces', 'gridcore', 'experiments'):
         shutil.copytree(ROOT / directory, output / directory)
     faces = json.loads((ROOT / 'data/watchfaces.json').read_text())
     if not faces:

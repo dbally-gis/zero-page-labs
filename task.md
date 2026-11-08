@@ -67,3 +67,29 @@ Execution: public developer-page discovery, native asset acquisition, scheduled 
 - [x] A manual workflow run succeeds in GitHub.
 - [x] Independent verification passes.
 - [x] Render serves the verified workflow commit.
+
+## Experiments public launch — 2026-11-07
+Goal: Let visitors play with Retro-Glitch Studio and Lexical from Zero Page Labs.
+Execution: browser-native Retro adaptation; production Lexical bundle; execution/build_site.py; execution/verify_site.py. Original project repositories remain untouched.
+
+### Validation contract
+- [x] Homepage has an Experiments section linking to Retro-Glitch Studio.
+- [x] Homepage Experiments section links to Lexical.
+- [x] Retro opens with a built-in sample.
+- [x] Retro applies an effect to an uploaded image.
+- [x] Retro exports a valid PNG.
+- [x] Retro reset restores its source image.
+- [x] Lexical opens with visible sample text geometry.
+- [x] Lexical accepts pasted text.
+- [x] Lexical accepts a local text file.
+- [x] Lexical exposes both visualization modes.
+- [x] Lexical shows a usable fallback when WebGL is unavailable.
+- [x] Visitor image processing stays in the browser.
+- [x] Visitor text processing stays in the browser.
+- [x] Each experiment has a visible route back to Experiments.
+- [x] At375px Retro has no page horizontal overflow.
+- [x] At375px Lexical controls remain reachable.
+- [x] Build passes with experiment assets included.
+- [x] Static publication checks pass.
+- [x] Fresh verifier reviews final source against this contract.
+- [ ] Public Render deployment serves both experiments.

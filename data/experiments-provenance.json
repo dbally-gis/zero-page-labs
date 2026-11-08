@@ -1,0 +1,11 @@
+{
+  "lexical": {
+    "source": "lexical-viz",
+    "commit": "65ca4c5a9ba5ba263ba473360d854c2b20879a80"
+  },
+  "retro": {
+    "source": "retro-glitch-studio",
+    "commit": "e6ab53aad70cc8393b64c339760eca6c6aa25222",
+    "adaptation": "Browser-native Canvas edition; original Streamlit project untouched."
+  }
+}

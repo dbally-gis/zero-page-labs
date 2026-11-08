@@ -3,41 +3,22 @@ generated_by: "OpenAI Codex (exact model variant not exposed)"
 timestamp: "2026-11-07T17:04:06.403311-06:00"
 ---
 
-# Zero Page Labs — active handoff
-Goal: Keep the public Pebble watchface gallery automatically synchronized.
+# Zero Page Labs — Experiments launch
+Goal: Publish browser-ready Retro-Glitch Studio and Lexical with an Experiments section.
 Agent: OpenAI Codex
 Handoff-from: OpenAI Codex
 Handoff-type: continuation
-Status: Complete. Hourly GitHub synchronization is active; https://zeropagelabs.com/ is live.
+Status: In progress. Source audit complete; original workshop repositories remain read-only.
 
-## Current product
-- Thumbwords page uses latest tagged1.0.2(2026110703) real handset UI captures, explicitly labeled latest development preview; public App Store copy still describes six released games.
-- Gallery now matches34publishedFaces from Daniel’s current developer page (terminal38entries across2pages). Nonfaceapps excluded:PickleballKeeper,VolleyKeeper,Constellation,SatelliteOverpass. ClassicLCD/Triangle/Lume current URLs explicitly report Application not found; removed. T9Time is included as currently listed; no new installation-success claim.
-- Actual official Time2 hardware frame wraps34native200×228 previews. Filters:Analog,Digital,Minimal,Illustrated. Counts derive from data.
-- Gridcore specification is primary; original four specs are downloadable and hash-preserved. Companion interactive demo is hosted at/gridcore/demo/. Globe & Atlas identity connection is explicit. No source-project edits.
+## Current checkpoint
+- Public contract appended to task.md.
+- Read-only readiness reviewer confirmed Retro has24effects and requires a browser port; Lexical needs URL/proxy removal, input limits, mobile controls, local runtime assets, dependency fixes.
+- Publication adaptation lives in experiments-source/lexical; output goes to experiments/lexical. postprocessing stays6.x. Vite6.4.5 with patched transitive dependencies currently audits clean.
+- Retro browser-native edition in experiments/retro-glitch is being implemented with bounded PNG/JPEG input, worker rendering,24effects, comparison/reset/export.
+- Existing hourly Pebble sync and Render hook workflow remains deployment path. Prior live site includes original Gridcore plates and transparent Thumbwords phone.
 
-## Deployment and verification
-Render srv-dbnqdsu7bikc73d8r82g; dep-dbnqr6m7bikc73d9rucg succeeded54.7s on1dd67f0. Public repo: https://github.com/dbally-gis/zero-page-labs. Domain HTTPS and www redirect configured.
+## Handoff / next
+Finish public UI, run meaningful tests and production browser QA atdesktop/mobile, fresh independent verification, then publish through the existing workflow. Prior completed launch and gallery work remains in archive/launch-and-catalog-20261107.md and Git history.
 
-Five acquisition/failure/completeness tests PASS; static verifier PASS(6pages,34links/nativeimages); independent review PASS. Desktop Illustratedfilter6 and Gridcore modechanges/reset/back PASS;375px gallery/spec/demo no page overflow, canvas357px fitsviewport. Live custom-domain34cards/34frames observed; live Spectral interaction and consoleclean observed. Live Standard specification download HTTP200, SHA256 matches canonical source. Browser viewport reset.
-
-Evidence:.tmp/catalog-gridcore-qa.json,.tmp/full-catalog-live.jpg,.tmp/gridcore-demo-live.jpg,.tmp/retired-listings.json. Source/provenance:data/developer-catalog.json,data/gridcore-provenance.json,data/imagery-provenance.json.
-
-## Next work
-No implementation blockers. The public inventory now refreshes hourly in GitHub; operational commands are in knowledge/procedural/deploy_site.md. Completed chronology:archive/launch-and-catalog-20261107.md. Post-commit hook appends a checkpoint to this file, so its resulting dirty line is expected.
-
-S.D.G.: Visitors can find Daniel’s current watchface collection and explore Gridcore without losing its Globe & Atlas provenance.
-Feynman gap: Cloud discovery/deployment and unchanged runs verified; the next real new-face publication is not yet observed.
-
-## Checkpoint Log
-
-- 2026-11-07 17:04 — commit: Record full catalog and Gridcore live verification | DEPLOY.md,knowledge/INDEX.md,knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,knowledge/archive/launch-and-catalog-20261107.md
-
-- 2026-11-07 17:22 — commit: Automatically sync Pebble gallery hourly and deploy verified changes | .github/catalog-heartbeat,.github/workflows/sync-pebble.yml,README.md,data/developer-catalog.json,execution/build_site.py
-## Automatic sync in progress
-Goal: Hourly cloud-owned catalog updates and deployment without manual browser export. Plan: public server-rendered developer-page discovery with terminal pagination; existing native asset validation; idempotent GitHub Actions sync; existing Render deploy hook in an Actions secret. Last known good site remains published on any invalid discovery/acquisition/build.
-
-Automatic sync checkpoint: public pagination discovery38entries/34Faces works; unchanged refresh is a no-op.17tests include mocked new-face import→build, malformedsource, duplicatepages, ownerguards, truncatedimages, and no-change deployments. Full34image deepvalidation PASS. Independent review PASS after fixing fresh-checkout.tmp and imageintegrity blockers. ExistingRenderhook configured as GitHubsecret; temporary.env removed. Cloud run42424934350 succeeded through Renderdep-dbnr5au7bikc73dakerg; public deployment.json verifies6a6b86d and34faces. Manualrun42425037120 succeeded with catalog_unchanged/deployment_unchanged; remoteHEAD remained6a6b86d, so no catalog commit or redeploy occurred. Workflow410738005 is active.
-
-S.D.G.: New Pebble watchfaces can reach Zero Page Labs visitors without Daniel performing a catalog export or deployment.
-Feynman gap: New-face import is proven by a mocked acquisition→build test; actual cloud discovery/deployment and no-change behavior passed on the34current faces.
+## Readiness / verification checkpoint
+Source blockers resolved: static hosting adaptation; proxy removal; bounded intake; null-prototype dictionaries; inert HTML extraction; local font/HDR removal; mobile controls. Independent verifier PASS after reserved-word/palette fixes.41Node tests and17Python tests PASS; deep static verifier PASS9pages; full npm audit0. Browser verified photo import→effect→PNG export (actual file decoded), reset, text paste, local text-file loading, constructor regression, both modes, selectable2D fallback, back links,375px layouts including opacity controls. Source/output manifest is checked during normal site builds. Deployment next.

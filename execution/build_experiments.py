@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+"""Build the public Lexical adaptation and attest source/output correspondence."""
+from pathlib import Path
+import argparse
+import hashlib
+import json
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[1]
+SOURCE = ROOT / 'experiments-source/lexical'
+OUTPUT = ROOT / 'experiments/lexical'
+MANIFEST = ROOT / 'data/experiments-build.json'
+
+
+def digest(files: list[Path], base: Path) -> str:
+    result = hashlib.sha256()
+    for path in sorted(files):
+        result.update(path.relative_to(base).as_posix().encode() + b'\0' + path.read_bytes() + b'\0')
+    return result.hexdigest()
+
+
+def source_files(source: Path = SOURCE) -> list[Path]:
+    files = [source / name for name in ('index.html', 'package.json', 'package-lock.json', 'vite.config.js')]
+    for directory in ('src', 'public'):
+        files.extend(path for path in (source / directory).rglob('*') if path.is_file())
+    return files
+
+
+def verify(root: Path = ROOT) -> None:
+    source = root / 'experiments-source/lexical'
+    output = root / 'experiments/lexical'
+    recorded = json.loads((root / 'data/experiments-build.json').read_text())
+    actual = {'source_sha256': digest(source_files(source), source), 'output_sha256': digest([p for p in output.rglob('*') if p.is_file()], output)}
+    if actual != recorded:
+        raise ValueError('Lexical source/output differs from verified build. Run python3 execution/build_experiments.py --install')
+
+
+def build(install: bool = False) -> None:
+    if install:
+        subprocess.run(['npm', 'ci', '--ignore-scripts'], cwd=SOURCE, check=True, timeout=180)
+    subprocess.run(['npm', 'run', 'build'], cwd=SOURCE, check=True, timeout=180)
+    # Preserve required package license notices for the bundled dependencies.
+    notices = []
+    for package in sorted((SOURCE / 'node_modules').glob('**/package.json')):
+        if any(part.startswith('.') for part in package.relative_to(SOURCE / 'node_modules').parts):
+            continue
+        try:
+            metadata = json.loads(package.read_text())
+            for name in ('LICENSE', 'LICENSE.md', 'LICENSE.txt', 'license', 'license.md', 'LICENSE-MIT'):
+                license_file = package.parent / name
+                if license_file.is_file():
+                    notices.append(f"{metadata.get('name')} {metadata.get('version')}\n{license_file.read_text(errors='replace')}\n")
+                    break
+        except (OSError, ValueError):
+            continue
+    (OUTPUT / 'THIRD-PARTY-NOTICES.txt').write_text('\n'.join(notices))
+    MANIFEST.write_text(json.dumps({'source_sha256': digest(source_files(), SOURCE), 'output_sha256': digest([p for p in OUTPUT.rglob('*') if p.is_file()], OUTPUT)}, indent=2) + '\n')
+    verify()
+    print('Verified reproducible source/output manifest for public Lexical bundle.')
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--install', action='store_true')
+    parser.add_argument('--verify', action='store_true')
+    args = parser.parse_args()
+    verify() if args.verify else build(args.install)

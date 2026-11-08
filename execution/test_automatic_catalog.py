@@ -101,8 +101,9 @@ class SyncTests(unittest.TestCase):
         entries,_=discovery.parse_page(html([app(),app(B,'New Face')]),1)
         with TemporaryDirectory(dir=REPO/'.tmp') as temp:
             root=Path(temp)
-            for directory in ('assets','src','thumbwords','watchfaces','gridcore','data'):
+            for directory in ('assets','src','thumbwords','watchfaces','gridcore','data','experiments'):
                 shutil.copytree(REPO/directory,root/directory)
+            shutil.copytree(REPO/'experiments-source',root/'experiments-source',ignore=shutil.ignore_patterns('node_modules'))
             for name in ('index.html','style.css','robots.txt','sitemap.xml','404.html'):
                 shutil.copyfile(REPO/name,root/name)
             (root/'data/developer-catalog.json').write_text(json.dumps(snapshot(entries[:1])))
