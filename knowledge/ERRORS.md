@@ -25,3 +25,6 @@ CUA selected a .tmp text fixture (project .tmp is a symlink) but its file read n
 
 ## Lexical inconsistent identity and incomplete fallback — resolved 2026-11-07
 Independent palettes gave a word different colors across panels; the fallback sampled only 90 occurrences and fixed three pages. Shared model.js wordColor and FlatView now use canonical indices and actual synthetic sheets. Regression tests cover colors, 5,000 occurrences/20 sheets, bounds and restoration. Graduated to the canonical-model decision.
+
+## One-letter Throughline coordinates — resolved 2026-11-08
+Explicit reader selection exposed a pre-existing assumption that every word has a second letter: charCodeAt(1) returned NaN for a/I. Missing second letters now use the start of the second-letter axis. Regression verifies finite positions and camera. Graduated to domain/lexical-passage-selection.md.
