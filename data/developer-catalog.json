@@ -2,11 +2,20 @@
   "source": "https://apps.repebble.com/apps/dev/daniel-bally_e8468a0ff28edd5791d1bced",
   "observedAt": "2026-11-08",
   "pagination": {
-    "loadedPages": 2,
-    "entries": 40,
+    "loadedPages": 3,
+    "entries": 41,
     "reachedBottom": true
   },
   "entries": [
+    {
+      "name": "Twin Orbit",
+      "url": "https://apps.repebble.com/twin-orbit_67373e8c182e4e86a7950434",
+      "category": "Faces",
+      "description": "Two orbits. One moment.\n\nTwin Orbit puts hours and minutes on two overlapping tracks. The larger hollow marker follows the upper-left hour ring; the smaller solid dot follows the lower-right minute ring. Their distinct shapes remain readable in monochrome.\n\nMake it yours:\n\u2022 Six palettes: Night, Paper, Mint, Ice, Rose, and Monochrome.\n\u2022 Custom background, text, hour-orbit, and minute-orbit colors.\n\u2022 Watch default, 12-hour, or 24-hour numeric time.\n\u2022 Optional upright hour and minute values in the orbit centers.\n\u2022 Optional digital time below the dial.\n\u2022 Optional date: YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n\nThe hour orbit keeps a conventional 12-hour cycle in every mode; the numeric hour follows your chosen 12/24-hour setting.\n\nDesigned for Pebble Time 2 and Pebble Round 2. Settings are available through the Pebble app. Updates once per minute, with no phone service needed for timekeeping.\n\nThe animated preview is an accelerated time-lapse showing both markers moving and the six palette options. The installed watchface keeps the palette you choose.",
+      "thumbnail": "https://assets.repebble.com/screenshots/67373e8c182e4e86a7950434/emery/596fd971-e3da-4d82-b46e-6a22d4e0244a.gif",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/67373e8c182e4e86a7950434/emery/596fd971-e3da-4d82-b46e-6a22d4e0244a.gif"
+    },
     {
       "name": "Wander",
       "url": "https://apps.repebble.com/wander_e47df131d6bc4a2688c95882",

@@ -1,5 +1,14 @@
 [
   {
+    "name": "Twin Orbit",
+    "slug": "twin-orbit",
+    "url": "https://apps.repebble.com/twin-orbit_67373e8c182e4e86a7950434",
+    "image": "/assets/catalog-67373e8c182e4e86a7950434.png",
+    "style": "Other",
+    "description": "Two orbits. One moment.",
+    "source_image": "https://assets.repebble.com/screenshots/67373e8c182e4e86a7950434/emery/acccb5a1-3990-4d68-bab2-28039257203b.png"
+  },
+  {
     "name": "Wander",
     "slug": "wander",
     "url": "https://apps.repebble.com/wander_e47df131d6bc4a2688c95882",
