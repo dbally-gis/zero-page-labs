@@ -13,3 +13,5 @@ Gallery source is Daniel’s complete current public Pebble developer catalog, n
 
 ## Experiments — 2026-11-07
 Purpose: visitors can make playful visual discoveries immediately from a sample, then try their own local input. Homepage and /experiments/ introduce Retro-Glitch Studio and Lexical. Retro is a browser-native adaptation of the24-effect workshop app; Lexical retains its two visualization modes with spelling-based coordinates, not semantic embeddings. Both are free, anonymous, and process visitor content in the browser. Interactive apps require JavaScript; the surrounding project pages remain usable without it. Relic Rack and3D printing remain excluded.
+
+Lexical’s approved goal is a creative playground with enough reading value to make patterns meaningful: choose a passage, follow a word, understand its context, keep a result.

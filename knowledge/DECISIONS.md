@@ -20,3 +20,6 @@ Use deterministic GitHub Actions instead of a laptop-owned timer or recurring LL
 
 ## 2026-11-07 — Browser-native public experiments
 Publish curated adaptations within the existing static Render site. Retro's Python/Streamlit runtime was ported to Canvas and a module worker, avoiding a new backend and keeping images local. Lexical's production bundle is committed with the adapted source plus a correspondence manifest, allowing Python-only Render builds. Remove URL imports instead of shipping the local /proxy or external content relays. Keep local paste/file intake, bounded inputs, original sample, self-hosted font, graphics fallback, and a Labs return route. Original workshop apps remain untouched. User explicitly authorized public launch.
+
+## Lexical canonical model and local results — 2026-11-07
+One deterministic token model owns colors, occurrences, spelling positions and synthetic sheets. Instanced 3D and complete SVG 2D consume it; 2D never silently samples. Decorative particles default off. PNG exports include passage context and Labs credit. Built-in links contain bounded view settings without passage text; custom sessions download locally as JSON and restore text/settings/camera. Original lexical-viz remains untouched.

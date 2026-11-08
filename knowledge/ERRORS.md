@@ -22,3 +22,6 @@ Error: a corpus containing constructor caused BookMatrix map[word].push to hit a
 
 ## 2026-11-07 — Browser upload QA fixture constraint
 CUA selected a .tmp text fixture (project .tmp is a symlink) but its file read never completed. A directly accessible root robots.txt loaded immediately and rendered9nodes. Treat symlinked fixture behavior as a tooling limitation until reproduced independently; use a directly accessible file for upload QA. PNG export succeeded despite the tool's download-event waiter timing out: the actual Downloads/zero-page-retro-glitch.png decoded as555×1200PNG.
+
+## Lexical inconsistent identity and incomplete fallback — resolved 2026-11-07
+Independent palettes gave a word different colors across panels; the fallback sampled only 90 occurrences and fixed three pages. Shared model.js wordColor and FlatView now use canonical indices and actual synthetic sheets. Regression tests cover colors, 5,000 occurrences/20 sheets, bounds and restoration. Graduated to the canonical-model decision.

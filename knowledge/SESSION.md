@@ -32,6 +32,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-07 19:36 — commit: Record verified filter example publication | knowledge/SESSION.md,task.md
 - 2026-11-07 20:35 — commit: Link verified public GitHub repositories on project pages | data/experiments-build.json,data/public-repositories.json,execution/build_site.py,experiments-source/lexical/src/components/FuturisticHUD.jsx,experiments/index.html
 - 2026-11-07 20:46 — commit: Add guided built-in text examples to Lexical | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/FuturisticHUD.jsx,experiments-source/lexical/src/components/InterpretationRail.jsx
+- 2026-11-07 20:48 — commit: Record verified Lexical examples deployment | knowledge/SESSION.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -58,3 +59,9 @@ Published Lexical examples: sourcea1d4ae0, cloud run42439966350 succeeded throug
 
 S.D.G.: Visitors can explore spelling and recurrence patterns immediately from four built-in texts.
 Feynman gap: Four sample flows, custom text/reset, desktop/375px/768px layouts, independent source review and public deployment verified; physical mobile remains untested.
+
+## Full Lexical playground update — active
+Goal: implement the complete approved review recommendations. Agent: OpenAI Codex. Handoff-type: continuation. Status: implementation. Scope includes unified colors, focused stage, advanced drawer, camera reset, linked reader/occurrences, PNG/clean view, honest complete2D, optional decoration, meaningful labels, mobile controls, shareable built-in views and local saved sessions. No original project edits or server-side content processing. Binary contract in task.md.
+
+### Implementation verified
+Unified colors, instanced framed stage, collapsed advanced controls, camera reset, linked excerpts/full reader, complete 2D, optional particles, explanatory coordinates/sheets, Clean view and contextual PNG are implemented. Built-in views serialize bounded settings without text; local JSON restores custom text/settings/camera. 63 Node tests, 17 Python tests and deep static verification pass. Actual browser PNG downloads and local session roundtrip passed; maximum 20,000-character passage rendered 5,000 occurrences over20 sheets. Phone375px and tablet768px have no overflow. Browser policy blocked opening a copied share URL; restoration is unit-tested, with a visible copyable link as fallback. Physical Safari remains open. Deployment pending.

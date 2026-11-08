@@ -21,3 +21,6 @@ Run `node --test execution/test_experiments.mjs`, `python3 -m unittest discover 
 
 ## Publish
 Push the verified source and generated output to main. Existing GitHub sync workflow runs the tests, validates the site, calls the existing Render hook, then compares the public deployment fingerprint. No new Render service is needed. Verify /experiments/, /experiments/retro-glitch/, and /experiments/lexical/ after success.
+
+## Learnings — 2026-11-07 Lexical playground
+Verify scene-to-reader occurrence navigation, both modes, complete 2D counts, PNG download, custom saved-view JSON roundtrip and responsive layouts after changes. Shared built-in view URLs must exclude custom text. PNG aspect ratio must survive tall sheet grids. Build experiments before the site to refresh the committed manifest.

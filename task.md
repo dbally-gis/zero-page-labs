@@ -109,3 +109,27 @@ Execution: browser-native Retro adaptation; production Lexical bundle; execution
 - [x] Pasting custom text clears the built-in selection.
 - [x] The example selector fits a 375px viewport.
 - [x] Public deployment serves the example selector.
+
+## Lexical playground update
+Goal: choose a passage, follow a word, understand its context, keep a result.
+Execution: public adaptation in experiments-source/lexical; execution/build_experiments.py; execution/build_site.py. Original lexical-viz stays untouched.
+- [x] A word uses one color in 3D, 2D, chips, recurrence, and reader highlights.
+- [x] Default scene is framed within its dedicated stage.
+- [x] Advanced controls start collapsed.
+- [x] Reset camera restores the fitted scene.
+- [x] Selecting a word opens its readable occurrences.
+- [x] Selecting an occurrence highlights its mapped position.
+- [x] Save image downloads a valid PNG with passage context.
+- [x] Clean view removes surrounding controls.
+- [x] 2D view renders every mapped occurrence in the supported passage.
+- [x] Atlas displays the actual number of synthetic sheets.
+- [x] Spelling coordinates are explained in the interface.
+- [x] Synthetic sheets are labeled as groups of 250 filtered words.
+- [x] Background particles start disabled.
+- [x] A built-in view can be restored from its share link.
+- [x] A custom view can be restored from a downloaded session file.
+- [x] Custom text is excluded from shared links.
+- [x] Phone controls fit 375px.
+- [x] Tablet controls fit 768px.
+- [x] Fresh verifier reviews final implementation.
+- [ ] Public deployment matches the verified build.
