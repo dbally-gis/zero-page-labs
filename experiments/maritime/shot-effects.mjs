@@ -22,11 +22,12 @@ export function createShotEffects(scene,smoke){
     const hitSmoke=Array.from({length:3},()=>sprite(group,smoke,0x625d53));
     const splash=sprite(group,smoke,0xdcf4f0);
     const sparks=Array.from({length:5},()=>sprite(group,flame,0xffd594,true));
+    const debris=Array.from({length:7},()=>{const d=new T.Mesh(new T.BoxGeometry(1,1,5),new T.MeshBasicMaterial({color:0xb69362}));group.add(d);return d;});
     const ball=new T.Mesh(new T.SphereGeometry(1.4,6,5),new T.MeshBasicMaterial({color:0x302820}));group.add(ball);
     const tailGeometry=new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3()]);
     const tail=new T.Line(tailGeometry,new T.LineBasicMaterial({color:0xf5cd8f,transparent:true,opacity:.75}));group.add(tail);
     const ripple=new T.Mesh(new T.RingGeometry(.88,1,40),new T.MeshBasicMaterial({color:0xd0ede7,transparent:true,opacity:0,side:T.DoubleSide,depthWrite:false}));ripple.rotation.x=-Math.PI/2;group.add(ripple);
-    pool.push({group,flash,fire,gunSmoke,hitSmoke,splash,sparks,ball,tail,ripple});
+    pool.push({debris,group,flash,fire,gunSmoke,hitSmoke,splash,sparks,ball,tail,ripple});
   }
   const put=(object,p,y=0)=>object.position.set(p.x,p.y+y,p.z);
   function update(battle,progress,{enabled=true,reduced=false}={}){
@@ -44,11 +45,12 @@ export function createShotEffects(scene,smoke){
         s.position.set(e.origin.x+age*10+spread*(4+age*3),e.origin.y+age*5+i*2,e.origin.z+age*2+spread*6);
         s.scale.setScalar(16+age*12+i*7);s.material.rotation=i*.8+age*.04;
       });
-      const impactAge=Math.max(0,e.impactAge);
+      const impactAge=e.kind==='reported-fire'?1:Math.max(0,e.impactAge);
       p.fire.material.opacity=reduced?0:e.impactFlash;
       put(p.fire,e.impact,9+impactAge*5);p.fire.scale.set(23+impactAge*14,42+impactAge*20,1);
       if(!reduced&&e.impactFlash>peak){peak=e.impactFlash;put(light,e.impact,13);light.intensity=650*e.impactFlash;}
       p.hitSmoke.forEach((s,i)=>{
+        s.material.color.set(e.kind==='timber'?0xab9677:0x625d53);
         s.material.opacity=e.hitSmoke*(.65-i*.07);
         s.position.set(e.impact.x+impactAge*8+(i-1)*7,e.impact.y+9+impactAge*8+i*3,e.impact.z+(i-1)*5);
         s.scale.setScalar(24+impactAge*17+i*9);s.material.rotation=i*.9-impactAge*.06;
@@ -56,13 +58,19 @@ export function createShotEffects(scene,smoke){
       p.splash.material.opacity=reduced?0:e.splash*.85;put(p.splash,e.impact,8+e.splash*14);p.splash.scale.set(16+impactAge*17,20+e.splash*42,1);
       const rippleAlpha=!e.hit&&e.impactAge>=0?Math.max(0,1-impactAge/2):0;
       p.ripple.material.opacity=rippleAlpha*.55;p.ripple.position.set(e.impact.x,.2,e.impact.z);p.ripple.scale.setScalar(8+impactAge*16);
+      p.debris.forEach((d,i)=>{
+        d.visible=!reduced&&(e.debris||0)>0;
+        const phase=impactAge/.8,a=i*2.4+e.id;
+        d.position.set(e.impact.x+Math.sin(a)*phase*22,e.impact.y+6+Math.sin(Math.min(1,phase)*Math.PI)*14,e.impact.z+Math.cos(a)*phase*22);
+        d.rotation.set(phase*4+i,phase*5,phase*3);
+      });
       p.sparks.forEach((s,i)=>{
         const phase=impactAge/.8,a=i*2.4+e.id;
-        s.material.opacity=reduced?0:e.hit&&e.impactAge>=0&&phase<1?(1-phase)*.9:0;
+        s.material.opacity=reduced||battle.id==='trafalgar'?0:e.hit&&e.impactAge>=0&&phase<1?(1-phase)*.9:0;
         s.position.set(e.impact.x+Math.sin(a)*phase*23,e.impact.y+8+Math.sin(phase*Math.PI)*17,e.impact.z+Math.cos(a)*phase*23);
         s.scale.set(2.5,5,1);
       });
-      p.ball.visible=p.tail.visible=!!e.projectile&&!reduced;
+      p.ball.visible=!!e.projectile&&!reduced;p.tail.visible=p.ball.visible&&battle.id!=='trafalgar';
       if(e.projectile){
         put(p.ball,e.projectile);
         const direction=new T.Vector3(e.impact.x-e.origin.x,0,e.impact.z-e.origin.z).normalize().multiplyScalar(9);

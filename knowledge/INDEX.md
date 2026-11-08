@@ -21,3 +21,5 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [domain/maritime-readiness.md](domain/maritime-readiness.md) | domain | 2026-11-08 | Maritime review rubric, resolved blockers, browser and release evidence |
 
 | [domain/lexical-passage-selection.md](domain/lexical-passage-selection.md) | domain | 2026-11-08 | Direct reader selection, explicit short words and stable character offsets |
+
+| [domain/trafalgar-evidence.md](domain/trafalgar-evidence.md) | domain | 2026-11-08 | Source-linked selected gunfire episodes, timber damage and attributed stern fire limits |

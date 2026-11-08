@@ -234,3 +234,19 @@ Goal: visible muzzle fire/gun smoke plus delayed hit fire/smoke and near-miss wa
 - [x] Public deployment fingerprint matches this release.
 - [x] Public browser renders the dimensional scene.
 - [x] Public browser shows impact effects.
+
+## Trafalgar evidence-led gunfire — 2026-11-08
+Target: Maritime combat model, effects renderer, source-linked event controls. Preserve other encounters.
+- [x] Trafalgar uses a finite authored firing sequence instead of synthetic targeting.
+- [x] Each animated Trafalgar exchange cites supporting evidence.
+- [x] Trafalgar solid-shot impacts do not create flames.
+- [x] Trafalgar solid-shot impacts show timber debris.
+- [x] A reported Redoutable stern fire is distinguished from shot impact.
+- [x] Event controls seek to their corresponding replay moments.
+- [x] Replay timing uncertainty is visible.
+- [x] Other encounters retain their labelled illustrative effects.
+- [x] Relevant JavaScript tests pass.
+- [x] Deep site verification passes.
+- [x] Desktop browser verification passes.
+- [x] Mobile browser verification passes.
+- [x] Independent verification passes.

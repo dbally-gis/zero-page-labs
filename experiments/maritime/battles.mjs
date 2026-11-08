@@ -19,7 +19,7 @@ function chapter(label, title, text, focus, source = 0) { return { label, title,
 function question(label, title, text, phase, focus, layer, source = 0) { return { label, title, text, phase, focus, layer, source }; }
 
 const trafalgarShips = [
-  ship('victory', 'HMS Victory', 0, 'sail', 'Nelson’s flagship. Leads the weather column into the allied centre.', [[280,260,90],[400,260,90],[680,260,85],[680,270,15],[685,260,15]]),
+  ship('victory', 'HMS Victory', 0, 'sail', 'Nelson’s flagship. Leads the weather column into the allied centre.', [[280,260,90],[400,260,90],[680,260,85],[640,285,15],[655,285,15]]),
   ship('sovereign', 'HMS Royal Sovereign', 0, 'sail', 'Collingwood’s flagship. Leads the leeward column toward the allied rear.', [[300,470,90],[440,470,90],[740,470,80],[740,470,5],[745,455,5]]),
   ship('bucentaure', 'Bucentaure', 1, 'sail', 'Villeneuve’s flagship. Victory passes across her stern when breaking the line.', [[620,225,350],[630,210,350],[640,200,350],[650,210,335],[650,210,335]]),
   ship('redoutable', 'Redoutable', 1, 'sail', 'French ship that fights Victory at close quarters after the line is broken.', [[638,305,350],[650,290,350],[660,280,350],[685,285,15],[700,285,15]],1),

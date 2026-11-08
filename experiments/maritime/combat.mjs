@@ -1,3 +1,4 @@
+import {TRAFALGAR_EVENTS} from './trafalgar-events.mjs';
 import {positionAt,clamp} from './model.mjs';
 
 // Illustrative gunfire, not a reconstruction of recorded shots or ship damage.
@@ -18,7 +19,20 @@ function targetFor(battle,ship,progress){
   }
   return targets.sort((a,b)=>a.distance-b.distance)[0]||null;
 }
+function historicalEvent(battle,index){
+  const event=TRAFALGAR_EVENTS.filter(e=>e.kind)[index];if(!event)return null;
+  const firedAt=event.at*100,ship=battle.ships.find(s=>s.id===event.shooter),target=battle.ships.find(s=>s.id===event.target);
+  const p=positionAt(ship,event.at),q=positionAt(target,event.at),bearing=Math.atan2(q.x-p.x,p.y-q.y)/deg;
+  const travel=event.kind==='reported-fire'?0:clamp(Math.hypot(q.x-p.x,q.y-p.y)/210,.35,1.65),arrival=firedAt+travel;
+  const destination=positionAt(target,arrival/100),fire=event.kind==='reported-fire';
+  const a=fire?(destination.heading+180)*deg:bearing*deg;
+  const origin={x:p.x+Math.sin(a)*10,y:7,z:p.y-Math.cos(a)*10};
+  const stern=fire||event.id==='rake',sternAngle=(destination.heading+180)*deg;
+  const impact={x:destination.x+(stern?Math.sin(sternAngle)*22:0),y:8,z:destination.y-(stern?Math.cos(sternAngle)*22:0)};
+  return {id:index,shooter:event.shooter,target:event.target,hit:true,firedAt,arrival,travel,origin,impact,bearing,kind:event.kind,evidence:event.evidence};
+}
 export function shotEvent(battle,index){
+  if(battle.id==='trafalgar')return historicalEvent(battle,index);
   const firedAt=START+index*CADENCE;
   if(index<0||firedAt>END)return null;
   const progress=firedAt/100;
@@ -42,6 +56,14 @@ export function shotEvent(battle,index){
 }
 export function effectsAt(battle,progress){
   if(!Number.isFinite(progress)||progress<0||progress>1)return [];
+  if(battle.id==='trafalgar'){
+    const time=progress*100;
+    return TRAFALGAR_EVENTS.filter(e=>e.kind).map((_,i)=>shotEvent(battle,i)).filter(e=>time>=e.firedAt&&time<e.firedAt+(e.kind==='reported-fire'?17:SMOKE_LIFE)).map(e=>{
+      const age=time-e.firedAt,impactAge=time-e.arrival,fire=e.kind==='reported-fire',f=fire?1:clamp(age/e.travel,0,1);
+      if(fire){const target=battle.ships.find(s=>s.id===e.target),p=positionAt(target,progress),a=(p.heading+180)*deg;e.impact={x:p.x+Math.sin(a)*22,y:8,z:p.y-Math.cos(a)*22};}
+      return {...e,age,impactAge,flash:!fire&&age<.22?Math.pow(1-age/.22,.5):0,gunSmoke:fire?0:Math.max(0,1-age/SMOKE_LIFE),impactFlash:fire?Math.min(1,.4+age*2):0,hitSmoke:impactAge<0?0:fire?.75:Math.max(0,1-impactAge/2),debris:!fire&&impactAge>=0?Math.max(0,1-impactAge/.8):0,splash:0,projectile:!fire&&age<e.travel?{x:e.origin.x+(e.impact.x-e.origin.x)*f,y:7,z:e.origin.z+(e.impact.z-e.origin.z)*f}:null};
+    });
+  }
   const time=progress*100,first=Math.max(0,Math.ceil((time-SMOKE_LIFE-START)/CADENCE)),last=Math.floor((time-START+1e-8)/CADENCE),events=[];
   for(let i=first;i<=last;i++){
     const e=shotEvent(battle,i);if(!e)continue;
@@ -58,6 +80,7 @@ export function effectsAt(battle,progress){
   return events;
 }
 export function previewSalvo(battle){
+  if(battle.id==='trafalgar')return shotEvent(battle,0);
   for(let i=8;i<30;i++){
     const e=shotEvent(battle,i);if(!e||!e.hit||e.shooter==='minnesota')continue;
     if(battle.ships.some(s=>s.id===e.shooter&&!s.representative)&&battle.ships.some(s=>s.id===e.target&&!s.representative))return e;
