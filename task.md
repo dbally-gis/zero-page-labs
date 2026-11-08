@@ -320,4 +320,4 @@ Native Fullscreen API for the chart card; in-tab expansion when unsupported/reje
 - [x] The fullscreen event listener is removed on cleanup.
 - [x] Body scrolling is restored after exit.
 - [x] Independent review passes.
-- [ ] Public deployment serves the fullscreen control.
+- [x] Public deployment serves the fullscreen control.

@@ -60,6 +60,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 12:28 — commit: Record verified restored book and Sherlock default | knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 - 2026-11-08 12:44 — commit: Give the 3D book a larger default focus view | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-52J37cGA.js,experiments/lexical/assets/index-BzodXtzl.css
 - 2026-11-08 12:47 — commit: Record verified larger default book deployment | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
+- 2026-11-08 13:04 — commit: Add full-screen exploration to Lexical book view | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/fullscreen.js,experiments-source/lexical/src/index.css
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -238,7 +239,11 @@ Larger default book published:468fc62f494e84b2e08dbfbe895fb43bfb4f8288; workflow
 S.D.G.: Visitors see a larger dimensional book without sacrificing its portrait pages or depth.
 Feynman gap:81 tests, independent source review, viewport/toggle/dialog/export checks and live deployment verified; physical Safari remains untested.
 
-## Full-screen book — active
+## Full-screen book — complete
 Agent: OpenAI Codex. Handoff-type: continuation. Goal: add user-initiated full-screen book with exit/Escape, visible controls, native events and in-tab fallback. Preserve geometry and source data. Status: implementation.
 
 Fullscreen checkpoint: 83 Node tests pass; deep site verifier passes; independent verifier passes. Local browser verified in-tab fallback, Escape, scroll restoration, and preserved 3D book. Native display-level fullscreen remains unverified visually. Publishing.
+
+Published a593da2; workflow 42513126217 passed Render/public fingerprint verification. Live browser confirmed Full screen, preserved 3D book, and Escape restoration. Proof: /private/tmp/lexical-fullscreen-live.png.
+S.D.G.: Lexical visitors can explore the dimensional book with the chart filling their viewport.
+Feynman gap: Native display-level fullscreen remains visually unverified; fallback browser behavior, API tests, 83 tests and independent review passed.
