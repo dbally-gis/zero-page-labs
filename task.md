@@ -93,3 +93,11 @@ Execution: browser-native Retro adaptation; production Lexical bundle; execution
 - [x] Static publication checks pass.
 - [x] Fresh verifier reviews final source against this contract.
 - [x] Public Render deployment serves both experiments.
+
+## Retro filter examples
+- [ ] Four example cards show an original image beside processed output.
+- [ ] Example previews use the shipped effect engine.
+- [ ] Each Try button loads its displayed source.
+- [ ] Each Try button applies its displayed recipe.
+- [ ] Example cards fit a375px viewport.
+- [ ] The updated page is verified on the public domain.

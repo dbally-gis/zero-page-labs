@@ -27,6 +27,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 
 - 2026-11-07 18:31 — commit: Launch browser-native Retro-Glitch and Lexical experiments | .github/workflows/sync-pebble.yml,assets/experiment-lexical.svg,assets/experiment-retro.svg,data/experiments-build.json,data/experiments-provenance.json
 
+- 2026-11-07 18:34 — commit: Record verified public experiments deployment | knowledge/INDEX.md,knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,knowledge/domain/experiments-readiness.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
