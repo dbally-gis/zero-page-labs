@@ -410,3 +410,21 @@ Scope: battles data, encounter chooser, SVG/3D status markers, inspector, combat
 - [x] Desktop browser checks pass.
 - [x] Mobile browser checks pass.
 - [x] Independent review passes.
+
+## Sorted tags and whole-book introduction — 2026-11-08
+Scope: sort curated/followed tags by descending count; fresh default starts in a whole-book point overview with Holmes active; explicit tag/search selection enters focus; replay overview from toolbar. Saved/shared views retain explicit mode.
+- [x] Curated tags are ordered by descending occurrence count.
+- [x] Holmes remains active on fresh entry.
+- [x] Fresh introduction represents54,411mapped word points.
+- [x] Introduction retains218synthetic pages.
+- [x] Follow Holmes enters focused view.
+- [x] Selecting a tag enters focused view.
+- [x] Search selection enters focused view.
+- [x] Show whole book restores the overview.
+- [x] Show whole book refits the camera to the full book.
+- [x] Shared views restore explicit overview state.
+- [x] Intro controls fit at375px.
+- [x] Node tests pass.
+- [x] Browser checks pass.
+- [x] Independent verifier finds no blockers.
+- [ ] Live deployment is verified.

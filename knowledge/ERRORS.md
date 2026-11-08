@@ -46,3 +46,6 @@ The solo-thread toggle verifier failed before reviewing source because the accou
 
 ## Book focus hid word discovery — 2026-11-08
 Symptom: default desktop appeared to offer onlywhich, so the full map and other words seemed inaccessible. Cause: larger-canvas focus CSS hid the word picker while searchable chart controls rendered only in fullscreen. Fix: render the same chart-owned search/tag panel in normal desktop book focus; state complete-book coverage; label the header reader action Read full text. Keep the normal phone picker. Graduated-to: domain/lexical-book-identity.md.
+
+## Whole-book replay retained cropped camera — 2026-11-08
+Independent review caught Show whole book initially changing only visible points, retaining prior zoom/orbit because CameraRig dependencies had not changed. Entry now clears cameraPose and increments resetTick, which refits the existing full-book bounds. Graduated-to: domain/lexical-book-identity.md.
