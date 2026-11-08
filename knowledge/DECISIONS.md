@@ -38,3 +38,6 @@ User correction supersedes the landscape3D spread decision above. The dimensiona
 
 ## Give the book the window — 2026-11-08
 Preserve the dimensional portrait book while enlarging its canvas. Default desktop book focus puts nonessential word-editing rows on demand and keeps compact edge controls. Reframing responds to the larger canvas; page geometry is unchanged. Phone layout remains unchanged because the book already fills its available width.
+
+## Whole-book default with bounded views — 2026-11-08
+The user expects the complete Sherlock book, not an opening excerpt. Embed the licensed full body; retain bounded custom intake. Offer top ten mapped-word tags while initially following one, matching original lexical-viz behavior. Normalize spacing beyond8sheets and batch page geometry instead of discarding source/pages. Keep reader DOM bounded with source-offset-preserving sections; search and model still cover the entire book.

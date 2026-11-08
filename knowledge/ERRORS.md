@@ -37,3 +37,6 @@ The first reported-fire renderer reused impactAge scaling; over a long condition
 
 ## Saved camera cropping after responsive layout changes — resolved2026-11-08
 Old portrait-stack poses crop new landscape spreads. New layoutRevision2 re-fits legacy poses. Aspect metadata also re-fits substantial aspect changes and column-count transitions; a small3.9→3.7 resize can change8sheets from4to3columns and crop vertically despite passing a ratio threshold. Regression covers the transition. Graduated to domain/lexical-url-framing.md.
+
+## Fullscreen search overflow on narrow screens — 2026-11-08
+Error: search and ten-word chip row expanded to592px inside a347px panel, causing horizontal panning on focus. Cause: intrinsic flex-child minimum sizing in a fixed fullscreen card. Fix: set min-width0 and width100% on search/chips/navigation, then max-width100% on panel children; retain chip-row scrolling. Verification:375px card scrollWidth375, panel x14/width347, search width329. Graduated-to: domain/lexical-book-identity.md.

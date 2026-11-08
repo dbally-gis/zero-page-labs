@@ -350,4 +350,4 @@ Scope: searchable fullscreen control, complete bundled Sherlock body, top ten ma
 - [x] Node tests pass.
 - [x] Deep site validation passes.
 - [x] Independent review finds no blockers.
-- [ ] Public site serves the change.
+- [x] Public site serves the change.
