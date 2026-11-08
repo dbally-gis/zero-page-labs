@@ -52,6 +52,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 10:01 — commit: Focus Lexical reading search with slash and clear with Escape | data/experiments-build.json,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments/lexical/assets/index-Bbm89vQS.js,experiments/lexical/assets/index-CjcBzUCS.js,experiments/lexical/index.html
 - 2026-11-08 10:05 — commit: Add discoverable keyboard shortcut help to Lexical reader | data/experiments-build.json,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-Bbm89vQS.js,experiments/lexical/assets/index-C-u228OK.js
 - 2026-11-08 10:05 — commit: Ground Trafalgar gunfire in sourced episodes and timber impacts | execution/test_maritime_combat.mjs,experiments/maritime/battles.mjs,experiments/maritime/combat.mjs,experiments/maritime/index.html,experiments/maritime/maritime.css
+- 2026-11-08 10:40 — commit: Simplify Lexical into one chart workspace and a focused reader | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-BIeDGysw.css
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -187,8 +188,12 @@ S.D.G.: Visitors can inspect the evidence behind selected Trafalgar exchanges an
 Feynman gap: Exact firing order within the reciprocal exchange, shot count, impact geometry and fire ignition time remain unverified; this is a selected teaching sequence, not a full Trafalgar gun log.
 
 ## Lexical flow simplification — active
-Agent: OpenAI Codex. Handoff-type: continuation. Goal: make custom text obvious, remove competing scroll surfaces, keep one chart workspace plus focused reader. Status: verified, publishing. Contract in task.md.
+Agent: OpenAI Codex. Handoff-type: continuation. Goal: make custom text obvious, remove competing scroll surfaces, keep one chart workspace plus focused reader. Status: complete. Contract in task.md.
 
 Lexical verification: primary custom-text entry, edit prefill, one chart workspace, retired excerpts sidebar, optional recurrence/settings, compact reader and exact memorial footer.66 Node+17 Python tests pass; fresh verifier PASS. Browser desktop fit,375px phone/tablet/short landscape, custom entry/reader/search/wrapping/2D/options/share field and actual PNG decoding passed. Current fresh-browser console clean. Publication pending.
 S.D.G.: Visitors can see where to add text and focus on a single chart or reader.
 Feynman gap: Physical Safari/touch remains untested; runtime browser QA and decoded export supplement passing build/tests.
+
+Lexical flow published:adc389c67cf2f643946e1d7f23e89ca92631b261; run42501099657 passed through public fingerprint verification. Public editor and reader verified; one-screen desktop workspace and exact memorial footer visible; console clean. Screenshot:/private/tmp/lexical-simplified-flow-live.png.
+S.D.G.: Visitors can find custom-text entry immediately and focus on one chart or reader at a time.
+Feynman gap: Desktop/mobile browser flows, decoded PNG,83 local tests, independent review and public deployment verified; physical Safari/touch remains untested.

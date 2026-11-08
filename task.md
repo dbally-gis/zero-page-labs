@@ -264,5 +264,5 @@ Target: public Lexical adaptation. Scripts: build_experiments.py, build_site.py,
 - [x] Settings remain reachable without moving the chart.
 - [x] Automated experiment checks pass.
 - [x] Independent review passes.
-- [ ] Public deployment serves the verified update.
+- [x] Public deployment serves the verified update.
 - [x] Footer contains the exact dedication in memory of Jeff McGuire.

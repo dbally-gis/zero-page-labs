@@ -16,7 +16,7 @@ The exact footer dedication is **in memory of Jeff McGuire**, explicitly request
 
 Validation:66 Node tests,17 Python tests, source/output manifest and deep10-page verifier passed. Fresh independent source review passed. Browser verified custom paste, editing prefill, example switching, reader search/keyboard wrapping, 2D398 occurrence count, options, share field visibility, actual PNG download (1204×967 decoded), desktop viewport fit,375×667 and375×812 no horizontal overflow, tablet768×1024 and short landscape access. A temporary missing old page variable was caught by browser QA and removed before publication; compiled output alone does not prove runtime rendering. Current fresh-browser console is clean.
 
-Publication pending.
+Published source adc389c67cf2f643946e1d7f23e89ca92631b261. GitHub run42501099657 passed tests/build/Render/public fingerprint verification. Live custom-text editor and reader opened correctly; exact dedication visible; current console clean. Screenshot: /private/tmp/lexical-simplified-flow-live.png.
 
 S.D.G.: Visitors can find text entry immediately and explore a passage without juggling separate scrolling panels.
 Feynman gap: Physical Safari/touch remains untested; independent source review, desktop/mobile browser flows and decoded export provide current evidence.
