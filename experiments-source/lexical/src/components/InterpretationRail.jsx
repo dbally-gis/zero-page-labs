@@ -23,7 +23,7 @@ const COPY = {
     },
 }
 
-export function InterpretationRail({ visualMode, pathLength, uniqueCount, articleMode, isVisible, onDismiss }) {
+export function InterpretationRail({ visualMode, pathLength, uniqueCount, articleMode, isVisible, onDismiss, activeExample }) {
     const content = COPY[visualMode] || COPY.sequence
 
     if (!isVisible) return null
@@ -34,6 +34,7 @@ export function InterpretationRail({ visualMode, pathLength, uniqueCount, articl
                 &times;
             </button>
 
+            {activeExample && <section className="rail-section sample-guide" aria-live="polite"><div className="rail-eyebrow">Built-in example</div><h2>{activeExample.title}</h2><p>{activeExample.description}</p><p className="sample-attribution">Original text written for Zero Page Labs.</p></section>}
             <section className="rail-section">
                 <div className="rail-eyebrow">{content.kicker}</div>
                 <h2>{content.title}</h2>

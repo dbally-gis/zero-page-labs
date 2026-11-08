@@ -1,12 +1,12 @@
 import React, { useMemo, useState, useRef } from 'react'
 import '../index.css'
 import { validateText, MAX_TEXT_LENGTH } from '../intake.js'
-import { DEFAULT_ARTICLE_TEXT } from '../articleCorpus.js'
 
 const BARCODE_COLORS = ['#c98830', '#3da370', '#69a7ff', '#c4607a', '#b989d6', '#5fb9aa']
 
 export function FuturisticHUD({
     path, onTextSubmit, isPaused, onTogglePause,
+    examples = [], activeExampleId = '', onExampleSelect,
     letterFilter, setLetterFilter, positionRange, setPositionRange,
     symbolizeByFrequency, onToggleFrequency,
     visualMode, onToggleMode,
@@ -124,7 +124,7 @@ export function FuturisticHUD({
                     </button>
                 </div>
 
-                <div className="topbar-spacer" />
+                <label className="sample-picker"><span>Example text</span><select aria-label="Example text" value={activeExampleId} onChange={e => { onExampleSelect(e.target.value); setInputError(''); setPanelOpen(false) }}><option value="" disabled>Choose an example…</option>{examples.map(example => <option key={example.id} value={example.id}>{example.title}</option>)}</select></label><div className="topbar-spacer" />
 
                 <div className="topbar-actions"><a className="topbar-btn" href="https://github.com/globe-and-atlas/lexical">GitHub ↗</a>
                     <button className="topbar-btn" onClick={onTogglePause}>
@@ -154,7 +154,7 @@ export function FuturisticHUD({
             {/* ── Presets + chips strip ── */}
             {!articleMode && (
                 <div className="presets-strip">
-                    <button className="preset-btn" onClick={() => { onTextSubmit(DEFAULT_ARTICLE_TEXT); setInputError('') }}>Reset sample</button><span className="preset-label">View</span>
+                    <button className="preset-btn" onClick={() => { onExampleSelect(activeExampleId || 'workshop'); setInputError('') }}>Reset example</button><span className="preset-label">View</span>
                     <button className="preset-btn" onClick={() => onCapturePreset('hero')}>Hero</button>
                     <button className="preset-btn" onClick={() => onCapturePreset('analyst')}>Analyst</button>
                     <button className="preset-btn" onClick={() => onCapturePreset('atlas')}>Atlas</button>

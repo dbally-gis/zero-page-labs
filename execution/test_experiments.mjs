@@ -26,3 +26,7 @@ test('unmapped character input rejected',()=>assert.match(validateText('12345 !'
 import {countWords,indexWords} from '../experiments-source/lexical/src/word-maps.js';
 test('JavaScript property names are ordinary corpus words',()=>{const words=['constructor','__proto__','toString','constructor'];const nodes=words.map((word,index)=>({word,index}));const counts=countWords(nodes),indices=indexWords(nodes);assert.equal(Object.getPrototypeOf(counts),null);assert.equal(counts.constructor,2);assert.equal(counts.__proto__,1);assert.equal(counts.toString,1);assert.deepEqual(indices.constructor,[0,3]);assert.deepEqual(indices.__proto__,[1]);assert.deepEqual(indices.toString,[2]);});
 test('palette intensity changes the output',()=>{for(const key of ['gb','nes','c64','atari'])assert.notDeepEqual(applyEffect(input,w,h,key,20),applyEffect(input,w,h,key,100));});
+
+import {TEXT_EXAMPLES} from '../experiments-source/lexical/src/text-examples.js';
+test('built-in examples have unique identities',()=>assert.equal(new Set(TEXT_EXAMPLES.map(e=>e.id)).size,TEXT_EXAMPLES.length));
+for(const example of TEXT_EXAMPLES)test('example '+example.id+' is valid bounded text with available focus words',()=>{assert.equal(validateText(example.text),'');assert.ok(['matrix','sequence'].includes(example.mode));const words=example.text.toLowerCase().match(/\b[a-z]+\b/g)||[];for(const word of example.focusWords)assert.ok(words.filter(w=>w===word).length>=2,word+' recurs');});

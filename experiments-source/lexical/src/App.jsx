@@ -16,6 +16,7 @@ import { HeartbeatMonitor } from './components/HeartbeatMonitor.jsx'
 import { InterpretationRail } from './components/InterpretationRail.jsx'
 import { countWords } from './word-maps.js'
 import { validateText } from './intake.js'
+import { TEXT_EXAMPLES } from './text-examples.js'
 import { DEFAULT_ARTICLE_TEXT } from './articleCorpus.js'
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -251,12 +252,13 @@ function StaticLexicalFallback({ visualMode, path, matrixWords, topWords, select
 function App() {
     const [rawPath, setRawPath] = useState(() => parseText(DEFAULT_ARTICLE_TEXT))
     const [rawText, setRawText] = useState(DEFAULT_ARTICLE_TEXT.trim())
+    const [activeExampleId, setActiveExampleId] = useState('workshop')
     const [hoveredIndex, setHoveredIndex] = useState(null)
     const [isPaused, setIsPaused] = useState(false)
     const [visualMode, setVisualMode] = useState('matrix') // 'sequence' | 'matrix'
     const [symbolizeByFrequency, setSymbolizeByFrequency] = useState(false)
-    const [selectedMatrixWords, setSelectedMatrixWords] = useState(new Set())
-    const [customWords, setCustomWords] = useState(new Set())
+    const [selectedMatrixWords, setSelectedMatrixWords] = useState(new Set(TEXT_EXAMPLES[0].focusWords))
+    const [customWords, setCustomWords] = useState(new Set(TEXT_EXAMPLES[0].focusWords))
     const [pageDepth, setPageDepth] = useState(0.6) // Book page spacing slider
     const [pageOpacity, setPageOpacity] = useState(0.06)
     const [letterFilter, setLetterFilter] = useState('')
@@ -270,12 +272,13 @@ function App() {
     const [flatView, setFlatView] = useState(false)
     const [graphicsError, setGraphicsError] = useState(null)
 
-    const handleTextSubmit = useCallback((text) => {
+    const handleTextSubmit = useCallback((text, exampleId = '') => {
         if (validateText(text)) return
         const cleanText = extractTextFromHtml(text)
         const newPath = parseText(cleanText)
         if (!newPath.length) return 'Try a passage with more English words; common linking words are filtered out.'
         if (newPath.length) {
+            setActiveExampleId(exampleId)
             setLetterFilter('')
             setPositionRange([0, 100])
             setRawPath(newPath)
@@ -292,6 +295,18 @@ function App() {
             }
         }
     }, [])
+
+    const handleExampleSelect = useCallback((id) => {
+        const example = TEXT_EXAMPLES.find(item => item.id === id)
+        if (!example) return
+        handleTextSubmit(example.text, example.id)
+        setVisualMode(example.mode)
+        setCustomWords(new Set(example.focusWords))
+        setArticleMode(false)
+        setRailVisible(true)
+        setSelectedMatrixWords(new Set(example.focusWords))
+    }, [handleTextSubmit])
+    const activeExample = TEXT_EXAMPLES.find(item => item.id === activeExampleId)
 
     const path = useMemo(() => rawPath.filter((p, i) => {
         const perc = (i / rawPath.length) * 100
@@ -497,6 +512,9 @@ function App() {
 
             </div><div className="view-access"><button onClick={() => setFlatView(v => !v)} aria-pressed={flatView}>{flatView ? 'Switch to 3D' : 'Use 2D view'}</button><span>Drag to orbit · Scroll or pinch to zoom</span></div>
             <FuturisticHUD
+                examples={TEXT_EXAMPLES}
+                activeExampleId={activeExampleId}
+                onExampleSelect={handleExampleSelect}
                 path={path}
                 onTextSubmit={handleTextSubmit}
                 isPaused={isPaused}
@@ -534,6 +552,7 @@ function App() {
             />
 
             <InterpretationRail
+                activeExample={activeExample}
                 visualMode={visualMode}
                 pathLength={path.length}
                 uniqueCount={uniqueCount}
