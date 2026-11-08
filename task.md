@@ -364,4 +364,4 @@ Scope:3D book and2D fallback thread/node emphasis, using current active occurren
 - [x] Node tests pass.
 - [x] Browser checks pass.
 - [x] Independent verification finds no blockers.
-- [ ] Public deployment serves the change.
+- [x] Public deployment serves the change.
