@@ -37,3 +37,6 @@ Page surfaces use instancing; outlines/rules use batched geometry. Spacing is no
 Browser verified desktop,375×812 search geometry, query/no-results/Escape, ArrowUp to eighth result visible, Enter follow, Holmes462/462, reader section36/36, final-word success10/10, and saved588KB view reopened. No console errors/warnings.88tests plus independent verification pass. Native display-level fullscreen remains visually unverified.
 
 Published1af19e8; workflow42521289489 passed Render/public verification. Live218sheets, ten tags, hol→Holmes462, Enter follow and Escape clear verified. Screenshot:/private/tmp/lexical-search-fullbook-live.png.
+
+## Active thread emphasis — 2026-11-08
+Selecting a tag or search result now gives its full-book thread92%opacity/2.5px width; other followed threads remain at6.5%opacity/.75px width. Inactive selected nodes become smaller and muted; only the focused word keeps labels. Instanced node effects depend on focusWord, so switching already-followed tags updates colors/scales.2D book shares the style helper; Throughline preserves its original appearance/depth behavior.90tests, fresh independent review and browser tag/search/occurrence/2D transfer checks pass. Whole-book coverage remains unchanged.

@@ -65,6 +65,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 14:10 — commit: Keep word following controls in fullscreen Lexical | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-0EaGaWCK.css,experiments/lexical/assets/index-CXwBgZ_B.js
 - 2026-11-08 14:17 — commit: Record fullscreen word controls verification | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 - 2026-11-08 14:40 — commit: Map complete Sherlock book and search fullscreen words | data/experiments-build.json,execution/build_experiments.py,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/PlaygroundScene.jsx
+- 2026-11-08 14:42 — commit: Record complete-book search release verification | knowledge/DECISIONS.md,knowledge/ERRORS.md,knowledge/INDEX.md,knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -269,3 +270,8 @@ Full-book checkpoint:88 tests, independent review, desktop/phone search checks, 
 Published1af19e8; workflow42521289489 passed tests/build/Render/public fingerprint in1m12s. Live page shows218sheets, ten tags, searchable hol→Holmes462, Enter follows and Escape clears without exiting. Proof:/private/tmp/lexical-search-fullbook-live.png.
 S.D.G.: Visitors explore the complete Sherlock book and quickly follow words without leaving the book.
 Feynman gap:88 tests, independent review, desktop/phone search, final-story reader, saved-view roundtrip and live deployment verified; native display-level fullscreen remains visually unverified.
+
+## Active thread emphasis — active
+Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation. Goal: make the active word bright while dimming other followed threads/nodes in book views; keep whole-book geometry and navigation.
+
+Active-thread checkpoint: fullscreen Holmes/Said/Watson switching visibly transfers emphasis, Watson2/81 navigation retains focus;2D Map→Signal transfers. Console clean.90tests, deep validation and independent source review pass. Publishing.

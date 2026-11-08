@@ -90,3 +90,7 @@ import {readingWindows} from '../experiments-source/lexical/src/reading-windows.
 test('book reader windows preserve the complete original text and global offsets',()=>{const text=TEXT_EXAMPLES.find(e=>e.id==='sherlock').text,windows=readingWindows(text);assert.equal(windows.map(w=>text.slice(w.start,w.end)).join(''),text);assert.ok(windows.length>30);for(let i=0;i<windows.length;i++){const w=windows[i];assert.ok(w.end-w.start<=16000);if(i)assert.equal(w.start,windows[i-1].end);if(i<windows.length-1)assert.ok(/\s/.test(text[w.end-1]))}});
 
 test('bare Sherlock links match the single initial focus with ten available tags',()=>{const e=TEXT_EXAMPLES.find(e=>e.id==='sherlock');assert.equal(e.focusWords.length,10);assert.deepEqual(readSharedView('#example=sherlock',TEXT_EXAMPLES).words,e.focusWords.slice(0,1))});
+
+import {threadEmphasis} from '../experiments-source/lexical/src/model.js';
+test('active word emphasis transfers while context remains visible',()=>{const active=threadEmphasis('holmes','holmes'),dim=threadEmphasis('watson','holmes');assert.ok(active.opacity>dim.opacity*10);assert.ok(dim.opacity>0);assert.ok(active.width>dim.width);assert.ok(active.nodeScale>dim.nodeScale);assert.equal(active.nodeColor,wordColor('holmes'));assert.deepEqual(threadEmphasis('watson','watson'),{...active,nodeColor:wordColor('watson')});assert.deepEqual(threadEmphasis('holmes','watson'),dim)});
+test('non-book mode preserves full word styling',()=>{assert.deepEqual(threadEmphasis('holmes',null),threadEmphasis('holmes','holmes'))});

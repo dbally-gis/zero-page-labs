@@ -351,3 +351,17 @@ Scope: searchable fullscreen control, complete bundled Sherlock body, top ten ma
 - [x] Deep site validation passes.
 - [x] Independent review finds no blockers.
 - [x] Public site serves the change.
+
+## Focus the active word thread — 2026-11-08
+Scope:3D book and2D fallback thread/node emphasis, using current active occurrence word; preserve positions, selected tags and occurrence navigation.
+- [x] Active word thread uses brighter styling than other selected threads.
+- [x] Inactive selected nodes are dimmed.
+- [x] Choosing another tag transfers emphasis without dropping context threads.
+- [x] Fullscreen search transfers emphasis.
+- [x] Occurrence navigation keeps word emphasis stable.
+- [x] Whole-book coverage stays54,411mapped occurrences.
+- [x]2D book uses equivalent emphasis.
+- [x] Node tests pass.
+- [x] Browser checks pass.
+- [x] Independent verification finds no blockers.
+- [ ] Public deployment serves the change.
