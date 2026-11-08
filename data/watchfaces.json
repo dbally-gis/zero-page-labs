@@ -1,5 +1,14 @@
 [
   {
+    "name": "Vernier",
+    "slug": "vernier",
+    "url": "https://apps.repebble.com/vernier_2b6429b8b3e04a79aab2a4b2",
+    "image": "/assets/catalog-2b6429b8b3e04a79aab2a4b2.png",
+    "style": "Other",
+    "description": "Time on a pair of rotating scales.",
+    "source_image": "https://assets.repebble.com/screenshots/2b6429b8b3e04a79aab2a4b2/emery/dc786395-c0ee-4358-a2c3-8c8a04dab8e4.png"
+  },
+  {
     "name": "Pendulum",
     "slug": "pendulum",
     "url": "https://apps.repebble.com/pendulum_0d992be1d6454c84a4842e12",

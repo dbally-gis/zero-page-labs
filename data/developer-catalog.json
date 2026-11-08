@@ -3,10 +3,19 @@
   "observedAt": "2026-11-08",
   "pagination": {
     "loadedPages": 3,
-    "entries": 42,
+    "entries": 43,
     "reachedBottom": true
   },
   "entries": [
+    {
+      "name": "Vernier",
+      "url": "https://apps.repebble.com/vernier_2b6429b8b3e04a79aab2a4b2",
+      "category": "Faces",
+      "description": "Time on a pair of rotating scales.\n\nVernier brings the feel of a measuring instrument to your wrist. Read the hour and minute scales beneath the fixed top indices. The hour wheel advances at each hour; the minute wheel turns with the seconds.\n\nAn optional outer alignment scale estimates seconds in six-second steps. The highlighted matching tick guides the reading, while the center can show exact numeric time and seconds.\n\nMake it yours:\n\u2022 Six palettes: Night, Paper, Mint, Ice, Rose, and Monochrome.\n\u2022 Custom background, text, hour-scale, and minute-scale colors.\n\u2022 Watch default, 12-hour, or 24-hour time.\n\u2022 Optional seconds alignment scale.\n\u2022 Optional exact digital readout.\n\u2022 Optional date: YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n\nDesigned for Pebble Time 2 and Pebble Round 2. Settings are available through the Pebble app. Updates once per second, with no phone service needed for timekeeping.\n\nThe animated preview is an accelerated time-lapse showing the rotating scales, seconds alignment, and six palette options. The installed face keeps the palette you choose.",
+      "thumbnail": "https://assets.repebble.com/screenshots/2b6429b8b3e04a79aab2a4b2/emery/f06dadad-4ba4-48a0-9070-8340437d2fc8.gif",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/2b6429b8b3e04a79aab2a4b2/emery/f06dadad-4ba4-48a0-9070-8340437d2fc8.gif"
+    },
     {
       "name": "Pendulum",
       "url": "https://apps.repebble.com/pendulum_0d992be1d6454c84a4842e12",
