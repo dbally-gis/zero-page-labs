@@ -50,3 +50,6 @@ Published44f8e78; workflow42522910110 passed. Live fullscreen soloWatson verifie
 
 ## Normal-view discovery — 2026-11-08
 Desktop focus previously hid the only visible normal-view word picker, leaving onlywhich and navigation. The chart-owned searchable tags/occurrence panel now appears in default desktop book focus as well as fullscreen; duplicate external occurrence overlay is hidden. Panel states Entire book mapped plus occurrence count. Header explicitly says Read full text; Manage tags reveals advanced tag removal/example controls. Phone retains its existing visible picker, with no extra normal-view overlay.92tests, desktop tag/reader checks and375px visible-controls/nooverflow check passed. Independent review remains unavailable due usage limit.
+
+## Curated Sherlock starter words — 2026-11-08
+User requested Holmes initially focused instead ofwhich. Sherlock now offers curated tags:Holmes,Watson,Adler,Lestrade,London,Baker,letter,photograph,mystery,murder. Every tag recurs in the full book. Both normal and fullscreen tag rows use the example tag list, not frequency ranking. Bare example links and fresh visits focusHolmes; explicit saved selections remain respected. This supersedes the frequency-based default tag choice above.
