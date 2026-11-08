@@ -3,10 +3,19 @@
   "observedAt": "2026-11-08",
   "pagination": {
     "loadedPages": 3,
-    "entries": 41,
+    "entries": 42,
     "reachedBottom": true
   },
   "entries": [
+    {
+      "name": "Pendulum",
+      "url": "https://apps.repebble.com/pendulum_0d992be1d6454c84a4842e12",
+      "category": "Faces",
+      "description": "A little clockwork on your wrist.\n\nPendulum pairs a compact analog dial with a swinging seconds bob. The clock hands show hours and minutes; the bob can carry the seconds number.\n\nMotion:\n\u2022 Tick-tock mode alternates sides once per second.\n\u2022 Optional smooth swing adds intermediate positions.\n\u2022 Show or hide the seconds number inside the bob.\n\nMake it yours:\n\u2022 Six palettes: Night, Paper, Mint, Ice, Rose, and Monochrome.\n\u2022 Custom background, text, hour-and-bob, and minute-hand colors.\n\u2022 Watch default, 12-hour, or 24-hour numeric time.\n\u2022 Optional digital time below the pendulum.\n\u2022 Optional date: YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n\nDesigned for Pebble Time 2 and Pebble Round 2. Settings are available through the Pebble app. No phone service is needed for timekeeping.\n\nThe first gallery image demonstrates the smooth-swing option in six palettes. The installed face defaults to tick-tock motion and keeps the palette you choose.",
+      "thumbnail": "https://assets.repebble.com/screenshots/0d992be1d6454c84a4842e12/emery/7677b130-a877-475f-8477-51f1ea4b0da4.gif",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/0d992be1d6454c84a4842e12/emery/7677b130-a877-475f-8477-51f1ea4b0da4.gif"
+    },
     {
       "name": "Twin Orbit",
       "url": "https://apps.repebble.com/twin-orbit_67373e8c182e4e86a7950434",

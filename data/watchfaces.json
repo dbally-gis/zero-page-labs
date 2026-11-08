@@ -1,5 +1,14 @@
 [
   {
+    "name": "Pendulum",
+    "slug": "pendulum",
+    "url": "https://apps.repebble.com/pendulum_0d992be1d6454c84a4842e12",
+    "image": "/assets/catalog-0d992be1d6454c84a4842e12.png",
+    "style": "Other",
+    "description": "A little clockwork on your wrist.",
+    "source_image": "https://assets.repebble.com/screenshots/0d992be1d6454c84a4842e12/emery/5342c66b-0101-48cc-8445-03ba30bca477.png"
+  },
+  {
     "name": "Twin Orbit",
     "slug": "twin-orbit",
     "url": "https://apps.repebble.com/twin-orbit_67373e8c182e4e86a7950434",
