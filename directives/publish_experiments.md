@@ -27,3 +27,9 @@ Verify scene-to-reader occurrence navigation, both modes, complete 2D counts, PN
 
 ## Learnings — 2026-11-07 Maritime
 Maritime is served directly from experiments/maritime (HTML/CSS/ES modules); no bundler or dependency installation is required. Run node --test execution/test_experiments.mjs execution/test_maritime.mjs before the normal site build. Historical encounter data lives in battles.mjs, deterministic replay helpers in model.mjs. Ordinary anchor hashes must not restore default replay state. Shared moments begin paused. Keep representative markers distinct from named ships. Yalu sectors remain omitted pending mounting research.
+
+## Learnings — 2026-11-08 Maritime dimensional renderer
+Maritime scene.mjs is an optional local ES module using the vendored pinned Three build; no bundler is required. Keep the independent SVG chart usable on renderer import/WebGL failure. The browser model and scene share replay positions; camera-aware picking/panning must use projected scene coordinates rather than SVG coordinates. Verify classic switch, keyboard selection, pause pixels, phone/tablet framing and the Yalu geometry exclusion after visual changes. The dimensional visual pass is a local preview awaiting visual acceptance, not yet a production release.
+
+## Learnings — 2026-11-08 Shot effects
+Run node --test execution/test_experiments.mjs execution/test_maritime.mjs execution/test_maritime_combat.mjs. Keep shot events replay-derived rather than wall-clock particles, so pause/scrub remain exact. Miss clearance must include enlarged rotated hulls and neighbouring vessels. Bring the chart into view instantly before starting a short muzzle flash. Use Watch a salvo for the browser shot-to-hit check; verify Fire & smoke off and classic fallback. These effects are illustrative.

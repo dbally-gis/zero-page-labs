@@ -28,3 +28,6 @@ Independent palettes gave a word different colors across panels; the fallback sa
 
 ## One-letter Throughline coordinates — resolved 2026-11-08
 Explicit reader selection exposed a pre-existing assumption that every word has a second letter: charCodeAt(1) returned NaN for a/I. Missing second letters now use the start of the second-letter axis. Regression verifies finite positions and camera. Graduated to domain/lexical-passage-selection.md.
+
+## 2026-11-08 — Illustrative near miss intersected a ship
+Error: Trafalgar shot event28 was labelled a miss, but its water splash lay inside Redoutable's rendered silhouette. Cause: a fixed23unit lateral offset ignored the target's heading and enlarged hull length. Fix: deterministic candidate search clears every vessel by55diagramunits at impact time. Regression: execution/test_maritime_combat.mjs scans the43event range in each of the4encounters. Graduated-to: shot-event placement in experiments/maritime/combat.mjs.

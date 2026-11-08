@@ -1,12 +1,17 @@
 import { BATTLES } from './battles.mjs';
 import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying } from './model.mjs';
+import {effectsAt,previewSalvo} from './combat.mjs';
 
 const $=id=>document.getElementById(id);
 const svgNS='http://www.w3.org/2000/svg';
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const initial=readView(location.hash);
-const state={...initial,selected:initial.ship,playing:startsPlaying(location.hash,reduced.matches),speed:1,layers:{courses:true,weapons:false,wind:true,labels:false},question:null,camera:{x:0,y:0,w:1000,h:600}};
+const state={...initial,selected:initial.ship,playing:startsPlaying(location.hash,reduced.matches),speed:1,layers:{courses:true,weapons:false,wind:true,labels:false,effects:true},question:null,camera:{x:0,y:0,w:1000,h:600}};
 let nodes=[],lastChapter=-1,lastFrame=0,lastPaint=0,drag=null,dragged=false;
+let dimensional=null,classic=false;
+function sceneState(){return {...state};}
+function refreshScene(){if(dimensional&&!classic)dimensional.update(sceneState());}
+function selectShip(id){state.selected=id;setPlaying(false);$('start-hint').hidden=true;renderShip();renderPositions();announce(`Selected ${state.battle.ships.find(s=>s.id===id).name}. Replay paused.`);}
 function node(tag,attrs={},parent=null,text=null) {
   const n=document.createElementNS(svgNS,tag);
   for(const [key,value] of Object.entries(attrs)) n.setAttribute(key,value);
@@ -29,6 +34,7 @@ function setPlaying(playing) {
   $('play').setAttribute('aria-label',playing?'Pause replay':state.progress>=1?'Replay from start':'Play replay');
   $('replay-status').textContent=playing?'PLAYING / COMPRESSED SEQUENCE':state.progress>=1?'COMPLETE / EXPLORE THE OUTCOME':'PAUSED / EXPLORE THIS MOMENT';
   $('chart').classList.toggle('playing',playing);
+  refreshScene();
 }
 function chapterButtons() {
   $('chapters').replaceChildren();
@@ -66,11 +72,13 @@ function setCamera(camera) {
   state.camera=camera;
   $('sea').setAttribute('viewBox',`${camera.x} ${camera.y} ${camera.w} ${camera.h}`);
   $('zoom-in').disabled=camera.w<=420; $('zoom-out').disabled=camera.w>=1400;
+  refreshScene();
 }
 function setView(view) {
   state.view=view; $('chart').classList.toggle('atmosphere',view==='atmosphere');
   $('tactical').setAttribute('aria-pressed',String(view==='tactical'));
   $('atmosphere').setAttribute('aria-pressed',String(view==='atmosphere'));
+  refreshScene();
 }
 function renderLayers() {
   for(const [key,on] of Object.entries(state.layers)) $('layer-'+key).setAttribute('aria-pressed',String(on));
@@ -110,6 +118,8 @@ function buildFleet() {
     };
     group.addEventListener('click',choose);
     group.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();dragged=false;choose();}});
+    group.addEventListener('focus',()=>dimensional?.focusShip(s.id));
+    group.addEventListener('blur',()=>dimensional?.focusShip(null));
     const course=node('polyline',{class:`course ${s.side?'enemy':''}`},$('courses'));
     return {s,group,rotated,label,course};
   });
@@ -141,6 +151,19 @@ function renderPositions() {
   $('timeline').style.setProperty('--progress',`${state.progress*100}%`);
   $('timeline').setAttribute('aria-valuetext',`${chapter.label}, ${Math.round(state.progress*100)} percent of compressed replay`);
   if(lastChapter!==chapterAt(state.progress))renderMoment();
+  $('shots').replaceChildren();
+  if(state.layers.effects&&(classic||!dimensional))for(const e of effectsAt(state.battle,state.progress)){
+    const g=$('shots'),p=e.origin,q=e.impact;
+    node('circle',{cx:p.x+e.age*9,cy:p.z,r:10+e.age*8,fill:'#e8dfc7',opacity:e.gunSmoke*.22,class:'shot-smoke'},g);
+    if(e.hitSmoke)node('circle',{cx:q.x+Math.max(0,e.impactAge)*6,cy:q.z,r:10+Math.max(0,e.impactAge)*7,fill:'#786c58',opacity:e.hitSmoke*.4,class:'shot-smoke'},g);
+    if(!reduced.matches){
+      if(e.flash)node('circle',{cx:p.x,cy:p.z,r:11,fill:'#ffca61',opacity:e.flash},g);
+      if(e.impactFlash){node('circle',{cx:q.x,cy:q.z,r:14,fill:'#ff7529',opacity:e.impactFlash},g);node('circle',{cx:q.x,cy:q.z,r:7,fill:'#fff0a8',opacity:e.impactFlash},g);}
+      if(e.splash)node('circle',{cx:q.x,cy:q.z,r:8+Math.max(0,e.impactAge)*14,fill:'none',stroke:'#d6f7f2','stroke-width':3,opacity:e.splash},g);
+      if(e.projectile)node('circle',{cx:e.projectile.x,cy:e.projectile.z,r:1.7,fill:'#f3ce8b'},g);
+    }
+  }
+  refreshScene();
 }
 function loadBattle(battle,progress=0,selected=battle.defaultShip) {
   state.battle=battle;state.progress=progress;state.selected=selected;state.question=null;lastChapter=-1;
@@ -196,6 +219,13 @@ for(const key of Object.keys(state.layers)) $('layer-'+key).addEventListener('cl
 $('zoom-in').addEventListener('click',()=>setCamera(cameraZoom(state.camera,.8)));
 $('zoom-out').addEventListener('click',()=>setCamera(cameraZoom(state.camera,1.25)));
 $('reset-map').addEventListener('click',()=>setCamera({x:0,y:0,w:1000,h:600}));
+$('watch-salvo').addEventListener('click',()=>{
+  const e=previewSalvo(state.battle);state.layers.effects=true;renderLayers();
+  if(e){state.selected=e.shooter;renderShip();seek(((reduced.matches?e.arrival+.3:e.firedAt+.03))/100);}else seek(.48);
+  setCamera({x:0,y:0,w:1000,h:600});setPlaying(!reduced.matches);
+  $('chart').scrollIntoView({behavior:'instant',block:'center'});
+  announce('Illustrative salvo: watch for the muzzle flash, then the delayed impact.');
+});
 $('tactical').addEventListener('click',()=>setView('tactical'));
 $('atmosphere').addEventListener('click',()=>setView('atmosphere'));
 $('about-button').addEventListener('click',()=>{const open=$('about').hidden;$('about').hidden=!open;$('about-button').setAttribute('aria-expanded',String(open));if(open)$('about').scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'center'});});
@@ -233,3 +263,21 @@ function tick(now) {
   requestAnimationFrame(tick);
 }
 loadBattle(state.battle,state.progress,state.selected);setView(state.view);requestAnimationFrame(tick);
+
+function setClassic(value){
+  classic=value;$('classic-chart').setAttribute('aria-pressed',String(value));
+  $('chart').classList.toggle('dimensional',!value&&!!dimensional);
+  dimensional?.setVisible(!value);renderPositions();
+}
+$('classic-chart').addEventListener('click',()=>setClassic(!classic));
+function sceneUnavailable(message){setClassic(true);$('classic-chart').disabled=true;$('scene-status').textContent=message;}
+// Dynamic import keeps the complete classic chart available if WebGL or the
+// optional renderer fails. No replay or historical data is delegated to WebGL.
+if(!new URLSearchParams(location.search).has('classic')){
+  import('./scene.mjs').then(({createScene})=>{
+    try{
+      dimensional=createScene($('chart'),{onSelect:selectShip,onPan:(dx,dy)=>{const c=state.camera;setCamera({...c,x:clamp(c.x+dx,-250,1250-c.w),y:clamp(c.y+dy,-150,750-c.h)});},onFailure:sceneUnavailable,reducedMotion:reduced.matches});
+      refreshScene();setClassic(classic);
+    }catch{sceneUnavailable('The dimensional sea is unavailable. Classic chart is ready.');}
+  }).catch(()=>sceneUnavailable('The dimensional sea is unavailable. Classic chart is ready.'));
+}else{setClassic(true);$('classic-chart').disabled=true;}

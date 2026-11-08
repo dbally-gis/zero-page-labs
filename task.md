@@ -170,3 +170,67 @@ Execution: browser-native HTML/CSS/ES modules in experiments/maritime; existing 
 - [x] The public Maritime route renders.
 
 Maritime published 2026-11-08: source6f4e2da122e95774b2f0ed7c43a14b416a32dbd5; GitHub run42492853378 succeeded; public fingerprint c25effe9ca033208be1da2c608e09a54ea58e3bd7df74b6d61acb700e523c3f0 matches local reviewed output. Four battle chapter flows and curated guide/source navigation verified on https://zeropagelabs.com/experiments/maritime/ with clean console.
+
+## Maritime dimensional visual preview — 2026-11-08
+Goal: closer to render2 overhead tactical clarity, with render1 sea/ship atmosphere. Local preview before replacing the live visual design.
+Execution: existing replay state; new scene.mjs renderer; pinned vendored Three0.160.1, MIT license. Historical paths/data remain unchanged.
+- [x] Tactical view renders three-dimensional ship models.
+- [x] Atmosphere view lowers the camera.
+- [x] The sea has directional wave lighting.
+- [x] Sailing ships show raised masts.
+- [x] Sailing ships show billowed canvas.
+- [x] Decorative gun smoke appears only during contact phases.
+- [x] Replay pause freezes environmental motion.
+- [x] Ship selection works on the dimensional scene.
+- [x] Keyboard ship selection remains usable.
+- [x] Course overlays follow the existing replay paths.
+- [x] Weapon sectors preserve the existing source limitations.
+- [x] Classic chart remains selectable.
+- [x] A renderer failure leaves the classic chart usable.
+- [x] Reduced-motion mode begins paused.
+- [x] Phone375px has no page overflow.
+- [x] Tablet768px has no page overflow.
+- [x] Existing JavaScript experiment tests pass (87 current tests).
+- [x] Site build passes.
+- [x] Deep publication verifier passes.
+- [x] Fresh independent review has no unresolved blocker.
+
+## Lexical passage word selection — 2026-11-08
+Scope: public Lexical adaptation; build_experiments.py → build_site.py. Preserve unrelated Maritime work.
+- [x] Clicking an ordinary passage word selects its exact occurrence.
+- [x] Clicking a common linking word adds it to the map.
+- [x] Clicking a one-letter word produces finite Throughline coordinates.
+- [x] Selecting a seventh word retains six followed words.
+- [x] A saved view restores an explicitly selected short word.
+- [x] The reading view fits 375px.
+- [x] Independent source review passes.
+- [x] Public deployment serves the change.
+
+## Maritime shots and hits — 2026-11-08
+Goal: visible muzzle fire/gun smoke plus delayed hit fire/smoke and near-miss water splashes in the local dimensional preview.
+- [x] Muzzle flashes originate on a firing vessel.
+- [x] Gun smoke expands away from the muzzle.
+- [x] Impacts occur after projectile travel.
+- [x] Hull impacts show transient fire.
+- [x] Hull impacts show smoke.
+- [x] Near misses show water splashes.
+- [x] Effects are deterministic when scrubbing.
+- [x] Pausing freezes shot effects.
+- [x] Effects can be disabled.
+- [x] Reduced-motion mode suppresses flashes.
+- [x] Illustrative effects are labelled.
+- [x] A visible preview control starts a salvo.
+- [x] Effect model tests pass.
+- [x] Existing experiment tests pass.
+- [x] Browser playback shows a shot-to-impact sequence.
+- [x] Fresh independent verification finds no unresolved blocker.
+
+## Maritime visual release — 2026-11-08
+- [x] Shot accuracy is audited against published historical sources.
+- [x] A visible notice distinguishes invented gunfire from sourced history.
+- [ ] JavaScript release checks pass.
+- [ ] Deep site verification passes.
+- [ ] Production deployment succeeds.
+- [ ] Public deployment fingerprint matches this release.
+- [ ] Public browser renders the dimensional scene.
+- [ ] Public browser shows impact effects.

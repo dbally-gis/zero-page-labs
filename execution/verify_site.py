@@ -4,6 +4,7 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import json
+import hashlib
 import argparse
 import sys
 from sync_catalog import catalog_errors, native_size, validate_preview
@@ -67,8 +68,13 @@ def verify(deep: bool = False) -> None:
     if f'>{len(faces)} faces<' not in gallery: errors.append('Gallery count differs from catalog')
     if f'{len(faces)} faces /' not in (output / 'index.html').read_text(): errors.append('Home count differs from catalog')
     for document, digest in json.loads((ROOT / 'data/gridcore-provenance.json').read_text())['specification_hashes'].items():
-        import hashlib
         if hashlib.sha256((output / 'gridcore/specs' / document).read_bytes()).hexdigest() != digest: errors.append(f'Gridcore specification changed: {document}')
+    vendor = json.loads((ROOT / 'data/maritime-vendor.json').read_text())
+    library = output / 'experiments/maritime/vendor/three-0.160.1.module.min.js'
+    if not library.is_file() or hashlib.sha256(library.read_bytes()).hexdigest() != vendor['sha256']:
+        errors.append('Maritime Three.js vendor differs from pinned source')
+    if not (library.parent / 'THREE-LICENSE.txt').is_file():
+        errors.append('Maritime Three.js license is missing')
     forbidden = {'.env', 'AGENTS.md', 'SESSION.md', 'task.md', 'config.example.js'}
     for file in output.rglob('*'):
         if file.name in forbidden or '.tmp' in file.parts: errors.append(f'Private scaffold shipped: {file}')

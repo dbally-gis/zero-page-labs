@@ -37,6 +37,15 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-07 21:33 — commit: Record verified Lexical playground deployment | knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,task.md
 - 2026-11-07 21:38 — commit: Promote full passage access to top of Lexical reader | data/experiments-build.json,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-B8hiIk7e.js,experiments/lexical/assets/index-Bt2qb0ns.css
 - 2026-11-07 22:59 — commit: Build reviewed Maritime naval battle atlas | .github/workflows/sync-pebble.yml,assets/experiment-maritime.svg,directives/publish_experiments.md,execution/test_maritime.mjs,experiments/index.html
+- 2026-11-08 09:06 — commit: Record verified Maritime production deployment | knowledge/INDEX.md,knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,knowledge/domain/maritime-readiness.md,task.md
+- 2026-11-08 09:12 — commit: Open Lexical passages in a spacious reading dialog | data/experiments-build.json,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-C3Hg6db7.js,experiments/lexical/assets/index-Dy1nqw8C.js
+- 2026-11-08 09:27 — commit: Follow any passage word directly from Lexical reader | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css
+- 2026-11-08 09:29 — commit: Record verified direct passage selection release | knowledge/ERRORS.md,knowledge/domain/lexical-passage-selection.md
+- 2026-11-08 09:33 — commit: Keep Lexical reader open while selecting words | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-B3-WkFZD.js
+- 2026-11-08 09:39 — commit: Navigate word occurrences inside Lexical reading view | data/experiments-build.json,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-B3-WkFZD.js,experiments/lexical/assets/index-BPatPcGc.css
+- 2026-11-08 09:42 — commit: Add arrow-key navigation to Lexical reading view | data/experiments-build.json,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments/lexical/assets/index-CVwzsnoU.js,experiments/lexical/assets/index-Df9twVN2.js,experiments/lexical/index.html
+- 2026-11-08 09:48 — commit: Wrap Lexical occurrence navigation at both ends | data/experiments-build.json,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments/lexical/assets/index-Bwq9BBKc.js,experiments/lexical/assets/index-Df9twVN2.js,experiments/lexical/index.html
+- 2026-11-08 09:53 — commit: Search and follow words inside Lexical reading view | data/experiments-build.json,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-6ngln1rW.css,experiments/lexical/assets/index-Bwq9BBKc.js
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -108,3 +117,46 @@ Public deployment.json source_commit matches6f4e2da; content_sha256 c25effe9ca03
 
 S.D.G.: Curious visitors can now explore naval formations and technology through four source-linked encounters on the public site.
 Feynman gap: Reviewed source, production workflow, exact content fingerprint and live browser interactions verified; physical Safari and touch remain untested.
+
+## Maritime dimensional visual preview — active
+Goal: translate approved reference2 tactical view with more reference1 atmosphere into actual interactive rendering.
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: local implementation; live source54e56fa remains published. New3D renderer uses vendored Three0.160.1 from existing Lexical dependency, no remote asset requests. Keep classic chart as reversible option and failure fallback. Contract in task.md.
+
+## Lexical passage selection — 2026-11-08
+Agent: OpenAI Codex. Handoff-type: continuation. Status: deploying. Reading-view English words are clickable, including short/common words; selection remaps by character offset.66 tests and independent review pass. Desktop ordinary/one-letter selection, max6 eviction, removal and375px reading checks passed. Unrelated Maritime edits preserved. See domain/lexical-passage-selection.md.
+S.D.G.: Readers can choose a new visual thread directly from its sentence.
+Feynman gap: Physical Safari remains untested; public deployment pending.
+
+Lexical passage selection published:ee2c278, workflow42494945177 succeeded through public fingerprint verification. Live machine click selected its first occurrence and rendered its thread; console clean. Status: complete.
+S.D.G.: Readers can follow a new word directly from its sentence.
+Feynman gap:66 tests, independent review, desktop/mobile browser flows and live deployment verified; physical Safari remains untested.
+
+### Dimensional preview — ready for visual review
+Actual local interactive preview: http://127.0.0.1:5189/experiments/maritime/ (owned static server). Live site has not been changed by this visual pass. Tactical camera58° and atmosphere34° show generic modeled hulls/masts/billowed sails, water wave lighting, wakes, decorative gun smoke and steam. Original SVG chart remains toggleable; it also works when renderer import fails. Vendored Three0.160.1 hash/license checked in normal static verifier.
+
+Independent source re-review PASS after question-label alignment, supporting ironclad mast, complete renderer disposal, camera-aware pan, hidden-renderer update suppression and label collision avoidance.87current JS tests pass; deep static10page verifier passes. Three additional Lexical tests arrived in separate scoped commits ee2c278/778b4fd while Maritime source stayed uncommitted; no Lexical source edits made in this pass.
+
+Browser: all four modeled fleets (14/18/3/12models) render; actual canvas click selects Royal Sovereign; drag pans; reset restores; keyboard Enter selects Redoutable; classic toggle restores opaque SVG. Paused canvas produced three identical45,143byte JPEG captures at1280×900.375×812 and768×1024 have no horizontal overflow. Yalu weapon sectors stay omitted. Normal preview console clean. Isolated module-missing fixture on5190 showed explicit fallback and functioning Yalu chapters; fixture server can be stopped. Actual GPU context-loss behavior remains source-verified rather than exercised.
+
+Next: Daniel judges the actual local visual direction before replacing the live design. Ship models and coast are illustrative, not photoreal measured reconstructions.
+S.D.G.: Curious visitors can read formations while seeing more of the sea, ship shape and atmosphere that make the history engaging.
+Feynman gap: Functional/browser/review gates pass for local preview; visual acceptance, physical mobile performance and GPU context-loss recovery remain unverified; this visual pass is not deployed.
+
+## Maritime shot effects — active
+Goal: add clearly visible shots, gun smoke, hit fire/smoke and near misses to the local dimensional preview. Agent: OpenAI Codex. Handoff-type: continuation. Preserve concurrent Lexical work and all historical paths. Shot events will be explicitly illustrative, deterministic from replay progress, with bounded simultaneous particles; no invented persistent damage or sinking outcomes.
+
+### Shot effects — verified local preview
+Added combat.mjs pure replay-derived shot events, pooled shot-effects.mjs visuals, classic SVG equivalent, Fire & smoke toggle and Watch a salvo control. Muzzle flash → projectile travel → hit fire/sparks/soot or near-miss splash/ripple. Events are illustrative, not recorded shots or assigned ship damage. Target impacts follow the ship position at arrival; miss candidates clear every vessel by55diagramunits. At most5recent events and one muzzle flash active; no new particles allocated per shot. Pause/scrub restore deterministic effects; reduced motion suppresses flashes/projectiles/splash animation.
+
+Independent reviewer found a hull-intersecting miss (Trafalgar event28) and smooth-scroll consuming the opening flash. Both fixed, regression added, final review PASS.17new combat tests plus87existing tests=104pass; deep static10page verifier passes. CI test command includes the new suite. Normal browser console clean. Actual browser t=.533 showed orange hit fire on Bucentaure. Consecutive paused scene captures were byte-identical; disabling effects changed the rendered scene.375px phone has no page overflow, classic chart rendered7shot-overlaynodes, Watch a salvo enabled playback and selected Victory.
+
+Local preview remains http://127.0.0.1:5189/experiments/maritime/; press Watch a salvo. This pass remains local with the dimensional redesign; no new production deployment was performed.
+S.D.G.: Viewers can connect a visible gunshot with its delayed impact instead of watching unexplained drifting smoke.
+Feynman gap: Deterministic effects, actual visible fire, pause, toggle, phone controls and independent review verified; physical-device performance and historical shot-by-shot accuracy are not established.
+
+## Maritime visual release — active
+Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation.
+User authorizes production visual/effect deployment, asks historical accuracy first. Audit: combat.mjs cadence, targeting, hit ratio and trajectories are synthetic. RMG Victory embedded cannonball (object36990) supports solid-shot timber impact; NOAA Hampton Roads account describes armour deflections and the later pilothouse hit, not universal fiery hull explosions. Existing source-linked macro narrative remains distinct. Added an always-visible control-adjacent notice identifying invented shot order/targets/effects and cinematic fire. No claim of verified individual shots. Preparing release through existing GitHub/Render pipeline.
