@@ -11,7 +11,7 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [DECISIONS.md](DECISIONS.md) | decision | 2026-11-08 | Static architecture, released content and full-book bounded views |
 | [ERRORS.md](ERRORS.md) | errors | 2026-11-08 | Image aspect ratio, splash clearance and fullscreen flex sizing fixes |
 | [domain/content.md](domain/content.md) | domain | 2026-11-07 | Availability and asset provenance |
-| [procedural/deploy_site.md](procedural/deploy_site.md) | procedural | 2026-11-07 | Build, checks, deployment |
+| [procedural/deploy_site.md](procedural/deploy_site.md) | procedural | 2026-11-08 | Build, checks, deployment |
 | [REFLECTIONS.jsonl](REFLECTIONS.jsonl) | reflection | 2026-11-07 | Launch lessons |
 | [archive/launch-and-catalog-20261107.md](archive/launch-and-catalog-20261107.md) | archive | 2026-11-07 | Launch, imagery, catalog and Gridcore checkpoints |
 | [domain/deps.md](domain/deps.md) | domain | 2026-11-07 | Pinned catalog dependencies plus self-contained Maritime Three renderer |

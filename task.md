@@ -439,8 +439,8 @@ Target: shared event data/model, 3D/SVG effects, event guide; existing build/Ren
 - [x] Relevant tests pass.
 - [x] Deep publication verification passes.
 - [x] Independent source/effect review passes.
-- [ ] Production deployment succeeds.
-- [ ] Public browser checks pass.
+- [x] Production deployment succeeds.
+- [x] Public browser checks pass.
 
 ## Sorted tags and whole-book introduction — 2026-11-08
 Scope: sort curated/followed tags by descending count; fresh default starts in a whole-book point overview with Holmes active; explicit tag/search selection enters focus; replay overview from toolbar. Saved/shared views retain explicit mode.

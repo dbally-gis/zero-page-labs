@@ -27,3 +27,6 @@ Gridcore companion source is vendored in gridcore/demo; original projects remain
 
 ## Verified activation — 2026-11-07
 Workflow410738005 is active. Initialpush run https://github.com/dbally-gis/zero-page-labs/actions/runs/42424934350 passed17tests, live discovery34Faces, deepimagevalidation, Renderhook deployment, and publiccommit/hash verification. Renderdep-dbnr5au7bikc73dakerg published6a6b86d. Manualrun https://github.com/dbally-gis/zero-page-labs/actions/runs/42425037120 passed with catalog_unchanged and deployment_unchanged; GitHEAD stayed6a6b86d. No localenv or Mac-owned schedule required.
+
+## Learnings — 2026-11-08 Public fingerprint caching
+Observed deployment.json headers: Cache-Control public,max-age=0,s-maxage=300 with a Cloudflare cache hit. An earlier release can remain visible at the old cache key while a fresh diagnostic query returns the new source_commit. A queued workflow may wait behind that earlier public-verification step. Read workflow status and compare the exact expected fingerprint; use a fresh diagnostic query to distinguish cache staleness from a failed deployment. Do not cancel another active owner’s release or treat push success as live verification.
