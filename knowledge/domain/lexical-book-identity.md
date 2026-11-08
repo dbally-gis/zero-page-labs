@@ -55,3 +55,6 @@ Desktop focus previously hid the only visible normal-view word picker, leaving o
 User requested Holmes initially focused instead ofwhich. Sherlock now offers curated tags:Holmes,Watson,Adler,Lestrade,London,Baker,letter,photograph,mystery,murder. Every tag recurs in the full book. Both normal and fullscreen tag rows use the example tag list, not frequency ranking. Bare example links and fresh visits focusHolmes; explicit saved selections remain respected. This supersedes the frequency-based default tag choice above.
 
 Curated defaults publisheda3a23cd; workflow42531861204 passed deployment/public verification. Fresh live visit focusesHolmes1/462 and shows ten curated tags across three visible rows.92tests pass. Screenshot:/private/tmp/lexical-curated-tags-live.png.
+
+## Counts on tags — 2026-11-08
+Normal/fullscreentags now show occurrence totals and accessible word/count labels; phone picker counts stay visible. Desktop tag container allows four rows so all ten curated tags fit.92tests, desktop/fullscreen/375px browser checks, and live Holmes462/Watson81/Adler16 verified. Publisheda5e635c via workflow42532339998; screenshot:/private/tmp/lexical-word-counts-live.png.
