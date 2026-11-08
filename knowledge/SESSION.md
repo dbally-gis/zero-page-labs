@@ -8,7 +8,7 @@ Goal: Publish browser-ready Retro-Glitch Studio and Lexical with an Experiments 
 Agent: OpenAI Codex
 Handoff-from: OpenAI Codex
 Handoff-type: continuation
-Status: In progress. Source audit complete; original workshop repositories remain read-only.
+Status: Complete. Both public browser experiments are live; original workshop repositories remain unchanged.
 
 ## Current checkpoint
 - Public contract appended to task.md.
@@ -22,3 +22,13 @@ Finish public UI, run meaningful tests and production browser QA atdesktop/mobil
 
 ## Readiness / verification checkpoint
 Source blockers resolved: static hosting adaptation; proxy removal; bounded intake; null-prototype dictionaries; inert HTML extraction; local font/HDR removal; mobile controls. Independent verifier PASS after reserved-word/palette fixes.41Node tests and17Python tests PASS; deep static verifier PASS9pages; full npm audit0. Browser verified photo import→effect→PNG export (actual file decoded), reset, text paste, local text-file loading, constructor regression, both modes, selectable2D fallback, back links,375px layouts including opacity controls. Source/output manifest is checked during normal site builds. Deployment next.
+
+## Checkpoint Log
+
+- 2026-11-07 18:31 — commit: Launch browser-native Retro-Glitch and Lexical experiments | .github/workflows/sync-pebble.yml,assets/experiment-lexical.svg,assets/experiment-retro.svg,data/experiments-build.json,data/experiments-provenance.json
+
+## Published result
+Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
+
+S.D.G.: Curious visitors can transform an image or explore a passage immediately, with their content staying on their own device.
+Feynman gap: Chrome desktop,375px layout, actual PNG export, independent source review and deployment are verified; physical mobile Safari and forced WebGL-unavailable behavior remain untested.

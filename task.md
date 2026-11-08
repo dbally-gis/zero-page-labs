@@ -87,9 +87,9 @@ Execution: browser-native Retro adaptation; production Lexical bundle; execution
 - [x] Visitor image processing stays in the browser.
 - [x] Visitor text processing stays in the browser.
 - [x] Each experiment has a visible route back to Experiments.
-- [x] At375px Retro has no page horizontal overflow.
-- [x] At375px Lexical controls remain reachable.
+- [x] At 375px Retro has no page horizontal overflow.
+- [x] At 375px Lexical controls remain reachable.
 - [x] Build passes with experiment assets included.
 - [x] Static publication checks pass.
 - [x] Fresh verifier reviews final source against this contract.
-- [ ] Public Render deployment serves both experiments.
+- [x] Public Render deployment serves both experiments.
