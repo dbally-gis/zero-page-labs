@@ -1,12 +1,21 @@
 {
   "source": "https://apps.repebble.com/apps/dev/daniel-bally_e8468a0ff28edd5791d1bced",
-  "observedAt": "2026-11-07",
+  "observedAt": "2026-11-08",
   "pagination": {
     "loadedPages": 2,
-    "entries": 38,
+    "entries": 39,
     "reachedBottom": true
   },
   "entries": [
+    {
+      "name": "Epicycle",
+      "url": "https://apps.repebble.com/epicycle_d5c85c5d05cd4cbab4717d60",
+      "category": "Faces",
+      "description": "Time, linked together.\n\nEpicycle turns the clock into a single moving chain. The hour hand begins at the center, the minute hand pivots from its tip, and the seconds hand follows the minute hand. Each hand keeps its familiar clock direction.\n\n\u2022 Color-matched numbers beside the hands make the chain easy to read.\n\u2022 Six palettes: Night, Paper, Mint, Ice, Graphite, and Monochrome.\n\u2022 Custom background and individual hand colors.\n\u2022 12-hour, 24-hour, or watch-default number formatting.\n\u2022 Optional hand labels and digital time readout.\n\u2022 Optional date in ISO, US, or European format.\n\nDesigned for Pebble Time 2 and Pebble Round 2. Settings are available through the Pebble app.",
+      "thumbnail": "https://assets.repebble.com/screenshots/d5c85c5d05cd4cbab4717d60/emery/9624b598-e383-466f-a220-d94058dbfb1e.gif",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/d5c85c5d05cd4cbab4717d60/emery/9624b598-e383-466f-a220-d94058dbfb1e.gif"
+    },
     {
       "name": "Loose Digits",
       "url": "https://apps.repebble.com/loose-digits_391620b25cbf4bf39565ab49",

@@ -1,5 +1,14 @@
 [
   {
+    "name": "Epicycle",
+    "slug": "epicycle",
+    "url": "https://apps.repebble.com/epicycle_d5c85c5d05cd4cbab4717d60",
+    "image": "/assets/catalog-d5c85c5d05cd4cbab4717d60.png",
+    "style": "Other",
+    "description": "Time, linked together.",
+    "source_image": "https://assets.repebble.com/screenshots/d5c85c5d05cd4cbab4717d60/emery/d6831eb2-6daa-4ea1-be45-ab46810bf7e0.png"
+  },
+  {
     "name": "Loose Digits",
     "slug": "loose-digits",
     "url": "https://apps.repebble.com/loose-digits_391620b25cbf4bf39565ab49",
