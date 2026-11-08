@@ -1,7 +1,7 @@
-import {TRAFALGAR_EVENTS,TRAFALGAR_EVIDENCE} from './trafalgar-events.mjs';
+import {eventsFor,eventSource} from './battle-events.mjs';
 import { BATTLES } from './battles.mjs';
 import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt } from './model.mjs';
-import {effectsAt,previewSalvo} from './combat.mjs';
+import {effectsAt,previewSalvo,impactStyle} from './combat.mjs';
 
 const $=id=>document.getElementById(id);
 const svgNS='http://www.w3.org/2000/svg';
@@ -162,24 +162,26 @@ function renderPositions() {
   $('timeline').style.setProperty('--progress',`${state.progress*100}%`);
   $('timeline').setAttribute('aria-valuetext',`${chapter.label}, ${Math.round(state.progress*100)} percent of compressed replay`);
   if(lastChapter!==chapterAt(state.progress))renderMoment();
-  if(state.battle.id==='trafalgar'){
-    const current=TRAFALGAR_EVENTS.filter(e=>e.at<=state.progress+.0001).at(-1);
+  {
+    const current=eventsFor(state.battle).filter(e=>e.at<=state.progress+.0001).at(-1);
     for(const b of $('event-list').querySelectorAll('button'))b.setAttribute('aria-pressed',String(b.dataset.event===current?.id));
   }
   $('shots').replaceChildren();
   if(state.layers.effects&&(classic||!dimensional))for(const e of effectsAt(state.battle,state.progress)){
-    const g=$('shots'),p=e.origin,q=e.impact,impactAge=e.kind==='reported-fire'?1:Math.max(0,e.impactAge);
+    const g=$('shots'),p=e.origin,q=e.impact,style=impactStyle(e),impactAge=style.age;
     node('circle',{cx:p.x+e.age*9,cy:p.z,r:10+e.age*8,fill:'#e8dfc7',opacity:e.gunSmoke*.22,class:'shot-smoke'},g);
-    if(e.hitSmoke)node('circle',{cx:q.x+impactAge*6,cy:q.z,r:10+impactAge*7,fill:'#786c58',opacity:e.hitSmoke*.4,class:'shot-smoke'},g);
+    if(e.hitSmoke)node('circle',{cx:q.x+impactAge*6,cy:q.z,r:10+impactAge*7,fill:style.color,opacity:e.hitSmoke*.4,class:'shot-smoke'},g);
     if(!reduced.matches){
       if(e.flash)node('circle',{cx:p.x,cy:p.z,r:11,fill:'#ffca61',opacity:e.flash},g);
-      if(e.impactFlash){node('circle',{cx:q.x,cy:q.z,r:14,fill:'#ff7529',opacity:e.impactFlash},g);node('circle',{cx:q.x,cy:q.z,r:7,fill:'#fff0a8',opacity:e.impactFlash},g);}
+      if(e.impactFlash){node('circle',{cx:q.x,cy:q.z,r:14*style.scale,fill:'#ff7529',opacity:e.impactFlash},g);node('circle',{cx:q.x,cy:q.z,r:7*style.scale,fill:'#fff0a8',opacity:e.impactFlash},g);}
       if(e.debris)for(let i=0;i<7;i++){
         const a=i*2.4,spread=(1-e.debris)*23;
         node('path',{d:`M${q.x+Math.sin(a)*spread} ${q.z+Math.cos(a)*spread}l3 -4`,stroke:'#c4a375','stroke-width':2,opacity:e.debris},g);
       }
+      if(e.sparks)for(let i=0;i<5;i++){const a=i*2.4,spread=(1-e.sparks)*18;node('path',{d:`M${q.x+Math.sin(a)*spread} ${q.z+Math.cos(a)*spread}l2 -3`,stroke:'#edf2df','stroke-width':2,opacity:e.sparks},g);}
+      if(e.ricochet)node('circle',{cx:e.ricochet.x,cy:e.ricochet.z,r:1.7,fill:'#94998b'},g);
       if(e.splash)node('circle',{cx:q.x,cy:q.z,r:8+Math.max(0,e.impactAge)*14,fill:'none',stroke:'#d6f7f2','stroke-width':3,opacity:e.splash},g);
-      if(e.projectile)node('circle',{cx:e.projectile.x,cy:e.projectile.z,r:1.7,fill:'#f3ce8b'},g);
+      if(e.projectile)node('circle',{cx:e.projectile.x,cy:e.projectile.z,r:1.7,fill:'#302820'},g);
     }
   }
   renderFate();refreshScene();
@@ -207,14 +209,14 @@ function loadBattle(battle,progress=0,selected=battle.defaultShip) {
       announce(`${q.title}. ${q.text}`);
     });return b;
   }));
-  $('event-guide').hidden=battle.id!=='trafalgar';
-  $('gunfire-note').textContent=battle.id==='trafalgar'?'Trafalgar: selected source-linked exchanges; solid shot throws timber debris. The later stern fire is reported by Lucas. Exact shot count, timing and trajectories remain illustrative.':'Illustrative gunfire: shot order, targets and hit effects are invented for explanation. Fiery impacts are cinematic, not evidence of a ship catching fire.';
+  $('event-guide').hidden=false;$('event-era').textContent=String(battle.year);
+  $('gunfire-note').textContent='Selected source-linked combat episodes. Animated rounds stand for exchanges, not a shot-by-shot log. Timing, trajectories and damage shapes remain schematic; fires and losses are separate sourced events.';
   $('event-list').replaceChildren();
-  if(battle.id==='trafalgar')for(const event of TRAFALGAR_EVENTS){
-    const card=html('div'),button=html('button',event.title),link=html('a',TRAFALGAR_EVIDENCE[event.evidence].title+' ↗');
+  for(const event of eventsFor(battle)){
+    const source=eventSource(battle,event),card=html('div'),button=html('button',event.title),link=html('a',source.title+' ↗');
     button.type='button';button.dataset.event=event.id;button.setAttribute('aria-pressed','false');
     button.addEventListener('click',()=>{seek(event.at);state.selected=event.focus;renderShip();renderPositions();$('chart').scrollIntoView({behavior:'instant',block:'start'});announce(event.title+'. '+event.text);});
-    link.href=TRAFALGAR_EVIDENCE[event.evidence].url;card.append(button,html('p',event.text),link);$('event-list').append(card);
+    link.href=source.url;card.append(button,html('p',event.certainty,'eyebrow'),html('p',event.text),link);$('event-list').append(card);
   }
   $('sources-title').textContent=`Reading for ${battle.name}`;
   $('source-list').replaceChildren(...battle.sources.map(s=>{
@@ -248,10 +250,10 @@ $('zoom-out').addEventListener('click',()=>setCamera(cameraZoom(state.camera,1.2
 $('reset-map').addEventListener('click',()=>setCamera({x:0,y:0,w:1000,h:600}));
 $('watch-salvo').addEventListener('click',()=>{
   const e=previewSalvo(state.battle);state.layers.effects=true;renderLayers();
-  if(e){state.selected=e.shooter;renderShip();seek(((reduced.matches?e.arrival+.3:e.firedAt+.03))/100);}else seek(.48);
+  if(e){state.selected=e.shooter||e.target||e.focus;renderShip();seek(((reduced.matches?e.arrival+.3:e.firedAt+.03))/100);}else seek(.48);
   setCamera({x:0,y:0,w:1000,h:600});setPlaying(!reduced.matches);
   $('chart').scrollIntoView({behavior:'instant',block:'center'});
-  announce(state.battle.id==='trafalgar'?'Sourced episode: Victory rakes Bucentaure. Animated rounds and travel time are representative.':'Illustrative salvo: watch for the muzzle flash, then the delayed impact.');
+  announce('Selected sourced combat episode. Animated rounds and travel time are representative; read its evidence card for the limits.');
 });
 $('tactical').addEventListener('click',()=>setView('tactical'));
 $('atmosphere').addEventListener('click',()=>setView('atmosphere'));

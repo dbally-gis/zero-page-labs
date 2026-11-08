@@ -1,88 +1,82 @@
-import {TRAFALGAR_EVENTS,TRAFALGAR_EVIDENCE} from '../experiments/maritime/trafalgar-events.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {BATTLES} from '../experiments/maritime/battles.mjs';
-import {effectsAt,shotEvent,previewSalvo} from '../experiments/maritime/combat.mjs';
-import {positionAt} from '../experiments/maritime/model.mjs';
-
-for(const b of BATTLES.filter(b=>b.id!=='trafalgar')){
-  test(`${b.name}: salvo preview joins opposing vessel or formation markers`,()=>{
-    const e=previewSalvo(b);assert.ok(e);assert.equal(e.hit,true);
-    const shooter=b.ships.find(s=>s.id===e.shooter),target=b.ships.find(s=>s.id===e.target);
-    assert.notEqual(shooter.side,target.side);
-    if(['lepanto','hampton-roads','yalu'].includes(b.id)){assert.equal(shooter.representative,false);assert.equal(target.representative,false);}
-    const p=positionAt(shooter,e.firedAt/100);assert.ok(Math.abs(Math.hypot(e.origin.x-p.x,e.origin.z-p.y)-10)<1e-8);
-  });
-  test(`${b.name}: muzzle flash precedes hit fire and smoke`,()=>{
-    const e=previewSalvo(b),start=effectsAt(b,(e.firedAt+.03)/100).find(x=>x.id===e.id);
-    assert.ok(start.flash>0);assert.ok(start.gunSmoke>0);assert.equal(start.impactFlash,0);assert.equal(start.hitSmoke,0);assert.ok(start.projectile);
-    const arrived=effectsAt(b,(e.arrival+.15)/100).find(x=>x.id===e.id);
-    assert.equal(arrived.flash,0);assert.ok(arrived.impactFlash>0);assert.ok(arrived.hitSmoke>0);assert.equal(arrived.projectile,null);
-  });
-  test(`${b.name}: near misses create splashes without hull fire`,()=>{
-    const e=Array.from({length:30},(_,i)=>shotEvent(b,i)).find(x=>x&&!x.hit);assert.ok(e);
-    const at=effectsAt(b,(e.arrival+.3)/100).find(x=>x.id===e.id);
-    assert.ok(at.splash>0);assert.equal(at.impactFlash,0);assert.equal(at.hitSmoke,0);
-    for(let i=0;i<43;i++){
-      const miss=shotEvent(b,i);if(!miss||miss.hit)continue;
-      for(const ship of b.ships){const p=positionAt(ship,miss.arrival/100);assert.ok(Math.hypot(miss.impact.x-p.x,miss.impact.z-p.y)>=55,`${miss.id} splash intersects ${ship.id}`);}
+import {eventsFor,eventSource} from '../experiments/maritime/battle-events.mjs';
+import {effectsAt,shotEvent,previewSalvo,impactStyle} from '../experiments/maritime/combat.mjs';
+import {fateAt,positionAt} from '../experiments/maritime/model.mjs';
+const gun=new Set(['muzzle','timber','armor','shell']);
+for(const battle of BATTLES){
+  test(`${battle.name}: selected episodes have resolvable evidence and participants`,()=>{
+    const events=eventsFor(battle);assert.ok(events.length>=3);let previous=-1;
+    assert.equal(new Set(events.map(e=>e.id)).size,events.length);
+    for(const e of events){
+      assert.ok(e.at>previous&&e.at<1);previous=e.at;
+      assert.ok(e.text);assert.ok(e.certainty);
+      const source=eventSource(battle,e);assert.ok(source.title);assert.equal(new URL(source.url).protocol,'https:');
+      for(const id of [e.focus,e.shooter,e.target].filter(Boolean))assert.ok(battle.ships.some(s=>s.id===id));
     }
+    assert.equal(shotEvent(battle,events.filter(e=>e.kind).length),null);
   });
-  test(`${b.name}: scrub restoration is deterministic and particle budget is bounded`,()=>{
-    const before=effectsAt(b,.53);effectsAt(b,.9);assert.deepEqual(effectsAt(b,.53),before);
+  test(`${battle.name}: firing preview selects an authored episode`,()=>{
+    const e=previewSalvo(battle);assert.ok(e);assert.ok(gun.has(e.kind));
+    const start=effectsAt(battle,(e.firedAt+.03)/100).find(x=>x.id===e.id);
+    assert.ok(start.flash>0);assert.ok(start.gunSmoke>0);
+    if(e.travel>0){assert.equal(start.hitSmoke,0);assert.ok(start.projectile);}
+  });
+  test(`${battle.name}: scrub restoration and bounded visuals`,()=>{
+    const original=effectsAt(battle,.53);effectsAt(battle,.99);assert.deepEqual(effectsAt(battle,.53),original);
     for(let i=0;i<=1000;i++){
-      const effects=effectsAt(b,i/1000);assert.ok(effects.length<=5);
-      assert.ok(effects.filter(e=>e.flash>0).length<=1);
-      for(const e of effects){assert.ok(e.arrival>e.firedAt);assert.ok(e.travel>=.35&&e.travel<=1.65);for(const v of [e.flash,e.gunSmoke,e.impactFlash,e.hitSmoke,e.splash])assert.ok(v>=0&&v<=1);}
+      const effects=effectsAt(battle,i/1000);assert.ok(effects.length<=5);
+      for(const e of effects){
+        for(const value of [e.flash,e.gunSmoke,e.hitSmoke,e.impactFlash,e.debris,e.sparks])assert.ok(Number.isFinite(value)&&value>=0&&value<=1);
+        assert.ok(impactStyle(e).age<=4);
+        for(const id of [e.shooter,e.target].filter(Boolean))assert.equal(fateAt(battle.ships.find(s=>s.id===id),i/1000),null);
+      }
     }
-    assert.deepEqual(effectsAt(b,.1),[]);assert.deepEqual(effectsAt(b,1),[]);
+    assert.deepEqual(effectsAt(battle,.05),[]);
+  });
+  test(`${battle.name}: material response does not invent a ship fire`,()=>{
+    const animated=eventsFor(battle).filter(e=>e.kind);
+    animated.forEach((entry,i)=>{
+      const shot=shotEvent(battle,i);assert.ok(shot);
+      const e=effectsAt(battle,(shot.arrival+.1)/100).find(x=>x.id===i);assert.ok(e);
+      if(entry.kind==='timber'){assert.ok(e.debris>0);assert.equal(e.impactFlash,0);assert.equal(e.sparks,0);}
+      if(entry.kind==='armor'){assert.ok(e.sparks>0);assert.equal(e.impactFlash,0);assert.equal(e.debris,0);}
+      if(entry.kind==='muzzle'){assert.equal(e.hit,false);assert.equal(e.projectile,null);assert.equal(e.hitSmoke,0);assert.equal(e.impactFlash,0);}
+      if(entry.kind==='ram'){assert.equal(e.flash,0);assert.equal(e.gunSmoke,0);assert.equal(e.projectile,null);assert.ok(e.debris>0);assert.equal(e.impactFlash,0);}
+      if(entry.kind==='reported-fire'){assert.equal(e.flash,0);assert.equal(e.projectile,null);assert.ok(e.impactFlash>0);assert.equal(impactStyle(e).age,1);}
+      if(entry.kind==='explosion'){assert.equal(e.flash,0);assert.equal(e.projectile,null);assert.ok(e.impactFlash>0);assert.equal(impactStyle(e).burst,true);}
+      if(entry.kind==='shell'){assert.ok(e.impactFlash>0);assert.equal(impactStyle(e).burst,true);const later=effectsAt(battle,(shot.arrival+1)/100).find(x=>x.id===i);assert.equal(later.impactFlash,0);}
+    });
   });
 }
-test('invalid progress does not create effects',()=>{
-  for(const progress of [NaN,Infinity,-1,2])assert.deepEqual(effectsAt(BATTLES[1],progress),[]);
+test('authored contacts retain the researched ship pairs',()=>{
+  const pair=id=>eventsFor(BATTLES.find(b=>b.id===id)).filter(e=>e.kind&&e.kind!=='muzzle'&&e.shooter).map(e=>[e.shooter,e.target,e.kind]);
+  assert.ok(pair('diu').some(e=>e[0]==='flor'&&e[1]==='egyptian-rear'));
+  assert.ok(pair('gravelines').some(e=>e[0]==='revenge'&&e[1]==='san-martin'));
+  assert.ok(pair('hampton-roads').some(e=>e[0]==='virginia'&&e[1]==='monitor'&&e[2]==='armor'));
+  assert.ok(pair('lissa').some(e=>e[0]==='ferdinand-max'&&e[1]==='re-italia'&&e[2]==='ram'));
+  assert.ok(pair('yalu').some(e=>e[0]==='zhenyuan'&&e[1]==='matsushima'&&e[2]==='shell'));
+  assert.ok(pair('manila-bay').some(e=>e[0]==='olympia'&&e[1]==='reina-cristina'&&e[2]==='shell'));
 });
-
-const trafalgar=BATTLES.find(b=>b.id==='trafalgar');
-test('Trafalgar only animates the selected rake, reciprocal exchange and reported fire',()=>{
-  const events=Array.from({length:43},(_,i)=>shotEvent(trafalgar,i)).filter(Boolean);
-  assert.deepEqual(events.map(e=>[e.shooter,e.target,e.kind]),[['victory','bucentaure','timber'],['victory','redoutable','timber'],['redoutable','victory','timber'],['redoutable','redoutable','reported-fire']]);
-  assert.ok(events.every(e=>e.evidence));
-  assert.equal(shotEvent(trafalgar,43),null);
+test('fires disappear at sourced loss thresholds without changing fate data',()=>{
+  const battle=BATTLES.find(b=>b.id==='manila-bay');
+  assert.ok(effectsAt(battle,.8).filter(e=>e.kind==='reported-fire').length===2);
+  assert.equal(effectsAt(battle,.85).filter(e=>e.kind==='reported-fire').length,1);
+  assert.equal(effectsAt(battle,.91).filter(e=>e.kind==='reported-fire').length,0);
 });
-test('Trafalgar timber impacts create debris without impact fire',()=>{
-  for(let i=0;i<3;i++){
-    const e=shotEvent(trafalgar,i),start=effectsAt(trafalgar,(e.firedAt+.03)/100).find(x=>x.id===i);
-    assert.ok(start.flash>0);assert.equal(start.debris,0);assert.ok(start.projectile);
-    const hit=effectsAt(trafalgar,(e.arrival+.15)/100).find(x=>x.id===i);
-    assert.ok(hit.debris>0);assert.ok(hit.hitSmoke>0);assert.equal(hit.impactFlash,0);assert.equal(hit.projectile,null);
+test('fleet-only accounts do not manufacture a target impact',()=>{
+  for(const id of ['lepanto','downs','chesapeake']){
+    const battle=BATTLES.find(b=>b.id===id);
+    assert.ok(eventsFor(battle).filter(e=>e.kind).every(e=>e.kind==='muzzle'&&!e.target));
   }
 });
-test('Trafalgar reported stern fire is independent of projectile impact',()=>{
-  const fire=effectsAt(trafalgar,.86).find(e=>e.kind==='reported-fire');
-  assert.ok(fire.impactFlash>0);assert.equal(fire.flash,0);assert.equal(fire.projectile,null);assert.equal(fire.debris,0);
-  const ship=positionAt(trafalgar.ships.find(s=>s.id==='redoutable'),.86);
-  assert.ok(Math.abs(Math.hypot(ship.x-fire.impact.x,ship.y-fire.impact.z)-22)<1e-8);
-  assert.ok(effectsAt(trafalgar,.96).some(e=>e.kind==='reported-fire'));
-});
-test('Trafalgar scrub is deterministic with no manufactured approach firing',()=>{
-  assert.deepEqual(effectsAt(trafalgar,.3),[]);
-  const at=effectsAt(trafalgar,.506);effectsAt(trafalgar,.87);assert.deepEqual(effectsAt(trafalgar,.506),at);
-  for(let i=0;i<=1000;i++)assert.ok(effectsAt(trafalgar,i/1000).length<=5);
+test('invalid progress creates no effects',()=>{
+  for(const battle of BATTLES)for(const progress of [NaN,Infinity,-1,2])assert.deepEqual(effectsAt(battle,progress),[]);
 });
 
-test('Trafalgar event controls carry evidence and ordered replay offsets',()=>{
-  let previous=-1;
-  for(const e of TRAFALGAR_EVENTS){
-    assert.ok(e.at>previous&&e.at<1);previous=e.at;
-    assert.ok(trafalgar.ships.some(s=>s.id===e.focus));
-    const source=TRAFALGAR_EVIDENCE[e.evidence];assert.ok(source.title);assert.equal(new URL(source.url).protocol,'https:');
-  }
-});
-
-test('synthetic combat cannot fire from or target a ship after its sourced loss',()=>{
-  for(const b of BATTLES.filter(b=>b.id!=='trafalgar'))for(let i=0;i<43;i++){
-    const e=shotEvent(b,i);if(!e)continue;
-    for(const id of [e.shooter,e.target]){const s=b.ships.find(s=>s.id===id);if(s.fate)assert.ok(e.firedAt/100<s.fate.at);}
-    const target=b.ships.find(s=>s.id===e.target);if(target.fate)assert.ok(e.arrival/100<target.fate.at);
-  }
+test('Olympia opening discharge originates at the documented forward mounting',()=>{
+  const b=BATTLES.find(b=>b.id==='manila-bay'),e=shotEvent(b,0),ship=b.ships.find(s=>s.id==='olympia');
+  const p=positionAt(ship,e.at),a=p.heading*Math.PI/180;
+  const forward=(e.origin.x-p.x)*Math.sin(a)-(e.origin.z-p.y)*Math.cos(a);assert.ok(forward>=21.9&&forward<=22.1);
 });

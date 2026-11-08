@@ -74,6 +74,11 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 16:41 — commit: Record discoverable word controls deployment | knowledge/ERRORS.md,knowledge/SESSION.md,task.md
 - 2026-11-08 16:45 — commit: Start Sherlock with Holmes and curated story tags | data/experiments-build.json,execution/build_experiments.py,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/index.css
 - 2026-11-08 16:47 — commit: Record curated Sherlock defaults verification | knowledge/domain/lexical-book-identity.md
+- 2026-11-08 16:51 — commit: Show occurrence counts on Lexical word tags | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-BbTOPY7Q.css,experiments/lexical/assets/index-D58vDtV8.js
+- 2026-11-08 16:50 — commit: Expand Maritime to twelve battles with sourced vessel outcomes | execution/test_maritime.mjs,execution/test_maritime_combat.mjs,experiments/index.html,experiments/maritime/battles.mjs,experiments/maritime/combat.mjs
+- 2026-11-08 16:53 — commit: Record word-tag count verification | knowledge/domain/lexical-book-identity.md
+- 2026-11-08 17:01 — commit: Introduce the complete book before focused word exploration | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/FlatView.jsx,experiments-source/lexical/src/components/PlaygroundScene.jsx
+- 2026-11-08 17:04 — commit: Record verified book introduction and sorted tags | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -314,6 +319,16 @@ Feynman gap:92tests, desktop/phone direct browser checks and live deployment pas
 12encounters,60chapters,36questions. Source-backed5sunk records plusSultana capture. Selectable thick X/Sunk markers in3DandSVG, stoppedhulls/wakes/engine smoke, fateinspector/source andoutcomejumpcontrols; reversescrubrestores. Sunk/captured ships excluded from synthetic targeting/firing; sectorssuppressed. Newnativechooser fits12entries. Homepage/directory/metadatacopy updated.
 189JS tests and deep10page verifier pass. Independent source review PASS after3Doverlay parity, labels/copy, and explicitReinaCristina scuttling fixes. Browser1280x900 confirmed all12models/counts, Manila twoXs, reverse restoration, classic2Xs/2hiddenhulls.375x812pagewidth375,12options;Sultana capture retains hull/noX. Consoleclean. Currentlocalpreview5189 server session56848. Preparingauthorizedrelease; concurrentLexicalsourceleftuntouched.
 
+### Maritime twelve encounters — live verified
+Implementation7ffe2a6, mergedrelease743afe9; GitHub42532229600 succeeded including Python/189JS tests, deep verifier, Render/public check. Deployed catalog commit927ca79b7e4c0682fec5d8280bd21a776b8a4a7e contains7ffe2a6; publiccontent hash5e1cc9c1bc74fe0721cbc739a8d546c7fa7152b569a0e8acbd6719f31946a534. Interveningcatalogupdatespreserved (39watchfacesinpublicrelease).
+Publicbrowser https://zeropagelabs.com/experiments/maritime/#battle=manila-bay&t=0.9&ship=castilla&view=atmosphere confirmed12chooserentries, two thickcrosses/Sunklabels, source-linked lossinspector and nonblank3Dfleet. Consolewarn/errorsempty. Local375pxcapture/chooser,12encounterload, reverse restoration andclassicstatuschecks passed. FreshindependentreviewPASS. ConcurrentLexicalworkpreserved; its latera5e635ccommit remainsseparate.
+S.D.G.: Curious visitors can explore twelve landmark sea battles and inspect sourced ship losses without mistaking captured ships for sunken ones.
+Feynman gap: Routes/loss thresholds remain authored diagrams; only Trafalgar has selected evidence-led firing episodes, and full fleet orders of battle or physical-mobile performance are not established.
+
+## Maritime sourced combat for twelve encounters — active
+Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation.
+User explicitly requests evidence-led firing events/effects for remaining11battles, deployment and public verification. Remove synthetic cadence/nearest-target/hit ratio. Use selected institution/participant-sourced episodes; represent fleet-level gunfire with muzzle smoke only when a particular hit cannot be assigned. Distinguish timber, armour, shell burst, reported fire, explosion and ram. Existing fate markers remain source-backed and separate. Shared event guide for12encounters.
+
 ## Whole-book introduction — verified implementation
 Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation. Goal: count-sorted meaningful tags and full-book/all-mapped-word intro before focused selection. Keep Holmes active; add reversible overview entry and saved/share state.
 
@@ -322,3 +337,7 @@ Overview checkpoint:95tests/build/deep verifier pass. Desktop fresh intro contai
 Live664f8de verified: fresh intro, Holmes1/462, descending count tags, Follow→focus and Show whole book replay. Screenshot:/private/tmp/lexical-overview-intro-live.png. Workflow42533064671 tests/validation pass; public fingerprint poll finishing.
 S.D.G.: New readers see the complete book before tracing individual words, with common starter words easiest to find.
 Feynman gap:95tests, independent review, desktop/phone checks and live flow passed; physical-touch Safari remains untested.
+
+### Combat collection — verified locally
+50cards/32animatedepisodes across12battles; all sources resolved in UI, certainty labels visible. AddedRevenge and individually describedunnamedEgyptianrearcarrack (source-backed loss). Removed cadence/nearest-target/hit-ratio/miss synthesis. Shared types timber/armour/shell/fire/explosion/ram/muzzle. No glow trails. Fire follows ship but ends at sourced loss. SVG/3Duse shared bounded appearance.
+194tests/build/deep10page verifier pass. Fresh source/effect review PASS after correcting Olympia “forward” to a mounting-position anchor rather than a researched bearing. Browser12guidematrix:50cards/50links, oneactivecard/pausedseek perbattle.3Dshellburst and separateReinafire visiblychecked. Classicram7debris/no bright circles; armour5sparks/no flame.375pxYalu eventselectsmatsushima/time640; page375. Manila SVGtwoflames at800→zeroat910/twoXs. Consoleclean. Preparingexplicitlyauthorizedproductiondeployment.

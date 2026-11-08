@@ -411,6 +411,37 @@ Scope: battles data, encounter chooser, SVG/3D status markers, inspector, combat
 - [x] Mobile browser checks pass.
 - [x] Independent review passes.
 
+## Maritime sourced events across twelve battles — 2026-11-08
+Target: shared event data/model, 3D/SVG effects, event guide; existing build/Render workflow. Preserve unrelated site work. No secrets or dependencies required.
+- [x] Diu has source-linked selected combat events.
+- [x] Lepanto has source-linked selected combat events.
+- [x] Gravelines has source-linked selected combat events.
+- [x] The Downs has source-linked selected combat events.
+- [x] Quiberon Bay has source-linked selected combat events.
+- [x] Chesapeake has source-linked selected combat events.
+- [x] The Nile has source-linked selected combat events.
+- [x] Hampton Roads has source-linked selected combat events.
+- [x] Lissa has source-linked selected combat events.
+- [x] The Yalu has source-linked selected combat events.
+- [x] Manila Bay has source-linked selected combat events.
+- [x] Trafalgar retains its selected sourced events.
+- [x] Algorithmic shooter/target/hit selection is removed.
+- [x] Fleet-level evidence does not animate invented individual hits.
+- [x] Timber impacts show debris without fireballs.
+- [x] Armour impacts show brief sparks without sustained flame.
+- [x] Shell bursts differ from persistent fires.
+- [x] Ramming events show no cannon muzzle flash.
+- [x] Documented fires stop when the ship is lost.
+- [x] Event controls seek to their authored moment.
+- [x] Scrubbing restores deterministic effects.
+- [x] Desktop browser checks pass.
+- [x] Mobile browser checks pass.
+- [x] Relevant tests pass.
+- [x] Deep publication verification passes.
+- [x] Independent source/effect review passes.
+- [ ] Production deployment succeeds.
+- [ ] Public browser checks pass.
+
 ## Sorted tags and whole-book introduction — 2026-11-08
 Scope: sort curated/followed tags by descending count; fresh default starts in a whole-book point overview with Holmes active; explicit tag/search selection enters focus; replay overview from toolbar. Saved/shared views retain explicit mode.
 - [x] Curated tags are ordered by descending occurrence count.

@@ -32,3 +32,5 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [FAILURES/2026-11-08_lexical-book-layout/context.md](FAILURES/2026-11-08_lexical-book-layout/context.md) | failure | 2026-11-08 | Width-fill optimization incorrectly replaced the central book metaphor |
 
 | [domain/maritime-collection.md](domain/maritime-collection.md) | domain | 2026-11-08 | Twelve sourced encounters, sinking/capture semantics and browser validation |
+
+| [domain/maritime-combat-evidence.md](domain/maritime-combat-evidence.md) | domain | 2026-11-08 | Twelve combat episode sets, source boundaries and material-specific effects |

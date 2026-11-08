@@ -14,6 +14,6 @@ The replay depicts selected episodes, not every gun, ship, round or minute. Repl
 | Timber damage rather than per-hit flames | Lucas reasons for surrender describe shattered structural timber and shot-through decks; [Victory embedded shot KTP1138](https://www.rmg.co.uk/collections/objects/rmgc-object-36990) is physical context | Dust and fragments are illustrative. No claim that each observed broadside used only one ammunition type. |
 | Redoutable fire astern | Lucas reason 8 for surrender | Attributed eyewitness report; exact ignition time/cause/duration unknown. Depicted late as a reported condition, separate from impacts. No flash/projectile starts the fire; visual size stays bounded as replay time advances. |
 
-Other battles still use explicitly synthetic gunfire. No full fleet reconstruction, reload simulation, measured gunnery ranges, musketry, boarding casualties or damage adjudication was added.
+The other11battles now also use selected source-linked episodes; see maritime-combat-evidence.md for their evidence boundaries. No full fleet reconstruction, reload simulation, measured gunnery ranges, musketry, boarding casualties or damage adjudication was added.
 
 Implementation: `experiments/maritime/trafalgar-events.mjs` contains episode descriptions/source links; `combat.mjs` handles deterministic representative events; both 3D and classic SVG show timber debris instead of impact flame for Trafalgar.

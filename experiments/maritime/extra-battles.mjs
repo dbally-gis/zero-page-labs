@@ -115,10 +115,20 @@ ship('reina-cristina','Reina Cristina',1,'cruiser','Montojo’s flagship, badly 
 ship('castilla','Castilla',1,'cruiser','Spanish wooden cruiser. Generic steam-cruiser model, not a steel-hull claim.',line(700,370,270),{fate:{kind:'sunk',at:.9,source:1,text:'Montojo reports Castilla burning and sinking after shellfire. Its loss is shown at an authored late-replay point; the model is a generic cruiser.'}})],chapters:[
 chapter('Enter','The squadron reaches the bay','Dewey brings his squadron into Manila Bay. Coastal batteries and the harbour setting matter alongside the ships.',['olympia']),
 chapter('Passes','The American ships keep moving','The squadron makes repeated firing passes near Cavite. The single curved course condenses those movements.',['olympia','reina-cristina']),
-chapter('Damage','The Spanish position deteriorates','Montojo’s squadron suffers heavily. Each visible shot remains illustrative; it is not tied to a verified individual hit.',['reina-cristina','castilla'],1),
+chapter('Damage','The Spanish position deteriorates','Montojo’s squadron suffers heavily. Selected reported exchanges are linked in the event guide. The animation represents those episodes rather than reconstructing every individual round.',['reina-cristina','castilla'],1),
 chapter('Losses','Burning, abandonment and sinking','Reina Cristina is scuttled after severe damage; Castilla burns and sinks. Their sourced status markers are independent of the illustrative cannon effects.',['reina-cristina','castilla'],1),
 chapter('Outcome','A fleet defeated, an unsettled future','The United States wins the naval action. The wider story includes Spanish colonial rule and the later struggle over Philippine independence.',['olympia'])],questions:[
 question('Why does Olympia keep passing?','Movement supports the attack','Repeated passes allow the squadron to maintain its attack. The plotted curve is compressed, not a measured turning circle.',1,['olympia']),
 question('Are these ordinary round-shot effects?','Different guns, the same evidence limit','This is a late nineteenth-century shellfire battle. Generic animation does not establish a specific calibre, shell type or hit sequence.',2,['olympia','castilla']),
 question('What do the two X marks prove?','Losses, not hit attribution','They identify two documented lost ships. They do not prove which American ship fired a particular fatal shot.',4,['reina-cristina','castilla'],'courses',1)]})
 ];
+
+// Additional participants selected to anchor documented firing episodes.
+const diu=EXTRA_BATTLES.find(b=>b.id==='diu');
+diu.ships.push(ship('egyptian-rear','Egyptian rear carrack (unnamed)',1,'sail','Selected rear carrack described in the Portuguese account, not a recovered vessel name. Distinct from the generic coalition markers.',line(610,335,270),{fate:{kind:'sunk',at:.7,source:0,text:'The Portuguese Ministry of Defence account describes Flor de la Mar’s artillery sinking the last carrack in the Egyptian line. Its name, exact hit sequence and sinking minute are not assigned.'}}));
+const gravelines=EXTRA_BATTLES.find(b=>b.id==='gravelines');
+gravelines.sources.push(source('National Museum of the Royal Navy · Armada Map 10','https://armadamaps.nmrn.org.uk/the-maps/map-10/','Explains Drake’s attack on San Martín and the Spanish recovery of formation; calendar conventions differ across the collection.'));
+gravelines.ships.push(ship('revenge','Revenge',0,'sail','Drake’s ship in the attack on San Martín. The hull and continuous route remain generic.',course([250,360,70],[400,320,65],[590,290,60],[650,260,35],[640,230,20]),{source:2}));
+
+gravelines.sources.push(source('Royal Museums Greenwich · Drake in Revenge attacks San Martín','https://www.rmg.co.uk/collections/objects/rmgc-object-155962','Collection record identifies the ships; the artwork title uses a different calendar date.'));
+gravelines.ships.find(s=>s.id==='revenge').source=3;
