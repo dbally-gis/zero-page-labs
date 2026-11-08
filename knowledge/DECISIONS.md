@@ -32,3 +32,6 @@ User feedback favored an obvious custom-text action and fewer competing scroll a
 
 ## Lexical responsive chart and browser URL import — 2026-11-08
 Use landscape sheet spreads and projected camera fitting to fill the chart rather than magnifying overlapping portrait planes. Preserve canonical occurrence identity. URL import remains browser-only; bundle the specifically requested Gutenberg default with its original license because its endpoint does not permit cross-origin browser reads. Other URLs require permission from their origin. Split long sources into explicit editable20k sections instead of silently truncating or rendering an unbounded whole book.
+
+## Restore the defining3D book — 2026-11-08
+User correction supersedes the landscape3D spread decision above. The dimensional portrait-page book is the primary visualization; keep its depth-separated pages and recurring-word threads. Camera/viewport improvements must preserve it. Landscape spreads remain a2D fallback. Sherlock Holmes is now the embedded default illustration. See domain/lexical-book-identity.md and the associated failure record.

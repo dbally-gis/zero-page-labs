@@ -4,6 +4,8 @@ timestamp: "2026-11-08T11:09:59-06:00"
 ---
 # Lexical responsive framing and URL intake
 
+**Later2026-11-08 user correction:** the landscape3D spread below was superseded by the restored portrait-page book and layout revision3. Preserve the book as primary. The spread remains only in2D; URL-intake findings remain valid. See lexical-book-identity.md.
+
 The tiny chart came from portrait sheets stacked in depth plus a conservative spherical camera fit. Atlas now presents landscape sheets in a responsive spread. The camera fits projected geometry, not a bounding sphere. Throughline uses responsive presentation scaling while canonical letterPosition remains stable. The2D renderer uses the same responsive presentation and tight bounds.
 
 Saved/shared layoutRevision2 identifies the new presentation. Legacy cameras are discarded while retaining text/settings. New camera poses carry aspect; they re-fit after a substantial aspect change or any Atlas column-count change. A small3.9→3.7 aspect transition for8sheets changes4→3columns, so ratio threshold alone is insufficient. See compatibleCameraPose regression.

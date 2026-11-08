@@ -1,5 +1,6 @@
+import {SHERLOCK_EXAMPLE} from './sherlock-example.js';
 import {DEFAULT_ARTICLE_TEXT} from './articleCorpus.js';
-// Original demonstration passages written for Zero Page Labs; no remote text requests.
+// Embedded demonstrations: original Labs passages plus the licensed Gutenberg opening.
 const echoes = `
 The signal returns to the station. Each morning, the station receives a signal from a different traveler. Some travelers send a story, some send a question, and some send only a word. The keeper writes every signal in a notebook. Between one signal and the next, the station is quiet. The keeper listens to the quiet, then returns to the notebook.
 
@@ -41,5 +42,7 @@ export const TEXT_EXAMPLES = [
  {id:'workshop',title:'The workshop',description:'A short story with recurring objects. Follow map, signal, and question across its pages.',mode:'matrix',focusWords:['map','signal','question'],text:DEFAULT_ARTICLE_TEXT},
  {id:'echoes',title:'The returning signal',description:'A repeated refrain interrupted by different scenes. Trace signal, station, and return to see the rhythm.',mode:'matrix',focusWords:['signal','station','return'],text:echoes},
  {id:'subjects',title:'Three neighborhoods',description:'Garden, railway, then print workshop. Their words occupy different stretches before meeting near the end.',mode:'matrix',focusWords:['garden','railway','workshop'],text:changingSubjects},
- {id:'letters',title:'Letters & lengths',description:'Repeated word families reveal how spelling and word length shape the Throughline view.',mode:'sequence',focusWords:[],text:letters}
+ {id:'letters',title:'Letters & lengths',description:'Repeated word families reveal how spelling and word length shape the Throughline view.',mode:'sequence',focusWords:[],text:letters},
+ SHERLOCK_EXAMPLE
 ];
+export const DEFAULT_EXAMPLE_ID = 'sherlock';

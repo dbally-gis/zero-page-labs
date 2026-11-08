@@ -55,6 +55,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 10:40 — commit: Simplify Lexical into one chart workspace and a focused reader | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-BIeDGysw.css
 - 2026-11-08 10:42 — commit: Record verified Lexical flow redesign deployment | knowledge/SESSION.md,knowledge/domain/lexical-workspace-flow.md,task.md
 - 2026-11-08 11:09 — commit: Fill Lexical charts and import text from URLs | data/experiments-build.json,directives/publish_experiments.md,execution/test_experiments.mjs,experiments-source/lexical/public/texts/sherlock-holmes-source.json,experiments-source/lexical/public/texts/sherlock-holmes.txt
+- 2026-11-08 11:12 — commit: Record verified chart framing and URL import deployment | knowledge/SESSION.md,knowledge/domain/lexical-url-framing.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -210,3 +211,10 @@ Feynman gap: Physical Safari remains untested; cross-origin-denying sources use 
 Lexical framing/URL published:16275fae64114fb4499e4ae698f2b04f0cd6769c, workflow42503618167 passed through public fingerprint verification. Live URL default loaded29 sections and mapped Part1 to1,864 occurrences/8sheets; holmes selection updated25 occurrences in the expanded scene. Current console clean. Screenshot:/private/tmp/lexical-url-and-framing-live.png.
 S.D.G.: Visitors get larger readable charts and can turn a URL source into an editable passage.
 Feynman gap:79 targeted tests, independent review, desktop/phone flows, decoded PNG, saved-view restoration and public default URL verified; physical Safari remains untested and cross-origin-denying URLs use paste/file.
+
+## Restore 3D book — active
+Agent: OpenAI Codex. Handoff-type: continuation. User correction: the 3D portrait-page book was the star; replacing it with a landscape spread lost the core experience. Restore dimensional book, preserve tighter camera fitting and focused workspace, start with a bundled Sherlock opening passage. Status: verified, publishing.
+
+Restored book verification:81 tests, build/default regeneration, deep verifier and fresh independent source review PASS. Default fresh visit shows bundled Sherlock with Holmes25/Watson5/Adler4; portrait page stack, ruled lines and depth visible on desktop/phone. Reader search/wrapping,2D1,864 occurrence coverage and URL input retained. No console errors. Publishing next.
+S.D.G.: Visitors regain the distinctive3D book as the immediate illustration.
+Feynman gap: Physical Safari remains untested; browser and camera-frustum evidence verify current behavior.

@@ -283,3 +283,16 @@ Scope: responsive chart presentation plus browser-only URL intake. Default Guten
 - [x] Automated framing/import tests pass.
 - [x] Independent verification passes.
 - [x] Public deployment serves the update.
+
+## Restore the 3D book illustration — 2026-11-08
+User correction: the dimensional book is the primary experience; do not replace it with a sheet spread.
+- [x] Book mode renders portrait pages at distinct depth positions.
+- [x] Default camera makes page depth visible.
+- [x] The complete book geometry fits the default camera.
+- [x] A fresh visit starts with Sherlock Holmes.
+- [x] The default illustration requires no remote fetch.
+- [x] Sherlock focus words recur in the opening passage.
+- [x] URL import remains available.
+- [x] Existing reader controls still work.
+- [x] Independent review passes.
+- [ ] Public deployment serves the restored book.
