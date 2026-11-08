@@ -28,5 +28,5 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 
 | [domain/lexical-url-framing.md](domain/lexical-url-framing.md) | domain | 2026-11-08 | Responsive spreads, tight camera fitting, layout migration and bounded URL import |
 
-| [domain/lexical-book-identity.md](domain/lexical-book-identity.md) | domain | 2026-11-08 | Complete Sherlock book, top ten tags, searchable fullscreen and scalable rendering |
+| [domain/lexical-book-identity.md](domain/lexical-book-identity.md) | domain | 2026-11-08 | Complete Sherlock book, searchable fullscreen, thread emphasis and solo toggle |
 | [FAILURES/2026-11-08_lexical-book-layout/context.md](FAILURES/2026-11-08_lexical-book-layout/context.md) | failure | 2026-11-08 | Width-fill optimization incorrectly replaced the central book metaphor |

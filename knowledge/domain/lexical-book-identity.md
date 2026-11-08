@@ -45,3 +45,5 @@ Published3ec0cf0; live active-word contrast/search/occurrence transfer verified.
 
 ## Hide other threads — 2026-11-08
 Chart toolbar toggle removes inactive selected paths and nodes in3D book;2D book removes other paths and circles. Page geometry/model/selected tags remain intact. Toggle-off restores dimmed context; active-word changes retain isolation. Throughline ignores this book-only setting. Saved views and example links round-trip hideOthers (solo query flag); older links default false. Mobile fullscreen toolbar reserves132px for two rows.92tests and direct browser3D/2D/mobile checks pass; independent review unavailable due account usage limit.
+
+Published44f8e78; workflow42522910110 passed. Live fullscreen soloWatson verified; screenshot:/private/tmp/lexical-solo-thread-live.png. Independent review remains unverified.

@@ -40,3 +40,6 @@ Old portrait-stack poses crop new landscape spreads. New layoutRevision2 re-fits
 
 ## Fullscreen search overflow on narrow screens — 2026-11-08
 Error: search and ten-word chip row expanded to592px inside a347px panel, causing horizontal panning on focus. Cause: intrinsic flex-child minimum sizing in a fixed fullscreen card. Fix: set min-width0 and width100% on search/chips/navigation, then max-width100% on panel children; retain chip-row scrolling. Verification:375px card scrollWidth375, panel x14/width347, search width329. Graduated-to: domain/lexical-book-identity.md.
+
+## Independent verifier unavailable — 2026-11-08
+The solo-thread toggle verifier failed before reviewing source because the account usage limit was reached. Direct browser checks and92tests passed, but they do not satisfy independent creator-verifier coverage. Keep this change marked independently unverified until a fresh review is available; do not claim the verifier passed.

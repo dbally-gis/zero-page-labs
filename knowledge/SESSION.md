@@ -68,6 +68,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 14:42 — commit: Record complete-book search release verification | knowledge/DECISIONS.md,knowledge/ERRORS.md,knowledge/INDEX.md,knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md
 - 2026-11-08 14:45 — commit: Focus active Lexical word and dim context threads | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/components/FlatView.jsx,experiments-source/lexical/src/components/PlaygroundScene.jsx,experiments-source/lexical/src/model.js
 - 2026-11-08 14:50 — commit: Record verified active-thread emphasis release | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
+- 2026-11-08 14:59 — commit: Add solo active-word toggle to Lexical book | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/FlatView.jsx,experiments-source/lexical/src/components/PlaygroundScene.jsx
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -286,3 +287,7 @@ Feynman gap:90tests, independent review, local3D/2D checks and live full-book em
 Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation. Goal: add reversible solo-active-word toggle inside chart toolbar, preserving tags, navigation and full mapping.
 
 Solo-toggle checkpoint:92Node tests, build/deep validation, browser3D on/off/context restoration, search/tag changes,2D singlethread/nodes and375×812 toolbar132px/nooverflow pass. Console clean. Independent verifier failed before review due account usage limit; independent validation remains UNVERIFIED. User requested continuation; completing authorized implementation/public checks with that gap disclosed.
+
+Solo toggle published44f8e78; workflow42522910110 passed Render/public fingerprint verification. Live full-screen Book view showed onlyWatson thread/nodes with Hide other threads pressed; exit restored normal layout. Screenshot:/private/tmp/lexical-solo-thread-live.png. Implementation/public browser checks complete; independent review UNVERIFIED because verifier account usage limit prevented it.
+S.D.G.: Readers can remove competing paths entirely while tracing one word across the full book.
+Feynman gap:92tests, direct3D/2D/mobile checks and live deployment passed; independent review remains unavailable due account usage limit.

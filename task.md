@@ -379,4 +379,4 @@ Chart-owned toggle switches dimmed context to solo active word in3D/2D book. Pre
 - [x]375px fullscreen controls fit.
 - [x] Node tests pass.
 - [ ] Independent review passes. Blocked: verifier account usage limit.
-- [ ] Public change is verified.
+- [x] Public change is verified.
