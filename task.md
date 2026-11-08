@@ -307,4 +307,4 @@ Preserve portrait pages, depth, threads and Sherlock default. Increase canvas sp
 - [x] Reading view remains reachable in focus view.
 - [x] Phone book view has no horizontal overflow at375px.
 - [x] Independent review passes.
-- [ ] Public deployment serves the larger default book.
+- [x] Public deployment serves the larger default book.

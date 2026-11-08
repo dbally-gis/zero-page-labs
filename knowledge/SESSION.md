@@ -58,6 +58,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 11:12 — commit: Record verified chart framing and URL import deployment | knowledge/SESSION.md,knowledge/domain/lexical-url-framing.md,task.md
 - 2026-11-08 12:24 — commit: Restore the 3D book and start with Sherlock Holmes | data/experiments-build.json,execution/build_experiments.py,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/PlaygroundScene.jsx
 - 2026-11-08 12:28 — commit: Record verified restored book and Sherlock default | knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
+- 2026-11-08 12:44 — commit: Give the 3D book a larger default focus view | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-52J37cGA.js,experiments/lexical/assets/index-BzodXtzl.css
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -226,8 +227,12 @@ S.D.G.: Visitors again see the distinctive3D book immediately, with a recognizab
 Feynman gap:81 tests, independent review and desktop/phone browser checks passed; physical Safari remains untested.
 
 ## Larger default book — active
-Agent: OpenAI Codex. Handoff-type: continuation. User asks for a larger book without losing its3D representation. Plan: default desktop focus presentation with a taller canvas; existing word controls available via toggle. Preserve geometry, camera fit, Sherlock data, reader and URL intake. Status: verified, publishing.
+Agent: OpenAI Codex. Handoff-type: continuation. User asks for a larger book without losing its3D representation. Plan: default desktop focus presentation with a taller canvas; existing word controls available via toggle. Preserve geometry, camera fit, Sherlock data, reader and URL intake. Status: complete.
 
 Larger-book verification:498px focused canvas at1512×685 vs318px with editing controls. Geometry/camera/defaultSherlock unchanged. Toggle, text/reader dialogs,900px/short500px control reachability,375px no horizontal overflow and decoded1600×791 export passed.81 tests, manifest, deep verifier and fresh source review PASS. Publishing next.
 S.D.G.: Visitors see a larger dimensional book while retaining text and word controls on demand.
 Feynman gap: Physical Safari remains untested; measured canvas dimensions and browser checks verify current desktop/phone behavior.
+
+Larger default book published:468fc62f494e84b2e08dbfbe895fb43bfb4f8288; workflow42511536972 passed tests/build/Render/public fingerprint verification. Live default at1512×685 measured498px canvas; Sherlock book geometry intact, console clean. Screenshot:/private/tmp/lexical-large-book-live.png.
+S.D.G.: Visitors see a larger dimensional book without sacrificing its portrait pages or depth.
+Feynman gap:81 tests, independent source review, viewport/toggle/dialog/export checks and live deployment verified; physical Safari remains untested.
