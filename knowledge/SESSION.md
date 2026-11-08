@@ -31,6 +31,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-07 19:34 — commit: Show real filter examples with one-click recipes | experiments/retro-glitch/index.html,experiments/retro-glitch/studio.css,experiments/retro-glitch/studio.js,knowledge/SESSION.md,task.md
 - 2026-11-07 19:36 — commit: Record verified filter example publication | knowledge/SESSION.md,task.md
 - 2026-11-07 20:35 — commit: Link verified public GitHub repositories on project pages | data/experiments-build.json,data/public-repositories.json,execution/build_site.py,experiments-source/lexical/src/components/FuturisticHUD.jsx,experiments/index.html
+- 2026-11-07 20:46 — commit: Add guided built-in text examples to Lexical | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/FuturisticHUD.jsx,experiments-source/lexical/src/components/InterpretationRail.jsx
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -52,3 +53,8 @@ Verified current public repository visibility through GitHub. Added project/data
 
 ## Lexical built-in text examples
 Added a visible Example text selector with four original passages: The workshop, The returning signal, Three neighborhoods, and Letters & lengths. Each loads its text, suggested mode, focus terms, and viewing guide. Custom paste clears sample identity; Reset example restores the active sample or Workshop. Example focus words are included in customWords so question renders despite being outside the top8. Tablet widths now use the flow layout to avoid topbar clipping. Desktop/375px/768px checks passed; all four selections, prior-filter clearing, custom-text clearing and reset were exercised. Console clean. Fresh source verifier PASS;46Node tests and17Python tests pass; deep static verifier passes9pages. Deployment next.
+
+Published Lexical examples: sourcea1d4ae0, cloud run42439966350 succeeded through public fingerprint verification. Live The returning signal selected270nodes and three focus terms, with matching built-in guide; console clean. Screenshot:.tmp/lexical-examples-live.jpg.
+
+S.D.G.: Visitors can explore spelling and recurrence patterns immediately from four built-in texts.
+Feynman gap: Four sample flows, custom text/reset, desktop/375px/768px layouts, independent source review and public deployment verified; physical mobile remains untested.

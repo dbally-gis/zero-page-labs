@@ -108,4 +108,4 @@ Execution: browser-native Retro adaptation; production Lexical bundle; execution
 - [x] Selecting a built-in passage resets prior text filters.
 - [x] Pasting custom text clears the built-in selection.
 - [x] The example selector fits a 375px viewport.
-- [ ] Public deployment serves the example selector.
+- [x] Public deployment serves the example selector.
