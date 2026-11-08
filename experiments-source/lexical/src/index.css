@@ -57,3 +57,7 @@
 @media(max-width:600px){.scene-card:is(:fullscreen,.fullscreen-fallback) .scene-toolbar{min-height:132px}.scene-card:is(:fullscreen,.fullscreen-fallback) .scene-stage{bottom:132px}}
 
 .thread-isolation-toggle[aria-pressed="true"]{border-color:var(--amber);color:var(--amber);background:#383624}
+
+.book-map-coverage{font:10px var(--mono);line-height:1.5;color:var(--muted);margin:0}.scene-card:not(:fullscreen):not(.fullscreen-fallback) .fullscreen-context{display:none}@media(min-width:900px){.book-emphasis>.active-word-bar{display:none}.book-emphasis .scene-card:not(:fullscreen):not(.fullscreen-fallback) .fullscreen-context{display:flex;top:14px;right:14px}}
+
+@media(max-width:600px){.fullscreen-context .book-map-coverage{display:none}}

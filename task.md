@@ -380,3 +380,13 @@ Chart-owned toggle switches dimmed context to solo active word in3D/2D book. Pre
 - [x] Node tests pass.
 - [ ] Independent review passes. Blocked: verifier account usage limit.
 - [x] Public change is verified.
+
+## Discover normal-view word controls — 2026-11-08
+- [x] Default desktop book shows word search without a toggle.
+- [x] Default desktop book shows ten suggested tags.
+- [x] Visible coverage text states the full book is mapped.
+- [x] Header explicitly offers full-text reading.
+- [x] Tag selection works outside fullscreen.
+- [x] Phone retains visible word controls.
+- [x] Tests pass.
+- [ ] Live site is verified.
