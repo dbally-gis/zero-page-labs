@@ -1,0 +1,19 @@
+{
+  "verified_public": "2026-11-07",
+  "site": "https://github.com/dbally-gis/zero-page-labs",
+  "thumbwords_word_data": "https://github.com/dbally-gis/thumbwords-word-data",
+  "lexical": "https://github.com/globe-and-atlas/lexical",
+  "gridcore": "https://github.com/globe-and-atlas/gridcore-spec",
+  "retro_browser_edition": "https://github.com/dbally-gis/zero-page-labs/tree/main/experiments/retro-glitch",
+  "watchfaces": {
+    "pangaea-drift": "https://github.com/globe-and-atlas/pangaea-watch",
+    "since-then": "https://github.com/globe-and-atlas/since-then",
+    "from-here": "https://github.com/globe-and-atlas/from-here",
+    "straight-ahead": "https://github.com/globe-and-atlas/straight-ahead",
+    "personal-atlas": "https://github.com/globe-and-atlas/personal-atlas",
+    "origin": "https://github.com/globe-and-atlas/time-at-hand",
+    "vector": "https://github.com/globe-and-atlas/time-at-hand",
+    "meridian": "https://github.com/globe-and-atlas/time-at-hand",
+    "cardinal": "https://github.com/globe-and-atlas/time-at-hand"
+  }
+}

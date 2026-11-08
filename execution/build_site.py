@@ -35,10 +35,13 @@ def build() -> None:
         for marker, value in substitutions.items():
             content = content.replace(marker, value)
         page.write_text(content)
+    public_sources = json.loads((ROOT / 'data/public-repositories.json').read_text())['watchfaces']
     cards = []
     for face in faces:
         d = {key: escape(value, quote=True) for key, value in face.items()}
-        cards.append(f'''<article class="watch-card" data-style="{d['style']}"><a href="{d['url']}" aria-label="{d['name']} — view in the Pebble appstore"><div class="watch-image"><span class="pebble-device"><span class="pebble-glass" aria-hidden="true"></span><img class="pebble-screen" src="{d['image']}" alt="{d['name']} watchface shown on Pebble Time 2" width="200" height="228" loading="lazy"><img class="pebble-hardware" src="/assets/pebble-time-2-frame.png" alt="" width="488" height="700" loading="lazy"></span></div><div class="watch-info"><h2>{d['name']}</h2><span>{d['style'].upper()}</span></div><p>{d['description']}</p><span class="store-link">Pebble appstore ↗</span></a></article>''')
+        source_url = public_sources.get(face['slug'])
+        source_link = f'<a class="watch-source-link" href="{escape(source_url, quote=True)}" aria-label="{d["name"]} source on GitHub">Source on GitHub ↗</a>' if source_url else ''
+        cards.append(f'''<article class="watch-card" data-style="{d['style']}"><a href="{d['url']}" aria-label="{d['name']} — view in the Pebble appstore"><div class="watch-image"><span class="pebble-device"><span class="pebble-glass" aria-hidden="true"></span><img class="pebble-screen" src="{d['image']}" alt="{d['name']} watchface shown on Pebble Time 2" width="200" height="228" loading="lazy"><img class="pebble-hardware" src="/assets/pebble-time-2-frame.png" alt="" width="488" height="700" loading="lazy"></span></div><div class="watch-info"><h2>{d['name']}</h2><span>{d['style'].upper()}</span></div><p>{d['description']}</p><span class="store-link">Pebble appstore ↗</span></a>{source_link}</article>''')
     gallery = output / 'watchfaces/index.html'
     gallery.write_text(gallery.read_text().replace('{{WATCH_CARDS}}', '\n'.join(cards)))
     import os

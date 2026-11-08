@@ -126,7 +126,7 @@ export function FuturisticHUD({
 
                 <div className="topbar-spacer" />
 
-                <div className="topbar-actions">
+                <div className="topbar-actions"><a className="topbar-btn" href="https://github.com/globe-and-atlas/lexical">GitHub ↗</a>
                     <button className="topbar-btn" onClick={onTogglePause}>
                         {isPaused ? 'Resume' : 'Pause'}
                     </button>
