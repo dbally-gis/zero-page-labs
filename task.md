@@ -132,4 +132,4 @@ Execution: public adaptation in experiments-source/lexical; execution/build_expe
 - [x] Phone controls fit 375px.
 - [x] Tablet controls fit 768px.
 - [x] Fresh verifier reviews final implementation.
-- [ ] Public deployment matches the verified build.
+- [x] Public deployment matches the verified build.

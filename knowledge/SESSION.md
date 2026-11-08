@@ -33,6 +33,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-07 20:35 — commit: Link verified public GitHub repositories on project pages | data/experiments-build.json,data/public-repositories.json,execution/build_site.py,experiments-source/lexical/src/components/FuturisticHUD.jsx,experiments/index.html
 - 2026-11-07 20:46 — commit: Add guided built-in text examples to Lexical | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/FuturisticHUD.jsx,experiments-source/lexical/src/components/InterpretationRail.jsx
 - 2026-11-07 20:48 — commit: Record verified Lexical examples deployment | knowledge/SESSION.md,task.md
+- 2026-11-07 21:31 — commit: Rebuild Lexical as a connected reading playground | data/experiments-build.json,directives/publish_experiments.md,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/BookMatrix.jsx
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -65,3 +66,9 @@ Goal: implement the complete approved review recommendations. Agent: OpenAI Code
 
 ### Implementation verified
 Unified colors, instanced framed stage, collapsed advanced controls, camera reset, linked excerpts/full reader, complete 2D, optional particles, explanatory coordinates/sheets, Clean view and contextual PNG are implemented. Built-in views serialize bounded settings without text; local JSON restores custom text/settings/camera. 63 Node tests, 17 Python tests and deep static verification pass. Actual browser PNG downloads and local session roundtrip passed; maximum 20,000-character passage rendered 5,000 occurrences over20 sheets. Phone375px and tablet768px have no overflow. Browser policy blocked opening a copied share URL; restoration is unit-tested, with a visible copyable link as fallback. Physical Safari remains open. Deployment pending.
+
+### Published result
+Source7b90574ebda496b8b33923875e104be9aca17ef0. GitHub run42443111179 passed tests/build/Render deployment/public fingerprint verification. Independent final source review PASS. Live Next occurrence changed reader selection; complete2D exposed398 occurrences/2sheets; returning3D rendered correctly; error/warning logs empty. Screenshot:.tmp/lexical-playground-live.jpg. Status: complete.
+
+S.D.G.: Curious readers can follow recurring words into their context and keep a visual result while their custom passage stays on-device.
+Feynman gap: Real PNG downloads, local session restoration, responsive layouts, automated link restoration and public deployment are verified; physical Safari and direct browser share-link navigation remain unverified.
