@@ -1,12 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { BATTLES } from '../experiments/maritime/battles.mjs';
-import { STOPS, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying } from '../experiments/maritime/model.mjs';
+import { STOPS, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt } from '../experiments/maritime/model.mjs';
 
 test('collection covers distinct propulsion eras within the requested period',()=>{
-  assert.deepEqual(BATTLES.map(b=>b.year),[1571,1805,1862,1894]);
-  assert.equal(new Set(BATTLES.map(b=>b.id)).size,4);
-  assert.equal(new Set(BATTLES.map(b=>b.era)).size,4);
+  assert.deepEqual(BATTLES.map(b=>b.id),['diu','lepanto','gravelines','downs','quiberon','chesapeake','nile','trafalgar','hampton-roads','lissa','yalu','manila-bay']);
+  assert.ok(BATTLES.every(b=>b.year>=1400&&b.year<=1900));
+  assert.equal(new Set(BATTLES.map(b=>b.id)).size,12);
+  assert.equal(new Set(BATTLES.map(b=>b.era)).size,12);
 });
 for(const b of BATTLES) {
   test(`${b.name}: complete paths, participants, citations and guided questions`,()=>{
@@ -82,4 +83,17 @@ test('Trafalgar breakthrough actually crosses the allied line',()=>{
   const b=BATTLES.find(b=>b.id==='trafalgar'),at=id=>positionAt(b.ships.find(s=>s.id===id),.5);
   assert.ok(at('victory').x>at('bucentaure').x);
   assert.ok(at('sovereign').x>at('allied-6').x);
+});
+
+test('source-backed fates distinguish captured vessels from battle sinkings',()=>{
+  const losses=BATTLES.flatMap(b=>b.ships.filter(s=>s.fate).map(s=>({b,s})));
+  assert.deepEqual(losses.filter(({s})=>s.fate.kind==='sunk').map(({s})=>s.id),['superbe','orient','re-italia','reina-cristina','castilla']);
+  for(const {b,s} of losses){
+    assert.equal(s.representative,false);assert.ok(b.sources[s.fate.source]);assert.ok(s.fate.text);assert.ok(s.fate.at>0&&s.fate.at<1);
+    assert.equal(fateAt(s,s.fate.at-.001),null);assert.equal(fateAt(s,s.fate.at),s.fate);
+    assert.equal(fateAt(s,0),null);
+    if(s.fate.kind==='sunk')assert.deepEqual(activePositionAt(s,1),positionAt(s,s.fate.at));
+  }
+  const sultana=BATTLES.find(b=>b.id==='lepanto').ships.find(s=>s.id==='sultana');assert.equal(fateAt(sultana,1).kind,'captured');
+  assert.equal(BATTLES.find(b=>b.id==='trafalgar').ships.some(s=>s.fate?.kind==='sunk'),false);
 });

@@ -6,10 +6,11 @@ import {effectsAt,shotEvent,previewSalvo} from '../experiments/maritime/combat.m
 import {positionAt} from '../experiments/maritime/model.mjs';
 
 for(const b of BATTLES.filter(b=>b.id!=='trafalgar')){
-  test(`${b.name}: salvo preview joins opposing named ships`,()=>{
+  test(`${b.name}: salvo preview joins opposing vessel or formation markers`,()=>{
     const e=previewSalvo(b);assert.ok(e);assert.equal(e.hit,true);
     const shooter=b.ships.find(s=>s.id===e.shooter),target=b.ships.find(s=>s.id===e.target);
-    assert.equal(shooter.representative,false);assert.equal(target.representative,false);assert.notEqual(shooter.side,target.side);
+    assert.notEqual(shooter.side,target.side);
+    if(['lepanto','hampton-roads','yalu'].includes(b.id)){assert.equal(shooter.representative,false);assert.equal(target.representative,false);}
     const p=positionAt(shooter,e.firedAt/100);assert.ok(Math.abs(Math.hypot(e.origin.x-p.x,e.origin.z-p.y)-10)<1e-8);
   });
   test(`${b.name}: muzzle flash precedes hit fire and smoke`,()=>{
@@ -75,5 +76,13 @@ test('Trafalgar event controls carry evidence and ordered replay offsets',()=>{
     assert.ok(e.at>previous&&e.at<1);previous=e.at;
     assert.ok(trafalgar.ships.some(s=>s.id===e.focus));
     const source=TRAFALGAR_EVIDENCE[e.evidence];assert.ok(source.title);assert.equal(new URL(source.url).protocol,'https:');
+  }
+});
+
+test('synthetic combat cannot fire from or target a ship after its sourced loss',()=>{
+  for(const b of BATTLES.filter(b=>b.id!=='trafalgar'))for(let i=0;i<43;i++){
+    const e=shotEvent(b,i);if(!e)continue;
+    for(const id of [e.shooter,e.target]){const s=b.ships.find(s=>s.id===id);if(s.fate)assert.ok(e.firedAt/100<s.fate.at);}
+    const target=b.ships.find(s=>s.id===e.target);if(target.fate)assert.ok(e.arrival/100<target.fate.at);
   }
 });

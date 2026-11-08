@@ -1,5 +1,5 @@
 import {TRAFALGAR_EVENTS} from './trafalgar-events.mjs';
-import {positionAt,clamp} from './model.mjs';
+import {positionAt,clamp,fateAt} from './model.mjs';
 
 // Illustrative gunfire, not a reconstruction of recorded shots or ship damage.
 // One global volley every 1.6 replay seconds bounds flashes and particle counts.
@@ -9,7 +9,7 @@ const difference=(a,b)=>((a-b+540)%360)-180;
 function targetFor(battle,ship,progress){
   const p=positionAt(ship,progress),targets=[];
   for(const other of battle.ships){
-    if(other.side===ship.side)continue;
+    if(other.side===ship.side||fateAt(other,progress))continue;
     const q=positionAt(other,progress),dx=q.x-p.x,dy=q.y-p.y,distance=Math.hypot(dx,dy);
     if(distance<25||distance>420)continue;
     const bearing=Math.atan2(dx,-dy)/deg,relative=difference(bearing,p.heading);
@@ -36,12 +36,13 @@ export function shotEvent(battle,index){
   const firedAt=START+index*CADENCE;
   if(index<0||firedAt>END)return null;
   const progress=firedAt/100;
-  const eligible=battle.ships.map(ship=>({ship,target:targetFor(battle,ship,progress)})).filter(x=>x.target);
+  const eligible=battle.ships.map(ship=>({ship,target:targetFor(battle,ship,progress)})).filter(x=>x.target&&!fateAt(x.ship,progress));
   if(!eligible.length)return null;
   const {ship,target}=eligible[index%eligible.length],p=positionAt(ship,progress);
   const angle=target.bearing*deg;
   const origin={x:p.x+Math.sin(angle)*10,y:7,z:p.y-Math.cos(angle)*10};
   const travel=clamp(target.distance/210,.35,1.65),arrival=firedAt+travel;
+  if(fateAt(target.ship,arrival/100))return null;
   const destination=positionAt(target.ship,arrival/100),hit=index%3!==1;
   let impact={x:destination.x,y:hit?8:0,z:destination.y};
   if(!hit){
@@ -77,7 +78,7 @@ export function effectsAt(battle,progress){
       projectile:age>=0&&age<e.travel?{x:e.origin.x+(e.impact.x-e.origin.x)*f,y:e.origin.y+(e.impact.y-e.origin.y)*f+Math.sin(f*Math.PI)*12,z:e.origin.z+(e.impact.z-e.origin.z)*f}:null,
     });
   }
-  return events;
+  return events.filter(e=>!fateAt(battle.ships.find(s=>s.id===e.shooter),progress)&&!fateAt(battle.ships.find(s=>s.id===e.target),progress));
 }
 export function previewSalvo(battle){
   if(battle.id==='trafalgar')return shotEvent(battle,0);

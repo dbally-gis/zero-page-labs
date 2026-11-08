@@ -71,6 +71,9 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 14:59 — commit: Add solo active-word toggle to Lexical book | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/FlatView.jsx,experiments-source/lexical/src/components/PlaygroundScene.jsx
 - 2026-11-08 15:01 — commit: Record solo-thread verification and review gap | knowledge/ERRORS.md,knowledge/INDEX.md,knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 - 2026-11-08 16:39 — commit: Expose word search and full text in default book view | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-BMdQHD3a.js,experiments/lexical/assets/index-DBFdnNYf.js
+- 2026-11-08 16:41 — commit: Record discoverable word controls deployment | knowledge/ERRORS.md,knowledge/SESSION.md,task.md
+- 2026-11-08 16:45 — commit: Start Sherlock with Holmes and curated story tags | data/experiments-build.json,execution/build_experiments.py,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/index.css
+- 2026-11-08 16:47 — commit: Record curated Sherlock defaults verification | knowledge/domain/lexical-book-identity.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -306,3 +309,7 @@ User requests twelve famous/critical battles and sunk indicators. Keep1400–190
 Published3f2afc1; workflow42531292102 passed tests/Render/public fingerprint. Fresh live page exposes search/ten tags/Read full text without fullscreen. Clicking Holmes reports1/462 and aria-pressedtrue. Proof:/private/tmp/lexical-visible-word-controls-live.png.
 S.D.G.: First-time readers can discover other words and the full text directly from the default book.
 Feynman gap:92tests, desktop/phone direct browser checks and live deployment passed; independent review remains unavailable due account usage limit.
+
+### Maritime twelve encounters — release ready
+12encounters,60chapters,36questions. Source-backed5sunk records plusSultana capture. Selectable thick X/Sunk markers in3DandSVG, stoppedhulls/wakes/engine smoke, fateinspector/source andoutcomejumpcontrols; reversescrubrestores. Sunk/captured ships excluded from synthetic targeting/firing; sectorssuppressed. Newnativechooser fits12entries. Homepage/directory/metadatacopy updated.
+189JS tests and deep10page verifier pass. Independent source review PASS after3Doverlay parity, labels/copy, and explicitReinaCristina scuttling fixes. Browser1280x900 confirmed all12models/counts, Manila twoXs, reverse restoration, classic2Xs/2hiddenhulls.375x812pagewidth375,12options;Sultana capture retains hull/noX. Consoleclean. Currentlocalpreview5189 server session56848. Preparingauthorizedrelease; concurrentLexicalsourceleftuntouched.

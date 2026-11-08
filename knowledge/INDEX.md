@@ -30,3 +30,5 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 
 | [domain/lexical-book-identity.md](domain/lexical-book-identity.md) | domain | 2026-11-08 | Complete Sherlock book, searchable fullscreen, thread emphasis and solo toggle |
 | [FAILURES/2026-11-08_lexical-book-layout/context.md](FAILURES/2026-11-08_lexical-book-layout/context.md) | failure | 2026-11-08 | Width-fill optimization incorrectly replaced the central book metaphor |
+
+| [domain/maritime-collection.md](domain/maritime-collection.md) | domain | 2026-11-08 | Twelve sourced encounters, sinking/capture semantics and browser validation |

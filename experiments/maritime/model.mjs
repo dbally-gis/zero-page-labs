@@ -23,7 +23,7 @@ export function advance(progress, elapsed, speed) {
 }
 export function readView(hash) {
   const p=new URLSearchParams(hash.replace(/^#/,''));
-  const battle=BATTLES.find(b=>b.id===p.get('battle')) || BATTLES[1];
+  const battle=BATTLES.find(b=>b.id===p.get('battle')) || BATTLES.find(b=>b.id==='trafalgar');
   const n=Number(p.get('t')??0);
   return {battle,progress:clamp(Number.isFinite(n)?n:0,0,1),ship:battle.ships.some(s=>s.id===p.get('ship'))?p.get('ship'):battle.defaultShip,view:p.get('view')==='atmosphere'?'atmosphere':'tactical'};
 }
@@ -40,3 +40,7 @@ export function cameraZoom(camera, factor) {
   const width=clamp(camera.w*factor,420,1400), height=width*.6;
   return {x:clamp(camera.x+(camera.w-width)/2,-250,1250-width),y:clamp(camera.y+(camera.h-height)/2,-150,750-height),w:width,h:height};
 }
+
+// Loss thresholds are authored replay positions, never damage adjudication.
+export function fateAt(ship,progress){return ship.fate&&Number.isFinite(progress)&&progress>=ship.fate.at?ship.fate:null;}
+export function activePositionAt(ship,progress){return positionAt(ship,ship.fate?.kind==='sunk'?Math.min(progress,ship.fate.at):progress);}

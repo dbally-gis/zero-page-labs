@@ -1,6 +1,6 @@
 import {TRAFALGAR_EVENTS,TRAFALGAR_EVIDENCE} from './trafalgar-events.mjs';
 import { BATTLES } from './battles.mjs';
-import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying } from './model.mjs';
+import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt } from './model.mjs';
 import {effectsAt,previewSalvo} from './combat.mjs';
 
 const $=id=>document.getElementById(id);
@@ -67,7 +67,13 @@ function renderShip() {
   $('ship-marker').textContent=s.representative?'REPRESENTATIVE MARKER · not an identified vessel':'SELECTED PARTICIPANT · position is schematic';
   $('weapon-note').textContent=state.battle.id==='yalu'?'Weapon sectors are omitted here: mixed steam-era mountings need ship-specific treatment.':'Weapon sectors show mounting principles, not measured range or clearance.';
   $('ship-portrait').replaceChildren(node('use',{href:`#ship-${s.type}`,x:-25,y:-35,width:50,height:70}));
-  sourceLink($('ship-source'),s.source);
+  sourceLink($('ship-source'),s.source);renderFate();
+}
+function renderFate(){
+  const s=state.battle.ships.find(s=>s.id===state.selected),f=fateAt(s,state.progress);
+  $('ship-fate').hidden=!f;
+  if(f){$('fate-status').textContent=f.kind==='sunk'?'× SUNK':'◆ CAPTURED';$('fate-text').textContent=f.text;sourceLink($('fate-source'),f.source);}
+
 }
 function setCamera(camera) {
   state.camera=camera;
@@ -111,6 +117,7 @@ function buildFleet() {
     node('use',{href:`#ship-${s.type}`,x:-21,y:-32,width:42,height:64,class:'vessel'},rotated);
     node('path',{d:'M0-36 3-32 0-28-3-32Z',class:'side-marker'},rotated);
     const label=node('text',{y:44,class:`ship-label ${s.representative?'marker-label':''}`},group,s.representative?`Formation ${s.id.split('-').at(-1)}`:s.name);
+    const loss=node('g',{class:'loss-cross','aria-hidden':'true'},group);node('path',{d:'M-15-15 15 15M15-15-15 15'},loss);
     node('rect',{x:-24,y:-33,width:48,height:70,class:'hitbox'},group);
     const choose=()=>{
       if(dragged)return;
@@ -122,24 +129,27 @@ function buildFleet() {
     group.addEventListener('focus',()=>dimensional?.focusShip(s.id));
     group.addEventListener('blur',()=>dimensional?.focusShip(null));
     const course=node('polyline',{class:`course ${s.side?'enemy':''}`},$('courses'));
-    return {s,group,rotated,label,course};
+    return {s,group,rotated,label,course,loss};
   });
 }
 function renderPositions() {
   const chapter=state.battle.chapters[chapterAt(state.progress)];
   const focus=state.question===null?chapter.focus:state.battle.questions[state.question].focus;
-  for(const {s,group,rotated,label,course} of nodes) {
-    const p=positionAt(s,state.progress),selected=s.id===state.selected,highlight=focus.includes(s.id);
+  for(const {s,group,rotated,label,course,loss} of nodes) {
+    const fate=fateAt(s,state.progress),sunk=fate?.kind==='sunk',p=activePositionAt(s,state.progress),selected=s.id===state.selected,highlight=focus.includes(s.id);
     group.setAttribute('transform',`translate(${p.x.toFixed(2)} ${p.y.toFixed(2)})`);
+    rotated.style.display=sunk?'none':'';loss.style.display=sunk?'':'none';
+    label.textContent=sunk?`× ${s.name} · Sunk`:s.representative?'Fleet marker':s.name;
+    group.setAttribute('aria-label',`${s.name}${fate?'. '+(sunk?'Sunk':'Captured'):''}. Inspect ship.`);
     rotated.setAttribute('transform',`rotate(${p.heading.toFixed(2)})`);
     group.classList.toggle('selected',selected); group.classList.toggle('highlighted',highlight);
     group.setAttribute('aria-pressed',String(selected));
-    label.style.display=state.layers.labels||selected||highlight?'':'none';
-    course.setAttribute('points',trailAt(s,state.progress).map(p=>p.join(',')).join(' '));
+    label.style.display=sunk||state.layers.labels||selected||highlight?'':'none';
+    course.setAttribute('points',trailAt(s,s.fate?.kind==='sunk'?Math.min(state.progress,s.fate.at):state.progress).map(p=>p.join(',')).join(' '));
     course.classList.toggle('focus-course',selected||highlight);
   }
   // Overlays belong only to the selected ship, keeping the tactical chart readable.
-  if(state.layers.weapons && state.battle.id!=='yalu') {
+  if(state.layers.weapons && state.battle.id!=='yalu'&&!fateAt(state.battle.ships.find(s=>s.id===state.selected),state.progress)) {
     const s=state.battle.ships.find(s=>s.id===state.selected),p=positionAt(s,state.progress);
     let sector=$('weapons').firstElementChild;
     if(!sector) sector=node('g',{},$('weapons'));
@@ -172,7 +182,7 @@ function renderPositions() {
       if(e.projectile)node('circle',{cx:e.projectile.x,cy:e.projectile.z,r:1.7,fill:'#f3ce8b'},g);
     }
   }
-  refreshScene();
+  renderFate();refreshScene();
 }
 function loadBattle(battle,progress=0,selected=battle.defaultShip) {
   state.battle=battle;state.progress=progress;state.selected=selected;state.question=null;lastChapter=-1;
@@ -185,7 +195,7 @@ function loadBattle(battle,progress=0,selected=battle.defaultShip) {
   $('wind-key').querySelector('svg').style.transform=`rotate(${battle.windAngle}deg)`;
   $('wind-key').querySelector('svg').style.opacity=battle.id==='trafalgar'||battle.id==='lepanto'?'1':'.35';
   $('ship-count').textContent=`${battle.ships.length} diagram markers`;
-  for(const b of $('battle-tabs').children)b.setAttribute('aria-pressed',String(b.dataset.battle===battle.id));
+  $('battle-tabs').value=battle.id;
   $('legend').replaceChildren(...battle.sides.map(side=>{const n=html('span');n.append(html('i'),document.createTextNode(side));return n;}));
   $('ship-select').replaceChildren(...battle.ships.map(s=>{const n=html('option',s.name);n.value=s.id;return n;}));
   $('questions').replaceChildren(...battle.questions.map((q,i)=>{
@@ -210,6 +220,9 @@ function loadBattle(battle,progress=0,selected=battle.defaultShip) {
   $('source-list').replaceChildren(...battle.sources.map(s=>{
     const li=html('li'),a=html('a',s.title);a.href=s.url;li.append(a,html('p',s.note));return li;
   }));
+  const outcomes=battle.ships.filter(s=>s.fate);$('loss-events').hidden=!outcomes.length;
+  $('loss-events').replaceChildren(html('span','SHIP OUTCOMES · select to inspect'));
+  for(const s of outcomes){const button=html('button',`${s.fate.kind==='sunk'?'×':'◆'} ${s.name} · ${s.fate.kind==='sunk'?'Sunk':'Captured'}`);button.type='button';button.addEventListener('click',()=>{state.selected=s.id;seek(s.fate.at);renderShip();renderPositions();$('chart').scrollIntoView({behavior:'instant',block:'start'});announce(`${s.name}: ${s.fate.kind}. ${s.fate.text}`);});$('loss-events').append(button);}
   $('share-status').replaceChildren();
   chapterButtons();buildTerrain();buildFleet();renderShip();renderLayers();renderMoment();renderPositions();setPlaying(state.playing);
 }
@@ -217,12 +230,8 @@ function seek(progress) {
   state.progress=clamp(progress,0,1);state.question=null;setPlaying(false);$('start-hint').hidden=true;
   renderMoment();renderPositions();announce(`${state.battle.name}: ${state.battle.chapters[chapterAt(progress)].label}. Replay paused.`);
 }
-for(const battle of BATTLES) {
-  const b=html('button');b.type='button';b.dataset.battle=battle.id;
-  b.append(html('span',String(battle.year)),document.createTextNode(battle.name));
-  b.addEventListener('click',()=>{setPlaying(!reduced.matches);loadBattle(battle);announce(`${battle.name}, ${battle.year}. ${battle.era}.`);});
-  $('battle-tabs').append(b);
-}
+for(const battle of BATTLES){const option=html('option',`${battle.year} · ${battle.name}`);option.value=battle.id;$('battle-tabs').append(option);}
+$('battle-tabs').addEventListener('change',e=>{const battle=BATTLES.find(b=>b.id===e.target.value);setPlaying(!reduced.matches);loadBattle(battle);announce(`${battle.name}, ${battle.year}. ${battle.era}.`);});
 $('play').addEventListener('click',()=>{
   if(state.progress>=1){state.progress=0;state.question=null;renderMoment();renderPositions();}
   if(!state.playing){state.question=null;renderMoment();renderPositions();}

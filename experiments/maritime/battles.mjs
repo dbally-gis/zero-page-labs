@@ -1,3 +1,4 @@
+import {EXTRA_BATTLES} from './extra-battles.mjs';
 // Historical sequence is sourced; coordinates are authored teaching diagrams.
 // x/y are diagram units, heading is clockwise from north. No combat is adjudicated.
 const RMG = { title: 'Royal Museums Greenwich · Beginning of the Action', url: 'https://www.rmg.co.uk/collections/objects/rmgc-object-12040', note: 'Collection commentary on fleet approach, flagships and the breaking of the line.' };
@@ -61,7 +62,7 @@ for(let side=0;side<2;side++) for(let i=0;i<4;i++) {
   yaluShips.push(ship(`steam-${side}-${i}`,`${side?'Chinese':'Japanese'} formation · marker ${i+1}`,side,'cruiser','Representative fleet marker. Exact tracks and relative spacing are interpretive.',lead.points.map(([x,y,h],n)=>side?[x+(i-1.5)*90,y-70+Math.abs(i-1.5)*30,h]:[x-(i+1)*34,y+(n>1?(i+1)*17:0),h]),side?0:1,true));
 }
 
-export const BATTLES = [
+const ORIGINAL_BATTLES = [
   {
     id:'lepanto', name:'Lepanto', year:1571, date:'7 October 1571', place:'Gulf of Patras · Mediterranean', era:'Oars & boarding', takeaway:'A battle fought at arm’s length.',
     introduction:'Opposing galley fleets close across the gulf. Artillery opens the fight; soldiers decide much of it on crowded decks.',
@@ -135,3 +136,6 @@ export const BATTLES = [
     ],
   },
 ];
+
+lepantoShips.find(s=>s.id==='sultana').fate={kind:'captured',at:.75,source:1,text:'Sultana is captured in the flagship struggle. Capture is not sinking; the vessel remains visible without a sunk X.'};
+export const BATTLES=[...ORIGINAL_BATTLES,...EXTRA_BATTLES].sort((a,b)=>a.year-b.year);

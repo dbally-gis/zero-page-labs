@@ -393,20 +393,20 @@ Chart-owned toggle switches dimmed context to solo active word in3D/2D book. Pre
 
 ## Maritime twelve encounters and sourced losses — 2026-11-08
 Scope: battles data, encounter chooser, SVG/3D status markers, inspector, combat eligibility. Preserve concurrent Lexical changes.
-- [ ] Collection contains exactly twelve distinct battles.
-- [ ] Each encounter has five teaching chapters.
-- [ ] Each encounter has three guided questions.
-- [ ] Each encounter links its historical sources.
-- [ ] Chooser exposes twelve encounters at375px.
-- [ ] Sourced sunk markers appear only after their authored narrative threshold.
-- [ ] Sunk vessels retain selectable loss markers.
-- [ ] Reverse scrubbing restores pre-loss vessels.
-- [ ] Captured vessels do not receive sunk markers.
-- [ ] Sunk vessels cannot fire synthetic shots.
-- [ ] Sunk vessels cannot be targeted by synthetic shots.
-- [ ] Inspector explains sourced losses.
-- [ ] JavaScript suites pass.
-- [ ] Deep site verifier passes.
-- [ ] Desktop browser checks pass.
-- [ ] Mobile browser checks pass.
-- [ ] Independent review passes.
+- [x] Collection contains exactly twelve distinct battles.
+- [x] Each encounter has five teaching chapters.
+- [x] Each encounter has three guided questions.
+- [x] Each encounter links its historical sources.
+- [x] Chooser exposes twelve encounters at375px.
+- [x] Sourced sunk markers appear only after their authored narrative threshold.
+- [x] Sunk vessels retain selectable loss markers.
+- [x] Reverse scrubbing restores pre-loss vessels.
+- [x] Captured vessels do not receive sunk markers.
+- [x] Sunk vessels cannot fire synthetic shots.
+- [x] Sunk vessels cannot be targeted by synthetic shots.
+- [x] Inspector explains sourced losses.
+- [x] JavaScript suites pass.
+- [x] Deep site verifier passes.
+- [x] Desktop browser checks pass.
+- [x] Mobile browser checks pass.
+- [x] Independent review passes.

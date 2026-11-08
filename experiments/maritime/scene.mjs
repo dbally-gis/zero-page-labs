@@ -1,5 +1,5 @@
 import * as T from './vendor/three-0.160.1.module.min.js';
-import {positionAt,trailAt,chapterAt} from './model.mjs';
+import {positionAt,trailAt,chapterAt,fateAt,activePositionAt} from './model.mjs';
 import {createShotEffects} from './shot-effects.mjs';
 
 // The scene illustrates the same schematic replay as the accessible SVG chart.
@@ -181,7 +181,7 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
   function ring(radius,color,dashed=false){const points=[];for(let i=0;i<=80;i++){const a=i/80*PI*2;points.push(new T.Vector3(Math.sin(a)*radius,.8,Math.cos(a)*radius));}const m=dashed?new T.LineDashedMaterial({color,dashSize:3,gapSize:5,transparent:true,opacity:.9}):new T.LineBasicMaterial({color,transparent:true,opacity:.95});const l=new T.Line(new T.BufferGeometry().setFromPoints(points),m);l.computeLineDistances();return l;}
   function rebuild(battle){
     // Cached ship geometries/materials are shared between instances and retained.
-    for(const s of ships){s.label.remove();s.hit.geometry.dispose();s.hit.material.dispose();s.ring.geometry.dispose();s.ring.material.dispose();s.focusRing.geometry.dispose();s.focusRing.material.dispose();s.wake.geometry.dispose();s.wake.material.dispose();s.shadow.geometry.dispose();s.shadow.material.dispose();s.smokes.forEach(p=>{p.material.dispose();p.removeFromParent();});}
+    for(const s of ships){s.label.remove();s.loss.geometry.dispose();s.loss.material.dispose();s.hit.geometry.dispose();s.hit.material.dispose();s.ring.geometry.dispose();s.ring.material.dispose();s.focusRing.geometry.dispose();s.focusRing.material.dispose();s.wake.geometry.dispose();s.wake.material.dispose();s.shadow.geometry.dispose();s.shadow.material.dispose();s.smokes.forEach(p=>{p.material.dispose();p.removeFromParent();});}
     fleet.clear();labels.replaceChildren();disposeGroup(terrain);ships=[];
     if(battle.terrain!=='open'){
       const roads=battle.terrain==='roads';
@@ -214,7 +214,11 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
       const wake=mesh(group,new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:foam,color:0xe5f4e0,transparent:true,opacity:.6,depthWrite:false}),0,0,46,[-PI/2,0,0]);wake.scale.set(30,90,1);
       const smokes=[];for(let i=0;i<4;i++){const p=new T.Sprite(new T.SpriteMaterial({map:smoke,color:data.type==='sail'||data.type==='galley'?0xe0d9c5:0x8d9b96,transparent:true,opacity:0,depthWrite:false}));scene.add(p);smokes.push(p);}
       const label=document.createElement('span');label.className='scene-ship-label';label.textContent=data.representative?'Fleet marker':data.name;labels.append(label);
-      group.userData.ship=data.id;fleet.add(group);ships.push({data,group,model,ring:selected,focusRing,hit,wake,shadow,smokes,label});
+      const vertices=[];
+      for(const angle of [PI/4,-PI/4])for(const [x,z] of [[-2.5,-18],[2.5,-18],[2.5,18],[-2.5,-18],[2.5,18],[-2.5,18]])vertices.push(x*Math.cos(angle)-z*Math.sin(angle),3,x*Math.sin(angle)+z*Math.cos(angle));
+      const cross=new T.BufferGeometry();cross.setAttribute('position',new T.Float32BufferAttribute(vertices,3));
+      const loss=new T.Mesh(cross,new T.MeshBasicMaterial({color:0xffb69c,depthTest:false,side:T.DoubleSide}));loss.renderOrder=5;loss.visible=false;group.add(loss);
+      group.userData.ship=data.id;fleet.add(group);ships.push({loss,data,group,model,ring:selected,focusRing,hit,wake,shadow,smokes,label});
     }
     lastBattle=battle.id;
   }
@@ -222,10 +226,10 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
     disposeGroup(overlays);if(!state)return;
     const focus=state.question===null?state.battle.chapters[chapterAt(state.progress)].focus:state.battle.questions[state.question].focus;
     if(state.layers.courses)for(const s of ships){
-      const points=trailAt(s.data,state.progress).map(([x,z])=>new T.Vector3(x-500,.5,z-300));
+      const points=trailAt(s.data,s.data.fate?.kind==='sunk'?Math.min(state.progress,s.data.fate.at):state.progress).map(([x,z])=>new T.Vector3(x-500,.5,z-300));
       if(points.length>1){const line=new T.Line(new T.BufferGeometry().setFromPoints(points),lineMat[s.data.side]);line.computeLineDistances();overlays.add(line);}
     }
-    if(state.layers.weapons&&state.battle.id!=='yalu'){
+    if(state.layers.weapons&&state.battle.id!=='yalu'&&!fateAt(state.battle.ships.find(s=>s.id===state.selected),state.progress)){
       const ship=state.battle.ships.find(s=>s.id===state.selected),p=positionAt(ship,state.progress),group=new T.Group();group.position.set(p.x-500,.9,p.y-300);group.rotation.y=-p.heading*PI/180;
       const ranges=ship.type==='monitor'?[[0,360]]:ship.type==='galley'?[[-28,28]]:[[60,120],[240,300]];
       for(const [a,b]of ranges){const points=[new T.Vector3(0,0,0)];for(let d=a;d<=b;d+=2)points.push(new T.Vector3(Math.sin(d*PI/180)*115,0,-Math.cos(d*PI/180)*115));points.push(new T.Vector3(0,0,0));
@@ -248,7 +252,7 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
   const resize=new ResizeObserver(()=>{renderer.setSize(host.clientWidth,host.clientHeight,false);frameCamera();dirty=true;});resize.observe(host);
   renderer.setSize(host.clientWidth,host.clientHeight,false);
   function update(next){state=next;dirty=true;if(lastBattle!==state.battle.id)rebuild(state.battle);frameCamera();
-    for(const s of ships){const p=positionAt(s.data,state.progress);s.group.position.set(p.x-500,0,p.y-300);s.group.rotation.y=-p.heading*PI/180;}
+    for(const s of ships){const p=activePositionAt(s.data,state.progress);s.group.position.set(p.x-500,0,p.y-300);s.group.rotation.y=-p.heading*PI/180;}
     rebuildOverlays();
   }
   let down=null;
@@ -271,9 +275,11 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
     const occupied=[];
     for(const s of [...ships].sort((a,b)=>Number(b.data.id===state.selected)-Number(a.data.id===state.selected))){
       s.model.rotation.z=motion.matches?0:Math.sin(clock*.65+s.data.id.length)*.008;
-      s.wake.visible=s.data.id!=='minnesota'&&state.progress<1;s.wake.material.opacity=.42+Math.sin(clock*1.2+s.data.id.length)*.06;
+      const fate=fateAt(s.data,state.progress),sunk=fate?.kind==='sunk';s.model.visible=!sunk;s.shadow.visible=!sunk;s.loss.visible=sunk;
+      s.label.textContent=sunk?`× ${s.data.name} · Sunk`:s.data.representative?'Fleet marker':s.data.name;
+      s.wake.visible=!fate&&s.data.id!=='minnesota'&&state.progress<1;s.wake.material.opacity=.42+Math.sin(clock*1.2+s.data.id.length)*.06;
       const selected=s.data.id===state.selected,chapterFocus=focus.includes(s.data.id);
-      s.label.hidden=!(selected||state.layers.labels||chapterFocus);
+      s.label.hidden=!(sunk||selected||state.layers.labels||chapterFocus);
       const screen=s.group.position.clone().add(new T.Vector3(0,4,37)).project(camera);
       const labelWidth=s.label.textContent.length*5.6+12;
       const labelX=Math.max(labelWidth/2+4,Math.min(host.clientWidth-labelWidth/2-4,(screen.x+1)*.5*host.clientWidth));
@@ -286,7 +292,7 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
       s.label.style.visibility=Math.abs(screen.x)>1||Math.abs(screen.y)>1?'hidden':'';
       for(let i=0;i<s.smokes.length;i++){
         const p=s.smokes[i],phase=(clock*.12+i*.25+s.data.id.length*.09)%1,steam=s.data.type==='cruiser'||s.data.type==='ironclad';
-        const amount=steam?.14:0;
+        const amount=steam&&!sunk?.14:0;
         p.material.opacity=amount*Math.sin(phase*PI);p.position.copy(s.group.position).add(new T.Vector3(phase*50-10,(steam?25:12)+phase*20,phase*12+i*3));p.scale.setScalar(24+phase*58);p.material.rotation=i*.8+phase*.1;
       }
     }
