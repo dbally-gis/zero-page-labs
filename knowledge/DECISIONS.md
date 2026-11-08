@@ -26,3 +26,6 @@ One deterministic token model owns colors, occurrences, spelling positions and s
 
 ## Maritime — 2026-11-07
 Approved direction: predominantly tactical overhead watch-and-explore experience, with optional atmospheric perspective. Implement four illustrative encounters spanning galley, sailing and steam fleets rather than a command game. Keep historical sequence source-linked; label routes, spacing, timing and enlarged ships schematic. Use curated questions for this release; no live AI historian is claimed. Suppress Yalu weapon sectors until ship-specific mountings are researched. Alternative rejected: applying sailing broadside geometry to every armoured vessel, which would teach a false relationship.
+
+## Lexical workspace consolidation — 2026-11-08
+User feedback favored an obvious custom-text action and fewer competing scroll areas. The default surface is now one chart, with selected words and compact occurrence controls. Reading and view options use separate native dialogs. Excerpt sidebar removed; recurrence analysis is optional within settings. On phones/short screens, one page scroll preserves usable chart height rather than clipping controls. See domain/lexical-workspace-flow.md.

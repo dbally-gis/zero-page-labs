@@ -250,3 +250,19 @@ Target: Maritime combat model, effects renderer, source-linked event controls. P
 - [x] Desktop browser verification passes.
 - [x] Mobile browser verification passes.
 - [x] Independent verification passes.
+
+## Lexical flow simplification — 2026-11-08
+Target: public Lexical adaptation. Scripts: build_experiments.py, build_site.py, verify_site.py. Preserve other projects.
+- [x] Initial viewport contains a primary Use your own text action.
+- [x] Pasting a passage updates the current text title.
+- [x] Default workspace has no excerpt sidebar.
+- [x] Default workspace has no recurrence-strip panel.
+- [x] Desktop chart fits within the viewport at1512×741.
+- [x] Phone workspace has no horizontal overflow at375px.
+- [x] Reading search follows a new word without closing the reader.
+- [x] Reading occurrence navigation wraps using the keyboard.
+- [x] Settings remain reachable without moving the chart.
+- [x] Automated experiment checks pass.
+- [x] Independent review passes.
+- [ ] Public deployment serves the verified update.
+- [x] Footer contains the exact dedication in memory of Jeff McGuire.

@@ -185,3 +185,10 @@ Browser1280x900: impact dust/debris without orange explosion, late99% sternfire 
 Release1f6c00ebd5c76300065b5eced76f9b8f0373d799 public fingerprint matches; content_sha25632660cfe0c67949bd38c565b591fad2116b87b10f090748b72b444a23fe2f953. Public browser confirmed five event controls, evidence links, timber-impact scene and Redoutable fire event seek at840 selectingRedoutable with localized visible fire. No warnings/errors. All105JS tests pass; deep10page verifier passes; independent evidence/effect review PASS. Other encounter behavior remains illustrative.
 S.D.G.: Visitors can inspect the evidence behind selected Trafalgar exchanges and distinguish timber damage from an attributed ship fire.
 Feynman gap: Exact firing order within the reciprocal exchange, shot count, impact geometry and fire ignition time remain unverified; this is a selected teaching sequence, not a full Trafalgar gun log.
+
+## Lexical flow simplification — active
+Agent: OpenAI Codex. Handoff-type: continuation. Goal: make custom text obvious, remove competing scroll surfaces, keep one chart workspace plus focused reader. Status: verified, publishing. Contract in task.md.
+
+Lexical verification: primary custom-text entry, edit prefill, one chart workspace, retired excerpts sidebar, optional recurrence/settings, compact reader and exact memorial footer.66 Node+17 Python tests pass; fresh verifier PASS. Browser desktop fit,375px phone/tablet/short landscape, custom entry/reader/search/wrapping/2D/options/share field and actual PNG decoding passed. Current fresh-browser console clean. Publication pending.
+S.D.G.: Visitors can see where to add text and focus on a single chart or reader.
+Feynman gap: Physical Safari/touch remains untested; runtime browser QA and decoded export supplement passing build/tests.
