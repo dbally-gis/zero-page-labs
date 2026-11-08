@@ -3,10 +3,19 @@
   "observedAt": "2026-11-08",
   "pagination": {
     "loadedPages": 3,
-    "entries": 43,
+    "entries": 44,
     "reachedBottom": true
   },
   "entries": [
+    {
+      "name": "BeTime",
+      "url": "https://apps.repebble.com/betime_f77f655a2c9f4b72a2f39e58",
+      "category": "Faces",
+      "description": "A little BeOS-style desktop for your Pebble. BeTime puts the clock in a beveled window with a yellow tab and uses actual Haiku and Haiku Calendar icons.\n\n\u2022 Power shows watch battery percentage.\n\u2022 Today shows the date, with five display options including Off.\n\u2022 Clock shows seconds.\n\u2022 Choose Classic Blue, Midnight, Teal, Plum, Graphite, or Monochrome Desktop.\n\u2022 Customize the desktop, window, text, and tab colors.\n\u2022 Use the watch preference, 12-hour time, or 24-hour time.\n\nDesigned for Pebble Time 2 and Pebble Round 2. Configure BeTime in the Pebble app. Time and battery work offline.\n\nIcon artwork from Haiku and Haiku Calendar is used under MIT licenses, with notices included in the watchface bundle.",
+      "thumbnail": "https://assets.repebble.com/screenshots/f77f655a2c9f4b72a2f39e58/emery/1f70de36-15d7-4258-b86f-6e5273d6c87f.gif",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/f77f655a2c9f4b72a2f39e58/emery/1f70de36-15d7-4258-b86f-6e5273d6c87f.gif"
+    },
     {
       "name": "Vernier",
       "url": "https://apps.repebble.com/vernier_2b6429b8b3e04a79aab2a4b2",
