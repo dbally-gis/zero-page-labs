@@ -350,6 +350,9 @@ Publicbrowser375px exercised EVERY50eventbutton acrossDiu,Lepanto,Gravelines,Dow
 S.D.G.: Visitors can inspect evidence-led combat episodes throughout the collection while seeing meaningful differences between wood damage, armour contact, shell bursts and reported fires.
 Feynman gap: Exact shot counts, reciprocal firing order, trajectories, fire onset/duration and damage geometry remain schematic or explicitly uncertain; this is not a complete gunnery log.
 
-## Remember visits and unfiltered intro — active
+## Remember visits and unfiltered intro — complete
 Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation. User screenshot shows intro still dominated by Holmes thread. Remove all word-specific paths/markers from overview; render all mapped words visibly. Add validated local visit memory, camera persistence and Replay introduction; shared links retain priority.
 
+Published3733eb0; workflow42534752921 passed tests, Render deployment and public fingerprint verification. Live unfiltered overview has54,411points, zero selected tags and no selected thread. Screenshot:/private/tmp/lexical-unfiltered-intro-live.png. Narrow375×812 in-tab fullscreen fallback verified with chart/intro/toolbar nonoverlapping and Follow transition.
+S.D.G.: Readers see the full mapped book before choosing a thread, then resume their last exploration on return.
+Feynman gap:99tests, independent review, browser reload/newtab/orbit/replay/2D/375px fallback and live intro verified; physical Safari remains untested.

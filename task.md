@@ -479,5 +479,4 @@ Scope: unfiltered overview rendering, local-only validated visit memory, explici
 - [x] Phone controls fit at375px.
 - [x] Tests pass.
 - [x] Independent review passes.
-- [ ] Public behavior is verified.
-
+- [x] Public behavior is verified.
