@@ -54,6 +54,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 10:05 — commit: Ground Trafalgar gunfire in sourced episodes and timber impacts | execution/test_maritime_combat.mjs,experiments/maritime/battles.mjs,experiments/maritime/combat.mjs,experiments/maritime/index.html,experiments/maritime/maritime.css
 - 2026-11-08 10:40 — commit: Simplify Lexical into one chart workspace and a focused reader | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-BIeDGysw.css
 - 2026-11-08 10:42 — commit: Record verified Lexical flow redesign deployment | knowledge/SESSION.md,knowledge/domain/lexical-workspace-flow.md,task.md
+- 2026-11-08 11:09 — commit: Fill Lexical charts and import text from URLs | data/experiments-build.json,directives/publish_experiments.md,execution/test_experiments.mjs,experiments-source/lexical/public/texts/sherlock-holmes-source.json,experiments-source/lexical/public/texts/sherlock-holmes.txt
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -82,7 +83,7 @@ S.D.G.: Visitors can explore spelling and recurrence patterns immediately from f
 Feynman gap: Four sample flows, custom text/reset, desktop/375px/768px layouts, independent source review and public deployment verified; physical mobile remains untested.
 
 ## Full Lexical playground update — active
-Goal: implement the complete approved review recommendations. Agent: OpenAI Codex. Handoff-type: continuation. Status: verified, publishing. Scope includes unified colors, focused stage, advanced drawer, camera reset, linked reader/occurrences, PNG/clean view, honest complete2D, optional decoration, meaningful labels, mobile controls, shareable built-in views and local saved sessions. No original project edits or server-side content processing. Binary contract in task.md.
+Goal: implement the complete approved review recommendations. Agent: OpenAI Codex. Handoff-type: continuation. Status: complete. Scope includes unified colors, focused stage, advanced drawer, camera reset, linked reader/occurrences, PNG/clean view, honest complete2D, optional decoration, meaningful labels, mobile controls, shareable built-in views and local saved sessions. No original project edits or server-side content processing. Binary contract in task.md.
 
 ### Implementation verified
 Unified colors, instanced framed stage, collapsed advanced controls, camera reset, linked excerpts/full reader, complete 2D, optional particles, explanatory coordinates/sheets, Clean view and contextual PNG are implemented. Built-in views serialize bounded settings without text; local JSON restores custom text/settings/camera. 63 Node tests, 17 Python tests and deep static verification pass. Actual browser PNG downloads and local session roundtrip passed; maximum 20,000-character passage rendered 5,000 occurrences over20 sheets. Phone375px and tablet768px have no overflow. Browser policy blocked opening a copied share URL; restoration is unit-tested, with a visible copyable link as fallback. Physical Safari remains open. Deployment pending.
@@ -98,7 +99,7 @@ Goal: Build the approved tactical naval battle explorer, run review-app, fix its
 Agent: OpenAI Codex
 Handoff-from: OpenAI Codex
 Handoff-type: continuation
-Status: verified, publishing. Prior SESSION modifications preserved.
+Status: complete. Prior SESSION modifications preserved.
 Surface: experiments/maritime plus home/directory discovery; existing Render deployment pipeline. Contract in task.md. The project has no review-pp skill; review-app is the matching available workflow. Historical source research underway. No live generative endpoint is implied by contextual curated explanations.
 
 ### Maritime — reviewed, awaiting deployment
@@ -200,8 +201,12 @@ S.D.G.: Visitors can find custom-text entry immediately and focus on one chart o
 Feynman gap: Desktop/mobile browser flows, decoded PNG,83 local tests, independent review and public deployment verified; physical Safari/touch remains untested.
 
 ## Lexical framing and URL import — active
-Agent: OpenAI Codex. Handoff-type: continuation. Goal: enlarge the actual chart through responsive sheet spread and tight camera fitting; add browser URL import with the user-requested Gutenberg default. Gutenberg endpoint has no ACAO header; bundle the exact public-domain source with license for reliable default loading. Bound imported passages to20k, response2MiB. Status: verified, publishing.
+Agent: OpenAI Codex. Handoff-type: continuation. Goal: enlarge the actual chart through responsive sheet spread and tight camera fitting; add browser URL import with the user-requested Gutenberg default. Gutenberg endpoint has no ACAO header; bundle the exact public-domain source with license for reliable default loading. Bound imported passages to20k, response2MiB. Status: complete.
 
 Lexical framing/URL checks:79 tests, deep10-page verifier, source/output manifest and fresh verifier PASS. Atlas uses responsive landscape spreads; Throughline fits actual positions with responsive scaling. Layout2 camera migration and column-threshold resizing regression resolved. Default Gutenberg source29sections, later-section map, edited direct URL, CORS error, phone3D/2D and URL UI, PNG decode and actual saved-view roundtrip passed. Publication next.
 S.D.G.: Visitors can see the chart at a useful size and map a URL passage without an unbounded book load.
 Feynman gap: Physical Safari remains untested; cross-origin-denying sources use paste/file.
+
+Lexical framing/URL published:16275fae64114fb4499e4ae698f2b04f0cd6769c, workflow42503618167 passed through public fingerprint verification. Live URL default loaded29 sections and mapped Part1 to1,864 occurrences/8sheets; holmes selection updated25 occurrences in the expanded scene. Current console clean. Screenshot:/private/tmp/lexical-url-and-framing-live.png.
+S.D.G.: Visitors get larger readable charts and can turn a URL source into an editable passage.
+Feynman gap:79 targeted tests, independent review, desktop/phone flows, decoded PNG, saved-view restoration and public default URL verified; physical Safari remains untested and cross-origin-denying URLs use paste/file.

@@ -282,4 +282,4 @@ Scope: responsive chart presentation plus browser-only URL intake. Default Guten
 - [x] Blocked cross-origin URLs show a usable error.
 - [x] Automated framing/import tests pass.
 - [x] Independent verification passes.
-- [ ] Public deployment serves the update.
+- [x] Public deployment serves the update.

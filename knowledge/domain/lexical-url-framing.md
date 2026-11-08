@@ -14,7 +14,7 @@ url-intake.js centralizes URL validation,15s timeout,2MiB declared/streamed limi
 
 Verification:79 Node tests, manifest and deep10-page verifier pass. Fresh independent source review PASS. Browser: default Gutenberg load, section2 selection19,072chars/1,848 mapped words, edited preview, CORS-permitted direct GitHub text, blocked example.com error, phone URL UI without horizontal overflow, complete responsive3D/2D sheets, camera reset, Throughline, actual PNG decode1600×464 and native saved-view roundtrip (title/layout2/aspect retained). Fresh successful-flow console clean. The default wide Throughline projection spans about81% of the chart width; Atlas projection test requires at least75% without corner cropping.
 
-Publication pending.
+Published source16275fae64114fb4499e4ae698f2b04f0cd6769c. Workflow42503618167 passed tests/build/Render/public fingerprint verification. Public default URL was prefilled correctly, loaded29 sections, and created Part1 with1,864 mapped words/8sheets. Live selected holmes25 occurrences; scene filled its stage; console clean. Screenshot:/private/tmp/lexical-url-and-framing-live.png.
 
 S.D.G.: Visitors get a readable chart immediately and can bring a text URL into a bounded, editable passage.
 Feynman gap: Physical Safari remains untested; arbitrary sites that deny cross-origin reads require paste/file import.
