@@ -228,9 +228,9 @@ Goal: visible muzzle fire/gun smoke plus delayed hit fire/smoke and near-miss wa
 ## Maritime visual release — 2026-11-08
 - [x] Shot accuracy is audited against published historical sources.
 - [x] A visible notice distinguishes invented gunfire from sourced history.
-- [ ] JavaScript release checks pass.
-- [ ] Deep site verification passes.
-- [ ] Production deployment succeeds.
-- [ ] Public deployment fingerprint matches this release.
-- [ ] Public browser renders the dimensional scene.
-- [ ] Public browser shows impact effects.
+- [x] JavaScript release checks pass.
+- [x] Deep site verification passes.
+- [x] Production deployment succeeds.
+- [x] Public deployment fingerprint matches this release.
+- [x] Public browser renders the dimensional scene.
+- [x] Public browser shows impact effects.
