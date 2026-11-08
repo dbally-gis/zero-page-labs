@@ -28,8 +28,19 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-07 18:31 — commit: Launch browser-native Retro-Glitch and Lexical experiments | .github/workflows/sync-pebble.yml,assets/experiment-lexical.svg,assets/experiment-retro.svg,data/experiments-build.json,data/experiments-provenance.json
 
 - 2026-11-07 18:34 — commit: Record verified public experiments deployment | knowledge/INDEX.md,knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,knowledge/domain/experiments-readiness.md,task.md
+- 2026-11-07 19:34 — commit: Show real filter examples with one-click recipes | experiments/retro-glitch/index.html,experiments/retro-glitch/studio.css,experiments/retro-glitch/studio.js,knowledge/SESSION.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
 S.D.G.: Curious visitors can transform an image or explore a passage immediately, with their content staying on their own device.
 Feynman gap: Chrome desktop,375px layout, actual PNG export, independent source review and deployment are verified; physical mobile Safari and forced WebGL-unavailable behavior remain untested.
+
+## Filter examples
+Added four original/effect cards before the studio: Pocket console (Game Boy), Worn-out videotape (chromatic aberration plus VHS tracking), Pixels out of place (pixel sort), and Terminal transmission (ASCII on the Thumbwords handset). Previews use the shipped processing worker at 960×640. Each Try button reuses its displayed source, recipe, and seed42.
+
+Desktop preview inspection, videotape/handset recipe loading, comparison/reset, and375px no-overflow checks passed. Fresh verifier found no source blockers. A transient disk-space failure interrupted a local build; the unchanged source subsequently rebuilt successfully, deep static verification passed, and41Node tests passed. Cloud publication is being verified.
+
+Filter examples published: source63d8ea1; cloud run42434861213 passed tests/build/deploy/public fingerprint verification. Live four-card gallery observed with working previews and clean console. Screenshot:.tmp/filter-examples-live.jpg.
+
+S.D.G.: Visitors can recognize four filter outcomes before choosing settings.
+Feynman gap: Desktop and375px layout plus recipe loading/reset verified; physical-device checks remain open.
