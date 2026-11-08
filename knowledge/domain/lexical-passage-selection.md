@@ -14,3 +14,5 @@ S.D.G.: Readers can move directly from a word in its sentence to its visual patt
 Feynman gap: Chrome interactions and finite-coordinate regressions passed; physical Safari remains untested.
 
 Reading-view Previous/Next buttons navigate the selected word without closing the dialog. The counter announces the active occurrence; buttons and arrow shortcuts wrap at either boundary; buttons disable only for a single occurrence. An outlined active word scrolls within the passage while controls stay visible. ResizeObserver keeps that occurrence visible after layout changes. Browser checks covered 2/9 through9/9, previous navigation and375px active-word visibility.
+
+Search results support Up/Down selection with wrapping and Enter to follow the active result. Query edits reset selection to the first match. Combobox/listbox semantics expose the active option; the selected result scrolls into view. No-match Enter is inert. Browser checks covered machine selection, result wrapping, query reset, no matches and375px active-result visibility.
