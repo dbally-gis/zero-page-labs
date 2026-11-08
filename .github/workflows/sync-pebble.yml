@@ -43,7 +43,7 @@ jobs:
       - name: Discover and synchronize published watchfaces
         run: python3 execution/sync_catalog.py --refresh
       - name: Test browser experiment logic
-        run: node --test execution/test_experiments.mjs
+        run: node --test execution/test_experiments.mjs execution/test_maritime.mjs
       - name: Validate refreshed site
         run: |
           python3 execution/build_site.py

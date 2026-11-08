@@ -24,3 +24,6 @@ Push the verified source and generated output to main. Existing GitHub sync work
 
 ## Learnings — 2026-11-07 Lexical playground
 Verify scene-to-reader occurrence navigation, both modes, complete 2D counts, PNG download, custom saved-view JSON roundtrip and responsive layouts after changes. Shared built-in view URLs must exclude custom text. PNG aspect ratio must survive tall sheet grids. Build experiments before the site to refresh the committed manifest.
+
+## Learnings — 2026-11-07 Maritime
+Maritime is served directly from experiments/maritime (HTML/CSS/ES modules); no bundler or dependency installation is required. Run node --test execution/test_experiments.mjs execution/test_maritime.mjs before the normal site build. Historical encounter data lives in battles.mjs, deterministic replay helpers in model.mjs. Ordinary anchor hashes must not restore default replay state. Shared moments begin paused. Keep representative markers distinct from named ships. Yalu sectors remain omitted pending mounting research.

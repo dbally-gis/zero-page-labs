@@ -18,3 +18,4 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [../directives/publish_experiments.md](../directives/publish_experiments.md) | procedural | 2026-11-07 | Build, verify and publish the two public browser experiments |
 | [archive/pre-experiments-20261107.md](archive/pre-experiments-20261107.md) | archive | 2026-11-07 | Prior hourly catalog automation handoff preserved before Experiments work |
 | [domain/experiments-readiness.md](domain/experiments-readiness.md) | domain | 2026-11-07 | Release rubric, resolved blockers, evidence and physical-device follow-up |
+| [domain/maritime-readiness.md](domain/maritime-readiness.md) | domain | 2026-11-07 | Maritime review rubric, resolved blockers, browser and release evidence |

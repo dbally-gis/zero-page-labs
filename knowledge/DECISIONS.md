@@ -23,3 +23,6 @@ Publish curated adaptations within the existing static Render site. Retro's Pyth
 
 ## Lexical canonical model and local results — 2026-11-07
 One deterministic token model owns colors, occurrences, spelling positions and synthetic sheets. Instanced 3D and complete SVG 2D consume it; 2D never silently samples. Decorative particles default off. PNG exports include passage context and Labs credit. Built-in links contain bounded view settings without passage text; custom sessions download locally as JSON and restore text/settings/camera. Original lexical-viz remains untouched.
+
+## Maritime — 2026-11-07
+Approved direction: predominantly tactical overhead watch-and-explore experience, with optional atmospheric perspective. Implement four illustrative encounters spanning galley, sailing and steam fleets rather than a command game. Keep historical sequence source-linked; label routes, spacing, timing and enlarged ships schematic. Use curated questions for this release; no live AI historian is claimed. Suppress Yalu weapon sectors until ship-specific mountings are researched. Alternative rejected: applying sailing broadside geometry to every armoured vessel, which would teach a false relationship.

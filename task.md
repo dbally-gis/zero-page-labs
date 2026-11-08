@@ -133,3 +133,38 @@ Execution: public adaptation in experiments-source/lexical; execution/build_expe
 - [x] Tablet controls fit 768px.
 - [x] Fresh verifier reviews final implementation.
 - [x] Public deployment matches the verified build.
+
+## Maritime battle explorer — active
+Goal: Build the approved predominantly overhead watch-and-explore naval history experience; run review-app (requested as review-pp), fix recommendations, deploy to zeropagelabs.com.
+Execution: browser-native HTML/CSS/ES modules in experiments/maritime; existing static build and GitHub/Render deployment. Historical routes are explicitly schematic, with cited factual explanations.
+
+### Validation contract
+- [x] Maritime opens from the homepage Experiments section.
+- [x] Maritime opens from the Experiments directory.
+- [x] The default view shows an animated overhead naval encounter.
+- [x] The battle selector offers distinct historical encounters within 1400–1900.
+- [x] Play/pause controls change replay progression.
+- [x] Scrubbing updates ship positions deterministically.
+- [x] Selecting a chapter displays its historical explanation.
+- [x] Selecting a ship displays its identity.
+- [x] Course overlays can be toggled.
+- [x] Weapon overlays can be toggled.
+- [x] The map supports zoom.
+- [x] A reset control restores map framing.
+- [x] An atmosphere view offers an oblique perspective.
+- [x] Contextual questions highlight relevant map features.
+- [x] Historical explanations link to supporting sources.
+- [x] Schematic positions are labelled visibly.
+- [x] The interface does not claim generated answers are historical evidence.
+- [x] Controls remain usable at 375px.
+- [x] Controls remain usable at 768px.
+- [x] Reduced-motion visitors begin with playback paused.
+- [x] Keyboard users can select ships.
+- [x] Replay model tests pass.
+- [x] Existing experiment tests pass.
+- [x] Site build passes.
+- [x] Deep static publication verification passes.
+- [x] A fresh review-app reviewer assesses the original request against the final artifact.
+- [x] Review release blockers are resolved.
+- [ ] Production deployment fingerprint matches the reviewed output.
+- [ ] The public Maritime route renders.

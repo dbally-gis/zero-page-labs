@@ -34,6 +34,8 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-07 20:46 — commit: Add guided built-in text examples to Lexical | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/FuturisticHUD.jsx,experiments-source/lexical/src/components/InterpretationRail.jsx
 - 2026-11-07 20:48 — commit: Record verified Lexical examples deployment | knowledge/SESSION.md,task.md
 - 2026-11-07 21:31 — commit: Rebuild Lexical as a connected reading playground | data/experiments-build.json,directives/publish_experiments.md,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/BookMatrix.jsx
+- 2026-11-07 21:33 — commit: Record verified Lexical playground deployment | knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,task.md
+- 2026-11-07 21:38 — commit: Promote full passage access to top of Lexical reader | data/experiments-build.json,experiments-source/lexical/src/components/ReadingPanel.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-B8hiIk7e.js,experiments/lexical/assets/index-Bt2qb0ns.css
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -72,3 +74,20 @@ Source7b90574ebda496b8b33923875e104be9aca17ef0. GitHub run42443111179 passed tes
 
 S.D.G.: Curious readers can follow recurring words into their context and keep a visual result while their custom passage stays on-device.
 Feynman gap: Real PNG downloads, local session restoration, responsive layouts, automated link restoration and public deployment are verified; physical Safari and direct browser share-link navigation remain unverified.
+
+## Maritime — active implementation
+Goal: Build the approved tactical naval battle explorer, run review-app, fix its recommendations, publish to Zero Page Labs.
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: implementation. Prior SESSION modifications preserved.
+Surface: experiments/maritime plus home/directory discovery; existing Render deployment pipeline. Contract in task.md. The project has no review-pp skill; review-app is the matching available workflow. Historical source research underway. No live generative endpoint is implied by contextual curated explanations.
+
+### Maritime — reviewed, awaiting deployment
+Four encounter atlas implemented in experiments/maritime. Independent review-app pass completed after fixes to anchor navigation, narrative/path alignment, unsupported sectors, shared pause, marker margins and context. 84 JS tests +17 Python tests pass; deep verifier10pages passes. Desktop/375px/768px browser checks passed. Public release pending. Terminal DNS cannot resolve GitHub; connector write requires unavailable approval. Signed-in GitHub browser upload interface is available and is being used to publish reviewed files through normal UI. Existing source dirty SESSION lines were preserved.
+
+### Maritime deployment blocked — 2026-11-07
+The signed-in GitHub upload page was reachable, but fileChooser.setFiles was rejected by the browser approval gate: user declined upload permission for github.com. No files were uploaded; no remote commit or deployment was created. Do not retry upload through another surface or API without new user authorization. Terminal GitHub DNS is unavailable; connector create_tree also requires approval unavailable under the session policy. Local implementation and independent review are complete; goal remains active because deployment is unfulfilled. Resume after explicit publishing authority is available.
+
+S.D.G.: Visitors will be able to explore naval formations through a source-linked atlas once publication is authorized.
+Feynman gap:84JS/17Python tests, desktop/375px/768px browser checks and independent review passed; public deployment is blocked by declined GitHub upload permission, physical Safari remains untested.

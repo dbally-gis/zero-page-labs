@@ -1,0 +1,85 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { BATTLES } from '../experiments/maritime/battles.mjs';
+import { STOPS, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying } from '../experiments/maritime/model.mjs';
+
+test('collection covers distinct propulsion eras within the requested period',()=>{
+  assert.deepEqual(BATTLES.map(b=>b.year),[1571,1805,1862,1894]);
+  assert.equal(new Set(BATTLES.map(b=>b.id)).size,4);
+  assert.equal(new Set(BATTLES.map(b=>b.era)).size,4);
+});
+for(const b of BATTLES) {
+  test(`${b.name}: complete paths, participants, citations and guided questions`,()=>{
+    assert.equal(b.chapters.length,5);
+    assert.equal(b.questions.length,3);
+    const ids=new Set(b.ships.map(s=>s.id)); assert.equal(ids.size,b.ships.length);assert.ok(ids.has(b.defaultShip));
+    for(const item of [...b.chapters,...b.questions,...b.ships]) {
+      assert.ok(b.sources[item.source]);
+      for(const id of item.focus||[]) assert.ok(ids.has(id));
+    }
+    for(const q of b.questions) {assert.ok(q.phase>=0&&q.phase<5);assert.ok(['courses','wind','weapons'].includes(q.layer));}
+    for(const s of b.ships){
+      assert.equal(s.points.length,5); assert.ok(s.side===0||s.side===1);
+      for(const p of s.points) {assert.equal(p.length,3);assert.ok(p.every(Number.isFinite));assert.ok(p[0]>=35&&p[0]<=965);assert.ok(p[1]>=35&&p[1]<=565);}
+      if(s.representative)assert.match(s.role,/Representative/);
+    }
+    for(const source of b.sources)assert.match(source.url,/^https:\/\//);
+  });
+  test(`${b.name}: scrubbing hits each authored chapter position`,()=>{
+    for(const s of b.ships)for(const [i,t] of STOPS.entries()){
+      const p=positionAt(s,t);assert.equal(p.x,s.points[i][0]);assert.equal(p.y,s.points[i][1]);
+      assert.ok(Math.abs(((p.heading-s.points[i][2]+540)%360)-180)<1e-8);
+    }
+  });
+  test(`${b.name}: reverse scrubbing has no accumulated motion or future trails`,()=>{
+    for(const s of b.ships){
+      const early=positionAt(s,.1); positionAt(s,.98);assert.deepEqual(positionAt(s,.1),early);
+      const trail=trailAt(s,.1);assert.equal(trail.length,2);assert.deepEqual(trail.at(-1),[early.x,early.y]);
+      for(let i=1;i<4;i++){
+        const a=positionAt(s,STOPS[i]-1e-7),c=positionAt(s,STOPS[i]+1e-7);
+        assert.ok(Math.hypot(a.x-c.x,a.y-c.y)<.01);
+      }
+    }
+  });
+}
+test('heading interpolation uses the short turn across north',()=>{
+  const s={points:[[0,0,350],[100,100,10],[100,100,10],[100,100,10],[100,100,10]]};
+  assert.deepEqual(positionAt(s,.12),{x:50,y:50,heading:360});
+});
+test('scrubbing and progression bound invalid or extreme inputs',()=>{
+  const s=BATTLES[1].ships[0];
+  assert.deepEqual(positionAt(s,-1),positionAt(s,0));assert.deepEqual(positionAt(s,2),positionAt(s,1));
+  assert.deepEqual(positionAt(s,NaN),positionAt(s,0));
+  assert.equal(advance(.9999,.15,4),1);assert.equal(advance(.2,-2,1),.2);
+  assert.equal(advance(.2,300,1),advance(.2,.15,1));
+  assert.equal(chapterAt(.5),2);assert.equal(chapterAt(1),4);
+});
+test('share links restore the selected battle, moment, vessel and view',()=>{
+  for(const b of BATTLES){
+    const state={battle:b,progress:.5,selected:b.defaultShip,view:'atmosphere'};
+    const view=readView(shareView(state));assert.equal(view.battle.id,b.id);assert.equal(view.progress,.5);assert.equal(view.ship,b.defaultShip);assert.equal(view.view,'atmosphere');
+  }
+});
+test('untrusted share fields cannot create arbitrary ships or views',()=>{
+  const state=readView('#battle=bad&t=Infinity&ship=bad&view=bad');assert.equal(state.battle.id,'trafalgar');assert.equal(state.ship,'victory');assert.equal(state.progress,0);assert.equal(state.view,'tactical');
+  assert.equal(readView('#t=-5').progress,0);assert.equal(readView('#t=500').progress,1);
+});
+test('map zoom keeps a usable extent through repeated zooming',()=>{
+  let camera={x:0,y:0,w:1000,h:600};
+  for(let i=0;i<100;i++)camera=cameraZoom(camera,.8);assert.equal(camera.w,420);assert.equal(camera.h,252);
+  for(let i=0;i<100;i++)camera=cameraZoom(camera,1.25);assert.equal(camera.w,1400);assert.equal(camera.h,840);
+});
+
+test('ordinary anchor navigation never counts as shared replay state',()=>{
+  assert.equal(isSharedView('#sources'),false);assert.equal(isSharedView('#battle=bad'),false);assert.equal(isSharedView('#explorer'),false);
+  assert.equal(isSharedView('#battle=yalu&t=0.5'),true);
+});
+test('shared moments start paused while a fresh visit can play',()=>{
+  assert.equal(startsPlaying('#battle=yalu&t=.5',false),false);
+  assert.equal(startsPlaying('',true),false);assert.equal(startsPlaying('',false),true);
+});
+test('Trafalgar breakthrough actually crosses the allied line',()=>{
+  const b=BATTLES.find(b=>b.id==='trafalgar'),at=id=>positionAt(b.ships.find(s=>s.id===id),.5);
+  assert.ok(at('victory').x>at('bucentaure').x);
+  assert.ok(at('sovereign').x>at('allied-6').x);
+});
