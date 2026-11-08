@@ -13,4 +13,4 @@ Verification:66 Node tests pass. Browser exercised workshop, a in Throughline, s
 S.D.G.: Readers can move directly from a word in its sentence to its visual pattern.
 Feynman gap: Chrome interactions and finite-coordinate regressions passed; physical Safari remains untested.
 
-Reading-view Previous/Next buttons navigate the selected word without closing the dialog. The counter announces the active occurrence; first/last buttons disable at boundaries. An outlined active word scrolls within the passage while controls stay visible. ResizeObserver keeps that occurrence visible after layout changes. Browser checks covered 2/9 through9/9, previous navigation and375px active-word visibility.
+Reading-view Previous/Next buttons navigate the selected word without closing the dialog. The counter announces the active occurrence; buttons and arrow shortcuts wrap at either boundary; buttons disable only for a single occurrence. An outlined active word scrolls within the passage while controls stay visible. ResizeObserver keeps that occurrence visible after layout changes. Browser checks covered 2/9 through9/9, previous navigation and375px active-word visibility.
