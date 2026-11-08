@@ -27,3 +27,5 @@ Published a593da2 via workflow 42513126217; live fallback expansion and Escape v
 
 ## Fullscreen word controls — 2026-11-08
 The fullscreen card contains a native passage-word selector, followed-word buttons and wrapping previous/next occurrence navigation. It shares the main selection state and stable-offset passage selection behavior, including the six-word rolling limit. The select is included in keyboard focus containment. Mobile controls occupy a reserved top region; the book stays visible below. Browser verified selecting Irene, backward wrap1→4, forward wrap4→1, switching to Watson, and retaining Watson2/5 after exit. Desktop1512px and phone375×812 passed visual checks; no console errors/warnings. 83 Node tests, deep validation and independent review pass. Native display-level fullscreen remains visually unverified.
+
+Published ec76db6; Render deployment succeeded. Live domain verified selector, Irene2/4 navigation, and occurrence retained after exit. Render CDN can retain HTML for300 seconds despite query parameters and request no-cache; wait for public content rather than redeploying a successful build.

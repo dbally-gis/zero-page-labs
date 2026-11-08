@@ -334,4 +334,4 @@ Target: Lexical App.jsx and CSS; rebuild committed experiment through execution/
 - [x] Experiment tests pass.
 - [x] Deep site validation passes.
 - [x] Independent verifier reports no blockers.
-- [ ] Public deployment serves the controls.
+- [x] Public deployment serves the controls.
