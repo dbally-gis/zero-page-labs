@@ -30,3 +30,9 @@
 .loss-events{display:flex;flex-wrap:wrap;gap:7px;align-items:center;border-top:1px solid var(--edge);padding-top:14px;margin-top:12px}.loss-events span{font:8px 'Courier New',monospace;color:var(--muted);letter-spacing:1px}.loss-events button{font-size:10px;min-height:38px;padding:7px 10px;color:#ffd0ba}
 
 .loss-key{z-index:4}
+
+#ship-damage{padding:12px 0;margin:10px 0;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+#ship-damage button{min-height:38px;padding:7px 10px;color:var(--gold);font-size:11px}
+#ship-damage p{font-size:12px;line-height:1.6;margin:8px 0}
+#ship-damage a{font-size:11px}
+#wreck-source:not([hidden]){display:block;margin-top:8px}

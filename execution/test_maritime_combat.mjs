@@ -80,3 +80,29 @@ test('Olympia opening discharge originates at the documented forward mounting',(
   const p=positionAt(ship,e.at),a=p.heading*Math.PI/180;
   const forward=(e.origin.x-p.x)*Math.sin(a)-(e.origin.z-p.y)*Math.cos(a);assert.ok(forward>=21.9&&forward<=22.1);
 });
+
+const {damageAt,damageStages,sinkingAt}=await import('../experiments/maritime/damage.mjs');
+test('Trafalgar damage stages are evidence-linked, reversible and vessel-specific',()=>{
+  const battle=BATTLES.find(b=>b.id==='trafalgar');
+  for(const id of ['victory','redoutable']){
+    const ship=battle.ships.find(s=>s.id===id),stage=damageStages(battle,ship)[0];
+    assert.ok(stage.source.url.startsWith('https://'));
+    assert.equal(damageAt(battle,ship,stage.at-.001),null);
+    assert.equal(damageAt(battle,ship,stage.at),stage);
+    assert.equal(damageAt(battle,ship,0),null);
+  }
+  assert.deepEqual(damageAt(battle,battle.ships.find(s=>s.id==='redoutable'),1).lost,['main','mizzen']);
+  assert.equal(damageAt(battle,battle.ships.find(s=>s.id==='victory'),1).torn,true);
+  for(const ship of battle.ships.filter(s=>!['victory','redoutable'].includes(s.id)))assert.equal(damageAt(battle,ship,1),null);
+});
+for(const battle of BATTLES)for(const ship of battle.ships.filter(s=>s.fate))test(`${battle.id}/${ship.id}: loss transition follows documented fate`,()=>{
+  const t=ship.fate.at;
+  assert.equal(sinkingAt(battle,ship,t-.001).started,false);
+  if(ship.fate.kind!=='sunk'){assert.equal(sinkingAt(battle,ship,1).started,false);return;}
+  assert.equal(sinkingAt(battle,ship,t).amount,0);
+  assert.ok(Math.abs(sinkingAt(battle,ship,t+.0175).amount-.5)<1e-8);
+  assert.equal(sinkingAt(battle,ship,t+.036).complete,true);
+  assert.equal(sinkingAt(battle,ship,t,true).complete,true);
+  assert.equal(sinkingAt(battle,ship,t+.036).shallow,battle.id==='manila-bay');
+  assert.equal(sinkingAt(battle,ship,t-.001).amount,0);
+});

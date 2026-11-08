@@ -1,5 +1,6 @@
 import * as T from './vendor/three-0.160.1.module.min.js';
 import {positionAt,trailAt,chapterAt,fateAt,activePositionAt} from './model.mjs';
+import {damageAt,sinkingAt} from './damage.mjs';
 import {createShotEffects} from './shot-effects.mjs';
 
 // The scene illustrates the same schematic replay as the accessible SVG chart.
@@ -41,11 +42,16 @@ function hullGeometry(length=54,width=19) {
   }
   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices,3));g.setIndex(indices);g.computeVertexNormals();return g;
 }
-function canvasGeometry(width,height,billow=3) {
+function canvasGeometry(width,height,billow=3,torn=false) {
   const g=new T.PlaneGeometry(width,height,10,7),p=g.attributes.position;
   for(let i=0;i<p.count;i++){
     const u=p.getX(i)/width+.5,v=p.getY(i)/height+.5;
     p.setZ(i,-Math.sin(u*PI)*Math.sin(v*PI)*billow);
+  }
+  if(torn){
+    const index=Array.from(g.index.array),kept=[];
+    for(let i=0;i<index.length;i+=3){const a=index[i];if([13,14,35,36,57,58].includes(a))continue;kept.push(...index.slice(i,i+3));}
+    g.setIndex(kept);
   }
   g.computeVertexNormals();return g;
 }
@@ -65,8 +71,8 @@ function mergePieces(group) {
   }
   return group;
 }
-function shipModel(type,side) {
-  const key=type+side;if(cache.has(key))return cache.get(key).clone(true);
+function shipModel(type,side,damage=null) {
+  const key=type+side+JSON.stringify(damage);if(cache.has(key))return cache.get(key).clone(true);
   const g=new T.Group(),isGalley=type==='galley',isSail=type==='sail',isMonitor=type==='monitor',isCruiser=type==='cruiser';
   const length=isGalley?64:isMonitor?43:56,width=isGalley?11:isMonitor?20:19;
   mesh(g,hullGeometry(length,width),isSail||isGalley?wood:iron);
@@ -82,11 +88,13 @@ function shipModel(type,side) {
     mesh(g,new T.BoxGeometry(13,3,12),trim,0,9.3,16);mesh(g,new T.BoxGeometry(12,1,11),deck,0,11.3,16);
     beam(g,[0,9,-24],[0,18,-40],.35,trim);
     for(const [z,height] of [[-15,38],[0,46],[17,33]]){
+      const mast=z===-15?'fore':z===0?'main':'mizzen';
+      if(damage?.lost?.includes(mast)){beam(g,[0,8,z],[0,13,z],.5,wood);beam(g,[0,12,z],[8,9,z+5],.35,wood);continue;}
       beam(g,[0,8,z],[0,height,z],.42,wood);
       const tiers=height>40?[[19,23,10],[31,22,9],[40,14,7]]:[[17,19,9],[28,16,8]];
       for(const [top,w,h] of tiers){
         beam(g,[-w/2,top,z],[w/2,top,z],.21,wood);
-        mesh(g,canvasGeometry(w,h,3.5),sail,0,top-h/2,z+.6);
+        mesh(g,canvasGeometry(w,h,3.5,damage?.torn&&mast==='fore'&&top===28),sail,0,top-h/2,z+.6);
         ropes.push([[-w/2,top,z],[0,height,z]],[[w/2,top,z],[0,height,z]]);
       }
       ropes.push([[0,height,z],[-7,8,z+8]],[[0,height,z],[7,8,z+8]],[[0,height,z],[0,10,-34]]);
@@ -118,7 +126,7 @@ function shipModel(type,side) {
   if(isMonitor)beam(g,[0,9,15],[0,22,15],.2);
   const fh=isMonitor?22:mastHeight,fz=isMonitor?15:mastZ;
   if(type==='ironclad')beam(g,[0,9,fz],[0,fh,fz],.25,iron);
-  const flagG=new T.BufferGeometry().setFromPoints([new T.Vector3(0,fh,fz),new T.Vector3(8,fh-1,fz+1),new T.Vector3(0,fh-4,fz)]);flagG.computeVertexNormals();mesh(g,flagG,side?rust:blue);
+  const flagG=new T.BufferGeometry().setFromPoints([new T.Vector3(0,fh,fz),new T.Vector3(8,fh-1,fz+1),new T.Vector3(0,fh-4,fz)]);flagG.computeVertexNormals();if(!damage?.lost?.includes('main'))mesh(g,flagG,side?rust:blue);
   if(ropes.length)lines(g,ropes);
   mergePieces(g);cache.set(key,g);return g.clone(true);
 }
@@ -274,9 +282,13 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
     const focus=state.question===null?state.battle.chapters[chapterAt(state.progress)].focus:state.battle.questions[state.question].focus;
     const occupied=[];
     for(const s of [...ships].sort((a,b)=>Number(b.data.id===state.selected)-Number(a.data.id===state.selected))){
-      s.model.rotation.z=motion.matches?0:Math.sin(clock*.65+s.data.id.length)*.008;
-      const fate=fateAt(s.data,state.progress),sunk=fate?.kind==='sunk';s.model.visible=!sunk;s.shadow.visible=!sunk;s.loss.visible=sunk;
-      s.label.textContent=sunk?`× ${s.data.name} · Sunk`:s.data.representative?'Fleet marker':s.data.name;
+      const damage=damageAt(state.battle,s.data,state.progress),damageKey=JSON.stringify(damage);
+      if(s.damageKey!==damageKey){s.model.removeFromParent();s.model=shipModel(s.data.type,s.data.side,damage);s.model.scale.setScalar(s.data.representative?.84:1.08);s.group.add(s.model);s.damageKey=damageKey;}
+      const sinking=sinkingAt(state.battle,s.data,state.progress,motion.matches);
+      s.model.rotation.z=sinking.started?sinking.amount*.32:(motion.matches?0:Math.sin(clock*.65+s.data.id.length)*.008);
+      s.model.position.y=-sinking.amount*(sinking.shallow?12:65);
+      const fate=fateAt(s.data,state.progress),sunk=fate?.kind==='sunk';s.model.visible=!sinking.complete||sinking.shallow;s.shadow.visible=!sunk;s.loss.visible=sinking.complete;
+      s.label.textContent=sunk?`${sinking.complete?'×':'↘'} ${s.data.name} · ${sinking.complete?'Sunk':'Sinking'}`:s.data.representative?'Fleet marker':s.data.name;
       s.wake.visible=!fate&&s.data.id!=='minnesota'&&state.progress<1;s.wake.material.opacity=.42+Math.sin(clock*1.2+s.data.id.length)*.06;
       const selected=s.data.id===state.selected,chapterFocus=focus.includes(s.data.id);
       s.label.hidden=!(sunk||selected||state.layers.labels||chapterFocus);
