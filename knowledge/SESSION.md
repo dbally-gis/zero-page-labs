@@ -334,7 +334,7 @@ Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation. Goa
 
 Overview checkpoint:95tests/build/deep verifier pass. Desktop fresh intro contains54,411points/218pages, sorted tags, Holmes active. Follow/tag/search transitions and replay pass;375px intro fits full book, focused editor restores, fullscreen regions do not overlap. Console clean. Independent source verifier accepted camera-refit fix; final phone scope recheck PASS.
 
-Live664f8de verified: fresh intro, Holmes1/462, descending count tags, Follow→focus and Show whole book replay. Screenshot:/private/tmp/lexical-overview-intro-live.png. Workflow42533064671 tests/validation pass; public fingerprint poll finishing.
+Live664f8de verified: fresh intro, Holmes1/462, descending count tags, Follow→focus and Show whole book replay. Screenshot:/private/tmp/lexical-overview-intro-live.png. Workflow42533064671 passed tests, Render deployment and public fingerprint verification in6m28s.
 S.D.G.: New readers see the complete book before tracing individual words, with common starter words easiest to find.
 Feynman gap:95tests, independent review, desktop/phone checks and live flow passed; physical-touch Safari remains untested.
 

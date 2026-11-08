@@ -64,3 +64,5 @@ Curated plus followed tags sort descending by source count, alphabetically on ti
 On375px fresh intro, editor rows are temporarily hidden so the book itself fits: intro174..326,stage334..654, toolbar below. Follow restores the standard visible tag editor. Fullscreen phone:stage270..552,intro556..622,toolbar632..812; no overlap. Desktop retains searchable sorted tags beside the intro.95tests cover sort/default focus, every overview position and save/share flag. Direct desktop/phone transition/search/layout checks pass; console clean.
 
 Published664f8de; live intro/descending tags/Holmes default/Follow→focus/overview replay verified. Screenshot:/private/tmp/lexical-overview-intro-live.png.
+
+Workflow42533064671 completed tests, Render deployment and public fingerprint confirmation in6m28s; public source664f8de,39watchfaces.95tests and independent review pass.
