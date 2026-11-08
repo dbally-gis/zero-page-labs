@@ -365,3 +365,18 @@ Scope:3D book and2D fallback thread/node emphasis, using current active occurren
 - [x] Browser checks pass.
 - [x] Independent verification finds no blockers.
 - [x] Public deployment serves the change.
+
+## Hide context threads — 2026-11-08
+Chart-owned toggle switches dimmed context to solo active word in3D/2D book. Preserve mapped positions, full source, followed tags and saved/share view behavior.
+- [x] Hide other threads removes inactive3D threads.
+- [x] Hide other threads removes inactive3D nodes.
+- [x] Selecting another word while hidden displays that word.
+- [x] Turning the toggle off restores dimmed context.
+- [x] Toggle is reachable in fullscreen.
+- [x]2D book follows the toggle.
+- [x] Saved views restore the toggle.
+- [x] Example links restore the toggle.
+- [x]375px fullscreen controls fit.
+- [x] Node tests pass.
+- [ ] Independent review passes. Blocked: verifier account usage limit.
+- [ ] Public change is verified.

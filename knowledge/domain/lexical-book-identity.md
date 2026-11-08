@@ -42,3 +42,6 @@ Published1af19e8; workflow42521289489 passed Render/public verification. Live218
 Selecting a tag or search result now gives its full-book thread92%opacity/2.5px width; other followed threads remain at6.5%opacity/.75px width. Inactive selected nodes become smaller and muted; only the focused word keeps labels. Instanced node effects depend on focusWord, so switching already-followed tags updates colors/scales.2D book shares the style helper; Throughline preserves its original appearance/depth behavior.90tests, fresh independent review and browser tag/search/occurrence/2D transfer checks pass. Whole-book coverage remains unchanged.
 
 Published3ec0cf0; live active-word contrast/search/occurrence transfer verified. Screenshot:/private/tmp/lexical-focused-thread-live.png.
+
+## Hide other threads — 2026-11-08
+Chart toolbar toggle removes inactive selected paths and nodes in3D book;2D book removes other paths and circles. Page geometry/model/selected tags remain intact. Toggle-off restores dimmed context; active-word changes retain isolation. Throughline ignores this book-only setting. Saved views and example links round-trip hideOthers (solo query flag); older links default false. Mobile fullscreen toolbar reserves132px for two rows.92tests and direct browser3D/2D/mobile checks pass; independent review unavailable due account usage limit.

@@ -281,3 +281,8 @@ Active-thread checkpoint: fullscreen Holmes/Said/Watson switching visibly transf
 Published3ec0cf0; live HTML serves index-N7rq9JZ-.js. Browser confirmed Holmes→Watson transfer with earlier threads dimmed, Watson2/81 retains emphasis. Proof:/private/tmp/lexical-focused-thread-live.png. Workflow42521745149 passed tests, Render deployment and public fingerprint verification after the cached deployment.json expired.
 S.D.G.: Readers can trace one word across the complete book without equally bright competing threads.
 Feynman gap:90tests, independent review, local3D/2D checks and live full-book emphasis verified; native display-level fullscreen remains visually unverified.
+
+## Hide context threads — active
+Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation. Goal: add reversible solo-active-word toggle inside chart toolbar, preserving tags, navigation and full mapping.
+
+Solo-toggle checkpoint:92Node tests, build/deep validation, browser3D on/off/context restoration, search/tag changes,2D singlethread/nodes and375×812 toolbar132px/nooverflow pass. Console clean. Independent verifier failed before review due account usage limit; independent validation remains UNVERIFIED. User requested continuation; completing authorized implementation/public checks with that gap disclosed.
