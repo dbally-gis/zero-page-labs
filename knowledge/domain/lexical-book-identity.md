@@ -53,3 +53,5 @@ Desktop focus previously hid the only visible normal-view word picker, leaving o
 
 ## Curated Sherlock starter words — 2026-11-08
 User requested Holmes initially focused instead ofwhich. Sherlock now offers curated tags:Holmes,Watson,Adler,Lestrade,London,Baker,letter,photograph,mystery,murder. Every tag recurs in the full book. Both normal and fullscreen tag rows use the example tag list, not frequency ranking. Bare example links and fresh visits focusHolmes; explicit saved selections remain respected. This supersedes the frequency-based default tag choice above.
+
+Curated defaults publisheda3a23cd; workflow42531861204 passed deployment/public verification. Fresh live visit focusesHolmes1/462 and shows ten curated tags across three visible rows.92tests pass. Screenshot:/private/tmp/lexical-curated-tags-live.png.
