@@ -321,3 +321,17 @@ Native Fullscreen API for the chart card; in-tab expansion when unsupported/reje
 - [x] Body scrolling is restored after exit.
 - [x] Independent review passes.
 - [x] Public deployment serves the fullscreen control.
+
+## Fullscreen word following — 2026-11-08
+Target: Lexical App.jsx and CSS; rebuild committed experiment through execution/build_experiments.py. Preserve 3D geometry. Existing publication authorization applies.
+- [x] Fullscreen offers a passage-word selector.
+- [x] Selecting a word updates the book without exiting fullscreen.
+- [x] Followed words can be selected directly in fullscreen.
+- [x] Next occurrence wraps from last to first in fullscreen.
+- [x] Previous occurrence wraps from first to last in fullscreen.
+- [x] Exiting fullscreen retains the selected occurrence.
+- [x] Fullscreen controls fit a 375px viewport.
+- [x] Experiment tests pass.
+- [x] Deep site validation passes.
+- [x] Independent verifier reports no blockers.
+- [ ] Public deployment serves the controls.
