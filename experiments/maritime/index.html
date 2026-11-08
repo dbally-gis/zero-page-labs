@@ -74,6 +74,7 @@
           <div class="playback-top"><button id="play" class="play" aria-label="Pause replay">Ⅱ</button><button id="restart" aria-label="Restart replay">↺</button><label class="speed-label">Speed <select id="speed" aria-label="Playback speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select></label><span id="replay-status" class="eyebrow">PLAYING / COMPRESSED SEQUENCE</span><button id="share" class="share">Share this moment ↗</button></div>
           <label class="sr-only" for="timeline">Replay progress</label><input id="timeline" type="range" min="0" max="1000" step="1" value="0" aria-valuetext="Approach">
           <div id="chapters" class="chapters" role="group" aria-label="Replay chapters"></div>
+          <div id="damage-events" class="loss-events" role="group" aria-label="Documented ship damage" hidden></div>
           <div id="loss-events" class="loss-events" role="group" aria-label="Documented ship outcomes" hidden></div>
           <p id="share-status" class="share-status" role="status"></p>
         </div>

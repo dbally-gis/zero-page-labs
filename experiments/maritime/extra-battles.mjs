@@ -132,3 +132,23 @@ gravelines.ships.push(ship('revenge','Revenge',0,'sail','Drake’s ship in the a
 
 gravelines.sources.push(source('Royal Museums Greenwich · Drake in Revenge attacks San Martín','https://www.rmg.co.uk/collections/objects/rmgc-object-155962','Collection record identifies the ships; the artwork title uses a different calendar date.'));
 gravelines.ships.find(s=>s.id==='revenge').source=3;
+
+// Individually described ships used by the damage replay. Paths remain schematic.
+function addParticipant(battleId,vessel){
+  EXTRA_BATTLES.find(battle=>battle.id===battleId).ships.push(vessel);
+}
+addParticipant('diu',ship('great-diu-ship','Great ship of Diu (unnamed)',1,'sail',
+  'The large Gujarati ship whose breached hull ended the battle. A separate vessel from the Egyptian rear carrack.',
+  line(750,408,260),{fate:{kind:'sunk',at:.95,source:0,text:'The Portuguese account describes the large ship’s hull taking water after sustained artillery fire. Its sinking closed the battle.'}}));
+addParticipant('downs',ship('santa-teresa','Santa Teresa',1,'sail',
+  'Portuguese flagship in the Spanish fleet. Set alight by Dutch fireships and destroyed in the action.',
+  course([708,330,350],[708,330,350],[730,320,25],[760,297,40],[762,298,40]),{source:2}));
+addParticipant('quiberon',ship('magnanime','HMS Magnanime',0,'sail',
+  'Howe’s ship in the British van. Lost the foreyard in the action with Formidable.',
+  course([266,272,70],[455,252,75],[625,211,45],[675,155,30],[695,135,20])));
+addParticipant('chesapeake',ship('intrepid','HMS Intrepid',1,'sail',
+  'Ship in the British van. The Graves Papers preserve her battle damage return.',
+  course([363,353,82],[480,349,83],[667,316,86],[732,340,106],[800,380,120])));
+addParticipant('nile',ship('bellerophon','HMS Bellerophon',0,'sail',
+  'Engaged Orient and drifted away after being dismasted.',
+  course([236,421,70],[391,367,60],[608,307,31],[660,324,50],[733,387,74]),{source:1}));

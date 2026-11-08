@@ -1,4 +1,4 @@
-import {damageAt,damageStages,sinkingAt} from './damage.mjs';
+import {damageAt,damageStages,sinkingAt,tornAtMast} from './damage.mjs';
 import {eventsFor,eventSource} from './battle-events.mjs';
 import { BATTLES } from './battles.mjs';
 import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt } from './model.mjs';
@@ -156,6 +156,44 @@ function buildFleet() {
     return {s,group,rotated,label,course,loss,vessel,damageRig};
   });
 }
+function drawDamage(group,damage,changedRig){
+  group.replaceChildren();
+  if(changedRig){
+    node('path',{d:'M0-29Q12-15 10 22L7 28H-7L-10 22Q-12-15 0-29',fill:'#57402b',stroke:'#d0ad6b'},group);
+    for(const [mast,y,w] of [['fore',-15,14],['main',2,19],['mizzen',20,12]]){
+      if(damage.lost?.includes(mast)){
+        node('path',{d:`M-4 ${y-2}L4 ${y+3}M0 ${y-3}V${y+4}`,stroke:'#c8a65e','stroke-width':2},group);
+        continue;
+      }
+      if(mast==='fore'&&damage.yardLost){
+        // Two fore-sail tiers keep the two kinds of yard loss distinct in plan view.
+        const intactY=damage.yardLost==='fore-course'?y-4:y+6;
+        const brokenY=damage.yardLost==='fore-course'?y+6:y-4;
+        node('path',{d:`M-9 ${intactY}Q0 ${intactY-4} 9 ${intactY}L8 ${intactY+4}H-8Z`,fill:'#e0d4af'},group);
+        node('path',{d:`M0 ${brokenY-2}L6 ${brokenY+2}`,stroke:'#c8a65e','stroke-width':2},group);
+        continue;
+      }
+      const edge=tornAtMast(damage,mast)
+        ?`L5 ${y+5}L2 ${y+9}L-2 ${y+3}L-5 ${y+9}L${-w+2} ${y+9}`
+        :`Q0 ${y+4} ${-w+2} ${y+9}`;
+      node('path',{d:`M${-w} ${y}Q0 ${y-6} ${w} ${y}L${w-2} ${y+9}${edge}Z`,fill:'#e0d4af',stroke:'#f1e5bc','stroke-width':.5},group);
+    }
+  }
+  const marks={
+    bow:'M-5-23 -1-20 -3-16 4-18 6-23',
+    hull:'M-5-5 -2-11 4-8 2-4 6-1 -3 2Z',
+    port:'M-11-6 -6-4 -8 0 -4 3 -10 6Z',
+    starboard:'M11-7 6-4 8 0 4 3 10 6Z',
+    pilot:'M-4-16H3L6-12 0-10 -4-12Z',
+    deck:'M1-11 6-8 4-6 8-3 1-2 -1-6Z',
+    funnel:'M-3-6 2-8 4-4 0-1 -3-3Z',
+    burn:'M-7 5 -3 1 3 3 7 7 5 13 -3 15 -7 11Z'
+  };
+  for(const mark of damage?.marks??[]){
+    if(marks[mark])node('path',{d:marks[mark],fill:'#261d18',stroke:'#d49e73','stroke-width':1.3},group);
+  }
+}
+
 function renderPositions() {
   const chapter=state.battle.chapters[chapterAt(state.progress)];
   const focus=state.question===null?chapter.focus:state.battle.questions[state.question].focus;
@@ -164,25 +202,19 @@ function renderPositions() {
     group.setAttribute('transform',`translate(${p.x.toFixed(2)} ${p.y.toFixed(2)})`);
     const sinking=sinkingAt(state.battle,s,state.progress,reduced.matches),damage=damageAt(state.battle,s,state.progress);
     rotated.style.display=sinking.complete&&!sinking.shallow?'none':'';rotated.style.opacity=String(1-sinking.amount*(sinking.shallow?.55:1));loss.style.display=sinking.complete?'':'none';
-    vessel.style.display=damage?'none':'';
-    const rigKey=JSON.stringify(damage);
-    if(damageRig.dataset.stage!==rigKey){
-      damageRig.dataset.stage=rigKey;damageRig.replaceChildren();
-      if(damage){
-      node('path',{d:'M0-29Q12-15 10 22L7 28H-7L-10 22Q-12-15 0-29',fill:'#57402b',stroke:'#d0ad6b'},damageRig);
-      for(const [mast,y,w] of [['fore',-15,14],['main',2,19],['mizzen',20,12]]){
-        if(damage.lost?.includes(mast)){node('path',{d:`M-4 ${y-2}L4 ${y+3}M0 ${y-3}V${y+4}`,stroke:'#c8a65e','stroke-width':2},damageRig);continue;}
-        const d=damage.torn&&mast==='fore'?`M${-w} ${y}Q0 ${y-6} ${w} ${y}L${w-2} ${y+9}L5 ${y+5}L2 ${y+9}L-2 ${y+3}L-5 ${y+9}L${-w+2} ${y+9}Z`:`M${-w} ${y}Q0 ${y-6} ${w} ${y}L${w-2} ${y+9}Q0 ${y+4} ${-w+2} ${y+9}Z`;
-        node('path',{d,fill:'#e0d4af',stroke:'#f1e5bc','stroke-width':.5},damageRig);
-      }
+    const changedRig=s.type==='sail'&&(damage?.lost||damage?.torn||damage?.yardLost);
+    vessel.style.display=changedRig?'none':'';
+    if(damageRig.dataset.stage!==String(damage?.at)){
+      damageRig.dataset.stage=String(damage?.at);
+      drawDamage(damageRig,damage,changedRig);
     }
-    }
-    label.textContent=sunk?`${sinking.complete?'×':'↘'} ${s.name} · ${sinking.complete?'Sunk':'Sinking'}`:s.representative?'Fleet marker':s.name;
-    group.setAttribute('aria-label',`${s.name}${fate?'. '+(sunk?(sinking.complete?'Sunk':'Sinking'):'Captured'):''}. Inspect ship.`);
+    const condition=fate?(sunk?(sinking.complete?'Sunk':'Sinking'):'Captured'):damage?'Damaged':'';
+    label.textContent=sunk?`${sinking.complete?'×':'↘'} ${s.name} · ${condition}`:s.representative?'Fleet marker':s.name+(damage?' · Damaged':'');
+    group.setAttribute('aria-label',`${s.name}${condition?'. '+condition:''}. Inspect ship.`);
     rotated.setAttribute('transform',`rotate(${p.heading.toFixed(2)})`);
     group.classList.toggle('selected',selected); group.classList.toggle('highlighted',highlight);
     group.setAttribute('aria-pressed',String(selected));
-    label.style.display=sunk||state.layers.labels||selected||highlight?'':'none';
+    label.style.display=sunk||damage||state.layers.labels||selected||highlight?'':'none';
     course.setAttribute('points',trailAt(s,s.fate?.kind==='sunk'?Math.min(state.progress,s.fate.at):state.progress).map(p=>p.join(',')).join(' '));
     course.classList.toggle('focus-course',selected||highlight);
   }
@@ -260,6 +292,23 @@ function loadBattle(battle,progress=0,selected=battle.defaultShip) {
   $('source-list').replaceChildren(...battle.sources.map(s=>{
     const li=html('li'),a=html('a',s.title);a.href=s.url;li.append(a,html('p',s.note));return li;
   }));
+  const damageList=$('damage-events');
+  damageList.replaceChildren(html('span','SHIP DAMAGE · select to inspect'));
+  for(const ship of battle.ships){
+    for(const stage of damageStages(battle,ship)){
+      const button=html('button',`${ship.name} · ${stage.title}`);
+      button.type='button';
+      button.addEventListener('click',()=>{
+        state.selected=ship.id;
+        seek(stage.at);
+        renderShip();
+        $('chart').scrollIntoView({behavior:'instant',block:'start'});
+        announce(`${ship.name}. ${stage.title}. Replay paused.`);
+      });
+      damageList.append(button);
+    }
+  }
+  damageList.hidden=damageList.childElementCount===1;
   const outcomes=battle.ships.filter(s=>s.fate);$('loss-events').hidden=!outcomes.length;
   $('loss-events').replaceChildren(html('span','SHIP OUTCOMES · select to inspect'));
   for(const s of outcomes){const button=html('button',`${s.fate.kind==='sunk'?'×':'◆'} ${s.name} · ${s.fate.kind==='sunk'?'Sunk':'Captured'}`);button.type='button';button.addEventListener('click',()=>{state.selected=s.id;seek(s.fate.at);renderShip();renderPositions();$('chart').scrollIntoView({behavior:'instant',block:'start'});announce(`${s.name}: ${s.fate.kind}. ${s.fate.text}`);});$('loss-events').append(button);}

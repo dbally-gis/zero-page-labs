@@ -87,7 +87,7 @@ test('Trafalgar breakthrough actually crosses the allied line',()=>{
 
 test('source-backed fates distinguish captured vessels from battle sinkings',()=>{
   const losses=BATTLES.flatMap(b=>b.ships.filter(s=>s.fate).map(s=>({b,s})));
-  assert.deepEqual(losses.filter(({s})=>s.fate.kind==='sunk').map(({s})=>s.id),['egyptian-rear','superbe','orient','re-italia','reina-cristina','castilla']);
+  assert.deepEqual(losses.filter(({s})=>s.fate.kind==='sunk').map(({s})=>s.id),['egyptian-rear','great-diu-ship','superbe','orient','re-italia','reina-cristina','castilla']);
   for(const {b,s} of losses){
     assert.equal(s.representative,false);assert.ok(b.sources[s.fate.source]);assert.ok(s.fate.text);assert.ok(s.fate.at>0&&s.fate.at<1);
     assert.equal(fateAt(s,s.fate.at-.001),null);assert.equal(fateAt(s,s.fate.at),s.fate);

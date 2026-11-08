@@ -66,7 +66,7 @@ test('fires disappear at sourced loss thresholds without changing fate data',()=
   assert.equal(effectsAt(battle,.91).filter(e=>e.kind==='reported-fire').length,0);
 });
 test('fleet-only accounts do not manufacture a target impact',()=>{
-  for(const id of ['lepanto','downs','chesapeake']){
+  for(const id of ['lepanto','chesapeake']){
     const battle=BATTLES.find(b=>b.id===id);
     assert.ok(eventsFor(battle).filter(e=>e.kind).every(e=>e.kind==='muzzle'&&!e.target));
   }
@@ -81,7 +81,7 @@ test('Olympia opening discharge originates at the documented forward mounting',(
   const forward=(e.origin.x-p.x)*Math.sin(a)-(e.origin.z-p.y)*Math.cos(a);assert.ok(forward>=21.9&&forward<=22.1);
 });
 
-const {damageAt,damageStages,sinkingAt}=await import('../experiments/maritime/damage.mjs');
+const {DAMAGE,damageAt,damageStages,sinkingAt}=await import('../experiments/maritime/damage.mjs');
 test('Trafalgar damage stages are evidence-linked, reversible and vessel-specific',()=>{
   const battle=BATTLES.find(b=>b.id==='trafalgar');
   for(const id of ['victory','redoutable']){
@@ -105,4 +105,27 @@ for(const battle of BATTLES)for(const ship of battle.ships.filter(s=>s.fate))tes
   assert.equal(sinkingAt(battle,ship,t,true).complete,true);
   assert.equal(sinkingAt(battle,ship,t+.036).shallow,battle.id==='manila-bay');
   assert.equal(sinkingAt(battle,ship,t-.001).amount,0);
+});
+
+test('each encounter has ordered, reversible damage on a documented participant',()=>{
+  assert.deepEqual(Object.keys(DAMAGE).sort(),BATTLES.map(b=>b.id).sort());
+  for(const battle of BATTLES){
+    for(const [id,stages] of Object.entries(DAMAGE[battle.id])){
+      const ship=battle.ships.find(s=>s.id===id);
+      assert.ok(ship&&!ship.representative,`${battle.id}/${id}`);
+      assert.ok(stages.length);
+      for(const [index,stage] of stages.entries()){
+        assert.match(stage.source.url,/^https:\/\//);
+        assert.ok(stage.at>(stages[index-1]?.at??0)&&stage.at<(ship.fate?.at??1));
+        assert.equal(damageAt(battle,ship,stage.at),stage);
+        assert.equal(damageAt(battle,ship,stage.at-1e-6),stages[index-1]??null);
+      }
+    }
+  }
+});
+test('Downs fire applies to Santa Teresa without inventing a projectile',()=>{
+  const battle=BATTLES.find(b=>b.id==='downs');
+  const fire=effectsAt(battle,.66).find(e=>e.kind==='reported-fire');
+  assert.equal(fire?.eventId,'fireships');
+  assert.equal(fire.projectile,null);
 });

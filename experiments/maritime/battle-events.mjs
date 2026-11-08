@@ -15,7 +15,8 @@ export const BATTLE_EVENTS={
     E('approach',.24,'Almeida closes on the coalition','The Portuguese account describes the attack at Diu. Replay spacing is not a recovered gunnery range.','flor',DIU),
     E('opening',.4,'Flor de la Mar uses her artillery','The account places the flagship’s artillery in the attack. The muzzle smoke represents a discharge, without inventing an opening hit or a first-shot time.','flor',DIU,F('flor')),
     E('rear-carrack',.56,'The Egyptian rear carrack is engaged','The Portuguese study attributes the sinking of the last Egyptian carrack to Flor de la Mar’s artillery. One projectile represents that barrage; the ship’s name, round count and fatal hit are unknown.','egyptian-rear',DIU,{kind:'timber',shooter:'flor',target:'egyptian-rear',certainty:'Institutional account · barrage represented'}),
-    E('channel',.76,'The flagship holds the channel','The account describes Flor de la Mar preventing oared craft from entering the fight. No particular galley hit is assigned.','flor',DIU,F('flor'))
+    E('channel',.76,'The flagship holds the channel','The account describes Flor de la Mar preventing oared craft from entering the fight. No particular galley hit is assigned.','flor',DIU,F('flor')),
+    E('great-ship',.87,'The great Gujarati ship takes water','The Portuguese study describes sustained fire breaching the great ship’s hull. This late action concerns a separate vessel from the Egyptian rear carrack.','great-diu-ship',DIU)
   ],
   lepanto:[
     E('bow-guns',.32,'Bow guns before close combat','The museum describes galley artillery carried at the bow. A discharge on Real represents this weapon phase, not a recorded first shot or confirmed hit on Sultana.','real',GALLEY,F('real')),
@@ -31,7 +32,7 @@ export const BATTLE_EVENTS={
   downs:[
     E('anchorage',.24,'An attack on the sheltered fleet','The wreck record places the action in the Downs. Generic tracks do not establish individual gunnery positions.','aemilia',2),
     E('dutch-fire',.45,'Dutch gunfire in the action','Aemilia represents the Dutch force in this selected episode. No source here identifies a particular Aemilia round hitting the anonymous Spanish marker, so no hit is animated.','aemilia',1,F('aemilia')),
-    E('fireships',.62,'Fireships are expended','The heritage record identifies Dutch fireships used against Santa Teresa and Santiago. Those named targets and craft are not individually modelled here; a generic marker is not set on fire in their place.','downs-spanish',2),
+    E('fireships',.62,'Fireships set Santa Teresa alight','The heritage record links Dutch fireships to the Portuguese flagship. The replay shows the fire phase of her destruction, with its spread and duration schematic.','santa-teresa',2,{kind:'reported-fire',target:'santa-teresa',certainty:'Contemporary report · schematic fire'}),
     E('losses',.83,'The limits of the wreck record','The heritage account warns that many named ships cannot be matched reliably to the wrecks. This replay does not manufacture a fatal shot or a loss for an anonymous marker.','downs-spanish',2)
   ],
   quiberon:[
@@ -55,7 +56,7 @@ export const BATTLE_EVENTS={
   'hampton-roads':[
     E('monitor-fire',.32,'Shot meets Virginia’s armour','NOAA describes the ironclads’ shots deflecting from their armour. This representative contact uses sparks and a ricochet, without penetration or hull fire. It is not a separately recorded round.','monitor',HAMPTON,{kind:'armor',shooter:'monitor',target:'virginia',deflect:true,certainty:CONTACT}),
     E('virginia-fire',.4,'The ironclads exchange fire','The reciprocal contact illustrates the same armour-deflection phase. Its replay interval is not a reload rate or established firing order.','virginia',HAMPTON,{kind:'armor',shooter:'virginia',target:'monitor',deflect:true,certainty:CONTACT}),
-    E('pilothouse',.73,'Virginia hits Monitor’s pilothouse','NOAA describes a shot against the forward pilothouse that temporarily blinds Worden. The effect is a brief impact near the bow, not a ship fire; the generic model does not resolve the exact damage.','monitor',HAMPTON,{kind:'armor',shooter:'virginia',target:'monitor',anchor:'bow',certainty:'Documented hit · schematic impact point'}),
+    E('pilothouse',.73,'Virginia hits Monitor’s pilothouse','NOAA describes a shot against the forward pilothouse that temporarily blinds Worden. The effect is a brief impact near the bow, not a ship fire; the replay then marks the damage described in Greene’s letter.','monitor',HAMPTON,{kind:'armor',shooter:'virginia',target:'monitor',anchor:'bow',certainty:'Documented hit · schematic impact point'}),
     E('withdraw',.85,'Disengagement, not destruction','Monitor assesses damage and Virginia later withdraws. Neither ship is sunk in this 9 March encounter.','monitor',HAMPTON)
   ],
   lissa:[

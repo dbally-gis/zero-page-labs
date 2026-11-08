@@ -1,6 +1,6 @@
 import * as T from './vendor/three-0.160.1.module.min.js';
 import {positionAt,trailAt,chapterAt,fateAt,activePositionAt} from './model.mjs';
-import {damageAt,sinkingAt} from './damage.mjs';
+import {damageAt,sinkingAt,tornAtMast} from './damage.mjs';
 import {createShotEffects} from './shot-effects.mjs';
 
 // The scene illustrates the same schematic replay as the accessible SVG chart.
@@ -9,6 +9,8 @@ const PI=Math.PI;
 const wood=new T.MeshStandardMaterial({color:0x57402b,roughness:.88});
 const trim=new T.MeshStandardMaterial({color:0xbc9555,roughness:.62});
 const deck=new T.MeshStandardMaterial({color:0xa58d62,roughness:1});
+const splinter=new T.MeshStandardMaterial({color:0xb28a5e,roughness:1});
+const scorch=new T.MeshStandardMaterial({color:0x201c1a,roughness:1});
 const dark=new T.MeshStandardMaterial({color:0x252d2b,roughness:.8});
 const iron=new T.MeshStandardMaterial({color:0x526160,roughness:.6,metalness:.25});
 const sail=new T.MeshStandardMaterial({color:0xf1e4c4,roughness:1,side:T.DoubleSide});
@@ -93,8 +95,13 @@ function shipModel(type,side,damage=null) {
       beam(g,[0,8,z],[0,height,z],.42,wood);
       const tiers=height>40?[[19,23,10],[31,22,9],[40,14,7]]:[[17,19,9],[28,16,8]];
       for(const [top,w,h] of tiers){
+        const tier=tiers[0][0]===top?'course':tiers[1][0]===top?'topsail':'upper';
+        if(damage?.yardLost===mast+'-'+tier){
+          beam(g,[0,top,z],[w*.21,top-4,z+2],.25,wood);
+          continue;
+        }
         beam(g,[-w/2,top,z],[w/2,top,z],.21,wood);
-        mesh(g,canvasGeometry(w,h,3.5,damage?.torn&&mast==='fore'&&top===28),sail,0,top-h/2,z+.6);
+        mesh(g,canvasGeometry(w,h,3.5,tier==='topsail'&&tornAtMast(damage,mast)),sail,0,top-h/2,z+.6);
         ropes.push([[-w/2,top,z],[0,height,z]],[[w/2,top,z],[0,height,z]]);
       }
       ropes.push([[0,height,z],[-7,8,z+8]],[[0,height,z],[7,8,z+8]],[[0,height,z],[0,10,-34]]);
@@ -107,8 +114,15 @@ function shipModel(type,side,damage=null) {
     const geom=new T.BufferGeometry().setFromPoints([new T.Vector3(-12,14,-3),new T.Vector3(12,33,-3),new T.Vector3(10,13,0)]);geom.computeVertexNormals();mesh(g,geom,sail);
     ropes.push([[0,32,-1],[-4,9,-21]],[[0,32,-1],[4,9,23]]);
     beam(g,[0,9,-30],[0,10,-40],.45,trim);
+    for(const x of [-2.6,2.6]){
+      const broken=damage?.marks?.includes('bow');
+      beam(g,[x,8,-17],[broken?x*.6:x*.32,broken?10:8,-28],.42,broken?splinter:trim);
+    }
   } else if(isMonitor){
     mesh(g,new T.CylinderGeometry(7,7,6,20),iron,0,10,0);mesh(g,new T.BoxGeometry(5,3,4),iron,0,9,-15);
+    const cracked=damage?.marks?.includes('pilot');
+    mesh(g,new T.BoxGeometry(5.4,.6,4.4),iron,cracked?1.8:0,10.7,-15,cracked?[0,0,.21]:null);
+    if(cracked)beam(g,[-1.8,10.5,-17.04],[.7,7.8,-17.04],.23,scorch);
     for(const x of [-2,2])beam(g,[x,10,-5],[x,10,-14],.7,dark);
     mesh(g,new T.CylinderGeometry(1.5,1.5,6,8),dark,0,10,14);
   } else if(isCruiser){
@@ -120,6 +134,24 @@ function shipModel(type,side,damage=null) {
     const c=mesh(g,new T.CylinderGeometry(1,1,7,4,1,false,PI/4),iron,0,10,0);c.scale.set(9,1,21);
     mesh(g,new T.CylinderGeometry(1.4,1.8,11,8),dark,0,18,-4);
     for(const x of [-8,8])for(const z of [-12,0,12])beam(g,[x,10,z],[x*1.65,10,z],.45,dark);
+  }
+  // Localised marks are schematic silhouettes, not a measured survey of the damage.
+  for(const mark of damage?.marks??[]){
+    if(mark==='bow'||mark==='pilot')continue;
+    if(mark==='port'||mark==='starboard'||mark==='hull'){
+      const sides=mark==='hull'?[-1,1]:[mark==='port'?-1:1];
+      for(const side of sides){
+        const x=side*width*.43;
+        mesh(g,new T.DodecahedronGeometry(mark==='port'?3.7:2.3),scorch,x,4.8,0).scale.set(.33,1,1.8);
+        beam(g,[x,6.6,-4],[x*.91,5.9,4],.34,splinter);
+      }
+    }else if(mark==='funnel'){
+      mesh(g,new T.DodecahedronGeometry(1.5),scorch,1.65,17,-5).scale.set(.45,1,.7);
+    }else{
+      const y=isCruiser?11.12:8.2,z=mark==='burn'?6:mark==='deck'?-8:-11;
+      mesh(g,new T.DodecahedronGeometry(mark==='burn'?7:4),scorch,mark==='deck'?2.6:0,y,z).scale.set(.82,.10,1.5);
+      if(mark!=='burn')beam(g,[-3,y+.35,z-1],[2,y+.4,z+4],.48,splinter);
+    }
   }
   // Fleet-colour pennants are diagram keys, not historical national flags.
   const mastHeight=isSail?46:isGalley?32:34,mastZ=isSail?0:isGalley?-1:16;
@@ -288,10 +320,10 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
       s.model.rotation.z=sinking.started?sinking.amount*.32:(motion.matches?0:Math.sin(clock*.65+s.data.id.length)*.008);
       s.model.position.y=-sinking.amount*(sinking.shallow?12:65);
       const fate=fateAt(s.data,state.progress),sunk=fate?.kind==='sunk';s.model.visible=!sinking.complete||sinking.shallow;s.shadow.visible=!sunk;s.loss.visible=sinking.complete;
-      s.label.textContent=sunk?`${sinking.complete?'×':'↘'} ${s.data.name} · ${sinking.complete?'Sunk':'Sinking'}`:s.data.representative?'Fleet marker':s.data.name;
+      s.label.textContent=sunk?`${sinking.complete?'×':'↘'} ${s.data.name} · ${sinking.complete?'Sunk':'Sinking'}`:s.data.representative?'Fleet marker':s.data.name+(damage?' · Damaged':'');
       s.wake.visible=!fate&&s.data.id!=='minnesota'&&state.progress<1;s.wake.material.opacity=.42+Math.sin(clock*1.2+s.data.id.length)*.06;
       const selected=s.data.id===state.selected,chapterFocus=focus.includes(s.data.id);
-      s.label.hidden=!(sunk||selected||state.layers.labels||chapterFocus);
+      s.label.hidden=!(sunk||damage||selected||state.layers.labels||chapterFocus);
       const screen=s.group.position.clone().add(new T.Vector3(0,4,37)).project(camera);
       const labelWidth=s.label.textContent.length*5.6+12;
       const labelX=Math.max(labelWidth/2+4,Math.min(host.clientWidth-labelWidth/2-4,(screen.x+1)*.5*host.clientWidth));
