@@ -14,3 +14,8 @@ Verification:81 Node tests, builder regeneration, source/output manifest and dee
 
 S.D.G.: Visitors see the distinctive dimensional book immediately, using a recognizable literary example.
 Feynman gap: Physical Safari/touch remains untested; desktop/phone browser checks and book-frustum tests verify current framing.
+
+## Larger default canvas — 2026-11-08
+Desktop3D book now starts in a focus presentation: source/word-editing rows are hidden, current-word navigation and mode buttons sit at the edges, and the existing portrait book keeps its geometry/camera. Show word controls restores editing; Focus book returns to the larger illustration. Text entry and reading remain in the header. Throughline/2D retain their normal layout. Below900px the existing phone layout remains intact. Short desktops use a single page scroll to keep controls reachable.
+
+At1512×685, focused canvas measures498px versus318px with word controls visible (56.6% taller). At1512×741 it measures554px. Browser verified toggling both ways,900×685,900×500 access,375×812 no horizontal overflow, reader/text dialogs and a decoded1600×791 PNG.81 tests, deep verifier and independent source review pass. Public deployment pending.

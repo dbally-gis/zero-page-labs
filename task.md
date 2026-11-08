@@ -296,3 +296,15 @@ User correction: the dimensional book is the primary experience; do not replace 
 - [x] Existing reader controls still work.
 - [x] Independent review passes.
 - [x] Public deployment serves the restored book.
+
+## Larger default 3D book — 2026-11-08
+Preserve portrait pages, depth, threads and Sherlock default. Increase canvas space rather than replacing or cropping the book.
+- [x] Desktop default book canvas is at least70% of viewport height at1512×685.
+- [x] Default book corners stay within the camera frustum.
+- [x] Word controls can be revealed.
+- [x] Word controls can be hidden again.
+- [x] Text entry remains reachable in focus view.
+- [x] Reading view remains reachable in focus view.
+- [x] Phone book view has no horizontal overflow at375px.
+- [x] Independent review passes.
+- [ ] Public deployment serves the larger default book.

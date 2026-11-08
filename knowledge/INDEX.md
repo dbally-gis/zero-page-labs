@@ -28,5 +28,5 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 
 | [domain/lexical-url-framing.md](domain/lexical-url-framing.md) | domain | 2026-11-08 | Responsive spreads, tight camera fitting, layout migration and bounded URL import |
 
-| [domain/lexical-book-identity.md](domain/lexical-book-identity.md) | domain | 2026-11-08 | User-corrected primary3D book, Sherlock default and layout3 migration |
+| [domain/lexical-book-identity.md](domain/lexical-book-identity.md) | domain | 2026-11-08 | Primary3D book, Sherlock default, larger focus canvas and layout3 migration |
 | [FAILURES/2026-11-08_lexical-book-layout/context.md](FAILURES/2026-11-08_lexical-book-layout/context.md) | failure | 2026-11-08 | Width-fill optimization incorrectly replaced the central book metaphor |

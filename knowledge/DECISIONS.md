@@ -35,3 +35,6 @@ Use landscape sheet spreads and projected camera fitting to fill the chart rathe
 
 ## Restore the defining3D book — 2026-11-08
 User correction supersedes the landscape3D spread decision above. The dimensional portrait-page book is the primary visualization; keep its depth-separated pages and recurring-word threads. Camera/viewport improvements must preserve it. Landscape spreads remain a2D fallback. Sherlock Holmes is now the embedded default illustration. See domain/lexical-book-identity.md and the associated failure record.
+
+## Give the book the window — 2026-11-08
+Preserve the dimensional portrait book while enlarging its canvas. Default desktop book focus puts nonessential word-editing rows on demand and keeps compact edge controls. Reframing responds to the larger canvas; page geometry is unchanged. Phone layout remains unchanged because the book already fills its available width.

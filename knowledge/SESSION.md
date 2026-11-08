@@ -57,6 +57,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 11:09 — commit: Fill Lexical charts and import text from URLs | data/experiments-build.json,directives/publish_experiments.md,execution/test_experiments.mjs,experiments-source/lexical/public/texts/sherlock-holmes-source.json,experiments-source/lexical/public/texts/sherlock-holmes.txt
 - 2026-11-08 11:12 — commit: Record verified chart framing and URL import deployment | knowledge/SESSION.md,knowledge/domain/lexical-url-framing.md,task.md
 - 2026-11-08 12:24 — commit: Restore the 3D book and start with Sherlock Holmes | data/experiments-build.json,execution/build_experiments.py,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/PlaygroundScene.jsx
+- 2026-11-08 12:28 — commit: Record verified restored book and Sherlock default | knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -223,3 +224,10 @@ Feynman gap: Physical Safari remains untested; browser and camera-frustum eviden
 Restored book published:5d06e9b4d1e36993e29f508c76f3a76ecc08a293; run42509902047 passed through public fingerprint verification. Fresh public visit selected Sherlock with1,864 mapped occurrences/8sheets and Book view; visible depth-separated portrait pages and clean console. Screenshot:/private/tmp/lexical-book-restored-live.png.
 S.D.G.: Visitors again see the distinctive3D book immediately, with a recognizable literary illustration.
 Feynman gap:81 tests, independent review and desktop/phone browser checks passed; physical Safari remains untested.
+
+## Larger default book — active
+Agent: OpenAI Codex. Handoff-type: continuation. User asks for a larger book without losing its3D representation. Plan: default desktop focus presentation with a taller canvas; existing word controls available via toggle. Preserve geometry, camera fit, Sherlock data, reader and URL intake. Status: verified, publishing.
+
+Larger-book verification:498px focused canvas at1512×685 vs318px with editing controls. Geometry/camera/defaultSherlock unchanged. Toggle, text/reader dialogs,900px/short500px control reachability,375px no horizontal overflow and decoded1600×791 export passed.81 tests, manifest, deep verifier and fresh source review PASS. Publishing next.
+S.D.G.: Visitors see a larger dimensional book while retaining text and word controls on demand.
+Feynman gap: Physical Safari remains untested; measured canvas dimensions and browser checks verify current desktop/phone behavior.
