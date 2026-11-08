@@ -308,3 +308,16 @@ Preserve portrait pages, depth, threads and Sherlock default. Increase canvas sp
 - [x] Phone book view has no horizontal overflow at375px.
 - [x] Independent review passes.
 - [x] Public deployment serves the larger default book.
+
+## Full-screen 3D book — 2026-11-08
+Native Fullscreen API for the chart card; in-tab expansion when unsupported/rejected. Preserve book geometry and Sherlock default.
+- [x] Native fullscreen requests are covered by the API test.
+- [x] Exit full screen restores the normal book view.
+- [x] Escape exits fullscreen.
+- [x] Reset camera remains reachable in fullscreen.
+- [x] Keyboard focus stays among visible fullscreen controls.
+- [x] Unsupported fullscreen requests use an expanded in-tab view.
+- [x] The fullscreen event listener is removed on cleanup.
+- [x] Body scrolling is restored after exit.
+- [x] Independent review passes.
+- [ ] Public deployment serves the fullscreen control.

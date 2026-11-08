@@ -76,3 +76,7 @@ import {compatibleCameraPose} from '../experiments-source/lexical/src/model.js';
 test('book cameras re-fit after a meaningful aspect change',()=>{const model=buildModel('signal '.repeat(1900)),pose={position:[0,0,12],target:[0,0,0],aspect:3.9};assert.equal(compatibleCameraPose(pose,model,'matrix',.7,3.7),null);assert.equal(compatibleCameraPose(pose,model,'matrix',.7,3.9),pose)});
 import {bookCorners} from '../experiments-source/lexical/src/model.js';
 test('Sherlock Holmes is the immediate bounded book illustration',()=>{assert.equal(DEFAULT_EXAMPLE_ID,'sherlock');const e=TEXT_EXAMPLES.find(e=>e.id===DEFAULT_EXAMPLE_ID);assert.equal(e.mode,'matrix');assert.ok(e.text.includes('To Sherlock Holmes'));assert.ok(!e.text.includes('\uFFFD'));assert.ok(e.text.length<=20000);assert.ok(buildModel(e.text).sheetCount>1);assert.deepEqual(e.focusWords,['holmes','watson','adler'])});
+
+import {enterChartFullscreen} from '../experiments-source/lexical/src/fullscreen.js';
+test('fullscreen uses the native API only after explicit entry',async()=>{let calls=0;assert.equal(await enterChartFullscreen({requestFullscreen:async()=>{calls++}},{fullscreenEnabled:true}),'native');assert.equal(calls,1)});
+test('fullscreen gracefully expands in-tab when unsupported or rejected',async()=>{assert.equal(await enterChartFullscreen({}, {fullscreenEnabled:false}),'fallback');assert.equal(await enterChartFullscreen({requestFullscreen:async()=>{throw Error('Unavailable')}},{fullscreenEnabled:true}),'fallback');await assert.rejects(enterChartFullscreen(null,{}),/loading/)});

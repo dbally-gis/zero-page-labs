@@ -59,6 +59,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 12:24 — commit: Restore the 3D book and start with Sherlock Holmes | data/experiments-build.json,execution/build_experiments.py,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/components/PlaygroundScene.jsx
 - 2026-11-08 12:28 — commit: Record verified restored book and Sherlock default | knowledge/REFLECTIONS.jsonl,knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 - 2026-11-08 12:44 — commit: Give the 3D book a larger default focus view | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-52J37cGA.js,experiments/lexical/assets/index-BzodXtzl.css
+- 2026-11-08 12:47 — commit: Record verified larger default book deployment | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -236,3 +237,8 @@ Feynman gap: Physical Safari remains untested; measured canvas dimensions and br
 Larger default book published:468fc62f494e84b2e08dbfbe895fb43bfb4f8288; workflow42511536972 passed tests/build/Render/public fingerprint verification. Live default at1512×685 measured498px canvas; Sherlock book geometry intact, console clean. Screenshot:/private/tmp/lexical-large-book-live.png.
 S.D.G.: Visitors see a larger dimensional book without sacrificing its portrait pages or depth.
 Feynman gap:81 tests, independent source review, viewport/toggle/dialog/export checks and live deployment verified; physical Safari remains untested.
+
+## Full-screen book — active
+Agent: OpenAI Codex. Handoff-type: continuation. Goal: add user-initiated full-screen book with exit/Escape, visible controls, native events and in-tab fallback. Preserve geometry and source data. Status: implementation.
+
+Fullscreen checkpoint: 83 Node tests pass; deep site verifier passes; independent verifier passes. Local browser verified in-tab fallback, Escape, scroll restoration, and preserved 3D book. Native display-level fullscreen remains unverified visually. Publishing.
