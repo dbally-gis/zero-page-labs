@@ -3,10 +3,19 @@
   "observedAt": "2026-11-08",
   "pagination": {
     "loadedPages": 2,
-    "entries": 39,
+    "entries": 40,
     "reachedBottom": true
   },
   "entries": [
+    {
+      "name": "Wander",
+      "url": "https://apps.repebble.com/wander_e47df131d6bc4a2688c95882",
+      "category": "Faces",
+      "description": "Let the hour wander.\n\nWander tells time with a rotating hour carousel and a fixed minute scale. Read the bright hour numeral, then follow its pointer to the minute marks on the right.\n\nHow it works:\n\u2022 The minute scale stays still, from 00 at the top to 60 at the bottom.\n\u2022 The bright hour travels clockwise along that arc.\n\u2022 At the hour change, the next numeral takes over at 00.\n\u2022 Dim neighboring hours show what is approaching and what has just passed. You can hide them.\n\nMake it yours:\n\u2022 Six palettes: Night, Paper, Ice, Amber, Rose, and Monochrome.\n\u2022 Custom background, text, accent, and inactive-hour colors.\n\u2022 Watch default, 12-hour, or 24-hour time.\n\u2022 Optional digital time below the dial.\n\u2022 Optional date: YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n\nDesigned for Pebble Time 2 and Pebble Round 2. Settings are available through the Pebble app. Updates once per minute; no phone service is needed for timekeeping.\n\nThe animated preview is an accelerated time-lapse showing the carousel, hour handoff, and palette options. The installed watchface keeps the palette you choose.",
+      "thumbnail": "https://assets.repebble.com/screenshots/e47df131d6bc4a2688c95882/emery/db6ea5cb-8f97-4943-9a10-c02df6e9c9f4.gif",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/e47df131d6bc4a2688c95882/emery/db6ea5cb-8f97-4943-9a10-c02df6e9c9f4.gif"
+    },
     {
       "name": "Epicycle",
       "url": "https://apps.repebble.com/epicycle_d5c85c5d05cd4cbab4717d60",

@@ -1,5 +1,14 @@
 [
   {
+    "name": "Wander",
+    "slug": "wander",
+    "url": "https://apps.repebble.com/wander_e47df131d6bc4a2688c95882",
+    "image": "/assets/catalog-e47df131d6bc4a2688c95882.png",
+    "style": "Other",
+    "description": "Let the hour wander.",
+    "source_image": "https://assets.repebble.com/screenshots/e47df131d6bc4a2688c95882/emery/2498ecdd-b013-458b-ac74-4d88a28f8466.png"
+  },
+  {
     "name": "Epicycle",
     "slug": "epicycle",
     "url": "https://apps.repebble.com/epicycle_d5c85c5d05cd4cbab4717d60",
