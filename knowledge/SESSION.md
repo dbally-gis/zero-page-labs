@@ -349,3 +349,7 @@ Release02a9a16abfb66243eaedbd359914c8e80cfe599d pushed. GitHub42533531268success
 Publicbrowser375px exercised EVERY50eventbutton acrossDiu,Lepanto,Gravelines,Downs,Quiberon,Chesapeake,Nile,Trafalgar,Hampton,Lissa,Yalu,Manila: expectedactivecard,pausedreplay,sourcelinkcount,andpagewidth375passedforeach. LiveclassicHamptonarmour5sparks/zeroorangeflames. Live1280pxNile documentedexplosion rendered separatelyfromgunfire;normal3Dscenevisible. Consolewarnings/errorsempty. Viewportrestored,livepreviewdeliverableleftopen.
 S.D.G.: Visitors can inspect evidence-led combat episodes throughout the collection while seeing meaningful differences between wood damage, armour contact, shell bursts and reported fires.
 Feynman gap: Exact shot counts, reciprocal firing order, trajectories, fire onset/duration and damage geometry remain schematic or explicitly uncertain; this is not a complete gunnery log.
+
+## Remember visits and unfiltered intro — active
+Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation. User screenshot shows intro still dominated by Holmes thread. Remove all word-specific paths/markers from overview; render all mapped words visibly. Add validated local visit memory, camera persistence and Replay introduction; shared links retain priority.
+

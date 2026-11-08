@@ -44,3 +44,6 @@ The user expects the complete Sherlock book, not an opening excerpt. Embed the l
 
 ## Overview before focused reading — 2026-11-08
 Fresh Lexical visits show a complete-book point cloud before focused threads. Use one batched point geometry instead of tens of thousands of sphere meshes; preserve canonical word positions, full source and portrait pages. Keep Holmes active through the tutorial; word selection is the transition into focus. Explicit saved/shared views bypass the default introduction unless overview was saved.
+
+## Visit memory and genuinely unfiltered intro — 2026-11-08
+Separate introduction visibility from the selected view. Overview draws all mapped word points without highlighted paths; an explicit word choice introduces its thread. Remember a validated compact view locally after the intro is seen, preserving explicit shared links and replaying without replacing the saved view. Built-ins use source IDs instead of duplicated text; custom text remains local and bounded.

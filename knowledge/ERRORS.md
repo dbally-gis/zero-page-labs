@@ -49,3 +49,6 @@ Symptom: default desktop appeared to offer onlywhich, so the full map and other 
 
 ## Whole-book replay retained cropped camera — 2026-11-08
 Independent review caught Show whole book initially changing only visible points, retaining prior zoom/orbit because CameraRig dependencies had not changed. Entry now clears cameraPose and increments resetTick, which refits the existing full-book bounds. Graduated-to: domain/lexical-book-identity.md.
+
+## Whole-book intro appeared pre-filtered — 2026-11-08
+User screenshot showed brightHolmes path dominating full-book points. Cause: overview added the point cloud but still rendered selected meshes/paths/marker. Fix: overview branch renders colored points only, with no selected layer;2D skips paths/active marker too. Graduated-to: domain/lexical-book-identity.md.

@@ -459,3 +459,25 @@ Scope: sort curated/followed tags by descending count; fresh default starts in a
 - [x] Browser checks pass.
 - [x] Independent verifier finds no blockers.
 - [x] Live deployment is verified.
+
+## Remember visits and remove intro filtering — 2026-11-08
+Scope: unfiltered overview rendering, local-only validated visit memory, explicit replay; preserve shared-link priority and private custom text on-device.
+- [x] Intro renders54,411word points without word threads.
+- [x] Intro does not draw an active-word marker.
+- [x]2D intro does not draw word threads.
+- [x] Returning visitors skip the intro.
+- [x] Last selected word survives reload.
+- [x] Last occurrence survives reload.
+- [x] View settings survive reload.
+- [x] User camera movement is saved.
+- [x] Replay introduction shows the unfiltered overview.
+- [x] Replay does not erase the prior saved view while open.
+- [x] Explicit example links override remembered visits.
+- [x] Corrupt visit storage falls back safely.
+- [x] Unavailable storage leaves the app usable.
+- [x] Built-in remembered views omit bundled book text.
+- [x] Phone controls fit at375px.
+- [x] Tests pass.
+- [x] Independent review passes.
+- [ ] Public behavior is verified.
+

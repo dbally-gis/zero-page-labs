@@ -1,0 +1,7 @@
+import {validateSavedView,readSharedView} from './model.js';
+export const VISIT_KEY='zero-page-labs.lexical.visit.v1';
+const MAX_RECORD_LENGTH=200000;
+export function visitStorage(){try{return window.localStorage}catch{return null}}
+export function readVisit(storage,examples){try{const raw=storage?.getItem(VISIT_KEY);if(!raw||raw.length>MAX_RECORD_LENGTH)return null;const record=JSON.parse(raw);if(record.version!==1||record.seenIntro!==true||!record.view)return null;const source=examples.find(e=>e.id===record.view.exampleId);const view=validateSavedView({...record.view,text:source?.text??record.view.text},examples);return {view,showWordControls:record.showWordControls===true}}catch{return null}}
+export function writeVisit(storage,view,examples,{showWordControls=false}={}){try{const validated=validateSavedView(view,examples);const compact={...validated,version:1};if(compact.exampleId)delete compact.text;const raw=JSON.stringify({version:1,seenIntro:true,view:compact,showWordControls:!!showWordControls});if(raw.length>MAX_RECORD_LENGTH)return false;storage.setItem(VISIT_KEY,raw);return true}catch{return false}}
+export function startingVisit({hash='',storage,examples,fallback}){try{const shared=readSharedView(hash,examples);if(shared)return {...shared,introOpen:false,showWordControls:false}}catch{}const previous=readVisit(storage,examples);if(previous)return {...previous.view,introOpen:false,showWordControls:previous.showWordControls};return {...fallback,overview:true,introOpen:true}}
