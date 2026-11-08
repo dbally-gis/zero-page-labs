@@ -63,6 +63,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 13:04 — commit: Add full-screen exploration to Lexical book view | data/experiments-build.json,execution/test_experiments.mjs,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/fullscreen.js,experiments-source/lexical/src/index.css
 - 2026-11-08 13:05 — commit: Record fullscreen deployment verification | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 - 2026-11-08 14:10 — commit: Keep word following controls in fullscreen Lexical | data/experiments-build.json,experiments-source/lexical/src/App.jsx,experiments-source/lexical/src/index.css,experiments/lexical/assets/index-0EaGaWCK.css,experiments/lexical/assets/index-CXwBgZ_B.js
+- 2026-11-08 14:17 — commit: Record fullscreen word controls verification | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -258,3 +259,8 @@ Fullscreen word controls checkpoint: desktop/375×812 browser checks pass; selec
 Published ec76db6. Render deploy dep-dbodeb3m8hqs7388opig succeeded; custom-domain CDN served old HTML for approximately five minutes (s-maxage=300), then live selection Irene2/4 and retained state after exit verified. Screenshot: /private/tmp/lexical-fullscreen-words-live.png.
 S.D.G.: Readers can follow new words without leaving the dimensional book.
 Feynman gap: Desktop and375px fallback UI, wrap, retained state, 83 tests and independent review passed; native display-level fullscreen remains visually unverified.
+
+## Searchable full-book Lexical — active
+Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation. User corrects Sherlock coverage: map entire book with top ten tags; add fullscreen word search. Scope includes book-scale rendering, selection and saved-view limits.
+
+Full-book checkpoint:88 tests, independent review, desktop/phone search checks, final-story reader navigation, stable final-word offsets and588KB saved-view restore pass. Root corrections: only opening had been mapped; now complete body and ten offered tags/one focused word match original intent. Publishing.

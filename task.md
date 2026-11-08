@@ -335,3 +335,19 @@ Target: Lexical App.jsx and CSS; rebuild committed experiment through execution/
 - [x] Deep site validation passes.
 - [x] Independent verifier reports no blockers.
 - [x] Public deployment serves the controls.
+
+## Searchable full-book Lexical — 2026-11-08
+Scope: searchable fullscreen control, complete bundled Sherlock body, top ten mapped words, scalable portrait-book rendering. Keep custom-text intake bounded. Rebuild via build_experiments.py; publish existing Render site.
+- [x] Fullscreen search filters words by typed query.
+- [x] Enter follows the active search result.
+- [x] Arrow keys choose a search result.
+- [x] Escape clears a query without leaving fullscreen.
+- [x] Default Sherlock includes the final story ending.
+- [x] Default Sherlock offers the ten highest-frequency mapped word tags.
+- [x] Full-book pages fit inside the default camera.
+- [x] Saved views preserve ten followed words.
+- [x] Fullscreen controls fit at375px.
+- [x] Node tests pass.
+- [x] Deep site validation passes.
+- [x] Independent review finds no blockers.
+- [ ] Public site serves the change.

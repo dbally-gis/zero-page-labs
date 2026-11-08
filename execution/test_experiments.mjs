@@ -27,7 +27,7 @@ test('palette intensity changes the output',()=>{for(const key of ['gb','nes','c
 
 import {TEXT_EXAMPLES,DEFAULT_EXAMPLE_ID} from '../experiments-source/lexical/src/text-examples.js';
 test('built-in examples have unique identities',()=>assert.equal(new Set(TEXT_EXAMPLES.map(e=>e.id)).size,TEXT_EXAMPLES.length));
-for(const example of TEXT_EXAMPLES)test('example '+example.id+' is valid bounded text with available focus words',()=>{assert.equal(validateText(example.text),'');assert.ok(['matrix','sequence'].includes(example.mode));const words=example.text.toLowerCase().match(/\b[a-z]+\b/g)||[];for(const word of example.focusWords)assert.ok(words.filter(w=>w===word).length>=2,word+' recurs');});
+for(const example of TEXT_EXAMPLES)test('example '+example.id+' is valid bounded text with available focus words',()=>{assert.equal(validateText(example.text,example.id==='sherlock'?1000000:20000),'');assert.ok(['matrix','sequence'].includes(example.mode));const words=example.text.toLowerCase().match(/\b[a-z]+\b/g)||[];for(const word of example.focusWords)assert.ok(words.filter(w=>w===word).length>=2,word+' recurs');});
 
 import {buildModel,wordColor,atlasPosition,letterPosition,excerpt,flatLayout,fittedCamera,validateSavedView,shareHash,readSharedView} from '../experiments-source/lexical/src/model.js';
 test('model keeps exact offsets through case, punctuation, and linking words',()=>{const text='The Map, then MAP; a map.';const m=buildModel(text);assert.equal(m.counts.map,3);for(const t of m.byWord.map)assert.equal(text.slice(t.start,t.end).toLowerCase(),'map');assert.equal(m.tokens.length,4);assert.equal(m.byWord.map[2].index,3)});
@@ -75,8 +75,18 @@ test('legacy Atlas cameras are refitted while current layout views retain camera
 import {compatibleCameraPose} from '../experiments-source/lexical/src/model.js';
 test('book cameras re-fit after a meaningful aspect change',()=>{const model=buildModel('signal '.repeat(1900)),pose={position:[0,0,12],target:[0,0,0],aspect:3.9};assert.equal(compatibleCameraPose(pose,model,'matrix',.7,3.7),null);assert.equal(compatibleCameraPose(pose,model,'matrix',.7,3.9),pose)});
 import {bookCorners} from '../experiments-source/lexical/src/model.js';
-test('Sherlock Holmes is the immediate bounded book illustration',()=>{assert.equal(DEFAULT_EXAMPLE_ID,'sherlock');const e=TEXT_EXAMPLES.find(e=>e.id===DEFAULT_EXAMPLE_ID);assert.equal(e.mode,'matrix');assert.ok(e.text.includes('To Sherlock Holmes'));assert.ok(!e.text.includes('\uFFFD'));assert.ok(e.text.length<=20000);assert.ok(buildModel(e.text).sheetCount>1);assert.deepEqual(e.focusWords,['holmes','watson','adler'])});
+test('Sherlock Holmes maps the complete book with its top ten tags',()=>{assert.equal(DEFAULT_EXAMPLE_ID,'sherlock');const e=TEXT_EXAMPLES.find(e=>e.id===DEFAULT_EXAMPLE_ID);assert.equal(e.mode,'matrix');assert.ok(e.text.includes('To Sherlock Holmes'));assert.ok(!e.text.includes('\uFFFD'));assert.ok(e.text.length>500000);assert.ok(e.text.includes('Copper Beeches'));assert.ok(buildModel(e.text).sheetCount>200);assert.deepEqual(e.focusWords,buildModel(e.text).ranked.slice(0,10))});
 
 import {enterChartFullscreen} from '../experiments-source/lexical/src/fullscreen.js';
 test('fullscreen uses the native API only after explicit entry',async()=>{let calls=0;assert.equal(await enterChartFullscreen({requestFullscreen:async()=>{calls++}},{fullscreenEnabled:true}),'native');assert.equal(calls,1)});
 test('fullscreen gracefully expands in-tab when unsupported or rejected',async()=>{assert.equal(await enterChartFullscreen({}, {fullscreenEnabled:false}),'fallback');assert.equal(await enterChartFullscreen({requestFullscreen:async()=>{throw Error('Unavailable')}},{fullscreenEnabled:true}),'fallback');await assert.rejects(enterChartFullscreen(null,{}),/loading/)});
+
+import {matchingWords,bookSheetDepth,MAX_FOLLOWED_WORDS} from '../experiments-source/lexical/src/model.js';
+test('word search prioritizes exact and prefix matches with frequency counts',()=>{const model=buildModel('Holmes home home homeland homecoming.');assert.deepEqual(matchingWords(model,'HOME'),['home','homecoming','homeland']);assert.deepEqual(matchingWords(model,'xyz'),[]);assert.equal(matchingWords(model,'',2).length,2)});
+test('book-scale spacing keeps all sheets in a bounded portrait stack',()=>{assert.equal(bookSheetDepth(8,1.2),1.2);const step=bookSheetDepth(220,1.2);assert.ok(Math.abs(step*219-8.4)<1e-8)});
+test('full-book saved view restores ten word tags',()=>{const e=TEXT_EXAMPLES.find(e=>e.id==='sherlock');const restored=validateSavedView({version:1,text:e.text,exampleId:e.id,words:e.focusWords},TEXT_EXAMPLES);assert.equal(MAX_FOLLOWED_WORDS,10);assert.deepEqual(restored.words,e.focusWords)});
+
+import {readingWindows} from '../experiments-source/lexical/src/reading-windows.js';
+test('book reader windows preserve the complete original text and global offsets',()=>{const text=TEXT_EXAMPLES.find(e=>e.id==='sherlock').text,windows=readingWindows(text);assert.equal(windows.map(w=>text.slice(w.start,w.end)).join(''),text);assert.ok(windows.length>30);for(let i=0;i<windows.length;i++){const w=windows[i];assert.ok(w.end-w.start<=16000);if(i)assert.equal(w.start,windows[i-1].end);if(i<windows.length-1)assert.ok(/\s/.test(text[w.end-1]))}});
+
+test('bare Sherlock links match the single initial focus with ten available tags',()=>{const e=TEXT_EXAMPLES.find(e=>e.id==='sherlock');assert.equal(e.focusWords.length,10);assert.deepEqual(readSharedView('#example=sherlock',TEXT_EXAMPLES).words,e.focusWords.slice(0,1))});
