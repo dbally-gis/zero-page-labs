@@ -63,3 +63,5 @@
 @media(max-width:600px){.fullscreen-context .book-map-coverage{display:none}}
 
 @media(min-width:601px){.fullscreen-word-chips{max-height:114px}}
+
+.fullscreen-word-chips button{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.word-tag-count{font:10px var(--mono);font-variant-numeric:tabular-nums;color:var(--paper);opacity:.75}.focused-workspace .word-chip button>span{display:inline}@media(min-width:601px){.fullscreen-word-chips{max-height:152px}}
