@@ -21,7 +21,7 @@
     <section class="battle-bar" aria-label="Choose an encounter">
 
       <label class="battle-picker">Choose a battle <select id="battle-tabs" aria-label="Historical battles"></select></label>
-      <details class="desk-options" id="view-options"><summary>View options</summary><div class="desk-options-menu"><div class="legend" id="legend"></div><div class="layer-controls" role="group" aria-label="Chart overlays"><button id="layer-courses" aria-pressed="true">Courses</button><button id="layer-weapons" aria-pressed="false">Weapon sectors</button><button id="layer-wind" aria-pressed="true">Wind / power</button><button id="layer-labels" aria-pressed="false">Names</button><button id="layer-effects" aria-pressed="true">Fire &amp; smoke</button><button id="classic-chart" aria-pressed="false">Classic chart</button></div><p id="weapon-note" class="weapon-note" hidden></p><p id="scene-status" class="scene-status" role="status"></p></div></details>
+      <details class="desk-options" id="view-options"><summary>View options</summary><div class="desk-options-menu"><div class="layer-controls" role="group" aria-label="Chart overlays"><button id="layer-courses" aria-pressed="true">Courses</button><button id="layer-weapons" aria-pressed="false">Weapon sectors</button><button id="layer-wind" aria-pressed="true">Wind / power</button><button id="layer-labels" aria-pressed="false">Names</button><button id="layer-effects" aria-pressed="true">Fire &amp; smoke</button><button id="classic-chart" aria-pressed="false">Classic chart</button></div><p id="weapon-note" class="weapon-note" hidden></p><p id="scene-status" class="scene-status" role="status"></p></div></details>
     </section>
     <section class="atlas" aria-label="Interactive historical replay">
       <div class="chart-column">
@@ -64,7 +64,7 @@
           <div id="wind-key" class="wind-key"><svg viewBox="0 0 50 50" aria-hidden="true"><path d="M25 5V44M25 5 19 18l6-4 6 4Z"/><circle cx="25" cy="25" r="21"/></svg><span id="wind-label"></span></div>
           <div class="map-tools" role="group" aria-label="Map framing"><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button><button id="reset-map" aria-label="Reset map framing">⌖</button></div>
           <button id="watch-salvo" class="salvo-control">Watch a salvo ▶</button>
-          <div class="map-caption"><span id="phase-tag">01 / APPROACH</span><span>SCHEMATIC · SHOTS ILLUSTRATIVE</span></div>
+          <div class="map-caption"><div class="legend" id="legend" aria-label="Fleet colours"></div><span>SCHEMATIC REPLAY</span></div>
           <div id="start-hint" class="start-hint">Watch the approach. <strong>Select a ship to look closer.</strong></div>
           <a id="ship-chip" class="ship-chip" href="#ship-detail" hidden>Selected ship · Details ↓</a>
         </div>

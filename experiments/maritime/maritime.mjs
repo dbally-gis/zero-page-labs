@@ -89,7 +89,6 @@ function renderMoment() {
   }else sourceLink($('moment-source'),detail.source);
   $('return-story').hidden=!question;
   $('moment-picker').value=current?.key??'';
-  $('phase-tag').textContent=`${i+1} / ${chapter.label.toUpperCase()}`;
   for(const [index,b] of [...$('chapters').children].entries()) b.setAttribute('aria-pressed',String(index===i));
   for(const [index,b] of [...$('questions').children].entries()) b.setAttribute('aria-pressed',String(index===state.question));
 }
@@ -202,7 +201,8 @@ function buildFleet() {
   nodes=state.battle.ships.map(s=>{
     const group=node('g',{class:`ship ${s.side?'enemy':''}`,role:'button',tabindex:'0','aria-label':`${s.name}. ${s.representative?'Representative formation marker. ':''}Inspect ship.`, 'aria-pressed':'false','data-ship':s.id},$('fleet'));
     node('title',{},group,s.name);
-    node('circle',{r:29,class:'selection'},group);
+    node('circle',{r:s.representative?28:32,class:'fleet-ring','aria-hidden':'true'},group);
+    node('circle',{r:37,class:'selection'},group);
     const rotated=node('g',{},group);
     node('path',{d:'M-7 23Q-15 43-23 54M7 23Q15 43 23 54M-4 26 0 58 4 26',class:'wake'},rotated);
     const vessel=node('use',{href:`#ship-${s.type}`,x:-21,y:-32,width:42,height:64,class:'vessel'},rotated);
@@ -278,7 +278,7 @@ function renderPositions() {
     }
     const condition=fate?(sunk?(sinking.complete?'Sunk':'Sinking'):'Captured'):damage?'Damaged':'';
     label.textContent=sunk?`${sinking.complete?'×':'↘'} ${s.name} · ${condition}`:s.representative?'Fleet marker':s.name+(damage?' · Damaged':'');
-    group.setAttribute('aria-label',`${s.name}${condition?'. '+condition:''}. Inspect ship.`);
+    group.setAttribute('aria-label',`${s.name}. ${state.battle.sides[s.side]}${condition?'. '+condition:''}. Inspect ship.`);
     rotated.setAttribute('transform',`rotate(${p.heading.toFixed(2)})`);
     group.classList.toggle('selected',selected); group.classList.toggle('highlighted',highlight);
     group.setAttribute('aria-pressed',String(selected));
@@ -346,7 +346,7 @@ function loadBattle(battle,progress=0,selected=battle.defaultShip,sharedMoment=n
   $('wind-key').querySelector('svg').style.opacity=battle.id==='trafalgar'||battle.id==='lepanto'?'1':'.35';
   $('ship-count').textContent=`${battle.ships.length} diagram markers`;
   $('battle-tabs').value=battle.id;
-  $('legend').replaceChildren(...battle.sides.map(side=>{const n=html('span');n.append(html('i'),document.createTextNode(side));return n;}));
+  $('legend').replaceChildren(...battle.sides.map(side=>{const n=html('span');const swatch=html('i');swatch.setAttribute('aria-hidden','true');n.append(swatch,document.createTextNode(side));return n;}));
   $('ship-select').replaceChildren(...battle.ships.map(s=>{const n=html('option',s.name);n.value=s.id;return n;}));
   $('questions').replaceChildren(...battle.questions.map((q,i)=>{
     const b=html('button',q.label);b.type='button';b.setAttribute('aria-pressed','false');

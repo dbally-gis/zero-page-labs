@@ -216,12 +216,14 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
   const smoke=puffTexture(),foam=foamTexture();
   const shots=createShotEffects(scene,smoke);
   const ray=new T.Raycaster(),pointer=new T.Vector2(),waterPlane=new T.Plane(new T.Vector3(0,1,0),0);
-  const lineMat=[new T.LineDashedMaterial({color:0x8dd6e1,dashSize:5,gapSize:7,transparent:true,opacity:.7}),new T.LineDashedMaterial({color:0xef9a79,dashSize:5,gapSize:7,transparent:true,opacity:.7})];
+  const palette=getComputedStyle(host);
+  const fleetColors=['--blue','--red'].map(name=>palette.getPropertyValue(name).trim());
+  const lineMat=fleetColors.map(color=>new T.LineDashedMaterial({color,dashSize:5,gapSize:7,transparent:true,opacity:.7}));
   function disposeGroup(g){g.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material&& ![...lineMat].includes(o.material)){const mats=Array.isArray(o.material)?o.material:[o.material];for(const m of mats)m.dispose();}});g.clear();}
   function ring(radius,color,dashed=false){const points=[];for(let i=0;i<=80;i++){const a=i/80*PI*2;points.push(new T.Vector3(Math.sin(a)*radius,.8,Math.cos(a)*radius));}const m=dashed?new T.LineDashedMaterial({color,dashSize:3,gapSize:5,transparent:true,opacity:.9}):new T.LineBasicMaterial({color,transparent:true,opacity:.95});const l=new T.Line(new T.BufferGeometry().setFromPoints(points),m);l.computeLineDistances();return l;}
   function rebuild(battle){
     // Cached ship geometries/materials are shared between instances and retained.
-    for(const s of ships){s.label.remove();s.loss.geometry.dispose();s.loss.material.dispose();s.hit.geometry.dispose();s.hit.material.dispose();s.ring.geometry.dispose();s.ring.material.dispose();s.focusRing.geometry.dispose();s.focusRing.material.dispose();s.wake.geometry.dispose();s.wake.material.dispose();s.shadow.geometry.dispose();s.shadow.material.dispose();s.smokes.forEach(p=>{p.material.dispose();p.removeFromParent();});}
+    for(const s of ships){s.label.remove();s.loss.geometry.dispose();s.loss.material.dispose();s.hit.geometry.dispose();s.hit.material.dispose();s.ring.geometry.dispose();s.ring.material.dispose();s.fleetRing.geometry.dispose();s.fleetRing.material.dispose();s.focusRing.geometry.dispose();s.focusRing.material.dispose();s.wake.geometry.dispose();s.wake.material.dispose();s.shadow.geometry.dispose();s.shadow.material.dispose();s.smokes.forEach(p=>{p.material.dispose();p.removeFromParent();});}
     fleet.clear();labels.replaceChildren();disposeGroup(terrain);ships=[];
     if(battle.terrain!=='open'){
       const roads=battle.terrain==='roads';
@@ -248,7 +250,11 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
     }
     for(const data of battle.ships){
       const group=new T.Group(),model=shipModel(data.type,data.side);model.scale.setScalar(data.representative?.84:1.08);group.add(model);
-      const selected=ring(36,0xf0d7a1),focusRing=ring(40,0xedd6ac,true);group.add(selected,focusRing);
+      const radius=data.representative?26:32;
+      const fleetRing=mesh(group,new T.RingGeometry(radius-1.8,radius,64),new T.MeshBasicMaterial({
+        color:fleetColors[data.side],transparent:true,opacity:.95,depthWrite:false,toneMapped:false,fog:false
+      }),0,.65,0,[-PI/2,0,0]);
+      const selected=ring(38,0xf0d7a1),focusRing=ring(38,0xedd6ac,true);group.add(selected,focusRing);
       const hit=mesh(group,new T.BoxGeometry(36,55,65),new T.MeshBasicMaterial({visible:false}),0,24,0);hit.userData.ship=data.id;
       const shadow=mesh(group,new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:foam,color:0x001a1e,transparent:true,opacity:.9,depthWrite:false}),6,-.5,8,[-PI/2,0,0]);shadow.scale.set(36,70,1);
       const wake=mesh(group,new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:foam,color:0xe5f4e0,transparent:true,opacity:.6,depthWrite:false}),0,0,46,[-PI/2,0,0]);wake.scale.set(30,90,1);
@@ -258,7 +264,7 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
       for(const angle of [PI/4,-PI/4])for(const [x,z] of [[-2.5,-18],[2.5,-18],[2.5,18],[-2.5,-18],[2.5,18],[-2.5,18]])vertices.push(x*Math.cos(angle)-z*Math.sin(angle),3,x*Math.sin(angle)+z*Math.cos(angle));
       const cross=new T.BufferGeometry();cross.setAttribute('position',new T.Float32BufferAttribute(vertices,3));
       const loss=new T.Mesh(cross,new T.MeshBasicMaterial({color:0xffb69c,depthTest:false,side:T.DoubleSide}));loss.renderOrder=5;loss.visible=false;group.add(loss);
-      group.userData.ship=data.id;fleet.add(group);ships.push({loss,data,group,model,ring:selected,focusRing,hit,wake,shadow,smokes,label});
+      group.userData.ship=data.id;fleet.add(group);ships.push({loss,data,group,model,ring:selected,fleetRing,focusRing,hit,wake,shadow,smokes,label});
     }
     lastBattle=battle.id;
   }
@@ -277,7 +283,7 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
         const geom=new T.BufferGeometry();geom.setAttribute('position',new T.Float32BufferAttribute(vertices,3));geom.setIndex(indices);geom.computeVertexNormals();mesh(group,geom,new T.MeshBasicMaterial({color:0xf4e7bf,transparent:true,opacity:.10,side:T.DoubleSide,depthWrite:false}));group.add(new T.Line(new T.BufferGeometry().setFromPoints(points),new T.LineBasicMaterial({color:0xf0dfb5,transparent:true,opacity:.6})));
       }overlays.add(group);
     }
-    for(const s of ships){s.ring.visible=s.data.id===state.selected;s.focusRing.visible=focus.includes(s.data.id)||focused===s.data.id;}
+    for(const s of ships){s.ring.visible=s.data.id===state.selected;s.focusRing.visible=!s.ring.visible&&(focus.includes(s.data.id)||focused===s.data.id);}
   }
   function frameCamera(){
     if(!state)return;const w=host.clientWidth,h=host.clientHeight,aspect=w/h;

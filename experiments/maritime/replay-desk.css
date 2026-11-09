@@ -149,7 +149,22 @@
   border: 1px solid var(--edge);
   box-shadow: 0 8px 22px #061a2280;
 }
-.desk-options-menu .legend { margin: 0 0 7px; flex-wrap: wrap; }
+/* Fleet rings are independent of selection, names and course overlays. */
+.ship .fleet-ring {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+.ship.enemy .fleet-ring { stroke: var(--red); }
+.ship .selection { vector-effect: non-scaling-stroke; }
+.replay-desk .map-caption { gap: 6px; }
+.replay-desk .map-caption .legend { margin: 0; gap: 4px 12px; color: var(--cream); }
+.replay-desk .map-caption .legend span { font: 10px/1.2 system-ui,sans-serif; letter-spacing: 0; }
+@media (max-width: 520px) {
+  .replay-desk .map-caption > span { display: none; }
+}
 .desk-options-menu .layer-controls { justify-content: flex-start; flex-wrap: wrap; }
 
 @media (max-width: 800px) {
