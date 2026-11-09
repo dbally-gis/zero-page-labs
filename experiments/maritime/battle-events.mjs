@@ -1,4 +1,4 @@
-import {TRAFALGAR_EVENTS,TRAFALGAR_EVIDENCE} from './trafalgar-events.mjs';
+import {TRAFALGAR_EVENTS,TRAFALGAR_EVIDENCE} from './trafalgar-events.mjs?v=historical-corrections';
 // Replay offsets are teaching positions. Sources establish episodes, not individual rounds.
 const ref=(title,url)=>({title,url});
 const E=(id,at,title,text,focus,source,detail={})=>({id,at,title,text,focus,source,certainty:'Selected historical episode',...detail});
@@ -56,7 +56,7 @@ export const BATTLE_EVENTS={
   'hampton-roads':[
     E('monitor-fire',.32,'Shot meets Virginia’s armour','NOAA describes the ironclads’ shots deflecting from their armour. This representative contact uses sparks and a ricochet, without penetration or hull fire. It is not a separately recorded round.','monitor',HAMPTON,{kind:'armor',shooter:'monitor',target:'virginia',deflect:true,certainty:CONTACT}),
     E('virginia-fire',.4,'The ironclads exchange fire','The reciprocal contact illustrates the same armour-deflection phase. Its replay interval is not a reload rate or established firing order.','virginia',HAMPTON,{kind:'armor',shooter:'virginia',target:'monitor',deflect:true,certainty:CONTACT}),
-    E('pilothouse',.73,'Virginia hits Monitor’s pilothouse','NOAA describes a shot against the forward pilothouse that temporarily blinds Worden. The effect is a brief impact near the bow, not a ship fire; the replay then marks the damage described in Greene’s letter.','monitor',HAMPTON,{kind:'armor',shooter:'virginia',target:'monitor',anchor:'bow',certainty:'Documented hit · schematic impact point'}),
+    E('pilothouse',.73,'A Virginia shell bursts against Monitor’s pilothouse','NOAA describes a shell bursting against the forward face of the pilothouse, temporarily blinding Worden. The replay shows a brief burst at the pilothouse, followed by the damage described in Greene’s letter.','monitor',HAMPTON,{kind:'shell',shooter:'virginia',target:'monitor',anchor:'pilothouse',certainty:'Documented shell burst · schematic effect'}),
     E('withdraw',.85,'Disengagement, not destruction','Monitor assesses damage and Virginia later withdraws. Neither ship is sunk in this 9 March encounter.','monitor',HAMPTON)
   ],
   lissa:[
@@ -68,7 +68,7 @@ export const BATTLE_EVENTS={
   yalu:[
     E('japanese-fire',.28,'The Japanese squadron engages','The contemporary account describes the moving Japanese divisions in action. Yoshino represents the flying squadron’s gunfire; no individual hit is assigned from that overview.','yoshino',0,F('yoshino')),
     E('chinese-fire',.36,'Fire from the Chinese centre','The opposing discharge represents the Chinese armoured centre. It does not establish a first shooter or a precise interval between salvos.','dingyuan',0,F('dingyuan')),
-    E('matsushima-hit',.64,'A reported heavy-shell hit on Matsushima','The 1895 account attributes a damaging shell to Chen Yuen (Zhenyuan) and describes ammunition exploding on Matsushima. The article includes conflicting accounts and corrections: this is an attributed episode, not a settled calibre, time or casualty count.','matsushima',0,{kind:'shell',shooter:'zhenyuan',target:'matsushima',certainty:'Near-contemporary attribution · details disputed'}),
+    E('matsushima-hit',.64,'A reported heavy-shell hit on Matsushima','A heavy shell hit Matsushima and ignited ammunition. The replay follows the 1895 account that credits Zhenyuan (Chen Yuen). Accounts disagree on which Chinese ship fired the shell.','matsushima',0,{kind:'shell',shooter:'zhenyuan',target:'matsushima',shooterDisputed:true,certainty:'Documented hit · shooter disputed'}),
     E('matsushima-fire',.67,'Ammunition fire aboard the flagship','The same account reports fire on Matsushima after the damaging shell episode. This separate condition is not the default result of every shell. Its duration and precise deck location are not reconstructed.','matsushima',0,{kind:'reported-fire',target:'matsushima',certainty:'Reported condition · uncertain duration'}),
     E('survival',.94,'Damaged does not mean sunk','Matsushima survives the battle. Neither a shell burst nor a reported fire is automatically converted into a sinking.','matsushima',1)
   ],

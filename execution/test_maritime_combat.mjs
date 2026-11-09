@@ -54,10 +54,24 @@ test('authored contacts retain the researched ship pairs',()=>{
   const pair=id=>eventsFor(BATTLES.find(b=>b.id===id)).filter(e=>e.kind&&e.kind!=='muzzle'&&e.shooter).map(e=>[e.shooter,e.target,e.kind]);
   assert.ok(pair('diu').some(e=>e[0]==='flor'&&e[1]==='egyptian-rear'));
   assert.ok(pair('gravelines').some(e=>e[0]==='revenge'&&e[1]==='san-martin'));
-  assert.ok(pair('hampton-roads').some(e=>e[0]==='virginia'&&e[1]==='monitor'&&e[2]==='armor'));
+  assert.ok(pair('hampton-roads').some(e=>e[0]==='virginia'&&e[1]==='monitor'&&e[2]==='shell'));
   assert.ok(pair('lissa').some(e=>e[0]==='ferdinand-max'&&e[1]==='re-italia'&&e[2]==='ram'));
   assert.ok(pair('yalu').some(e=>e[0]==='zhenyuan'&&e[1]==='matsushima'&&e[2]==='shell'));
   assert.ok(pair('manila-bay').some(e=>e[0]==='olympia'&&e[1]==='reina-cristina'&&e[2]==='shell'));
+});
+test('Virginia’s shell bursts at Monitor’s forward pilothouse',()=>{
+  const battle=BATTLES.find(b=>b.id==='hampton-roads');
+  const index=eventsFor(battle).filter(e=>e.kind).findIndex(e=>e.id==='pilothouse');
+  const shot=shotEvent(battle,index), monitor=battle.ships.find(s=>s.id==='monitor');
+  const progress=(shot.arrival+.1)/100;
+  const impact=effectsAt(battle,progress).find(e=>e.id===index);
+  const p=positionAt(monitor,shot.arrival/100), heading=p.heading*Math.PI/180;
+  assert.ok(Math.abs(impact.impact.x-p.x-17*1.08*Math.sin(heading))<1e-9);
+  assert.ok(Math.abs(impact.impact.z-p.y+17*1.08*Math.cos(heading))<1e-9);
+  assert.equal(impactStyle(impact).burst,true);
+  assert.ok(impact.impactFlash>0);
+  assert.equal(impact.ricochet,null);
+  assert.equal(effectsAt(battle,(shot.arrival+1)/100).find(e=>e.id===index).impactFlash,0);
 });
 test('fires disappear at sourced loss thresholds without changing fate data',()=>{
   const battle=BATTLES.find(b=>b.id==='manila-bay');

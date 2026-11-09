@@ -1,13 +1,15 @@
 import {damageStages} from './damage.mjs';
-import {eventsFor} from './battle-events.mjs';
+import {eventsFor} from './battle-events.mjs?v=historical-corrections';
 import {positionAt,activePositionAt,clamp,fateAt} from './model.mjs';
 const DEG=Math.PI/180;
+// The Monitor model’s pilothouse face is 17 units forward before the 1.08 scene scale.
+const FORWARD_OFFSETS={stern:-22,bow:22,pilothouse:17*1.08};
 const GUN_KINDS=new Set(['muzzle','timber','armor','shell']);
 const FLIGHT_KINDS=new Set(['timber','armor','shell']);
 const fade=(age,life)=>age>=0?Math.max(0,1-age/life):0;
 const point=(ship,progress,anchor)=>{
-  const p=activePositionAt(ship,progress),offset=anchor==='stern'?22:anchor==='bow'?-22:0,a=(p.heading+180)*DEG;
-  return {x:p.x+Math.sin(a)*offset,y:8,z:p.y-Math.cos(a)*offset};
+  const p=activePositionAt(ship,progress),offset=FORWARD_OFFSETS[anchor]??0,a=p.heading*DEG;
+  return {x:p.x+Math.sin(a)*offset,y:anchor==='pilothouse'?9*1.08:8,z:p.y-Math.cos(a)*offset};
 };
 // Finite, authored historical episodes only. No nearest-target choice or simulated hit ratio.
 export function shotEvent(battle,index){

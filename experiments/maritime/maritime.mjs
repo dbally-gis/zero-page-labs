@@ -1,8 +1,8 @@
 import {damageAt,damageStages,sinkingAt,tornAtMast} from './damage.mjs';
-import {replayMoments,momentAt,adjacentMoment} from './replay-moments.mjs?v=moment-roles';
+import {replayMoments,momentAt,adjacentMoment} from './replay-moments.mjs?v=historical-corrections';
 import { BATTLES } from './battles.mjs';
 import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame, followPairFrame, FOLLOW_WIDTH, FOLLOW_MIN, FOLLOW_MAX } from './model.mjs?v=follow-pair';
-import {effectsAt,previewSalvo,previewShipAction,impactStyle} from './combat.mjs';
+import {effectsAt,previewSalvo,previewShipAction,impactStyle} from './combat.mjs?v=historical-corrections';
 
 const $=id=>document.getElementById(id);
 const svgNS='http://www.w3.org/2000/svg';
@@ -125,7 +125,7 @@ function renderMomentRoles(participants) {
   roles.hidden=!roles.childElementCount;
   const pair=$('follow-both');
   if(!pair)return;
-  const firing=participants.find(role=>role.label==='Fired');
+  const firing=participants.find(role=>role.label==='Fired'||role.label==='Disputed shooter');
   const hit=participants.find(role=>role.label==='Hit');
   pair.hidden=!firing||!hit||firing.ship===hit.ship;
   pair.dataset.followPair=pair.hidden?'':[firing.ship,hit.ship].join(',');
@@ -574,7 +574,7 @@ function sceneUnavailable(message){setClassic(true);$('classic-chart').disabled=
 // Dynamic import keeps the complete classic chart available if WebGL or the
 // optional renderer fails. No replay or historical data is delegated to WebGL.
 if(!new URLSearchParams(location.search).has('classic')){
-  import('./scene.mjs?v=follow-pair').then(({createScene})=>{
+  import('./scene.mjs?v=historical-corrections').then(({createScene})=>{
     try{
       dimensional=createScene($('chart'),{onSelect:selectShip,onPan:(dx,dy)=>{if(following())return;const c=state.camera;setCamera({...c,x:clamp(c.x+dx,-250,1250-c.w),y:clamp(c.y+dy,-150,750-c.h)});},onFailure:sceneUnavailable,reducedMotion:reduced.matches});
       refreshScene();setClassic(classic);

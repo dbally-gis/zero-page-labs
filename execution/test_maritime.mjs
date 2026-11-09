@@ -158,6 +158,12 @@ test('Moment identifies both sides of an impact without inventing an attacker or
   assert.deepEqual(moments('lissa').find(moment=>moment.key==='event:ram').roles,[
     {ship:'ferdinand-max',label:'Rammer'},{ship:'re-italia',label:'Ship struck'}
   ]);
+  assert.deepEqual(moments('trafalgar').find(moment=>moment.key==='event:stern-fire').roles,[
+    {ship:'redoutable',label:'Ship on fire'}
+  ]);
+  assert.deepEqual(moments('yalu').find(moment=>moment.key==='event:matsushima-hit').roles,[
+    {ship:'zhenyuan',label:'Disputed shooter'},{ship:'matsushima',label:'Hit'}
+  ]);
   const manila=moments('manila-bay');
   assert.deepEqual(manila.find(moment=>moment.key==='event:open-fire').roles,[{ship:'olympia',label:'Fired'}]);
   assert.deepEqual(manila.find(moment=>moment.key==='event:castilla-fire').roles,[{ship:'castilla',label:'Ship on fire'}]);

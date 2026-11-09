@@ -1,4 +1,4 @@
-import { eventsFor, eventSource } from './battle-events.mjs';
+import { eventsFor, eventSource } from './battle-events.mjs?v=historical-corrections';
 import { damageStages } from './damage.mjs';
 
 const eventKinds = {
@@ -6,6 +6,7 @@ const eventKinds = {
   ram: 'Ram', 'reported-fire': 'Fire', explosion: 'Explosion'
 };
 
+const shooterRoles = { ram: 'Rammer' };
 const targetRoles = { ram: 'Ship struck', 'reported-fire': 'Ship on fire', explosion: 'Ship affected' };
 
 export function replayMoments(battle) {
@@ -14,7 +15,7 @@ export function replayMoments(battle) {
     kind: eventKinds[event.kind] ?? 'Battle event', title: event.title,
     text: event.text, note: event.certainty, source: eventSource(battle, event),
     roles: [
-      { ship: event.shooter, label: event.kind === 'ram' ? 'Rammer' : 'Fired' },
+      { ship: event.shooter, label: event.shooterDisputed ? 'Disputed shooter' : shooterRoles[event.kind] ?? 'Fired' },
       { ship: event.target, label: targetRoles[event.kind] ?? 'Hit' }
     ].filter(role => role.ship)
   }));

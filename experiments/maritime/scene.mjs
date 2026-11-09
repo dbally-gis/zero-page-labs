@@ -1,7 +1,7 @@
 import * as T from './vendor/three-0.160.1.module.min.js';
 import {positionAt,trailAt,chapterAt,fateAt,activePositionAt} from './model.mjs';
 import {damageAt,sinkingAt,tornAtMast} from './damage.mjs';
-import {createShotEffects} from './shot-effects.mjs';
+import {createShotEffects} from './shot-effects.mjs?v=historical-corrections';
 
 // The scene illustrates the same schematic replay as the accessible SVG chart.
 // Models are generic ship types, not measured reconstructions of named vessels.
