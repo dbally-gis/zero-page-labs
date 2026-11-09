@@ -1,8 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import {EFFECTS,applyEffect,applyPipeline} from '../experiments/retro-glitch/effects.mjs';
 import {validateImage} from '../experiments/retro-glitch/image-intake.mjs';
 import {validateText} from '../experiments-source/lexical/src/intake.js';
+
+test('Rack Lab ships the independently verified binary COME AT ME! STL', () => {
+  const filename = 'come-at-me-8-slot.stl';
+  const source = readFileSync(new URL(`../experiments-source/rack-lab/public/${filename}`, import.meta.url));
+  const published = readFileSync(new URL(`../experiments/rack-lab/${filename}`, import.meta.url));
+  assert.equal(createHash('sha256').update(published).digest('hex'),
+    'f09d2f195ffb48ac52a64befca504befe1402b06006bdf6dcb347ff8c76ca5ad');
+  assert.deepEqual(published, source);
+});
 const w=31,h=23,input=new Uint8ClampedArray(w*h*4);
 for(let i=0;i<input.length;i+=4){input[i]=(i*7)%256;input[i+1]=(i*13)%256;input[i+2]=(i*19)%256;input[i+3]=i%255;}
 for(const [key,name]of EFFECTS)test(name+' preserves dimensions, alpha, input, and repeatability',()=>{const before=input.slice(),a=applyEffect(input,w,h,key,63,42),b=applyEffect(input,w,h,key,63,42);assert.equal(a.length,input.length);assert.deepEqual(a,b);assert.deepEqual(input,before);for(let i=3;i<a.length;i+=4)assert.equal(a[i],input[i]);assert.notDeepEqual(a,input)});

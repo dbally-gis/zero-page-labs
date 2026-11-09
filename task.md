@@ -4,6 +4,26 @@ timestamp: "2026-11-07T16:24:55.330339-06:00"
 ---
 
 # Zero Page Labs launch
+
+## 2026-11-09 — Publish Rack Lab
+
+Surface: Experiments index and the static Rack Lab adaptation. Execution: `execution/build_experiments.py --rack-lab`, `execution/build_site.py`, and the existing Render workflow.
+
+- [x] Experiments links to Rack Lab.
+- [x] Experiments links directly to the featured STL.
+- [x] A fresh Rack Lab visit selects COME AT ME! — 8 slots.
+- [x] The featured STL matches the verified workshop export.
+- [x] A changed design exports a different STL in the browser.
+- [x] The app serves its geometry runtime from the site origin.
+- [x] The static edition makes zero slicer API requests.
+- [x] The STL download remains available with WebGL disabled.
+- [x] The desktop experiment page has no horizontal overflow.
+- [x] The 375 px experiment page has no horizontal overflow.
+- [x] The deep site verifier passes.
+- [x] The fresh-context verifier passes.
+- [ ] The public Rack Lab URL serves the featured preset.
+- [ ] The public STL response matches the verified workshop export.
+
 ## Contract
 - Output: static multipage site in `dist/`, published on Render.
 - Execution: `execution/build_site.py`; `execution/verify_site.py`.

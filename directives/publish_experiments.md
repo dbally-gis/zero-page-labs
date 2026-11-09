@@ -6,7 +6,7 @@ timestamp: "2026-11-07T18:31:23-06:00"
 # Publish browser experiments
 
 ## Goal
-Keep Retro-Glitch Studio and Lexical available as anonymous, browser-local playgrounds on Zero Page Labs.
+Keep the public Experiments available as anonymous browser playgrounds on Zero Page Labs.
 
 ## Boundaries
 Original retro-glitch-studio and lexical-viz repositories remain separate. Publication adaptations live here. Do not restore Lexical's development proxy or third-party URL relay imports. Images and text are not sent to an application server.
@@ -39,3 +39,6 @@ Verify the default URL from the public origin, choose a later section, edit prev
 
 ## Learnings — 2026-11-08 Sourced combat collection
 Coverage checks require episode/source sets for Diu,Lepanto,Gravelines,Downs,Quiberon,Chesapeake,Nile,Trafalgar,HamptonRoads,Lissa,Yalu,ManilaBay. Do not assign an individual hit from fleet-level evidence. Choose muzzle-only when target attribution is absent. Distinguish forward mounting position from unverified gun-train angle. Verify typed effects in SVG and3D, fire cutoff at loss, source uncertainty labels, and mobile source-card navigation before publishing.
+
+## Learnings — 2026-11-09 Rack Lab
+The public adaptation lives in `experiments-source/rack-lab`. Keep the workshop repo independent. Run `python3 execution/build_experiments.py --rack-lab --install` after changes. Commit source, generated `experiments/rack-lab`, and `data/rack-lab-build.json` together. The static app starts on COME AT ME! for new visitors, keeps returning visitors’ saved settings, and uses browser-local STL geometry without the workshop slicer API. The direct STL lives in the adaptation’s `public` folder. When changing that preset, export and independently verify the replacement STL, then update the expected SHA-256 in `execution/test_experiments.mjs`. Verify a generated export, the fixed download, and the WebGL-disabled fallback before publishing.

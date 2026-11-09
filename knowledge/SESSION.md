@@ -3,6 +3,18 @@ generated_by: "OpenAI Codex (exact model variant not exposed)"
 timestamp: "2026-11-07T17:04:06.403311-06:00"
 ---
 
+## 2026-11-09 Rack Lab publication
+
+Goal: Publish the Rack Lab configurator under Experiments with the COME AT ME! preset and a direct STL.
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Static release verified locally. The separate worktree was based on origin/main and preserves the local site checkout. The workshop app remains separate.
+
+- The public adaptation ships the verified COME AT ME! STL (SHA-256 `f09d2f195ffb48ac52a64befca504befe1402b06006bdf6dcb347ff8c76ca5ad`), local WASM, the preview, and dependency notices.
+- 221 Node tests, 17 Python tests, TypeScript, and the deep check of 12 pages passed. Chrome at 1440 and 375 px verified download, template switch, reset, and return navigation without overflow or console errors. Both download paths worked with WebGL off.
+- Independent verifier passed static boundaries, default preset, and the STL hash. Publish through the existing GitHub Actions/Render workflow and compare the live STL response to the verified file.
+
 # Zero Page Labs — Experiments launch
 Goal: Publish browser-ready Retro-Glitch Studio and Lexical with an Experiments section.
 Agent: OpenAI Codex

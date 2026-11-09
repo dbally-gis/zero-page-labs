@@ -52,3 +52,6 @@ Independent review caught Show whole book initially changing only visible points
 
 ## Whole-book intro appeared pre-filtered — 2026-11-08
 User screenshot showed brightHolmes path dominating full-book points. Cause: overview added the point cloud but still rendered selected meshes/paths/marker. Fix: overview branch renders colored points only, with no selected layer;2D skips paths/active marker too. Graduated-to: domain/lexical-book-identity.md.
+
+## 2026-11-09 Deep verifier rejected an isolated worktree
+The private-scaffold check inspected absolute path segments and rejected the entire built site when the worktree lived under the workspace’s `.tmp`. Check path segments relative to `dist/`. This still rejects a temporary subtree that actually appears in the public output.

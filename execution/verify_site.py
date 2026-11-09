@@ -77,7 +77,7 @@ def verify(deep: bool = False) -> None:
         errors.append('Maritime Three.js license is missing')
     forbidden = {'.env', 'AGENTS.md', 'SESSION.md', 'task.md', 'config.example.js'}
     for file in output.rglob('*'):
-        if file.name in forbidden or '.tmp' in file.parts: errors.append(f'Private scaffold shipped: {file}')
+        if file.name in forbidden or '.tmp' in file.relative_to(output).parts: errors.append(f'Private scaffold shipped: {file}')
     if errors:
         print('\n'.join(errors)); sys.exit(1)
     print(f'PASS: {len(pages)} pages; internal assets/links/fragments resolve; {len(faces)} unique gallery links; public-only output.')
