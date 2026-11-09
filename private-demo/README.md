@@ -15,6 +15,8 @@ The browser manager handles invitations created there. The existing shared link 
 
 The showcase opens the public request form at `/request`. It collects a name, an email address, and an optional short note. Only the signed-in owner can read the pending queue. Choose an expiration on a request and select **Approve and create invite**. Copy the link and send it to the email shown on the request. Dismiss removes a request from the pending queue.
 
+When email is enabled, **Approve and email invite** sends the saved link to the address on the request. The invite remains copyable if the provider does not confirm acceptance. Use **Retry email** within 23 hours to repeat the same provider request. After that, share the link manually. Provider acceptance confirms submission for delivery. It does not establish inbox receipt.
+
 The same ledger write moves a request out of the queue and creates its invite. Retrying approval returns the original invite with its original expiration. The private ledger retains request details in its Git history.
 
 ### One-time deployment setup
@@ -24,6 +26,8 @@ The same ledger write moves a request out of the queue and creates its invite. R
 3. Generate a random 32-byte owner password, encode it as base64url, and keep it in the owner’s password manager. Set `DEMO_ADMIN_SHA256` to the lowercase hexadecimal SHA-256 digest of the encoded password.
 4. Keep `DEMO_SIGNING_KEY` stable. The service derives separate keys for browser-issued invites and owner sessions. If using another hostname, set `DEMO_ADMIN_ORIGIN` to its HTTPS origin without a trailing slash.
 5. Deploy the demo service. Verify owner sign-in, issuing two synthetic invites, revoking one, and replaying both after a restart.
+
+For automatic invite email, verify a sending domain in Resend. Leave click tracking off to preserve the invite fragment. Set `DEMO_RESEND_KEY` to a sending-only credential for that domain, `DEMO_MAIL_FROM` to the verified sender, and optionally `DEMO_MAIL_REPLY_TO` to the reply address. Existing environments without a sender continue to offer the copy workflow.
 
 The ledger stores labels, IDs, expiration timestamps, and revocation state. It never stores the signed URLs or the owner password. Browser-issued links require a matching active ledger entry. If the ledger is unavailable, those links fail closed until it recovers. The shared link and existing terminal-issued links continue using their existing checks.
 

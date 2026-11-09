@@ -39,7 +39,10 @@ export function githubInviteStore(repo, token, fetcher = fetch) {
           row.label.length <= 100 && Number.isSafeInteger(row.expires) && typeof row.revoked === 'boolean' &&
           (row.request === undefined || (validRequestEmail(row.request?.email) &&
             typeof row.request.note === 'string' && row.request.note.length <= 300 &&
-            (pendingRequest(row) ? row.revoked : row.expires > 0))))) {
+            (pendingRequest(row) ? row.revoked : row.expires > 0))) &&
+          (row.delivery === undefined || (row.request && !pendingRequest(row) &&
+            Number.isSafeInteger(row.delivery?.started) && row.delivery.started > 0 &&
+            (row.delivery.accepted === undefined || row.delivery.accepted === true))))) {
       throw new Error('Invalid invite ledger.');
     }
     return { records, sha: file.sha };

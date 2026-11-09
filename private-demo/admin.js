@@ -91,6 +91,11 @@ async function refresh() {
       details.append(contact);
     }
     item.append(details);
+    if (row.emailStatus) {
+      const delivery = document.createElement('p');
+      delivery.textContent = row.emailStatus;
+      details.append(delivery);
+    }
     if (row.status === 'Active') {
       const actions = document.createElement('div');
       actions.className = 'actions';
@@ -109,6 +114,13 @@ async function refresh() {
           });
         }),
       );
+      if (row.retryEmail) {
+        actions.prepend(action('Retry email', `Retry email for ${row.label}`, event => run(event.currentTarget, async () => {
+          const result = await api('retry-email', { id: row.id });
+          status.textContent = result.emailStatus;
+          await refresh();
+        })));
+      }
       item.append(actions);
     }
     return item;
@@ -140,7 +152,7 @@ function requestRow(row) {
   actions.className = 'actions';
   const approve = document.createElement('button');
   approve.className = 'primary';
-  approve.textContent = 'Approve and create invite';
+  approve.textContent = row.emailEnabled ? 'Approve and email invite' : 'Approve and create invite';
   const dismiss = action('Dismiss', `Dismiss request from ${row.label}`, event => {
     if (!confirm(`Dismiss the request from ${row.label}?`)) return;
     return run(event.currentTarget, async () => {
@@ -159,7 +171,7 @@ function requestRow(row) {
       if (result.url) {
         showLink(result);
         link.focus();
-        status.textContent = 'Invite created. Copy the link to share it.';
+        status.textContent = result.emailStatus ?? 'Invite created. Copy the link to share it.';
       } else {
         status.textContent = 'This request already has an invite.';
       }

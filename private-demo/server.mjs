@@ -6,6 +6,7 @@ import { secondsRemaining, validInviteId } from './invites.mjs';
 import { githubInviteStore } from './invite-store.mjs';
 import { inviteAdmin } from './admin.mjs';
 import { demoRequests } from './demo-requests.mjs';
+import { resendInviteMailer } from './invite-mail.mjs';
 
 function configuredKey(name) {
   const value = process.env[name];
@@ -96,8 +97,13 @@ const store = adminHash && signingKey ? githubInviteStore(
 const browserInviteKey = store && createHmac('sha256', signingKey).update('come-at-me-browser-invites-v1').digest();
 const origin = process.env.DEMO_ADMIN_ORIGIN ?? 'https://come-at-me-playtest.onrender.com';
 const requests = store && demoRequests({ store, origin, send, security });
+const mailer = resendInviteMailer({
+  key: process.env.DEMO_RESEND_KEY,
+  from: process.env.DEMO_MAIL_FROM,
+  replyTo: process.env.DEMO_MAIL_REPLY_TO,
+});
 const admin = store && inviteAdmin({
-  store, signingKey: browserInviteKey, passwordHash: adminHash, revoked, send, security,
+  store, signingKey: browserInviteKey, passwordHash: adminHash, revoked, send, security, mailer,
   origin,
 });
 
