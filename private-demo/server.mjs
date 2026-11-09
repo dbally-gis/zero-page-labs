@@ -2,20 +2,33 @@ import { createHash, timingSafeEqual } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { gunzipSync } from 'node:zlib';
+import { secondsRemaining, validInviteId } from './invites.mjs';
 
-const inviteHash = process.env.DEMO_TOKEN_SHA256;
-if (!/^[a-f0-9]{64}$/.test(inviteHash ?? '')) {
-  throw new Error('Set DEMO_TOKEN_SHA256 to a 64-character SHA-256 hex digest.');
+function configuredKey(name) {
+  const value = process.env[name];
+  if (!value) return null;
+  if (!/^[a-f0-9]{64}$/.test(value)) throw new Error(`Invalid ${name} configuration.`);
+  return Buffer.from(value, 'hex');
 }
 
-const expected = Buffer.from(inviteHash, 'hex');
+const legacyHash = configuredKey('DEMO_TOKEN_SHA256');
+const signingKey = configuredKey('DEMO_SIGNING_KEY');
+if (!legacyHash && !signingKey) throw new Error('Configure an invitation key.');
+
+const revoked = new Set((process.env.DEMO_REVOKED_IDS ?? '').split(',').map(id => id.trim()).filter(Boolean));
+if ([...revoked].some(id => !validInviteId(id))) throw new Error('Invalid DEMO_REVOKED_IDS configuration.');
+
 const packed = readFileSync(process.env.DEMO_FILE ?? '/etc/secrets/come-at-me.b64', 'utf8');
 const game = gunzipSync(Buffer.from(packed, 'base64'), { maxOutputLength: 1_000_000 });
-const tokenLength = 43;
+const sessionLimit = 86_400;
+const maxTokenLength = 89;
 
-function accepts(token) {
-  if (typeof token !== 'string' || !/^[A-Za-z0-9_-]{43}$/.test(token)) return false;
-  return timingSafeEqual(createHash('sha256').update(token).digest(), expected);
+function sessionSeconds(token) {
+  if (legacyHash && /^[A-Za-z0-9_-]{43}$/.test(token ?? '')) {
+    const actual = createHash('sha256').update(token).digest();
+    return timingSafeEqual(actual, legacyHash) ? sessionLimit : 0;
+  }
+  return Math.min(sessionLimit, secondsRemaining(token, signingKey, revoked));
 }
 
 const client = `
@@ -77,7 +90,7 @@ async function serve(request, response) {
   }
   if (request.method === 'GET' && request.url === '/play') {
     const cookie = /(?:^|;\s*)__Secure-cam=([^;]*)/.exec(request.headers.cookie ?? '')?.[1];
-    if (!accepts(cookie)) return send(response, 403, 'Open the private invitation link to play.');
+    if (!sessionSeconds(cookie)) return send(response, 403, 'Open the private invitation link to play.');
     return send(response, 200, game, {
       'Content-Type': 'text/html; charset=utf-8',
       'Content-Security-Policy': gamePolicy,
@@ -87,11 +100,12 @@ async function serve(request, response) {
     let token = '';
     for await (const chunk of request) {
       token += chunk.toString('utf8');
-      if (token.length > tokenLength) return send(response, 413, 'Invalid invitation.');
+      if (token.length > maxTokenLength) return send(response, 413, 'Invalid invitation.');
     }
-    if (!accepts(token)) return send(response, 403, 'Invalid invitation.');
+    const maxAge = sessionSeconds(token);
+    if (!maxAge) return send(response, 403, 'Invalid invitation.');
     return send(response, 204, undefined, {
-      'Set-Cookie': `__Secure-cam=${token}; Path=/play; Secure; HttpOnly; SameSite=Strict; Max-Age=86400`,
+      'Set-Cookie': `__Secure-cam=${token}; Path=/play; Secure; HttpOnly; SameSite=Strict; Max-Age=${maxAge}`,
     });
   }
   send(response, 404, 'Page unavailable.');
