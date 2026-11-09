@@ -2,7 +2,7 @@ import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { secondsRemaining, signInvite, validInviteId } from './invites.mjs';
 import { pendingRequest } from './demo-requests.mjs';
-import { deliveryStatus } from './invite-mail.mjs';
+import { deliveryStatus, inviteCardFormat } from './invite-mail.mjs';
 
 const empty = new Set();
 const maxSessionSeconds = 8 * 3600;
@@ -55,7 +55,7 @@ export function inviteAdmin({ store, signingKey, passwordHash, origin, revoked, 
   async function emailInvite(row) {
     const invite = present(row);
     if (!invite.retryEmail) return invite;
-    if (!await mailer({ id: row.id, email: row.request.email, url: invite.url, expires: row.expires })) return invite;
+    if (!await mailer({ id: row.id, email: row.request.email, url: invite.url, expires: row.expires, format: row.delivery.format })) return invite;
     try {
       const result = await store.update(records => {
         const current = records.find(record => record.id === row.id);
@@ -118,7 +118,7 @@ export function inviteAdmin({ store, signingKey, passwordHash, origin, revoked, 
           if (!expires) return { changed: false, invalidExpiration: true };
           row.expires = expires;
           row.revoked = false;
-          if (mailer) row.delivery = { started: Date.now() };
+          if (mailer) row.delivery = { started: Date.now(), format: inviteCardFormat };
         } else {
           records.splice(index, 1);
         }
