@@ -15,7 +15,7 @@ The browser manager handles invitations created there. The existing shared link 
 
 The showcase opens the public request form at `/request`. It collects a name, an email address, and an optional short note. Only the signed-in owner can read the pending queue. Choose an expiration on a request and select **Approve and create invite**. Copy the link and send it to the email shown on the request. Dismiss removes a request from the pending queue.
 
-When email is enabled, **Approve and email invite** sends the saved link to the address on the request. The invite remains copyable if the provider does not confirm acceptance. Use **Retry email** within 23 hours to repeat the same provider request. After that, share the link manually. Provider acceptance confirms submission for delivery. It does not establish inbox receipt.
+When email is enabled, **Approve and email invite** sends the saved link to the address on the request. The invite remains copyable if the provider does not confirm acceptance. Use **Retry email** within 23 hours to repeat the same provider request. After that, share the link manually. The invite list shows Awaiting delivery, Delivered, or Bounced. Delivered means the recipient’s mail server accepted the message. Bounced means delivery failed. Reload the admin page to see the latest event.
 
 The same ledger write moves a request out of the queue and creates its invite. Retrying approval returns the original invite with its original expiration. The private ledger retains request details in its Git history.
 
@@ -52,3 +52,5 @@ node private-demo/manage-invites.mjs revoke INVITE_ID
 Copy the full comma-separated value printed by the command into `DEMO_REVOKED_IDS` in the [Render environment](https://dashboard.render.com/web/srv-dbot1hmgekts73f4h1r0/env), then save and deploy. Keep the full list so previous revocations stay in effect. Use the same local ledger for each revocation. The change takes effect when the deploy is live. An already loaded match can continue until the visitor reopens or refreshes the page.
 
 The earlier shared invite is controlled by `DEMO_TOKEN_SHA256`. Remove that variable and deploy if the shared link should be retired. Individual links use `DEMO_SIGNING_KEY`.
+
+To enable delivery reporting, subscribe the Resend webhook at `/webhooks/resend` to `email.delivered` and `email.bounced`. Set `DEMO_RESEND_WEBHOOK_SECRET` in Render to that endpoint’s signing secret. Earlier emails without a recorded provider ID show Delivery status unavailable.

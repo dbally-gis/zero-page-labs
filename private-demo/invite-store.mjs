@@ -1,4 +1,5 @@
 import { validInviteId } from './invites.mjs';
+import { validMailId } from './mail-events.mjs';
 import { pendingRequest, validRequestEmail } from './demo-requests.mjs';
 
 const ledgerLimit = 2000;
@@ -42,7 +43,11 @@ export function githubInviteStore(repo, token, fetcher = fetch) {
             (pendingRequest(row) ? row.revoked : row.expires > 0))) &&
           (row.delivery === undefined || (row.request && !pendingRequest(row) &&
             Number.isSafeInteger(row.delivery?.started) && row.delivery.started > 0 &&
-            (row.delivery.accepted === undefined || row.delivery.accepted === true))))) {
+            (row.delivery.accepted === undefined || row.delivery.accepted === true) &&
+            (row.delivery.mailId === undefined || (row.delivery.accepted && validMailId(row.delivery.mailId))) &&
+            (row.delivery.outcome === undefined || (row.delivery.mailId &&
+              ['delivered', 'bounced'].includes(row.delivery.outcome?.status) &&
+              Number.isSafeInteger(row.delivery.outcome.at))))))) {
       throw new Error('Invalid invite ledger.');
     }
     return { records, sha: file.sha };

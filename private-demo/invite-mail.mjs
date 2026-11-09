@@ -1,3 +1,5 @@
+import { inviteEmailSubject, validMailId } from './mail-events.mjs';
+
 export const inviteCardFormat = 'card-v1';
 
 function inviteCard(url, expires) {
@@ -42,14 +44,16 @@ const retryWindowMs = 23 * 60 * 60 * 1000;
 
 export function deliveryStatus(row, configured, now = Date.now()) {
   if (!row.delivery) return null;
-  if (row.delivery.accepted) return 'Accepted by mail provider';
+  if (row.delivery.outcome?.status === 'delivered') return 'Delivered';
+  if (row.delivery.outcome?.status === 'bounced') return 'Bounced';
+  if (row.delivery.accepted) return row.delivery.mailId ? 'Awaiting delivery' : 'Delivery status unavailable';
   if (!configured || now - row.delivery.started >= retryWindowMs) return 'Email unconfirmed. Share the link manually.';
   return 'Email unconfirmed';
 }
 
 export function resendInviteMailer({ key, from, replyTo, fetcher = fetch }) {
   if (!key || !from) return null;
-  return async ({ id, email, url, expires, format }) => {
+  return async ({ id, email, url, expires, format, tracking }) => {
     try {
       const response = await fetcher('https://api.resend.com/emails', {
         method: 'POST',
@@ -64,14 +68,15 @@ export function resendInviteMailer({ key, from, replyTo, fetcher = fetch }) {
           from,
           to: [email],
           reply_to: replyTo || undefined,
-          subject: 'Your COME AT ME! playtest invite',
+          subject: inviteEmailSubject,
+          tags: tracking ? [{ name: 'invite_id', value: id }] : undefined,
           html: format === inviteCardFormat ? inviteCard(url, expires) : undefined,
           text: `Your request to try COME AT ME! was approved.\n\nOpen your private invite to play:\n${url}\n\nThe link expires at ${new Date(expires * 1000).toUTCString()}.\n\nDaniel\nZero Page Labs`,
         }),
       });
       if (response.ok) {
         const result = await response.json();
-        if (typeof result?.id === 'string' && result.id.length > 0) return true;
+        if (validMailId(result?.id)) return result.id;
       } else {
         await response.body?.cancel();
         console.warn('Invite mail provider rejected a send', { status: response.status });

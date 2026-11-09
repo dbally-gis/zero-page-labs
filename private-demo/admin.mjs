@@ -48,6 +48,7 @@ export function inviteAdmin({ store, signingKey, passwordHash, origin, revoked, 
       status,
       url: status === 'Active' ? `${origin}/#${signInvite(signingKey, row.expires, row.id).token}` : null,
       emailStatus,
+      emailStatusAt: row.delivery?.outcome?.at,
       retryEmail: status === 'Active' && emailStatus === 'Email unconfirmed',
     };
   };
@@ -55,12 +56,17 @@ export function inviteAdmin({ store, signingKey, passwordHash, origin, revoked, 
   async function emailInvite(row) {
     const invite = present(row);
     if (!invite.retryEmail) return invite;
-    if (!await mailer({ id: row.id, email: row.request.email, url: invite.url, expires: row.expires, format: row.delivery.format })) return invite;
+    const mailId = await mailer({
+      id: row.id, email: row.request.email, url: invite.url, expires: row.expires, format: row.delivery.format,
+      tracking: row.delivery.tracking,
+    });
+    if (!mailId) return invite;
     try {
       const result = await store.update(records => {
         const current = records.find(record => record.id === row.id);
         if (!current?.delivery || current.delivery.accepted) return { changed: false, row: current };
         current.delivery.accepted = true;
+        current.delivery.mailId = mailId;
         return { changed: true, row: current };
       });
       return present(result.row);
@@ -118,7 +124,7 @@ export function inviteAdmin({ store, signingKey, passwordHash, origin, revoked, 
           if (!expires) return { changed: false, invalidExpiration: true };
           row.expires = expires;
           row.revoked = false;
-          if (mailer) row.delivery = { started: Date.now(), format: inviteCardFormat };
+          if (mailer) row.delivery = { started: Date.now(), format: inviteCardFormat, tracking: true };
         } else {
           records.splice(index, 1);
         }

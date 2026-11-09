@@ -93,7 +93,12 @@ async function refresh() {
     item.append(details);
     if (row.emailStatus) {
       const delivery = document.createElement('p');
-      delivery.textContent = row.emailStatus;
+      const badge = document.createElement('strong');
+      badge.className = 'delivery-status';
+      badge.dataset.status = row.emailStatus;
+      badge.textContent = row.emailStatus;
+      delivery.append(badge);
+      if (row.emailStatusAt) delivery.append(' · ' + new Date(row.emailStatusAt).toLocaleString());
       details.append(delivery);
     }
     if (row.status === 'Active') {

@@ -33,6 +33,9 @@
   li p { margin: .15rem 0 0; color: #4d4a43; font-size: .9rem; }
   #requests > li { display: grid; overflow-wrap: anywhere; }
   #requests input { max-width: 100%; box-sizing: border-box; }
+  .delivery-status { display: inline-block; border-radius: .25rem; padding: .12rem .45rem; background: #eee6d6; }
+  .delivery-status[data-status="Delivered"] { background: #e3efd9; color: #254322; }
+  .delivery-status[data-status="Bounced"] { background: #f6dfd7; color: #812d20; }
   #status { min-height: 1.5em; }
   [hidden] { display: none !important; }
 </style>

@@ -7,6 +7,7 @@ import { githubInviteStore } from './invite-store.mjs';
 import { inviteAdmin } from './admin.mjs';
 import { demoRequests } from './demo-requests.mjs';
 import { resendInviteMailer } from './invite-mail.mjs';
+import { resendMailEvents } from './mail-events.mjs';
 
 function configuredKey(name) {
   const value = process.env[name];
@@ -107,7 +108,12 @@ const admin = store && inviteAdmin({
   origin,
 });
 
+const mailEvents = store && resendMailEvents({
+  secret: process.env.DEMO_RESEND_WEBHOOK_SECRET, from: process.env.DEMO_MAIL_FROM, store, send,
+});
+
 async function serve(request, response) {
+  if (mailEvents && request.url === '/webhooks/resend') return mailEvents(request, response);
   if (requests && (request.url === '/request' || request.url === '/request/received')) {
     return requests(request, response);
   }
