@@ -111,3 +111,19 @@ test('return visits restore word, occurrence, settings and camera without intro'
 test('fresh visits open unfiltered intro; shared links override remembered word',()=>{const storage=memoryStorage(),fallback={words:['holmes']};assert.equal(startingVisit({storage,examples:TEXT_EXAMPLES,fallback}).introOpen,true);writeVisit(storage,sampleVisit(),TEXT_EXAMPLES);const linked=startingVisit({hash:'#example=sherlock&words=adler',storage,examples:TEXT_EXAMPLES,fallback});assert.deepEqual(linked.words,['adler']);assert.equal(linked.introOpen,false)});
 test('corrupt, oversized and denied storage fall back without throwing',()=>{const storage=memoryStorage();for(const raw of ['{','null','{}',JSON.stringify({version:99,seenIntro:true}),'x'.repeat(200001)]){storage.setItem(VISIT_KEY,raw);assert.equal(readVisit(storage,TEXT_EXAMPLES),null)}const denied={getItem(){throw Error('denied')},setItem(){throw Error('quota')}};assert.equal(readVisit(denied,TEXT_EXAMPLES),null);assert.equal(writeVisit(denied,sampleVisit(),TEXT_EXAMPLES),false);assert.equal(startingVisit({storage:denied,examples:TEXT_EXAMPLES,fallback:{}}).introOpen,true)});
 test('custom passages remain local in a bounded remembered view',()=>{const storage=memoryStorage(),view={...sampleVisit(),exampleId:'',text:'A private map returns. A private map stays.',words:['map'],at:0};assert.equal(writeVisit(storage,view,TEXT_EXAMPLES),true);assert.equal(readVisit(storage,TEXT_EXAMPLES).view.text,view.text);assert.equal(writeVisit(storage,{...view,text:'word '.repeat(5000)},TEXT_EXAMPLES),false)});
+
+import {readablePage,pageWordAt} from '../experiments-source/lexical/src/book-reading.js';
+test('book reading detail appears only for a nearby page in the view',()=>{
+  const front={x:0,y:0,z:-1},origin={x:0,y:0,z:8};
+  assert.equal(readablePage(5,1,origin,front,500),null);
+  assert.deepEqual(readablePage(5,1,{...origin,z:4},front,500),{page:0,back:false});
+  assert.equal(readablePage(5,1,{x:2,y:0,z:4},front,500),null);
+  assert.deepEqual(readablePage(5,1,{x:0,y:0,z:-6},{x:0,y:0,z:1},500),{page:4,back:true});
+});
+test('reading detail hit targets preserve mapped indices from either side',()=>{
+  const index=317,[x,y]=atlasPosition(index),u=.5+x/3.5,v=.5+y/5;
+  assert.equal(pageWordAt(1,false,u,v,400),index);
+  assert.equal(pageWordAt(1,true,1-u,v,400),index);
+  assert.equal(pageWordAt(1,false,u,v,300),null);
+  assert.equal(pageWordAt(1,false,0,1,400),null);
+});

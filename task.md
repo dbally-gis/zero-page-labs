@@ -480,3 +480,12 @@ Scope: unfiltered overview rendering, local-only validated visit memory, explici
 - [x] Tests pass.
 - [x] Independent review passes.
 - [x] Public behavior is verified.
+
+## Read words when zooming into a book page
+- [x] The distant 3D overview shows points.
+- [x] A close page shows the original spelling at each mapped word position.
+- [x] Clicking a displayed word follows its occurrence.
+- [x] Zooming out restores the point overview.
+- [x] Focused threads retain their existing behavior.
+- [x] Browser and regression checks pass.
+- [x] Independent review passes.

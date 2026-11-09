@@ -356,3 +356,9 @@ Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation. Use
 Published3733eb0; workflow42534752921 passed tests, Render deployment and public fingerprint verification. Live unfiltered overview has54,411points, zero selected tags and no selected thread. Screenshot:/private/tmp/lexical-unfiltered-intro-live.png. Narrow375×812 in-tab fullscreen fallback verified with chart/intro/toolbar nonoverlapping and Follow transition.
 S.D.G.: Readers see the full mapped book before choosing a thread, then resume their last exploration on return.
 Feynman gap:99tests, independent review, browser reload/newtab/orbit/replay/2D/375px fallback and live intro verified; physical Safari remains untested.
+
+## Read words on a zoomed book page
+Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation.
+Goal: reveal original word labels in the 3D whole-book view when a sheet reaches reading distance.
+
+101 tests, deep site validation and desktop browser checks passed. Close zoom revealed labels, clicking slow followed occurrence 4/6, orbit drag retained the overview and zoom-out restored the point cloud. Independent review prompted separate 2D instructions and a drag guard. Publishing through the established Render workflow.

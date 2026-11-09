@@ -73,3 +73,6 @@ Versioned localStorage visit memory validates through the saved-view model. It s
 99tests and independent review pass. Direct browser checks: fresh54,411-point unfiltered intro, Watson2/81+solo survived reload and close/new tab, actual orbit restored (position difference under.003units while damping settled), Replay→reload retained prior focus,2D workshop398points with zero threads/markers,375px normal intro and desktop nativefullscreen fit. No console errors/warnings.
 
 Published3733eb0 via workflow42534752921, verified live unfiltered54,411point intro and no selected tags.375px fullscreen fallback fits and transitions to focus. Screenshot:/private/tmp/lexical-unfiltered-intro-live.png.
+
+## Read words at page scale
+The overview selects the nearest readable sheet under the center of the view. One disposable canvas texture shows the original spellings at the mapped positions. Surrounding points dim at reading distance, and zoom-out restores the overview. Wheel zoom follows the cursor in overview mode. Clicks on the readable page map back to the exact occurrence, with a movement guard for orbit drags. The 2D fallback retains its point-selection instructions.
