@@ -6,18 +6,25 @@ const eventKinds = {
   ram: 'Ram', 'reported-fire': 'Fire', explosion: 'Explosion'
 };
 
+const targetRoles = { ram: 'Ship struck', 'reported-fire': 'Ship on fire', explosion: 'Ship affected' };
+
 export function replayMoments(battle) {
   const moments = eventsFor(battle).map(event => ({
     key: `event:${event.id}`, at: event.at, ship: event.focus,
     kind: eventKinds[event.kind] ?? 'Battle event', title: event.title,
-    text: event.text, note: event.certainty, source: eventSource(battle, event)
+    text: event.text, note: event.certainty, source: eventSource(battle, event),
+    roles: [
+      { ship: event.shooter, label: event.kind === 'ram' ? 'Rammer' : 'Fired' },
+      { ship: event.target, label: targetRoles[event.kind] ?? 'Hit' }
+    ].filter(role => role.ship)
   }));
   for (const ship of battle.ships) {
     for (const [index, stage] of damageStages(battle, ship).entries()) {
       moments.push({
         key: `damage:${ship.id}:${index}`, at: stage.at, ship: ship.id,
         kind: 'Damage', title: `${ship.name} · ${stage.title}`,
-        text: stage.text, note: 'Documented damage · schematic timing', source: stage.source
+        text: stage.text, note: 'Documented damage · schematic timing', source: stage.source,
+        roles: [{ ship: ship.id, label: 'Damaged ship' }]
       });
     }
     const fate = ship.fate;
@@ -26,7 +33,8 @@ export function replayMoments(battle) {
       moments.push({
         key: `fate:${ship.id}`, at: fate.at, ship: ship.id,
         kind: sunk ? 'Loss' : 'Capture', title: `${ship.name} · ${sunk ? 'Sunk' : 'Captured'}`,
-        text: fate.text, note: 'Documented outcome · schematic timing', source: battle.sources[fate.source]
+        text: fate.text, note: 'Documented outcome · schematic timing', source: battle.sources[fate.source],
+        roles: [{ ship: ship.id, label: sunk ? 'Ship lost' : 'Captured ship' }]
       });
     }
   }

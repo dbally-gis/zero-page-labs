@@ -122,6 +122,18 @@
 .desk-panels > div { min-width: 0; padding: 14px; }
 .desk-panels h2 { margin: 4px 0 8px; font: 24px/1.14 Georgia, serif; }
 .desk-panels .moment h2 { font-size: 27px; }
+.moment-roles { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.moment-role {
+  --fleet-color: var(--blue);
+  flex: 1 1 100px;
+  min-width: 0;
+  padding: 4px 8px;
+  border-left: 2px solid var(--fleet-color);
+  background: #0c222c;
+}
+.moment-role[data-side="1"] { --fleet-color: var(--red); }
+.moment-role dt { color: var(--muted); font-size: 11px; }
+.moment-role dd { margin: 1px 0 0; color: var(--fleet-color); font-size: 13px; overflow-wrap: anywhere; }
 .desk-panels .moment > p:not(.eyebrow), #battle-summary { font-size: 13px; line-height: 1.6; }
 .desk-panels .source-link { margin-top: 7px; }
 .desk-panels .ship-detail { margin: 0; padding: 0; border: 0; }

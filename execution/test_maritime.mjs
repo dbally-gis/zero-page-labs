@@ -148,3 +148,18 @@ test('desk moment data keeps stable keys, vessel targets and source URLs in the 
     }
   }
 });
+
+test('Moment identifies both sides of an impact without inventing an attacker or target',()=>{
+  const moments=id=>replayMoments(BATTLES.find(battle=>battle.id===id));
+  const hampton=moments('hampton-roads');
+  assert.deepEqual(hampton.find(moment=>moment.key==='event:pilothouse').roles,[
+    {ship:'virginia',label:'Fired'},{ship:'monitor',label:'Hit'}
+  ]);
+  assert.deepEqual(moments('lissa').find(moment=>moment.key==='event:ram').roles,[
+    {ship:'ferdinand-max',label:'Rammer'},{ship:'re-italia',label:'Ship struck'}
+  ]);
+  const manila=moments('manila-bay');
+  assert.deepEqual(manila.find(moment=>moment.key==='event:open-fire').roles,[{ship:'olympia',label:'Fired'}]);
+  assert.deepEqual(manila.find(moment=>moment.key==='event:castilla-fire').roles,[{ship:'castilla',label:'Ship on fire'}]);
+  assert.deepEqual(manila.find(moment=>moment.key==='event:abandon').roles,[]);
+});

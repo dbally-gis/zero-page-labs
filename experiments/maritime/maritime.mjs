@@ -1,5 +1,5 @@
 import {damageAt,damageStages,sinkingAt,tornAtMast} from './damage.mjs';
-import {replayMoments,momentAt,adjacentMoment} from './replay-moments.mjs';
+import {replayMoments,momentAt,adjacentMoment} from './replay-moments.mjs?v=moment-roles';
 import { BATTLES } from './battles.mjs';
 import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame, FOLLOW_WIDTH, FOLLOW_MIN, FOLLOW_MAX } from './model.mjs';
 import {effectsAt,previewSalvo,previewShipAction,impactStyle} from './combat.mjs';
@@ -83,6 +83,7 @@ function renderMoment() {
   $('moment-title').textContent=detail.title;
   $('timeline-event').textContent=detail.title;
   $('moment-text').textContent=detail.text;
+  renderMomentRoles(current?.roles??[]);
   if(current){
     $('moment-source').href=current.source.url;
     $('moment-source').title=current.source.title;
@@ -91,6 +92,23 @@ function renderMoment() {
   $('moment-picker').value=current?.key??'';
   for(const [index,b] of [...$('chapters').children].entries()) b.setAttribute('aria-pressed',String(index===i));
   for(const [index,b] of [...$('questions').children].entries()) b.setAttribute('aria-pressed',String(index===state.question));
+}
+function renderMomentRoles(participants) {
+  const roles=$('moment-roles');
+  if(!roles)return;
+  roles.replaceChildren();
+  for(const role of participants){
+    const ship=state.battle.ships.find(vessel=>vessel.id===role.ship);
+    if(!ship)continue;
+    const fleet=state.battle.sides[ship.side];
+    const card=html('div',undefined,'moment-role');
+    card.dataset.side=ship.side;
+    const name=html('dd',ship.representative?fleet:ship.name);
+    if(!ship.representative)name.append(html('span',` · ${fleet}`,'sr-only'));
+    card.append(html('dt',ship.representative&&role.label==='Fired'?'Firing fleet':role.label),name);
+    roles.append(card);
+  }
+  roles.hidden=!roles.childElementCount;
 }
 function jumpMoment(moment) {
   if(!moment)return;

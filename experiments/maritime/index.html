@@ -7,8 +7,8 @@
   <meta name="description" content="Explore twelve landmark naval battles through animated tactical charts. Follow the ships, scrub the story, and discover why the formations mattered.">
   <link rel="canonical" href="https://zeropagelabs.com/experiments/maritime/">
   <link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="./maritime.css">
-  <link rel="stylesheet" href="./replay-desk.css">
-  <script type="module" src="./maritime.mjs"></script>
+  <link rel="stylesheet" href="./replay-desk.css?v=moment-roles">
+  <script type="module" src="./maritime.mjs?v=moment-roles"></script>
 </head>
 <body class="replay-desk">
   <a class="skip" href="#explorer">Skip to battle explorer</a>
@@ -91,7 +91,9 @@
         <div id="desk-panels" class="desk-panels">
           <div id="panel-moment" role="tabpanel" aria-labelledby="tab-moment" tabindex="0">
             <section class="moment">
-              <p class="eyebrow" id="moment-number"></p><h2 id="moment-title"></h2><p id="moment-text"></p>
+              <p class="eyebrow" id="moment-number"></p><h2 id="moment-title"></h2>
+              <dl id="moment-roles" class="moment-roles" aria-label="Ships in this moment" hidden></dl>
+              <p id="moment-text"></p>
               <a id="moment-source" class="source-link" href="#sources" target="_blank" rel="noopener">Read the source ↗</a>
               <button id="return-story" hidden>← Return to this chapter</button>
             </section>
