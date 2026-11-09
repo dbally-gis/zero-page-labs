@@ -282,9 +282,9 @@
       "url": "https://apps.repebble.com/tercom_c6f081e1607448bf92df7de4",
       "category": "Faces",
       "description": "A tiny vector landscape beneath a flight-path reticle. TERCOM brings a 1970s CRT-inspired terrain instrument to Pebble Time 2, with a bold digital clock and five procedural landscapes.\n\nNew in 1.1.0: clearer time, dimmer scales, four instrument palettes, refined terrain shapes, smoother flight speed and filtered tilt, plus phone settings for motion and telemetry.\n\nChoose Green phosphor, Amber terminal, Ice blue, or Monochrome. Explore Crags, a winding Canyon, Dunes, a volcanic Caldera, and layered Alpine ridges. Green remains the default.\n\nOn the watch, a single wrist tap starts a temporary flight. A rapid double tap changes tracks when enabled. Flight returns to the exact resting terrain position. In the phone settings, choose Flight Off, Short (2 seconds), or Standard (about 4.5 seconds), adjust tilt response, disable double-tap switching, or choose a track directly.\n\nThe upper-right readout can show explicitly simulated altitude (SIM), daily steps, compass heading, battery, or nothing. Choose an optional ISO, US, or European date in the lower center, daily steps, or an empty center. A dashed illustrative course line is optional. SIM is a fictional value derived from steps, not measured altitude. Landscapes and course lines are not real navigation data; unavailable compass heading shows ---.\n\nTime follows the watch's 12/24-hour setting and updates each minute while idle. The preview tours the palette and terrain choices; on the watch, those choices change only through settings or enabled track-switch taps. Made for Pebble Time 2.",
-      "thumbnail": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/emery/46e599e2-3f47-4108-908d-65a644ff2e21.gif",
-      "release_version": "1.1.0",
-      "time2_preview": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/emery/46e599e2-3f47-4108-908d-65a644ff2e21.gif"
+      "thumbnail": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/diorite/5151d64a-73e6-4b6c-a0c8-f802266116f1.gif",
+      "release_version": "1.2.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/emery/5644c91e-7a94-4b71-9837-fdbc248c2ff2.gif"
     },
     {
       "name": "Type Foundry",
