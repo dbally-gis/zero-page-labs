@@ -361,4 +361,8 @@ Feynman gap:99tests, independent review, browser reload/newtab/orbit/replay/2D/3
 Agent: OpenAI Codex. Handoff-from: OpenAI Codex. Handoff-type: continuation.
 Goal: reveal original word labels in the 3D whole-book view when a sheet reaches reading distance.
 
-101 tests, deep site validation and desktop browser checks passed. Close zoom revealed labels, clicking slow followed occurrence 4/6, orbit drag retained the overview and zoom-out restored the point cloud. Independent review prompted separate 2D instructions and a drag guard. Publishing through the established Render workflow.
+101 tests, deep site validation and desktop browser checks passed. Close zoom revealed labels, clicking slow followed occurrence 4/6, orbit drag retained the overview and zoom-out restored the point cloud. Independent review passed after separate 2D instructions and a drag guard.
+
+Published b6cbef6 through workflow 42541904443. The live browser showed readable words on the zoomed sheet. Screenshot: /private/tmp/lexical-readable-page-live.png.
+S.D.G.: Readers can identify a mapped word in place and follow its occurrence through the book.
+Feynman gap: Desktop zoom, orbit and selection were verified. Physical pinch gestures were not tested.
