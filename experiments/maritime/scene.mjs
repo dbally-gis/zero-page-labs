@@ -291,10 +291,16 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
     const close=state.view==='follow';
     const angle=(close?26:state.view==='atmosphere'?34:58)*PI/180;
     // A steady port-quarter view keeps the deck, rig and waterline in frame.
-    const yaw=(close&&!motion.matches?-state.camera.heading-65:-30)*PI/180;
-    const height=close
+    const span=state.camera.pairSpan;
+    const yaw=(close&&!span&&!motion.matches?-state.camera.heading-65:-30)*PI/180;
+    let height=close
       ?Math.max(state.camera.w*.68,state.camera.w/aspect)
       :Math.max(650*Math.sin(angle)+90,1100/aspect)*state.camera.w/1000;
+    if(span){
+      const width=Math.abs(span.dx*Math.cos(yaw)-span.dy*Math.sin(yaw))+152;
+      const depth=Math.abs(span.dx*Math.sin(yaw)+span.dy*Math.cos(yaw))*Math.sin(angle)+112;
+      height=Math.max(width/aspect,depth)*span.scale;
+    }
     camera.left=-height*aspect/2;camera.right=height*aspect/2;camera.top=height/2;camera.bottom=-height/2;
     const target=new T.Vector3(state.camera.x+state.camera.w/2-500,close?17:12,state.camera.y+state.camera.h/2-300);
     camera.position.copy(target).add(new T.Vector3(1800*Math.cos(angle)*Math.sin(yaw),1800*Math.sin(angle),1800*Math.cos(angle)*Math.cos(yaw)));
@@ -334,10 +340,12 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
       s.label.textContent=sunk?`${sinking.complete?'×':'↘'} ${s.data.name} · ${sinking.complete?'Sunk':'Sinking'}`:s.data.representative?'Fleet marker':s.data.name+(damage?' · Damaged':'');
       s.wake.visible=!fate&&s.data.id!=='minnesota'&&state.progress<1;s.wake.material.opacity=.42+Math.sin(clock*1.2+s.data.id.length)*.06;
       const selected=s.data.id===state.selected,chapterFocus=focus.includes(s.data.id);
-      s.label.hidden=state.view==='follow'
-        ?selected||!state.layers.labels
-        :!(sunk||damage||selected||state.layers.labels||chapterFocus);
-      const screen=s.group.position.clone().add(new T.Vector3(0,4,37)).project(camera);
+      s.label.hidden=state.pair
+        ?!state.pair.includes(s.data.id)&&!state.layers.labels
+        :state.view==='follow'
+          ?selected||!state.layers.labels
+          :!(sunk||damage||selected||state.layers.labels||chapterFocus);
+      const screen=s.group.position.clone().add(new T.Vector3(0,4,state.pair?0:37)).project(camera);
       const labelWidth=s.label.textContent.length*5.6+12;
       const labelX=Math.max(labelWidth/2+4,Math.min(host.clientWidth-labelWidth/2-4,(screen.x+1)*.5*host.clientWidth));
       let labelY=(-screen.y+1)*.5*host.clientHeight;

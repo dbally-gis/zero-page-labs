@@ -25,11 +25,15 @@ export function readView(hash) {
   const p=new URLSearchParams(hash.replace(/^#/,''));
   const battle=BATTLES.find(b=>b.id===p.get('battle')) || BATTLES.find(b=>b.id==='trafalgar');
   const n=Number(p.get('t')??0);
-  return {battle,progress:clamp(Number.isFinite(n)?n:0,0,1),ship:battle.ships.some(s=>s.id===p.get('ship'))?p.get('ship'):battle.defaultShip,moment:p.get('moment'),view:['atmosphere','follow'].includes(p.get('view'))?p.get('view'):'tactical'};
+  const view=['atmosphere','follow'].includes(p.get('view'))?p.get('view'):'tactical';
+  const ids=p.get('pair')?.split(',');
+  const pair=view==='follow'&&ids?.length===2&&ids[0]!==ids[1]&&ids.every(id=>battle.ships.some(ship=>ship.id===id))?ids:null;
+  return {battle,progress:clamp(Number.isFinite(n)?n:0,0,1),ship:battle.ships.some(s=>s.id===p.get('ship'))?p.get('ship'):battle.defaultShip,moment:p.get('moment'),view,pair};
 }
 export function shareView(state) {
   const params=new URLSearchParams({battle:state.battle.id,t:state.progress.toFixed(3),ship:state.selected,view:state.view});
   if(state.moment)params.set('moment',state.moment);
+  if(state.view==='follow'&&state.pair)params.set('pair',state.pair.join(','));
   return '#'+params;
 }
 export function isSharedView(hash) {
@@ -54,4 +58,11 @@ export function followFrame(ship,progress,width=FOLLOW_WIDTH){
   const {x,y,heading}=activePositionAt(ship,progress);
   const height=width*.6;
   return {x:x-width/2,y:y-height/2,w:width,h:height,heading};
+}
+
+export function followPairFrame(ships,progress,scale=1){
+  const [a,b]=ships.map(ship=>activePositionAt(ship,progress));
+  const dx=b.x-a.x,dy=b.y-a.y;
+  const w=(Math.abs(dx)+112)*scale,h=(Math.abs(dy)+112)*scale;
+  return {x:(a.x+b.x-w)/2,y:(a.y+b.y-h)/2,w,h,pairSpan:{dx,dy,scale}};
 }

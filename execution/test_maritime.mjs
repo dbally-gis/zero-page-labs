@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { BATTLES } from '../experiments/maritime/battles.mjs';
-import { STOPS, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame } from '../experiments/maritime/model.mjs';
+import { STOPS, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame, followPairFrame } from '../experiments/maritime/model.mjs';
 
 test('collection covers distinct propulsion eras within the requested period',()=>{
   assert.deepEqual(BATTLES.map(b=>b.id),['diu','lepanto','gravelines','downs','quiberon','chesapeake','nile','trafalgar','hampton-roads','lissa','yalu','manila-bay']);
@@ -162,4 +162,31 @@ test('Moment identifies both sides of an impact without inventing an attacker or
   assert.deepEqual(manila.find(moment=>moment.key==='event:open-fire').roles,[{ship:'olympia',label:'Fired'}]);
   assert.deepEqual(manila.find(moment=>moment.key==='event:castilla-fire').roles,[{ship:'castilla',label:'Ship on fire'}]);
   assert.deepEqual(manila.find(moment=>moment.key==='event:abandon').roles,[]);
+});
+
+test('Follow both frames both moving ships and retains the documented loss position',()=>{
+  const battle=BATTLES.find(b=>b.id==='lissa');
+  const ships=['ferdinand-max','re-italia'].map(id=>battle.ships.find(ship=>ship.id===id));
+  for(const progress of [.2,.73,.84,1]){
+    const frame=followPairFrame(ships,progress);
+    const points=ships.map(ship=>activePositionAt(ship,progress));
+    assert.equal(frame.x+frame.w/2,(points[0].x+points[1].x)/2);
+    assert.equal(frame.y+frame.h/2,(points[0].y+points[1].y)/2);
+    for(const {x,y} of points){
+      assert.ok(x-frame.x>=56-1e-8&&frame.x+frame.w-x>=56-1e-8);
+      assert.ok(y-frame.y>=56-1e-8&&frame.y+frame.h-y>=56-1e-8);
+    }
+  }
+});
+
+test('a shared follow pair restores two distinct ships in its battle',()=>{
+  const battle=BATTLES.find(b=>b.id==='hampton-roads'),pair=['virginia','monitor'];
+  const state={battle,progress:.73,selected:'monitor',view:'follow',pair,moment:'event:pilothouse'};
+  const view=readView(shareView(state));
+  assert.deepEqual(view.pair,pair);
+  assert.equal(view.progress,.73);
+  assert.equal(view.moment,'event:pilothouse');
+  assert.equal(readView(shareView({...state,pair:['virginia','virginia']})).pair,null);
+  assert.equal(readView(shareView({...state,pair:['virginia','victory']})).pair,null);
+  assert.equal(readView(shareView({...state,view:'tactical'})).pair,null);
 });

@@ -38,3 +38,9 @@ Watch Ship Action seeks before the next sourced gunfire, damage or loss involvin
 The desk reserves the viewport for the chart, playback and a bounded details pane. Moment, Ship and Battle share one scroll area. The mobile pane starts collapsed. Switching tabs opens it, and collapsing on desktop returns the width to the scene. View options holds the overlays and Classic chart. The chapter guide, curated questions and reading list live in Battle.
 
 `replay-moments.mjs` combines firing episodes, damage stages and outcomes into a chronological index without discarding coincident evidence. The moment picker, next and previous buttons, and replay marks use that index. An optional shared moment key identifies one entry when multiple sources use the same teaching threshold. It is accepted only when it matches a moment at the shared progress. The camera and historical data remain replay-derived.
+
+## Follow both
+
+Moment offers pair tracking when the episode supplies a distinct firing ship and target. It changes the camera without seeking or pausing. The two ship IDs stay pinned while the replay moves. The camera recomputes bounds around their active positions, including a loss marker after sinking. Classic fits the map bounds and 3D fits the projected span. Zoom can add context without cropping the pair. Selecting an unrelated ship or changing the battle returns to single-ship framing.
+
+Shared Follow Ship URLs can include a validated pair of IDs. Both IDs must be distinct and belong to the shared battle. The replay position and selected moment use the existing share fields.

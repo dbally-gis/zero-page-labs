@@ -6,9 +6,9 @@
   <title>Maritime — Watch history unfold · Zero Page Labs</title>
   <meta name="description" content="Explore twelve landmark naval battles through animated tactical charts. Follow the ships, scrub the story, and discover why the formations mattered.">
   <link rel="canonical" href="https://zeropagelabs.com/experiments/maritime/">
-  <link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="./maritime.css">
-  <link rel="stylesheet" href="./replay-desk.css?v=moment-follow">
-  <script type="module" src="./maritime.mjs?v=moment-follow"></script>
+  <link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="./maritime.css?v=follow-pair">
+  <link rel="stylesheet" href="./replay-desk.css?v=follow-pair">
+  <script type="module" src="./maritime.mjs?v=follow-pair"></script>
 </head>
 <body class="replay-desk">
   <a class="skip" href="#explorer">Skip to battle explorer</a>
@@ -64,7 +64,7 @@
           <div id="wind-key" class="wind-key"><svg viewBox="0 0 50 50" aria-hidden="true"><path d="M25 5V44M25 5 19 18l6-4 6 4Z"/><circle cx="25" cy="25" r="21"/></svg><span id="wind-label"></span></div>
           <div class="map-tools" role="group" aria-label="Map framing"><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button><button id="reset-map" aria-label="Reset map framing">⌖</button></div>
           <button id="watch-salvo" class="salvo-control">Watch a salvo ▶</button>
-          <div class="map-caption"><div class="legend" id="legend" aria-label="Fleet colours"></div><span>SCHEMATIC REPLAY</span></div>
+          <div class="map-caption"><div class="legend" id="legend" aria-label="Fleet colours"></div><span id="chart-view-label">SCHEMATIC REPLAY</span></div>
           <div id="start-hint" class="start-hint">Watch the approach. <strong>Select a ship to look closer.</strong></div>
           <a id="ship-chip" class="ship-chip" href="#ship-detail" hidden>Selected ship · Details ↓</a>
         </div>
@@ -93,6 +93,7 @@
             <section class="moment">
               <p class="eyebrow" id="moment-number"></p><h2 id="moment-title"></h2>
               <dl id="moment-roles" class="moment-roles" aria-label="Ships in this moment" hidden></dl>
+              <button id="follow-both" type="button" aria-pressed="false" hidden>Follow both</button>
               <p id="moment-text"></p>
               <a id="moment-source" class="source-link" href="#sources" target="_blank" rel="noopener">Read the source ↗</a>
               <button id="return-story" hidden>← Return to this chapter</button>

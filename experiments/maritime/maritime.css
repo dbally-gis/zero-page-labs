@@ -39,7 +39,7 @@
 
 .follow-view #sea,.follow-view .ocean-canvas{cursor:default}
 .follow-view #sea .ship-label{font-size:5px}
-.follow-view #sea .ship.selected .ship-label{display:none}
+.follow-view:not(.follow-pair) #sea .ship.selected .ship-label{display:none}
 .follow-view .ship-chip{bottom:58px}
 @media(max-width:800px){.follow-view .ship-chip{bottom:48px}}
 .follow-view .loss-key,.follow-view .wind-key{display:none}

@@ -144,6 +144,8 @@
   text-underline-offset: 3px;
 }
 .moment-role button[aria-pressed="true"] { font-weight: 600; }
+#follow-both { padding: 4px 10px; margin: 0 0 8px; font-size: 12px; min-height: 36px; }
+#follow-both[aria-pressed="true"] { color: var(--ink); background: var(--cream); }
 .desk-panels .moment > p:not(.eyebrow), #battle-summary { font-size: 13px; line-height: 1.6; }
 .desk-panels .source-link { margin-top: 7px; }
 .desk-panels .ship-detail { margin: 0; padding: 0; border: 0; }
@@ -237,4 +239,12 @@
     grid-template-rows: minmax(0, 1fr) auto;
   }
   .replay-desk .inspector-closed .inspector { border-left: 0; }
+}
+
+.replay-desk .follow-pair #chart-view-label {
+  display: block;
+  text-transform: none;
+  white-space: nowrap;
+  font: 10px/1.2 system-ui,sans-serif;
+  color: var(--cream);
 }

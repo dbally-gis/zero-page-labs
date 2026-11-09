@@ -1,14 +1,14 @@
 import {damageAt,damageStages,sinkingAt,tornAtMast} from './damage.mjs';
 import {replayMoments,momentAt,adjacentMoment} from './replay-moments.mjs?v=moment-roles';
 import { BATTLES } from './battles.mjs';
-import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame, FOLLOW_WIDTH, FOLLOW_MIN, FOLLOW_MAX } from './model.mjs';
+import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame, followPairFrame, FOLLOW_WIDTH, FOLLOW_MIN, FOLLOW_MAX } from './model.mjs?v=follow-pair';
 import {effectsAt,previewSalvo,previewShipAction,impactStyle} from './combat.mjs';
 
 const $=id=>document.getElementById(id);
 const svgNS='http://www.w3.org/2000/svg';
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const initial=readView(location.hash);
-const state={...initial,selected:initial.ship,playing:startsPlaying(location.hash,reduced.matches),speed:1,layers:{courses:true,weapons:false,wind:true,labels:false,effects:true},question:null,followWidth:FOLLOW_WIDTH,camera:{x:0,y:0,w:1000,h:600}};
+const state={...initial,selected:initial.ship,playing:startsPlaying(location.hash,reduced.matches),speed:1,layers:{courses:true,weapons:false,wind:true,labels:false,effects:true},question:null,pairScale:1,followWidth:FOLLOW_WIDTH,camera:{x:0,y:0,w:1000,h:600}};
 let nodes=[],lastFrame=0,lastPaint=0,drag=null,dragged=false;
 let moments=[],momentKey=null,renderedMoment=null;
 const tabs=['moment','ship','battle'];
@@ -18,11 +18,15 @@ let dimensional=null,classic=false;
 const selectedShip=()=>state.battle.ships.find(ship=>ship.id===state.selected);
 const following=()=>state.view==='follow';
 function currentFrame(){
+  if(state.pair){
+    const ships=state.pair.map(id=>state.battle.ships.find(ship=>ship.id===id));
+    return followPairFrame(ships,state.progress,state.pairScale);
+  }
   return following()?followFrame(selectedShip(),state.progress,state.followWidth):state.camera;
 }
 function sceneState(){return {...state,camera:currentFrame()};}
 function refreshScene(){if(dimensional&&!classic)dimensional.update(sceneState());}
-function selectShip(id){state.selected=id;setPlaying(false);$('start-hint').hidden=true;renderShip();renderPositions();announce(`Selected ${state.battle.ships.find(s=>s.id===id).name}. Replay paused.`);}
+function selectShip(id){selectVessel(id);setPlaying(false);$('start-hint').hidden=true;renderShip();renderPositions();announce(`Selected ${state.battle.ships.find(s=>s.id===id).name}. Replay paused.`);}
 function node(tag,attrs={},parent=null,text=null) {
   const n=document.createElementNS(svgNS,tag);
   for(const [key,value] of Object.entries(attrs)) n.setAttribute(key,value);
@@ -108,7 +112,7 @@ function renderMomentRoles(participants) {
     follow.type='button';
     follow.dataset.followShip=ship.id;
     follow.setAttribute('aria-label',ship.representative?`Follow ${fleet} formation marker`:`Follow ${ship.name}, ${fleet}`);
-    follow.setAttribute('aria-pressed',String(following()&&state.selected===ship.id));
+    follow.setAttribute('aria-pressed',String(following()&&!state.pair&&state.selected===ship.id));
     follow.addEventListener('click',()=>{
       state.selected=ship.id;
       setView('follow');
@@ -119,10 +123,17 @@ function renderMomentRoles(participants) {
     roles.append(card);
   }
   roles.hidden=!roles.childElementCount;
+  const pair=$('follow-both');
+  if(!pair)return;
+  const firing=participants.find(role=>role.label==='Fired');
+  const hit=participants.find(role=>role.label==='Hit');
+  pair.hidden=!firing||!hit||firing.ship===hit.ship;
+  pair.dataset.followPair=pair.hidden?'':[firing.ship,hit.ship].join(',');
+  updateFollowButtons();
 }
 function jumpMoment(moment) {
   if(!moment)return;
-  state.selected=moment.ship;
+  selectVessel(moment.ship);
   renderShip();
   seek(moment.at,moment.key);
   if(activeTab!=='moment'&&!$('desk-panels').hidden)showTab('moment');
@@ -132,11 +143,16 @@ function updateMomentSteps() {
   $('previous-moment').disabled=!adjacentMoment(moments,state.progress,momentKey,-1);
   $('next-moment').disabled=!adjacentMoment(moments,state.progress,momentKey,1);
 }
+function updateFollowButtons(){
+  for(const button of $('moment-roles')?.querySelectorAll('[data-follow-ship]')??[]){
+    button.setAttribute('aria-pressed',String(following()&&!state.pair&&button.dataset.followShip===state.selected));
+  }
+  const pair=$('follow-both');
+  if(pair)pair.setAttribute('aria-pressed',String(!pair.hidden&&pair.dataset.followPair===state.pair?.join(',')));
+}
 function renderShip() {
   const s=state.battle.ships.find(s=>s.id===state.selected);
-  for(const button of $('moment-roles')?.querySelectorAll('[data-follow-ship]')??[]){
-    button.setAttribute('aria-pressed',String(following()&&button.dataset.followShip===s.id));
-  }
+  updateFollowButtons();
   $('ship-select').value=s.id; $('ship-name').textContent=s.representative?'Formation marker':s.name;
   $('ship-side').textContent=state.battle.sides[s.side];
   $('ship-type').textContent=({sail:'Sailing warship',galley:'Oared galley',monitor:'Turreted ironclad',ironclad:'Armoured steam warship',cruiser:'Steam cruiser'})[s.type];
@@ -181,8 +197,8 @@ function renderFate(){
 function renderCamera() {
   const camera=currentFrame();
   $('sea').setAttribute('viewBox',`${camera.x} ${camera.y} ${camera.w} ${camera.h}`);
-  $('zoom-in').disabled=camera.w<=(following()?FOLLOW_MIN:420);
-  $('zoom-out').disabled=camera.w>=(following()?FOLLOW_MAX:1400);
+  $('zoom-in').disabled=state.pair?state.pairScale<=1:camera.w<=(following()?FOLLOW_MIN:420);
+  $('zoom-out').disabled=state.pair?state.pairScale>=2:camera.w>=(following()?FOLLOW_MAX:1400);
 }
 function setCamera(camera) {
   state.camera=camera;
@@ -191,22 +207,39 @@ function setCamera(camera) {
 }
 function zoom(factor){
   if(following()){
-    state.followWidth=clamp(state.followWidth*factor,FOLLOW_MIN,FOLLOW_MAX);
+    if(state.pair)state.pairScale=clamp(state.pairScale*factor,1,2);
+    else state.followWidth=clamp(state.followWidth*factor,FOLLOW_MIN,FOLLOW_MAX);
     renderCamera();
     refreshScene();
   }else setCamera(cameraZoom(state.camera,factor));
 }
-function setView(view) {
+function setView(view,pair=null) {
   state.view=view;
-  $('chart').classList.toggle('atmosphere',view==='atmosphere');
-  $('chart').classList.toggle('follow-view',following());
-  for(const id of ['tactical','atmosphere','follow'])$(id).setAttribute('aria-pressed',String(view===id));
-  $('watch-salvo').textContent=following()?'Watch ship action ▶':'Watch a salvo ▶';
-  $('reset-map').setAttribute('aria-label',following()?'Reset close-up zoom':'Reset map framing');
-  if(following())$('start-hint').hidden=true;
+  state.pair=pair;
+  state.pairScale=1;
+  renderViewControls();
   renderShip();
   renderCamera();
   renderPositions();
+}
+function selectVessel(id){
+  state.selected=id;
+  if(state.pair&&!state.pair.includes(id)){
+    state.pair=null;
+    renderViewControls();
+  }
+}
+function renderViewControls(){
+  const {view,pair}=state;
+  $('chart').classList.toggle('atmosphere',view==='atmosphere');
+  $('chart').classList.toggle('follow-view',following());
+  $('chart').classList.toggle('follow-pair',Boolean(pair));
+  const viewLabel=$('chart-view-label');
+  if(viewLabel)viewLabel.textContent=pair?'Following both':'SCHEMATIC REPLAY';
+  for(const id of ['tactical','atmosphere','follow'])$(id).setAttribute('aria-pressed',String(view===id&&!pair));
+  $('watch-salvo').textContent=following()?'Watch ship action ▶':'Watch a salvo ▶';
+  $('reset-map').setAttribute('aria-label',following()?'Reset close-up zoom':'Reset map framing');
+  if(following())$('start-hint').hidden=true;
 }
 function renderLayers() {
   for(const [key,on] of Object.entries(state.layers)) $('layer-'+key).setAttribute('aria-pressed',String(on));
@@ -244,7 +277,7 @@ function buildFleet() {
     node('rect',{x:-24,y:-33,width:48,height:70,class:'hitbox'},group);
     const choose=()=>{
       if(dragged)return;
-      state.selected=s.id;setPlaying(false);$('start-hint').hidden=true;renderShip();renderPositions();
+      selectVessel(s.id);setPlaying(false);$('start-hint').hidden=true;renderShip();renderPositions();
       announce(`Selected ${s.name}. Replay paused. Ship details follow the playback controls.`);
     };
     group.addEventListener('click',choose);
@@ -313,7 +346,8 @@ function renderPositions() {
     rotated.setAttribute('transform',`rotate(${p.heading.toFixed(2)})`);
     group.classList.toggle('selected',selected); group.classList.toggle('highlighted',highlight);
     group.setAttribute('aria-pressed',String(selected));
-    label.style.display=sunk||damage||state.layers.labels||selected||highlight?'':'none';
+    const showLabel=state.pair?state.pair.includes(s.id)||state.layers.labels:sunk||damage||state.layers.labels||selected||highlight;
+    label.style.display=showLabel?'':'none';
     course.setAttribute('points',trailAt(s,s.fate?.kind==='sunk'?Math.min(state.progress,s.fate.at):state.progress).map(p=>p.join(',')).join(' '));
     course.classList.toggle('focus-course',selected||highlight);
   }
@@ -357,13 +391,13 @@ function renderPositions() {
     const condition=loss.started?(loss.complete?'Sunk':'Sinking'):fate?'Captured':damageAt(state.battle,ship,state.progress)?'Damaged':'Following';
     const label=`${ship.representative?'Formation marker':ship.name} · ${condition} · Details ↓`;
     if($('ship-chip').textContent!==label)$('ship-chip').textContent=label;
-    $('ship-chip').hidden=false;
+    $('ship-chip').hidden=Boolean(state.pair);
     renderCamera();
   }
   renderFate();refreshScene();
 }
-function loadBattle(battle,progress=0,selected=battle.defaultShip,sharedMoment=null) {
-  state.battle=battle;state.progress=progress;state.selected=selected;state.question=null;momentKey=null;renderedMoment=null;
+function loadBattle(battle,progress=0,selected=battle.defaultShip,sharedMoment=null,pair=null) {
+  state.battle=battle;state.pair=pair;state.progress=progress;state.selected=pair&&!pair.includes(selected)?pair[1]:selected;state.question=null;momentKey=null;renderedMoment=null;
   moments=replayMoments(battle);
   momentKey=moments.find(moment=>moment.key===sharedMoment&&moment.at===progress)?.key??null;
   $('start-hint').hidden=following()||progress>0||isSharedView(location.hash);
@@ -383,7 +417,7 @@ function loadBattle(battle,progress=0,selected=battle.defaultShip,sharedMoment=n
     const b=html('button',q.label);b.type='button';b.setAttribute('aria-pressed','false');
     b.addEventListener('click',()=>{
       state.question=i;momentKey=null;state.progress=STOPS[q.phase];setPlaying(false);state.layers[q.layer]=true;
-      state.selected=q.focus[0];setCamera({x:0,y:0,w:1000,h:600});
+      selectVessel(q.focus[0]);setCamera({x:0,y:0,w:1000,h:600});
       $('start-hint').hidden=true;renderShip();renderLayers();renderMoment();renderPositions();showTab('moment');$('tab-moment').focus();
       announce(`${q.title}. ${q.text}`);
     });return b;
@@ -412,7 +446,7 @@ function seek(progress,key=null) {
   renderMoment();renderPositions();announce(`${state.battle.name}: ${state.battle.chapters[chapterAt(progress)].label}. Replay paused.`);
 }
 for(const battle of BATTLES){const option=html('option',`${battle.year} · ${battle.name}`);option.value=battle.id;$('battle-tabs').append(option);}
-$('battle-tabs').addEventListener('change',e=>{const battle=BATTLES.find(b=>b.id===e.target.value);setPlaying(!reduced.matches);loadBattle(battle);announce(`${battle.name}, ${battle.year}. ${battle.era}.`);});
+$('battle-tabs').addEventListener('change',e=>{const battle=BATTLES.find(b=>b.id===e.target.value);setPlaying(!reduced.matches);loadBattle(battle);setView(state.view);announce(`${battle.name}, ${battle.year}. ${battle.era}.`);});
 $('play').addEventListener('click',()=>{
   if(state.progress>=1){momentKey=null;state.progress=0;state.question=null;renderMoment();renderPositions();}
   if(!state.playing){momentKey=null;state.question=null;renderMoment();renderPositions();}
@@ -421,14 +455,14 @@ $('play').addEventListener('click',()=>{
 $('restart').addEventListener('click',()=>{seek(0);setPlaying(!reduced.matches);});
 $('timeline').addEventListener('input',e=>seek(Number(e.target.value)/1000));
 $('speed').addEventListener('change',e=>{state.speed=Number(e.target.value);});
-$('ship-select').addEventListener('change',e=>{state.selected=e.target.value;setPlaying(false);$('start-hint').hidden=true;renderShip();renderPositions();});
+$('ship-select').addEventListener('change',e=>{selectVessel(e.target.value);setPlaying(false);$('start-hint').hidden=true;renderShip();renderPositions();});
 $('return-story').addEventListener('click',()=>{state.question=null;renderMoment();renderPositions();announce('Returned to chapter explanation.');});
 for(const key of Object.keys(state.layers)) $('layer-'+key).addEventListener('click',()=>{state.layers[key]=!state.layers[key];renderLayers();renderPositions();});
 $('zoom-in').addEventListener('click',()=>zoom(.8));
 $('zoom-out').addEventListener('click',()=>zoom(1.25));
 $('reset-map').addEventListener('click',()=>{
   if(following()){
-    state.followWidth=FOLLOW_WIDTH;
+    state.followWidth=FOLLOW_WIDTH;state.pairScale=1;
     renderCamera();
     refreshScene();
   }else setCamera({x:0,y:0,w:1000,h:600});
@@ -452,6 +486,12 @@ $('watch-salvo').addEventListener('click',()=>{
 $('tactical').addEventListener('click',()=>setView('tactical'));
 $('atmosphere').addEventListener('click',()=>setView('atmosphere'));
 $('follow').addEventListener('click',()=>setView('follow'));
+$('follow-both')?.addEventListener('click',event=>{
+  const pair=event.currentTarget.dataset.followPair.split(',');
+  if(!pair.includes(state.selected))state.selected=pair[1];
+  setView('follow',pair);
+  announce('Following both ships.');
+});
 for(const tab of tabs){
   const button=$('tab-'+tab);
   button.addEventListener('click',()=>showTab(tab));
@@ -512,7 +552,7 @@ const endDrag=()=>{drag=null;$('sea').classList.remove('dragging');};
 $('sea').addEventListener('pointerup',endDrag);$('sea').addEventListener('pointercancel',endDrag);
 reduced.addEventListener('change',e=>{if(e.matches)setPlaying(false);renderPositions();});
 document.addEventListener('visibilitychange',()=>{lastFrame=0;});
-window.addEventListener('hashchange',()=>{if(!isSharedView(location.hash)){revealAnchor();return;}const view=readView(location.hash);setPlaying(false);loadBattle(view.battle,view.progress,view.ship,view.moment);setView(view.view);});
+window.addEventListener('hashchange',()=>{if(!isSharedView(location.hash)){revealAnchor();return;}const view=readView(location.hash);setPlaying(false);loadBattle(view.battle,view.progress,view.ship,view.moment,view.pair);setView(view.view,view.pair);});
 function tick(now) {
   const dt=lastFrame?(now-lastFrame)/1000:0;lastFrame=now;
   if(state.playing&&!document.hidden) {
@@ -522,7 +562,7 @@ function tick(now) {
   }
   requestAnimationFrame(tick);
 }
-loadBattle(state.battle,state.progress,state.selected,initial.moment);setView(state.view);revealAnchor();requestAnimationFrame(tick);
+loadBattle(state.battle,state.progress,state.selected,initial.moment,initial.pair);setView(state.view,initial.pair);revealAnchor();requestAnimationFrame(tick);
 
 function setClassic(value){
   classic=value;$('classic-chart').setAttribute('aria-pressed',String(value));
@@ -534,7 +574,7 @@ function sceneUnavailable(message){setClassic(true);$('classic-chart').disabled=
 // Dynamic import keeps the complete classic chart available if WebGL or the
 // optional renderer fails. No replay or historical data is delegated to WebGL.
 if(!new URLSearchParams(location.search).has('classic')){
-  import('./scene.mjs').then(({createScene})=>{
+  import('./scene.mjs?v=follow-pair').then(({createScene})=>{
     try{
       dimensional=createScene($('chart'),{onSelect:selectShip,onPan:(dx,dy)=>{if(following())return;const c=state.camera;setCamera({...c,x:clamp(c.x+dx,-250,1250-c.w),y:clamp(c.y+dy,-150,750-c.h)});},onFailure:sceneUnavailable,reducedMotion:reduced.matches});
       refreshScene();setClassic(classic);
