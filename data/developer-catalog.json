@@ -12,9 +12,9 @@
       "url": "https://apps.repebble.com/window-seat_aca3bb65eafa438ebb7474e0",
       "category": "Faces",
       "description": "A sleeper train window for your Pebble. Watch the carriage view shift from daylight to dusk to night. When fresh weather reports rain or thunderstorms, rain streaks the glass.\n\n\u2022 Above the window, see the lighting phase and the latest current conditions.\n\u2022 Below the clock, see the next hourly forecast and its local time.\n\u2022 Choose Auto or preview Day, Dusk, Night, and Rain in settings.\n\u2022 Follow your watch preference or choose 12-hour or 24-hour time.\n\u2022 Show an optional date in ISO, US, or European format.\n\nMade for Pebble Time 2 and Pebble Round 2. Configure in the Pebble app. Weather uses your connected phone\u2019s approximate location and Open-Meteo. Time and time-based scenes work offline. The animated preview cycles through sample conditions.",
-      "thumbnail": "https://assets.repebble.com/screenshots/aca3bb65eafa438ebb7474e0/gabbro/7eee6e77-751e-4d97-8f79-d0c0f68f50cb.gif",
-      "release_version": "0.1.1",
-      "time2_preview": "https://assets.repebble.com/screenshots/aca3bb65eafa438ebb7474e0/emery/5d5816c3-d5ba-4228-af67-60956d25c50a.gif"
+      "thumbnail": "https://assets.repebble.com/screenshots/aca3bb65eafa438ebb7474e0/gabbro/52e47354-831e-4bbc-bcc1-28ce780f0222.gif",
+      "release_version": "0.2.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/aca3bb65eafa438ebb7474e0/emery/8a3741cc-5bb4-44d4-83d1-24445d53c8b4.gif"
     },
     {
       "name": "BeTime",
