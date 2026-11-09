@@ -11,6 +11,12 @@ Once enabled, open [the private invite manager](https://come-at-me-playtest.onre
 
 The browser manager handles invitations created there. The existing shared link and terminal-issued links retain their current controls below. Forwarding an active link gives the new holder the same access until it expires or is revoked.
 
+## Demo request queue
+
+The showcase opens the public request form at `/request`. It collects a name, an email address, and an optional short note. Only the signed-in owner can read the pending queue. Choose an expiration on a request and select **Approve and create invite**. Copy the link and send it to the email shown on the request. Dismiss removes a request from the pending queue.
+
+The same ledger write moves a request out of the queue and creates its invite. Retrying approval returns the original invite with its original expiration. The private ledger retains request details in its Git history.
+
 ### One-time deployment setup
 
 1. Initialize `invites.json` with `[]` in a dedicated private repository. Production’s intended ledger is `dbally-gis/come-at-me-invite-state`.

@@ -1,6 +1,7 @@
 import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { secondsRemaining, signInvite, validInviteId } from './invites.mjs';
+import { pendingRequest } from './demo-requests.mjs';
 
 const empty = new Set();
 const maxSessionSeconds = 8 * 3600;
@@ -22,6 +23,11 @@ async function jsonBody(request) {
   } catch {
     return null;
   }
+}
+
+function futureExpiration(value) {
+  const expires = typeof value === 'string' ? Math.floor(Date.parse(value) / 1000) : NaN;
+  return Number.isSafeInteger(expires) && expires > Date.now() / 1000 && expires <= 999999999999 ? expires : 0;
 }
 
 export function inviteAdmin({ store, signingKey, passwordHash, origin, revoked, send, security }) {
@@ -70,14 +76,42 @@ export function inviteAdmin({ store, signingKey, passwordHash, origin, revoked, 
     }
     if (method === 'GET' && url === '/admin/invites') {
       const records = await store.list();
-      return reply(response, 200, records.slice().reverse().map(present));
+      return reply(response, 200, records.filter(row => !pendingRequest(row)).reverse().map(present));
+    }
+    if (method === 'GET' && url === '/admin/requests') {
+      const records = await store.list();
+      return reply(response, 200, records.filter(pendingRequest).reverse());
+    }
+    if (method === 'POST' && (url === '/admin/approve' || url === '/admin/dismiss')) {
+      const body = await jsonBody(request);
+      if (typeof body?.id !== 'string' || !validInviteId(body.id)) return error(response, 400, 'Invalid request ID.');
+      const approving = url === '/admin/approve';
+      const result = await store.update(records => {
+        const index = records.findIndex(row => row.id === body.id && row.request);
+        const row = records[index];
+        if (!row) return { changed: false };
+        if (!pendingRequest(row)) return { changed: false, row };
+        if (approving) {
+          const expires = futureExpiration(body.expires);
+          if (!expires) return { changed: false, invalidExpiration: true };
+          row.expires = expires;
+          row.revoked = false;
+        } else {
+          records.splice(index, 1);
+        }
+        return { changed: true, row };
+      });
+      if (result.invalidExpiration) return error(response, 400, 'Choose a future expiration.');
+      if (!result.row) return error(response, 404, 'Request not found.');
+      if (approving) return reply(response, 200, present(result.row));
+      if (!result.changed) return error(response, 409, 'This request already has an invite.');
+      return reply(response, 200, {});
     }
     if (method === 'POST' && url === '/admin/invites') {
       const body = await jsonBody(request);
       const label = typeof body?.label === 'string' ? body.label.trim() : '';
-      const expires = typeof body?.expires === 'string' ? Math.floor(Date.parse(body.expires) / 1000) : NaN;
-      if (!label || label.length > 100 || !Number.isSafeInteger(expires) ||
-          expires <= Date.now() / 1000 || expires > 999999999999) {
+      const expires = futureExpiration(body?.expires);
+      if (!label || label.length > 100 || !expires) {
         return error(response, 400, 'Enter a recipient label and a future expiration.');
       }
       const { id } = signInvite(signingKey, expires);
@@ -92,7 +126,7 @@ export function inviteAdmin({ store, signingKey, passwordHash, origin, revoked, 
       const body = await jsonBody(request);
       if (typeof body?.id !== 'string' || !validInviteId(body.id)) return error(response, 400, 'Invalid invite ID.');
       const result = await store.update(records => {
-        const row = records.find(record => record.id === body.id);
+        const row = records.find(record => record.id === body.id && !pendingRequest(record));
         if (!row || row.revoked) return { changed: false, row };
         row.revoked = true;
         return { changed: true, row };

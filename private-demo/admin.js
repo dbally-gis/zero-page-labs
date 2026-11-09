@@ -4,6 +4,7 @@ const manager = document.querySelector('#manager');
 const login = document.querySelector('#login');
 const create = document.querySelector('#create');
 const invites = document.querySelector('#invites');
+const requests = document.querySelector('#requests');
 const output = document.querySelector('#output');
 const link = document.querySelector('#link');
 let shownId;
@@ -12,6 +13,7 @@ function signedOut() {
   manager.hidden = true;
   signIn.hidden = false;
   invites.replaceChildren();
+  requests.replaceChildren();
   clearLink();
 }
 
@@ -72,7 +74,9 @@ function action(text, label, click) {
 }
 
 async function refresh() {
-  const records = await api('invites');
+  const [records, pending] = await Promise.all([api('invites'), api('requests')]);
+  requests.replaceChildren(...pending.map(requestRow));
+  document.querySelector('#no-requests').hidden = pending.length !== 0;
   const rows = records.map(row => {
     const item = document.createElement('li');
     const details = document.createElement('div');
@@ -81,6 +85,11 @@ async function refresh() {
     name.textContent = row.label;
     meta.textContent = `${row.status} · Expires ${new Date(row.expires * 1000).toLocaleString()}`;
     details.append(name, meta);
+    if (row.request) {
+      const contact = document.createElement('p');
+      contact.textContent = row.request.email;
+      details.append(contact);
+    }
     item.append(details);
     if (row.status === 'Active') {
       const actions = document.createElement('div');
@@ -108,17 +117,70 @@ async function refresh() {
   document.querySelector('#empty').hidden = rows.length !== 0;
 }
 
+function requestRow(row) {
+  const item = document.createElement('li');
+  const details = document.createElement('div');
+  const name = document.createElement('strong');
+  const email = document.createElement('p');
+  const note = document.createElement('p');
+  name.textContent = row.label;
+  email.textContent = row.request.email;
+  note.textContent = row.request.note;
+  details.append(name, email);
+  if (row.request.note) details.append(note);
+
+  const form = document.createElement('form');
+  const label = document.createElement('label');
+  const expiration = document.createElement('input');
+  expiration.type = 'datetime-local';
+  expiration.required = true;
+  expiration.value = defaultExpiration();
+  label.append('Expiration in your local time', expiration);
+  const actions = document.createElement('div');
+  actions.className = 'actions';
+  const approve = document.createElement('button');
+  approve.className = 'primary';
+  approve.textContent = 'Approve and create invite';
+  const dismiss = action('Dismiss', `Dismiss request from ${row.label}`, event => {
+    if (!confirm(`Dismiss the request from ${row.label}?`)) return;
+    return run(event.currentTarget, async () => {
+      await api('dismiss', { id: row.id });
+      await refresh();
+      status.textContent = 'Request dismissed.';
+    });
+  });
+  dismiss.type = 'button';
+  actions.append(approve, dismiss);
+  form.append(label, actions);
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    return run(approve, async () => {
+      const result = await api('approve', { id: row.id, expires: new Date(expiration.value).toISOString() });
+      if (result.url) {
+        showLink(result);
+        link.focus();
+        status.textContent = 'Invite created. Copy the link to share it.';
+      } else {
+        status.textContent = 'This request already has an invite.';
+      }
+      await refresh();
+    });
+  });
+  item.append(details, form);
+  return item;
+}
+
 function defaultExpiration() {
   const date = new Date();
   date.setDate(date.getDate() + 14);
   date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
-  create.elements.expires.value = date.toISOString().slice(0, 16);
+  return date.toISOString().slice(0, 16);
 }
 
 function signedIn() {
   signIn.hidden = true;
   manager.hidden = false;
-  defaultExpiration();
+  create.elements.expires.value = defaultExpiration();
 }
 
 login.addEventListener('submit', event => {

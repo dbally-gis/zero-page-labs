@@ -31,6 +31,8 @@
   li:last-child { padding-bottom: 0; }
   li strong { overflow-wrap: anywhere; }
   li p { margin: .15rem 0 0; color: #4d4a43; font-size: .9rem; }
+  #requests > li { display: grid; overflow-wrap: anywhere; }
+  #requests input { max-width: 100%; box-sizing: border-box; }
   #status { min-height: 1.5em; }
   [hidden] { display: none !important; }
 </style>
@@ -52,6 +54,11 @@
     </form>
   </section>
   <div id="manager" hidden>
+    <section>
+      <h2>Demo requests</h2>
+      <p id="no-requests" hidden>No pending requests.</p>
+      <ul id="requests"></ul>
+    </section>
     <section>
       <h2>Create an invite</h2>
       <form id="create">

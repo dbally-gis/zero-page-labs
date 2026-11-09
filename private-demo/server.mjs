@@ -5,6 +5,7 @@ import { gunzipSync } from 'node:zlib';
 import { secondsRemaining, validInviteId } from './invites.mjs';
 import { githubInviteStore } from './invite-store.mjs';
 import { inviteAdmin } from './admin.mjs';
+import { demoRequests } from './demo-requests.mjs';
 
 function configuredKey(name) {
   const value = process.env[name];
@@ -93,12 +94,17 @@ const store = adminHash && signingKey ? githubInviteStore(
   process.env.DEMO_LEDGER_REPO ?? '', process.env.DEMO_LEDGER_TOKEN,
 ) : null;
 const browserInviteKey = store && createHmac('sha256', signingKey).update('come-at-me-browser-invites-v1').digest();
+const origin = process.env.DEMO_ADMIN_ORIGIN ?? 'https://come-at-me-playtest.onrender.com';
+const requests = store && demoRequests({ store, origin, send, security });
 const admin = store && inviteAdmin({
   store, signingKey: browserInviteKey, passwordHash: adminHash, revoked, send, security,
-  origin: process.env.DEMO_ADMIN_ORIGIN ?? 'https://come-at-me-playtest.onrender.com',
+  origin,
 });
 
 async function serve(request, response) {
+  if (requests && (request.url === '/request' || request.url === '/request/received')) {
+    return requests(request, response);
+  }
   if (admin && (request.url === '/admin' || request.url.startsWith('/admin/'))) {
     return admin(request, response);
   }
