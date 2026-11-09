@@ -1,0 +1,82 @@
+.cam {
+  --cam-ink: #182230;
+  --cam-cream: #fbf1d8;
+  --cam-gold: #ffca54;
+  --cam-red: #b53825;
+}
+
+.cam .back-link { display: inline-block; margin: 28px 0 20px; }
+
+.cam-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-width: 0;
+  background: var(--cam-ink);
+  color: var(--cam-cream);
+}
+
+.cam-copy { padding: clamp(25px, 4vw, 58px); }
+.cam .eyebrow { color: var(--cam-red); }
+.cam-copy .eyebrow { color: var(--cam-gold); }
+.cam h1 {
+  margin: 18px 0;
+  font-size: clamp(3.8rem, 8vw, 8rem);
+  line-height: .85;
+  letter-spacing: -.085em;
+  text-transform: uppercase;
+}
+
+.cam-copy p { max-width: 30ch; font-size: clamp(17px, 2vw, 23px); line-height: 1.35; }
+.cam .cam-cta { margin-top: 15px; background: var(--cam-gold); color: var(--cam-ink); }
+.cam .cam-cta:hover { background: var(--cam-cream); color: var(--cam-ink); }
+
+.cam-art {
+  display: grid;
+  place-content: center;
+  align-self: stretch;
+  margin: 0;
+  padding: clamp(28px, 5vw, 65px) 6%;
+  background: var(--cam-red);
+}
+
+.cam-fan { display: flex; align-items: center; justify-content: center; }
+.cam-fan img {
+  display: block;
+  width: 34%;
+  height: auto;
+  border-radius: 7%;
+  box-shadow: 0 9px 20px #18223055;
+}
+.cam-fan img:first-child { transform: rotate(-12deg) translate(7%, 4%); }
+.cam-fan img:nth-child(2) { z-index: 1; transform: translateY(-4%); }
+.cam-fan img:last-child { transform: rotate(12deg) translate(-7%, 4%); }
+.cam-art figcaption { color: var(--cam-cream); text-align: center; margin-top: 24px; }
+
+.cam-clip { padding: clamp(42px, 6vw, 84px) 0; }
+.cam h2 { margin: 10px 0 12px; font-size: clamp(2rem, 4.5vw, 4rem); line-height: 1.05; }
+.cam-clip p, .cam-request p { max-width: 61ch; }
+.cam video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin: 24px 0 14px;
+  background: var(--cam-ink);
+}
+
+.cam-transcript { max-width: 65ch; }
+.cam-transcript summary { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.cam-request {
+  padding: clamp(24px, 4vw, 52px);
+  margin-bottom: 64px;
+  border-top: 5px solid var(--cam-red);
+  background: var(--cam-cream);
+  color: var(--cam-ink);
+}
+
+@media (max-width: 720px) {
+  .cam-hero { grid-template-columns: 1fr; }
+  .cam-art { padding: 32px 9% 20px; }
+  .cam-fan { max-width: 360px; }
+}
