@@ -1,5 +1,14 @@
 [
   {
+    "name": "Window Seat",
+    "slug": "window-seat",
+    "url": "https://apps.repebble.com/window-seat_aca3bb65eafa438ebb7474e0",
+    "image": "/assets/catalog-aca3bb65eafa438ebb7474e0.gif",
+    "style": "Other",
+    "description": "A sleeper train window for your Pebble.",
+    "source_image": "https://assets.repebble.com/screenshots/aca3bb65eafa438ebb7474e0/emery/5d5816c3-d5ba-4228-af67-60956d25c50a.gif"
+  },
+  {
     "name": "BeTime",
     "slug": "betime",
     "url": "https://apps.repebble.com/betime_f77f655a2c9f4b72a2f39e58",
