@@ -1,8 +1,10 @@
-import { createHash, timingSafeEqual } from 'node:crypto';
+import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { gunzipSync } from 'node:zlib';
 import { secondsRemaining, validInviteId } from './invites.mjs';
+import { githubInviteStore } from './invite-store.mjs';
+import { inviteAdmin } from './admin.mjs';
 
 function configuredKey(name) {
   const value = process.env[name];
@@ -23,12 +25,18 @@ const game = gunzipSync(Buffer.from(packed, 'base64'), { maxOutputLength: 1_000_
 const sessionLimit = 86_400;
 const maxTokenLength = 89;
 
-function sessionSeconds(token) {
+async function sessionSeconds(token) {
   if (legacyHash && /^[A-Za-z0-9_-]{43}$/.test(token ?? '')) {
     const actual = createHash('sha256').update(token).digest();
     return timingSafeEqual(actual, legacyHash) ? sessionLimit : 0;
   }
-  return Math.min(sessionLimit, secondsRemaining(token, signingKey, revoked));
+  const validFor = secondsRemaining(token, signingKey, revoked);
+  if (validFor || !store) return Math.min(sessionLimit, validFor);
+  if (!secondsRemaining(token, browserInviteKey, revoked)) return 0;
+  const [id, expires] = token.split('.', 2);
+  const records = await store.list();
+  if (!records.some(row => row.id === id && row.expires === Number(expires) && !row.revoked)) return 0;
+  return Math.min(sessionLimit, secondsRemaining(token, browserInviteKey, revoked));
 }
 
 const client = `
@@ -80,7 +88,20 @@ function send(response, code, body, headers = {}) {
   response.end(body);
 }
 
+const adminHash = configuredKey('DEMO_ADMIN_SHA256');
+const store = adminHash && signingKey ? githubInviteStore(
+  process.env.DEMO_LEDGER_REPO ?? '', process.env.DEMO_LEDGER_TOKEN,
+) : null;
+const browserInviteKey = store && createHmac('sha256', signingKey).update('come-at-me-browser-invites-v1').digest();
+const admin = store && inviteAdmin({
+  store, signingKey: browserInviteKey, passwordHash: adminHash, revoked, send, security,
+  origin: process.env.DEMO_ADMIN_ORIGIN ?? 'https://come-at-me-playtest.onrender.com',
+});
+
 async function serve(request, response) {
+  if (admin && (request.url === '/admin' || request.url.startsWith('/admin/'))) {
+    return admin(request, response);
+  }
   if (request.method === 'GET' && request.url === '/health') return send(response, 200, 'OK');
   if (request.method === 'GET' && request.url === '/') {
     return send(response, 200, landing, {
@@ -90,7 +111,7 @@ async function serve(request, response) {
   }
   if (request.method === 'GET' && request.url === '/play') {
     const cookie = /(?:^|;\s*)__Secure-cam=([^;]*)/.exec(request.headers.cookie ?? '')?.[1];
-    if (!sessionSeconds(cookie)) return send(response, 403, 'Open the private invitation link to play.');
+    if (!await sessionSeconds(cookie)) return send(response, 403, 'Open the private invitation link to play.');
     return send(response, 200, game, {
       'Content-Type': 'text/html; charset=utf-8',
       'Content-Security-Policy': gamePolicy,
@@ -102,7 +123,7 @@ async function serve(request, response) {
       token += chunk.toString('utf8');
       if (token.length > maxTokenLength) return send(response, 413, 'Invalid invitation.');
     }
-    const maxAge = sessionSeconds(token);
+    const maxAge = await sessionSeconds(token);
     if (!maxAge) return send(response, 403, 'Invalid invitation.');
     return send(response, 204, undefined, {
       'Set-Cookie': `__Secure-cam=${token}; Path=/play; Secure; HttpOnly; SameSite=Strict; Max-Age=${maxAge}`,
@@ -113,7 +134,7 @@ async function serve(request, response) {
 
 const server = createServer({ requestTimeout: 15_000 }, (request, response) => {
   serve(request, response).catch(() => {
-    if (!response.headersSent) send(response, 400, 'Request unavailable.');
+    if (!response.headersSent) send(response, 503, 'Request temporarily unavailable. Try again.');
   });
 });
 server.listen(Number(process.env.PORT ?? 10000), process.env.DEMO_BIND_HOST ?? '0.0.0.0');

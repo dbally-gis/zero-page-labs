@@ -5,6 +5,24 @@ timestamp: "2026-11-09"
 
 # Manage COME AT ME invites
 
+## Browser invite manager
+
+Once enabled, open [the private invite manager](https://come-at-me-playtest.onrender.com/admin) and sign in with the owner password. Enter a recipient label, set the expiration in your local time, and create the invite. Copy it from the confirmation or the invite list. Revoke an active invite from that same list. Access stops on the recipient’s next request. A match already loaded in their browser can continue until the page reloads.
+
+The browser manager handles invitations created there. The existing shared link and terminal-issued links retain their current controls below. Forwarding an active link gives the new holder the same access until it expires or is revoked.
+
+### One-time deployment setup
+
+1. Initialize `invites.json` with `[]` in a dedicated private repository. Production’s intended ledger is `dbally-gis/come-at-me-invite-state`.
+2. Supply `DEMO_LEDGER_REPO` as the repository’s owner/name and `DEMO_LEDGER_TOKEN` as a fine-grained GitHub credential limited to that repository with Contents read/write. Store the token in the Render environment. Rotate it before expiration.
+3. Generate a random 32-byte owner password, encode it as base64url, and keep it in the owner’s password manager. Set `DEMO_ADMIN_SHA256` to the lowercase hexadecimal SHA-256 digest of the encoded password.
+4. Keep `DEMO_SIGNING_KEY` stable. The service derives separate keys for browser-issued invites and owner sessions. If using another hostname, set `DEMO_ADMIN_ORIGIN` to its HTTPS origin without a trailing slash.
+5. Deploy the demo service. Verify owner sign-in, issuing two synthetic invites, revoking one, and replaying both after a restart.
+
+The ledger stores labels, IDs, expiration timestamps, and revocation state. It never stores the signed URLs or the owner password. Browser-issued links require a matching active ledger entry. If the ledger is unavailable, those links fail closed until it recovers. The shared link and existing terminal-issued links continue using their existing checks.
+
+## Existing terminal-issued invites
+
 Run these commands from the Zero Page Labs repository. The signing key is in the owner-only `.tmp/come-at-me-signing-key` file. Issuing an invite records the recipient label, ID, and expiration in the local `.tmp/come-at-me-invites.jsonl` ledger. Keep both files private.
 
 ```sh
