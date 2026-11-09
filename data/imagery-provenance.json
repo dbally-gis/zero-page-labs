@@ -2,12 +2,12 @@
   "thumbwords": {
     "build": "1.0.2 (2026110703)",
     "commit": "7ed1f0f63287c1dd7537001daae3668fae2ae9c9",
-    "method": "Real bundled app UI captured in isolated browser at 390x844 on 2026-11-07; no compositing or generated gameplay.",
+    "method": "The game library uses the existing transparent handset cutout. Codebreaker and Number Hunt were captured directly from the tagged app UI at 390x844 with the browser backdrop disabled.",
     "availability": "Latest development preview; site explicitly notes App Store version may differ.",
     "assets": {
-      "thumbwords-codebreaker-current.jpg": "950127e3477b29568827f40d7ceaae742ef81f8cedc2c26711f8dd00c2f313c5",
-      "thumbwords-library-current.jpg": "1d00c1865bca717ba5ed2cbdc27f10abd18fb0a0d1ec89ca7907300abb0e6def",
-      "thumbwords-number-hunt-current.jpg": "3f4ff84ff141b57ab05acd29c09e0d7a410fc5373f993b4a6ae9064b3e14a57e"
+      "thumbwords-codebreaker-current.png": "b1c7667cd59fb5119a22186384f326d861b397733d73edf50b2b0ad90bdd5690",
+      "thumbwords-library-current.png": "71a78494bb712e90766a46b2d81618b30b7fa6268707e9f84553ce47d05b4485",
+      "thumbwords-number-hunt-current.png": "69a68992a33a99cac5980d9afc1a8cab315711ccf048ac9216f8e19c5bb87f08"
     }
   },
   "pebble": {
