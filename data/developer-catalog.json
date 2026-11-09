@@ -128,9 +128,9 @@
       "name": "Terminal",
       "url": "https://apps.repebble.com/terminal_744be00b9d1c499999cd62f3",
       "category": "Faces",
-      "description": "A familiar terminal, made for your wrist.\n\nTerminal pairs large block numerals with a prompt and a separated block cursor. The cursor briefly blinks at each minute change, then stays steady.\n\nMake it yours:\n- Six palettes: Mint, Amber, Ice, Rose, White, and Paper.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery icon and percentage.\n\nThe animated preview cycles through the six palettes at a fixed sample time. Choose your preferred colors in settings; the watchface keeps that palette.\n\nFor Pebble Time 2.",
-      "thumbnail": "https://assets.repebble.com/screenshots/744be00b9d1c499999cd62f3/chalk/22c20278-09c4-4bea-a54d-03464986197e.png",
-      "release_version": "0.1.1",
+      "description": "A familiar terminal, made for your wrist.\n\nTerminal pairs large block numerals with a prompt and a separated block cursor. The cursor briefly blinks at each minute change, then stays steady.\n\nMake it yours:\n- Six palettes: Mint, Amber, Ice, Rose, White, and Paper.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Live battery icon and percentage.\n\nThe animated preview cycles through the six palettes at a fixed sample time. Choose your preferred colors in settings; the watchface keeps that palette.\n\nFor Pebble Time 2, Round 2, Time Round, Pebble 2, Pebble 2 Duo, and Time / Time Steel. The Pebble 2 models offer light and inverted displays.",
+      "thumbnail": "https://assets.repebble.com/screenshots/744be00b9d1c499999cd62f3/basalt/1e1f48f3-7410-4329-8af1-fed001cd83c1.png",
+      "release_version": "0.1.2",
       "time2_preview": "https://assets.repebble.com/screenshots/744be00b9d1c499999cd62f3/emery/4de09dfa-4b4f-4343-b5fc-db01df950f4b.gif"
     },
     {
@@ -173,18 +173,18 @@
       "name": "LCD Club",
       "url": "https://apps.repebble.com/lcd-club_71dfd4981ebc45fb932d81cb",
       "category": "Faces",
-      "description": "Retro LCD time, arranged your way.\n\nLCD Club pairs a large seven-segment clock with a centered battery indicator and a seven-day strip that highlights today.\n\nMake it yours:\n- Six row orders: put Time, Battery, and Weekdays in your preferred positions.\n- A 60-mark seconds ruler that fills through each minute and starts again with the next.\n- Turn the ruler off for minute-only updates.\n- Five LCD palettes: Classic LCD, Silver, Amber, Ice, and Night.\n- Custom background and ink colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional header date: month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Battery icon and percentage, centered together.\n\nThe animated preview demonstrates the seconds ruler. The other previews show alternate layouts and colors.\n\nFor Pebble Time 2.",
-      "thumbnail": "https://assets.repebble.com/screenshots/71dfd4981ebc45fb932d81cb/chalk/9d59ddea-80f6-4a07-b458-eaabd29c8377.png",
-      "release_version": "0.1.2",
+      "description": "Retro LCD time, arranged your way.\n\nLCD Club pairs a large seven-segment clock with a centered battery indicator and a seven-day strip that highlights today.\n\nMake it yours:\n- Six row orders: put Time, Battery, and Weekdays in your preferred positions.\n- A 60-mark seconds ruler that fills through each minute and starts again with the next.\n- Turn the ruler off for minute-only updates.\n- Five LCD palettes and custom colors on color watches.\n- Light and inverted displays on Pebble 2 and Pebble 2 Duo.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional header date: month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Battery icon and percentage, centered together.\n\nThe animated preview demonstrates the seconds ruler. The other previews show alternate layouts and colors.\n\nFor Pebble Time 2, Pebble Round 2, Pebble Time Round, Pebble 2, Pebble 2 Duo, and Pebble Time / Time Steel.",
+      "thumbnail": "https://assets.repebble.com/screenshots/71dfd4981ebc45fb932d81cb/basalt/be059c8b-5529-48e5-906c-e0aab5092b79.png",
+      "release_version": "0.1.3",
       "time2_preview": "https://assets.repebble.com/screenshots/71dfd4981ebc45fb932d81cb/emery/7d5d637a-53fb-4072-bd82-b21659de2c96.gif"
     },
     {
       "name": "Mono",
       "url": "https://apps.repebble.com/mono_dd61ad0599c344db8b663a80",
       "category": "Faces",
-      "description": "Big time. A little color.\n\nMono puts the hour above the minute in large, easy-to-read numerals, with a small accent square and a clear battery bar.\n\nMake it yours:\n- Six numeral fonts: Original, Geometric, Tall, Block, Serif, and Digital.\n- Six color palettes: Classic, Mint, Ice, Rose, Paper, and Black & white.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Battery bar and numeric percentage.\n\nThe gallery GIF shows sample font and color combinations. Choose your preferred style in settings; the watchface stays still between minute updates.\n\nFor Pebble Time 2.",
-      "thumbnail": "https://assets.repebble.com/screenshots/dd61ad0599c344db8b663a80/chalk/357d5873-b4cd-4f9d-b627-6124cc0c8bf6.png",
-      "release_version": "0.2.1",
+      "description": "Big time. A little color.\n\nMono puts the hour above the minute in large, easy-to-read numerals, with a small accent square and a clear battery bar.\n\nMake it yours:\n- Six numeral fonts: Original, Geometric, Tall, Block, Serif, and Digital.\n- Six color palettes: Classic, Mint, Ice, Rose, Paper, and Black & white.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour time, with AM/PM in 12-hour mode.\n- Optional date: weekday/month/day, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY.\n- Battery bar and numeric percentage.\n\nThe gallery GIF shows sample font and color combinations. Choose your preferred style in settings; the watchface stays still between minute updates.\n\nFor Pebble Time 2, Round 2, Time Round, Pebble 2, Pebble 2 Duo, and Time / Time Steel. The Pebble 2 models offer light and inverted displays.",
+      "thumbnail": "https://assets.repebble.com/screenshots/dd61ad0599c344db8b663a80/basalt/c5bd5818-e9ff-4aef-9f06-4d030679382a.png",
+      "release_version": "0.2.2",
       "time2_preview": "https://assets.repebble.com/screenshots/dd61ad0599c344db8b663a80/emery/a89a40ca-e6a1-4b81-890e-fc96fecfd2ed.gif"
     },
     {
