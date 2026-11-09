@@ -134,6 +134,16 @@
 .moment-role[data-side="1"] { --fleet-color: var(--red); }
 .moment-role dt { color: var(--muted); font-size: 11px; }
 .moment-role dd { margin: 1px 0 0; color: var(--fleet-color); font-size: 13px; overflow-wrap: anywhere; }
+.moment-role button {
+  width: 100%;
+  min-height: 30px;
+  padding: 2px 0;
+  border: 0;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.moment-role button[aria-pressed="true"] { font-weight: 600; }
 .desk-panels .moment > p:not(.eyebrow), #battle-summary { font-size: 13px; line-height: 1.6; }
 .desk-panels .source-link { margin-top: 7px; }
 .desk-panels .ship-detail { margin: 0; padding: 0; border: 0; }

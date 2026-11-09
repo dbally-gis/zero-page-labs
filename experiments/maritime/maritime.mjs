@@ -103,8 +103,18 @@ function renderMomentRoles(participants) {
     const fleet=state.battle.sides[ship.side];
     const card=html('div',undefined,'moment-role');
     card.dataset.side=ship.side;
-    const name=html('dd',ship.representative?fleet:ship.name);
-    if(!ship.representative)name.append(html('span',` · ${fleet}`,'sr-only'));
+    const name=html('dd');
+    const follow=html('button',ship.representative?fleet:ship.name);
+    follow.type='button';
+    follow.dataset.followShip=ship.id;
+    follow.setAttribute('aria-label',ship.representative?`Follow ${fleet} formation marker`:`Follow ${ship.name}, ${fleet}`);
+    follow.setAttribute('aria-pressed',String(following()&&state.selected===ship.id));
+    follow.addEventListener('click',()=>{
+      state.selected=ship.id;
+      setView('follow');
+      announce(ship.representative?`Following ${fleet} formation marker.`:`Following ${ship.name}.`);
+    });
+    name.append(follow);
     card.append(html('dt',ship.representative&&role.label==='Fired'?'Firing fleet':role.label),name);
     roles.append(card);
   }
@@ -124,6 +134,9 @@ function updateMomentSteps() {
 }
 function renderShip() {
   const s=state.battle.ships.find(s=>s.id===state.selected);
+  for(const button of $('moment-roles')?.querySelectorAll('[data-follow-ship]')??[]){
+    button.setAttribute('aria-pressed',String(following()&&button.dataset.followShip===s.id));
+  }
   $('ship-select').value=s.id; $('ship-name').textContent=s.representative?'Formation marker':s.name;
   $('ship-side').textContent=state.battle.sides[s.side];
   $('ship-type').textContent=({sail:'Sailing warship',galley:'Oared galley',monitor:'Turreted ironclad',ironclad:'Armoured steam warship',cruiser:'Steam cruiser'})[s.type];
