@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {BATTLES} from '../experiments/maritime/battles.mjs';
 import {eventsFor,eventSource} from '../experiments/maritime/battle-events.mjs';
-import {effectsAt,shotEvent,previewSalvo,impactStyle} from '../experiments/maritime/combat.mjs';
+import {effectsAt,shotEvent,previewSalvo,previewShipAction,impactStyle} from '../experiments/maritime/combat.mjs';
 import {fateAt,positionAt} from '../experiments/maritime/model.mjs';
 const gun=new Set(['muzzle','timber','armor','shell']);
 for(const battle of BATTLES){
@@ -128,4 +128,14 @@ test('Downs fire applies to Santa Teresa without inventing a projectile',()=>{
   const fire=effectsAt(battle,.66).find(e=>e.kind==='reported-fire');
   assert.equal(fire?.eventId,'fireships');
   assert.equal(fire.projectile,null);
+});
+
+test('Follow Ship action picks the selected vessel’s relevant shot, damage and loss',()=>{
+  const battle=BATTLES.find(b=>b.id==='lissa'),ship=battle.ships.find(s=>s.id==='re-italia');
+  assert.match(previewShipAction(battle,ship,.70).title,/rams/);
+  assert.match(previewShipAction(battle,ship,.725).title,/breached/);
+  assert.equal(previewShipAction(battle,ship,.77).at,ship.fate.at);
+  assert.equal(previewShipAction(battle,ship,1).at,ship.fate.at);
+  const marker=battle.ships.find(s=>s.representative);
+  assert.equal(previewShipAction(battle,marker,0),null);
 });

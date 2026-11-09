@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { BATTLES } from '../experiments/maritime/battles.mjs';
-import { STOPS, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt } from '../experiments/maritime/model.mjs';
+import { STOPS, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame } from '../experiments/maritime/model.mjs';
 
 test('collection covers distinct propulsion eras within the requested period',()=>{
   assert.deepEqual(BATTLES.map(b=>b.id),['diu','lepanto','gravelines','downs','quiberon','chesapeake','nile','trafalgar','hampton-roads','lissa','yalu','manila-bay']);
@@ -96,4 +96,26 @@ test('source-backed fates distinguish captured vessels from battle sinkings',()=
   }
   const sultana=BATTLES.find(b=>b.id==='lepanto').ships.find(s=>s.id==='sultana');assert.equal(fateAt(sultana,1).kind,'captured');
   assert.equal(BATTLES.find(b=>b.id==='trafalgar').ships.some(s=>s.fate?.kind==='sunk'),false);
+});
+
+test('Follow Ship centers a moving vessel and holds the sourced loss location',()=>{
+  const battle=BATTLES.find(b=>b.id==='lissa'),ship=battle.ships.find(s=>s.id==='re-italia');
+  for(const progress of [.2,.52,.76,1,.1]){
+    const frame=followFrame(ship,progress,140),position=activePositionAt(ship,progress);
+    assert.equal(frame.x+frame.w/2,position.x);
+    assert.equal(frame.y+frame.h/2,position.y);
+    assert.equal(frame.heading,position.heading);
+  }
+  assert.notDeepEqual(followFrame(ship,.2),followFrame(ship,.52));
+  assert.deepEqual(followFrame(ship,1),followFrame(ship,ship.fate.at));
+});
+
+test('Follow Ship survives a shared moment URL without changing existing modes',()=>{
+  const battle=BATTLES.find(b=>b.id==='nile');
+  for(const view of ['follow','tactical','atmosphere']){
+    const hash=shareView({battle,progress:.7,selected:'bellerophon',view});
+    assert.equal(readView(hash).view,view);
+    assert.equal(readView(hash).ship,'bellerophon');
+    assert.equal(startsPlaying(hash,false),false);
+  }
 });

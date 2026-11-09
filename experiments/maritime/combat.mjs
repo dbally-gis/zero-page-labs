@@ -1,3 +1,4 @@
+import {damageStages} from './damage.mjs';
 import {eventsFor} from './battle-events.mjs';
 import {positionAt,activePositionAt,clamp,fateAt} from './model.mjs';
 const DEG=Math.PI/180;
@@ -46,6 +47,21 @@ export function effectsAt(battle,progress){
 export function previewSalvo(battle){
   const list=eventsFor(battle).filter(e=>e.kind),index=list.findIndex(e=>FLIGHT_KINDS.has(e.kind));
   return shotEvent(battle,index>=0?index:0);
+}
+// Use only authored episodes for the selected ship, including outcomes with no gunfire.
+export function previewShipAction(battle,ship,progress){
+  const shots=eventsFor(battle).filter(event=>event.kind)
+    .map((_,i)=>shotEvent(battle,i))
+    .filter(event=>event&&(event.target===ship.id||event.shooter===ship.id))
+    .map(event=>({at:event.firedAt/100,still:(event.arrival+.12)/100,title:event.title}));
+  const stages=damageStages(battle,ship).map(stage=>({at:stage.at,still:stage.at,title:stage.title}));
+  if(ship.fate?.kind==='sunk'){
+    const at=ship.fate.at;
+    // A reduced-motion view jumps to the loss threshold and draws the final marker.
+    stages.push({at,still:at,title:`${ship.name} sinks`});
+  }
+  const moments=[...shots,...stages].sort((a,b)=>a.at-b.at);
+  return moments.find(moment=>moment.at>=progress-.001)??moments.at(-1)??null;
 }
 // Shared by SVG and 3D. Bounded visual sizes never grow with a long reported fire.
 export function impactStyle(effect){

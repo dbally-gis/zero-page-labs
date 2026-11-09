@@ -40,7 +40,7 @@ function hullGeometry(length=54,width=19) {
   }
   for(let j=0;j<rings.length-1;j++)for(let i=0;i<n;i++){
     const a=j*n+i,b=j*n+(i+1)%n,c=(j+1)*n+i,d=(j+1)*n+(i+1)%n;
-    indices.push(a,c,b,b,c,d);
+    indices.push(a,b,c,b,d,c);
   }
   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices,3));g.setIndex(indices);g.computeVertexNormals();return g;
 }
@@ -281,11 +281,16 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
   }
   function frameCamera(){
     if(!state)return;const w=host.clientWidth,h=host.clientHeight,aspect=w/h;
-    const angle=(state.view==='atmosphere'?34:58)*PI/180,yaw=-30*PI/180;
-    const scale=state.camera.w/1000;
-    const height=Math.max(650*Math.sin(angle)+90,1100/aspect)*scale;
+    if(!w||!h)return;
+    const close=state.view==='follow';
+    const angle=(close?26:state.view==='atmosphere'?34:58)*PI/180;
+    // A steady port-quarter view keeps the deck, rig and waterline in frame.
+    const yaw=(close&&!motion.matches?-state.camera.heading-65:-30)*PI/180;
+    const height=close
+      ?Math.max(state.camera.w*.68,state.camera.w/aspect)
+      :Math.max(650*Math.sin(angle)+90,1100/aspect)*state.camera.w/1000;
     camera.left=-height*aspect/2;camera.right=height*aspect/2;camera.top=height/2;camera.bottom=-height/2;
-    const target=new T.Vector3(state.camera.x+state.camera.w/2-500,12,state.camera.y+state.camera.h/2-300);
+    const target=new T.Vector3(state.camera.x+state.camera.w/2-500,close?17:12,state.camera.y+state.camera.h/2-300);
     camera.position.copy(target).add(new T.Vector3(1800*Math.cos(angle)*Math.sin(yaw),1800*Math.sin(angle),1800*Math.cos(angle)*Math.cos(yaw)));
     camera.lookAt(target);camera.updateProjectionMatrix();camera.updateMatrixWorld();oceanMaterial.uniforms.eye.value.copy(camera.position);
   }
@@ -298,7 +303,7 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
   let down=null;
   const atPointer=e=>{const r=canvas.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);};
   canvas.addEventListener('pointerdown',e=>{if(e.button!==0)return;atPointer(e);const world=ray.ray.intersectPlane(waterPlane,new T.Vector3());down={x:e.clientX,y:e.clientY,moved:false,touch:e.pointerType==='touch',world:world?.clone()};if(!down.touch)canvas.setPointerCapture(e.pointerId);});
-  canvas.addEventListener('pointermove',e=>{if(!down)return;if(Math.abs(e.clientX-down.x)+Math.abs(e.clientY-down.y)>4)down.moved=true;if(down.moved&&!down.touch&&down.world){atPointer(e);const world=ray.ray.intersectPlane(waterPlane,new T.Vector3());if(world)onPan(down.world.x-world.x,down.world.z-world.z);}});
+  canvas.addEventListener('pointermove',e=>{if(!down)return;if(Math.abs(e.clientX-down.x)+Math.abs(e.clientY-down.y)>4)down.moved=true;if(down.moved&&state?.view!=='follow'&&!down.touch&&down.world){atPointer(e);const world=ray.ray.intersectPlane(waterPlane,new T.Vector3());if(world)onPan(down.world.x-world.x,down.world.z-world.z);}});
   canvas.addEventListener('pointerup',e=>{if(!down)return;const moved=down.moved;down=null;if(moved)return;atPointer(e);const hit=ray.intersectObjects(ships.map(s=>s.hit),false)[0];if(hit)onSelect(hit.object.userData.ship);});
   canvas.addEventListener('pointercancel',()=>{down=null;});
   // Pointer cancellation during touch scrolling leaves the document in charge.
@@ -323,7 +328,9 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
       s.label.textContent=sunk?`${sinking.complete?'×':'↘'} ${s.data.name} · ${sinking.complete?'Sunk':'Sinking'}`:s.data.representative?'Fleet marker':s.data.name+(damage?' · Damaged':'');
       s.wake.visible=!fate&&s.data.id!=='minnesota'&&state.progress<1;s.wake.material.opacity=.42+Math.sin(clock*1.2+s.data.id.length)*.06;
       const selected=s.data.id===state.selected,chapterFocus=focus.includes(s.data.id);
-      s.label.hidden=!(sunk||damage||selected||state.layers.labels||chapterFocus);
+      s.label.hidden=state.view==='follow'
+        ?selected||!state.layers.labels
+        :!(sunk||damage||selected||state.layers.labels||chapterFocus);
       const screen=s.group.position.clone().add(new T.Vector3(0,4,37)).project(camera);
       const labelWidth=s.label.textContent.length*5.6+12;
       const labelX=Math.max(labelWidth/2+4,Math.min(host.clientWidth-labelWidth/2-4,(screen.x+1)*.5*host.clientWidth));

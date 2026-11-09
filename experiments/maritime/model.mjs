@@ -25,7 +25,7 @@ export function readView(hash) {
   const p=new URLSearchParams(hash.replace(/^#/,''));
   const battle=BATTLES.find(b=>b.id===p.get('battle')) || BATTLES.find(b=>b.id==='trafalgar');
   const n=Number(p.get('t')??0);
-  return {battle,progress:clamp(Number.isFinite(n)?n:0,0,1),ship:battle.ships.some(s=>s.id===p.get('ship'))?p.get('ship'):battle.defaultShip,view:p.get('view')==='atmosphere'?'atmosphere':'tactical'};
+  return {battle,progress:clamp(Number.isFinite(n)?n:0,0,1),ship:battle.ships.some(s=>s.id===p.get('ship'))?p.get('ship'):battle.defaultShip,view:['atmosphere','follow'].includes(p.get('view'))?p.get('view'):'tactical'};
 }
 export function shareView(state) {
   return '#'+new URLSearchParams({battle:state.battle.id,t:state.progress.toFixed(3),ship:state.selected,view:state.view});
@@ -44,3 +44,12 @@ export function cameraZoom(camera, factor) {
 // Loss thresholds are authored replay positions, never damage adjudication.
 export function fateAt(ship,progress){return ship.fate&&Number.isFinite(progress)&&progress>=ship.fate.at?ship.fate:null;}
 export function activePositionAt(ship,progress){return positionAt(ship,ship.fate?.kind==='sunk'?Math.min(progress,ship.fate.at):progress);}
+
+export const FOLLOW_WIDTH = 156;
+export const FOLLOW_MIN = 128;
+export const FOLLOW_MAX = 280;
+export function followFrame(ship,progress,width=FOLLOW_WIDTH){
+  const {x,y,heading}=activePositionAt(ship,progress);
+  const height=width*.6;
+  return {x:x-width/2,y:y-height/2,w:width,h:height,heading};
+}

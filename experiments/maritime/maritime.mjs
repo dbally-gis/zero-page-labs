@@ -1,17 +1,22 @@
 import {damageAt,damageStages,sinkingAt,tornAtMast} from './damage.mjs';
 import {eventsFor,eventSource} from './battle-events.mjs';
 import { BATTLES } from './battles.mjs';
-import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt } from './model.mjs';
-import {effectsAt,previewSalvo,impactStyle} from './combat.mjs';
+import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame, FOLLOW_WIDTH, FOLLOW_MIN, FOLLOW_MAX } from './model.mjs';
+import {effectsAt,previewSalvo,previewShipAction,impactStyle} from './combat.mjs';
 
 const $=id=>document.getElementById(id);
 const svgNS='http://www.w3.org/2000/svg';
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const initial=readView(location.hash);
-const state={...initial,selected:initial.ship,playing:startsPlaying(location.hash,reduced.matches),speed:1,layers:{courses:true,weapons:false,wind:true,labels:false,effects:true},question:null,camera:{x:0,y:0,w:1000,h:600}};
+const state={...initial,selected:initial.ship,playing:startsPlaying(location.hash,reduced.matches),speed:1,layers:{courses:true,weapons:false,wind:true,labels:false,effects:true},question:null,followWidth:FOLLOW_WIDTH,camera:{x:0,y:0,w:1000,h:600}};
 let nodes=[],lastChapter=-1,lastFrame=0,lastPaint=0,drag=null,dragged=false;
 let dimensional=null,classic=false;
-function sceneState(){return {...state};}
+const selectedShip=()=>state.battle.ships.find(ship=>ship.id===state.selected);
+const following=()=>state.view==='follow';
+function currentFrame(){
+  return following()?followFrame(selectedShip(),state.progress,state.followWidth):state.camera;
+}
+function sceneState(){return {...state,camera:currentFrame()};}
 function refreshScene(){if(dimensional&&!classic)dimensional.update(sceneState());}
 function selectShip(id){state.selected=id;setPlaying(false);$('start-hint').hidden=true;renderShip();renderPositions();announce(`Selected ${state.battle.ships.find(s=>s.id===id).name}. Replay paused.`);}
 function node(tag,attrs={},parent=null,text=null) {
@@ -64,7 +69,8 @@ function renderShip() {
   if(s.id==='minnesota') $('ship-type').textContent='Steam frigate · aground';
   $('ship-role').textContent=s.role;
   $('ship-chip').textContent=`${s.representative?'Formation marker':s.name} · Details ↓`;
-  $('ship-chip').hidden=!$('start-hint').hidden;
+  $('ship-chip').hidden=!following()&&!$('start-hint').hidden;
+  $('watch-salvo').disabled=following()&&!previewShipAction(state.battle,s,state.progress);
   $('ship-marker').textContent=s.representative?'REPRESENTATIVE MARKER · not an identified vessel':'SELECTED PARTICIPANT · position is schematic';
   $('weapon-note').textContent=state.battle.id==='yalu'?'Weapon sectors are omitted here: mixed steam-era mountings need ship-specific treatment.':'Weapon sectors show mounting principles, not measured range or clearance.';
   $('ship-portrait').replaceChildren(node('use',{href:`#ship-${s.type}`,x:-25,y:-35,width:50,height:70}));
@@ -98,17 +104,35 @@ function renderFate(){
   }
 }
 
+function renderCamera() {
+  const camera=currentFrame();
+  $('sea').setAttribute('viewBox',`${camera.x} ${camera.y} ${camera.w} ${camera.h}`);
+  $('zoom-in').disabled=camera.w<=(following()?FOLLOW_MIN:420);
+  $('zoom-out').disabled=camera.w>=(following()?FOLLOW_MAX:1400);
+}
 function setCamera(camera) {
   state.camera=camera;
-  $('sea').setAttribute('viewBox',`${camera.x} ${camera.y} ${camera.w} ${camera.h}`);
-  $('zoom-in').disabled=camera.w<=420; $('zoom-out').disabled=camera.w>=1400;
+  renderCamera();
   refreshScene();
 }
+function zoom(factor){
+  if(following()){
+    state.followWidth=clamp(state.followWidth*factor,FOLLOW_MIN,FOLLOW_MAX);
+    renderCamera();
+    refreshScene();
+  }else setCamera(cameraZoom(state.camera,factor));
+}
 function setView(view) {
-  state.view=view; $('chart').classList.toggle('atmosphere',view==='atmosphere');
-  $('tactical').setAttribute('aria-pressed',String(view==='tactical'));
-  $('atmosphere').setAttribute('aria-pressed',String(view==='atmosphere'));
-  refreshScene();
+  state.view=view;
+  $('chart').classList.toggle('atmosphere',view==='atmosphere');
+  $('chart').classList.toggle('follow-view',following());
+  for(const id of ['tactical','atmosphere','follow'])$(id).setAttribute('aria-pressed',String(view===id));
+  $('watch-salvo').textContent=following()?'Watch ship action ▶':'Watch a salvo ▶';
+  $('reset-map').setAttribute('aria-label',following()?'Reset close-up zoom':'Reset map framing');
+  if(following())$('start-hint').hidden=true;
+  renderShip();
+  renderCamera();
+  renderPositions();
 }
 function renderLayers() {
   for(const [key,on] of Object.entries(state.layers)) $('layer-'+key).setAttribute('aria-pressed',String(on));
@@ -254,11 +278,20 @@ function renderPositions() {
       if(e.projectile)node('circle',{cx:e.projectile.x,cy:e.projectile.z,r:1.7,fill:'#302820'},g);
     }
   }
+  if(following()){
+    const ship=selectedShip(),fate=fateAt(ship,state.progress);
+    const loss=sinkingAt(state.battle,ship,state.progress,reduced.matches);
+    const condition=loss.started?(loss.complete?'Sunk':'Sinking'):fate?'Captured':damageAt(state.battle,ship,state.progress)?'Damaged':'Following';
+    const label=`${ship.representative?'Formation marker':ship.name} · ${condition} · Details ↓`;
+    if($('ship-chip').textContent!==label)$('ship-chip').textContent=label;
+    $('ship-chip').hidden=false;
+    renderCamera();
+  }
   renderFate();refreshScene();
 }
 function loadBattle(battle,progress=0,selected=battle.defaultShip) {
   state.battle=battle;state.progress=progress;state.selected=selected;state.question=null;lastChapter=-1;
-  $('start-hint').hidden=progress>0||isSharedView(location.hash);
+  $('start-hint').hidden=following()||progress>0||isSharedView(location.hash);
   setCamera({x:0,y:0,w:1000,h:600});
   $('battle-title').textContent=battle.name;$('battle-meta').textContent=`${battle.date} / ${battle.place}`;
   $('battle-takeaway').textContent=battle.takeaway;$('battle-introduction').textContent=battle.introduction;
@@ -332,10 +365,27 @@ $('speed').addEventListener('change',e=>{state.speed=Number(e.target.value);});
 $('ship-select').addEventListener('change',e=>{state.selected=e.target.value;setPlaying(false);$('start-hint').hidden=true;renderShip();renderPositions();});
 $('return-story').addEventListener('click',()=>{state.question=null;renderMoment();renderPositions();announce('Returned to chapter explanation.');});
 for(const key of Object.keys(state.layers)) $('layer-'+key).addEventListener('click',()=>{state.layers[key]=!state.layers[key];renderLayers();renderPositions();});
-$('zoom-in').addEventListener('click',()=>setCamera(cameraZoom(state.camera,.8)));
-$('zoom-out').addEventListener('click',()=>setCamera(cameraZoom(state.camera,1.25)));
-$('reset-map').addEventListener('click',()=>setCamera({x:0,y:0,w:1000,h:600}));
+$('zoom-in').addEventListener('click',()=>zoom(.8));
+$('zoom-out').addEventListener('click',()=>zoom(1.25));
+$('reset-map').addEventListener('click',()=>{
+  if(following()){
+    state.followWidth=FOLLOW_WIDTH;
+    renderCamera();
+    refreshScene();
+  }else setCamera({x:0,y:0,w:1000,h:600});
+});
 $('watch-salvo').addEventListener('click',()=>{
+  if(following()){
+    const action=previewShipAction(state.battle,selectedShip(),state.progress);
+    if(!action)return;
+    state.layers.effects=true;
+    renderLayers();
+    seek(reduced.matches?action.still:action.at-.012);
+    $('chart').scrollIntoView({behavior:'instant',block:'center'});
+    setPlaying(!reduced.matches);
+    announce(action.title);
+    return;
+  }
   const e=previewSalvo(state.battle);state.layers.effects=true;renderLayers();
   if(e){state.selected=e.shooter||e.target||e.focus;renderShip();seek(((reduced.matches?e.arrival+.3:e.firedAt+.03))/100);}else seek(.48);
   setCamera({x:0,y:0,w:1000,h:600});setPlaying(!reduced.matches);
@@ -344,6 +394,7 @@ $('watch-salvo').addEventListener('click',()=>{
 });
 $('tactical').addEventListener('click',()=>setView('tactical'));
 $('atmosphere').addEventListener('click',()=>setView('atmosphere'));
+$('follow').addEventListener('click',()=>setView('follow'));
 $('about-button').addEventListener('click',()=>{const open=$('about').hidden;$('about').hidden=!open;$('about-button').setAttribute('aria-expanded',String(open));if(open)$('about').scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'center'});});
 $('share').addEventListener('click',async()=>{
   const url=new URL(location.href);url.hash=shareView(state);const value=url.toString();
@@ -354,7 +405,7 @@ function chartPoint(e) {
   const p=new DOMPoint(e.clientX,e.clientY);return p.matrixTransform($('sea').getScreenCTM().inverse());
 }
 $('sea').addEventListener('pointerdown',e=>{
-  dragged=false;if(e.button!==0||e.target.closest('.ship')||e.pointerType==='touch')return;
+  dragged=false;if(following()||e.button!==0||e.target.closest('.ship')||e.pointerType==='touch')return;
   const p=chartPoint(e);drag={id:e.pointerId,x:p.x,y:p.y,camera:{...state.camera}};
   $('sea').setPointerCapture(e.pointerId);$('sea').classList.add('dragging');
 });
@@ -366,7 +417,7 @@ $('sea').addEventListener('pointermove',e=>{
 });
 const endDrag=()=>{drag=null;$('sea').classList.remove('dragging');};
 $('sea').addEventListener('pointerup',endDrag);$('sea').addEventListener('pointercancel',endDrag);
-reduced.addEventListener('change',e=>{if(e.matches)setPlaying(false);});
+reduced.addEventListener('change',e=>{if(e.matches)setPlaying(false);renderPositions();});
 document.addEventListener('visibilitychange',()=>{lastFrame=0;});
 window.addEventListener('hashchange',()=>{if(!isSharedView(location.hash))return;const view=readView(location.hash);setPlaying(false);loadBattle(view.battle,view.progress,view.ship);setView(view.view);});
 function tick(now) {
@@ -392,7 +443,7 @@ function sceneUnavailable(message){setClassic(true);$('classic-chart').disabled=
 if(!new URLSearchParams(location.search).has('classic')){
   import('./scene.mjs').then(({createScene})=>{
     try{
-      dimensional=createScene($('chart'),{onSelect:selectShip,onPan:(dx,dy)=>{const c=state.camera;setCamera({...c,x:clamp(c.x+dx,-250,1250-c.w),y:clamp(c.y+dy,-150,750-c.h)});},onFailure:sceneUnavailable,reducedMotion:reduced.matches});
+      dimensional=createScene($('chart'),{onSelect:selectShip,onPan:(dx,dy)=>{if(following())return;const c=state.camera;setCamera({...c,x:clamp(c.x+dx,-250,1250-c.w),y:clamp(c.y+dy,-150,750-c.h)});},onFailure:sceneUnavailable,reducedMotion:reduced.matches});
       refreshScene();setClassic(classic);
     }catch{sceneUnavailable('The dimensional sea is unavailable. Classic chart is ready.');}
   }).catch(()=>sceneUnavailable('The dimensional sea is unavailable. Classic chart is ready.'));

@@ -26,3 +26,9 @@ The 11 other encounters have 14 additional stages, accessible from Ship Damage b
 - Yalu and Manila Bay: Matsushima’s deck and funnel stages follow the Japanese naval report. Montojo describes Reina Cristina’s hull, fire and smoke-pipe damage and Castilla’s fire before loss.
 
 The source links are stored alongside the stage data in `experiments/maritime/damage.mjs`. Anonymous formation markers do not receive damage. Onset, outline and generic vessel geometry are schematic.
+
+## Follow Ship
+
+The close-up follows the same replay position as the model, including the clamped position after a documented sinking. Its zoom is separate from overview framing. Shared `view=follow` moments open paused. Classic chart uses the same tracked center. The dimensional view looks across the port quarter and keeps a fixed bearing under reduced motion.
+
+Watch Ship Action seeks before the next sourced gunfire, damage or loss involving the selected ship. Reduced motion jumps to the corresponding still state. The close-up exposed inward-facing hull triangles in the generic models. Correct winding lets the hull sides render from the lower viewing angle.
