@@ -25,10 +25,12 @@ export function readView(hash) {
   const p=new URLSearchParams(hash.replace(/^#/,''));
   const battle=BATTLES.find(b=>b.id===p.get('battle')) || BATTLES.find(b=>b.id==='trafalgar');
   const n=Number(p.get('t')??0);
-  return {battle,progress:clamp(Number.isFinite(n)?n:0,0,1),ship:battle.ships.some(s=>s.id===p.get('ship'))?p.get('ship'):battle.defaultShip,view:['atmosphere','follow'].includes(p.get('view'))?p.get('view'):'tactical'};
+  return {battle,progress:clamp(Number.isFinite(n)?n:0,0,1),ship:battle.ships.some(s=>s.id===p.get('ship'))?p.get('ship'):battle.defaultShip,moment:p.get('moment'),view:['atmosphere','follow'].includes(p.get('view'))?p.get('view'):'tactical'};
 }
 export function shareView(state) {
-  return '#'+new URLSearchParams({battle:state.battle.id,t:state.progress.toFixed(3),ship:state.selected,view:state.view});
+  const params=new URLSearchParams({battle:state.battle.id,t:state.progress.toFixed(3),ship:state.selected,view:state.view});
+  if(state.moment)params.set('moment',state.moment);
+  return '#'+params;
 }
 export function isSharedView(hash) {
   return BATTLES.some(b=>b.id===new URLSearchParams(hash.replace(/^#/, '')).get('battle'));

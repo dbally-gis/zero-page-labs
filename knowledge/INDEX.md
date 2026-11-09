@@ -35,4 +35,4 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 
 | [domain/maritime-combat-evidence.md](domain/maritime-combat-evidence.md) | domain | 2026-11-08 | Twelve combat episode sets, source boundaries and material-specific effects |
 
-| [domain/maritime-progressive-damage.md](domain/maritime-progressive-damage.md) | domain | 2026-11-08 | Source-backed damage, sinking transitions, and the Follow Ship camera |
+| [domain/maritime-progressive-damage.md](domain/maritime-progressive-damage.md) | domain | 2026-11-08 | Source-backed damage, Follow Ship camera, and Replay Desk navigation |

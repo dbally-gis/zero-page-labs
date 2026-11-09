@@ -119,3 +119,32 @@ test('Follow Ship survives a shared moment URL without changing existing modes',
     assert.equal(startsPlaying(hash,false),false);
   }
 });
+
+const {replayMoments,momentAt,adjacentMoment}=await import('../experiments/maritime/replay-moments.mjs');
+
+test('desk combines sourced firing, damage and outcomes without losing simultaneous entries',()=>{
+  const battle=BATTLES.find(b=>b.id==='lissa'),moments=replayMoments(battle);
+  const breach=moments.find(m=>m.kind==='Damage'),loss=moments.find(m=>m.kind==='Loss');
+  assert.equal(breach.ship,'re-italia');
+  assert.equal(momentAt(moments,breach.at,null,.5),breach);
+  assert.match(breach.source.url,/usni.org/);
+  const sameTime=adjacentMoment(moments,breach.at,breach.key,1);
+  assert.equal(sameTime.at,loss.at);
+  assert.equal(adjacentMoment(moments,sameTime.at,sameTime.key,1),loss);
+  const shared=readView(shareView({battle,progress:sameTime.at,selected:sameTime.ship,view:'follow',moment:sameTime.key}));
+  assert.equal(momentAt(moments,shared.progress,shared.moment,.75),sameTime);
+  assert.equal(momentAt(moments,1,null,1),undefined);
+  assert.equal(adjacentMoment(moments,loss.at,loss.key,1),undefined);
+});
+
+test('desk moment data keeps stable keys, vessel targets and source URLs in the collection',()=>{
+  for(const battle of BATTLES){
+    const moments=replayMoments(battle);
+    assert.equal(new Set(moments.map(moment=>moment.key)).size,moments.length);
+    for(const [index,moment] of moments.entries()){
+      assert.ok(moment.at>=(moments[index-1]?.at??0));
+      assert.ok(battle.ships.some(ship=>ship.id===moment.ship));
+      assert.match(moment.source.url,/^https:\/\//);
+    }
+  }
+});

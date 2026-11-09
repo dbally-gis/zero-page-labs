@@ -7,19 +7,21 @@
   <meta name="description" content="Explore twelve landmark naval battles through animated tactical charts. Follow the ships, scrub the story, and discover why the formations mattered.">
   <link rel="canonical" href="https://zeropagelabs.com/experiments/maritime/">
   <link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="./maritime.css">
+  <link rel="stylesheet" href="./replay-desk.css">
   <script type="module" src="./maritime.mjs"></script>
 </head>
-<body>
+<body class="replay-desk">
   <a class="skip" href="#explorer">Skip to battle explorer</a>
   <header class="masthead">
     <a class="lab-link" href="/experiments/">← ZERO PAGE LABS <span>/ EXPERIMENTS</span></a>
     <a class="wordmark" href="./" aria-label="Maritime home"><svg viewBox="0 0 42 42" aria-hidden="true"><path d="M5 32h33l-5 6H12ZM22 3v28M20 7 7 28h13ZM25 10l11 18H25"/></svg><span>Maritime<small>AN INTERACTIVE BATTLE ATLAS</small></span></a>
-    <button id="about-button" aria-expanded="false" aria-controls="about">About the atlas <span aria-hidden="true">↗</span></button>
+    <button id="about-button" aria-controls="about">About</button>
   </header>
   <main id="explorer">
     <section class="battle-bar" aria-label="Choose an encounter">
-      <div class="collection-label"><span class="eyebrow">NAVAL HISTORY / 1400–1900</span><span>Twelve landmark encounters. A changing sea.</span></div>
+
       <label class="battle-picker">Choose a battle <select id="battle-tabs" aria-label="Historical battles"></select></label>
+      <details class="desk-options" id="view-options"><summary>View options</summary><div class="desk-options-menu"><div class="legend" id="legend"></div><div class="layer-controls" role="group" aria-label="Chart overlays"><button id="layer-courses" aria-pressed="true">Courses</button><button id="layer-weapons" aria-pressed="false">Weapon sectors</button><button id="layer-wind" aria-pressed="true">Wind / power</button><button id="layer-labels" aria-pressed="false">Names</button><button id="layer-effects" aria-pressed="true">Fire &amp; smoke</button><button id="classic-chart" aria-pressed="false">Classic chart</button></div><p id="weapon-note" class="weapon-note" hidden></p><p id="scene-status" class="scene-status" role="status"></p></div></details>
     </section>
     <section class="atlas" aria-label="Interactive historical replay">
       <div class="chart-column">
@@ -66,32 +68,54 @@
           <div id="start-hint" class="start-hint">Watch the approach. <strong>Select a ship to look closer.</strong></div>
           <a id="ship-chip" class="ship-chip" href="#ship-detail" hidden>Selected ship · Details ↓</a>
         </div>
-        <div class="chart-toolbar"><div class="legend" id="legend"></div><div class="layer-controls" role="group" aria-label="Chart overlays"><button id="layer-courses" aria-pressed="true">Courses</button><button id="layer-weapons" aria-pressed="false">Weapon sectors</button><button id="layer-wind" aria-pressed="true">Wind / power</button><button id="layer-labels" aria-pressed="false">Names</button><button id="layer-effects" aria-pressed="true">Fire &amp; smoke</button><button id="classic-chart" aria-pressed="false">Classic chart</button></div></div>
-        <p id="gunfire-note" class="scene-status">Selected source-linked combat episodes. Timing, trajectories and damage shapes remain schematic; fires and losses are separate sourced events. <a href="#method">Historical limits ↓</a></p>
-        <p id="scene-status" class="scene-status" role="status"></p>
-        <p id="weapon-note" class="weapon-note" hidden></p>
         <div class="playback">
-          <div class="playback-top"><button id="play" class="play" aria-label="Pause replay">Ⅱ</button><button id="restart" aria-label="Restart replay">↺</button><label class="speed-label">Speed <select id="speed" aria-label="Playback speed"><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select></label><span id="replay-status" class="eyebrow">PLAYING / COMPRESSED SEQUENCE</span><button id="share" class="share">Share this moment ↗</button></div>
-          <label class="sr-only" for="timeline">Replay progress</label><input id="timeline" type="range" min="0" max="1000" step="1" value="0" aria-valuetext="Approach">
-          <div id="chapters" class="chapters" role="group" aria-label="Replay chapters"></div>
-          <div id="damage-events" class="loss-events" role="group" aria-label="Documented ship damage" hidden></div>
-          <div id="loss-events" class="loss-events" role="group" aria-label="Documented ship outcomes" hidden></div>
+          <div class="playback-top"><button id="play" class="play" aria-label="Pause replay">Ⅱ</button><button id="restart" aria-label="Restart replay">↺</button><label class="speed-label">Speed <select id="speed" aria-label="Playback speed"><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select></label><button id="previous-moment" class="moment-step" aria-label="Previous replay moment">‹</button><button id="next-moment" class="moment-step" aria-label="Next replay moment">›</button><button id="share" class="share" aria-label="Share this moment">Share ↗</button></div>
+          <div class="desk-timeline">
+            <label class="sr-only" for="timeline">Replay progress</label>
+            <input id="timeline" type="range" min="0" max="1000" step="1" value="0" aria-valuetext="Approach">
+            <div id="timeline-marks" aria-hidden="true"></div>
+          </div>
+          <div class="desk-replay-caption"><span id="replay-status" class="sr-only"></span><span id="timeline-event"></span><span id="timeline-progress"></span></div>
           <p id="share-status" class="share-status" role="status"></p>
         </div>
       </div>
-      <aside class="inspector" aria-label="Explore the encounter">
-        <div class="inspector-heading"><span class="eyebrow">THE STORY BEHIND THE CHART</span><a class="back-to-chart" href="#chart">↑ Chart</a><span class="little-star" aria-hidden="true">✦</span></div>
-        <section class="moment"><p class="eyebrow" id="moment-number"></p><h2 id="moment-title"></h2><p id="moment-text"></p><a id="moment-source" class="source-link" href="#sources">Read the source ↗</a><button id="return-story" hidden>← Return to this chapter</button></section>
-        <section id="event-guide" class="event-guide" hidden aria-label="Sourced firing events"><div class="section-line"><h2>Firing &amp; evidence</h2><span id="event-era">1805</span></div><p>Selected combat episodes in compressed replay order, not individual recorded rounds or a complete battle log. Fleet-level gunfire has no invented target hit. Exact timing, geometry and reciprocal firing order remain illustrative.</p><div id="event-list"></div><p>Read the certainty label before treating an animated contact as evidence. Timber debris, armour sparks, shell bursts and reported fires describe different phenomena; their exact shapes remain illustrative.</p></section>
-        <section class="questions"><div class="section-line"><h2>Ask the chart</h2><span>CURATED GUIDE</span></div><p>Choose a question. See the explanation on the map.</p><div id="questions"></div></section>
+      <aside id="replay-inspector" class="inspector" aria-label="Replay details">
+        <div class="desk-panel-header">
+          <div class="desk-tabs" role="tablist" aria-label="Replay details">
+            <button type="button" id="tab-moment" role="tab" aria-selected="true" aria-controls="panel-moment">Moment</button>
+            <button type="button" id="tab-ship" role="tab" aria-selected="false" aria-controls="panel-ship" tabindex="-1">Ship</button>
+            <button type="button" id="tab-battle" role="tab" aria-selected="false" aria-controls="panel-battle" tabindex="-1">Battle</button>
+          </div>
+          <button type="button" id="toggle-inspector" aria-expanded="true" aria-controls="desk-panels">Collapse</button>
+        </div>
+        <div id="desk-panels" class="desk-panels">
+          <div id="panel-moment" role="tabpanel" aria-labelledby="tab-moment" tabindex="0">
+            <section class="moment">
+              <p class="eyebrow" id="moment-number"></p><h2 id="moment-title"></h2><p id="moment-text"></p>
+              <a id="moment-source" class="source-link" href="#sources" target="_blank" rel="noopener">Read the source ↗</a>
+              <button id="return-story" hidden>← Return to this chapter</button>
+            </section>
+            <label class="moment-picker" for="moment-picker">Jump to a moment<select id="moment-picker"></select></label>
+          </div>
+          <div id="panel-ship" role="tabpanel" aria-labelledby="tab-ship" tabindex="0" hidden>
         <section class="ship-detail" id="ship-detail" aria-label="Selected ship"><div class="section-line"><h2>Follow a ship</h2><span id="ship-count"></span></div><label class="sr-only" for="ship-select">Inspect a ship or representative marker</label><select id="ship-select"></select><div class="vessel-detail"><svg id="ship-portrait" viewBox="-40 -40 80 80" aria-hidden="true"></svg><div><p id="ship-side" class="eyebrow"></p><h3 id="ship-name"></h3><span id="ship-type"></span></div></div><p id="ship-role"></p><p id="ship-marker" class="marker-note"></p><div id="ship-fate" class="ship-fate" hidden><strong id="fate-status"></strong><p id="fate-text"></p><a id="fate-source">Read the outcome source ↗</a><a id="wreck-source" href="https://www.history.navy.mil/our-collections/photography/numerical-list-of-images/nhhc-series/nh-series/USN-902000/USN-902927.html" target="_blank" rel="noopener" hidden>See the wreck photographs ↗</a></div><div id="ship-damage" hidden></div><a id="ship-source" class="source-link" href="#sources">Ship context ↗</a></section>
-        <a class="method-link" href="#sources">Sources & how to read this atlas ↓</a>
+          </div>
+          <div id="panel-battle" role="tabpanel" aria-labelledby="tab-battle" tabindex="0" hidden>
+            <p id="battle-summary"></p>
+            <h2>Chapters</h2><div id="chapters" class="chapters" role="group" aria-label="Replay chapters"></div>
+        <section class="questions"><div class="section-line"><h2>Ask the chart</h2><span>CURATED GUIDE</span></div><p>Choose a question. See the explanation on the map.</p><div id="questions"></div></section>
+            <details id="reading"><summary>Sources and historical limits</summary>
+    <section id="sources" class="sources"><div><span class="eyebrow">THE EVIDENCE & THE DIAGRAM</span><h2>History has sources.<br><em>Maps have assumptions.</em></h2><p id="battle-introduction"></p></div><div><details id="method"><summary>How to read this reconstruction</summary><p>Historical dates, participants and the broad sequence come from the sources below. Ship positions, headings, continuous tracks, smoke and timing are authored for explanation. This is a schematic replay, not a physics simulation or a measured navigational reconstruction.</p><p>Dimensional ship models illustrate generic vessel types; the coloured pennants are fleet keys rather than historical flags. Named ships identify selected participants. Numbered formation markers represent the wider fleet; they do not constitute a complete order of battle. Ships are enlarged for legibility. Coast and shoal shapes are illustrative, not navigational charts. Weapon sectors explain mounting geometry, not verified range or firing clearance. Each encounter uses selected source-linked combat episodes. Animated rounds, impact locations, fire onset and replay intervals are illustrative; they do not form a shot-by-shot log. Timber debris, armour sparks, shell bursts, reported ship fires and documented catastrophes use different treatments. Fleet-level accounts do not establish individual hits. No encounter calculates ship damage. Wind direction is illustrative; steam encounters omit it.</p><p>Replay progress is divided into five teaching chapters, without claiming exact historical times. A × Sunk marker records a source-backed loss after an authored replay threshold. It does not identify an exact sinking minute or a fatal animated shot. Captures are labelled separately; unnamed formation markers have no assigned fate. The atlas does not calculate alternative outcomes. Use the linked sources to investigate further and compare accounts.</p></details><h3 id="sources-title">Reading for this encounter</h3><ol id="source-list"></ol></div></section>
+            </details>
+            <details id="about"><summary>About the atlas</summary>
+    <section class="about"><div><span class="eyebrow">WATCH HISTORY UNFOLD</span><h2>A sea change,<br><em>in twelve encounters.</em></h2></div><div><p>Maritime is an educational atlas for watching and exploring. Start with the fleet, follow a ship, then pause to understand a decision. The collection explores oars, sail, armour and steam within the period 1400–1900.</p><p>The guide contains curated, source-linked explanations. It does not use a live AI service. Your interactions stay in your browser.</p></div></section>
+            </details>
+            <p class="desk-links"><a href="/experiments/">More experiments ↗</a> · <a href="https://github.com/dbally-gis/zero-page-labs/tree/main/experiments/maritime">Explore the source ↗</a></p>
+          </div>
+        </div>
       </aside>
     </section>
-    <section id="about" class="about" hidden><div><span class="eyebrow">WATCH HISTORY UNFOLD</span><h2>A sea change,<br><em>in twelve encounters.</em></h2></div><div><p>Maritime is an educational atlas for watching and exploring. Start with the fleet, follow a ship, then pause to understand a decision. The collection explores oars, sail, armour and steam within the period 1400–1900.</p><p>The guide contains curated, source-linked explanations. It does not use a live AI service. Your interactions stay in your browser.</p></div></section>
-    <section id="sources" class="sources"><div><span class="eyebrow">THE EVIDENCE & THE DIAGRAM</span><h2>History has sources.<br><em>Maps have assumptions.</em></h2><p id="battle-introduction"></p></div><div><details id="method"><summary>How to read this reconstruction</summary><p>Historical dates, participants and the broad sequence come from the sources below. Ship positions, headings, continuous tracks, smoke and timing are authored for explanation. This is a schematic replay, not a physics simulation or a measured navigational reconstruction.</p><p>Dimensional ship models illustrate generic vessel types; the coloured pennants are fleet keys rather than historical flags. Named ships identify selected participants. Numbered formation markers represent the wider fleet; they do not constitute a complete order of battle. Ships are enlarged for legibility. Coast and shoal shapes are illustrative, not navigational charts. Weapon sectors explain mounting geometry, not verified range or firing clearance. Each encounter uses selected source-linked combat episodes. Animated rounds, impact locations, fire onset and replay intervals are illustrative; they do not form a shot-by-shot log. Timber debris, armour sparks, shell bursts, reported ship fires and documented catastrophes use different treatments. Fleet-level accounts do not establish individual hits. No encounter calculates ship damage. Wind direction is illustrative; steam encounters omit it.</p><p>Replay progress is divided into five teaching chapters, without claiming exact historical times. A × Sunk marker records a source-backed loss after an authored replay threshold. It does not identify an exact sinking minute or a fatal animated shot. Captures are labelled separately; unnamed formation markers have no assigned fate. The atlas does not calculate alternative outcomes. Use the linked sources to investigate further and compare accounts.</p></details><h3 id="sources-title">Reading for this encounter</h3><ol id="source-list"></ol></div></section>
   </main>
-  <footer><a href="/experiments/">← More experiments</a><span>MARITIME / ZERO PAGE LABS</span><a href="https://github.com/dbally-gis/zero-page-labs/tree/main/experiments/maritime">Explore the source ↗</a></footer>
   <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
   <noscript><div class="no-script">The animated atlas needs JavaScript. Read about <a href="https://www.rmg.co.uk/collections/objects/rmgc-object-12040">Trafalgar at Royal Museums Greenwich</a>, or <a href="/experiments/">return to Experiments</a>.</div></noscript>
 </body>

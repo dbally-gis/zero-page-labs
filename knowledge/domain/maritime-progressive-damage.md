@@ -32,3 +32,9 @@ The source links are stored alongside the stage data in `experiments/maritime/da
 The close-up follows the same replay position as the model, including the clamped position after a documented sinking. Its zoom is separate from overview framing. Shared `view=follow` moments open paused. Classic chart uses the same tracked center. The dimensional view looks across the port quarter and keeps a fixed bearing under reduced motion.
 
 Watch Ship Action seeks before the next sourced gunfire, damage or loss involving the selected ship. Reduced motion jumps to the corresponding still state. The close-up exposed inward-facing hull triangles in the generic models. Correct winding lets the hull sides render from the lower viewing angle.
+
+## Replay Desk
+
+The desk reserves the viewport for the chart, playback and a bounded details pane. Moment, Ship and Battle share one scroll area. The mobile pane starts collapsed. Switching tabs opens it, and collapsing on desktop returns the width to the scene. View options holds the overlays and Classic chart. The chapter guide, curated questions and reading list live in Battle.
+
+`replay-moments.mjs` combines firing episodes, damage stages and outcomes into a chronological index without discarding coincident evidence. The moment picker, next and previous buttons, and replay marks use that index. An optional shared moment key identifies one entry when multiple sources use the same teaching threshold. It is accepted only when it matches a moment at the shared progress. The camera and historical data remain replay-derived.

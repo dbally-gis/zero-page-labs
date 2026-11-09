@@ -1,5 +1,5 @@
 import {damageAt,damageStages,sinkingAt,tornAtMast} from './damage.mjs';
-import {eventsFor,eventSource} from './battle-events.mjs';
+import {replayMoments,momentAt,adjacentMoment} from './replay-moments.mjs';
 import { BATTLES } from './battles.mjs';
 import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame, FOLLOW_WIDTH, FOLLOW_MIN, FOLLOW_MAX } from './model.mjs';
 import {effectsAt,previewSalvo,previewShipAction,impactStyle} from './combat.mjs';
@@ -9,7 +9,11 @@ const svgNS='http://www.w3.org/2000/svg';
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const initial=readView(location.hash);
 const state={...initial,selected:initial.ship,playing:startsPlaying(location.hash,reduced.matches),speed:1,layers:{courses:true,weapons:false,wind:true,labels:false,effects:true},question:null,followWidth:FOLLOW_WIDTH,camera:{x:0,y:0,w:1000,h:600}};
-let nodes=[],lastChapter=-1,lastFrame=0,lastPaint=0,drag=null,dragged=false;
+let nodes=[],lastFrame=0,lastPaint=0,drag=null,dragged=false;
+let moments=[],momentKey=null,renderedMoment=null;
+const tabs=['moment','ship','battle'];
+const narrowDesk=matchMedia('(max-width: 800px)');
+let activeTab='moment';
 let dimensional=null,classic=false;
 const selectedShip=()=>state.battle.ships.find(ship=>ship.id===state.selected);
 const following=()=>state.view==='follow';
@@ -39,7 +43,7 @@ function setPlaying(playing) {
   state.playing=playing;
   $('play').textContent=playing?'Ⅱ':state.progress>=1?'↺':'▶';
   $('play').setAttribute('aria-label',playing?'Pause replay':state.progress>=1?'Replay from start':'Play replay');
-  $('replay-status').textContent=playing?'PLAYING / COMPRESSED SEQUENCE':state.progress>=1?'COMPLETE / EXPLORE THE OUTCOME':'PAUSED / EXPLORE THIS MOMENT';
+  $('replay-status').textContent=playing?'Playing':state.progress>=1?'Replay complete':'Paused';
   $('chart').classList.toggle('playing',playing);
   refreshScene();
 }
@@ -50,16 +54,56 @@ function chapterButtons() {
     b.addEventListener('click',()=>seek(STOPS[i])); $('chapters').append(b);
   });
 }
+function setInspectorOpen(open) {
+  $('desk-panels').hidden=!open;
+  $('replay-inspector').parentElement.classList.toggle('inspector-closed',!open);
+  $('toggle-inspector').setAttribute('aria-expanded',String(open));
+  $('toggle-inspector').textContent=open?'Collapse':'Expand';
+}
+function showTab(tab) {
+  activeTab=tab;
+  for(const id of tabs){
+    const selected=id===tab;
+    $('tab-'+id).setAttribute('aria-selected',String(selected));
+    $('tab-'+id).tabIndex=selected?0:-1;
+    $('panel-'+id).hidden=!selected;
+  }
+  $('desk-panels').scrollTop=0;
+  setInspectorOpen(true);
+}
 function renderMoment() {
-  const i=chapterAt(state.progress),q=state.question===null?null:state.battle.questions[state.question];
-  const c=q || state.battle.chapters[i];
-  $('moment-number').textContent=q?'ASK THE CHART / EXPLAINED':`CHAPTER 0${i+1} / ${state.battle.chapters[i].label}`;
-  $('moment-title').textContent=c.title; $('moment-text').textContent=c.text;
-  sourceLink($('moment-source'),c.source); $('return-story').hidden=!q;
-  $('phase-tag').textContent=`0${i+1} / ${state.battle.chapters[i].label.toUpperCase()}`;
+  const i=chapterAt(state.progress),chapter=state.battle.chapters[i];
+  const question=state.question===null?null:state.battle.questions[state.question];
+  const current=question?null:momentAt(moments,state.progress,momentKey,STOPS[i]);
+  const key=`${i}:${question?state.question:current?.key??'chapter'}`;
+  if(key===renderedMoment)return;
+  renderedMoment=key;
+  const detail=question??current??chapter;
+  $('moment-number').textContent=question?'ASK THE CHART':current?current.note:`CHAPTER ${i+1} · ${chapter.label}`;
+  $('moment-title').textContent=detail.title;
+  $('timeline-event').textContent=detail.title;
+  $('moment-text').textContent=detail.text;
+  if(current){
+    $('moment-source').href=current.source.url;
+    $('moment-source').title=current.source.title;
+  }else sourceLink($('moment-source'),detail.source);
+  $('return-story').hidden=!question;
+  $('moment-picker').value=current?.key??'';
+  $('phase-tag').textContent=`${i+1} / ${chapter.label.toUpperCase()}`;
   for(const [index,b] of [...$('chapters').children].entries()) b.setAttribute('aria-pressed',String(index===i));
   for(const [index,b] of [...$('questions').children].entries()) b.setAttribute('aria-pressed',String(index===state.question));
-  lastChapter=i;
+}
+function jumpMoment(moment) {
+  if(!moment)return;
+  state.selected=moment.ship;
+  renderShip();
+  seek(moment.at,moment.key);
+  if(activeTab!=='moment'&&!$('desk-panels').hidden)showTab('moment');
+  announce(`${moment.title}. Replay paused.`);
+}
+function updateMomentSteps() {
+  $('previous-moment').disabled=!adjacentMoment(moments,state.progress,momentKey,-1);
+  $('next-moment').disabled=!adjacentMoment(moments,state.progress,momentKey,1);
 }
 function renderShip() {
   const s=state.battle.ships.find(s=>s.id===state.selected);
@@ -85,7 +129,7 @@ function renderFate(){
     panel.replaceChildren();
     for(const d of stages){
       const button=html('button',d.title);button.type='button';
-      button.addEventListener('click',()=>{seek(d.at);renderPositions();$('chart').scrollIntoView({behavior:'instant',block:'start'});});
+      button.addEventListener('click',()=>seek(d.at));
       const link=html('a','Damage source ↗');link.href=d.source.url;link.title=d.source.title;link.target='_blank';link.rel='noopener';
       panel.append(button,html('p',d.text),link);
     }
@@ -255,11 +299,9 @@ function renderPositions() {
   $('timeline').value=Math.round(state.progress*1000);
   $('timeline').style.setProperty('--progress',`${state.progress*100}%`);
   $('timeline').setAttribute('aria-valuetext',`${chapter.label}, ${Math.round(state.progress*100)} percent of compressed replay`);
-  if(lastChapter!==chapterAt(state.progress))renderMoment();
-  {
-    const current=eventsFor(state.battle).filter(e=>e.at<=state.progress+.0001).at(-1);
-    for(const b of $('event-list').querySelectorAll('button'))b.setAttribute('aria-pressed',String(b.dataset.event===current?.id));
-  }
+  $('timeline-progress').textContent=`${Math.round(state.progress*100)}% · ${chapter.label}`;
+  renderMoment();
+  updateMomentSteps();
   $('shots').replaceChildren();
   if(state.layers.effects&&(classic||!dimensional))for(const e of effectsAt(state.battle,state.progress)){
     const g=$('shots'),p=e.origin,q=e.impact,style=impactStyle(e),impactAge=style.age;
@@ -289,12 +331,15 @@ function renderPositions() {
   }
   renderFate();refreshScene();
 }
-function loadBattle(battle,progress=0,selected=battle.defaultShip) {
-  state.battle=battle;state.progress=progress;state.selected=selected;state.question=null;lastChapter=-1;
+function loadBattle(battle,progress=0,selected=battle.defaultShip,sharedMoment=null) {
+  state.battle=battle;state.progress=progress;state.selected=selected;state.question=null;momentKey=null;renderedMoment=null;
+  moments=replayMoments(battle);
+  momentKey=moments.find(moment=>moment.key===sharedMoment&&moment.at===progress)?.key??null;
   $('start-hint').hidden=following()||progress>0||isSharedView(location.hash);
   setCamera({x:0,y:0,w:1000,h:600});
   $('battle-title').textContent=battle.name;$('battle-meta').textContent=`${battle.date} / ${battle.place}`;
   $('battle-takeaway').textContent=battle.takeaway;$('battle-introduction').textContent=battle.introduction;
+  $('battle-summary').textContent=battle.introduction;
   $('sea-label').textContent=battle.seaLabel;
   $('wind-label').textContent=battle.wind;
   $('wind-key').querySelector('svg').style.transform=`rotate(${battle.windAngle}deg)`;
@@ -306,57 +351,40 @@ function loadBattle(battle,progress=0,selected=battle.defaultShip) {
   $('questions').replaceChildren(...battle.questions.map((q,i)=>{
     const b=html('button',q.label);b.type='button';b.setAttribute('aria-pressed','false');
     b.addEventListener('click',()=>{
-      state.question=i;state.progress=STOPS[q.phase];setPlaying(false);state.layers[q.layer]=true;
+      state.question=i;momentKey=null;state.progress=STOPS[q.phase];setPlaying(false);state.layers[q.layer]=true;
       state.selected=q.focus[0];setCamera({x:0,y:0,w:1000,h:600});
-      $('start-hint').hidden=true;renderShip();renderLayers();renderMoment();renderPositions();
+      $('start-hint').hidden=true;renderShip();renderLayers();renderMoment();renderPositions();showTab('moment');$('tab-moment').focus();
       announce(`${q.title}. ${q.text}`);
     });return b;
   }));
-  $('event-guide').hidden=false;$('event-era').textContent=String(battle.year);
-  $('gunfire-note').textContent='Selected source-linked combat episodes. Animated rounds stand for exchanges, not a shot-by-shot log. Timing, trajectories and damage shapes remain schematic; fires and losses are separate sourced events.';
-  $('event-list').replaceChildren();
-  for(const event of eventsFor(battle)){
-    const source=eventSource(battle,event),card=html('div'),button=html('button',event.title),link=html('a',source.title+' ↗');
-    button.type='button';button.dataset.event=event.id;button.setAttribute('aria-pressed','false');
-    button.addEventListener('click',()=>{seek(event.at);state.selected=event.focus;renderShip();renderPositions();$('chart').scrollIntoView({behavior:'instant',block:'start'});announce(event.title+'. '+event.text);});
-    link.href=source.url;card.append(button,html('p',event.certainty,'eyebrow'),html('p',event.text),link);$('event-list').append(card);
-  }
+  const picker=$('moment-picker');
+  const placeholder=html('option','Choose a firing, damage or outcome moment');
+  placeholder.value='';placeholder.disabled=true;
+  picker.replaceChildren(placeholder,...moments.map(moment=>{
+    const option=html('option',`${Math.round(moment.at*100)}% · ${moment.kind} · ${moment.title}`);
+    option.value=moment.key;return option;
+  }));
+  const ticks=new Map(moments.map(moment=>[moment.at,moment.kind]));
+  $('timeline-marks').replaceChildren(...[...ticks].map(([at,kind])=>{
+    const tick=html('span');tick.style.left=`${at*100}%`;tick.dataset.kind=kind;return tick;
+  }));
   $('sources-title').textContent=`Reading for ${battle.name}`;
   $('source-list').replaceChildren(...battle.sources.map(s=>{
     const li=html('li'),a=html('a',s.title);a.href=s.url;li.append(a,html('p',s.note));return li;
   }));
-  const damageList=$('damage-events');
-  damageList.replaceChildren(html('span','SHIP DAMAGE · select to inspect'));
-  for(const ship of battle.ships){
-    for(const stage of damageStages(battle,ship)){
-      const button=html('button',`${ship.name} · ${stage.title}`);
-      button.type='button';
-      button.addEventListener('click',()=>{
-        state.selected=ship.id;
-        seek(stage.at);
-        renderShip();
-        $('chart').scrollIntoView({behavior:'instant',block:'start'});
-        announce(`${ship.name}. ${stage.title}. Replay paused.`);
-      });
-      damageList.append(button);
-    }
-  }
-  damageList.hidden=damageList.childElementCount===1;
-  const outcomes=battle.ships.filter(s=>s.fate);$('loss-events').hidden=!outcomes.length;
-  $('loss-events').replaceChildren(html('span','SHIP OUTCOMES · select to inspect'));
-  for(const s of outcomes){const button=html('button',`${s.fate.kind==='sunk'?'×':'◆'} ${s.name} · ${s.fate.kind==='sunk'?'Sunk':'Captured'}`);button.type='button';button.addEventListener('click',()=>{state.selected=s.id;seek(s.fate.at);renderShip();renderPositions();$('chart').scrollIntoView({behavior:'instant',block:'start'});announce(`${s.name}: ${s.fate.kind}. ${s.fate.text}`);});$('loss-events').append(button);}
   $('share-status').replaceChildren();
   chapterButtons();buildTerrain();buildFleet();renderShip();renderLayers();renderMoment();renderPositions();setPlaying(state.playing);
 }
-function seek(progress) {
+function seek(progress,key=null) {
+  momentKey=key;
   state.progress=clamp(progress,0,1);state.question=null;setPlaying(false);$('start-hint').hidden=true;
   renderMoment();renderPositions();announce(`${state.battle.name}: ${state.battle.chapters[chapterAt(progress)].label}. Replay paused.`);
 }
 for(const battle of BATTLES){const option=html('option',`${battle.year} · ${battle.name}`);option.value=battle.id;$('battle-tabs').append(option);}
 $('battle-tabs').addEventListener('change',e=>{const battle=BATTLES.find(b=>b.id===e.target.value);setPlaying(!reduced.matches);loadBattle(battle);announce(`${battle.name}, ${battle.year}. ${battle.era}.`);});
 $('play').addEventListener('click',()=>{
-  if(state.progress>=1){state.progress=0;state.question=null;renderMoment();renderPositions();}
-  if(!state.playing){state.question=null;renderMoment();renderPositions();}
+  if(state.progress>=1){momentKey=null;state.progress=0;state.question=null;renderMoment();renderPositions();}
+  if(!state.playing){momentKey=null;state.question=null;renderMoment();renderPositions();}
   setPlaying(!state.playing);announce(state.playing?'Replay playing.':'Replay paused.');
 });
 $('restart').addEventListener('click',()=>{seek(0);setPlaying(!reduced.matches);});
@@ -381,7 +409,6 @@ $('watch-salvo').addEventListener('click',()=>{
     state.layers.effects=true;
     renderLayers();
     seek(reduced.matches?action.still:action.at-.012);
-    $('chart').scrollIntoView({behavior:'instant',block:'center'});
     setPlaying(!reduced.matches);
     announce(action.title);
     return;
@@ -389,15 +416,50 @@ $('watch-salvo').addEventListener('click',()=>{
   const e=previewSalvo(state.battle);state.layers.effects=true;renderLayers();
   if(e){state.selected=e.shooter||e.target||e.focus;renderShip();seek(((reduced.matches?e.arrival+.3:e.firedAt+.03))/100);}else seek(.48);
   setCamera({x:0,y:0,w:1000,h:600});setPlaying(!reduced.matches);
-  $('chart').scrollIntoView({behavior:'instant',block:'center'});
   announce('Selected sourced combat episode. Animated rounds and travel time are representative; read its evidence card for the limits.');
 });
 $('tactical').addEventListener('click',()=>setView('tactical'));
 $('atmosphere').addEventListener('click',()=>setView('atmosphere'));
 $('follow').addEventListener('click',()=>setView('follow'));
-$('about-button').addEventListener('click',()=>{const open=$('about').hidden;$('about').hidden=!open;$('about-button').setAttribute('aria-expanded',String(open));if(open)$('about').scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'center'});});
+for(const tab of tabs){
+  const button=$('tab-'+tab);
+  button.addEventListener('click',()=>showTab(tab));
+  button.addEventListener('keydown',event=>{
+    const next={ArrowLeft:(tabs.indexOf(tab)+2)%3,ArrowRight:(tabs.indexOf(tab)+1)%3,Home:0,End:2}[event.key];
+    if(next===undefined)return;
+    event.preventDefault();
+    showTab(tabs[next]);
+    $('tab-'+tabs[next]).focus();
+  });
+}
+$('toggle-inspector').addEventListener('click',()=>setInspectorOpen($('desk-panels').hidden));
+setInspectorOpen(!narrowDesk.matches);
+narrowDesk.addEventListener('change',event=>{
+  if(event.matches&&$('desk-panels').contains(document.activeElement))$('tab-'+activeTab).focus();
+  setInspectorOpen(!event.matches);
+});
+$('ship-chip').addEventListener('click',event=>{event.preventDefault();showTab('ship');$('tab-ship').focus();});
+$('about-button').addEventListener('click',()=>openReading('about'));
+$('moment-picker').addEventListener('change',event=>jumpMoment(moments.find(moment=>moment.key===event.target.value)));
+for(const [id,direction] of [['previous-moment',-1],['next-moment',1]]){
+  $(id).addEventListener('click',()=>jumpMoment(adjacentMoment(moments,state.progress,momentKey,direction)));
+}
+function openReading(id){
+  showTab('battle');
+  if(id==='about')$('about').open=true;
+  else{
+    $('reading').open=true;
+    if(id==='method')$('method').open=true;
+  }
+  $(id).scrollIntoView({block:'nearest'});
+}
+function revealAnchor(){
+  const id=location.hash.slice(1);
+  if(id==='ship-detail')showTab('ship');
+  if(['about','method','sources'].includes(id))openReading(id);
+}
 $('share').addEventListener('click',async()=>{
-  const url=new URL(location.href);url.hash=shareView(state);const value=url.toString();
+  const url=new URL(location.href);url.hash=shareView({...state,moment:momentKey});const value=url.toString();
   try {await navigator.clipboard.writeText(value);$('share-status').textContent='Link copied. It opens this battle, ship and moment.';}
   catch {const a=html('a','Open or copy this moment’s link');a.href=value;$('share-status').replaceChildren(a);}
 });
@@ -419,7 +481,7 @@ const endDrag=()=>{drag=null;$('sea').classList.remove('dragging');};
 $('sea').addEventListener('pointerup',endDrag);$('sea').addEventListener('pointercancel',endDrag);
 reduced.addEventListener('change',e=>{if(e.matches)setPlaying(false);renderPositions();});
 document.addEventListener('visibilitychange',()=>{lastFrame=0;});
-window.addEventListener('hashchange',()=>{if(!isSharedView(location.hash))return;const view=readView(location.hash);setPlaying(false);loadBattle(view.battle,view.progress,view.ship);setView(view.view);});
+window.addEventListener('hashchange',()=>{if(!isSharedView(location.hash)){revealAnchor();return;}const view=readView(location.hash);setPlaying(false);loadBattle(view.battle,view.progress,view.ship,view.moment);setView(view.view);});
 function tick(now) {
   const dt=lastFrame?(now-lastFrame)/1000:0;lastFrame=now;
   if(state.playing&&!document.hidden) {
@@ -429,7 +491,7 @@ function tick(now) {
   }
   requestAnimationFrame(tick);
 }
-loadBattle(state.battle,state.progress,state.selected);setView(state.view);requestAnimationFrame(tick);
+loadBattle(state.battle,state.progress,state.selected,initial.moment);setView(state.view);revealAnchor();requestAnimationFrame(tick);
 
 function setClassic(value){
   classic=value;$('classic-chart').setAttribute('aria-pressed',String(value));
