@@ -55,3 +55,6 @@ User screenshot showed brightHolmes path dominating full-book points. Cause: ove
 
 ## 2026-11-09 Deep verifier rejected an isolated worktree
 The private-scaffold check inspected absolute path segments and rejected the entire built site when the worktree lived under the workspace’s `.tmp`. Check path segments relative to `dist/`. This still rejects a temporary subtree that actually appears in the public output.
+
+## 2026-11-09 Showcase HTML and CSS cached independently
+The COME AT ME! rack preview HTML reached the custom domain while the old stylesheet was still cached. An arbitrary query string and a no-cache request did not refresh the custom-domain HTML in this check. Published the revised stylesheet at `showcase.css`. Verified the release at the Render origin first, then waited for the public HTML to reference the new asset URL.
