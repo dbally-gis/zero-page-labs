@@ -21,8 +21,8 @@ Surface: Experiments index and the static Rack Lab adaptation. Execution: `execu
 - [x] The 375 px experiment page has no horizontal overflow.
 - [x] The deep site verifier passes.
 - [x] The fresh-context verifier passes.
-- [ ] The public Rack Lab URL serves the featured preset.
-- [ ] The public STL response matches the verified workshop export.
+- [x] The public Rack Lab URL serves the featured preset.
+- [x] The public STL response matches the verified workshop export.
 
 ## Contract
 - Output: static multipage site in `dist/`, published on Render.

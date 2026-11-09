@@ -9,11 +9,15 @@ Goal: Publish the Rack Lab configurator under Experiments with the COME AT ME! p
 Agent: OpenAI Codex
 Handoff-from: OpenAI Codex
 Handoff-type: continuation
-Status: Static release verified locally. The separate worktree was based on origin/main and preserves the local site checkout. The workshop app remains separate.
+Status: Live and verified on the public site. The separate worktree was based on origin/main and preserves the local site checkout. The workshop app remains separate.
 
 - The public adaptation ships the verified COME AT ME! STL (SHA-256 `f09d2f195ffb48ac52a64befca504befe1402b06006bdf6dcb347ff8c76ca5ad`), local WASM, the preview, and dependency notices.
 - 221 Node tests, 17 Python tests, TypeScript, and the deep check of 12 pages passed. Chrome at 1440 and 375 px verified download, template switch, reset, and return navigation without overflow or console errors. Both download paths worked with WebGL off.
-- Independent verifier passed static boundaries, default preset, and the STL hash. Publish through the existing GitHub Actions/Render workflow and compare the live STL response to the verified file.
+- Independent verifier passed static boundaries, default preset, and the STL hash. Release commit `25ce013` deployed via successful GitHub Actions run `42660265270`. Public deployment fingerprint reports `03bfccb` after the workflow’s catalog commit.
+- Repeated the desktop, mobile, and WebGL-off browser checks on the public origin. The direct public STL matches the workshop file byte for byte.
+
+S.D.G.: COME AT ME! families and other card players can print the eight-slot holder or customize a rack in their browser.
+Feynman gap: A physical print of the raised wordmark remains unverified.
 
 # Zero Page Labs — Experiments launch
 Goal: Publish browser-ready Retro-Glitch Studio and Lexical with an Experiments section.
@@ -93,6 +97,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 17:04 — commit: Record verified book introduction and sorted tags | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md,task.md
 - 2026-11-08 17:06 — commit: Source combat episodes and material effects across twelve naval battles | directives/publish_experiments.md,execution/test_maritime.mjs,execution/test_maritime_combat.mjs,experiments/maritime/battle-events.mjs,experiments/maritime/combat.mjs
 - 2026-11-08 17:08 — commit: Confirm full-book introduction deployment | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md
+- 2026-11-09 10:59 — commit: Publish Rack Lab and the COME AT ME rack STL | assets/experiment-rack-lab.png,data/rack-lab-build.json,directives/publish_experiments.md,execution/build_experiments.py,execution/test_experiments.mjs
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
