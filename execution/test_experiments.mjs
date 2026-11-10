@@ -169,3 +169,26 @@ test('Bellona evidence cards resolve to sources with a reconstruction note', () 
     for (const ref of part.refs) assert.match(bellonaSources[ref][1], /^https:\/\//);
   }
 });
+
+import { gunDuration, gunPhases, sampleGun } from '../experiments/bellona/drill.mjs';
+
+test('Bellona gun drill runs out before discharge, recoils, then sponges and reloads', () => {
+  assert.equal(sampleGun(0).carriage, 0);
+  assert.equal(sampleGun(16).carriage, 1);
+  assert.equal(sampleGun(20.9).flash, 0);
+  assert.equal(sampleGun(21).flash, 1);
+  assert.ok(sampleGun(21.3).carriage < 1);
+  assert.equal(sampleGun(22).carriage, 0);
+  assert.ok(sampleGun(29).sponge > 0);
+  assert.ok(sampleGun(35).ram > 0);
+  assert.equal(sampleGun(gunDuration).flash, 0);
+  assert.equal(sampleGun(gunDuration).phase, gunPhases.length - 1);
+});
+
+test('Bellona gun poses replay identically after a backward seek', () => {
+  const recoil = sampleGun(21.3);
+  sampleGun(40);
+  assert.deepEqual(sampleGun(21.3), recoil);
+  assert.deepEqual(sampleGun(-1), sampleGun(0));
+  assert.deepEqual(sampleGun(gunDuration + 1), sampleGun(gunDuration));
+});

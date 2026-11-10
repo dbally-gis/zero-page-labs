@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#ede8d8">
   <title>Inside HMS Bellona — Zero Page Labs</title>
-  <meta name="description" content="Open a 3D cutaway of HMS Bellona, examine its Admiralty plans, and replay a square-rigged tack in slow motion.">
+  <meta name="description" content="Open a 3D cutaway of HMS Bellona, examine its Admiralty plans, and replay a square-rigged tack or a 32-pounder gun drill in slow motion.">
   <link rel="canonical" href="https://zeropagelabs.com/experiments/bellona/">
   <link rel="icon" href="/assets/favicon.svg">
   <link rel="stylesheet" href="/style.css">
@@ -23,18 +23,38 @@
     <div><p class="kicker">The shipwright’s table / 01</p><h1>Inside HMS <em>Bellona</em></h1></div>
     <p class="shipplate">CHATHAM · 1760<br>THIRD RATE / 74 GUNS</p>
   </header>
-  <p class="intro">Open a British warship deck by deck, then watch her turn through the wind.</p>
+  <p class="intro">Open a British warship deck by deck, then take her through the wind or watch a gun crew at work.</p>
   <div class="exhibit">
     <section class="view-panel" aria-label="Ship viewer">
       <div class="view-bar" role="group" aria-label="Ship view">
         <button type="button" data-view="whole" aria-pressed="false">Whole ship</button>
         <button type="button" data-view="cut" aria-pressed="true">Cutaway</button>
         <button type="button" data-view="tack" aria-pressed="false">Guided tack</button>
+        <button type="button" data-view="gun" aria-pressed="false">Gun drill</button>
       </div>
       <div id="stage" class="stage">
         <div class="plate-label"><span id="plate-number">PLATE 01</span> <span id="plate-title">LONGITUDINAL CUTAWAY</span></div>
         <canvas id="ship-canvas" tabindex="0" aria-label="3D Bellona model. Drag or use the arrow keys to rotate." hidden></canvas>
         <img id="fallback" src="/assets/experiment-bellona.svg" alt="Schematic side view of Bellona with two stacked gun decks and three masts">
+        <svg id="gun-plate" viewBox="0 0 600 310" role="img" aria-labelledby="gun-plate-title" hidden>
+          <title id="gun-plate-title">Schematic side view of the 32-pounder drill</title>
+          <path d="M54 231H470V68H440V231" fill="#d8b582" stroke="#72583a" stroke-width="2"/>
+          <path d="M440 142H470V188H440Z" fill="#eee7d7"/>
+          <path d="M439 143l40-32" stroke="#843d2d" stroke-width="8"/>
+          <path id="schematic-rope" fill="none" stroke="#886840" stroke-width="6"/>
+          <g id="schematic-gun">
+            <path d="M211 187h120v22H211z" fill="#843d2d"/>
+            <circle cx="233" cy="216" r="13" fill="#755235"/><circle cx="306" cy="215" r="15" fill="#755235"/>
+            <path d="M191 159h16l17-12 150 7v20l-150 6-17-11h-16Z" fill="#313a3a"/>
+          </g>
+          <path id="schematic-tool" stroke="#a1703d" stroke-width="5" stroke-linecap="round"/>
+          <circle id="schematic-flash" cx="488" cy="163" r="14" fill="#e48b42"/>
+          <g fill="#52696b" stroke="#eee7d7" stroke-width="2">
+            <circle cx="175" cy="123" r="10"/><path d="M163 134h24l7 44h-38Z"/><path d="M164 179h23l-2 49h-9l-2-36-3 36h-9Z"/>
+            <circle cx="402" cy="126" r="10"/><path d="M390 137h24l6 42h-37Z"/><path d="M391 179h22l-2 49h-9l-2-35-3 35h-9Z"/>
+          </g>
+          <g font-family="monospace" font-size="12" fill="#503d2a"><text x="56" y="252">INBOARD</text><text x="443" y="252">GUNPORT</text></g>
+        </svg>
         <div id="markers" class="markers"></div>
         <div class="camera" role="group" aria-label="Camera controls" hidden>
           <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
@@ -85,6 +105,23 @@
         <a class="source-link" href="https://jimclifford.ca/britannica-articles-1/a/EB.5/191253800/49.html">Read the 1797 account ↗</a>
       </div>
     </aside>
+    <aside class="inspector" id="gunnery" aria-labelledby="gun-title" hidden>
+      <p class="kicker">03 / Lower gun deck</p>
+      <h2 id="gun-title">Work a 32-pounder.</h2>
+      <p class="gun-fact">Bellona carried 28 of these guns on her lower deck. The designation gives the weight of the round shot.</p>
+      <p class="gun-status" id="gun-state">Inboard · empty</p>
+      <div class="part-detail">
+        <span class="evidence" id="gun-step">Step 01 / 07</span>
+        <h3 id="gun-phase">Sponge the bore</h3>
+        <p id="gun-text"></p>
+        <p><strong>Documented</strong> · Bellona’s lower battery and the order of the period drill.</p>
+        <p class="limit"><strong>Reconstructed</strong> · This is a teaching bay. The five figures represent tasks within a larger crew. Their stations, poses, equipment geometry, timing, recoil distance, and smoke are illustrative.</p>
+        <div class="refs">
+          <a class="source-link" href="https://www.gutenberg.org/files/57705/57705-h/57705-h.htm#:~:text=Exercise%20is%20the%20preparatory%20practice">Falconer · Exercise of the great guns ↗</a>
+          <a class="source-link" href="https://www.rmg.co.uk/stories/maritime-history/bellona-third-rate-74">Royal Museums Greenwich · Bellona’s armament ↗</a>
+        </div>
+      </div>
+    </aside>
     <section class="player" id="player" aria-label="Guided tack playback" hidden>
       <div class="transport">
         <button type="button" class="play" id="play">Play</button>
@@ -92,7 +129,7 @@
         <label class="speed">Speed <select id="speed" aria-label="Playback speed"><option value=".25">¼×</option><option value=".5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
         <output id="time" for="scrub">0:00 / 0:32</output>
       </div>
-      <label class="scrub-label" for="scrub">Tack timeline</label>
+      <label class="scrub-label" id="scrub-label" for="scrub">Tack timeline</label>
       <input id="scrub" type="range" min="0" max="32" step=".1" value="0">
       <div id="steps" class="steps" role="group" aria-label="Jump to tack step"></div>
     </section>
@@ -103,10 +140,11 @@
       <li><a href="https://www.rmg.co.uk/collections/objects/rmgc-object-81148">ZAZ1357 · Body, sheer and half-breadth ↗</a><span>Admiralty drawing, c. 1758. Shared design for <i>Bellona</i>, <i>Dragon</i>, and <i>Superb</i>.</span></li>
       <li><a href="https://www.rmg.co.uk/collections/objects/rmgc-object-81150">ZAZ1359 · Inboard profile ↗</a><span>Admiralty drawing, c. 1759. Use the original shared profile with care around later class alterations.</span></li>
       <li><a href="https://www.rmg.co.uk/collections/objects/rmgc-object-66464">Bellona · Construction model ↗</a><span>Royal Museums Greenwich. Exposed framing and sections of planking.</span></li>
+      <li><a href="https://www.gutenberg.org/files/57705/57705-h/57705-h.htm#:~:text=Exercise%20is%20the%20preparatory%20practice">Falconer · Exercise of the great guns ↗</a><span>Period gun drill used to reconstruct the repeated firing cycle.</span></li>
       <li><a href="https://jimclifford.ca/britannica-articles-1/a/EB.5/191253800/49.html">Seamanship · 1797 Encyclopædia Britannica ↗</a><span>Period instructions for the order of a successful tack. The demonstration is representative.</span></li>
     </ol>
   </section>
-  <noscript><p>Enable JavaScript to rotate the ship and replay the tack. The original sources above remain available.</p></noscript>
+  <noscript><p>Enable JavaScript to rotate the ship and replay the lessons. The original sources above remain available.</p></noscript>
 </main>
 <footer class="bellona-footer"><a href="/experiments/">← Back to Experiments</a><a href="/experiments/maritime/">Explore Maritime Battles ↗</a></footer>
 </body>

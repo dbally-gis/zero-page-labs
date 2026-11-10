@@ -12,3 +12,7 @@ timestamp: "2026-11-10T09:50:00-06:00"
 - [1797 seamanship account](https://jimclifford.ca/britannica-articles-1/a/EB.5/191253800/49.html) gives the sequence for a successful tack under way. The rudder starts the turn. The main yards come round near head to wind. The fore yards follow after the bow has crossed. Timing, speeds, yard and rudder angles, wind, sail billow and path are illustrative values.
 
 The exhibit imports the pinned Three module from Maritime. If WebGL is disabled, the original schematic cover plate, source notes, and interactive tack chart are still usable. Museum scans were inspected for reference and are linked in the exhibit.
+
+## Lower gun deck drill
+
+[William Falconer’s Exercise entry](https://www.gutenberg.org/files/57705/57705-h/57705-h.htm#:~:text=Exercise%20is%20the%20preparatory%20practice) anchors the sequence. The printed exercise begins with a prepared gun and puts firing before sponging and loading. The exhibit enters the repeating cycle one operation earlier, with the empty gun already inboard, then proceeds through run-out, pointing, firing, and the next reload. It ends before the next run-out. RMG documents the lower deck’s 28 32-pounders. The lesson’s gun bay geometry, crew stations and number shown, tackle routing, motion, recoil travel, smoke, and playback seconds are interpretive. The 3D bay and SVG side plate share the same deterministic samples.

@@ -1,4 +1,5 @@
 import { duration, parts, phases, sampleTack, sources } from './study.mjs';
+import { gunDuration, gunPhases, sampleGun } from './drill.mjs';
 
 const byId = id => document.getElementById(id);
 const viewButtons = [...document.querySelectorAll('[data-view]')];
@@ -11,7 +12,14 @@ const sections = {
   whole: ['PLATE 01', 'WHOLE SHIP', 'Plan-based proportions · reconstructed rig'],
   cut: ['PLATE 01', 'LONGITUDINAL CUTAWAY', 'Plan-based study model · reconstructed detail'],
   tack: ['PLATE 02', 'GUIDED TACK', 'Period seamanship · illustrative motion'],
+  gun: ['PLATE 03', 'LOWER GUN DECK / 32-POUNDER', 'Documented drill · reconstructed crew and motion'],
 };
+const lessons = {
+  tack: { title:'Tack', duration, phases, sample:sampleTack, update:renderTack, ids:['phase-label','phase-title','phase-text'], time:0 },
+  gun: { title:'Gun drill', duration:gunDuration, phases:gunPhases, sample:sampleGun, update:renderGun, ids:['gun-step','gun-phase','gun-text'], time:0 },
+};
+let lesson=lessons.tack;
+let stepButtons=[];
 let scene;
 let view = 'cut';
 let time = 0;
@@ -59,14 +67,22 @@ const markers = parts.map((part, i) => {
 });
 choosePart(0);
 
-const stepButtons = phases.map((step, i) => {
-  const el = button(`${i + 1}. ${step.short}`, byId('steps'));
-  el.addEventListener('click', () => {
-    pause();
-    render(step.at);
+function prepareLesson(next) {
+  lesson=next;
+  previousPhase=-1;
+  const steps=byId('steps');
+  steps.replaceChildren();
+  steps.dataset.lesson=view;
+  steps.setAttribute('aria-label', 'Jump to '+lesson.title.toLowerCase()+' step');
+  player.setAttribute('aria-label', lesson.title+' playback');
+  byId('scrub-label').textContent=lesson.title+' timeline';
+  scrub.max=lesson.duration;
+  stepButtons=lesson.phases.map((step,i) => {
+    const el=button(`${i+1}. ${step.short}`,steps);
+    el.addEventListener('click', () => { render(step.at); pause(); });
+    return el;
   });
-  return el;
-});
+}
 
 // Integrate a teaching path from the same heading and drive that move the ship.
 const track = [{ x: 155, y: 142 }];
@@ -82,12 +98,37 @@ byId('track-path').setAttribute('d', pathPoints.join(''));
 function stamp(seconds) { return '0:' + String(Math.floor(seconds)).padStart(2, '0'); }
 
 function render(seconds) {
-  const pose = sampleTack(seconds);
-  time = pose.time;
+  const pose=lesson.sample(seconds);
+  time=lesson.time=pose.time;
   scene?.setPose(pose);
-  scrub.value = time;
-  scrub.setAttribute('aria-valuetext', `${time.toFixed(1)} seconds, ${phases[pose.phase].name}`);
-  byId('time').textContent = `${stamp(time)} / ${stamp(duration)}`;
+  scrub.value=time;
+  const step=lesson.phases[pose.phase];
+  scrub.setAttribute('aria-valuetext', `${time.toFixed(1)} seconds, ${step.name}`);
+  byId('time').textContent=`${stamp(time)} / ${stamp(lesson.duration)}`;
+  lesson.update(pose,step);
+  if (pose.phase!==previousPhase) {
+    const [label,title,description]=lesson.ids;
+    byId(label).textContent=`Step 0${pose.phase+1} / 0${lesson.phases.length}`;
+    byId(title).textContent=step.name;
+    byId(description).textContent=step.text;
+    stepButtons.forEach((el,i)=>el.setAttribute('aria-current',i===pose.phase?'step':'false'));
+    previousPhase=pose.phase;
+  }
+}
+
+function renderGun(pose,step) {
+  const shift=pose.carriage*106;
+  const slack=pose.carriage*27;
+  const toolTip=377-Math.max(pose.sponge,pose.ram)*71;
+  byId('gun-state').textContent=pose.time>=41.5 ? 'Inboard · loaded for the next shot' :
+    pose.phase===4 && pose.recoil>=1 ? 'Inboard · recoil checked' : step.state;
+  byId('schematic-gun').setAttribute('transform',`translate(${shift},0)`);
+  byId('schematic-rope').setAttribute('d',`M444 177Q${330+shift/2} ${191+slack} ${198+shift} 164`);
+  byId('schematic-tool').setAttribute('d',pose.phase<2||pose.phase>=5?`M${toolTip} 162h62`:'');
+  byId('schematic-flash').setAttribute('opacity',pose.flash);
+}
+
+function renderTack(pose) {
   byId('tack-side').textContent = Math.abs(pose.heading) < 2 ? 'Head to wind' : pose.heading < 0 ? 'Starboard tack' : 'Port tack';
   for (const name of ['main', 'fore']) {
     const angle=Math.round(pose[name]);
@@ -98,34 +139,26 @@ function render(seconds) {
   const { x, y } = track[index];
   byId('track-ship').setAttribute('transform', `translate(${x} ${y}) rotate(${pose.heading})`);
   byId('track-progress').setAttribute('d', pathPoints.slice(0, index + 1).join(''));
-  if (pose.phase !== previousPhase) {
-    const step = phases[pose.phase];
-    byId('phase-label').textContent = `Step 0${pose.phase + 1} / 06`;
-    byId('phase-title').textContent = step.name;
-    byId('phase-text').textContent = step.text;
-    stepButtons.forEach((el, i) => el.setAttribute('aria-current', i === pose.phase ? 'step' : 'false'));
-    previousPhase = pose.phase;
-  }
 }
 
 function pause() {
   playing = false;
   lastTick = undefined;
   cancelAnimationFrame(frame);
-  play.textContent = time >= duration ? 'Play again' : 'Play';
+  play.textContent = time >= lesson.duration ? 'Play again' : 'Play';
 }
 
 function tick(timestamp) {
   if (!playing) return;
   if (lastTick !== undefined) render(time + Math.min(timestamp - lastTick, 100) / 1000 * Number(speed.value));
   lastTick = timestamp;
-  if (time >= duration) pause();
+  if (time >= lesson.duration) pause();
   else frame = requestAnimationFrame(tick);
 }
 
 function start() {
   pause();
-  if (time >= duration) render(0);
+  if (time >= lesson.duration) render(0);
   playing = true;
   play.textContent = 'Pause';
   frame = requestAnimationFrame(tick);
@@ -139,11 +172,23 @@ function setView(next) {
   byId('plate-title').textContent = title;
   byId('view-caption').textContent = caption;
   viewButtons.forEach(el => el.setAttribute('aria-pressed', String(el.dataset.view === view)));
-  byId('anatomy').hidden = view === 'tack';
-  byId('maneuver').hidden = view !== 'tack';
-  player.hidden = view !== 'tack';
+  const nextLesson=lessons[view];
+  byId('anatomy').hidden=Boolean(nextLesson);
+  byId('maneuver').hidden=view!=='tack';
+  byId('gunnery').hidden=view!=='gun';
+  player.hidden=!nextLesson;
+  byId('fallback').hidden=Boolean(scene)||view==='gun';
+  byId('gun-plate').toggleAttribute('hidden', Boolean(scene)||view!=='gun');
+  byId('view-help').textContent=scene ? 'Drag or use arrow keys to orbit' :
+    view==='gun' ? 'Animated side plate' : 'Static ship plate · tack chart is interactive';
+  canvas.setAttribute('aria-label', view==='gun' ? '3D lower gun deck and crew. Drag or use arrow keys to rotate.' :
+    '3D Bellona model. Drag or use the arrow keys to rotate.');
   scene?.setView(view);
-  render(time);
+  if (nextLesson) {
+    prepareLesson(nextLesson);
+    render(lesson.time);
+    pause();
+  }
 }
 
 viewButtons.forEach(el => el.addEventListener('click', () => setView(el.dataset.view)));
@@ -153,7 +198,7 @@ scrub.addEventListener('input', () => { pause(); render(Number(scrub.value)); pa
 byId('zoom-in').addEventListener('click', () => scene?.zoomBy(1.18));
 byId('zoom-out').addEventListener('click', () => scene?.zoomBy(1 / 1.18));
 byId('reset-view').addEventListener('click', () => scene?.resetCamera());
-render(0);
+setView(location.hash==='#gun-drill' ? 'gun' : 'cut');
 
 try {
   const { createScene } = await import('./scene.mjs');
@@ -167,5 +212,5 @@ try {
   byId('view-help').textContent = 'Drag or use arrow keys to orbit';
   setView(view);
 } catch {
-  byId('view-help').textContent = 'Static ship plate · tack chart is interactive';
+  // The schematic and lesson controls are already active.
 }

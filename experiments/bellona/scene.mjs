@@ -1,4 +1,5 @@
 import * as T from '../maritime/vendor/three-0.160.1.module.min.js';
+import { createGunDrill } from './gun-scene.mjs';
 import { createShip } from './ship.mjs';
 import { parts } from './study.mjs';
 
@@ -28,6 +29,7 @@ export function createScene(stage, canvas, markers) {
   }
   scene.add(wind);
 
+  let drill;
   let view='cut', yaw=.30, elevation=.31, zoom=1, previous, pending=false;
   let pose={heading:0, fore:0, main:0, mizzen:0, rudder:0};
   const markerPoints=parts.map(part=>new T.Vector3(...part.point));
@@ -37,21 +39,29 @@ export function createScene(stage, canvas, markers) {
     const {clientWidth:width,clientHeight:height}=stage;
     if (!width || !height) return;
     const aspect=width/height;
-    const focusY=view==='tack'? 12: 14.5;
-    const frustum=Math.max(view==='tack'? 67:49,(view==='tack'? 82:78)/aspect)/zoom;
+    const gunView = view==='gun';
+    const focusX = gunView ? .1 : 2;
+    const focusY = gunView ? .85 : view==='tack' ? 12 : 14.5;
+    const radius = gunView ? 25 : 110;
+    const frustum = (gunView ? Math.max(7.6,11.5/aspect) :
+      Math.max(view==='tack'? 67:49,(view==='tack'? 82:78)/aspect))/zoom;
     camera.top=frustum/2;
     camera.bottom=-camera.top;
     camera.right=camera.top*aspect;
     camera.left=-camera.right;
     camera.updateProjectionMatrix();
     camera.position.set(
-      Math.sin(yaw)*Math.cos(elevation)*110,
-      focusY+Math.sin(elevation)*110,
-      Math.cos(yaw)*Math.cos(elevation)*110,
+      focusX+Math.sin(yaw)*Math.cos(elevation)*radius,
+      focusY+Math.sin(elevation)*radius,
+      Math.cos(yaw)*Math.cos(elevation)*radius,
     );
-    camera.lookAt(2,focusY,0);
-    ship.setTrim(view==='tack'?pose:{heading:-62,fore:37,main:37,mizzen:35,rudder:0});
-    ship.ship.rotation.y=view==='tack' ? T.MathUtils.degToRad(-pose.heading):0;
+    camera.lookAt(focusX,focusY,0);
+    if (gunView) {
+      drill.update(pose);
+    } else {
+      ship.setTrim(view==='tack'?pose:{heading:-62,fore:37,main:37,mizzen:35,rudder:0});
+      ship.ship.rotation.y=view==='tack' ? T.MathUtils.degToRad(-pose.heading):0;
+    }
     const size=renderer.getSize(new T.Vector2());
     if (size.x!==width || size.y!==height) renderer.setSize(width,height,false);
     renderer.render(scene,camera);
@@ -68,8 +78,8 @@ export function createScene(stage, canvas, markers) {
   }
 
   function resetCamera() {
-    yaw=view==='tack' ? .18 : view==='whole' ? -.46 : .43;
-    elevation=view==='tack'?.67:.27;
+    yaw=view==='gun' ? -.32 : view==='tack' ? .18 : view==='whole' ? -.46 : .43;
+    elevation=view==='gun' ? .47 : view==='tack' ? .67 : .27;
     zoom=1;
     invalidate();
   }
@@ -99,7 +109,19 @@ export function createScene(stage, canvas, markers) {
   new ResizeObserver(invalidate).observe(stage);
   resetCamera();
   return {
-    setView(value) {view=value; wind.visible=value==='tack'; ship.setCutaway(value==='cut'); resetCamera();},
+    setView(value) {
+      view=value;
+      if (view==='gun' && !drill) {
+        drill=createGunDrill();
+        scene.add(drill.room);
+      }
+      if (drill) drill.room.visible=view==='gun';
+      ship.ship.visible=view!=='gun';
+      grid.visible=view!=='gun';
+      wind.visible=view==='tack';
+      ship.setCutaway(view==='cut');
+      resetCamera();
+    },
     setPose(value) {pose=value; invalidate();},
     zoomBy(factor) {zoom=T.MathUtils.clamp(zoom*factor,.72,2.5); invalidate();},
     resetCamera,

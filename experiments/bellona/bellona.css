@@ -22,7 +22,7 @@ body{background:var(--paper);color:var(--ink)}
 .bellona button[aria-pressed=true],.bellona button[aria-current=step],.bellona button.play{background:var(--ink);border-color:var(--ink);color:var(--panel)}
 .bellona :focus-visible{outline:2px solid #116e72;outline-offset:2px}
 .stage{height:clamp(340px,51vw,605px);position:relative;overflow:hidden;border-block:1px solid var(--line);isolation:isolate;background:linear-gradient(#f6f0df,#e0decb)}
-.stage canvas,.stage>img,.markers{position:absolute;inset:0;width:100%;height:100%}
+.stage canvas,.stage>img,.stage>svg,.markers{position:absolute;inset:0;width:100%;height:100%}
 .stage canvas{display:block;touch-action:none;cursor:grab}
 .stage canvas:active{cursor:grabbing}
 .stage>img{object-fit:contain}
@@ -53,6 +53,9 @@ body{background:var(--paper);color:var(--ink)}
 .yard-readouts{display:grid;grid-template-columns:1fr 1fr;gap:.35rem;margin:.4rem 0;font:700 .62rem/1.45 var(--mono);color:#49564c}
 .yard-readouts span{padding:.35rem;border:1px solid var(--line)}
 .yard-readouts strong{display:block;color:var(--oxide)}
+.gun-fact{font-size:.9rem;line-height:1.45}
+.bellona .gun-status{margin:.8rem 0 0;padding:.55rem .6rem;border:1px solid var(--line);background:#e7e7d7;font:700 .71rem/1.4 var(--mono);color:#40574a}
+.steps[data-lesson="gun"]{grid-template-columns:repeat(7,minmax(0,1fr))}
 .player{grid-column:1/-1;padding:.35rem .65rem .65rem}
 .transport{padding:.3rem 0}
 .speed{display:flex;align-items:center;gap:.35rem;font:700 .75rem var(--mono);margin-left:.2rem}
@@ -71,7 +74,7 @@ body{background:var(--paper);color:var(--ink)}
   .stage{height:clamp(330px,67vw,470px)}
   .inspector{grid-row:3}
   .player{grid-row:2}
-  .steps{grid-template-columns:repeat(3,1fr)}
+  .steps,.steps[data-lesson="gun"]{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:470px){
   .title-row{align-items:start;flex-direction:column;gap:.32rem}
