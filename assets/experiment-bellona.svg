@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" role="img" aria-labelledby="title">
+  <title id="title">HMS Bellona, cutaway study</title>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#9a9e8b" stroke-opacity=".28"/></pattern>
+    <path id="hull" d="M144 355Q270 388 454 395Q640 400 801 360L764 457Q742 507 677 521Q508 535 283 515Q187 502 166 447Z"/>
+    <clipPath id="cut"><use href="#hull"/></clipPath>
+    <g id="mast" stroke="#3a453e" stroke-width="4">
+      <path d="M0 403V132M-78 242H78M-57 183H57M-38 146H38" fill="none"/>
+      <path d="m-72 244 8 59q64 17 128 0l8-59M-52 185l6 44q46 11 92 0l6-44M-34 148l5 26q29 7 58 0l5-26" fill="#f4e6c5" stroke-width="2"/>
+    </g>
+    <g id="port"><rect width="14" height="10" rx="1" fill="#26322d"/><path d="M2 10h10" stroke="#d4a968" stroke-width="2"/></g>
+  </defs>
+  <path fill="#ede8d8" d="M0 0h960v640H0z"/>
+  <path fill="url(#grid)" d="M37 36h886v568H37z"/>
+  <path d="M37 36h886v568H37z" stroke="#8c9382" stroke-opacity=".55" fill="none"/>
+  <g fill="#853e2b" font-family="monospace" font-size="18" font-weight="bold" letter-spacing="3"><text x="62" y="76">PLATE 01 / CHATHAM, 1760</text><text x="62" y="571">HMS BELLONA</text></g>
+  <text x="898" y="571" text-anchor="end" fill="#48594d" font-family="monospace" font-size="15" letter-spacing="2">74-GUN THIRD RATE</text>
+  <g stroke="#4e5a50" opacity=".6" fill="none">
+    <path d="m266 174 194-53 160 38 237 142M620 159l94 234M460 120l102 292M266 171l92 221M266 173l-80 209M460 119l-96 286M620 160l-73 247"/>
+  </g>
+  <use href="#mast" transform="translate(266 56) scale(.75 .86)"/><use href="#mast" transform="translate(460 -8)"/><use href="#mast" transform="translate(620 20) scale(.89 .96)"/>
+  <path d="m735 389 129-99m-18 14L641 184l88 169z" fill="#f4e6c5" stroke="#3a453e" stroke-width="3"/>
+  <use href="#hull" fill="#bd8e56" stroke="#393f36" stroke-width="4"/>
+  <g clip-path="url(#cut)">
+    <path d="M110 374Q426 444 818 371L810 400Q444 470 125 405Z" fill="#343e35"/>
+    <path d="M110 422Q426 483 814 419L808 443Q440 508 120 453Z" fill="#343e35"/>
+    <path d="M133 459Q444 521 801 454L782 549H132Z" fill="#8b5f3b"/>
+    <g transform="translate(219 407)">
+      <use href="#port"/><use href="#port" x="37" y="5"/><use href="#port" x="74" y="9"/><use href="#port" x="111" y="13"/><use href="#port" x="148" y="16"/><use href="#port" x="185" y="18"/><use href="#port" x="222" y="19"/><use href="#port" x="259" y="19"/><use href="#port" x="296" y="17"/><use href="#port" x="333" y="14"/><use href="#port" x="370" y="11"/><use href="#port" x="407" y="7"/><use href="#port" x="444" y="1"/><use href="#port" x="481" y="-5"/>
+    </g>
+    <path d="M183 452Q436 518 770 447M205 474Q437 533 746 471M235 493Q437 542 710 491" fill="none" stroke="#b38253" stroke-width="2"/>
+  </g>
+</svg>

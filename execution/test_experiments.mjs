@@ -138,3 +138,34 @@ test('reading detail hit targets preserve mapped indices from either side',()=>{
   assert.equal(pageWordAt(1,false,u,v,300),null);
   assert.equal(pageWordAt(1,false,0,1,400),null);
 });
+
+import { duration as tackDuration, parts as bellonaParts, sampleTack, sources as bellonaSources } from '../experiments/bellona/study.mjs';
+
+test('Bellona brings the main yards around before the fore yards', () => {
+  const start = sampleTack(0);
+  const crossing = sampleTack(17);
+  const end = sampleTack(tackDuration);
+  assert.ok(start.heading < 0 && end.heading > 0);
+  assert.equal(crossing.heading, 0);
+  assert.equal(crossing.rudder, 0);
+  assert.ok(crossing.main < 0 && crossing.fore > 0);
+  assert.ok(end.main < 0 && end.fore < 0);
+});
+
+test('Bellona tack samples are bounded and repeatable when scrubbing', () => {
+  assert.deepEqual(sampleTack(-4), sampleTack(0));
+  assert.deepEqual(sampleTack(100), sampleTack(tackDuration));
+  for (let time = 0; time <= tackDuration; time += .125) {
+    const pose = sampleTack(time);
+    assert.ok(Object.values(pose).every(Number.isFinite));
+    assert.deepEqual(sampleTack(time), pose);
+  }
+});
+
+test('Bellona evidence cards resolve to sources with a reconstruction note', () => {
+  assert.equal(new Set(bellonaParts.map(part => part.id)).size, bellonaParts.length);
+  for (const part of bellonaParts) {
+    assert.ok(part.limit && part.refs.length);
+    for (const ref of part.refs) assert.match(bellonaSources[ref][1], /^https:\/\//);
+  }
+});

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ede8d8">
+  <title>Inside HMS Bellona — Zero Page Labs</title>
+  <meta name="description" content="Open a 3D cutaway of HMS Bellona, examine its Admiralty plans, and replay a square-rigged tack in slow motion.">
+  <link rel="canonical" href="https://zeropagelabs.com/experiments/bellona/">
+  <link rel="icon" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="bellona.css">
+  <script type="module" src="bellona.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bellona-header">
+  <a href="/" class="bellona-brand"><span aria-hidden="true">ø</span> Zero Page Labs</a>
+  <a href="/experiments/">Experiments ↗</a>
+</header>
+<main id="main" class="bellona">
+  <header class="title-row">
+    <div><p class="kicker">The shipwright’s table / 01</p><h1>Inside HMS <em>Bellona</em></h1></div>
+    <p class="shipplate">CHATHAM · 1760<br>THIRD RATE / 74 GUNS</p>
+  </header>
+  <p class="intro">Open a British warship deck by deck, then watch her turn through the wind.</p>
+  <div class="exhibit">
+    <section class="view-panel" aria-label="Ship viewer">
+      <div class="view-bar" role="group" aria-label="Ship view">
+        <button type="button" data-view="whole" aria-pressed="false">Whole ship</button>
+        <button type="button" data-view="cut" aria-pressed="true">Cutaway</button>
+        <button type="button" data-view="tack" aria-pressed="false">Guided tack</button>
+      </div>
+      <div id="stage" class="stage">
+        <div class="plate-label"><span id="plate-number">PLATE 01</span> <span id="plate-title">LONGITUDINAL CUTAWAY</span></div>
+        <canvas id="ship-canvas" tabindex="0" aria-label="3D Bellona model. Drag or use the arrow keys to rotate." hidden></canvas>
+        <img id="fallback" src="/assets/experiment-bellona.svg" alt="Schematic side view of Bellona with two stacked gun decks and three masts">
+        <div id="markers" class="markers"></div>
+        <div class="camera" role="group" aria-label="Camera controls" hidden>
+          <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
+          <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+          <button type="button" id="reset-view">Reset view</button>
+        </div>
+      </div>
+      <div class="view-caption">
+        <span id="view-caption">Plan-based study model · reconstructed detail</span>
+        <span id="view-help">Static ship plate</span>
+      </div>
+    </section>
+    <aside class="inspector" id="anatomy" aria-labelledby="parts-title">
+      <p class="kicker">01 / Anatomy</p>
+      <h2 id="parts-title">Read the ship.</h2>
+      <div id="parts" class="part-list" role="group" aria-label="Ship parts"></div>
+      <div id="part-detail" class="part-detail" aria-live="polite">
+        <span class="evidence" id="evidence">Plan-derived</span>
+        <h3 id="part-title">Hull &amp; keel</h3>
+        <p id="part-text">The keel runs along the ship’s bottom, with frames rising around it to support the planking.</p>
+        <p class="limit" id="part-limit">The hull is a study model based on the original plans.</p>
+        <div class="refs" id="part-sources"></div>
+      </div>
+    </aside>
+    <aside class="inspector" id="maneuver" aria-labelledby="tack-title" hidden>
+      <p class="kicker">02 / Seamanship</p>
+      <h2 id="tack-title">Through the wind.</h2>
+      <svg id="track" viewBox="0 0 310 165" role="img" aria-labelledby="track-title track-desc">
+        <title id="track-title">A tack viewed from above</title>
+        <desc id="track-desc">The bow starts to the left of the direction the wind comes from, crosses it, and ends to the right.</desc>
+        <path d="M155 16V146M18 129H292" stroke="#b3ae9b" stroke-dasharray="4 5" fill="none"/>
+        <path d="M31 32v35m-6-7 6 7 6-7" fill="none" stroke="#3b6765" stroke-width="2"/>
+        <text x="44" y="47">WIND BLOWS</text>
+        <path id="track-path" fill="none" stroke="#63736b" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <path id="track-progress" fill="none" stroke="#9d442e" stroke-width="2.5"/>
+        <g id="track-ship"><path d="M0 -12 6 3 4 9H-4L-6 3Z" fill="#9d442e" stroke="#f5efdf" stroke-width="1"/></g>
+      </svg>
+      <div class="tack-stats"><span id="tack-side">Starboard tack</span><span id="tack-heading">62° off wind</span></div>
+      <div class="yard-readouts" aria-label="Yard angles">
+        <span>MAIN YARDS <strong id="main-yards"></strong></span>
+        <span>FORE YARDS <strong id="fore-yards"></strong></span>
+      </div>
+      <div class="part-detail">
+        <span class="evidence" id="phase-label">STEP 01 / 06</span>
+        <h3 id="phase-title">Gather way</h3>
+        <p id="phase-text"></p>
+        <p class="limit">The order follows a period seamanship account. Course, yard angles, and timing are illustrative.</p>
+        <a class="source-link" href="https://jimclifford.ca/britannica-articles-1/a/EB.5/191253800/49.html">Read the 1797 account ↗</a>
+      </div>
+    </aside>
+    <section class="player" id="player" aria-label="Guided tack playback" hidden>
+      <div class="transport">
+        <button type="button" class="play" id="play">Play</button>
+        <button type="button" id="replay">Replay</button>
+        <label class="speed">Speed <select id="speed" aria-label="Playback speed"><option value=".25">¼×</option><option value=".5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+        <output id="time" for="scrub">0:00 / 0:32</output>
+      </div>
+      <label class="scrub-label" for="scrub">Tack timeline</label>
+      <input id="scrub" type="range" min="0" max="32" step=".1" value="0">
+      <div id="steps" class="steps" role="group" aria-label="Jump to tack step"></div>
+    </section>
+  </div>
+  <section class="evidence-table" aria-labelledby="sources-title">
+    <div><p class="kicker">The evidence</p><h2 id="sources-title">From plan to model.</h2><p>The 3D scene uses approximate hull stations read from the half-breadth drawing and a deck arrangement interpreted from the inboard profile. The original drawings remain available in the museum catalogue.</p></div>
+    <ol>
+      <li><a href="https://www.rmg.co.uk/collections/objects/rmgc-object-81148">ZAZ1357 · Body, sheer and half-breadth ↗</a><span>Admiralty drawing, c. 1758. Shared design for <i>Bellona</i>, <i>Dragon</i>, and <i>Superb</i>.</span></li>
+      <li><a href="https://www.rmg.co.uk/collections/objects/rmgc-object-81150">ZAZ1359 · Inboard profile ↗</a><span>Admiralty drawing, c. 1759. Use the original shared profile with care around later class alterations.</span></li>
+      <li><a href="https://www.rmg.co.uk/collections/objects/rmgc-object-66464">Bellona · Construction model ↗</a><span>Royal Museums Greenwich. Exposed framing and sections of planking.</span></li>
+      <li><a href="https://jimclifford.ca/britannica-articles-1/a/EB.5/191253800/49.html">Seamanship · 1797 Encyclopædia Britannica ↗</a><span>Period instructions for the order of a successful tack. The demonstration is representative.</span></li>
+    </ol>
+  </section>
+  <noscript><p>Enable JavaScript to rotate the ship and replay the tack. The original sources above remain available.</p></noscript>
+</main>
+<footer class="bellona-footer"><a href="/experiments/">← Back to Experiments</a><a href="/experiments/maritime/">Explore Maritime Battles ↗</a></footer>
+</body>
+</html>
