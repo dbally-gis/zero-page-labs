@@ -47,7 +47,7 @@ function crewMember(parent, coat, complexion) {
   const forearms=[link(figure,.052,skin),link(figure,.052,skin)];
   const legs=[link(figure,.081,trousers),link(figure,.081,trousers)];
   const feet=[-1,1].map(side=>box(figure,[.27,.115,.13],[.03,.065,side*.125],leather));
-  return (x,z,heading,effort,reach=effort) => {
+  function move(x,z,heading,effort,reach=effort) {
     figure.position.set(x,0,z);
     figure.rotation.y=heading;
     torso.rotation.z=-effort*.40;
@@ -64,7 +64,8 @@ function crewMember(parent, coat, complexion) {
       legs[i]([effort*.09,.94-effort*.10,side*.12],[toe,.10,side*.125]);
       feet[i].position.x=toe+.06;
     }
-  };
+  }
+  return {figure, move};
 }
 
 function buildDeck(parent) {
@@ -141,6 +142,10 @@ export function createGunDrill() {
     crewMember(room,0x596353,0xa57757),
     crewMember(room,0x697f81,0xdbad87),
   ];
+  crew.forEach(({figure}, index)=>{figure.userData.crewIndex=index;});
+  const highlight=shape(room,new T.RingGeometry(.32,.38,32),new T.MeshBasicMaterial({color:0xffdb87}),0,.016);
+  highlight.rotation.x=-Math.PI/2;
+  let selectedCrew=0;
   const breeching=[-1,1].map(()=>Array.from({length:6},()=>link(room,.040,rope)));
   const tackles=[-1,1].map(()=>Array.from({length:3},()=>link(room,.018,cloth)));
   const tool=new T.Group(); room.add(tool);
@@ -161,6 +166,12 @@ export function createGunDrill() {
     new T.MeshBasicMaterial({color:0x8f9184,transparent:true,depthWrite:false})));
   return {
     room,
+    selectCrew(index) {selectedCrew=index;},
+    pickCrew(ray) {
+      const hit=ray.intersectObject(room,true).find(({object})=>
+        object.visible && object!==highlight && (object.parent!==tool || tool.visible));
+      return hit?.object.parent.userData.crewIndex;
+    },
     update(pose) {
       const {time,carriage,recoil}=pose;
       const shift=carriage*runOut;
@@ -170,11 +181,13 @@ export function createGunDrill() {
       tube.rotation.z=pose.phase===3 ? -.018*Math.sin((time-16)*.75)**2 : 0;
       const loadEffort=loading*work;
       const passing=Math.max(Math.sin(Math.PI*pose.cartridge),Math.sin(Math.PI*pose.shot));
-      crew[0](-1.25+shift*.52,-.92,-.69,.12+aim*.53,.20+aim*.60);
-      crew[1](2.28+loading*.42-loadEffort*.86,.80+shift*.22,2.76,.12+loading*.22+loadEffort*.58,.12+loading*.50+loadEffort*.32);
-      crew[2](.98+loading*.54+passing*.53,-1.02,-.22-loading*.52,.22+passing*.47,.25+passing*.65);
-      crew[3](-1.20+shift*.59,1.43,-.08,haul);
-      crew[4](-.58+shift*.64,-1.55,.15,haul);
+      crew[0].move(-1.25+shift*.52,-.92,-.69,.12+aim*.53,.20+aim*.60);
+      crew[1].move(2.28+loading*.42-loadEffort*.86,.80+shift*.22,2.76,.12+loading*.22+loadEffort*.58,.12+loading*.50+loadEffort*.32);
+      crew[2].move(.98+loading*.54+passing*.53,-1.02,-.22-loading*.52,.22+passing*.47,.25+passing*.65);
+      crew[3].move(-1.20+shift*.59,1.43,-.08,haul);
+      crew[4].move(-.58+shift*.64,-1.55,.15,haul);
+      const {x,z}=crew[selectedCrew].figure.position;
+      highlight.position.set(x,.016,z);
       for(const [index,side] of [-1,1].entries()){
         const slack=.025+carriage*.80+(time<12?.15:0);
         const points=Array.from({length:7},(_,i)=>{

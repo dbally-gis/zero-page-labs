@@ -1,5 +1,5 @@
 import { duration, parts, phases, sampleTack, sources } from './study.mjs';
-import { gunDuration, gunPhases, sampleGun } from './drill.mjs';
+import { gunCrew, gunDuration, gunPhases, sampleGun } from './drill.mjs';
 
 const byId = id => document.getElementById(id);
 const viewButtons = [...document.querySelectorAll('[data-view]')];
@@ -27,6 +27,7 @@ let playing = false;
 let frame = 0;
 let lastTick;
 let previousPhase = -1;
+let selectedCrew = 0;
 
 function button(label, parent) {
   const el = document.createElement('button');
@@ -66,6 +67,28 @@ const markers = parts.map((part, i) => {
   return el;
 });
 choosePart(0);
+
+const crewButtons = gunCrew.map(({name}, index) => {
+  const el=button(name, byId('crew-buttons'));
+  el.setAttribute('aria-pressed',String(index===selectedCrew));
+  el.addEventListener('click', () => chooseCrew(index));
+  return el;
+});
+
+function renderCrew(phase) {
+  const member=gunCrew[selectedCrew];
+  byId('crew-role').textContent=member.name;
+  byId('crew-station').textContent=member.station;
+  byId('crew-step').textContent=gunPhases[phase].name + '.';
+  byId('crew-action').textContent=member.actions[phase];
+}
+
+function chooseCrew(index) {
+  selectedCrew=index;
+  crewButtons.forEach((el,i)=>el.setAttribute('aria-pressed',String(i===index)));
+  scene?.selectCrew(index);
+  renderCrew(previousPhase);
+}
 
 function prepareLesson(next) {
   lesson=next;
@@ -112,6 +135,7 @@ function render(seconds) {
     byId(title).textContent=step.name;
     byId(description).textContent=step.text;
     stepButtons.forEach((el,i)=>el.setAttribute('aria-current',i===pose.phase?'step':'false'));
+    if (view==='gun') renderCrew(pose.phase);
     previousPhase=pose.phase;
   }
 }
@@ -175,15 +199,16 @@ function setView(next) {
   const nextLesson=lessons[view];
   byId('anatomy').hidden=Boolean(nextLesson);
   byId('maneuver').hidden=view!=='tack';
-  byId('gunnery').hidden=view!=='gun';
+  byId('gun-side').hidden=view!=='gun';
   player.hidden=!nextLesson;
   byId('fallback').hidden=Boolean(scene)||view==='gun';
   byId('gun-plate').toggleAttribute('hidden', Boolean(scene)||view!=='gun');
-  byId('view-help').textContent=scene ? 'Drag or use arrow keys to orbit' :
+  byId('view-help').textContent=scene ? (view==='gun' ? 'Click a crew member · drag to orbit' : 'Drag or use arrow keys to orbit') :
     view==='gun' ? 'Animated side plate' : 'Static ship plate · tack chart is interactive';
-  canvas.setAttribute('aria-label', view==='gun' ? '3D lower gun deck and crew. Drag or use arrow keys to rotate.' :
+  canvas.setAttribute('aria-label', view==='gun' ? '3D lower gun deck. Select a figure or use the crew buttons below. Drag or use arrow keys to rotate.' :
     '3D Bellona model. Drag or use the arrow keys to rotate.');
   scene?.setView(view);
+  if (view==='gun') scene?.selectCrew(selectedCrew);
   if (nextLesson) {
     prepareLesson(nextLesson);
     render(lesson.time);
@@ -205,7 +230,7 @@ try {
   // Probe once before Three tries to create a renderer so a normal fallback is quiet.
   if (!canvas.getContext('webgl2', { alpha: true, antialias: true }) &&
       !canvas.getContext('webgl', { alpha: true, antialias: true })) throw new Error('WebGL unavailable');
-  scene = createScene(byId('stage'), canvas, markers);
+  scene = createScene(byId('stage'), canvas, markers, chooseCrew);
   canvas.hidden = false;
   byId('fallback').hidden = true;
   document.querySelector('.camera').hidden = false;

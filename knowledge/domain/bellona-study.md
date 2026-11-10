@@ -16,3 +16,7 @@ The exhibit imports the pinned Three module from Maritime. If WebGL is disabled,
 ## Lower gun deck drill
 
 [William Falconer’s Exercise entry](https://www.gutenberg.org/files/57705/57705-h/57705-h.htm#:~:text=Exercise%20is%20the%20preparatory%20practice) anchors the sequence. The printed exercise begins with a prepared gun and puts firing before sponging and loading. The exhibit enters the repeating cycle one operation earlier, with the empty gun already inboard, then proceeds through run-out, pointing, firing, and the next reload. It ends before the next run-out. RMG documents the lower deck’s 28 32-pounders. The lesson’s gun bay geometry, crew stations and number shown, tackle routing, motion, recoil travel, smoke, and playback seconds are interpretive. The 3D bay and SVG side plate share the same deterministic samples.
+
+### Inspecting the crew
+
+The five labels identify tasks assigned to the illustrated figures. The same seven phase boundaries drive the scene and the selected crew member’s activity. Falconer documents the exercise sequence. The division of work, the five stations, and the descriptions of what a given figure is doing are teaching inferences. Near and far refer to the starting camera view. The crew buttons expose these same descriptions alongside the 2D schematic.

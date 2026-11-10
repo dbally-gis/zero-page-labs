@@ -105,23 +105,35 @@
         <a class="source-link" href="https://jimclifford.ca/britannica-articles-1/a/EB.5/191253800/49.html">Read the 1797 account ↗</a>
       </div>
     </aside>
-    <aside class="inspector" id="gunnery" aria-labelledby="gun-title" hidden>
-      <p class="kicker">03 / Lower gun deck</p>
-      <h2 id="gun-title">Work a 32-pounder.</h2>
-      <p class="gun-fact">Bellona carried 28 of these guns on her lower deck. The designation gives the weight of the round shot.</p>
-      <p class="gun-status" id="gun-state">Inboard · empty</p>
-      <div class="part-detail">
-        <span class="evidence" id="gun-step">Step 01 / 07</span>
-        <h3 id="gun-phase">Sponge the bore</h3>
-        <p id="gun-text"></p>
-        <p><strong>Documented</strong> · Bellona’s lower battery and the order of the period drill.</p>
-        <p class="limit"><strong>Reconstructed</strong> · This is a teaching bay. The five figures represent tasks within a larger crew. Their stations, poses, equipment geometry, timing, recoil distance, and smoke are illustrative.</p>
-        <div class="refs">
-          <a class="source-link" href="https://www.gutenberg.org/files/57705/57705-h/57705-h.htm#:~:text=Exercise%20is%20the%20preparatory%20practice">Falconer · Exercise of the great guns ↗</a>
-          <a class="source-link" href="https://www.rmg.co.uk/stories/maritime-history/bellona-third-rate-74">Royal Museums Greenwich · Bellona’s armament ↗</a>
+    <div class="gun-side" id="gun-side" hidden>
+      <section class="crew-inspector" id="crew-inspector" aria-labelledby="crew-title">
+        <h2 id="crew-title">Meet the gun crew</h2>
+        <div class="crew-buttons" id="crew-buttons" role="group" aria-label="Inspect crew member"></div>
+        <div class="crew-detail" id="crew-detail" aria-live="polite" aria-atomic="true">
+          <span class="evidence">Inferred role and station</span>
+          <h3 id="crew-role"></h3>
+          <p id="crew-station"></p>
+          <p class="crew-action"><strong id="crew-step"></strong> <span id="crew-action"></span></p>
         </div>
-      </div>
-    </aside>
+      </section>
+      <aside class="inspector" id="gunnery" aria-labelledby="gun-title">
+        <p class="kicker">03 / Lower gun deck</p>
+        <h2 id="gun-title">Work a 32-pounder.</h2>
+        <p class="gun-fact">Bellona carried 28 of these guns on her lower deck. The designation gives the weight of the round shot.</p>
+        <p class="gun-status" id="gun-state">Inboard · empty</p>
+        <div class="part-detail">
+          <span class="evidence" id="gun-step">Step 01 / 07</span>
+          <h3 id="gun-phase">Sponge the bore</h3>
+          <p id="gun-text"></p>
+          <p><strong>Documented</strong> · Bellona’s lower battery and the order of the period drill.</p>
+          <p class="limit"><strong>Reconstructed</strong> · This is a teaching bay. The five figures represent tasks within a larger crew. Their role assignments, stations, poses, equipment geometry, timing, recoil distance, and smoke are illustrative.</p>
+          <div class="refs">
+            <a class="source-link" href="https://www.gutenberg.org/files/57705/57705-h/57705-h.htm#:~:text=Exercise%20is%20the%20preparatory%20practice">Falconer · Exercise of the great guns ↗</a>
+            <a class="source-link" href="https://www.rmg.co.uk/stories/maritime-history/bellona-third-rate-74">Royal Museums Greenwich · Bellona’s armament ↗</a>
+          </div>
+        </div>
+      </aside>
+    </div>
     <section class="player" id="player" aria-label="Guided tack playback" hidden>
       <div class="transport">
         <button type="button" class="play" id="play">Play</button>

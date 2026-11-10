@@ -3,7 +3,7 @@ import { createGunDrill } from './gun-scene.mjs';
 import { createShip } from './ship.mjs';
 import { parts } from './study.mjs';
 
-export function createScene(stage, canvas, markers) {
+export function createScene(stage, canvas, markers, chooseCrew) {
   const renderer = new T.WebGLRenderer({canvas, antialias:true, alpha:true});
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
   const scene=new T.Scene();
@@ -33,6 +33,7 @@ export function createScene(stage, canvas, markers) {
   let view='cut', yaw=.30, elevation=.31, zoom=1, previous, pending=false;
   let pose={heading:0, fore:0, main:0, mizzen:0, rudder:0};
   const markerPoints=parts.map(part=>new T.Vector3(...part.point));
+  const ray=new T.Raycaster();
 
   function paint() {
     pending=false;
@@ -85,16 +86,29 @@ export function createScene(stage, canvas, markers) {
   }
 
   canvas.addEventListener('pointerdown',event=>{
-    if (previous) return;
-    previous={id:event.pointerId,x:event.clientX,y:event.clientY};
+    if (previous || event.button!==0) return;
+    previous={id:event.pointerId,x:event.clientX,y:event.clientY,dragging:view!=='gun'};
     canvas.setPointerCapture(event.pointerId);
   });
   canvas.addEventListener('pointermove',event=>{
     if (previous?.id!==event.pointerId) return;
-    yaw-=(event.clientX-previous.x)*.009;
-    elevation=T.MathUtils.clamp(elevation+(event.clientY-previous.y)*.007,-.55,1.45);
-    previous={id:event.pointerId,x:event.clientX,y:event.clientY};
+    const dx=event.clientX-previous.x, dy=event.clientY-previous.y;
+    if (!previous.dragging && Math.hypot(dx,dy)<5) return;
+    yaw-=dx*.009;
+    elevation=T.MathUtils.clamp(elevation+dy*.007,-.55,1.45);
+    Object.assign(previous,{x:event.clientX,y:event.clientY,dragging:true});
     invalidate();
+  });
+  canvas.addEventListener('pointerup',event=>{
+    if (view!=='gun' || previous?.id!==event.pointerId || previous.dragging ||
+        Math.hypot(event.clientX-previous.x,event.clientY-previous.y)>=5) return;
+    const bounds=canvas.getBoundingClientRect();
+    ray.setFromCamera(new T.Vector2(
+      (event.clientX-bounds.left)/bounds.width*2-1,
+      1-(event.clientY-bounds.top)/bounds.height*2,
+    ),camera);
+    const index=drill.pickCrew(ray);
+    if (index!==undefined) chooseCrew(index);
   });
   canvas.addEventListener('lostpointercapture',()=>{previous=null;});
   canvas.addEventListener('keydown',event=>{
@@ -123,6 +137,7 @@ export function createScene(stage, canvas, markers) {
       resetCamera();
     },
     setPose(value) {pose=value; invalidate();},
+    selectCrew(index) {drill?.selectCrew(index); invalidate();},
     zoomBy(factor) {zoom=T.MathUtils.clamp(zoom*factor,.72,2.5); invalidate();},
     resetCamera,
   };

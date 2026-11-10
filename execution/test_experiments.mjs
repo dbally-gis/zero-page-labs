@@ -170,7 +170,7 @@ test('Bellona evidence cards resolve to sources with a reconstruction note', () 
   }
 });
 
-import { gunDuration, gunPhases, sampleGun } from '../experiments/bellona/drill.mjs';
+import { gunCrew, gunDuration, gunPhases, sampleGun } from '../experiments/bellona/drill.mjs';
 
 test('Bellona gun drill runs out before discharge, recoils, then sponges and reloads', () => {
   assert.equal(sampleGun(0).carriage, 0);
@@ -191,4 +191,15 @@ test('Bellona gun poses replay identically after a backward seek', () => {
   assert.deepEqual(sampleGun(21.3), recoil);
   assert.deepEqual(sampleGun(-1), sampleGun(0));
   assert.deepEqual(sampleGun(gunDuration + 1), sampleGun(gunDuration));
+});
+
+test('Bellona crew stations each describe an action at every drill phase boundary', () => {
+  assert.equal(new Set(gunCrew.map(member => member.name)).size, 5);
+  for (const member of gunCrew) {
+    assert.ok(member.station.trim());
+    assert.equal(member.actions.length, gunPhases.length);
+    for (const { at } of gunPhases) {
+      assert.ok(member.actions[sampleGun(at).phase].trim());
+    }
+  }
 });
