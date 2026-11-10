@@ -1,6 +1,6 @@
 {
   "source": "https://apps.repebble.com/apps/dev/daniel-bally_e8468a0ff28edd5791d1bced",
-  "observedAt": "2026-11-09",
+  "observedAt": "2026-11-10",
   "pagination": {
     "loadedPages": 3,
     "entries": 45,
@@ -20,9 +20,9 @@
       "name": "BeTime",
       "url": "https://apps.repebble.com/betime_f77f655a2c9f4b72a2f39e58",
       "category": "Faces",
-      "description": "A little BeOS-style desktop for your Pebble. BeTime puts the clock in a beveled window with a yellow tab and uses actual Haiku and Haiku Calendar icons.\n\n\u2022 Power shows watch battery percentage.\n\u2022 Today shows the date, with five display options including Off.\n\u2022 Clock shows seconds.\n\u2022 Choose Classic Blue, Midnight, Teal, Plum, Graphite, or Monochrome Desktop.\n\u2022 Customize the desktop, window, text, and tab colors.\n\u2022 Use the watch preference, 12-hour time, or 24-hour time.\n\nDesigned for Pebble Time 2 and Pebble Round 2. Configure BeTime in the Pebble app. Time and battery work offline.\n\nIcon artwork from Haiku and Haiku Calendar is used under MIT licenses, with notices included in the watchface bundle.",
-      "thumbnail": "https://assets.repebble.com/screenshots/f77f655a2c9f4b72a2f39e58/emery/1f70de36-15d7-4258-b86f-6e5273d6c87f.gif",
-      "release_version": "0.1.0",
+      "description": "A little BeOS-style desktop for your Pebble. BeTime puts the clock in a beveled window with a yellow tab and uses actual Haiku and Haiku Calendar icons.\n\n\u2022 Power shows watch battery percentage.\n\u2022 Today shows the date, with five display options including Off.\n\u2022 Clock shows seconds. Each slot can also show Weather, Steps, Phone, World Clock, or an empty space.\n\u2022 On color models, choose Classic Blue, Midnight, Teal, Plum, Graphite, or Monochrome Desktop.\n\u2022 On color models, customize the desktop, window, text, and tab colors.\n\u2022 Use the watch preference, 12-hour time, or 24-hour time.\n\nSupports Pebble Time 2, Pebble Round 2, Pebble Time Round, Pebble 2, Pebble 2 Duo, and Pebble Time/Time Steel. Pebble 2 and Pebble 2 Duo use a monochrome palette. Configure BeTime in the Pebble app. Time and battery work offline.\n\nIcon artwork from Haiku and Haiku Calendar is used under MIT licenses, with notices included in the watchface bundle.",
+      "thumbnail": "https://assets.repebble.com/screenshots/f77f655a2c9f4b72a2f39e58/basalt/efcfe2f4-ed84-4f1a-996d-979b9d43201d.gif",
+      "release_version": "0.4.1",
       "time2_preview": "https://assets.repebble.com/screenshots/f77f655a2c9f4b72a2f39e58/emery/1f70de36-15d7-4258-b86f-6e5273d6c87f.gif"
     },
     {
