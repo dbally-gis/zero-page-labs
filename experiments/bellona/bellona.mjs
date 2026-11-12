@@ -1,4 +1,4 @@
-import { duration, parts, phases, sampleTack, sources } from './study.mjs';
+import { duration, parts, phases, sampleTack, sources, tackTrack } from './study.mjs';
 import { gunCrew, gunDuration, gunPhases, sampleGun } from './drill.mjs';
 
 const byId = id => document.getElementById(id);
@@ -107,14 +107,8 @@ function prepareLesson(next) {
   });
 }
 
-// Integrate a teaching path from the same heading and drive that move the ship.
-const track = [{ x: 155, y: 142 }];
-for (let i = 1; i <= duration * 10; i++) {
-  const { heading, drive } = sampleTack(i / 10);
-  const direction = heading * Math.PI / 180;
-  const p = track.at(-1);
-  track.push({ x: p.x + Math.sin(direction) * drive * 1.06, y: p.y - Math.cos(direction) * drive * 1.06 });
-}
+// The chart draws the same path the study integrates from heading, speed, and leeway.
+const track = tackTrack(.1).map(({ x, y }) => ({ x: 190 + x * 13, y: 142 - y * 13 }));
 const pathPoints = track.map(({ x, y }, i) => `${i ? 'L' : 'M'}${x.toFixed(2)} ${y.toFixed(2)}`);
 byId('track-path').setAttribute('d', pathPoints.join(''));
 
@@ -142,12 +136,13 @@ function render(seconds) {
 
 function renderGun(pose,step) {
   const shift=pose.carriage*106;
-  const slack=pose.carriage*27;
   const toolTip=377-Math.max(pose.sponge,pose.ram)*71;
   byId('gun-state').textContent=pose.time>=41.5 ? 'Inboard · loaded for the next shot' :
     pose.phase===4 && pose.recoil>=1 ? 'Inboard · recoil checked' : step.state;
   byId('schematic-gun').setAttribute('transform',`translate(${shift},0)`);
-  byId('schematic-rope').setAttribute('d',`M444 177Q${330+shift/2} ${191+slack} ${198+shift} 164`);
+  // Run out, the slack breeching droops to the deck. Inboard, it draws straight.
+  const droop=pose.carriage;
+  byId('schematic-rope').setAttribute('d',`M444 177C${444-70*droop} ${177+60*droop} ${198+shift+70*droop} ${164+75*droop} ${198+shift} 164`);
   byId('schematic-tool').setAttribute('d',pose.phase<2||pose.phase>=5?`M${toolTip} 162h62`:'');
   byId('schematic-flash').setAttribute('opacity',pose.flash);
 }
@@ -156,7 +151,7 @@ function renderTack(pose) {
   byId('tack-side').textContent = Math.abs(pose.heading) < 2 ? 'Head to wind' : pose.heading < 0 ? 'Starboard tack' : 'Port tack';
   for (const name of ['main', 'fore']) {
     const angle=Math.round(pose[name]);
-    byId(name+'-yards').textContent = angle===0 ? 'Square' : Math.abs(angle)+'° '+(angle>0?'old tack':'new tack');
+    byId(name+'-yards').textContent = angle===0 ? 'Square' : Math.abs(angle)+'° from square · '+(angle>0?'old tack':'new tack');
   }
   byId('tack-heading').textContent = `${Math.round(Math.abs(pose.heading))}° off wind`;
   const index = Math.min(track.length - 1, Math.round(time * 10));

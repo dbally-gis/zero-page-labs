@@ -1,4 +1,5 @@
 import * as T from '../maritime/vendor/three-0.160.1.module.min.js';
+import { recoilTravel, slackCurve } from './drill.mjs';
 
 const material = (color, extra = {}) => new T.MeshStandardMaterial({ color, roughness: .82, ...extra });
 const timber = material(0x9a683e);
@@ -11,8 +12,10 @@ const rope = material(0xb28a52);
 const cloth = material(0xdcc59c);
 const leather = material(0x443429);
 const gunHeight = .84;
-const runOut = 2.48;
+const runOut = recoilTravel;
 const wall = 3.48;
+// Breeching length: taut when the gun is fully inboard.
+const breechingLength = Math.hypot(wall-.3+1.46, .02, .84) * 1.004;
 
 function shape(parent, geometry, mat, x=0, y=0, z=0) {
   const mesh = new T.Mesh(geometry, mat);
@@ -146,7 +149,7 @@ export function createGunDrill() {
   const highlight=shape(room,new T.RingGeometry(.32,.38,32),new T.MeshBasicMaterial({color:0xffdb87}),0,.016);
   highlight.rotation.x=-Math.PI/2;
   let selectedCrew=0;
-  const breeching=[-1,1].map(()=>Array.from({length:6},()=>link(room,.040,rope)));
+  const breeching=[-1,1].map(()=>Array.from({length:12},()=>link(room,.040,rope)));
   const tackles=[-1,1].map(()=>Array.from({length:3},()=>link(room,.018,cloth)));
   const tool=new T.Group(); room.add(tool);
   shape(tool,new T.CylinderGeometry(.026,.026,2.61,8),endgrain,1.29,0,0).rotation.z=-Math.PI/2;
@@ -178,7 +181,7 @@ export function createGunDrill() {
       const {loading, haul, aim}=pose;
       const work=Math.max(pose.sponge,pose.ram);
       gun.position.x=shift;
-      tube.rotation.z=pose.phase===3 ? -.018*Math.sin((time-16)*.75)**2 : 0;
+      tube.rotation.z=(pose.phase===3 ? -.018*Math.sin((time-16)*.75)**2 : 0)+pose.snub*.03;
       const loadEffort=loading*work;
       const passing=Math.max(Math.sin(Math.PI*pose.cartridge),Math.sin(Math.PI*pose.shot));
       crew[0].move(-1.25+shift*.52,-.92,-.69,.12+aim*.53,.20+aim*.60);
@@ -189,13 +192,7 @@ export function createGunDrill() {
       const {x,z}=crew[selectedCrew].figure.position;
       highlight.position.set(x,.016,z);
       for(const [index,side] of [-1,1].entries()){
-        const slack=.025+carriage*.80+(time<12?.15:0);
-        const points=Array.from({length:7},(_,i)=>{
-          const t=i/6;
-          return [T.MathUtils.lerp(wall-.3,-1.46+shift,t),
-            T.MathUtils.lerp(.86,.88,t)-Math.sin(Math.PI*t)*slack,
-            side*T.MathUtils.lerp(.92,.08,t)];
-        });
+        const points=slackCurve([wall-.3,.86,side*.92],[-1.46+shift,.88,side*.08],breechingLength,side);
         breeching[index].forEach((set,i)=>set(points[i],points[i+1]));
         tackles[index].forEach((set,i)=>set([wall-.32,.64+i*.034,side*.77],[-.14+shift,.49+i*.034,side*.39]));
       }

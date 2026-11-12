@@ -84,22 +84,50 @@ const ease = value => value * value * (3 - 2 * value);
 const envelope = (time, start, end) => ease(span(time, start, start + .65)) * (1 - ease(span(time, end - .65, end)));
 const stroke = (time, start, end) => Math.sin(Math.PI * span(time, start, end)) ** 2;
 
+// Recoil in metres and seconds. Momentum balance for a 32 lb shot and its charge against
+// about 3.3 t of gun and carriage gives the starting speed. The trucks slow the carriage
+// and the breeching stops it with speed still on.
+export const recoilTravel = 2.48;
+const recoilSpeed = 3.2, truckDrag = 1.2;
+export const snubAfter = (recoilSpeed - Math.sqrt(recoilSpeed ** 2 - 2 * truckDrag * recoilTravel)) / truckDrag;
+
+// A rope of fixed length between two points: the slack drops to the deck, then lies in a bight.
+export function slackCurve(a, b, length, side = 1, deck = .045, count = 12) {
+  const shape = k => Array.from({ length: count + 1 }, (_, i) => {
+    const t = i / count, arch = Math.sin(Math.PI * t);
+    return [a[0] + (b[0] - a[0]) * t - k * .55 * Math.sin(2 * Math.PI * t),
+      a[1] + (b[1] - a[1]) * t - arch * (a[1] - deck) * (1 - Math.exp(-k * 2.6)),
+      a[2] + (b[2] - a[2]) * t + side * arch * k * .45];
+  });
+  const measure = points => points.slice(1).reduce((sum, p, i) => sum + Math.hypot(p[0] - points[i][0], p[1] - points[i][1], p[2] - points[i][2]), 0);
+  let low = 0, high = 4;
+  for (let i = 0; i < 26; i++) {
+    const k = (low + high) / 2;
+    if (measure(shape(k)) < length) low = k; else high = k;
+  }
+  return shape(low);
+}
+
 export function sampleGun(seconds) {
   const time = Math.max(0, Math.min(gunDuration, seconds));
   const phase = gunPhases.findLastIndex(step => step.at <= time);
   const running = ease(span(time, 12, 15.6));
-  const recoil = 1 - (1 - span(time, 21, 21.75)) ** 3;
+  const since = time - 21;
+  const recoil = since < 0 ? 0 : since >= snubAfter ? 1 :
+    (recoilSpeed * since - truckDrag * since ** 2 / 2) / recoilTravel;
+  const jolt = (since - snubAfter) * 12;
+  const snub = jolt > 0 ? jolt * Math.exp(1 - jolt) : 0;
   const carriage = running * (1 - recoil);
   const sponge = stroke(time, .3, 4.7) + stroke(time, 26.3, 31.6);
-  const ram = stroke(time, 6.2, 8.2) + stroke(time, 9.4, 11.6) +
-    stroke(time, 33.4, 36.4) + stroke(time, 38.2, 41.5);
+  const ram = stroke(time, 6.6, 8.2) + stroke(time, 9.7, 11.6) +
+    stroke(time, 34.1, 36.4) + stroke(time, 38.5, 41.5);
   const cartridge = time < 20 ? span(time, 5, 6.5) : span(time, 32, 34);
   const shot = time < 20 ? span(time, 8.2, 9.6) : span(time, 36.4, 38.4);
   const loading = 1 - ease(span(time, 11.25, 12.2)) + ease(span(time, 25.7, 26.4));
   const haul = envelope(time, 12, 16) * (.52 + .34 * Math.sin((time - 12) * 5) ** 2);
   const aim = envelope(time, 16, 21.2);
   const match = time >= 19.1 && time < 21.05;
-  return { time, phase, carriage, recoil, sponge, ram, cartridge, shot, match, loading, haul, aim,
+  return { time, phase, carriage, recoil, snub, sponge, ram, cartridge, shot, match, loading, haul, aim,
     flash: time >= 21 && time < 21.24 ? 1 - span(time, 21, 21.24) : 0,
     smoke: time >= 21 && time < 25.7 ? 1 - span(time, 21, 25.7) : 0,
   };

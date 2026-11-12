@@ -3,6 +3,7 @@ import * as T from '../maritime/vendor/three-0.160.1.module.min.js';
 export const length = 168 * .3048;
 export const beam = 46.75 * .3048;
 const half = length / 2;
+const keelDepth = -6.24;
 const radians = T.MathUtils.degToRad;
 const mix = T.MathUtils.lerp;
 
@@ -168,11 +169,15 @@ function sail(parent, y, width, depth, bias, material = mat.sail) {
 function rig(parent) {
   const sets = {};
   const cloth = {};
+  // Mast, station, truck height above the waterline, then [yard height, yard length, sail drop]
+  // for the lower, topsail, and topgallant yards. Approximate proportions for a 74 of this length:
+  // masts about 12%, 55%, and 85% of the gun deck from the bow, main yard about 29 m.
   const specs = [
-    ['fore', 12.5, 33, [[17.5,14,7.2],[24,11.5,5.8],[29.3,8,4.2]]],
-    ['main', -.5, 37.5, [[19,17,8],[26.5,13.6,6.2],[32.5,9.2,4.8]]],
-    ['mizzen', -15.5, 28, [[16,10.5,0],[20.5,9.4,5.2],[24.8,6.2,3.6]]],
+    ['fore', 19.4, 50, [[19,25.5,11],[33.5,18.5,13.5],[43.5,12.5,8.5]]],
+    ['main', -2.8, 56, [[21,29,12.5],[37,21.5,15],[48,14.5,9.5]]],
+    ['mizzen', -17.9, 41, [[15.5,18.5,0],[26.5,14,10],[34,9.5,6.5]]],
   ];
+  const [fore, main, mizzen] = specs;
   for (const [name,x,top,yards] of specs) {
     spar(parent,[x,-2,0],[x,top,0],.38,mat.timber,.075);
     for (const y of [yards[0][0]+2.7,yards[1][0]+2]) {
@@ -181,9 +186,9 @@ function rig(parent) {
     sets[name]=new T.Group(); sets[name].position.x=x; parent.add(sets[name]);
     cloth[name]=[];
     for (const [y,width,drop] of yards) {
-      spar(sets[name],[0,y,-width/2],[0,y,width/2],.105,mat.dark);
+      spar(sets[name],[0,y,-width/2],[0,y,width/2],.05+width*.006,mat.dark);
       line(sets[name],[[0,y,-width/2],[0,y+3,0],[0,y,width/2]]);
-      if (drop) cloth[name].push(...sail(sets[name],y,width,drop,.9));
+      if (drop) cloth[name].push(...sail(sets[name],y,width,drop,drop*.1));
     }
     for (const side of [-1,1]) {
       const tops=yards[0][0]+2.7;
@@ -196,16 +201,16 @@ function rig(parent) {
       line(parent,[[x,top-3,0],point(x-3.9,3.72,side)]);
     }
   }
-  spar(parent,[22.9,5.2,0],[37,11.2,0],.32,mat.timber,.09);
-  line(parent,[[37,11.2,0],[12.5,33,0],[-.5,37.5,0],[-15.5,28,0]]);
-  line(parent,[[32,9,0],[12.5,24,0],[-.5,26.5,0],[-15.5,20.5,0]]);
-  line(parent,[[36.8,11.1,0],[27,-.4,0]]);
+  spar(parent,[22.9,5.2,0],[44,15.2,0],.32,mat.timber,.09);
+  line(parent,[[44,15.2,0],[fore[1],fore[2],0],[main[1],main[2],0],[mizzen[1],mizzen[2],0]]);
+  line(parent,[[36,11.4,0],...specs.map(([,x,,yards])=>[x,yards[1][0]+2,0])]);
+  line(parent,[[35,10.9,0],[26,-.4,0]]);
   const jib = new T.Group(); parent.add(jib);
-  face(jib,[[34.7,11.3,0],[17.4,24.8,0],[20.8,10.5,1.25],[24.2,14.1,.95]],mat.sail,[0,1,3,1,2,3,2,0,3]);
-  const driver = new T.Group(); driver.position.x=-15.5; parent.add(driver);
-  spar(driver,[0,11.8,0],[-11.4,10.2,0],.105,mat.dark);
-  spar(driver,[0,18.6,0],[-8.3,17.4,0],.09,mat.dark);
-  face(driver,[[0,11.8,0],[-10.8,10.3,0],[-8,17.4,0],[0,18.5,0]],mat.sail,[0,1,2,0,2,3]);
+  face(jib,[[42,14.3,0],[21,35.5,0],[25.5,11.6,3.4],[29.5,17.2,2.2]],mat.sail,[0,1,3,1,2,3,2,0,3]);
+  const driver = new T.Group(); driver.position.x=mizzen[1]; parent.add(driver);
+  spar(driver,[0,9.5,0],[-14.5,8.6,0],.13,mat.dark);
+  spar(driver,[0,17,0],[-9.5,21,0],.1,mat.dark);
+  face(driver,[[0,9.5,0],[-14,8.7,0],[-9.3,20.9,0],[0,17,0]],mat.sail,[0,1,2,0,2,3]);
   return { sets, cloth, jib, driver };
 }
 
@@ -252,11 +257,22 @@ export function createShip() {
     for (const dy of [-.27,.27]) spar(open,[x,y+dy-.035,z],[x,y+dy+.035,z],.384,mat.dark);
   }
 
-  const keel=new T.CatmullRomCurve3(xSamples.filter((_,i)=>i%4===0).map(x=>new T.Vector3(x,dimensions(x).keel,0)));
+  // The keel runs straight from the sternpost and turns up into the stem only at the forefoot.
+  // Deadwood fills the space where the body of the hull rises above the keel.
+  const keelLine=x=>x<length*.72-half ? keelDepth : dimensions(x).keel;
+  const keel=new T.CatmullRomCurve3(xSamples.filter((_,i)=>i%4===0).map(x=>new T.Vector3(x,keelLine(x),0)));
   ship.add(new T.Mesh(new T.TubeGeometry(keel,64,.2,5,false),mat.edge));
-  const rudder=new T.Group();rudder.position.set(-half,-.25,0);ship.add(rudder);
-  face(rudder,[[0,2.3,0],[-.35,-3.6,0],[-1.32,-3.15,0],[-.66,1.9,0]],mat.timber,[0,1,2,0,2,3]);
-  spar(rudder,[0,2.5,0],[-.35,-3.6,0],.13,mat.dark);
+  spar(ship,[-half,keelDepth,0],[-half,2.6,0],.2,mat.edge);
+  const deadwood=[];
+  for(let i=0;i<50;i++){
+    const a=xSamples[i], b=xSamples[i+1], top=x=>Math.max(keelDepth,dimensions(x).keel);
+    deadwood.push([a,keelDepth,0],[b,keelDepth,0],[b,top(b),0],[a,keelDepth,0],[b,top(b),0],[a,top(a),0]);
+  }
+  face(ship,deadwood,mat.timber);
+  const rudder=new T.Group();rudder.position.set(-half-.3,-.25,0);ship.add(rudder);
+  const foot=keelDepth+.25;
+  face(rudder,[[0,2.3,0],[0,foot,0],[-1.3,foot,0],[-.66,1.9,0]],mat.timber,[0,1,2,0,2,3]);
+  spar(rudder,[0,2.5,0],[0,foot,0],.13,mat.dark);
   const wheel=new T.Group();wheel.position.set(-14.5,6.9,0); ship.add(wheel);
   for(const dx of [-.23,.23]){
     const ring=new T.Mesh(new T.TorusGeometry(.48,.05,8,20),mat.timber);ring.rotation.y=Math.PI/2;ring.position.x=dx;wheel.add(ring);
@@ -267,6 +283,10 @@ export function createShip() {
   const rigging=new T.Group();
   ship.add(rigging);
   const { sets, cloth, jib, driver }=rig(rigging);
+  // Sails cast shadows but do not take them: the curved cloth shows shadow-map banding.
+  for(const piece of [...Object.values(cloth).flat(),jib,driver]) {
+    piece.traverse(part=>{ if(part.material===mat.sail) part.userData.castOnly=true; });
+  }
   return {
     ship,
     setCutaway(cut) {
@@ -283,8 +303,10 @@ export function createShip() {
       }
       rudder.rotation.y=radians(angle);
       wheel.rotation.x=radians(angle*4);
-      jib.rotation.x=radians(-fore*.46);
-      driver.rotation.y=radians(-main*.44);
+      // Fore-and-aft sails lie to leeward and shift as the bow crosses the wind.
+      const lee=T.MathUtils.clamp(heading/10,-1,1);
+      jib.scale.z=lee || .001;
+      driver.rotation.y=radians(16*lee);
     },
   };
 }

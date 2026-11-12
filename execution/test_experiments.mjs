@@ -139,7 +139,7 @@ test('reading detail hit targets preserve mapped indices from either side',()=>{
   assert.equal(pageWordAt(1,false,0,1,400),null);
 });
 
-import { duration as tackDuration, parts as bellonaParts, sampleTack, sources as bellonaSources } from '../experiments/bellona/study.mjs';
+import { duration as tackDuration, incidence, parts as bellonaParts, sampleTack, sources as bellonaSources, tackPosition, tackTrack } from '../experiments/bellona/study.mjs';
 
 test('Bellona brings the main yards around before the fore yards', () => {
   const start = sampleTack(0);
@@ -162,6 +162,52 @@ test('Bellona tack samples are bounded and repeatable when scrubbing', () => {
   }
 });
 
+test('Bellona sails close-hauled with yards braced sharp and sails filled', () => {
+  for (const time of [0, tackDuration]) {
+    const pose = sampleTack(time);
+    for (const mast of ['fore', 'main', 'mizzen']) {
+      assert.ok(90 - Math.abs(pose[mast]) <= 40, 'yard lies within 40° of the keel');
+      assert.ok(incidence(pose.heading, pose[mast]) >= 20, 'wind meets the sail at 20° or more');
+    }
+  }
+});
+
+test('Bellona backs the head yards through the wind and fills the after yards before hauling the fore', () => {
+  assert.ok(incidence(sampleTack(17).heading, sampleTack(17).fore) < 0);
+  const haul = sampleTack(24);
+  assert.ok(incidence(haul.heading, haul.main) >= 5);
+  assert.ok(incidence(haul.heading, haul.mizzen) >= 5);
+  assert.equal(sampleTack(13).main, sampleTack(0).main);
+  assert.ok(sampleTack(13.5).main < sampleTack(13).main, 'main yards move as their step begins');
+  assert.equal(haul.fore, sampleTack(0).fore);
+  for (let time = 0; time <= tackDuration; time += .25) {
+    const pose = sampleTack(time);
+    assert.ok(Math.abs(pose.main - pose.mizzen) <= 3, 'after yards swing together');
+  }
+});
+
+test('Bellona turns slowest through the eye of the wind, with no jump in turn rate', () => {
+  const rate = time => (sampleTack(time + .001).heading - sampleTack(time - .001).heading) / .002;
+  assert.ok(rate(17) < rate(9) * .7);
+  assert.ok(rate(17) < rate(22) * .7);
+  const peak = (from, to) => Math.max(...Array.from({ length: (to - from) * 10 }, (_, i) => rate(from + i / 10)));
+  assert.ok(peak(17, 31) < peak(5, 17), 'the fastest turn comes with full way and helm, not at lowest speed');
+  for (let time = .1; time < tackDuration - .1; time += .1) {
+    assert.ok(Math.abs(rate(time + .05) - rate(time - .05)) < 1, `turn rate is continuous at ${time.toFixed(1)}`);
+  }
+});
+
+test('Bellona tack chart makes leeway and never gains ground faster than the ship sails', () => {
+  const track = tackTrack(.1);
+  assert.equal(track.length, tackDuration * 10 + 1);
+  const start = sampleTack(.1), heading = start.heading * Math.PI / 180;
+  const course = Math.atan2(track[1].x, track[1].y) * 180 / Math.PI;
+  assert.ok(course < start.heading - 4, 'course made good lies to leeward of the heading');
+  assert.ok(track.at(-1).y > 0);
+  assert.ok(track.at(-1).y < tackDuration * Math.cos(heading));
+  assert.deepEqual(tackTrack(.1), track);
+});
+
 test('Bellona evidence cards resolve to sources with a reconstruction note', () => {
   assert.equal(new Set(bellonaParts.map(part => part.id)).size, bellonaParts.length);
   for (const part of bellonaParts) {
@@ -170,7 +216,7 @@ test('Bellona evidence cards resolve to sources with a reconstruction note', () 
   }
 });
 
-import { gunCrew, gunDuration, gunPhases, sampleGun } from '../experiments/bellona/drill.mjs';
+import { gunCrew, gunDuration, gunPhases, recoilTravel, sampleGun, slackCurve, snubAfter } from '../experiments/bellona/drill.mjs';
 
 test('Bellona gun drill runs out before discharge, recoils, then sponges and reloads', () => {
   assert.equal(sampleGun(0).carriage, 0);
@@ -183,6 +229,41 @@ test('Bellona gun drill runs out before discharge, recoils, then sponges and rel
   assert.ok(sampleGun(35).ram > 0);
   assert.equal(sampleGun(gunDuration).flash, 0);
   assert.equal(sampleGun(gunDuration).phase, gunPhases.length - 1);
+});
+
+test('Bellona recoil starts at a momentum-balance speed and the breeching stops it with speed still on', () => {
+  const speed = time => (sampleGun(time - .001).carriage - sampleGun(time + .001).carriage) * recoilTravel / .002;
+  let peak = 0;
+  for (let time = 21.002; time < 23; time += .002) peak = Math.max(peak, speed(time));
+  assert.ok(peak > 2 && peak < 4, `peak recoil ${peak.toFixed(2)} m/s`);
+  assert.ok(speed(21 + snubAfter - .01) > 1, 'carriage is still moving when the breeching takes the strain');
+  assert.equal(sampleGun(21 + snubAfter + .01).carriage, 0);
+  assert.equal(sampleGun(30).recoil, 1);
+  assert.equal(sampleGun(21 + snubAfter).snub, 0);
+  assert.ok(sampleGun(21 + snubAfter + .08).snub > sampleGun(22.5).snub);
+});
+
+test('Bellona breeching keeps its length while the carriage moves', () => {
+  const length = Math.hypot(4.64, .02, .84) * 1.004;
+  const measure = points => points.slice(1).reduce((sum, p, i) => sum + Math.hypot(...p.map((v, n) => v - points[i][n])), 0);
+  let previous;
+  for (let time = 0; time <= gunDuration; time += .05) {
+    const points = slackCurve([3.18, .86, .92], [-1.46 + sampleGun(time).carriage * recoilTravel, .88, .08], length);
+    assert.ok(Math.abs(measure(points) / length - 1) < .02, `length at ${time.toFixed(2)}`);
+    assert.ok(points.every(point => point[1] >= .04 && point[0] < 3.3));
+    if (previous && Math.abs(time - 21.5) > .6) {
+      assert.ok(points.every((point, i) => Math.hypot(...point.map((v, n) => v - previous[i][n])) < .12), `no jump at ${time.toFixed(2)}`);
+    }
+    previous = points;
+  }
+});
+
+test('Bellona rammer enters the bore only after the cartridge or shot is at the muzzle', () => {
+  for (let time = 0; time <= gunDuration; time += .02) {
+    const pose = sampleGun(time);
+    if (pose.cartridge > 0 && pose.cartridge < 1) assert.ok(pose.ram < 1e-9, `cartridge at ${time.toFixed(2)}`);
+    if (pose.shot > 0 && pose.shot < 1) assert.ok(pose.ram < 1e-9, `shot at ${time.toFixed(2)}`);
+  }
 });
 
 test('Bellona gun poses replay identically after a backward seek', () => {
@@ -201,5 +282,17 @@ test('Bellona crew stations each describe an action at every drill phase boundar
     for (const { at } of gunPhases) {
       assert.ok(member.actions[sampleGun(at).phase].trim());
     }
+  }
+});
+
+test('Bellona ship position follows the tack path without a jump', () => {
+  const track = tackTrack(.1);
+  assert.deepEqual(tackPosition(0), track[0]);
+  assert.deepEqual(tackPosition(tackDuration), track.at(-1));
+  assert.deepEqual(tackPosition(99), track.at(-1));
+  const near = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+  assert.ok(near(tackPosition(12.3), track[123]) < 1e-9);
+  for (let time = 0; time < tackDuration; time += .013) {
+    assert.ok(near(tackPosition(time), tackPosition(time + .013)) < .02, `jump at ${time}`);
   }
 });
