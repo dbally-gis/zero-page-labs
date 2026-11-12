@@ -34,7 +34,7 @@ if (!isActs) {
   get('[data-people]').hidden = true;
   get('[data-comparison]').hidden = false;
   get('[data-account-key]').innerHTML = Object.entries(gospelColors).map(([name, color]) =>
-    '<span><i style="background:' + color + '"></i>' + name + '</span>').join('') + '<span>◯ Shared mapped place</span>';
+    '<span><i style="background:' + color + '"></i>' + name + '</span>').join('') + '<span>◯ Select a shared place</span>';
   get('.event-people').hidden = true;
   get('[data-back]').textContent = 'Previous event';
   get('[data-next]').textContent = 'Next event';
@@ -78,6 +78,30 @@ let view = !isActs && parameters.get('view') === 'cube' ? 'cube' : 'flat';
 let angle = isActs ? 0 : Math.max(-180, Math.min(180, Number(parameters.get('angle')) || 0));
 let zoom = isActs ? 1 : Math.max(1, Math.min(2.4, Number(parameters.get('zoom')) || 1));
 const comparison = get('[data-compare]');
+const ringLayer = get('[data-ring-layer]');
+const ringLeaders = get('#bt-ring-leaders');
+let pickedPlace = null;
+const placeButtons = new Map();
+if (!isActs) {
+  for (const [place, count] of sharedPlaces) {
+    if (count < 2) continue;
+    const ring = document.createElement('button');
+    ring.type = 'button';
+    ring.className = 'place-ring';
+    ring.dataset.place = place;
+    ring.title = place + ' · ' + count + ' Gospel accounts';
+    ring.setAttribute('aria-label', ring.title);
+    ring.setAttribute('aria-controls', 'gospel-place-passages');
+    ring.addEventListener('click', () => {
+      pickedPlace = place;
+      render();
+      get('[data-shared-heading]').focus({preventScroll: true});
+      get('[data-shared]').scrollIntoView({block: 'nearest'});
+    });
+    placeButtons.set(place, ring);
+    ringLayer.append(ring);
+  }
+}
 comparison.checked = !isActs && parameters.get('compare') === '1';
 let origin = [0, 0];
 let drag = null;
@@ -136,13 +160,51 @@ function comparisonPaths() {
   }).join('');
 }
 
-function overlapMarks() {
-  if (!comparison.checked) return '';
-  return [...sharedPlaces].filter(([, count]) => count > 1).map(([place, count]) => {
+function layoutSharedRings() {
+  ringLayer.hidden = !comparison.checked;
+  ringLeaders.replaceChildren();
+  if (!comparison.checked) return;
+
+  const width = map.clientWidth;
+  const height = map.clientHeight;
+  if (!width || !height) return;
+  const spacing = 32;
+  const inset = spacing / 2;
+  const placed = [];
+  for (const [place, ring] of placeButtons) {
     const [x, y] = floor(place);
-    return '<circle cx="' + x + '" cy="' + y + '" r="7" fill="none" stroke="var(--ink)" stroke-width="1.5"><title>'
-      + place + ' · ' + count + ' Gospel accounts</title></circle>';
-  }).join('');
+    const px = x * width / 720;
+    const py = y * height / 550;
+    ring.hidden = px < 0 || px > width || py < 0 || py > height;
+    if (ring.hidden) continue;
+
+    // Fan out nearby controls while keeping their geographic anchors visible.
+    const candidates = [[0, 0]];
+    for (let radius = spacing; radius <= spacing * 4; radius += spacing) {
+      for (let direction = 0; direction < 8; direction++) {
+        const radians = direction * Math.PI / 4;
+        candidates.push([radius * Math.cos(radians), radius * Math.sin(radians)]);
+      }
+    }
+    const options = candidates.map(([dx, dy]) => [px + dx, py + dy]);
+    const [cx, cy] = options.find(([cx, cy]) =>
+      cx >= inset && cx <= width - inset && cy >= inset && cy <= height - inset &&
+      placed.every(([otherX, otherY]) => Math.hypot(cx - otherX, cy - otherY) >= spacing)
+    ) ?? [Math.max(inset, Math.min(width - inset, px)), Math.max(inset, Math.min(height - inset, py))];
+    placed.push([cx, cy]);
+    ring.style.left = (cx / width * 100) + '%';
+    ring.style.top = (cy / height * 100) + '%';
+    ring.setAttribute('aria-pressed', String(place === (pickedPlace ?? events[stop][0])));
+
+    if (Math.hypot(cx - px, cy - py) > 1) {
+      const leader = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      leader.setAttribute('x1', x);
+      leader.setAttribute('y1', y);
+      leader.setAttribute('x2', cx * 720 / width);
+      leader.setAttribute('y2', cy * 550 / height);
+      ringLeaders.append(leader);
+    }
+  }
 }
 
 function accountUrl(name, index) {
@@ -154,11 +216,14 @@ function accountUrl(name, index) {
 function updateSharedPlace() {
   const shared = get('[data-shared]');
   if (isActs) return;
-  const place = events[stop][0];
+  const place = pickedPlace ?? events[stop][0];
+  get('[data-shared-heading]').textContent = pickedPlace
+    ? 'Gospel passages at ' + place
+    : 'Other accounts at this place';
   const container = get('[data-shared-links]');
   container.replaceChildren();
   for (const [name, stops] of Object.entries(gospelRecords)) {
-    if (name === book) continue;
+    if (name === book && !pickedPlace) continue;
     stops.forEach(([otherPlace, verse], index) => {
       if (otherPlace !== place) return;
       const link = document.createElement('a');
@@ -193,6 +258,7 @@ function drawProjection() {
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     stop = button.dataset.id;
+    pickedPlace = null;
     render();
   });
 });
@@ -232,7 +298,7 @@ function render() {
     button.setAttribute('aria-current', id === stop ? 'step' : 'false');
   });
   get('#bt-paths').innerHTML = Object.entries(routes).filter(([name]) => name !== person && routes[name].includes(stop)).map(([, stops]) => polyline(stops, false)).join('') + comparisonPaths() + polyline(book === 'Matthew' ? route.slice(1) : route, true);
-  get('#bt-marks').innerHTML = overlapMarks() + Object.keys(events).map(id => {
+  get('#bt-marks').innerHTML = Object.keys(events).map(id => {
     const [x,y] = position(id);
     return '<circle cx="'+x+'" cy="'+y+'" r="'+(id===stop ? 8 : 3)+'" fill="var(--'+(id === stop || route.includes(id) ? 'route' : 'quiet')+')" stroke="var(--paper)" stroke-width="2"/>';
   }).join('');
@@ -245,6 +311,7 @@ function render() {
   get('[data-detail]').hidden = !detail;
   get('[data-back]').disabled = !neighbor(-1);
   get('[data-next]').disabled = !neighbor(1);
+  layoutSharedRings();
 }
 people.forEach(button => button.addEventListener('click', () => {
   person = button.dataset.person;
@@ -258,10 +325,12 @@ function neighbor(offset) {
 }
 function move(offset) {
   stop = neighbor(offset) ?? stop;
+  pickedPlace = null;
   render();
 }
 timeline.addEventListener('input', () => {
   stop = sequence[Number(timeline.value)];
+  pickedPlace = null;
   render();
 });
 views.forEach(button => button.addEventListener('click', () => {
@@ -294,7 +363,11 @@ map.addEventListener('lostpointercapture', event => {
   drag = null;
   map.removeAttribute('data-dragging');
 });
-comparison.addEventListener('change', render);
+comparison.addEventListener('change', () => {
+  pickedPlace = null;
+  render();
+});
+if (!isActs) new ResizeObserver(layoutSharedRings).observe(map);
 get('[data-back]').addEventListener('click', () => move(-1));
 get('[data-next]').addEventListener('click', () => move(1));
 render();

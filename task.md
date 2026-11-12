@@ -543,3 +543,11 @@ Local verification: 235 Node tests, 17 Python tests, deep build verification, an
 - [x] A passage handoff preserves the map view.
 - [x] Acts still opens at Samaria.
 - [x] A fresh verifier reviews the comparison.
+
+## Clickable Gospel overlap markers
+- [x] A shared-place marker is selectable on the flat map.
+- [x] A shared-place marker is selectable on the 3D map floor.
+- [x] The selected place lists its mapped Gospel passages.
+- [x] A passage handoff preserves the current view.
+- [x] A keyboard user can select a shared-place marker.
+- [x] Acts retains its Samaria opening.

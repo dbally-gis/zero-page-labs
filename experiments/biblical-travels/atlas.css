@@ -116,3 +116,20 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.65rem); line-height: 1.02; margin: 0 0 .45e
   font-size: .8rem; text-decoration: none;
 }
 [data-shared-links] a:hover { border-color: var(--ink); text-decoration: underline; }
+
+.ring-layer { position: absolute; inset: 0; pointer-events: none; }
+.place-ring {
+  position: absolute; transform: translate(-50%, -50%); pointer-events: auto;
+  display: grid; place-items: center; width: 30px; height: 30px; min-height: 0;
+  border: 0; border-radius: 50%; padding: 0; background: transparent;
+}
+.place-ring::before {
+  content: ""; width: 14px; height: 14px; border: 2px solid var(--ink); border-radius: 50%;
+  background: color-mix(in srgb, var(--paper) 75%, transparent);
+}
+.place-ring:hover, .place-ring[aria-pressed="true"] { background: transparent; }
+.place-ring:hover::before, .place-ring[aria-pressed="true"]::before {
+  border-color: var(--route); background: var(--paper); box-shadow: 0 0 0 2px var(--paper);
+}
+#bt-ring-leaders { stroke: var(--ink); stroke-width: 1; opacity: .65; pointer-events: none; }
+.cube:has(.ring-layer:not([hidden])) .event { pointer-events: none; }

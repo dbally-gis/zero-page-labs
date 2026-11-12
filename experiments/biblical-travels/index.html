@@ -58,7 +58,9 @@
 <g id="bt-guides" fill="none" stroke="var(--quiet)" stroke-dasharray="3 5" opacity=".6"></g>
 <g id="bt-paths" fill="none" stroke-dasharray="6 5"></g>
 <g id="bt-marks"></g>
+<g id="bt-ring-leaders"></g>
 </svg>
+<div class="ring-layer" data-ring-layer hidden role="group" aria-label="Shared Gospel places"></div>
 <small class="axis">↑ Acts narrative order</small>
 <button class="event" data-id="pentecost" hidden>Jerusalem</button>
 <button class="event" data-id="seven" hidden>Jerusalem</button>
@@ -134,8 +136,8 @@
 <small>Follow from here</small>
 <button data-follow="Paul" hidden>Paul</button><button data-follow="Barnabas" hidden>Barnabas</button><button data-follow="John Mark" hidden>John Mark</button><button data-follow="Peter" hidden>Peter</button><button data-follow="Philip" hidden>Philip the Evangelist</button>
 </div>
-<section class="shared-place" data-shared hidden aria-label="Switch Gospel at this place">
-  <h3>Other accounts at this place</h3>
+<section id="gospel-place-passages" class="shared-place" data-shared hidden aria-label="Switch Gospel at this place">
+  <h3 data-shared-heading tabindex="-1">Other accounts at this place</h3>
   <div data-shared-links></div>
 </section>
 <details class="event-people"><summary>People at this event</summary><dl class="whereabouts" aria-label="People at this event">

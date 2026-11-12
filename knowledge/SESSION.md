@@ -100,6 +100,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-09 10:59 — commit: Publish Rack Lab and the COME AT ME rack STL | assets/experiment-rack-lab.png,data/rack-lab-build.json,directives/publish_experiments.md,execution/build_experiments.py,execution/test_experiments.mjs
 - 2026-11-12 10:03 — commit: Add Biblical Travels interactive Acts atlas | assets/experiment-biblical-travels.svg,experiments/biblical-travels/acts-data.mjs,experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html
 - 2026-11-12 10:14 — commit: Add Jesus’s Gospel journeys to Biblical Travels | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/gospel-data.mjs,experiments/biblical-travels/index.html,experiments/index.html
+- 2026-11-12 10:35 — commit: Compare the four Gospel routes in Biblical Travels | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html,knowledge/SESSION.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -433,3 +434,21 @@ Status: Implemented locally. The four Gospel routes share a map with rings at na
 Verification: Deep site verification passed. Chrome at 1440px and 375px verified overlay, Bethlehem and Capernaum handoffs, view retention, and the Acts opening. Independent review found no blocker.
 S.D.G.: Readers can spot overlap across accounts and compare the passages from the same mapped place.
 Feynman gap: Comparison is verified locally. Production still serves the individual Gospel timelines.
+
+### 2026-11-12 - Gospel comparison production verification
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Published 18305ed. GitHub Actions run 43260310674 succeeded. The custom domain served the matching deployment fingerprint.
+- Live Chrome at 1440px and 375px verified four routes and shared-place markers. The Bethlehem handoff preserved 3D, zoom, and rotation. The Capernaum handoff preserved the flat map. A fresh visit opened Acts at Samaria following Philip.
+S.D.G.: Readers can compare four Gospel accounts on one live map and move between passages at shared places.
+Feynman gap: Live verification covered Chrome at two viewport widths.
+
+### 2026-11-12 - Clickable Gospel overlap markers
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Implemented locally. The eleven overlap rings are named map buttons. Nearby controls fan out with leader lines. Clicking a ring lists mapped passages and moves focus to the results so the next Tab reaches the first passage.
+Verification: Deep site verification and independent review passed. Chrome at 1440px and 375px verified separate targets, flat clicks, 3D keyboard selection, passage handoffs, and the Acts opening.
+S.D.G.: Readers can discover Gospel passages by choosing a place directly on the map.
+Feynman gap: The clickable markers are verified locally. Public deployment remains pending.
