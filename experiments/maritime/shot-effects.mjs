@@ -1,5 +1,5 @@
 import * as T from './vendor/three-0.160.1.module.min.js';
-import {effectsAt,impactStyle} from './combat.mjs?v=historical-corrections';
+import {effectsAt,impactStyle} from './combat.mjs?v=atlas-review';
 
 function fireTexture(round=false){
   const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d');

@@ -1,4 +1,4 @@
-import {EXTRA_BATTLES} from './extra-battles.mjs';
+import {EXTRA_BATTLES} from './extra-battles.mjs?v=atlas-review';
 // Historical sequence is sourced; coordinates are authored teaching diagrams.
 // x/y are diagram units, heading is clockwise from north. No combat is adjudicated.
 const RMG = { title: 'Royal Museums Greenwich · Beginning of the Action', url: 'https://www.rmg.co.uk/collections/objects/rmgc-object-12040', note: 'Collection commentary on fleet approach, flagships and the breaking of the line.' };
@@ -48,7 +48,7 @@ for(let side=0;side<2;side++) for(let i=0;i<7;i++) {
 const hamptonShips = [
   ship('monitor','USS Monitor',0,'monitor','Union turreted ironclad. Its task on 9 March is to protect the grounded Minnesota.',[[280,280,120],[400,350,120],[560,350,25],[480,250,300],[300,280,270]]),
   ship('virginia','CSS Virginia',1,'ironclad','Confederate casemate ironclad. Returns to Hampton Roads after attacking wooden warships the previous day.',[[770,450,300],[650,380,300],[610,305,320],[670,370,130],[805,470,130]]),
-  ship('minnesota','USS Minnesota',0,'sail','Grounded Union steam frigate. Remains stationary in this diagram because it is aground.',[[260,170,50],[260,170,50],[260,170,50],[260,170,50],[260,170,50]]),
+  ship('minnesota','USS Minnesota',0,'screw-frigate','Grounded Union steam frigate. Remains stationary in this diagram because it is aground.',[[260,170,50],[260,170,50],[260,170,50],[260,170,50],[260,170,50]]),
 ];
 
 const yaluShips = [

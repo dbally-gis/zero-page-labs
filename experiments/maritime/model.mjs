@@ -1,4 +1,4 @@
-import { BATTLES } from './battles.mjs';
+import { BATTLES } from './battles.mjs?v=atlas-review';
 export const STOPS = [0, .24, .5, .75, 1];
 export const clamp = (value,min,max) => Math.max(min,Math.min(max,value));
 export function chapterAt(progress) {

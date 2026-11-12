@@ -1,4 +1,4 @@
-import { eventsFor, eventSource } from './battle-events.mjs?v=historical-corrections';
+import { eventsFor, eventSource, CONTACT } from './battle-events.mjs?v=atlas-review';
 import { damageStages } from './damage.mjs';
 
 const eventKinds = {
@@ -15,8 +15,8 @@ export function replayMoments(battle) {
     kind: eventKinds[event.kind] ?? 'Battle event', title: event.title,
     text: event.text, note: event.certainty, source: eventSource(battle, event),
     roles: [
-      { ship: event.shooter, label: event.shooterDisputed ? 'Disputed shooter' : shooterRoles[event.kind] ?? 'Fired' },
-      { ship: event.target, label: targetRoles[event.kind] ?? 'Hit' }
+      { ship: event.shooter, label: event.representativeFiring || event.certainty===CONTACT ? 'Representative firing ship' : shooterRoles[event.kind] ?? 'Fired' },
+      { ship: event.target, label: event.certainty===CONTACT ? 'Representative target' : targetRoles[event.kind] ?? 'Hit' }
     ].filter(role => role.ship)
   }));
   for (const ship of battle.ships) {

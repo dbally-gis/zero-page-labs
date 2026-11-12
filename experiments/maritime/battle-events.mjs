@@ -2,8 +2,8 @@ import {TRAFALGAR_EVENTS,TRAFALGAR_EVIDENCE} from './trafalgar-events.mjs?v=hist
 // Replay offsets are teaching positions. Sources establish episodes, not individual rounds.
 const ref=(title,url)=>({title,url});
 const E=(id,at,title,text,focus,source,detail={})=>({id,at,title,text,focus,source,certainty:'Selected historical episode',...detail});
-const F=(shooter)=>({kind:'muzzle',shooter,certainty:'Representative firing · no assigned hit'});
-const CONTACT='Representative exchange · not an individual recorded hit';
+const F=(shooter)=>({kind:'muzzle',shooter,representativeFiring:true,certainty:'Representative firing · no assigned hit'});
+export const CONTACT='Representative exchange · not an individual recorded hit';
 const DIU=ref('Portuguese Ministry of Defence · Diu, artillery account','https://www.defesa.gov.pt/pt/defesa/organizacao/comissoes/cphm/rphm/edicoes/ano3/n.5/3/');
 const GALLEY=ref('Museo Naval · Galley weapons and boarding','https://armada.defensa.gob.es/archivo/museonaval/02museo/08museodigital/Itinerarios/Lepanto/Combatenaval.pdf');
 const GRAVELINES=ref('National Museum of the Royal Navy · Armada Map 10','https://armadamaps.nmrn.org.uk/the-maps/map-10/');
@@ -45,7 +45,10 @@ export const BATTLE_EVENTS={
     E('leading-french',.48,'The leading French ships open fire','The park account describes volleys from the leading ships of both fleets. This command marker represents French fleet fire, not an identified flagship or a verified hit.','de-grasse',0,F('de-grasse')),
     E('leading-british',.51,'The leading British ships engage','The second discharge represents the same opening exchange. Its placement does not establish first shooter; the account says the rear British ships could not close enough to fire.','graves',0,F('graves')),
     E('damage',.7,'Damage without invented individual hits','The park records damage in both fleets. Its overview does not assign those hits to the anonymous ships in this diagram, so no target impact is shown.','graves',0),
-    E('disengage',.82,'The lines disengage','The fleets separate as evening comes. The strategic outcome depends on control of the bay rather than a simulated sinking score.','de-grasse',0)
+    E('disengage',.82,'The lines disengage','The fleets separate as evening comes. The strategic outcome depends on control of the bay rather than a simulated sinking score.','de-grasse',0),
+    E('de-grasse-returns',.89,'September 10–11 · The French fleets unite','After several days of maneuvering, de Grasse returns to the bay and joins de Barras. Accounts date the return and rendezvous slightly differently.','de-grasse',1),
+    E('terrible',.94,'September 11 · British council on HMS Terrible','The British council orders the crew removed. Terrible is set afire that night and sinks hours later.','graves',1),
+    E('graves-withdraws',1,'September 13 · Graves reaches the capes','The British find the French in control and withdraw to New York.','graves',0)
   ],
   nile:[
     E('attack',.32,'The British attack the anchored line','The museum describes Nelson’s immediate attack developing into a night action. Vanguard represents British gunfire; no target hit is assigned from this overview.','vanguard',0,F('vanguard')),
@@ -68,16 +71,18 @@ export const BATTLE_EVENTS={
   yalu:[
     E('japanese-fire',.28,'The Japanese squadron engages','The contemporary account describes the moving Japanese divisions in action. Yoshino represents the flying squadron’s gunfire; no individual hit is assigned from that overview.','yoshino',0,F('yoshino')),
     E('chinese-fire',.36,'Fire from the Chinese centre','The opposing discharge represents the Chinese armoured centre. It does not establish a first shooter or a precise interval between salvos.','dingyuan',0,F('dingyuan')),
-    E('matsushima-hit',.64,'A reported heavy-shell hit on Matsushima','A heavy shell hit Matsushima and ignited ammunition. The replay follows the 1895 account that credits Zhenyuan (Chen Yuen). Accounts disagree on which Chinese ship fired the shell.','matsushima',0,{kind:'shell',shooter:'zhenyuan',target:'matsushima',shooterDisputed:true,certainty:'Documented hit · shooter disputed'}),
+    E('matsushima-hit',.64,'A reported heavy-shell hit on Matsushima','A heavy shell hit Matsushima and ignited ammunition. The 1895 account credits Zhenyuan (Chen Yuen). Accounts disagree on which Chinese ship fired the shell, so the replay shows the impact alone.','matsushima',0,{kind:'shell',target:'matsushima',certainty:'Documented hit · shooter disputed'}),
     E('matsushima-fire',.67,'Ammunition fire aboard the flagship','The same account reports fire on Matsushima after the damaging shell episode. This separate condition is not the default result of every shell. Its duration and precise deck location are not reconstructed.','matsushima',0,{kind:'reported-fire',target:'matsushima',certainty:'Reported condition · uncertain duration'}),
     E('survival',.94,'Damaged does not mean sunk','Matsushima survives the battle. Neither a shell burst nor a reported fire is automatically converted into a sinking.','matsushima',1)
   ],
   'manila-bay':[
-    E('open-fire',.28,'Olympia opens the American fire','The commanding officers’ reports describe Olympia opening with her forward heavy guns. The muzzle is placed forward; its train angle is schematic. The discharge is representative, not one timed historical round.','olympia',OLYMPIA,{...F('olympia'),muzzleAnchor:'bow'}),
+    E('open-fire',.28,'Olympia opens the American fire','The commanding officers’ reports describe Olympia opening with her forward heavy guns. The muzzle is placed forward; its train angle is schematic. The discharge is representative, not one timed historical round.','olympia',OLYMPIA,{kind:'muzzle',shooter:'olympia',muzzleAnchor:'bow',certainty:'Participant report · schematic discharge'}),
     E('cristina-hit',.49,'Olympia’s shell hits Reina Cristina','Olympia’s report describes an 8-inch shell raking Reina Cristina. A brief shell burst represents that reported hit, not every round fired by the American squadron.','reina-cristina',OLYMPIA,{kind:'shell',shooter:'olympia',target:'reina-cristina',certainty:'Participant report · representative shell hit'}),
     E('cristina-fire',.53,'Fire aboard Reina Cristina','The American report describes fires during Reina Cristina’s attempt to close. This reported condition is separate from the brief shell burst; its exact onset and spread are not measured.','reina-cristina',OLYMPIA,{kind:'reported-fire',target:'reina-cristina',certainty:'Participant report · ship fire'}),
     E('castilla-fire',.7,'Castilla burns','Montojo describes Castilla set on fire by shells and later sinking. The fire is shown without inventing the gunner or projectile that ignited it.','castilla',1,{kind:'reported-fire',target:'castilla',certainty:'Participant report · unattributed ignition'}),
-    E('abandon',.84,'Scuttling is distinct from a fatal hit','The modern NHHC account says Reina Cristina was scuttled after heavy damage. The sourced X records that outcome; it is not a hit-point calculation.','reina-cristina',0)
+    E('withdraw',.75,'Dewey withdraws to check ammunition','Dewey reports withdrawing after a mistaken report of ammunition scarcity. The break in firing is compressed.','olympia',OLYMPIA),
+    E('abandon',.84,'Scuttling is distinct from a fatal hit','The modern NHHC account says Reina Cristina was scuttled after heavy damage. The sourced X records that outcome; it is not a hit-point calculation.','reina-cristina',0),
+    E('return',1,'The American squadron returns to action','Dewey reports resuming the attack once the ammunition report was corrected. The replay compresses the interval between the two attacks.','olympia',OLYMPIA)
   ]
 };
 export const eventsFor=battle=>BATTLE_EVENTS[battle.id]||[];

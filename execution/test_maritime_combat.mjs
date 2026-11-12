@@ -10,7 +10,7 @@ for(const battle of BATTLES){
     const events=eventsFor(battle);assert.ok(events.length>=3);let previous=-1;
     assert.equal(new Set(events.map(e=>e.id)).size,events.length);
     for(const e of events){
-      assert.ok(e.at>previous&&e.at<1);previous=e.at;
+      assert.ok(e.at>previous&&e.at<=1&&(!e.kind||e.at<1));previous=e.at;
       assert.ok(e.text);assert.ok(e.certainty);
       const source=eventSource(battle,e);assert.ok(source.title);assert.equal(new URL(source.url).protocol,'https:');
       for(const id of [e.focus,e.shooter,e.target].filter(Boolean))assert.ok(battle.ships.some(s=>s.id===id));
@@ -56,7 +56,13 @@ test('authored contacts retain the researched ship pairs',()=>{
   assert.ok(pair('gravelines').some(e=>e[0]==='revenge'&&e[1]==='san-martin'));
   assert.ok(pair('hampton-roads').some(e=>e[0]==='virginia'&&e[1]==='monitor'&&e[2]==='shell'));
   assert.ok(pair('lissa').some(e=>e[0]==='ferdinand-max'&&e[1]==='re-italia'&&e[2]==='ram'));
-  assert.ok(pair('yalu').some(e=>e[0]==='zhenyuan'&&e[1]==='matsushima'&&e[2]==='shell'));
+  const yalu=BATTLES.find(battle=>battle.id==='yalu');
+  const impact=effectsAt(yalu,.64).find(effect=>effect.eventId==='matsushima-hit');
+  assert.equal(impact.target,'matsushima');
+  assert.equal(impact.shooter,undefined);
+  assert.equal(impact.projectile,null);
+  assert.equal(impact.flash,0);
+  assert.ok(impact.impactFlash>0);
   assert.ok(pair('manila-bay').some(e=>e[0]==='olympia'&&e[1]==='reina-cristina'&&e[2]==='shell'));
 });
 test('Virginia’s shell bursts at Monitor’s forward pilothouse',()=>{

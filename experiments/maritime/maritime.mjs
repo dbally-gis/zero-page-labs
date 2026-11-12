@@ -1,8 +1,8 @@
 import {damageAt,damageStages,sinkingAt,tornAtMast} from './damage.mjs';
-import {replayMoments,momentAt,adjacentMoment} from './replay-moments.mjs?v=historical-corrections';
-import { BATTLES } from './battles.mjs';
-import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame, followPairFrame, FOLLOW_WIDTH, FOLLOW_MIN, FOLLOW_MAX } from './model.mjs?v=follow-pair';
-import {effectsAt,previewSalvo,previewShipAction,impactStyle} from './combat.mjs?v=historical-corrections';
+import {replayMoments,momentAt,adjacentMoment} from './replay-moments.mjs?v=atlas-review';
+import { BATTLES } from './battles.mjs?v=atlas-review';
+import { STOPS, clamp, chapterAt, positionAt, trailAt, advance, readView, shareView, cameraZoom, isSharedView, startsPlaying, fateAt, activePositionAt, followFrame, followPairFrame, FOLLOW_WIDTH, FOLLOW_MIN, FOLLOW_MAX } from './model.mjs?v=atlas-review';
+import {effectsAt,previewSalvo,previewShipAction,impactStyle} from './combat.mjs?v=atlas-review';
 
 const $=id=>document.getElementById(id);
 const svgNS='http://www.w3.org/2000/svg';
@@ -119,14 +119,14 @@ function renderMomentRoles(participants) {
       announce(ship.representative?`Following ${fleet} formation marker.`:`Following ${ship.name}.`);
     });
     name.append(follow);
-    card.append(html('dt',ship.representative&&role.label==='Fired'?'Firing fleet':role.label),name);
+    card.append(html('dt',ship.representative&&(role.label==='Fired'||role.label==='Representative firing ship')?'Firing fleet':role.label),name);
     roles.append(card);
   }
   roles.hidden=!roles.childElementCount;
   const pair=$('follow-both');
   if(!pair)return;
-  const firing=participants.find(role=>role.label==='Fired'||role.label==='Disputed shooter');
-  const hit=participants.find(role=>role.label==='Hit');
+  const firing=participants.find(role=>role.label==='Fired'||role.label==='Representative firing ship');
+  const hit=participants.find(role=>role.label==='Hit'||role.label==='Representative target');
   pair.hidden=!firing||!hit||firing.ship===hit.ship;
   pair.dataset.followPair=pair.hidden?'':[firing.ship,hit.ship].join(',');
   updateFollowButtons();
@@ -156,7 +156,7 @@ function renderShip() {
   $('ship-select').value=s.id; $('ship-name').textContent=s.representative?'Formation marker':s.name;
   $('ship-side').textContent=state.battle.sides[s.side];
   $('ship-type').textContent=({sail:'Sailing warship',galley:'Oared galley',monitor:'Turreted ironclad',ironclad:'Armoured steam warship',cruiser:'Steam cruiser'})[s.type];
-  if(s.id==='minnesota') $('ship-type').textContent='Steam frigate · aground';
+  if(s.type==='screw-frigate') $('ship-type').textContent='Wooden screw frigate · aground';
   $('ship-role').textContent=s.role;
   $('ship-chip').textContent=`${s.representative?'Formation marker':s.name} · Details ↓`;
   $('ship-chip').hidden=!following()&&!$('start-hint').hidden;
@@ -254,7 +254,7 @@ function buildTerrain() {
     return;
   }
   const roads=state.battle.terrain==='roads';
-  const shape=roads?'M-80-80H500Q400 35 375 65T230 100Q125 85 125 180T-80 280Z':'M680-80H1100V210Q1050 140 985 140T890 83Q830 60 820 25T680-80Z';
+  const shape=state.battle.terrain==='aboukir'?'M-80-80H1100V102Q760 54 510 100T-80 110Z':roads?'M-80-80H500Q400 35 375 65T230 100Q125 85 125 180T-80 280Z':'M680-80H1100V210Q1050 140 985 140T890 83Q830 60 820 25T680-80Z';
   node('path',{d:shape,fill:'#668176','fill-opacity':'.22',stroke:'#a6bda0','stroke-opacity':'.5','stroke-width':'2'},g);
   node('path',{d:shape,fill:'none',stroke:'#9ac1a6','stroke-opacity':'.08','stroke-width':'70'},g);
   node('path',{d:shape,fill:'none',stroke:'#b9c8a0','stroke-opacity':'.12','stroke-width':'30'},g);
@@ -574,7 +574,7 @@ function sceneUnavailable(message){setClassic(true);$('classic-chart').disabled=
 // Dynamic import keeps the complete classic chart available if WebGL or the
 // optional renderer fails. No replay or historical data is delegated to WebGL.
 if(!new URLSearchParams(location.search).has('classic')){
-  import('./scene.mjs?v=historical-corrections').then(({createScene})=>{
+  import('./scene.mjs?v=atlas-review').then(({createScene})=>{
     try{
       dimensional=createScene($('chart'),{onSelect:selectShip,onPan:(dx,dy)=>{if(following())return;const c=state.camera;setCamera({...c,x:clamp(c.x+dx,-250,1250-c.w),y:clamp(c.y+dy,-150,750-c.h)});},onFailure:sceneUnavailable,reducedMotion:reduced.matches});
       refreshScene();setClassic(classic);

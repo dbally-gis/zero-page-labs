@@ -1,7 +1,7 @@
 import * as T from './vendor/three-0.160.1.module.min.js';
-import {positionAt,trailAt,chapterAt,fateAt,activePositionAt} from './model.mjs';
+import {positionAt,trailAt,chapterAt,fateAt,activePositionAt} from './model.mjs?v=atlas-review';
 import {damageAt,sinkingAt,tornAtMast} from './damage.mjs';
-import {createShotEffects} from './shot-effects.mjs?v=historical-corrections';
+import {createShotEffects} from './shot-effects.mjs?v=atlas-review';
 
 // The scene illustrates the same schematic replay as the accessible SVG chart.
 // Models are generic ship types, not measured reconstructions of named vessels.
@@ -75,7 +75,7 @@ function mergePieces(group) {
 }
 function shipModel(type,side,damage=null) {
   const key=type+side+JSON.stringify(damage);if(cache.has(key))return cache.get(key).clone(true);
-  const g=new T.Group(),isGalley=type==='galley',isSail=type==='sail',isMonitor=type==='monitor',isCruiser=type==='cruiser';
+  const g=new T.Group(),isGalley=type==='galley',isSail=type==='sail'||type==='screw-frigate',isMonitor=type==='monitor',isCruiser=type==='cruiser';
   const length=isGalley?64:isMonitor?43:56,width=isGalley?11:isMonitor?20:19;
   mesh(g,hullGeometry(length,width),isSail||isGalley?wood:iron);
   const d=mesh(g,new T.CircleGeometry(1,28),deck,0,8.05,0,[-PI/2,0,0]);d.scale.set(width*.42,length*.47,1);
@@ -106,6 +106,7 @@ function shipModel(type,side,damage=null) {
       }
       ropes.push([[0,height,z],[-7,8,z+8]],[[0,height,z],[7,8,z+8]],[[0,height,z],[0,10,-34]]);
     }
+    if(type==='screw-frigate') mesh(g,new T.CylinderGeometry(1.25,1.5,8,12),dark,0,12,-7);
     for(let x=-5;x<=5;x+=2.5)ropes.push([[x,8.2,-22],[x,8.2,23]]);
   } else if(isGalley){
     mesh(g,new T.BoxGeometry(8,4,11),trim,0,10,23);
@@ -227,7 +228,7 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
     fleet.clear();labels.replaceChildren();disposeGroup(terrain);ships=[];
     if(battle.terrain!=='open'){
       const roads=battle.terrain==='roads';
-      const coordinates=roads?[[-950,-650],[0,-650],[-130,-235],[-260,-200],[-365,-215],[-375,-100],[-600,50],[-950,50]]:[[160,-650],[1000,-650],[1000,-40],[550,-110],[445,-150],[390,-220],[320,-250]];
+      const coordinates=battle.terrain==='aboukir'?[[-950,-650],[1000,-650],[1000,-200],[260,-240],[10,-205],[-300,-180],[-950,-190]]:roads?[[-950,-650],[0,-650],[-130,-235],[-260,-200],[-365,-215],[-375,-100],[-600,50],[-950,50]]:[[160,-650],[1000,-650],[1000,-40],[550,-110],[445,-150],[390,-220],[320,-250]];
       const shape=new T.Shape();coordinates.forEach(([x,z],i)=>i?shape.lineTo(x,-z):shape.moveTo(x,-z));shape.closePath();
       const landMaterials=[new T.MeshStandardMaterial({color:0x304c38,roughness:1}),new T.MeshStandardMaterial({color:0x62665b,roughness:1})];
       mesh(terrain,new T.ExtrudeGeometry(shape,{depth:10,bevelEnabled:true,bevelSize:3,bevelThickness:3,bevelSegments:2,steps:1}),landMaterials,0,1,0,[-PI/2,0,0]);

@@ -1,6 +1,6 @@
 import {damageStages} from './damage.mjs';
-import {eventsFor} from './battle-events.mjs?v=historical-corrections';
-import {positionAt,activePositionAt,clamp,fateAt} from './model.mjs';
+import {eventsFor} from './battle-events.mjs?v=atlas-review';
+import {positionAt,activePositionAt,clamp,fateAt} from './model.mjs?v=atlas-review';
 const DEG=Math.PI/180;
 // The Monitor model’s pilothouse face is 17 units forward before the 1.08 scene scale.
 const FORWARD_OFFSETS={stern:-22,bow:22,pilothouse:17*1.08};
@@ -20,7 +20,7 @@ export function shotEvent(battle,index){
   if(fateAt(ship,event.at)||target&&fateAt(target,event.at))return null;
   const heading=positionAt(ship,event.at).heading;
   const bearing=target&&event.shooter?Math.atan2(q.x-p.x,p.z-q.z)/DEG:heading+(ship.type==='galley'?0:90);
-  const travel=FLIGHT_KINDS.has(event.kind)?clamp(Math.hypot(q.x-p.x,q.z-p.z)/210,.35,1.65):0;
+  const travel=event.shooter&&FLIGHT_KINDS.has(event.kind)?clamp(Math.hypot(q.x-p.x,q.z-p.z)/210,.35,1.65):0;
   const arrival=firedAt+travel;
   if(target&&fateAt(target,arrival/100))return null;
   const origin={x:p.x+Math.sin(bearing*DEG)*10,y:7,z:p.z-Math.cos(bearing*DEG)*10};
@@ -33,7 +33,7 @@ export function effectsAt(battle,progress){
     const age=time-e.firedAt,life=e.kind==='reported-fire'?101-e.firedAt:5.5;
     return age>=0&&age<life&&![e.shooter,e.target].filter(Boolean).some(id=>fateAt(battle.ships.find(s=>s.id===id),progress));
   }).map(e=>{
-    const age=time-e.firedAt,impactAge=time-e.arrival,fire=e.kind==='reported-fire',flight=FLIGHT_KINDS.has(e.kind),f=flight?clamp(age/e.travel,0,1):1;
+    const age=time-e.firedAt,impactAge=time-e.arrival,fire=e.kind==='reported-fire',flight=e.travel>0,f=flight?clamp(age/e.travel,0,1):1;
     const target=e.target?battle.ships.find(s=>s.id===e.target):null;
     if(fire&&target)e.impact=point(target,progress,e.anchor);
     const debris=['timber','ram','shell'].includes(e.kind)?fade(impactAge,.8):0;
@@ -43,11 +43,11 @@ export function effectsAt(battle,progress){
     const projectile=flight&&age<e.travel?{x:e.origin.x+(e.impact.x-e.origin.x)*f,y:7+(e.impact.y-7)*f,z:e.origin.z+(e.impact.z-e.origin.z)*f}:null;
     const phase=impactAge/.4,a=e.bearing*DEG;
     const ricochet=e.deflect&&phase>=0&&phase<1?{x:e.impact.x+Math.cos(a)*phase*24,y:e.impact.y+phase*7,z:e.impact.z+Math.sin(a)*phase*24}:null;
-    return {...e,age,impactAge,flash:GUN_KINDS.has(e.kind)&&age<.22?Math.pow(1-age/.22,.5):0,gunSmoke:GUN_KINDS.has(e.kind)?fade(age,5.5):0,impactFlash,hitSmoke,debris,sparks,ricochet,splash:0,projectile};
+    return {...e,age,impactAge,flash:e.shooter&&GUN_KINDS.has(e.kind)&&age<.22?Math.pow(1-age/.22,.5):0,gunSmoke:e.shooter&&GUN_KINDS.has(e.kind)?fade(age,5.5):0,impactFlash,hitSmoke,debris,sparks,ricochet,splash:0,projectile};
   });
 }
 export function previewSalvo(battle){
-  const list=eventsFor(battle).filter(e=>e.kind),index=list.findIndex(e=>FLIGHT_KINDS.has(e.kind));
+  const list=eventsFor(battle).filter(e=>e.kind),index=list.findIndex(e=>e.shooter&&FLIGHT_KINDS.has(e.kind));
   return shotEvent(battle,index>=0?index:0);
 }
 // Use only authored episodes for the selected ship, including outcomes with no gunfire.
