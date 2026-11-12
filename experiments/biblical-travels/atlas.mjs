@@ -104,7 +104,10 @@ if (!isActs) {
 }
 comparison.checked = !isActs && parameters.get('compare') === '1';
 let origin = [0, 0];
-let drag = null;
+let pan = [0, 0];
+const pointers = new Map();
+let gesture = null;
+let suppressMapClick = false;
 const tiltControl = get('[data-tilt]');
 const frameControl = get('[data-frame]');
 const pointLayer = get('[data-point-layer]');
@@ -118,6 +121,7 @@ const views = [...root.querySelectorAll('[data-view-choice]')];
 const rotation = get('[data-rotation]');
 const zoomControl = get('[data-zoom]');
 const map = get('.cube svg');
+const mapSurface = get('.cube');
 rotation.value = angle;
 zoomControl.value = zoom * 100;
 function updateProjection() {
@@ -272,6 +276,7 @@ function drawCubeFrame() {
 
 function selectEvent(id) {
   stop = id;
+  pan = [0, 0];
   pickedPlace = null;
   pointPanel.hidden = true;
   render();
@@ -334,10 +339,14 @@ function layoutEventPoints() {
   }
 }
 
+function cameraOrigin([x, y]) {
+  return [Math.min(575, Math.max(145, x)) - zoom*x, Math.min(490, Math.max(55, y)) - zoom*y];
+}
+
 function drawProjection() {
   updateProjection();
   const [focusX, focusY] = projectedEvent(stop);
-  origin = [Math.min(575, Math.max(145, focusX)) - zoom*focusX, Math.min(490, Math.max(55, focusY)) - zoom*focusY];
+  origin = cameraOrigin([focusX, focusY]).map((value, axis) => value + pan[axis]);
   get('[data-floor]').setAttribute('transform', 'translate(' + origin.join(' ') + ') scale(' + zoom + ') matrix(' + matrix.join(' ') + ')');
   const guidePlaces = new Set([events[stop][0]]);
   if (isActs) guidePlaces.add('Perga');
@@ -356,6 +365,7 @@ function drawProjection() {
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     stop = button.dataset.id;
+    pan = [0, 0];
     pickedPlace = null;
     render();
   });
@@ -364,6 +374,7 @@ function render() {
   drawProjection();
   updateSharedPlace();
   get('.cube').dataset.view = view;
+  get('.cube').dataset.zoomed = String(zoom > 1);
   get('.axis').hidden = view === 'flat';
   get('[data-tilt-control]').hidden = view === 'flat';
   get('[data-frame-control]').hidden = view === 'flat';
@@ -428,12 +439,14 @@ function neighbor(offset) {
 }
 function move(offset) {
   stop = neighbor(offset) ?? stop;
+  pan = [0, 0];
   pickedPlace = null;
   pointPanel.hidden = true;
   render();
 }
 timeline.addEventListener('input', () => {
   stop = sequence[Number(timeline.value)];
+  pan = [0, 0];
   pickedPlace = null;
   pointPanel.hidden = true;
   render();
@@ -448,26 +461,106 @@ rotation.addEventListener('input', () => {
 });
 zoomControl.addEventListener('input', () => {
   zoom = Number(zoomControl.value) / 100;
+  pan = clampPan(pan);
   render();
 });
-map.addEventListener('pointerdown', event => {
-  if (view !== 'cube' || drag || event.button !== 0) return;
-  drag = { id: event.pointerId, x: event.clientX, angle, width: map.getBoundingClientRect().width };
-  map.setPointerCapture(event.pointerId);
-  map.setAttribute('data-dragging', '');
+function clampPan(offsets) {
+  const limits = [720, 550].map(size => size * (zoom - 1));
+  return offsets.map((offset, axis) => Math.max(-limits[axis], Math.min(limits[axis], offset)));
+}
+
+function mapPosition(event) {
+  const bounds = map.getBoundingClientRect();
+  return [(event.clientX - bounds.left) * 720 / bounds.width, (event.clientY - bounds.top) * 550 / bounds.height];
+}
+
+function pairGeometry() {
+  const [first, second] = pointers.values();
+  return {
+    center: first.position.map((value, axis) => (value + second.position[axis]) / 2),
+    distance: Math.hypot(first.clientX - second.clientX, first.clientY - second.clientY)
+  };
+}
+
+function startGesture() {
+  if (pointers.size === 2) {
+    gesture = { mode: 'pinch', ...pairGeometry(), zoom, origin: [...origin] };
+  } else if (pointers.size === 1) {
+    const [pointer] = pointers.values();
+    const mode = view === 'cube' && !pointer.shift ? 'rotate' : 'pan';
+    gesture = { mode, position: pointer.position, angle, pan: [...pan] };
+  } else {
+    gesture = null;
+  }
+  map.toggleAttribute('data-dragging', Boolean(gesture && (gesture.mode !== 'pan' || zoom > 1)));
+}
+
+function trackPointer(event) {
+  pointers.set(event.pointerId, {
+    position: mapPosition(event),
+    clientX: event.clientX,
+    clientY: event.clientY,
+    shift: event.shiftKey
+  });
+}
+
+mapSurface.addEventListener('pointerdown', event => {
+  if (event.button !== 0 || pointers.size >= 2) return;
+  if (pointers.size === 0) suppressMapClick = false;
+  trackPointer(event);
+  startGesture();
+  if (pointers.size === 2) {
+    suppressMapClick = true;
+    for (const id of pointers.keys()) mapSurface.setPointerCapture(id);
+  }
 });
-map.addEventListener('pointermove', event => {
-  if (drag?.id !== event.pointerId) return;
-  const degrees = drag.angle + (event.clientX - drag.x) * 180 / drag.width;
-  angle = ((Math.round(degrees) + 180) % 360 + 360) % 360 - 180;
-  rotation.value = angle;
+mapSurface.addEventListener('pointermove', event => {
+  if (!pointers.has(event.pointerId)) return;
+  trackPointer(event);
+  const { position } = pointers.get(event.pointerId);
+  if (!suppressMapClick && gesture.mode !== 'pinch') {
+    if (gesture.mode === 'pan' && zoom <= 1) return;
+    const distance = Math.hypot(...position.map((value, axis) => value - gesture.position[axis]));
+    if (distance < 8) return;
+    suppressMapClick = true;
+    mapSurface.setPointerCapture(event.pointerId);
+  }
+  if (gesture.mode === 'pinch') {
+    const { center, distance } = pairGeometry();
+    zoom = Math.max(1, Math.min(5, gesture.zoom * distance / Math.max(1, gesture.distance)));
+    const ratio = zoom / gesture.zoom;
+    const baseline = cameraOrigin(projectedEvent(stop));
+    pan = clampPan(center.map((coordinate, axis) =>
+      coordinate - (gesture.center[axis] - gesture.origin[axis]) * ratio - baseline[axis]));
+    zoomControl.value = zoom * 100;
+  } else if (gesture.mode === 'rotate') {
+    const degrees = gesture.angle + (position[0] - gesture.position[0]) / 4;
+    angle = ((Math.round(degrees) + 180) % 360 + 360) % 360 - 180;
+    rotation.value = angle;
+  } else if (zoom > 1) {
+    pan = clampPan(gesture.pan.map((value, axis) => value + position[axis] - gesture.position[axis]));
+  } else {
+    return;
+  }
   render();
 });
-map.addEventListener('lostpointercapture', event => {
-  if (drag?.id !== event.pointerId) return;
-  drag = null;
-  map.removeAttribute('data-dragging');
+function endPointer(event) {
+  if (pointers.delete(event.pointerId)) startGesture();
+}
+mapSurface.addEventListener('pointerup', endPointer);
+mapSurface.addEventListener('pointercancel', endPointer);
+mapSurface.addEventListener('lostpointercapture', event => {
+  if (event.target === mapSurface) endPointer(event);
 });
+mapSurface.addEventListener('pointerleave', event => {
+  if (!mapSurface.hasPointerCapture(event.pointerId)) endPointer(event);
+});
+mapSurface.addEventListener('click', event => {
+  if (suppressMapClick && event.detail > 0) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+}, true);
 comparison.addEventListener('change', () => {
   pickedPlace = null;
   pointPanel.hidden = true;

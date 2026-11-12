@@ -102,6 +102,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-12 10:14 — commit: Add Jesus’s Gospel journeys to Biblical Travels | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/gospel-data.mjs,experiments/biblical-travels/index.html,experiments/index.html
 - 2026-11-12 10:35 — commit: Compare the four Gospel routes in Biblical Travels | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html,knowledge/SESSION.md,task.md
 - 2026-11-12 12:32 — commit: Make Gospel shared-place rings interactive | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html,knowledge/SESSION.md,task.md
+- 2026-11-12 14:30 — commit: Add clickable atlas events and a space-time cube layer | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html,knowledge/SESSION.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -471,3 +472,21 @@ Status: Implemented locally. Map points select events or open a list when projec
 Verification: Deep verification passed. Chrome at 1440px and 375px passed the point and ring flows, tilt, max zoom, frame toggle, and Acts opening. Independent review found a ring overlap issue that was addressed before final browser verification.
 S.D.G.: Readers can reach events directly from the map and see how event order relates to geographic position.
 Feynman gap: Local desktop and mobile viewport checks passed. The update has not been deployed.
+
+### 2026-11-12 - Atlas map controls production verification
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Published 1218116. GitHub Actions run 43301094421 completed successfully and the public deployment fingerprint matched. Chrome received the matching assets after the custom-domain cache refreshed.
+- Live Chrome at 1440px and 375px verified event group selection, the selected event title, tilt, 500% zoom, the independent cube frame toggle, and a Gospel ring handoff. Acts opened flat at Samaria following Philip.
+S.D.G.: Readers can select map events directly and use the cube frame to orient themselves in geography and narrative order.
+Feynman gap: Physical touch input was not exercised.
+
+### Atlas pan and pinch gestures
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Implemented locally. Flat drag pans at zoom. 3D drag rotates; Shift-drag or two fingers pan at zoom. Pinch zooms around the gesture in either view. The map container claims the pointer after movement or a second touch to preserve marker clicks.
+Verification: Deep site verification passed. Chrome tested desktop drags, emulated multi-touch beginning on a marker, existing map points, and Gospel ring handoffs. Independent review identified the marker-start gap, fixed before final QA.
+S.D.G.: Readers can explore zoomed geography with familiar gestures while keeping the selected passage.
+Feynman gap: Physical touch input and the public deployment remain unverified.

@@ -559,3 +559,12 @@ Local verification: 235 Node tests, 17 Python tests, deep build verification, an
 - [x] Zoom reaches 500 percent.
 - [x] The space-time frame can be toggled independently.
 - [x] Acts still opens flat at Samaria.
+
+## Atlas pan and pinch gestures
+- [x] Dragging the zoomed flat map pans it.
+- [x] Dragging the 3D map without modifiers rotates it.
+- [x] Shift-dragging the zoomed 3D map pans it.
+- [x] A two-finger pinch changes zoom in flat view.
+- [x] A two-finger pinch changes zoom in 3D.
+- [x] A two-finger drag pans the zoomed 3D view.
+- [x] Gesture changes preserve the selected event.

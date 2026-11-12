@@ -54,9 +54,10 @@ input[type="range"] { accent-color: var(--route); width: 90px; }
 .timeline input { width: 100%; margin: 0; }
 .cube { position: relative; aspect-ratio: 720 / 550; overflow: hidden; background: var(--sea); border: 1px solid var(--coast); }
 .cube[data-view="cube"] { background: #e6ddc8; }
+.cube { touch-action: none; }
 .cube svg { display: block; width: 100%; height: 100%; }
-.cube[data-view="cube"] svg { cursor: grab; touch-action: none; }
-.cube[data-view="cube"] svg[data-dragging] { cursor: grabbing; }
+.cube[data-view="cube"] svg, .cube[data-zoomed="true"] svg { cursor: grab; }
+.cube svg[data-dragging] { cursor: grabbing; }
 .sea-name { fill: #435f59; font: italic 19px Georgia, serif; letter-spacing: .08em; }
 .axis { position: absolute; top: 3%; left: 3%; background: var(--paper); padding: 3px 5px; }
 .event { position: absolute; transform: translate(8px, -50%); white-space: nowrap; min-height: 24px; font-size: .75rem; padding: 3px 5px; }
