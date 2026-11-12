@@ -101,6 +101,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-12 10:03 — commit: Add Biblical Travels interactive Acts atlas | assets/experiment-biblical-travels.svg,experiments/biblical-travels/acts-data.mjs,experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html
 - 2026-11-12 10:14 — commit: Add Jesus’s Gospel journeys to Biblical Travels | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/gospel-data.mjs,experiments/biblical-travels/index.html,experiments/index.html
 - 2026-11-12 10:35 — commit: Compare the four Gospel routes in Biblical Travels | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html,knowledge/SESSION.md,task.md
+- 2026-11-12 12:32 — commit: Make Gospel shared-place rings interactive | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html,knowledge/SESSION.md,task.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -452,3 +453,21 @@ Status: Implemented locally. The eleven overlap rings are named map buttons. Nea
 Verification: Deep site verification and independent review passed. Chrome at 1440px and 375px verified separate targets, flat clicks, 3D keyboard selection, passage handoffs, and the Acts opening.
 S.D.G.: Readers can discover Gospel passages by choosing a place directly on the map.
 Feynman gap: The clickable markers are verified locally. Public deployment remains pending.
+
+### 2026-11-12 - Clickable rings production verification
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Published 42001d5. GitHub Actions run 43280916012 completed successfully. The public fingerprint matched. The custom-domain stylesheet initially lagged the script, then refreshed.
+- Live Chrome at 1440px and 375px verified all eleven targets, clicked Jerusalem on the flat map and Capernaum in 3D, and switched accounts from the resulting passages. Keyboard focus moved from the ring to the passage list. Acts opened flat at Samaria following Philip.
+S.D.G.: Readers can discover passages by selecting a shared place directly on the live map.
+Feynman gap: Live verification used desktop and mobile browser viewports. Physical touch input was not exercised.
+
+### 2026-11-12 - Atlas map controls and cube layer
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Implemented locally. Map points select events or open a list when projected points overlap. Comparison rings reserve space around event targets. Zoom reaches 500%; tilt changes the 3D projection. The optional space-time frame draws four vertical edges and four narrative slices independently of routes.
+Verification: Deep verification passed. Chrome at 1440px and 375px passed the point and ring flows, tilt, max zoom, frame toggle, and Acts opening. Independent review found a ring overlap issue that was addressed before final browser verification.
+S.D.G.: Readers can reach events directly from the map and see how event order relates to geographic position.
+Feynman gap: Local desktop and mobile viewport checks passed. The update has not been deployed.

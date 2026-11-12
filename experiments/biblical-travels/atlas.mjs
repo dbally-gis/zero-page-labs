@@ -76,7 +76,7 @@ const requestedStop = parameters.get('stop');
 let stop = isActs ? 'samaria' : sequence.includes(requestedStop) ? requestedStop : sequence[0];
 let view = !isActs && parameters.get('view') === 'cube' ? 'cube' : 'flat';
 let angle = isActs ? 0 : Math.max(-180, Math.min(180, Number(parameters.get('angle')) || 0));
-let zoom = isActs ? 1 : Math.max(1, Math.min(2.4, Number(parameters.get('zoom')) || 1));
+let zoom = isActs ? 1 : Math.max(1, Math.min(5, Number(parameters.get('zoom')) || 1));
 const comparison = get('[data-compare]');
 const ringLayer = get('[data-ring-layer]');
 const ringLeaders = get('#bt-ring-leaders');
@@ -105,6 +105,14 @@ if (!isActs) {
 comparison.checked = !isActs && parameters.get('compare') === '1';
 let origin = [0, 0];
 let drag = null;
+const tiltControl = get('[data-tilt]');
+const frameControl = get('[data-frame]');
+const pointLayer = get('[data-point-layer]');
+const pointPanel = get('[data-point-events]');
+const pointHeading = get('[data-point-heading]');
+const pointChoices = get('[data-point-choices]');
+tiltControl.value = Math.max(12, Math.min(76, Number(parameters.get('tilt')) || 32));
+frameControl.checked = !isActs && parameters.get('frame') === '1';
 let matrix = [.82, .06, -.25, .49, 130, 263];
 const views = [...root.querySelectorAll('[data-view-choice]')];
 const rotation = get('[data-rotation]');
@@ -120,10 +128,12 @@ function updateProjection() {
   const radians = angle * Math.PI / 180;
   const cos = Math.cos(radians);
   const sin = Math.sin(radians);
+  const pitch = Number(tiltControl.value) * Math.PI / 180;
+  const depth = Math.sin(pitch);
   const a = .82*cos - .25*sin;
-  const b = .06*cos + .49*sin;
+  const b = (.12*cos + .98*sin) * depth;
   const c = -.82*sin - .25*cos;
-  const d = -.06*sin + .49*cos;
+  const d = (-.12*sin + .98*cos) * depth;
   matrix = [a,b,c,d,364 - a*360 - c*245,405 - b*360 - d*245];
 }
 function projectedFloor(place) {
@@ -137,10 +147,13 @@ function magnify([x,y]) {
 function floor(place) {
   return magnify(projectedFloor(place));
 }
+function verticalScale() {
+  return Math.cos(Number(tiltControl.value) * Math.PI / 180) / Math.cos(32 * Math.PI / 180);
+}
 function projectedEvent(id) {
   const [place, height] = events[id];
   const [x, y] = projectedFloor(place);
-  return [x, view === 'cube' ? y-height : y];
+  return [x, view === 'cube' ? y - height * verticalScale() : y];
 }
 function position(id) {
   return magnify(projectedEvent(id));
@@ -170,7 +183,10 @@ function layoutSharedRings() {
   if (!width || !height) return;
   const spacing = 32;
   const inset = spacing / 2;
-  const placed = [];
+  const placed = [...pointLayer.children].map(point => [
+    parseFloat(point.style.left) * width / 100,
+    parseFloat(point.style.top) * height / 100
+  ]);
   for (const [place, ring] of placeButtons) {
     const [x, y] = floor(place);
     const px = x * width / 720;
@@ -180,7 +196,7 @@ function layoutSharedRings() {
 
     // Fan out nearby controls while keeping their geographic anchors visible.
     const candidates = [[0, 0]];
-    for (let radius = spacing; radius <= spacing * 4; radius += spacing) {
+    for (let radius = spacing; radius <= spacing * 6; radius += spacing) {
       for (let direction = 0; direction < 8; direction++) {
         const radians = direction * Math.PI / 4;
         candidates.push([radius * Math.cos(radians), radius * Math.sin(radians)]);
@@ -208,7 +224,8 @@ function layoutSharedRings() {
 }
 
 function accountUrl(name, index) {
-  const query = new URLSearchParams({book: name, stop: 'gospel-' + index, view, angle, zoom});
+  const query = new URLSearchParams({book: name, stop: 'gospel-' + index, view, angle, zoom, tilt: tiltControl.value});
+  if (frameControl.checked) query.set('frame', '1');
   if (comparison.checked) query.set('compare', '1');
   return '?' + query;
 }
@@ -234,6 +251,87 @@ function updateSharedPlace() {
   }
   shared.hidden = container.childElementCount === 0;
   get('[data-account-key]').hidden = !comparison.checked;
+}
+
+function drawCubeFrame() {
+  const layer = get('#bt-cube-frame');
+  if (view !== 'cube' || !frameControl.checked) {
+    layer.replaceChildren();
+    return;
+  }
+  const corners = [[0, 0], [720, 0], [720, 490], [0, 490]];
+  const [a, b, c, d, e, f] = matrix;
+  const base = corners.map(([x, y]) => magnify([a*x + c*y + e, b*x + d*y + f]));
+  const height = 300 * verticalScale() * zoom;
+  const plane = (lift) => base.map(([x, y]) => x + ',' + (y - lift)).join(' ');
+  const columns = base.map(([x, y]) => 'M' + x + ',' + y + 'v-' + height).join(' ');
+  const slices = [0, 1/3, 2/3, 1].map((fraction, index) =>
+    '<polygon points="' + plane(height * fraction) + '"' + (index === 0 || index === 3 ? '' : ' class="cube-slice"') + '/>').join('');
+  layer.innerHTML = slices + '<path d="' + columns + '"/>';
+}
+
+function selectEvent(id) {
+  stop = id;
+  pickedPlace = null;
+  pointPanel.hidden = true;
+  render();
+}
+
+function showPointEvents(ids) {
+  if (ids.length === 1) {
+    selectEvent(ids[0]);
+    get('[data-title]').focus();
+    return;
+  }
+  pointChoices.replaceChildren();
+  const places = new Set(ids.map(id => events[id][0]));
+  pointHeading.textContent = places.size === 1 ? 'Events at ' + [...places][0] : 'Nearby map events';
+  for (const id of ids) {
+    const [, , verse, title] = events[id];
+    const choice = document.createElement('button');
+    choice.type = 'button';
+    choice.textContent = verse + ' · ' + title;
+    choice.addEventListener('click', () => {
+      selectEvent(id);
+      get('[data-title]').focus();
+    });
+    pointChoices.append(choice);
+  }
+  pointPanel.hidden = false;
+  pointHeading.focus({preventScroll: true});
+  pointPanel.scrollIntoView({block: 'nearest'});
+}
+
+function layoutEventPoints() {
+  pointLayer.replaceChildren();
+  const width = map.clientWidth;
+  const height = map.clientHeight;
+  if (!width || !height) return;
+  const groups = [];
+  // Keep the selected event's dot exactly at its projected position.
+  for (const id of [stop, ...sequence.filter(id => id !== stop)]) {
+    const [x, y] = position(id);
+    const px = x * width / 720;
+    const py = y * height / 550;
+    if (px < 0 || px > width || py < 0 || py > height) continue;
+    const neighbor = groups.find(group => Math.hypot(group.x - px, group.y - py) < 24);
+    if (neighbor) neighbor.ids.push(id);
+    else groups.push({x: px, y: py, ids: [id]});
+  }
+  for (const {x, y, ids} of groups) {
+    const point = document.createElement('button');
+    point.type = 'button';
+    point.className = 'map-point';
+    point.style.left = x / width * 100 + '%';
+    point.style.top = y / height * 100 + '%';
+    const place = events[ids[0]][0];
+    point.title = ids.length === 1 ? place + ' · ' + events[ids[0]][2] : ids.length + ' map events near ' + place;
+    point.setAttribute('aria-label', point.title);
+    if (ids.includes(stop)) point.setAttribute('aria-current', 'step');
+    if (ids.length > 1) point.textContent = ids.length;
+    point.addEventListener('click', () => showPointEvents(ids));
+    pointLayer.append(point);
+  }
 }
 
 function drawProjection() {
@@ -267,6 +365,10 @@ function render() {
   updateSharedPlace();
   get('.cube').dataset.view = view;
   get('.axis').hidden = view === 'flat';
+  get('[data-tilt-control]').hidden = view === 'flat';
+  get('[data-frame-control]').hidden = view === 'flat';
+  drawCubeFrame();
+  get('[data-zoom-value]').textContent = Math.round(zoom * 100) + '%';
   map.setAttribute('aria-label', view === 'flat' ? 'Map of the Mediterranean' : 'Map with events stacked in ' + book + ' narrative order');
   get('[data-height-note]').hidden = view === 'flat';
   if (!isActs) {
@@ -311,6 +413,7 @@ function render() {
   get('[data-detail]').hidden = !detail;
   get('[data-back]').disabled = !neighbor(-1);
   get('[data-next]').disabled = !neighbor(1);
+  layoutEventPoints();
   layoutSharedRings();
 }
 people.forEach(button => button.addEventListener('click', () => {
@@ -326,11 +429,13 @@ function neighbor(offset) {
 function move(offset) {
   stop = neighbor(offset) ?? stop;
   pickedPlace = null;
+  pointPanel.hidden = true;
   render();
 }
 timeline.addEventListener('input', () => {
   stop = sequence[Number(timeline.value)];
   pickedPlace = null;
+  pointPanel.hidden = true;
   render();
 });
 views.forEach(button => button.addEventListener('click', () => {
@@ -365,9 +470,15 @@ map.addEventListener('lostpointercapture', event => {
 });
 comparison.addEventListener('change', () => {
   pickedPlace = null;
+  pointPanel.hidden = true;
   render();
 });
-if (!isActs) new ResizeObserver(layoutSharedRings).observe(map);
+tiltControl.addEventListener('input', render);
+frameControl.addEventListener('change', render);
+new ResizeObserver(() => {
+  layoutEventPoints();
+  layoutSharedRings();
+}).observe(map);
 get('[data-back]').addEventListener('click', () => move(-1));
 get('[data-next]').addEventListener('click', () => move(1));
 render();

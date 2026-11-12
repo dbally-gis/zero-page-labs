@@ -551,3 +551,11 @@ Local verification: 235 Node tests, 17 Python tests, deep build verification, an
 - [x] A passage handoff preserves the current view.
 - [x] A keyboard user can select a shared-place marker.
 - [x] Acts retains its Samaria opening.
+
+## Atlas map controls and cube layer
+- [x] Visible map points open their mapped events.
+- [x] Grouped points expose each event in a list.
+- [x] Tilt changes the cube projection.
+- [x] Zoom reaches 500 percent.
+- [x] The space-time frame can be toggled independently.
+- [x] Acts still opens flat at Samaria.

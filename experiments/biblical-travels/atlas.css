@@ -133,3 +133,22 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.65rem); line-height: 1.02; margin: 0 0 .45e
 }
 #bt-ring-leaders { stroke: var(--ink); stroke-width: 1; opacity: .65; pointer-events: none; }
 .cube:has(.ring-layer:not([hidden])) .event { pointer-events: none; }
+
+.point-layer { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.ring-layer { z-index: 2; }
+.map-point {
+  position: absolute; transform: translate(-50%, -50%); pointer-events: auto;
+  display: grid; place-items: center; width: 23px; height: 23px; min-height: 0;
+  border: 1px solid var(--paper); border-radius: 50%; padding: 0;
+  background: var(--ink); color: var(--paper); font-size: .63rem; font-weight: 750;
+}
+.map-point:empty { background: transparent; border: 0; }
+.map-point:empty::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); border: 1px solid var(--paper); }
+.map-point[aria-current="step"] { background: var(--route); }
+.map-point[aria-current="step"]:empty::before { background: var(--paper); }
+.map-point:hover { outline: 2px solid var(--route); outline-offset: 1px; }
+.point-choices { display: grid; gap: 4px; }
+.point-choices button { text-align: left; }
+#bt-cube-frame { fill: none; stroke: #375d66; stroke-width: 1.6; opacity: .78; }
+#bt-cube-frame .cube-slice { stroke-dasharray: 4 6; opacity: .58; }
+.event { pointer-events: none; }
