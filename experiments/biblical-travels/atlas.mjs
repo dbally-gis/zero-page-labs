@@ -3,7 +3,20 @@ import { gospelCoords, gospelCoastline, gospelRecords } from './gospel-data.mjs'
 
 const root = document.getElementById('biblical-travels');
 const get = selector => root.querySelector(selector);
-const requestedBook = new URLSearchParams(location.search).get('book');
+const parameters = new URLSearchParams(location.search);
+const sharedPlaces = new Map();
+for (const stops of Object.values(gospelRecords)) {
+  for (const place of new Set(stops.map(([name]) => name))) {
+    sharedPlaces.set(place, (sharedPlaces.get(place) ?? 0) + 1);
+  }
+}
+const requestedBook = parameters.get('book');
+const gospelColors = {
+  Matthew: '#a43a24',
+  Mark: '#28685e',
+  Luke: '#75458d',
+  John: '#2c548a'
+};
 const book = Object.hasOwn(gospelRecords, requestedBook) ? requestedBook : 'Acts';
 const isActs = book === 'Acts';
 const coords = isActs ? actsCoords : gospelCoords;
@@ -19,6 +32,9 @@ if (!isActs) {
   get('[data-intro]').textContent = 'Follow Jesus through selected stops in ' + book + '. Each Gospel follows its own narrative order.';
   get('[data-timeline-name]').textContent = book + ' timeline';
   get('[data-people]').hidden = true;
+  get('[data-comparison]').hidden = false;
+  get('[data-account-key]').innerHTML = Object.entries(gospelColors).map(([name, color]) =>
+    '<span><i style="background:' + color + '"></i>' + name + '</span>').join('') + '<span>◯ Shared mapped place</span>';
   get('.event-people').hidden = true;
   get('[data-back]').textContent = 'Previous event';
   get('[data-next]').textContent = 'Next event';
@@ -56,10 +72,13 @@ follow.forEach(button => button.addEventListener('click', () => {
   render();
 }));
 let person = isActs ? 'Philip' : 'Jesus';
-let stop = isActs ? 'samaria' : sequence[0];
-let view = 'flat';
-let angle = 0;
-let zoom = 1;
+const requestedStop = parameters.get('stop');
+let stop = isActs ? 'samaria' : sequence.includes(requestedStop) ? requestedStop : sequence[0];
+let view = !isActs && parameters.get('view') === 'cube' ? 'cube' : 'flat';
+let angle = isActs ? 0 : Math.max(-180, Math.min(180, Number(parameters.get('angle')) || 0));
+let zoom = isActs ? 1 : Math.max(1, Math.min(2.4, Number(parameters.get('zoom')) || 1));
+const comparison = get('[data-compare]');
+comparison.checked = !isActs && parameters.get('compare') === '1';
 let origin = [0, 0];
 let drag = null;
 let matrix = [.82, .06, -.25, .49, 130, 263];
@@ -67,6 +86,8 @@ const views = [...root.querySelectorAll('[data-view-choice]')];
 const rotation = get('[data-rotation]');
 const zoomControl = get('[data-zoom]');
 const map = get('.cube svg');
+rotation.value = angle;
+zoomControl.value = zoom * 100;
 function updateProjection() {
   if (view === 'flat') {
     matrix = [.94, 0, 0, .94, 22, 45];
@@ -101,6 +122,55 @@ function position(id) {
   return magnify(projectedEvent(id));
 }
 const polyline = (ids, active) => '<polyline points="' + ids.map(id => position(id).join(',')).join(' ') + '" stroke="var(--' + (active ? 'route' : 'quiet') + ')" stroke-width="' + (active ? 4 : 2) + '" opacity="' + (active ? 1 : .55) + '"/>';
+function comparisonPaths() {
+  if (!comparison.checked) return '';
+  return Object.entries(gospelRecords).map(([name, stops], accountIndex) => {
+    if (name === book) return '';
+    const points = stops.slice(name === 'Matthew' ? 1 : 0).map(([place]) => {
+      const [x, y] = projectedFloor(place);
+      // Other accounts stay on the floor because their event orders are independent.
+      return magnify([x, y]).join(',');
+    }).join(' ');
+    return '<polyline points="' + points + '" stroke="' + gospelColors[name]
+      + '" stroke-width="3" stroke-dasharray="5 13" stroke-dashoffset="' + accountIndex * 4 + '"/>';
+  }).join('');
+}
+
+function overlapMarks() {
+  if (!comparison.checked) return '';
+  return [...sharedPlaces].filter(([, count]) => count > 1).map(([place, count]) => {
+    const [x, y] = floor(place);
+    return '<circle cx="' + x + '" cy="' + y + '" r="7" fill="none" stroke="var(--ink)" stroke-width="1.5"><title>'
+      + place + ' · ' + count + ' Gospel accounts</title></circle>';
+  }).join('');
+}
+
+function accountUrl(name, index) {
+  const query = new URLSearchParams({book: name, stop: 'gospel-' + index, view, angle, zoom});
+  if (comparison.checked) query.set('compare', '1');
+  return '?' + query;
+}
+
+function updateSharedPlace() {
+  const shared = get('[data-shared]');
+  if (isActs) return;
+  const place = events[stop][0];
+  const container = get('[data-shared-links]');
+  container.replaceChildren();
+  for (const [name, stops] of Object.entries(gospelRecords)) {
+    if (name === book) continue;
+    stops.forEach(([otherPlace, verse], index) => {
+      if (otherPlace !== place) return;
+      const link = document.createElement('a');
+      link.href = accountUrl(name, index);
+      link.textContent = name + ' ' + verse;
+      container.append(link);
+    });
+  }
+  shared.hidden = container.childElementCount === 0;
+  get('[data-account-key]').hidden = !comparison.checked;
+}
+
 function drawProjection() {
   updateProjection();
   const [focusX, focusY] = projectedEvent(stop);
@@ -128,10 +198,17 @@ buttons.forEach(button => {
 });
 function render() {
   drawProjection();
+  updateSharedPlace();
   get('.cube').dataset.view = view;
   get('.axis').hidden = view === 'flat';
   map.setAttribute('aria-label', view === 'flat' ? 'Map of the Mediterranean' : 'Map with events stacked in ' + book + ' narrative order');
   get('[data-height-note]').hidden = view === 'flat';
+  if (!isActs) {
+    get('[data-height-note]').textContent = comparison.checked
+      ? 'The active account rises in narrative order. Other accounts stay on the map floor. '
+      : 'Height shows ' + book + ' narrative order. ';
+    root.style.setProperty('--route', gospelColors[book]);
+  }
   rotation.parentElement.hidden = view === 'flat';
   views.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.viewChoice === view)));
   const route = routes[person];
@@ -154,8 +231,8 @@ function render() {
     button.hidden = id !== stop && !(events[stop][0] === 'Perga' && ['perga','return'].includes(id));
     button.setAttribute('aria-current', id === stop ? 'step' : 'false');
   });
-  get('#bt-paths').innerHTML = Object.entries(routes).filter(([name]) => name !== person && routes[name].includes(stop)).map(([, stops]) => polyline(stops, false)).join('') + polyline(book === 'Matthew' ? route.slice(1) : route, true);
-  get('#bt-marks').innerHTML = Object.keys(events).map(id => {
+  get('#bt-paths').innerHTML = Object.entries(routes).filter(([name]) => name !== person && routes[name].includes(stop)).map(([, stops]) => polyline(stops, false)).join('') + comparisonPaths() + polyline(book === 'Matthew' ? route.slice(1) : route, true);
+  get('#bt-marks').innerHTML = overlapMarks() + Object.keys(events).map(id => {
     const [x,y] = position(id);
     return '<circle cx="'+x+'" cy="'+y+'" r="'+(id===stop ? 8 : 3)+'" fill="var(--'+(id === stop || route.includes(id) ? 'route' : 'quiet')+')" stroke="var(--paper)" stroke-width="2"/>';
   }).join('');
@@ -217,6 +294,7 @@ map.addEventListener('lostpointercapture', event => {
   drag = null;
   map.removeAttribute('data-dragging');
 });
+comparison.addEventListener('change', render);
 get('[data-back]').addEventListener('click', () => move(-1));
 get('[data-next]').addEventListener('click', () => move(1));
 render();

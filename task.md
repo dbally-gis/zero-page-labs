@@ -535,3 +535,11 @@ Local verification: 235 Node tests, 17 Python tests, deep build verification, an
 - [x] Gospel events open their source verses.
 - [x] The cube preserves the selected Gospel stop.
 - [x] A fresh verifier reviews the implementation.
+
+## Compare Gospel journeys
+- [x] Comparison shows routes from Matthew, Mark, Luke, and John on one map.
+- [x] A shared place lists passages in the other accounts.
+- [x] A passage handoff preserves the selected place.
+- [x] A passage handoff preserves the map view.
+- [x] Acts still opens at Samaria.
+- [x] A fresh verifier reviews the comparison.

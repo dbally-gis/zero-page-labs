@@ -29,6 +29,10 @@
       <a data-book="Luke" href="?book=Luke">Luke</a>
       <a data-book="John" href="?book=John">John</a>
     </nav>
+    <div class="comparison" data-comparison hidden>
+      <label><input type="checkbox" data-compare> Compare Gospel routes</label>
+      <div class="account-key" data-account-key hidden aria-label="Gospel route colors"></div>
+    </div>
     <div class="workspace">
       <section class="chart" aria-label="Interactive map">
 <div class="people" data-people role="group" aria-label="Follow a person">
@@ -130,6 +134,10 @@
 <small>Follow from here</small>
 <button data-follow="Paul" hidden>Paul</button><button data-follow="Barnabas" hidden>Barnabas</button><button data-follow="John Mark" hidden>John Mark</button><button data-follow="Peter" hidden>Peter</button><button data-follow="Philip" hidden>Philip the Evangelist</button>
 </div>
+<section class="shared-place" data-shared hidden aria-label="Switch Gospel at this place">
+  <h3>Other accounts at this place</h3>
+  <div data-shared-links></div>
+</section>
 <details class="event-people"><summary>People at this event</summary><dl class="whereabouts" aria-label="People at this event">
 <dt>Paul</dt><dd data-where="Paul"></dd>
 <dt>Barnabas</dt><dd data-where="Barnabas"></dd>

@@ -101,3 +101,18 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.65rem); line-height: 1.02; margin: 0 0 .45e
   border-radius: 3px; font-weight: 650; font-size: .84rem; text-decoration: none;
 }
 .accounts a[aria-current="page"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.comparison { margin: -6px 0 16px; }
+.comparison label { display: inline-flex; align-items: center; gap: 5px; font-weight: 750; font-size: .9rem; }
+.comparison input { accent-color: var(--route); }
+.account-key { display: flex; flex-wrap: wrap; gap: 5px 14px; margin-top: 7px; font-size: .82rem; }
+.account-key span { display: inline-flex; gap: 6px; align-items: center; }
+.account-key i { display: inline-block; width: 14px; height: 3px; }
+.shared-place { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 12px; }
+.shared-place h3 { margin: 0 0 7px; font-size: .85rem; }
+[data-shared-links] { display: flex; flex-wrap: wrap; gap: 5px; }
+[data-shared-links] a {
+  border: 1px solid var(--line); border-radius: 3px; padding: 5px 7px;
+  font-size: .8rem; text-decoration: none;
+}
+[data-shared-links] a:hover { border-color: var(--ink); text-decoration: underline; }

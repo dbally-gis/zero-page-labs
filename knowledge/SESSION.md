@@ -99,6 +99,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 17:08 — commit: Confirm full-book introduction deployment | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md
 - 2026-11-09 10:59 — commit: Publish Rack Lab and the COME AT ME rack STL | assets/experiment-rack-lab.png,data/rack-lab-build.json,directives/publish_experiments.md,execution/build_experiments.py,execution/test_experiments.mjs
 - 2026-11-12 10:03 — commit: Add Biblical Travels interactive Acts atlas | assets/experiment-biblical-travels.svg,experiments/biblical-travels/acts-data.mjs,experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html
+- 2026-11-12 10:14 — commit: Add Jesus’s Gospel journeys to Biblical Travels | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/gospel-data.mjs,experiments/biblical-travels/index.html,experiments/index.html
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -414,3 +415,21 @@ Status: Implemented locally. The book selector opens one of four Gospel timeline
 Verification: Independent source review found no blocker. Deep static verification and desktop/mobile Chrome passed, including the existing Samaria handoff.
 S.D.G.: Readers can compare the journeys as each Gospel tells them and open the passage behind a stop.
 Feynman gap: The expanded atlas has been tested locally. The public release still serves the Acts atlas.
+
+### 2026-11-12 - Gospel expansion production verification
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Published a1375a9. GitHub Actions run 43256504757 completed successfully. The public deployment fingerprint matched after the custom-domain CDN cache refreshed.
+- Chrome at 1440px and 375px scrubbed the 55 events across Matthew, Mark, Luke, and John and checked each linked reference. One passage per Gospel opened successfully in Bible Gateway. The optional 3D view preserved the selected event in each timeline. Acts opened at Samaria in the flat map and the Peter handoff passed.
+S.D.G.: Readers on the live site can explore Jesus’s journeys in each Gospel and open the passages from the map.
+Feynman gap: Live verification covered desktop and mobile browser viewports. Physical touch input was not exercised.
+
+### 2026-11-12 - Gospel route comparison
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Implemented locally. The four Gospel routes share a map with rings at named places present in multiple accounts. Shared-place links select a specific passage occurrence and carry the view, zoom, rotation, and comparison setting. In 3D, only the active account is raised, since each Gospel has its own narrative order.
+Verification: Deep site verification passed. Chrome at 1440px and 375px verified overlay, Bethlehem and Capernaum handoffs, view retention, and the Acts opening. Independent review found no blocker.
+S.D.G.: Readers can spot overlap across accounts and compare the passages from the same mapped place.
+Feynman gap: Comparison is verified locally. Production still serves the individual Gospel timelines.
