@@ -108,13 +108,14 @@ let pan = [0, 0];
 const pointers = new Map();
 let gesture = null;
 let suppressMapClick = false;
+const defaultTilt = 32;
 const tiltControl = get('[data-tilt]');
 const frameControl = get('[data-frame]');
 const pointLayer = get('[data-point-layer]');
 const pointPanel = get('[data-point-events]');
 const pointHeading = get('[data-point-heading]');
 const pointChoices = get('[data-point-choices]');
-tiltControl.value = Math.max(12, Math.min(76, Number(parameters.get('tilt')) || 32));
+tiltControl.value = Math.max(12, Math.min(76, Number(parameters.get('tilt')) || defaultTilt));
 frameControl.checked = !isActs && parameters.get('frame') === '1';
 let matrix = [.82, .06, -.25, .49, 130, 263];
 const views = [...root.querySelectorAll('[data-view-choice]')];
@@ -152,7 +153,7 @@ function floor(place) {
   return magnify(projectedFloor(place));
 }
 function verticalScale() {
-  return Math.cos(Number(tiltControl.value) * Math.PI / 180) / Math.cos(32 * Math.PI / 180);
+  return Math.cos(Number(tiltControl.value) * Math.PI / 180) / Math.cos(defaultTilt * Math.PI / 180);
 }
 function projectedEvent(id) {
   const [place, height] = events[id];
@@ -457,6 +458,15 @@ views.forEach(button => button.addEventListener('click', () => {
 }));
 rotation.addEventListener('input', () => {
   angle = Number(rotation.value);
+  render();
+});
+get('[data-reset-view]').addEventListener('click', () => {
+  pan = [0, 0];
+  zoom = 1;
+  angle = 0;
+  zoomControl.value = 100;
+  rotation.value = angle;
+  tiltControl.value = defaultTilt;
   render();
 });
 zoomControl.addEventListener('input', () => {
