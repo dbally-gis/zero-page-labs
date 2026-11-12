@@ -383,3 +383,15 @@ Goal: reveal original word labels in the 3D whole-book view when a sheet reaches
 Published b6cbef6 through workflow 42541904443. The live browser showed readable words on the zoomed sheet. Screenshot: /private/tmp/lexical-readable-page-live.png.
 S.D.G.: Readers can identify a mapped word in place and follow its occurrence through the book.
 Feynman gap: Desktop zoom, orbit and selection were verified. Physical pinch gestures were not tested.
+
+### 2026-11-12 - Biblical Travels
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Goal: Integrate the Acts prototype as a Zero Page Labs experiment.
+Status: Integrated and verified in the isolated codex/biblical-travels worktree based on origin/main. Source is local.
+- Catalog links to the atlas. Samaria opens in flat view following Philip. Peter is selectable from the shared event. The passage link follows the selected event.
+- Chrome at 1440px and 375px verified the catalog link, opening, handoff, 3D rotation, timeline, view switching, and page width. Independent review passed. Fixed the right-edge label clipping risk it identified.
+- Deep verification passed 14 pages. The existing suite passed 235 Node tests and 17 Python tests.
+S.D.G.: Readers can follow Philip and Peter through the same passage and orient themselves on the map.
+Feynman gap: The built site passed local QA. Public deployment has not been verified.

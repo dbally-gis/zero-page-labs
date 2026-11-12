@@ -509,3 +509,19 @@ Scope: unfiltered overview rendering, local-only validated visit memory, explici
 - [x] Focused threads retain their existing behavior.
 - [x] Browser and regression checks pass.
 - [x] Independent review passes.
+
+## Biblical Travels — 2026-11-12
+Source: existing Acts prototype. Output: static experiment under /experiments/biblical-travels/.
+- [x] The experiment is discoverable from the Experiments index.
+- [x] A fresh visit opens at Samaria.
+- [x] A fresh visit follows Philip the Evangelist.
+- [x] A fresh visit uses the flat map.
+- [x] The Samaria event offers a Peter handoff.
+- [x] The Peter handoff preserves the Samaria event.
+- [x] The reading link opens the selected Acts passage.
+- [x] The cube preserves the selected person.
+- [x] The cube preserves the selected event.
+- [x] Desktop and mobile browser checks pass.
+- [x] A fresh verifier reviews the implementation.
+
+Local verification: 235 Node tests, 17 Python tests, deep build verification, and Chrome checks at 1440px and 375px.
