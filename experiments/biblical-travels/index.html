@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Follow five people through the Book of Acts. Switch paths at shared places and read the verses behind each stop.">
+  <meta name="description" content="Explore Jesus’s journeys through the Gospels or follow five people through Acts, with verse links at each stop.">
   <title>Biblical Travels — Zero Page Labs</title>
   <link rel="canonical" href="https://zeropagelabs.com/experiments/biblical-travels/">
   <link rel="icon" href="/assets/favicon.svg">
@@ -18,13 +18,20 @@
   </header>
   <main id="biblical-travels">
     <header class="intro">
-      <div class="kicker">An atlas of Acts</div>
+      <div class="kicker" data-kicker>An atlas of Acts</div>
       <h1>Biblical Travels</h1>
-      <p>Follow five people through the Book of Acts. When their paths cross, choose whose story to follow.</p>
+      <p data-intro>Follow five people through the Book of Acts. When their paths cross, choose whose story to follow.</p>
     </header>
+    <nav class="accounts" aria-label="Choose a Bible book">
+      <a data-book="Acts" href="./" aria-current="page">Acts</a>
+      <a data-book="Matthew" href="?book=Matthew">Matthew</a>
+      <a data-book="Mark" href="?book=Mark">Mark</a>
+      <a data-book="Luke" href="?book=Luke">Luke</a>
+      <a data-book="John" href="?book=John">John</a>
+    </nav>
     <div class="workspace">
       <section class="chart" aria-label="Interactive map">
-<div class="people" role="group" aria-label="Follow a person">
+<div class="people" data-people role="group" aria-label="Follow a person">
 <button data-person="Paul" aria-pressed="false">Paul</button><button data-person="Barnabas" aria-pressed="false">Barnabas</button><button data-person="John Mark" aria-pressed="false">John Mark</button><button data-person="Peter" aria-pressed="false">Peter</button><button data-person="Philip" aria-pressed="true">Philip the Evangelist</button>
 </div>
 <div class="view-controls" role="group" aria-label="Map view">
@@ -34,7 +41,7 @@
 <label class="rotation">Zoom <input data-zoom type="range" min="100" max="240" step="5" value="100" aria-label="Zoom map"></label>
 </div>
 <label class="timeline">
-<span>Acts timeline <small data-time-label>4 / 62 · Acts 8:5–17</small></span>
+<span><span data-timeline-name>Acts timeline</span> <small data-time-label>4 / 62 · Acts 8:5–17</small></span>
 <input data-time type="range" min="0" max="61" step="1" value="3">
 </label>
 <div class="cube" data-view="flat">

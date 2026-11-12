@@ -525,3 +525,13 @@ Source: existing Acts prototype. Output: static experiment under /experiments/bi
 - [x] A fresh verifier reviews the implementation.
 
 Local verification: 235 Node tests, 17 Python tests, deep build verification, and Chrome checks at 1440px and 375px.
+
+## Jesus’s Gospel journeys
+- [x] The default atlas opens at Samaria in Acts.
+- [x] The reader can select Matthew.
+- [x] The reader can select Mark.
+- [x] The reader can select Luke.
+- [x] The reader can select John.
+- [x] Gospel events open their source verses.
+- [x] The cube preserves the selected Gospel stop.
+- [x] A fresh verifier reviews the implementation.

@@ -1,13 +1,48 @@
-import { coords, records } from './acts-data.mjs';
+import { coords as actsCoords, records as actsRecords } from './acts-data.mjs';
+import { gospelCoords, gospelCoastline, gospelRecords } from './gospel-data.mjs';
 
 const root = document.getElementById('biblical-travels');
 const get = selector => root.querySelector(selector);
-const people = [...root.querySelectorAll('[data-person]')];
+const requestedBook = new URLSearchParams(location.search).get('book');
+const book = Object.hasOwn(gospelRecords, requestedBook) ? requestedBook : 'Acts';
+const isActs = book === 'Acts';
+const coords = isActs ? actsCoords : gospelCoords;
+const records = isActs ? actsRecords : gospelRecords[book].map(([place, verse, title, detail], index) =>
+  ['gospel-' + index, place, verse, title, 'J', detail]);
+const people = isActs ? [...root.querySelectorAll('[data-person]')] : [];
+const peopleCodes = isActs ? { Paul:'P', Barnabas:'B', 'John Mark':'M', Peter:'R', Philip:'F' } : { Jesus:'J' };
+
+if (!isActs) {
+  get('[data-book="Acts"]').removeAttribute('aria-current');
+  get('[data-book="' + book + '"]').setAttribute('aria-current', 'page');
+  get('[data-kicker]').textContent = 'The journeys of Jesus';
+  get('[data-intro]').textContent = 'Follow Jesus through selected stops in ' + book + '. Each Gospel follows its own narrative order.';
+  get('[data-timeline-name]').textContent = book + ' timeline';
+  get('[data-people]').hidden = true;
+  get('.event-people').hidden = true;
+  get('[data-back]').textContent = 'Previous event';
+  get('[data-next]').textContent = 'Next event';
+  get('.axis').textContent = '↑ ' + book + ' narrative order';
+  get('[data-height-note]').textContent = 'Height shows ' + book + ' narrative order. ';
+  get('[data-floor] path').setAttribute('d', gospelCoastline);
+  get('.sea-name').setAttribute('x', '95');
+  get('.sea-name').setAttribute('y', '190');
+  root.querySelectorAll('[data-id]').forEach(button => button.remove());
+  const chart = get('.cube');
+  for (const [id, place] of records) {
+    const marker = document.createElement('button');
+    marker.type = 'button';
+    marker.className = 'event';
+    marker.dataset.id = id;
+    marker.textContent = place;
+    marker.hidden = true;
+    chart.append(marker);
+  }
+}
 const buttons = [...root.querySelectorAll('[data-id]')];
-const peopleCodes = {Paul:'P', Barnabas:'B', 'John Mark':'M', Peter:'R', Philip:'F'};
 const sequence = records.map(([id]) => id);
 const events = Object.fromEntries(records.map(([id, place, verse, title, codes, detail], index) =>
-  [id, [place, 25 + index * 4.4, 'Acts ' + verse, title, detail || '']]));
+  [id, [place, 25 + index * (isActs ? 4.4 : 230 / (records.length - 1)), book + ' ' + verse, title, detail || '']]));
 const routes = Object.fromEntries(Object.entries(peopleCodes).map(([person, code]) =>
   [person, records.filter(row => row[4].includes(code)).map(([id]) => id)]));
 const eventLocations = Object.fromEntries(records.map(([id, place, verse, title, codes]) =>
@@ -15,13 +50,13 @@ const eventLocations = Object.fromEntries(records.map(([id, place, verse, title,
 const timeline = get('[data-time]');
 timeline.max = sequence.length - 1;
 const handoff = get('[data-handoff]');
-const follow = [...handoff.querySelectorAll('[data-follow]')];
+const follow = isActs ? [...handoff.querySelectorAll('[data-follow]')] : [];
 follow.forEach(button => button.addEventListener('click', () => {
   person = button.dataset.follow;
   render();
 }));
-let person = 'Philip';
-let stop = 'samaria';
+let person = isActs ? 'Philip' : 'Jesus';
+let stop = isActs ? 'samaria' : sequence[0];
 let view = 'flat';
 let angle = 0;
 let zoom = 1;
@@ -71,7 +106,8 @@ function drawProjection() {
   const [focusX, focusY] = projectedEvent(stop);
   origin = [Math.min(575, Math.max(145, focusX)) - zoom*focusX, Math.min(490, Math.max(55, focusY)) - zoom*focusY];
   get('[data-floor]').setAttribute('transform', 'translate(' + origin.join(' ') + ') scale(' + zoom + ') matrix(' + matrix.join(' ') + ')');
-  const guidePlaces = new Set([events[stop][0], 'Perga']);
+  const guidePlaces = new Set([events[stop][0]]);
+  if (isActs) guidePlaces.add('Perga');
   get('#bt-guides').innerHTML = view === 'flat' ? '' : [...guidePlaces].map(place => {
     const [x,y] = floor(place);
     const peak = Math.min(...Object.keys(events).filter(id => events[id][0] === place).map(id => position(id)[1]));
@@ -94,7 +130,7 @@ function render() {
   drawProjection();
   get('.cube').dataset.view = view;
   get('.axis').hidden = view === 'flat';
-  map.setAttribute('aria-label', view === 'flat' ? 'Map of the Mediterranean' : 'Mediterranean map with events stacked in Acts narrative order');
+  map.setAttribute('aria-label', view === 'flat' ? 'Map of the Mediterranean' : 'Map with events stacked in ' + book + ' narrative order');
   get('[data-height-note]').hidden = view === 'flat';
   rotation.parentElement.hidden = view === 'flat';
   views.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.viewChoice === view)));
@@ -118,7 +154,7 @@ function render() {
     button.hidden = id !== stop && !(events[stop][0] === 'Perga' && ['perga','return'].includes(id));
     button.setAttribute('aria-current', id === stop ? 'step' : 'false');
   });
-  get('#bt-paths').innerHTML = Object.entries(routes).filter(([name]) => name !== person && routes[name].includes(stop)).map(([, stops]) => polyline(stops, false)).join('') + polyline(route, true);
+  get('#bt-paths').innerHTML = Object.entries(routes).filter(([name]) => name !== person && routes[name].includes(stop)).map(([, stops]) => polyline(stops, false)).join('') + polyline(book === 'Matthew' ? route.slice(1) : route, true);
   get('#bt-marks').innerHTML = Object.keys(events).map(id => {
     const [x,y] = position(id);
     return '<circle cx="'+x+'" cy="'+y+'" r="'+(id===stop ? 8 : 3)+'" fill="var(--'+(id === stop || route.includes(id) ? 'route' : 'quiet')+')" stroke="var(--paper)" stroke-width="2"/>';

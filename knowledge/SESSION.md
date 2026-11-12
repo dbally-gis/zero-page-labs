@@ -98,6 +98,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-08 17:06 — commit: Source combat episodes and material effects across twelve naval battles | directives/publish_experiments.md,execution/test_maritime.mjs,execution/test_maritime_combat.mjs,experiments/maritime/battle-events.mjs,experiments/maritime/combat.mjs
 - 2026-11-08 17:08 — commit: Confirm full-book introduction deployment | knowledge/SESSION.md,knowledge/domain/lexical-book-identity.md
 - 2026-11-09 10:59 — commit: Publish Rack Lab and the COME AT ME rack STL | assets/experiment-rack-lab.png,data/rack-lab-build.json,directives/publish_experiments.md,execution/build_experiments.py,execution/test_experiments.mjs
+- 2026-11-12 10:03 — commit: Add Biblical Travels interactive Acts atlas | assets/experiment-biblical-travels.svg,experiments/biblical-travels/acts-data.mjs,experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -395,3 +396,21 @@ Status: Integrated and verified in the isolated codex/biblical-travels worktree 
 - Deep verification passed 14 pages. The existing suite passed 235 Node tests and 17 Python tests.
 S.D.G.: Readers can follow Philip and Peter through the same passage and orient themselves on the map.
 Feynman gap: The built site passed local QA. Public deployment has not been verified.
+
+### 2026-11-12 - Biblical Travels production verification
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Published commit a021e7d via workflow 43254429487. Public deployment.json reports the full matching commit.
+- Live Chrome passed at 1440px and 375px. Catalog navigation opens the flat map at Samaria following Philip. The Peter handoff preserves the event. The verse link opens the World English Bible passage at Acts 8:5–17. The 3D cube rotates by drag and preserves selection when switching back to the flat map.
+S.D.G.: Visitors can use the live atlas to follow Philip and Peter through Samaria and open the passage from the shared event.
+Feynman gap: Live checks covered desktop and mobile Chrome viewports. Physical touch input was not tested.
+
+### 2026-11-12 - Jesus’s Gospel journeys
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Implemented locally. The book selector opens one of four Gospel timelines without changing the default Acts opening. The 55 selected events use separate narrative sequences, verse links, and a regional coastline. Matthew’s flight to Egypt is covered by the Nazareth passage link and the map leaves that leg open.
+Verification: Independent source review found no blocker. Deep static verification and desktop/mobile Chrome passed, including the existing Samaria handoff.
+S.D.G.: Readers can compare the journeys as each Gospel tells them and open the passage behind a stop.
+Feynman gap: The expanded atlas has been tested locally. The public release still serves the Acts atlas.

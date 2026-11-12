@@ -94,3 +94,10 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.65rem); line-height: 1.02; margin: 0 0 .45e
   .event { font-size: .68rem; white-space: normal; max-width: 26%; }
   .reading h2 { font-size: 1.85rem; }
 }
+
+.accounts { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; }
+.accounts a {
+  padding: 6px 10px; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 3px; font-weight: 650; font-size: .84rem; text-decoration: none;
+}
+.accounts a[aria-current="page"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
