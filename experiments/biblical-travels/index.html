@@ -47,10 +47,15 @@
 <label class="rotation" data-frame-control hidden><input data-frame type="checkbox"> Cube layer</label>
 <button type="button" data-reset-view>Reset view</button>
 </div>
-<label class="timeline">
+<div class="timeline">
+<div class="timeline-heading">
+<label for="atlas-time">
 <span><span data-timeline-name>Acts timeline</span> <small data-time-label>4 / 62 · Acts 8:5–17</small></span>
-<input data-time type="range" min="0" max="61" step="1" value="3">
 </label>
+<button type="button" data-playback>Play</button>
+</div>
+<input id="atlas-time" data-time type="range" min="0" max="61" step="1" value="3">
+</div>
 <div class="cube" data-view="flat">
 <svg viewBox="0 0 720 550" role="img" aria-label="Tilted Eastern Mediterranean map with Acts events stacked above their locations">
 <g data-floor transform="matrix(.82 .06 -.25 .49 130 263)">

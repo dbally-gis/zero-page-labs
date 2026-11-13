@@ -64,6 +64,8 @@ const routes = Object.fromEntries(Object.entries(peopleCodes).map(([person, code
 const eventLocations = Object.fromEntries(records.map(([id, place, verse, title, codes]) =>
   [id, Object.values(peopleCodes).map(code => codes.includes(code) ? place : 'Location unspecified in this event')]));
 const timeline = get('[data-time]');
+const playback = get('[data-playback]');
+let playbackTimer = null;
 timeline.max = sequence.length - 1;
 const handoff = get('[data-handoff]');
 const follow = isActs ? [...handoff.querySelectorAll('[data-follow]')] : [];
@@ -424,7 +426,11 @@ function render() {
   get('[data-detail]').textContent = detail;
   get('[data-detail]').hidden = !detail;
   get('[data-back]').disabled = !neighbor(-1);
-  get('[data-next]').disabled = !neighbor(1);
+  const canAdvance = Boolean(neighbor(1));
+  get('[data-next]').disabled = !canAdvance;
+  if (!canAdvance) pausePlayback();
+  playback.textContent = playbackTimer === null ? 'Play' : 'Pause';
+  playback.disabled = !canAdvance;
   layoutEventPoints();
   layoutSharedRings();
 }
@@ -438,19 +444,27 @@ function neighbor(offset) {
     if (routes[person].includes(sequence[i])) return sequence[i];
   }
 }
-function move(offset) {
-  stop = neighbor(offset) ?? stop;
-  pan = [0, 0];
-  pickedPlace = null;
-  pointPanel.hidden = true;
-  render();
+function pausePlayback() {
+  clearInterval(playbackTimer);
+  playbackTimer = null;
 }
-timeline.addEventListener('input', () => {
-  stop = sequence[Number(timeline.value)];
-  pan = [0, 0];
-  pickedPlace = null;
-  pointPanel.hidden = true;
+
+function move(offset) {
+  selectEvent(neighbor(offset) ?? stop);
+}
+
+playback.addEventListener('click', () => {
+  if (playbackTimer === null) {
+    playbackTimer = setInterval(() => move(1), 2200);
+  } else {
+    pausePlayback();
+  }
   render();
+});
+
+timeline.addEventListener('input', () => {
+  pausePlayback();
+  selectEvent(sequence[Number(timeline.value)]);
 });
 views.forEach(button => button.addEventListener('click', () => {
   view = button.dataset.viewChoice;

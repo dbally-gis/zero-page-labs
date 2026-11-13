@@ -153,3 +153,5 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.65rem); line-height: 1.02; margin: 0 0 .45e
 #bt-cube-frame { fill: none; stroke: #375d66; stroke-width: 1.6; opacity: .78; }
 #bt-cube-frame .cube-slice { stroke-dasharray: 4 6; opacity: .58; }
 .event { pointer-events: none; }
+
+.timeline-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; }
