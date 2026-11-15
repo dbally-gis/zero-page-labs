@@ -1,7 +1,8 @@
 import * as T from './vendor/three-0.160.1.module.min.js';
 import {positionAt,trailAt,chapterAt,fateAt,activePositionAt} from './model.mjs?v=atlas-review';
 import {damageAt,sinkingAt,tornAtMast} from './damage.mjs';
-import {createShotEffects} from './shot-effects.mjs?v=atlas-review';
+import {createShotEffects} from './shot-effects.mjs?v=hull-forms';
+import {formFor,hullHalf,hullMesh} from './hull.mjs';
 
 // The scene illustrates the same schematic replay as the accessible SVG chart.
 // Models are generic ship types, not measured reconstructions of named vessels.
@@ -32,17 +33,57 @@ function lines(parent,segments,material=rigging) {
   const g=new T.BufferGeometry().setFromPoints(segments.flat().map(v=>new T.Vector3(...v)));
   const l=new T.LineSegments(g,material);parent.add(l);return l;
 }
-function hullGeometry(length=54,width=19) {
-  const vertices=[],indices=[],rings=[[-2,.4],[0,.83],[4,1],[8,.86]],n=28;
-  for(const [y,r] of rings)for(let i=0;i<n;i++){
-    const a=i/n*PI*2,z=Math.cos(a)*length/2;
-    vertices.push(Math.sin(a)*width/2*r*(.87+.15*Math.cos(a)),y,z*r);
-  }
-  for(let j=0;j<rings.length-1;j++)for(let i=0;i<n;i++){
-    const a=j*n+i,b=j*n+(i+1)%n,c=(j+1)*n+i,d=(j+1)*n+(i+1)%n;
-    indices.push(a,b,c,b,d,c);
-  }
-  const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices,3));g.setIndex(indices);g.computeVertexNormals();return g;
+function buffer({positions,uvs,colors,indices}) {
+  const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(positions,3));
+  if(uvs)g.setAttribute('uv',new T.Float32BufferAttribute(uvs,2));
+  if(colors)g.setAttribute('color',new T.Float32BufferAttribute(colors,4));
+  g.setIndex(indices);g.computeVertexNormals();return g;
+}
+function paint(width,height,draw) {
+  const c=document.createElement('canvas');c.width=width;c.height=height;draw(c.getContext('2d'),width,height);
+  const t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;t.anisotropy=4;return t;
+}
+// Strakes run from keel (0) to rail (1). Seams suggest planks or plates; they are not counted.
+// Tones are neutral timber and iron. They are not national or period paint schemes.
+function strakes(base,bands,seam,step) {
+  return paint(256,128,(ctx,w,h)=>{
+    ctx.fillStyle=base;ctx.fillRect(0,0,w,h);
+    for(const [from,to,color] of bands){ctx.fillStyle=color;ctx.fillRect(0,h*(1-to),w,h*(to-from));}
+    ctx.fillStyle=seam;
+    for(let y=3;y<h;y+=step){ctx.fillRect(0,y,w,1);for(let x=(y*37)%53;x<w;x+=53)ctx.fillRect(x,y-step+1,1,step-1);}
+  });
+}
+function planks(base,seam,step) {
+  return paint(128,128,(ctx,w,h)=>{
+    ctx.fillStyle=base;ctx.fillRect(0,0,w,h);
+    for(let x=step/2;x<w;x+=step){
+      ctx.fillStyle=`rgba(255,240,205,${.03+(x*7%5)*.012})`;ctx.fillRect(x-step/2,0,step,h);
+      ctx.fillStyle=seam;ctx.fillRect(x,0,1,h);ctx.fillRect(x-step/2,(x*13)%h,step,1);
+    }
+  });
+}
+let skinCache=null;
+function skins() {
+  if(skinCache)return skinCache;
+  const side=(map,extra={})=>new T.MeshStandardMaterial({map,roughness:.86,side:T.DoubleSide,...extra});
+  const plate=side(strakes('#56625f',[[0,.3,'#55362e'],[.93,1,'#6d7a76']],'rgba(20,28,27,.22)',16),{roughness:.6,metalness:.25});
+  const timberDeck=new T.MeshStandardMaterial({map:planks('#a58d62','rgba(70,52,30,.32)',16),roughness:1});
+  const plateDeck=new T.MeshStandardMaterial({map:planks('#66716e','rgba(20,28,27,.3)',32),roughness:.7,metalness:.2});
+  sail.map=paint(128,128,(ctx,w,h)=>{
+    const fade=ctx.createLinearGradient(0,0,0,h);fade.addColorStop(0,'#fbf1d6');fade.addColorStop(1,'#e2d2ab');
+    ctx.fillStyle=fade;ctx.fillRect(0,0,w,h);ctx.fillStyle='rgba(112,92,58,.2)';
+    for(let x=8;x<w;x+=16)ctx.fillRect(x,0,1,h);
+    ctx.fillRect(0,h*.3,w,1);
+  });
+  sail.color.set(0xffffff);sail.needsUpdate=true;
+  const timber={hull:side(strakes('#5b4129',[[0,.2,'#3d2c1e'],[.4,.5,'#6f5234'],[.62,.725,'#6f5234'],[.93,1,'#a8834c']],'rgba(25,16,8,.25)',8)),deck:timberDeck};
+  skinCache={
+    sail:timber,'screw-frigate':timber,
+    galley:{hull:side(strakes('#6b3f2a',[[0,.25,'#44291d'],[.88,1,'#c9a25a']],'rgba(25,16,8,.25)',8)),deck:timberDeck},
+    cruiser:{hull:side(strakes('#444e4c',[[0,.3,'#55362e'],[.8,.84,'#d9d6c6']],'rgba(20,28,27,.22)',16),{roughness:.6,metalness:.25}),deck:timberDeck},
+    monitor:{hull:plate,deck:plateDeck},ironclad:{hull:plate,deck:plateDeck},
+  };
+  return skinCache;
 }
 function canvasGeometry(width,height,billow=3,torn=false) {
   const g=new T.PlaneGeometry(width,height,10,7),p=g.attributes.position;
@@ -76,17 +117,18 @@ function mergePieces(group) {
 function shipModel(type,side,damage=null) {
   const key=type+side+JSON.stringify(damage);if(cache.has(key))return cache.get(key).clone(true);
   const g=new T.Group(),isGalley=type==='galley',isSail=type==='sail'||type==='screw-frigate',isMonitor=type==='monitor',isCruiser=type==='cruiser';
-  const length=isGalley?64:isMonitor?43:56,width=isGalley?11:isMonitor?20:19;
-  mesh(g,hullGeometry(length,width),isSail||isGalley?wood:iron);
-  const d=mesh(g,new T.CircleGeometry(1,28),deck,0,8.05,0,[-PI/2,0,0]);d.scale.set(width*.42,length*.47,1);
+  const skin=skins()[type]??skins().ironclad,hull=hullMesh(type);
+  mesh(g,buffer(hull.shell),skin.hull);mesh(g,buffer(hull.deck),skin.deck);
   const ropes=[];
   if(isSail){
     // Hull bands, gun ports, raised quarterdeck, bowsprit and three square rigs.
-    for(const y of [3.7,6.2]){
-      const band=[];for(let i=0;i<=28;i++){const a=i/28*PI*2;band.push(new T.Vector3(Math.sin(a)*9*(.87+.15*Math.cos(a)),y,Math.cos(a)*26));}
-      g.add(new T.Line(new T.BufferGeometry().setFromPoints(band),new T.LineBasicMaterial({color:0xc8a65e})));
-      for(const x of [-8.2,8.2])for(let z=-16;z<=18;z+=5)mesh(g,new T.BoxGeometry(.6,1.5,2.2),dark,x,y-.8,z);
+    // Gun ports follow the painted strakes on the hull surface.
+    for(const y of [2.9,5.4])for(const side of [-1,1])for(let z=-16;z<=18;z+=5){
+      mesh(g,new T.BoxGeometry(.5,1.3,2),dark,side*(hullHalf(type,z,y)-.1),y,z);
     }
+    // Stern gallery.
+    mesh(g,new T.BoxGeometry(8.4,1.8,.6),trim,0,7.7,27.6);
+    for(let x=-3;x<=3;x+=2)mesh(g,new T.BoxGeometry(1.2,1,.8),dark,x,7.7,27.65);
     mesh(g,new T.BoxGeometry(13,3,12),trim,0,9.3,16);mesh(g,new T.BoxGeometry(12,1,11),deck,0,11.3,16);
     beam(g,[0,9,-24],[0,18,-40],.35,trim);
     for(const [z,height] of [[-15,38],[0,46],[17,33]]){
@@ -132,7 +174,8 @@ function shipModel(type,side,damage=null) {
     for(const z of [-20,20]){mesh(g,new T.CylinderGeometry(3.2,3.5,3,10),iron,0,9,z);beam(g,[0,10,z],[0,10,z+(z<0?-9:9)],.45,dark);}
     for(const z of [-15,16]){beam(g,[0,10,z],[0,34,z],.3);beam(g,[-8,28,z],[8,28,z],.2);ropes.push([[0,34,z],[-6,8,z+7]],[[0,34,z],[6,8,z+7]]);}
   } else {
-    const c=mesh(g,new T.CylinderGeometry(1,1,7,4,1,false,PI/4),iron,0,10,0);c.scale.set(9,1,21);
+    // Casemate with sloped sides and rounded ends.
+    const c=mesh(g,new T.CylinderGeometry(.62,1,7,24),iron,0,10.5,0);c.scale.set(7.9,1,19);
     mesh(g,new T.CylinderGeometry(1.4,1.8,11,8),dark,0,18,-4);
     for(const x of [-8,8])for(const z of [-12,0,12])beam(g,[x,10,z],[x*1.65,10,z],.45,dark);
   }
@@ -142,7 +185,7 @@ function shipModel(type,side,damage=null) {
     if(mark==='port'||mark==='starboard'||mark==='hull'){
       const sides=mark==='hull'?[-1,1]:[mark==='port'?-1:1];
       for(const side of sides){
-        const x=side*width*.43;
+        const x=side*hullHalf(type,0,4.8);
         mesh(g,new T.DodecahedronGeometry(mark==='port'?3.7:2.3),scorch,x,4.8,0).scale.set(.33,1,1.8);
         beam(g,[x,6.6,-4],[x*.91,5.9,4],.34,splinter);
       }
@@ -161,7 +204,10 @@ function shipModel(type,side,damage=null) {
   if(type==='ironclad')beam(g,[0,9,fz],[0,fh,fz],.25,iron);
   const flagG=new T.BufferGeometry().setFromPoints([new T.Vector3(0,fh,fz),new T.Vector3(8,fh-1,fz+1),new T.Vector3(0,fh-4,fz)]);flagG.computeVertexNormals();if(!damage?.lost?.includes('main'))mesh(g,flagG,side?rust:blue);
   if(ropes.length)lines(g,ropes);
-  mergePieces(g);cache.set(key,g);return g.clone(true);
+  mergePieces(g);
+  // Sails cast shadows but do not take them: billowed cloth shows shadow-map banding.
+  g.traverse(part=>{if(part.isMesh){part.castShadow=true;part.receiveShadow=part.material!==sail;}});
+  cache.set(key,g);return g.clone(true);
 }
 
 function puffTexture() {
@@ -172,24 +218,38 @@ function puffTexture() {
   }
   return new T.CanvasTexture(c);
 }
-function foamTexture() {
-  const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d');
-  const grad=ctx.createRadialGradient(64,64,0,64,64,62);grad.addColorStop(0,'rgba(223,241,229,.65)');grad.addColorStop(.35,'rgba(223,241,229,.2)');grad.addColorStop(1,'rgba(223,241,229,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,128,128);return new T.CanvasTexture(c);
+// A bow wave spreading aft in a V, with churned water behind the stern. The bow is at the top.
+function wakeTexture() {
+  const c=document.createElement('canvas');c.width=128;c.height=256;const ctx=c.getContext('2d');
+  const dab=(x,y,r,alpha)=>{const grad=ctx.createRadialGradient(x,y,0,x,y,r);grad.addColorStop(0,`rgba(255,255,255,${alpha})`);grad.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=grad;ctx.fillRect(x-r,y-r,r*2,r*2);};
+  for(let k=0;k<90;k++){
+    const f=k/90,y=4+f*248,half=5+y*.225,alpha=.34*(1-f)**1.4;
+    for(const side of [-1,1])dab(64+side*half+Math.sin(k*2.1)*1.5,y,4+f*9,alpha);
+    if(y>118)dab(64+Math.sin(k*1.7)*4,y,9+f*8,.2*(1-f));
+  }
+  return new T.CanvasTexture(c);
 }
 const oceanVertex=`varying vec3 vWorld;void main(){vec4 w=modelMatrix*vec4(position,1.);vWorld=w.xyz;gl_Position=projectionMatrix*viewMatrix*w;}`;
 const oceanFragment=`
 precision highp float;
-uniform float time;uniform vec3 eye;varying vec3 vWorld;
+uniform float time;uniform float span;uniform vec3 eye;varying vec3 vWorld;
 float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
 float waves(vec2 p){float t=time*.33;p+=vec2(noise(p*.035),noise(p*.043+17.))*9.;return sin(dot(p,vec2(.18,.11))+t)*.40+sin(dot(p,vec2(-.12,.28))+t*1.31)*.24+sin(dot(p,vec2(.48,.13))-t*.72)*.10+sin(dot(p,vec2(.85,-.41))+t*.9)*.035;}
 void main(){
- vec2 p=vWorld.xz;float h=waves(p);float dx=waves(p+vec2(.5,0))-waves(p-vec2(.5,0));float dz=waves(p+vec2(0,.5))-waves(p-vec2(0,.5));
- vec3 normal=normalize(vec3(-dx*1.2,1.,-dz*1.2));vec3 view=normalize(eye-vWorld);vec3 sun=normalize(vec3(-.55,.8,-.3));
+ vec2 p=vWorld.xz;float h=waves(p);float dx=waves(p+vec2(.4,0))-waves(p-vec2(.4,0));float dz=waves(p+vec2(0,.4))-waves(p-vec2(0,.4));
+ // Fine ripples, glitter and whitecaps belong to close views. From high up they alias into specks, so they fade out.
+ float closeUp=1.-smoothstep(240.,420.,span);
+ vec2 q=p*.55+vec2(time*.21,-time*.16);
+ vec2 ripple=vec2(noise(q+vec2(.35,0))-noise(q-vec2(.35,0)),noise(q+vec2(0,.35))-noise(q-vec2(0,.35)));
+ vec3 normal=normalize(vec3(-dx*1.5-ripple.x*.55*closeUp,1.,-dz*1.5-ripple.y*.55*closeUp));vec3 view=normalize(eye-vWorld);vec3 sun=normalize(vec3(-.5,.78,-.37));
  float broad=noise(p*.003),detail=noise(p*.09);float facing=max(dot(normal,sun),0.);float fresnel=pow(1.-max(dot(normal,view),0.),3.);
- vec3 deep=vec3(.004,.027,.041),shallow=vec3(.009,.10,.115);vec3 color=mix(deep,shallow,broad*.65+facing*.2);
- color+=vec3(.025,.07,.075)*fresnel;float spec=pow(max(dot(reflect(-sun,normal),view),0.),120.);
- color+=vec3(.86,.84,.64)*spec*.2*(.3+detail*.7);color+=vec3(.014,.045,.045)*smoothstep(.37,.52,h)*(detail*.35);
+ vec3 deep=vec3(.004,.027,.041),shallow=vec3(.009,.10,.115);vec3 color=mix(deep,shallow,clamp(broad*.6+facing*.22+h*.1,0.,1.));
+ color+=vec3(.045,.10,.105)*fresnel;float gleam=max(dot(reflect(-sun,normal),view),0.);
+ color+=vec3(.88,.85,.66)*(pow(gleam,90.)*.24*mix(.25,1.,closeUp)*(.3+detail*.7)+pow(gleam,500.)*1.1*step(.5,noise(p*2.1+time*.8))*closeUp);
+ // Sparse whitecaps, gated by a broad patch field so they never line up with the swell.
+ float cap=smoothstep(.5,.78,h+detail*.3)*smoothstep(.56,.8,noise(p*.043+vec2(time*.02,3.)))*smoothstep(.35,.7,noise(p*.8));
+ color+=vec3(.08,.11,.10)*cap*closeUp;
  color*=.91+noise(p*.018)*.18;float mist=clamp(length(p)*.00008,0.,.17);color=mix(color,vec3(.28,.41,.40),mist);
  gl_FragColor=vec4(color,1.);
  #include <tonemapping_fragment>
@@ -201,20 +261,26 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
   const canvas=document.createElement('canvas');canvas.className='ocean-canvas';canvas.setAttribute('aria-hidden','true');
   const renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'low-power'});
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
+  // Phones get a smaller, cheaper shadow map.
+  const handheld=matchMedia('(pointer: coarse)').matches||innerWidth<700;
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=handheld?T.PCFShadowMap:T.PCFSoftShadowMap;
   host.prepend(canvas);
   const scene=new T.Scene();scene.background=new T.Color(0x183d43);scene.fog=new T.FogExp2(0x60837e,.00016);
   scene.add(new T.HemisphereLight(0xdcebe3,0x344541,2));
-  const sun=new T.DirectionalLight(0xffe5b6,3.1);sun.position.set(-300,700,-250);scene.add(sun);
+  const sun=new T.DirectionalLight(0xffe5b6,3.1);sun.castShadow=true;sun.shadow.mapSize.setScalar(handheld?1024:2048);sun.shadow.bias=-.0005;scene.add(sun,sun.target);
+  const sunward=new T.Vector3(-380,600,-280).normalize();
   const fill=new T.DirectionalLight(0x8fc9dd,.6);fill.position.set(400,100,200);scene.add(fill);
   const camera=new T.OrthographicCamera(-600,600,360,-360,1,6000);
-  const oceanMaterial=new T.ShaderMaterial({uniforms:{time:{value:0},eye:{value:new T.Vector3()}},vertexShader:oceanVertex,fragmentShader:oceanFragment});
+  const oceanMaterial=new T.ShaderMaterial({uniforms:{time:{value:0},span:{value:600},eye:{value:new T.Vector3()}},vertexShader:oceanVertex,fragmentShader:oceanFragment});
   mesh(scene,new T.PlaneGeometry(7000,7000),oceanMaterial,0,-1,0,[-PI/2,0,0]);
+  // The ocean is a custom shader, so a clear plane just above it takes the ships' shadows.
+  mesh(scene,new T.PlaneGeometry(7000,7000),new T.ShadowMaterial({color:0x00161a,opacity:.42,depthWrite:false}),0,-.5,0,[-PI/2,0,0]).receiveShadow=true;
  let ships=[],terrain=new T.Group(),overlays=new T.Group(),fleet=new T.Group(),lastBattle=null,state=null,focused=null,hidden=false,clock=0,last=0,frame=0,dead=false,dirty=true,failed=false,lastDraw=0;
   const fail=()=>{failed=true;hidden=true;onFailure('The dimensional sea is unavailable. Classic chart is ready.');};
   renderer.debug.onShaderError=fail;
   scene.add(terrain,overlays,fleet);
   const labels=document.createElement('div');labels.className='scene-labels';labels.setAttribute('aria-hidden','true');host.append(labels);
-  const smoke=puffTexture(),foam=foamTexture();
+  const smoke=puffTexture(),foam=wakeTexture();
   const shots=createShotEffects(scene,smoke);
   const ray=new T.Raycaster(),pointer=new T.Vector2(),waterPlane=new T.Plane(new T.Vector3(0,1,0),0);
   const palette=getComputedStyle(host);
@@ -224,14 +290,17 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
   function ring(radius,color,dashed=false){const points=[];for(let i=0;i<=80;i++){const a=i/80*PI*2;points.push(new T.Vector3(Math.sin(a)*radius,.8,Math.cos(a)*radius));}const m=dashed?new T.LineDashedMaterial({color,dashSize:3,gapSize:5,transparent:true,opacity:.9}):new T.LineBasicMaterial({color,transparent:true,opacity:.95});const l=new T.Line(new T.BufferGeometry().setFromPoints(points),m);l.computeLineDistances();return l;}
   function rebuild(battle){
     // Cached ship geometries/materials are shared between instances and retained.
-    for(const s of ships){s.label.remove();s.loss.geometry.dispose();s.loss.material.dispose();s.hit.geometry.dispose();s.hit.material.dispose();s.ring.geometry.dispose();s.ring.material.dispose();s.fleetRing.geometry.dispose();s.fleetRing.material.dispose();s.focusRing.geometry.dispose();s.focusRing.material.dispose();s.wake.geometry.dispose();s.wake.material.dispose();s.shadow.geometry.dispose();s.shadow.material.dispose();s.smokes.forEach(p=>{p.material.dispose();p.removeFromParent();});}
+    for(const s of ships){s.label.remove();s.loss.geometry.dispose();s.loss.material.dispose();s.hit.geometry.dispose();s.hit.material.dispose();s.ring.geometry.dispose();s.ring.material.dispose();s.fleetRing.geometry.dispose();s.fleetRing.material.dispose();s.focusRing.geometry.dispose();s.focusRing.material.dispose();s.wake.geometry.dispose();s.wake.material.dispose();s.foamLine.geometry.dispose();s.foamLine.material.dispose();s.smokes.forEach(p=>{p.material.dispose();p.removeFromParent();});}
     fleet.clear();labels.replaceChildren();disposeGroup(terrain);ships=[];
     if(battle.terrain!=='open'){
       const roads=battle.terrain==='roads';
       const coordinates=battle.terrain==='aboukir'?[[-950,-650],[1000,-650],[1000,-200],[260,-240],[10,-205],[-300,-180],[-950,-190]]:roads?[[-950,-650],[0,-650],[-130,-235],[-260,-200],[-365,-215],[-375,-100],[-600,50],[-950,50]]:[[160,-650],[1000,-650],[1000,-40],[550,-110],[445,-150],[390,-220],[320,-250]];
       const shape=new T.Shape();coordinates.forEach(([x,z],i)=>i?shape.lineTo(x,-z):shape.moveTo(x,-z));shape.closePath();
       const landMaterials=[new T.MeshStandardMaterial({color:0x304c38,roughness:1}),new T.MeshStandardMaterial({color:0x62665b,roughness:1})];
-      mesh(terrain,new T.ExtrudeGeometry(shape,{depth:10,bevelEnabled:true,bevelSize:3,bevelThickness:3,bevelSegments:2,steps:1}),landMaterials,0,1,0,[-PI/2,0,0]);
+      mesh(terrain,new T.ExtrudeGeometry(shape,{depth:10,bevelEnabled:true,bevelSize:3,bevelThickness:3,bevelSegments:2,steps:1}),landMaterials,0,1,0,[-PI/2,0,0]).receiveShadow=true;
+      // An illustrative beach and a band of shallow water outside it.
+      mesh(terrain,new T.ExtrudeGeometry(shape,{depth:.6,bevelEnabled:true,bevelSize:10,bevelThickness:1.2,bevelSegments:1,steps:1}),new T.MeshStandardMaterial({color:0xc9b88a,roughness:1}),0,-.5,0,[-PI/2,0,0]).receiveShadow=true;
+      mesh(terrain,new T.ExtrudeGeometry(shape,{depth:.05,bevelEnabled:true,bevelSize:30,bevelThickness:.05,bevelSegments:1,steps:1}),new T.MeshBasicMaterial({color:0x58c2b4,transparent:true,opacity:.2,depthWrite:false}),0,-.85,0,[-PI/2,0,0]);
       const edge=coordinates.map(([x,z])=>new T.Vector3(x,.7,z));edge.push(edge[0]);
       terrain.add(new T.Line(new T.BufferGeometry().setFromPoints(edge),new T.LineBasicMaterial({color:0xbfcdc0,transparent:true,opacity:.75})));
       // A second contour gives the illustrative shore a shallow turquoise edge.
@@ -247,7 +316,7 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
           rock.scale.set(1.1,.6+(j%2)*.3,1.4);rock.rotation.y=i+j;
         }
       }
-      mergePieces(rocks);terrain.add(rocks);
+      mergePieces(rocks);rocks.traverse(rock=>{rock.castShadow=rock.receiveShadow=true;});terrain.add(rocks);
     }
     for(const data of battle.ships){
       const group=new T.Group(),model=shipModel(data.type,data.side);model.scale.setScalar(data.representative?.84:1.08);group.add(model);
@@ -257,15 +326,16 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
       }),0,.65,0,[-PI/2,0,0]);
       const selected=ring(38,0xf0d7a1),focusRing=ring(38,0xedd6ac,true);group.add(selected,focusRing);
       const hit=mesh(group,new T.BoxGeometry(36,55,65),new T.MeshBasicMaterial({visible:false}),0,24,0);hit.userData.ship=data.id;
-      const shadow=mesh(group,new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:foam,color:0x001a1e,transparent:true,opacity:.9,depthWrite:false}),6,-.5,8,[-PI/2,0,0]);shadow.scale.set(36,70,1);
-      const wake=mesh(group,new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:foam,color:0xe5f4e0,transparent:true,opacity:.6,depthWrite:false}),0,0,46,[-PI/2,0,0]);wake.scale.set(30,90,1);
+      const low=-formFor(data.type).low*model.scale.y;
+      const foamLine=mesh(group,buffer(hullMesh(data.type).foam),new T.MeshBasicMaterial({vertexColors:true,transparent:true,depthWrite:false}),0,-.2,0);foamLine.scale.copy(model.scale);
+      const wake=mesh(group,new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:foam,color:0xe5f4e0,transparent:true,opacity:.6,depthWrite:false}),0,-.3,34,[-PI/2,0,0]);wake.scale.set(72,128,1);
       const smokes=[];for(let i=0;i<4;i++){const p=new T.Sprite(new T.SpriteMaterial({map:smoke,color:data.type==='sail'||data.type==='galley'?0xe0d9c5:0x8d9b96,transparent:true,opacity:0,depthWrite:false}));scene.add(p);smokes.push(p);}
       const label=document.createElement('span');label.className='scene-ship-label';label.textContent=data.representative?'Fleet marker':data.name;labels.append(label);
       const vertices=[];
       for(const angle of [PI/4,-PI/4])for(const [x,z] of [[-2.5,-18],[2.5,-18],[2.5,18],[-2.5,-18],[2.5,18],[-2.5,18]])vertices.push(x*Math.cos(angle)-z*Math.sin(angle),3,x*Math.sin(angle)+z*Math.cos(angle));
       const cross=new T.BufferGeometry();cross.setAttribute('position',new T.Float32BufferAttribute(vertices,3));
       const loss=new T.Mesh(cross,new T.MeshBasicMaterial({color:0xffb69c,depthTest:false,side:T.DoubleSide}));loss.renderOrder=5;loss.visible=false;group.add(loss);
-      group.userData.ship=data.id;fleet.add(group);ships.push({loss,data,group,model,ring:selected,fleetRing,focusRing,hit,wake,shadow,smokes,label});
+      group.userData.ship=data.id;fleet.add(group);ships.push({loss,data,group,model,low,ring:selected,fleetRing,focusRing,hit,wake,foamLine,smokes,label});
     }
     lastBattle=battle.id;
   }
@@ -305,7 +375,12 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
     camera.left=-height*aspect/2;camera.right=height*aspect/2;camera.top=height/2;camera.bottom=-height/2;
     const target=new T.Vector3(state.camera.x+state.camera.w/2-500,close?17:12,state.camera.y+state.camera.h/2-300);
     camera.position.copy(target).add(new T.Vector3(1800*Math.cos(angle)*Math.sin(yaw),1800*Math.sin(angle),1800*Math.cos(angle)*Math.cos(yaw)));
-    camera.lookAt(target);camera.updateProjectionMatrix();camera.updateMatrixWorld();oceanMaterial.uniforms.eye.value.copy(camera.position);
+    camera.lookAt(target);camera.updateProjectionMatrix();camera.updateMatrixWorld();oceanMaterial.uniforms.eye.value.copy(camera.position);oceanMaterial.uniforms.span.value=height;
+    // The shadow map covers the water now in view, so close views get sharp shadows.
+    const reach=Math.min(950,Math.hypot(camera.right,camera.top/Math.sin(angle))*1.04),lens=sun.shadow.camera;
+    sun.target.position.copy(target);sun.position.copy(target).addScaledVector(sunward,1500);
+    Object.assign(lens,{left:-reach,right:reach,top:reach,bottom:-reach,near:200,far:2800});lens.updateProjectionMatrix();
+    sun.shadow.normalBias=reach*.0035;
   }
   const resize=new ResizeObserver(()=>{renderer.setSize(host.clientWidth,host.clientHeight,false);frameCamera();dirty=true;});resize.observe(host);
   renderer.setSize(host.clientWidth,host.clientHeight,false);
@@ -336,8 +411,8 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
       if(s.damageKey!==damageKey){s.model.removeFromParent();s.model=shipModel(s.data.type,s.data.side,damage);s.model.scale.setScalar(s.data.representative?.84:1.08);s.group.add(s.model);s.damageKey=damageKey;}
       const sinking=sinkingAt(state.battle,s.data,state.progress,motion.matches);
       s.model.rotation.z=sinking.started?sinking.amount*.32:(motion.matches?0:Math.sin(clock*.65+s.data.id.length)*.008);
-      s.model.position.y=-sinking.amount*(sinking.shallow?12:65);
-      const fate=fateAt(s.data,state.progress),sunk=fate?.kind==='sunk';s.model.visible=!sinking.complete||sinking.shallow;s.shadow.visible=!sunk;s.loss.visible=sinking.complete;
+      s.model.position.y=s.low-sinking.amount*(sinking.shallow?12:65);
+      const fate=fateAt(s.data,state.progress),sunk=fate?.kind==='sunk';s.model.visible=!sinking.complete||sinking.shallow;s.foamLine.visible=!sunk;s.loss.visible=sinking.complete;
       s.label.textContent=sunk?`${sinking.complete?'×':'↘'} ${s.data.name} · ${sinking.complete?'Sunk':'Sinking'}`:s.data.representative?'Fleet marker':s.data.name+(damage?' · Damaged':'');
       s.wake.visible=!fate&&s.data.id!=='minnesota'&&state.progress<1;s.wake.material.opacity=.42+Math.sin(clock*1.2+s.data.id.length)*.06;
       const selected=s.data.id===state.selected,chapterFocus=focus.includes(s.data.id);
@@ -371,8 +446,8 @@ export function createScene(host,{onSelect,onPan,onFailure,reducedMotion=false})
     shots.dispose();
     const geometries=new Set(),materials=new Set(),textures=new Set();
     scene.traverse(o=>{if(o.geometry)geometries.add(o.geometry);for(const m of (o.material?(Array.isArray(o.material)?o.material:[o.material]):[])){materials.add(m);if(m.map)textures.add(m.map);}});
-    for(const g of cache.values())g.traverse(o=>{if(o.geometry)geometries.add(o.geometry);if(o.material)materials.add(o.material);});
-    for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();smoke.dispose();foam.dispose();cache.clear();
+    for(const g of cache.values())g.traverse(o=>{if(o.geometry)geometries.add(o.geometry);if(o.material){materials.add(o.material);if(o.material.map)textures.add(o.material.map);}});
+    for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();smoke.dispose();foam.dispose();cache.clear();sun.dispose();skinCache=null;
     renderer.dispose();canvas.remove();labels.remove();
   },canvas};
 }

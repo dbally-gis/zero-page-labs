@@ -1,5 +1,6 @@
 import * as T from './vendor/three-0.160.1.module.min.js';
 import {effectsAt,impactStyle} from './combat.mjs?v=atlas-review';
+import {formFor} from './hull.mjs';
 
 function fireTexture(round=false){
   const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d');
@@ -30,7 +31,14 @@ export function createShotEffects(scene,smoke){
   const put=(object,p,y=0)=>object.position.set(p.x,p.y+y,p.z);
   function update(battle,progress,{enabled=true,reduced=false}={}){
     root.visible=enabled;light.intensity=0;if(!enabled)return;
-    const events=effectsAt(battle,progress);let peak=0;
+    // Low-freeboard hulls sit lower in this scene than the shared effect heights assume.
+    const lowOf=id=>{const ship=battle.ships.find(s=>s.id===id);return ship?formFor(ship.type).low*(ship.representative?.84:1.08):0;};
+    const lower=(p,by)=>p&&{...p,y:p.y-by};
+    const events=effectsAt(battle,progress).map(e=>{
+      const from=lowOf(e.shooter||e.target||e.focus),to=lowOf(e.target||e.shooter||e.focus);
+      const flown=e.travel?Math.max(0,Math.min(1,e.age/e.travel)):1;
+      return {...e,origin:lower(e.origin,from),impact:lower(e.impact,to),projectile:lower(e.projectile,from+(to-from)*flown),ricochet:lower(e.ricochet,to)};
+    });let peak=0;
     pool.forEach((p,index)=>{
       const e=events[index];p.group.visible=!!e;if(!e)return;
       p.flash.material.opacity=reduced?0:e.flash;

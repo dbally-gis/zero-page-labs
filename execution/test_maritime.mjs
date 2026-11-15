@@ -199,3 +199,32 @@ test('a shared follow pair restores two distinct ships in its battle',()=>{
   assert.equal(readView(shareView({...state,pair:['virginia','victory']})).pair,null);
   assert.equal(readView(shareView({...state,view:'tactical'})).pair,null);
 });
+
+test('hull forms close at the bow, stay inside the beam and mirror port to starboard', async () => {
+  const {FORMS,DECK,hullHalf,hullMesh} = await import('../experiments/maritime/hull.mjs');
+  for (const [type, form] of Object.entries(FORMS)) {
+    const {shell, deck, foam} = hullMesh(type);
+    for (const part of [shell, deck, foam]) {
+      assert.ok(part.positions.every(Number.isFinite), `${type} has a non-finite vertex`);
+      assert.ok(Math.max(...part.indices) < part.positions.length / 3, `${type} index out of range`);
+      assert.equal(part.indices.length % 3, 0);
+    }
+    assert.equal(hullHalf(type, -form.length / 2, 5), 0, `${type} bow is open`);
+    let widest = 0;
+    for (let z = -form.length / 2; z <= form.length / 2; z += .5) for (let y = -2; y <= 12; y += .5) {
+      widest = Math.max(widest, hullHalf(type, z, y));
+    }
+    assert.ok(widest <= form.beam / 2 + 1e-9, `${type} exceeds her beam`);
+    assert.ok(widest > form.beam / 2 * .98, `${type} never reaches her beam`);
+    const xs = shell.positions.filter((_, i) => i % 3 === 0);
+    assert.ok(Math.abs(Math.max(...xs) + Math.min(...xs)) < 1e-9, `${type} is lopsided`);
+    assert.ok(deck.positions.filter((_, i) => i % 3 === 1).every(y => y === DECK), `${type} deck height moved`);
+    // Deck triangles must face up, or the renderer culls them from above.
+    for (let i = 0; i < deck.indices.length; i += 3) {
+      const [a, b, c] = deck.indices.slice(i, i + 3).map(n => [deck.positions[n * 3], deck.positions[n * 3 + 2]]);
+      const up = (b[1] - a[1]) * (c[0] - a[0]) - (b[0] - a[0]) * (c[1] - a[1]);
+      assert.ok(up >= 0, `${type} deck faces down`);
+    }
+    assert.ok(form.low >= 0);
+  }
+});

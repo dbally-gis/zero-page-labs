@@ -18,9 +18,9 @@ timestamp: "2026-11-08T17:06:01-06:00"
 | Chesapeake | NPS Battle of the Capes, paragraph beginning “The wind direction” | Leading-fleet discharges, damage/disengagement narrative | Command symbols are representative; rear-half inactivity and unknown individual hits are preserved. |
 | Nile | Greenwich beginning-of-action; Mariners Museum CL20622; Nelson dispatch via NHHC | Representative fleet discharges; separate Orient explosion | No fabricated incoming fatal projectile or ignition source. |
 | Trafalgar | Prior RMG and Lucas evidence | Rake, reciprocal exchange, attributed stern fire | See trafalgar-evidence.md. |
-| Hampton Roads | NOAA Hampton Roads account,9March paragraph | Armour deflections, forward pilothouse impact | Brief sparks/ricochet; no penetration or fire inferred; exact damage geometry remains generic. |
+| Hampton Roads | NOAA Hampton Roads account,9March paragraph | Armour deflections, forward pilothouse impact | Sparks and ricochet for representative deflections. Brief shell burst at Monitor’s forward pilothouse for the documented hit. |
 | Lissa | Italian Navy battle and Re d’Italia ship record | Fleet muzzle fire, documented ram | Ram is not gunfire or a magazine explosion. |
-| Yalu | USNI1895 Battle of the Yalu including corrections | Attributed Zhenyuan/Chen Yuen shell damage and Matsushima fire | Accounts differ; no settled calibre, time or casualty count claimed. |
+| Yalu | USNI1895 Battle of the Yalu including corrections | Attributed Zhenyuan/Chen Yuen shell damage and Matsushima fire | The Moment card identifies Zhenyuan as a disputed shooter. The animated trajectory follows the attributed account. |
 | Manila | Olympia/Dewey reports hosted by NHHC; Montojo report; modern NHHC | Forward mounting discharge, reported shell hit, separate fires and scuttling | Forward describes turret location, not researched train angle. Shell-burst duration and fire onset are illustrative. |
 
 Direct source URLs and displayed uncertainty labels live beside the episode descriptions in battle-events.mjs; source indices resolve against each encounter’s bibliography. Participant claims are attributed, not presented as independently corroborated facts.
@@ -34,3 +34,7 @@ Timber contact: dust/debris, no flame. Armour: brief sparks plus ricochet for th
 ## Checks
 
 194Node tests include12event/source sets, typed responses, material-specific no-fire assertions, pair provenance regression, fire-loss cutoffs, deterministic scrubbing and bounded effects. Deep static verification covers10pages. Browsermatrix:12eventguides,50workingcards/links, seeks pause correctly;375pxYalu source card has no overflow; classic armour5sparks/noflame and ram7fragments/noflash; Manila two fires disappear after their source-backed loss thresholds.
+
+## 2026-11-11 historical review
+
+Representative contacts now qualify their participant labels. Yalu retains Zhenyuan’s attribution in the source note and shows only the Matsushima impact. Minnesota uses a wooden screw-frigate model. The Nile depicts Goliath inshore and Vanguard seaward opposite Spartiate. The Manila Bay final chapter begins at the return event. Chesapeake keeps Terrible’s loss in the aftermath, after the battle, and uses a date range where the accounts differ.

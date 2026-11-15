@@ -574,7 +574,7 @@ function sceneUnavailable(message){setClassic(true);$('classic-chart').disabled=
 // Dynamic import keeps the complete classic chart available if WebGL or the
 // optional renderer fails. No replay or historical data is delegated to WebGL.
 if(!new URLSearchParams(location.search).has('classic')){
-  import('./scene.mjs?v=atlas-review').then(({createScene})=>{
+  import('./scene.mjs?v=hull-forms').then(({createScene})=>{
     try{
       dimensional=createScene($('chart'),{onSelect:selectShip,onPan:(dx,dy)=>{if(following())return;const c=state.camera;setCamera({...c,x:clamp(c.x+dx,-250,1250-c.w),y:clamp(c.y+dy,-150,750-c.h)});},onFailure:sceneUnavailable,reducedMotion:reduced.matches});
       refreshScene();setClassic(classic);
