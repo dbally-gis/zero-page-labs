@@ -1,4 +1,5 @@
 import * as T from '../maritime/vendor/three-0.160.1.module.min.js';
+import { surfaces } from './surface.mjs';
 
 export const length = 168 * .3048;
 export const beam = 46.75 * .3048;
@@ -41,12 +42,22 @@ const colors = {
   timber: 0x925f36, edge: 0xd8a260, light: 0xd0a673, ochre: 0xc49245,
   dark: 0x293434, iron: 0x32383a, red: 0x783d2a, copper: 0x69412d, sail: 0xf2dfb1,
 };
+const skin = surfaces();
 const mat = Object.fromEntries(Object.entries(colors).map(([key, color]) => [
-  key, new T.MeshStandardMaterial({ color, roughness: .91, side: T.DoubleSide }),
+  key, new T.MeshStandardMaterial({ color, roughness: .8, side: T.DoubleSide }),
 ]));
+Object.assign(mat, {
+  iron: skin.standard(colors.iron, skin.iron, { roughness: .5, metalness: .5, side: T.DoubleSide }),
+  mast: skin.standard(0xa9743f, skin.spar, { roughness: .62 }),
+  yard: skin.standard(0x2b3030, skin.spar, { roughness: .6 }),
+  deck: skin.standard(0xdcb686, skin.decking, { roughness: .74, side: T.DoubleSide }),
+  orlop: skin.standard(0xa87548, skin.decking, { roughness: .8, side: T.DoubleSide }),
+  sail: skin.standard(0xf6ecd4, skin.sail, { roughness: .96, bumpScale: 2.4, side: T.DoubleSide }),
+  // Standing rigging, shown tarred.
+  rope: skin.standard(0x6a543a, skin.rope, { roughness: .95 }),
+});
 const boxGeometry = new T.BoxGeometry(1, 1, 1);
-const lines = new T.LineBasicMaterial({ color: 0x574431, transparent: true, opacity: .52 });
-const fine = new T.LineBasicMaterial({ color: 0x513726, transparent: true, opacity: .28 });
+const lines = .05, fine = .028;
 
 function box(parent, size, pos, material) {
   const mesh = new T.Mesh(boxGeometry, material);
@@ -56,23 +67,56 @@ function box(parent, size, pos, material) {
   return mesh;
 }
 
-function line(parent, points, material = lines) {
-  const geo = new T.BufferGeometry().setFromPoints(points.map(p => new T.Vector3(...p)));
-  parent.add(new T.Line(geo, material));
+// Rope runs are collected per parent and built as one mesh of thin round lengths.
+function line(parent, points, radius = lines) {
+  (parent.userData.runs ??= []).push([points, radius]);
 }
 
-function spar(parent, a, b, radius, material = mat.timber, endRadius = radius) {
+function string(parent) {
+  const positions = [], normals = [], uvs = [], sides = 5;
+  const axis = new T.Vector3(), u = new T.Vector3(), v = new T.Vector3(), n = new T.Vector3();
+  for (const [points, radius] of parent.userData.runs || []) for (let i = 0; i < points.length - 1; i++) {
+    const a = new T.Vector3(...points[i]), b = new T.Vector3(...points[i + 1]);
+    const reach = axis.subVectors(b, a).length();
+    if (!reach) continue;
+    axis.divideScalar(reach);
+    u.set(0, 1, 0).cross(axis);
+    if (u.lengthSq() < 1e-6) u.set(1, 0, 0);
+    u.normalize(); v.crossVectors(axis, u);
+    const ring = k => n.copy(u).multiplyScalar(Math.cos(k * 2 * Math.PI / sides)).addScaledVector(v, Math.sin(k * 2 * Math.PI / sides)).clone();
+    for (let k = 0; k < sides; k++) {
+      const m = ring(k), o = ring(k + 1);
+      for (const [normal, end, turn] of [[m, a, 0], [m, b, 0], [o, b, 1], [m, a, 0], [o, b, 1], [o, a, 1]]) {
+        positions.push(end.x + normal.x * radius, end.y + normal.y * radius, end.z + normal.z * radius);
+        normals.push(normal.x, normal.y, normal.z);
+        uvs.push((k + turn) / sides, (end === b ? reach : 0) / radius / 40);
+      }
+    }
+  }
+  delete parent.userData.runs;
+  if (!positions.length) return;
+  const geometry = new T.BufferGeometry();
+  geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute('normal', new T.Float32BufferAttribute(normals, 3));
+  geometry.setAttribute('uv', new T.Float32BufferAttribute(uvs, 2));
+  const mesh = new T.Mesh(geometry, mat.rope);
+  mesh.userData.castOnly = true;
+  parent.add(mesh);
+}
+
+function spar(parent, a, b, radius, material = mat.mast, endRadius = radius) {
   const start = new T.Vector3(...a), end = new T.Vector3(...b), axis = end.clone().sub(start);
-  const mesh = new T.Mesh(new T.CylinderGeometry(endRadius, radius, axis.length(), 8), material);
+  const mesh = new T.Mesh(new T.CylinderGeometry(endRadius, radius, axis.length(), 16), material);
   mesh.position.copy(start).lerp(end, .5);
   mesh.quaternion.setFromUnitVectors(new T.Vector3(0,1,0), axis.normalize());
   parent.add(mesh);
   return mesh;
 }
 
-function face(parent, positions, material, indices) {
+function face(parent, positions, material, indices, uvs) {
   const geo = new T.BufferGeometry();
   geo.setAttribute('position', new T.Float32BufferAttribute(positions.flat(), 3));
+  if (uvs) geo.setAttribute('uv', new T.Float32BufferAttribute(uvs.flat(), 2));
   if (indices) geo.setIndex(indices);
   geo.computeVertexNormals();
   const mesh = new T.Mesh(geo, material);
@@ -85,10 +129,19 @@ const upperX = gunX.map(x => x + .39);
 const hullLevels = [-12,-5.6,-4.9,-4.1,-3.2,-2.35,-1.5,-.65,.22,.92,1.78,2.66,3.15,4.18,4.98,5.4];
 const xSamples = Array.from({length: 101}, (_, i) => -half + length * i / 100);
 const xCuts = [...new Set([...xSamples, ...[...gunX,...upperX].flatMap(x => [x-.51,x+.51])])].sort((a,b)=>a-b);
-const shellMaterial = new T.MeshStandardMaterial({vertexColors:true, roughness:.92, side:T.DoubleSide});
+const shellMaterial = skin.standard(0xffffff, skin.planking, {vertexColors:true, roughness:.7, bumpScale:1.8, side:T.DoubleSide});
+
+// Normal of the moulded surface, so the planking shades as one fair curve. It follows the
+// triangle winding on both sides; the double-sided material turns it to face the viewer.
+function outward(x, level, side) {
+  const along = new T.Vector3(...point(x+.3,level,side)).sub(new T.Vector3(...point(x-.3,level,side)));
+  const upward = new T.Vector3(...point(x,level+.15,side)).sub(new T.Vector3(...point(x,level-.15,side)));
+  const normal = along.cross(upward);
+  return normal.lengthSq() < 1e-8 ? [0,-side,0] : normal.normalize().toArray();
+}
 
 function hull(parent, side) {
-  const positions = [], shades = [];
+  const positions = [], shades = [], normals = [], uvs = [];
   for (let band=0; band<hullLevels.length-1; band++) {
     const lower = hullLevels[band], upper = hullLevels[band+1];
     const ports = lower===1.78 ? gunX : lower===4.18 ? upperX : [];
@@ -96,19 +149,20 @@ function hull(parent, side) {
     for (let i=0; i<xCuts.length-1; i++) {
       const a=xCuts[i], b=xCuts[i+1], center=(a+b)/2;
       if (ports.some(x=>Math.abs(x-center)<.51)) continue;
-      const corners=[point(a,lower,side),point(b,lower,side),point(b,upper,side),point(a,upper,side)];
-      const tint=new T.Color(colors[palette]).multiplyScalar(.91 + .08*Math.sin(band*3+i*.34) + .05*Math.sin(i*1.7));
+      const at=[[a,lower],[b,lower],[b,upper],[a,upper]];
+      const tint=new T.Color(colors[palette]).multiplyScalar(1.16);
       for(const j of [0,1,2,0,2,3]){
-        positions.push(corners[j]);
+        const [x,level]=at[j];
+        positions.push(point(x,level,side));
+        normals.push(outward(x,level,side));
+        uvs.push(x/7, Math.max(level,-6.5)/1.1);
         shades.push(tint.r,tint.g,tint.b);
       }
     }
   }
-  const surface = face(parent, positions, shellMaterial);
+  const surface = face(parent, positions, shellMaterial, null, uvs);
   surface.geometry.setAttribute('color', new T.Float32BufferAttribute(shades,3));
-  for (const level of [-4.9,-4.1,-3.2,-2.35,-1.5,-.65,.22,.92,1.78,2.66,3.15,4.18,4.98,5.4]) {
-    line(parent,xSamples.map(x=>{const p=point(x,level,side); p[2]+=side*.017; return p;}),fine);
-  }
+  surface.geometry.setAttribute('normal', new T.Float32BufferAttribute(normals.flat(),3));
   const rail = new T.CatmullRomCurve3(xSamples.filter((_,i)=>i%4===0).map(x=>new T.Vector3(...point(x,5.4,side))));
   parent.add(new T.Mesh(new T.TubeGeometry(rail,70,.095,5,false),mat.edge));
 }
@@ -121,17 +175,8 @@ function deck(parent, start, end, level, side, material) {
     const a=edge(x1), b=edge(x2), c=[x1,a[1],0], d=[x2,b[1],0];
     positions.push(a,b,d,a,d,c);
   }
-  face(parent, positions, material);
-  for(let j=1;j<15;j++) {
-    line(parent,Array.from({length:51},(_,i)=>{
-      const p=point(mix(start,end,i/50),level,side);
-      p[1]+=.018;
-      p[2]*=j/15*.96;
-      return p;
-    }),fine);
-  }
-  const stripe = Array.from({length:26},(_,i)=>point(mix(start,end,i/25),level,side));
-  line(parent,stripe,lines);
+  // Planks run fore and aft, about 28 cm wide.
+  face(parent, positions, material, null, positions.map(p=>[p[0]/7, p[2]/2.2]));
 }
 
 function gun(parent, x, level, side, heavy) {
@@ -149,9 +194,10 @@ function battery(parent, xs, y, side, heavy) {
 }
 
 function sail(parent, y, width, depth, bias, material = mat.sail) {
-  const verts=[], indices=[], uSteps=12,vSteps=8;
+  const verts=[], uvs=[], indices=[], uSteps=16,vSteps=12;
   for (let v=0;v<=vSteps;v++) for (let u=0;u<=uSteps;u++){
     const t=v/vSteps, span=u/uSteps*2-1;
+    uvs.push([u/uSteps,1-t]);
     verts.push([bias*Math.sin(Math.PI*t)*Math.cos(span*Math.PI/2)+.14*t,
       y-depth*t+.75*span*span*t, span*width/2*(.84+.16*t)]);
   }
@@ -159,11 +205,7 @@ function sail(parent, y, width, depth, bias, material = mat.sail) {
     const i=v*(uSteps+1)+u, j=i+uSteps+1;
     indices.push(i,j,i+1,i+1,j,j+1);
   }
-  const cloth=face(parent,verts,material,indices);
-  const ropes=new T.Group(); parent.add(ropes);
-  for(let u=0;u<=uSteps;u+=3) line(ropes,Array.from({length:vSteps+1},(_,v)=>verts[v*(uSteps+1)+u]),fine);
-  line(ropes,verts.slice(-uSteps-1),lines);
-  return [cloth,ropes];
+  return [face(parent,verts,material,indices,uvs)];
 }
 
 function rig(parent) {
@@ -179,14 +221,14 @@ function rig(parent) {
   ];
   const [fore, main, mizzen] = specs;
   for (const [name,x,top,yards] of specs) {
-    spar(parent,[x,-2,0],[x,top,0],.38,mat.timber,.075);
+    spar(parent,[x,-2,0],[x,top,0],.38,mat.mast,.075);
     for (const y of [yards[0][0]+2.7,yards[1][0]+2]) {
       spar(parent,[x,y-.38,0],[x,y,0],1.25,mat.dark,1.14);
     }
     sets[name]=new T.Group(); sets[name].position.x=x; parent.add(sets[name]);
     cloth[name]=[];
     for (const [y,width,drop] of yards) {
-      spar(sets[name],[0,y,-width/2],[0,y,width/2],.05+width*.006,mat.dark);
+      spar(sets[name],[0,y,-width/2],[0,y,width/2],.05+width*.006,mat.yard);
       line(sets[name],[[0,y,-width/2],[0,y+3,0],[0,y,width/2]]);
       if (drop) cloth[name].push(...sail(sets[name],y,width,drop,drop*.1));
     }
@@ -198,19 +240,22 @@ function rig(parent) {
         const t=i/15;
         line(parent,[anchors[0],anchors.at(-1)].map(p=>[mix(p[0],x,t),mix(p[1],tops,t),mix(p[2],0,t)]),fine);
       }
-      line(parent,[[x,top-3,0],point(x-3.9,3.72,side)]);
+      // The backstay leads far enough aft to clear the belly of the sails.
+      line(parent,[[x,top-3,0],point(x-7.2,3.72,side)]);
     }
   }
-  spar(parent,[22.9,5.2,0],[44,15.2,0],.32,mat.timber,.09);
+  spar(parent,[22.9,5.2,0],[44,15.2,0],.32,mat.mast,.09);
   line(parent,[[44,15.2,0],[fore[1],fore[2],0],[main[1],main[2],0],[mizzen[1],mizzen[2],0]]);
   line(parent,[[36,11.4,0],...specs.map(([,x,,yards])=>[x,yards[1][0]+2,0])]);
   line(parent,[[35,10.9,0],[26,-.4,0]]);
   const jib = new T.Group(); parent.add(jib);
-  face(jib,[[42,14.3,0],[21,35.5,0],[25.5,11.6,3.4],[29.5,17.2,2.2]],mat.sail,[0,1,3,1,2,3,2,0,3]);
+  face(jib,[[42,14.3,0],[21,35.5,0],[25.5,11.6,3.4],[29.5,17.2,2.2]],mat.sail,[0,1,3,1,2,3,2,0,3],[[0,0],[.5,1],[1,0],[.5,.4]]);
   const driver = new T.Group(); driver.position.x=mizzen[1]; parent.add(driver);
-  spar(driver,[0,9.5,0],[-14.5,8.6,0],.13,mat.dark);
-  spar(driver,[0,17,0],[-9.5,21,0],.1,mat.dark);
-  face(driver,[[0,9.5,0],[-14,8.7,0],[-9.3,20.9,0],[0,17,0]],mat.sail,[0,1,2,0,2,3]);
+  spar(driver,[0,9.5,0],[-14.5,8.6,0],.13,mat.yard);
+  spar(driver,[0,17,0],[-9.5,21,0],.1,mat.yard);
+  face(driver,[[0,9.5,0],[-14,8.7,0],[-9.3,20.9,0],[0,17,0]],mat.sail,[0,1,2,0,2,3],[[1,0],[0,0],[0,1],[1,1]]);
+  string(parent);
+  for (const set of Object.values(sets)) string(set);
   return { sets, cloth, jib, driver };
 }
 
@@ -219,11 +264,11 @@ export function createShip() {
   ship.add(far,near,open);
   hull(far,-1); hull(near,1);
   for(const [side,parent] of [[-1,far],[1,near]]) {
-    for(const [level,material] of [[-1.18,mat.timber],[1.17,mat.light],[3.59,mat.light]]) {
+    for(const [level,material] of [[-1.18,mat.orlop],[1.17,mat.deck],[3.59,mat.deck]]) {
       deck(parent,-half+.5,half-.65,level,side,material);
     }
-    deck(parent,-half+.3,-8.8,5.19,side,mat.light);
-    deck(parent,13,half-.4,5.19,side,mat.light);
+    deck(parent,-half+.3,-8.8,5.19,side,mat.deck);
+    deck(parent,13,half-.4,5.19,side,mat.deck);
     battery(parent,gunX,1.17,side,true); battery(parent,upperX,3.59,side,false);
     battery(parent,Array.from({length:7},(_,i)=>-23.9+i*2.35),5.19,side,false);
     battery(parent,[16.7,20.4],5.19,side,false);
@@ -243,7 +288,7 @@ export function createShip() {
     const frame=Array.from({length:15},(_,j)=>{
       const p=point(x,mix(keel-sheer,5.26,j/14),-1); p[2]*=.965; return new T.Vector3(...p);
     });
-    open.add(new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(frame),18,.105,5,false),mat.edge));
+    open.add(new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(frame),18,.105,8,false),mat.edge));
     for(const level of [-1.18,1.17,3.59]) {
       const p=point(x,level,-1);
       box(open,[.14,.16,-p[2]],[x,p[1]-.09,p[2]/2],mat.edge);
@@ -252,7 +297,7 @@ export function createShip() {
   for(const x of [-17,-13,-9,-6,8,11,14,17]) for(const z of [-1.05,-2.15,-3.1]){
     const y=dimensions(x).keel+1.65+.22*Math.abs(z);
     if (point(x,y-dimensions(x).sheer,-1)[2]>z-.35) continue;
-    const barrel=new T.Mesh(new T.CylinderGeometry(.37,.34,.84,9),mat.timber);
+    const barrel=new T.Mesh(new T.CylinderGeometry(.37,.34,.84,14),mat.timber);
     barrel.position.set(x,y,z);open.add(barrel);
     for (const dy of [-.27,.27]) spar(open,[x,y+dy-.035,z],[x,y+dy+.035,z],.384,mat.dark);
   }

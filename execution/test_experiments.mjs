@@ -296,3 +296,53 @@ test('Bellona ship position follows the tack path without a jump', () => {
     assert.ok(near(tackPosition(time), tackPosition(time + .013)) < .02, `jump at ${time}`);
   }
 });
+
+test('Bellona gun deck and ship build without a browser and stay finite through the drill', async () => {
+  const { createGunDrill } = await import('../experiments/bellona/gun-scene.mjs');
+  const { createShip } = await import('../experiments/bellona/ship.mjs');
+  const drill = createGunDrill();
+  const crew = [];
+  drill.room.traverse(part => { if (part.userData.crewIndex !== undefined) crew.push(part); });
+  assert.equal(crew.length, gunCrew.length);
+  for (let time = 0; time <= gunDuration; time += .25) {
+    drill.update(sampleGun(time));
+    drill.room.traverse(part => {
+      for (const value of [...part.position.toArray(), ...part.quaternion.toArray(), ...part.scale.toArray()]) {
+        assert.ok(Number.isFinite(value), `non-finite transform at ${time}s`);
+      }
+    });
+    // Feet stay on the deck and heads stay below the beams at every step.
+    for (const figure of crew) {
+      figure.updateWorldMatrix(true, true);
+      let low = Infinity, high = -Infinity;
+      figure.traverse(part => {
+        if (!part.isMesh) return;
+        part.geometry.computeBoundingBox();
+        const box = part.geometry.boundingBox.clone().applyMatrix4(part.matrixWorld);
+        low = Math.min(low, box.min.y); high = Math.max(high, box.max.y);
+      });
+      assert.ok(low > -.02 && low < .03, `feet at ${low} at ${time}s`);
+      assert.ok(high > 1.3 && high < 1.95, `head at ${high} at ${time}s`);
+    }
+  }
+  const { ship } = createShip();
+  let shells = 0;
+  ship.traverse(part => {
+    const position = part.geometry?.attributes.position;
+    if (position) assert.ok(position.array.every(Number.isFinite));
+    // Both hull shells: supplied normals must agree with the winding, or one side lights inside out.
+    const normal = part.geometry?.attributes.normal;
+    if (!part.geometry?.attributes.color) return;
+    shells++;
+    for (let i = 0; i < position.count; i += 3) {
+      const [a, b, c] = [0, 1, 2].map(n => [position.getX(i + n), position.getY(i + n), position.getZ(i + n)]);
+      const u = b.map((v, n) => v - a[n]), w = c.map((v, n) => v - a[n]);
+      const flat = [u[1] * w[2] - u[2] * w[1], u[2] * w[0] - u[0] * w[2], u[0] * w[1] - u[1] * w[0]];
+      if (Math.hypot(...flat) < 1e-6) continue;
+      let dot = 0;
+      for (let n = 0; n < 3; n++) dot += flat[0] * normal.getX(i + n) + flat[1] * normal.getY(i + n) + flat[2] * normal.getZ(i + n);
+      assert.ok(dot >= 0, `hull normals oppose their triangle at vertex ${i}`);
+    }
+  });
+  assert.equal(shells, 2);
+});

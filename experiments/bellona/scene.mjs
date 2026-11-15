@@ -2,6 +2,7 @@ import * as T from '../maritime/vendor/three-0.160.1.module.min.js';
 import { createGunDrill } from './gun-scene.mjs';
 import { createShip } from './ship.mjs';
 import { parts, sampleTack, tackPosition, tackTrack } from './study.mjs';
+import { studio } from './surface.mjs';
 
 // Metres of ground per unit of the teaching path, chosen so the tack spans about four ship lengths.
 const trackScale = 12;
@@ -20,13 +21,13 @@ function ribbon(points, width, color, opacity) {
   const geometry=new T.BufferGeometry();
   geometry.setAttribute('position',new T.Float32BufferAttribute(positions,3));
   geometry.setIndex(indices);
-  return new T.Mesh(geometry,new T.MeshBasicMaterial({color,transparent:true,opacity,side:T.DoubleSide,depthWrite:false}));
+  return new T.Mesh(geometry,new T.MeshBasicMaterial({color,transparent:true,opacity,side:T.DoubleSide,depthWrite:false,toneMapped:false}));
 }
 
 function shade(root) {
   root.traverse(part=>{
     if (!part.isMesh || !part.material.isMeshStandardMaterial) return;
-    part.castShadow=true;
+    part.castShadow=!part.material.transparent;
     part.receiveShadow=!part.userData.castOnly;
   });
 }
@@ -36,9 +37,14 @@ export function createScene(stage, canvas, markers, chooseCrew) {
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
   renderer.shadowMap.enabled=true;
   renderer.shadowMap.type=T.PCFSoftShadowMap;
+  // Filmic response and studio reflections: highlights roll off instead of clipping,
+  // and iron, paint and skin pick up the room around them.
+  renderer.toneMapping=T.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.05;
   const scene=new T.Scene();
-  scene.add(new T.HemisphereLight(0xffefd2,0x524637,2.35));
-  const light=new T.DirectionalLight(0xffedcf,2.2);
+  scene.environment=studio(renderer);
+  scene.add(new T.HemisphereLight(0xffefd2,0x524637,.35));
+  const light=new T.DirectionalLight(0xffedcf,2.6);
   light.castShadow=true;
   light.shadow.mapSize.set(2048,2048);
   scene.add(light);
@@ -52,10 +58,11 @@ export function createScene(stage, canvas, markers, chooseCrew) {
     light.shadow.normalBias=gunView ? .012 : .16;
   }
   aimLight(false);
-  const fill=new T.DirectionalLight(0xc6dcea,1.0);
+  const fill=new T.DirectionalLight(0xc6dcea,.35);
   fill.position.set(-25,20,-40);
   scene.add(fill);
-  const camera=new T.OrthographicCamera(-1,1,1,-1,.5,400);
+  // A long lens: enough perspective to read as a photograph, little enough to keep the plate's proportions.
+  const lens=18, camera=new T.PerspectiveCamera(lens,1,.5,900);
   const ship=createShip();
   shade(ship.ship);
   scene.add(ship.ship);
@@ -66,6 +73,7 @@ export function createScene(stage, canvas, markers, chooseCrew) {
   scene.add(floor);
   const grid=new T.GridHelper(135,27,0xa6a997,0xa6a997);
   grid.material.transparent=true;
+  grid.material.toneMapped=false;
   grid.material.opacity=.25;
   grid.position.y=ground;
   scene.add(grid);
@@ -102,12 +110,11 @@ export function createScene(stage, canvas, markers, chooseCrew) {
     // Whole ship and tack frame the full rig.
     const [focusX,focusY,tall,wide] = gunView ? [.1,.85,7.6,11.5] : view==='cut' ? [2,14.5,49,78] :
       view==='tack' ? [4,20,84,104] : [6,24.5,70,92];
-    const radius = gunView ? 25 : 140;
     const frustum = Math.max(tall,wide/aspect)/zoom;
-    camera.top=frustum/2;
-    camera.bottom=-camera.top;
-    camera.right=camera.top*aspect;
-    camera.left=-camera.right;
+    const radius = frustum/2/Math.tan(T.MathUtils.degToRad(lens/2));
+    camera.aspect=aspect;
+    camera.near=Math.max(.5,radius-(gunView ? 12 : 130));
+    camera.far=radius+(gunView ? 30 : 260);
     camera.updateProjectionMatrix();
     camera.position.set(
       focusX+Math.sin(yaw)*Math.cos(elevation)*radius,

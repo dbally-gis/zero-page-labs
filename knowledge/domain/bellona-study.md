@@ -44,3 +44,17 @@ The real-ship figures used for these corrections (yard bracing limit, spar dimen
 - In the guided tack view the ship stays at the origin. The path strips and the grid slide under her by `tackPosition(time) * trackScale` (12 m per path unit, about four ship lengths for the tack).
 - Scene mapping: path y (to windward) is world x, path x (across the wind) is world z.
 - The SVG chart stays as the overview and as the no-WebGL fallback.
+
+## Realistic rendering (2026-11-13)
+
+- `surface.mjs` draws every texture on a canvas at load (wood, planking, cloth folds, sail, iron, rope, smoke puff) and builds the shared materials. It returns `null` maps when there is no `document`, so the scene modules import in Node for tests.
+- `studio(renderer)` renders a small room (gradient shell plus three bright panels) through `PMREMGenerator` and the result is `scene.environment`. With it the hemisphere and fill lights are low (.35); the directional light still makes the shadows.
+- Tone mapping is ACES. Flat overlay materials (selection ring, tack ribbons, grid, smoke sprites) set `toneMapped:false` so their colours stay as authored.
+- The camera is perspective with an 18 degree lens. Distance comes from the old orthographic frame height, so framing and zoom limits match the earlier plates.
+- `figure.mjs` builds each seaman from lofted torso sections, turned limb sections and a sculpted sphere head with a painted face texture. `move(x,z,heading,effort,reach)` keeps the old signature; arms and legs are placed by two-bone reach. Below reach .13 the arms hang; above .42 the hands go to the old work point.
+- Crew dress is generic later-eighteenth-century working rig, stated as illustrative in the module. It is not evidence for Bellona's people.
+- Crew picking walks up from the hit mesh to the group carrying `userData.crewIndex`; sprites are skipped.
+- Rigging: `line()` collects runs per parent and `string()` builds one five-sided tube mesh per parent. Backstays now foot 7.2 m abaft the mast (was 3.9) so they clear the sail bellies; this is a drawing choice, not a measured lead.
+- Hull shell normals are supplied, not computed. They must agree with the triangle winding on both shells because the material is double-sided and three.js flips the normal on back faces. Multiplying by `side` lit the port shell inside out (caught by the verifier, 2026-11-13).
+- Cloth bump above about 2 on the fold texture reads as bandages. Iron bump above about .3 reads as dents.
+- Chrome on software rendering logs "GPU stall due to ReadPixels" when canvas textures upload. It is a driver performance note, not a page error.
