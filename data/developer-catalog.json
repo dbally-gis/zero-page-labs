@@ -1,6 +1,6 @@
 {
   "source": "https://apps.repebble.com/apps/dev/daniel-bally_e8468a0ff28edd5791d1bced",
-  "observedAt": "2026-11-10",
+  "observedAt": "2026-11-16",
   "pagination": {
     "loadedPages": 3,
     "entries": 45,
@@ -282,9 +282,9 @@
       "url": "https://apps.repebble.com/tercom_c6f081e1607448bf92df7de4",
       "category": "Faces",
       "description": "Tap your wrist and fly over the terrain. TERCOM brings a CRT-inspired wireframe flight instrument to Pebble Time 2, Pebble Round 2, and Pebble 2.\n\nChoose Green phosphor, Amber terminal, Ice blue, or Monochrome on color watches. Pebble 2 uses a high-contrast monochrome wireframe. Explore Crags, a winding Canyon, Dunes, a volcanic Caldera, and layered Alpine ridges. Green remains the default.\n\nOn the watch, a single wrist tap starts a temporary flight. A rapid double tap changes tracks when enabled. Flight returns to the exact resting terrain position. In the phone settings, choose Flight Off, Short (2 seconds), or Standard (about 4.5 seconds), adjust tilt response, disable double-tap switching, or choose a track directly.\n\nThe upper-right readout can show explicitly simulated altitude (SIM), daily steps, compass heading, battery, or nothing. Choose an optional ISO, US, or European date in the lower center, daily steps, or an empty center. A dashed illustrative course line is optional. SIM shows a fictional altitude derived from steps. The landscapes and course lines are illustrative. The heading shows --- when a compass reading is unavailable.\n\nTime follows the watch's 12/24-hour setting and updates each minute while idle. The preview opens in flight.",
-      "thumbnail": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/diorite/5151d64a-73e6-4b6c-a0c8-f802266116f1.gif",
-      "release_version": "1.2.0",
-      "time2_preview": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/emery/5644c91e-7a94-4b71-9837-fdbc248c2ff2.gif"
+      "thumbnail": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/diorite/c5c7fffd-1c0f-4075-9e46-11e91527dfe6.gif",
+      "release_version": "1.2.2",
+      "time2_preview": "https://assets.repebble.com/screenshots/c6f081e1607448bf92df7de4/emery/3f8ac97f-b62a-4c15-9a21-94c031c2313c.gif"
     },
     {
       "name": "Type Foundry",
