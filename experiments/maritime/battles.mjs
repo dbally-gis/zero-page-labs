@@ -20,8 +20,8 @@ function chapter(label, title, text, focus, source = 0) { return { label, title,
 function question(label, title, text, phase, focus, layer, source = 0) { return { label, title, text, phase, focus, layer, source }; }
 
 const trafalgarShips = [
-  ship('victory', 'HMS Victory', 0, 'sail', 'Nelson’s flagship. Leads the weather column into the allied centre.', [[280,260,90],[400,260,90],[680,260,85],[640,285,15],[655,285,15]]),
-  ship('sovereign', 'HMS Royal Sovereign', 0, 'sail', 'Collingwood’s flagship. Leads the leeward column toward the allied rear.', [[300,470,90],[440,470,90],[740,470,80],[740,470,5],[745,455,5]]),
+  ship('victory', 'HMS Victory', 0, 'sail', 'Nelson’s flagship. Leads the weather column into the allied centre.', [[280,260,90],[400,260,90],[648,224,85],[665,280,15],[675,280,15]]),
+  ship('sovereign', 'HMS Royal Sovereign', 0, 'sail', 'Collingwood’s flagship. Leads the leeward column toward the allied rear.', [[300,470,90],[480,470,90],[740,470,80],[740,470,5],[745,455,5]]),
   ship('bucentaure', 'Bucentaure', 1, 'sail', 'Villeneuve’s flagship. Victory passes across her stern when breaking the line.', [[620,225,350],[630,210,350],[640,200,350],[650,210,335],[650,210,335]]),
   ship('redoutable', 'Redoutable', 1, 'sail', 'French ship that fights Victory at close quarters after the line is broken.', [[638,305,350],[650,290,350],[660,280,350],[685,285,15],[700,285,15]],1),
 ];
@@ -56,6 +56,7 @@ const yaluShips = [
   ship('zhenyuan','Zhenyuan',1,'ironclad','Chinese battleship, recorded as Chen Yuen in the 1895 source. Fights alongside Dingyuan.',[[580,295,180],[580,340,180],[560,365,170],[580,370,170],[590,355,160]]),
   ship('yoshino','Yoshino',0,'cruiser','Fast Japanese cruiser leading the flying squadron.',[[180,500,60],[430,510,85],[770,415,20],[735,185,280],[400,170,270]]),
   ship('matsushima','Matsushima',0,'cruiser','Japanese flagship. Its damage is a reminder that the winning fleet also suffered.',[[110,530,60],[330,535,85],[665,480,40],[810,270,345],[575,150,270]]),
+  ship('zhiyuan','Zhiyuan',1,'cruiser','Chinese protected cruiser, recorded as Chih Yuen in the 1895 source. Sunk after charging toward the Japanese line.',[[465,305,180],[465,350,180],[455,390,170],[485,420,160],[485,420,160]]),
 ];
 for(let side=0;side<2;side++) for(let i=0;i<4;i++) {
   const lead=yaluShips[side?0:2];
@@ -70,7 +71,7 @@ const ORIGINAL_BATTLES = [
     terrain:'gulf', seaLabel:'GULF OF PATRAS',
     chapters:[
       chapter('Approach','Two fleets, one gulf','The Holy League approaches from the west; the Ottoman fleet faces it from the east. These markers condense much larger forces.',['real','sultana']),
-      chapter('Close in','The distance disappears','The long, narrow galleys bring opposing formations together. The museum account describes stronger Holy League artillery and well-armed infantry.',['real','sultana'],2),
+      chapter('Close in','The distance disappears','The long, narrow galleys bring opposing formations together. Ahead of the Christian line, six Venetian galeasses break up the Ottoman approach with heavier broadsides.',['real','sultana'],2),
       chapter('Contact','From gunfire to boarding','Close combat brings vessels together. The archive preserves a description of galleys entangled in a confused struggle.',['real','sultana']),
       chapter('Flagships','A fight at the centre','Real and Sultana fight directly. Ali Pasha is killed and his flagship is captured. The paths illustrate this encounter, not recorded tracks.',['real','sultana'],1),
       chapter('Outcome','A Holy League victory','The Ottoman fleet is defeated. The simplified withdrawal here communicates the outcome without assigning a fate to each marker.',['sultana'],2),
@@ -138,4 +139,5 @@ const ORIGINAL_BATTLES = [
 ];
 
 lepantoShips.find(s=>s.id==='sultana').fate={kind:'captured',at:.75,source:1,text:'Sultana is captured in the flagship struggle. Capture is not sinking; the vessel remains visible without a sunk X.'};
+yaluShips.find(s=>s.id==='zhiyuan').fate={kind:'sunk',at:.78,source:0,text:'Sunk during the action after charging toward the Japanese line. Recorded as Chih Yuen in the 1895 USNI Proceedings account; the replay threshold is schematic.'};
 export const BATTLES=[...ORIGINAL_BATTLES,...EXTRA_BATTLES].sort((a,b)=>a.year-b.year);

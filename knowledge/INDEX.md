@@ -6,7 +6,7 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 # Knowledge index
 | File | Type | Date | Summary |
 |---|---|---|---|
-| [context.md](context.md) | domain | 2026-11-07 | Brand, scope, visual direction |
+| [context.md](context.md) | domain | 2026-11-15 | Brand, dual goal (Showcase/Credibility + Craft/Playground), and current surface |
 | [SESSION.md](SESSION.md) | log | 2026-11-12 | Launch handoff |
 | [DECISIONS.md](DECISIONS.md) | decision | 2026-11-08 | Static architecture, released content and full-book bounded views |
 | [ERRORS.md](ERRORS.md) | errors | 2026-11-08 | Image aspect ratio, splash clearance and fullscreen flex sizing fixes |

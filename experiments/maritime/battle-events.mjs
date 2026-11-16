@@ -37,13 +37,13 @@ export const BATTLE_EVENTS={
   ],
   quiberon:[
     E('pursuit',.24,'Hawke follows into the bay','The museum account describes pursuit into dangerous water. This is a combat setting, not a measured firing solution.','royal-george',0),
-    E('flagships',.5,'The flagships engage','Greenwich identifies Royal George engaged with Soleil Royal. A timber impact represents their wooden-ship exchange; it does not reconstruct one recorded hit.','royal-george',0,{kind:'timber',shooter:'royal-george',target:'soleil-royal',certainty:CONTACT}),
-    E('reply',.54,'The reciprocal exchange','The return shot represents that engagement. The interval is not an asserted reload time or evidence that this side fired second.','soleil-royal',0,{kind:'timber',shooter:'soleil-royal',target:'royal-george',certainty:CONTACT}),
+    E('flagships',.5,'Royal George engages Superbe','Greenwich describes Royal George closing alongside Superbe as the French ship’s open lower-deck ports flood in the gale. A timber impact represents that exchange, not one recorded round.','superbe',0,{kind:'timber',shooter:'royal-george',target:'superbe',certainty:CONTACT}),
+    E('reply',.54,'Soleil Royal covers the French rear','The museum commentary notes Soleil Royal intervening against Royal George. The interval is not an asserted reload time or evidence that this side fired second.','soleil-royal',0,{kind:'timber',shooter:'soleil-royal',target:'royal-george',certainty:CONTACT}),
     E('founder',.82,'Superbe founders in the action','The account attributes French sinkings to gunfire combined with weather. No individual projectile is made the proven cause of Superbe’s loss.','superbe',0)
   ],
   chesapeake:[
     E('leading-french',.48,'The leading French ships open fire','The park account describes volleys from the leading ships of both fleets. This command marker represents French fleet fire, not an identified flagship or a verified hit.','de-grasse',0,F('de-grasse')),
-    E('leading-british',.51,'The leading British ships engage','The second discharge represents the same opening exchange. Its placement does not establish first shooter; the account says the rear British ships could not close enough to fire.','graves',0,F('graves')),
+    E('leading-british',.51,'The leading British ships engage','The second discharge represents the same opening exchange. Its placement does not establish first shooter; conflicting signals kept Graves’s rear division from closing enough to fire.','graves',0,F('graves')),
     E('damage',.7,'Damage without invented individual hits','The park records damage in both fleets. Its overview does not assign those hits to the anonymous ships in this diagram, so no target impact is shown.','graves',0),
     E('disengage',.82,'The lines disengage','The fleets separate as evening comes. The strategic outcome depends on control of the bay rather than a simulated sinking score.','de-grasse',0),
     E('de-grasse-returns',.89,'September 10–11 · The French fleets unite','After several days of maneuvering, de Grasse returns to the bay and joins de Barras. Accounts date the return and rendezvous slightly differently.','de-grasse',1),
@@ -65,7 +65,7 @@ export const BATTLE_EVENTS={
   lissa:[
     E('austrian-fire',.32,'The Austrian force closes under gunfire','The Italian naval account describes the fleet action. A muzzle discharge on Ferdinand Max represents Austrian gunfire, not a recorded hit on Re d’Italia.','ferdinand-max',0,F('ferdinand-max')),
     E('italian-fire',.4,'Italian gunfire in the melee','The opposing discharge represents the confused fleet engagement. No exact first-shot order, calibre or hull penetration is assigned.','re-italia',0,F('re-italia')),
-    E('ram',.72,'Ferdinand Max rams Re d’Italia','The Italian Navy’s ship record identifies the rammer and the lost ship. Contact debris illustrates the collision without muzzle flash, a cannonball or invented magazine fire. The route is not collision physics.','re-italia',1,{kind:'ram',shooter:'ferdinand-max',target:'re-italia',certainty:'Documented ram · schematic contact'}),
+    E('ram',.72,'Ferdinand Max rams Re d’Italia','The Italian Navy’s ship record notes Austrian gunfire disabled Re d’Italia’s exposed rudder before Ferdinand Max rammed her. Contact debris illustrates the collision without muzzle flash or invented magazine fire.','re-italia',1,{kind:'ram',shooter:'ferdinand-max',target:'re-italia',certainty:'Documented ram · schematic contact'}),
     E('loss',.78,'Re d’Italia sinks','The sourced loss marker follows the ramming episode. No animated gunshot is presented as the cause of this sinking.','re-italia',1)
   ],
   yalu:[
@@ -73,16 +73,17 @@ export const BATTLE_EVENTS={
     E('chinese-fire',.36,'Fire from the Chinese centre','The opposing discharge represents the Chinese armoured centre. It does not establish a first shooter or a precise interval between salvos.','dingyuan',0,F('dingyuan')),
     E('matsushima-hit',.64,'A reported heavy-shell hit on Matsushima','A heavy shell hit Matsushima and ignited ammunition. The 1895 account credits Zhenyuan (Chen Yuen). Accounts disagree on which Chinese ship fired the shell, so the replay shows the impact alone.','matsushima',0,{kind:'shell',target:'matsushima',certainty:'Documented hit · shooter disputed'}),
     E('matsushima-fire',.67,'Ammunition fire aboard the flagship','The same account reports fire on Matsushima after the damaging shell episode. This separate condition is not the default result of every shell. Its duration and precise deck location are not reconstructed.','matsushima',0,{kind:'reported-fire',target:'matsushima',certainty:'Reported condition · uncertain duration'}),
+    E('zhiyuan-loss',.78,'Zhiyuan is lost in the charge','The 1895 USNI Proceedings account records the loss of the Chinese cruiser Chih Yuen (Zhiyuan) after she charged toward the Japanese line.','zhiyuan',0),
     E('survival',.94,'Damaged does not mean sunk','Matsushima survives the battle. Neither a shell burst nor a reported fire is automatically converted into a sinking.','matsushima',1)
   ],
   'manila-bay':[
     E('open-fire',.28,'Olympia opens the American fire','The commanding officers’ reports describe Olympia opening with her forward heavy guns. The muzzle is placed forward; its train angle is schematic. The discharge is representative, not one timed historical round.','olympia',OLYMPIA,{kind:'muzzle',shooter:'olympia',muzzleAnchor:'bow',certainty:'Participant report · schematic discharge'}),
     E('cristina-hit',.49,'Olympia’s shell hits Reina Cristina','Olympia’s report describes an 8-inch shell raking Reina Cristina. A brief shell burst represents that reported hit, not every round fired by the American squadron.','reina-cristina',OLYMPIA,{kind:'shell',shooter:'olympia',target:'reina-cristina',certainty:'Participant report · representative shell hit'}),
     E('cristina-fire',.53,'Fire aboard Reina Cristina','The American report describes fires during Reina Cristina’s attempt to close. This reported condition is separate from the brief shell burst; its exact onset and spread are not measured.','reina-cristina',OLYMPIA,{kind:'reported-fire',target:'reina-cristina',certainty:'Participant report · ship fire'}),
-    E('castilla-fire',.7,'Castilla burns','Montojo describes Castilla set on fire by shells and later sinking. The fire is shown without inventing the gunner or projectile that ignited it.','castilla',1,{kind:'reported-fire',target:'castilla',certainty:'Participant report · unattributed ignition'}),
-    E('withdraw',.75,'Dewey withdraws to check ammunition','Dewey reports withdrawing after a mistaken report of ammunition scarcity. The break in firing is compressed.','olympia',OLYMPIA),
-    E('abandon',.84,'Scuttling is distinct from a fatal hit','The modern NHHC account says Reina Cristina was scuttled after heavy damage. The sourced X records that outcome; it is not a hit-point calculation.','reina-cristina',0),
-    E('return',1,'The American squadron returns to action','Dewey reports resuming the attack once the ammunition report was corrected. The replay compresses the interval between the two attacks.','olympia',OLYMPIA)
+    E('castilla-fire',.58,'Castilla burns','Montojo describes Castilla set on fire by shells and later sinking. The fire is shown without inventing the gunner or projectile that ignited it.','castilla',1,{kind:'reported-fire',target:'castilla',certainty:'Participant report · unattributed ignition'}),
+    E('withdraw',.64,'Dewey withdraws to check ammunition','Dewey reports withdrawing after a mistaken report of ammunition scarcity. The break in firing is compressed.','olympia',OLYMPIA),
+    E('return',.76,'The American squadron returns to action','Dewey reports resuming the attack at 11:16 a.m. once the ammunition report was corrected. The replay compresses the interval between the two attacks.','olympia',OLYMPIA),
+    E('abandon',.84,'Scuttling is distinct from a fatal hit','The modern NHHC account says Reina Cristina was scuttled after heavy damage. The sourced X records that outcome; it is not a hit-point calculation.','reina-cristina',0)
   ]
 };
 export const eventsFor=battle=>BATTLE_EVENTS[battle.id]||[];

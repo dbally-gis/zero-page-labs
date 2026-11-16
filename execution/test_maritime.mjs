@@ -83,11 +83,21 @@ test('Trafalgar breakthrough actually crosses the allied line',()=>{
   const b=BATTLES.find(b=>b.id==='trafalgar'),at=id=>positionAt(b.ships.find(s=>s.id===id),.5);
   assert.ok(at('victory').x>at('bucentaure').x);
   assert.ok(at('sovereign').x>at('allied-6').x);
+  assert.ok(positionAt(b.ships.find(s=>s.id==='victory'),.75).x>=at('victory').x);
+});
+
+test('The Nile anchored ships hold stern-anchored headings without spinning',()=>{
+  const b=BATTLES.find(b=>b.id==='nile');
+  for(const id of ['vanguard','goliath']){
+    const s=b.ships.find(v=>v.id===id);
+    assert.equal(positionAt(s,.5).heading,90);
+    assert.equal(positionAt(s,.75).heading,90);
+  }
 });
 
 test('source-backed fates distinguish captured vessels from battle sinkings',()=>{
   const losses=BATTLES.flatMap(b=>b.ships.filter(s=>s.fate).map(s=>({b,s})));
-  assert.deepEqual(losses.filter(({s})=>s.fate.kind==='sunk').map(({s})=>s.id),['egyptian-rear','great-diu-ship','superbe','orient','re-italia','reina-cristina','castilla']);
+  assert.deepEqual(losses.filter(({s})=>s.fate.kind==='sunk').map(({s})=>s.id),['egyptian-rear','great-diu-ship','santa-teresa','superbe','orient','re-italia','zhiyuan','reina-cristina','castilla']);
   for(const {b,s} of losses){
     assert.equal(s.representative,false);assert.ok(b.sources[s.fate.source]);assert.ok(s.fate.text);assert.ok(s.fate.at>0&&s.fate.at<1);
     assert.equal(fateAt(s,s.fate.at-.001),null);assert.equal(fateAt(s,s.fate.at),s.fate);

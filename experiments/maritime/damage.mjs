@@ -44,6 +44,9 @@ export const DAMAGE = {
     ]
   },
   'hampton-roads': {
+    virginia: [
+      stage(.7,'Smokestack perforated and casemate plates cracked','NOAA and NHHC accounts record Virginia’s smokestack shot through (reducing boiler draft), cracked casemate armour, and the broken ram from the previous day’s fight.',evidence('NOAA · Battle of Hampton Roads','https://monitor.noaa.gov/150th/hampton.html'),{marks:['funnel','hull']})
+    ],
     monitor: [
       stage(.75,'Pilothouse cracked and hatch displaced','Executive officer Samuel Dana Greene describes a split iron log on the forward face and a hatch knocked partly off. The turret remains in place.',evidence('Samuel Dana Greene’s letter, 14 March 1862','https://www.usni.org/magazines/naval-history-magazine/2007/april/voyage-destiny'),{marks:['pilot']})
     ]

@@ -103,6 +103,8 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-12 10:35 — commit: Compare the four Gospel routes in Biblical Travels | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html,knowledge/SESSION.md,task.md
 - 2026-11-12 12:32 — commit: Make Gospel shared-place rings interactive | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html,knowledge/SESSION.md,task.md
 - 2026-11-12 14:30 — commit: Add clickable atlas events and a space-time cube layer | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html,knowledge/SESSION.md,task.md
+- 2026-11-15 21:06 — commit: Give Bellona realistic hull, rig and crew models | execution/test_experiments.mjs,experiments/bellona/figure.mjs,experiments/bellona/gun-scene.mjs,experiments/bellona/index.html,experiments/bellona/scene.mjs
+- 2026-11-15 21:06 — commit: Upgrade Maritime scene graphics | execution/test_maritime.mjs,experiments/maritime/hull.mjs,experiments/maritime/maritime.mjs,experiments/maritime/scene.mjs,experiments/maritime/shot-effects.mjs
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -490,3 +492,13 @@ Status: Implemented locally. Flat drag pans at zoom. 3D drag rotates; Shift-drag
 Verification: Deep site verification passed. Chrome tested desktop drags, emulated multi-touch beginning on a marker, existing map points, and Gospel ring handoffs. Independent review identified the marker-start gap, fixed before final QA.
 S.D.G.: Readers can explore zoomed geography with familiar gestures while keeping the selected passage.
 Feynman gap: Physical touch input and the public deployment remain unverified.
+
+
+### 2026-11-15 - Reconcile branch and Maritime historical accuracy fixes
+- Agent: Antigravity AI (Gemini 4 Hydrogen). Handoff-from: Claude Code CLI (`bellona-maritime-visuals`). Handoff-type: cold-eyes.
+- Goal: Reconcile `bellona-maritime-visuals` (`e80a786`, `87d5728`) onto `origin/main` (`26ba1d2`), update `knowledge/context.md` for the dual Showcase/Credibility + Craft/Playground goal, and apply historical/kinematic fixes to `experiments/maritime/`.
+- Changed: `experiments/maritime/battles.mjs`, `extra-battles.mjs`, `battle-events.mjs`, `damage.mjs`, `maritime.mjs`, `index.html`; `execution/test_maritime.mjs`; `knowledge/context.md`, `knowledge/INDEX.md`, `knowledge/SESSION.md`.
+- Test: `node --test execution/test_maritime.mjs execution/test_maritime_combat.mjs execution/test_experiments.mjs` (240/240 pass) ✅; `python3 execution/build_site.py && python3 execution/verify_site.py --deep` (14 pages, 41 watchfaces PASS) ✅.
+- Note: `python3 -m unittest discover -s execution -p "test_*.py"` failed 5 `test_automatic_catalog.py` cases in the sandbox because `.tmp` symlinks to `/Volumes/Extreme SSD/...` (outside sandbox write scope). Browser visual verification on `reconcile-review-fixes` was not run (Chrome DevTools port unavailable).
+- S.D.G.: Visitors exploring Maritime see historically consistent ship tracks, withdrawals, stern-anchoring, and sourced sinkings (*Santa Teresa*, *Zhiyuan*) alongside the reconciled Bellona/Maritime 3D visual upgrades and Biblical Travels / Rack Lab.
+- Feynman gap: All 240 Node tests and 14-page deep static verification pass after the final edit; live browser rendering of the reconciled branch and `test_automatic_catalog.py` (blocked by `.tmp` symlink) remain unverified in this session.

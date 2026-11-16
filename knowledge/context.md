@@ -1,20 +1,23 @@
 ---
-generated_by: "OpenAI Codex (exact model variant not exposed)"
-timestamp: "2026-11-07T16:31:28.188948-06:00"
+generated_by: "Antigravity AI (Gemini 4 Hydrogen)"
+timestamp: "2026-11-15T21:08:30-06:00"
 ---
 
 # Identity
-Zero Page Labs is Daniel Bally’s independent playground for wild projects and ideas, separate from Globe & Atlas. Personal maker voice with studio polish. Launch content: Thumbwords and Pebble watchfaces. Relic Rack and 3D printing are intentionally absent.
+Zero Page Labs (`zeropagelabs.com`) is Daniel Bally’s independent playground for small projects, interactive historical/literary atlases, and games — a blend of **Showcase / Credibility** (source-linked, domain-honest interactive artifacts) and **Craft / Playground** (playful tools, experiments, and hardware/tabletop work). Personal maker voice with studio polish.
 
-Warm paper, electric orange, oversized DM Sans, italic Georgia, IBM Plex Mono annotations. Site remains usable without JavaScript; gallery filters are progressive enhancement.
+## Visual & Technical System
+Warm paper (`#f4f1e9`), electric orange, oversized DM Sans, italic Georgia, IBM Plex Mono annotations. Static multipage site packaged into `dist/` by `execution/build_site.py` and verified by `execution/verify_site.py --deep` before Render deployment. Interactive experiments run locally in the visitor's browser with no server-side content processing.
 
-## 2026-11-07 — Scope expansion
-Gallery source is Daniel’s complete current public Pebble developer catalog, not the fifteen-face round release batch. Current snapshot:34Faces,4nonfaceapps. Catalog count is derived at build time. Gridcore is explicitly included as a Labs experiment while retaining its Globe & Atlas visual-language identity. Specification is primary; interactive demo is secondary.
-
-## Experiments — 2026-11-07
-Purpose: visitors can make playful visual discoveries immediately from a sample, then try their own local input. Homepage and /experiments/ introduce Retro-Glitch Studio and Lexical. Retro is a browser-native adaptation of the24-effect workshop app; Lexical retains its two visualization modes with spelling-based coordinates, not semantic embeddings. Both are free, anonymous, and process visitor content in the browser. Interactive apps require JavaScript; the surrounding project pages remain usable without it. Relic Rack and3D printing remain excluded.
-
-Lexical’s approved goal is a creative playground with enough reading value to make patterns meaningful: choose a passage, follow a word, understand its context, keep a result.
-
-## Maritime — 2026-11-07
-Purpose: an educational naval battle atlas for visitors who mostly watch and explore. The approved direction is an overhead tactical chart with optional atmosphere perspective. Four encounters (Lepanto 1571, Trafalgar 1805, Hampton Roads 1862, Yalu 1894) compare oars, sail and steam within the requested 1400–1900 scope. Dates, participants and broad sequences are source-linked; continuous tracks, relative spacing, weapon geometry and timing are labelled schematic. Named participants are distinct from representative fleet markers. The contextual guide is curated, with no live generative endpoint. Yalu weapon sectors are omitted because mixed mountings require ship-specific research.
+## Current Surface (Reconciled 2026-11-15)
+- **Thumbwords** (`/thumbwords/`): iPhone & iPad keypad word game on the App Store (v1 public listing: 6 games).
+- **Pebble Watchfaces** (`/watchfaces/`): Catalog synced hourly via GitHub Actions from Daniel's public Pebble developer page (41 faces in current `data/watchfaces.json` snapshot; count derived at build time).
+- **Gridcore** (`/gridcore/`): Visual-language specification developed for Globe & Atlas, with companion interactive demo.
+- **Experiments** (`/experiments/`):
+  - **Biblical Travels** (`/experiments/biblical-travels/`): Interactive Gospels & Acts atlas.
+  - **Inside HMS Bellona** (`/experiments/bellona/`): 1760 74-gun ship cutaway, guided tack, and lower-deck 32-pounder gun drill based on Admiralty plans and period seamanship/gunnery sources.
+  - **Maritime** (`/experiments/maritime/`): 12 landmark naval encounters (1509–1898) with schematic tactical/3D replay, source-linked combat episodes, progressive damage, and sourced ship fates.
+  - **Retro-Glitch Studio** (`/experiments/retro-glitch/`): Browser-native 24-effect image processor.
+  - **Lexical** (`/experiments/lexical/`): 3D/2D word-occurrence book explorer (default: complete Sherlock Holmes).
+  - **Rack Lab** (`/experiments/rack-lab/`): Browser 3D-printable card rack configurator and COME AT ME! STL export.
+  - **COME AT ME** (`/experiments/come-at-me/`): Tabletop card game prototype showcase with invite-only browser playtest queue (`private-demo/`).

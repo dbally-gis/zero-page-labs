@@ -408,7 +408,7 @@ function loadBattle(battle,progress=0,selected=battle.defaultShip,sharedMoment=n
   $('sea-label').textContent=battle.seaLabel;
   $('wind-label').textContent=battle.wind;
   $('wind-key').querySelector('svg').style.transform=`rotate(${battle.windAngle}deg)`;
-  $('wind-key').querySelector('svg').style.opacity=battle.id==='trafalgar'||battle.id==='lepanto'?'1':'.35';
+  $('wind-key').querySelector('svg').style.opacity=battle.windAngle&&battle.id!=='lepanto'?'1':'.35';
   $('ship-count').textContent=`${battle.ships.length} diagram markers`;
   $('battle-tabs').value=battle.id;
   $('legend').replaceChildren(...battle.sides.map(side=>{const n=html('span');const swatch=html('i');swatch.setAttribute('aria-hidden','true');n.append(swatch,document.createTextNode(side));return n;}));
