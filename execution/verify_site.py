@@ -26,6 +26,54 @@ class Page(HTMLParser):
         for key in ('href', 'src'):
             if d.get(key): self.refs.append(d[key])
 
+def content_errors(output: Path, root: Path | None = None) -> list[str]:
+    """Check that every experiment is reachable and every listed page can be shared with an image."""
+    import re
+    import site_content
+    root = root or ROOT
+    errors = []
+    experiments = site_content.load_experiments(root)
+    site = site_content.load_site(root)
+    home = (output / 'index.html').read_text()
+    listing = (output / 'experiments/index.html').read_text()
+    sitemap = (output / 'sitemap.xml').read_text()
+    for item in experiments:
+        if f'href="{item["href"]}"' not in home: errors.append(f'Home page does not link {item["href"]}')
+        if listing.count(f'class="button" href="{item["href"]}"') != 1: errors.append(f'Experiments page must show {item["href"]} exactly once')
+        if f'{site["origin"]}{item["href"]}</loc>' not in sitemap: errors.append(f'Sitemap omits {item["href"]}')
+    numbers = re.findall(r'<div class="eyebrow">(\d\d) / ', listing)
+    expected = [f'{item["number"]:02d}' for item in site_content.newest_first(experiments)]
+    if numbers != expected: errors.append(f'Experiment numbers {numbers} differ from the list {expected}')
+    if listing.count('class="experiment-meta ') != len(experiments): errors.append('An experiment card has no date and status line')
+    featured = sum(1 for item in experiments if item.get('featured'))
+    if home.count('<article class="experiment-card">') != featured: errors.append('Home page featured cards differ from the list')
+    recorded = json.loads((root / 'data/share-cards.json').read_text()) if (root / 'data/share-cards.json').is_file() else {}
+    for name, current in site_content.share_manifest(root).items():
+        if recorded.get(name, {}).get('inputs') != current['inputs']: errors.append(f'Share card is stale: {name}. Run python3 execution/build_share_cards.py')
+        shipped = output / site_content.SHARE_DIR / f'{name}.png'
+        if shipped.is_file() and hashlib.sha256(shipped.read_bytes()).hexdigest() != recorded.get(name, {}).get('image'): errors.append(f'Share image differs from the recorded one: {name}')
+    counter = site_content.counter_tag(site)
+    for page in output.rglob('*.html'):
+        if (counter in page.read_text() if counter else 'goatcounter' not in page.read_text()) is False: errors.append(f'Visitor counter does not match data/site.json: {page.relative_to(output)}')
+    for spec in site_content.share_specs(root):
+        image = output / site_content.SHARE_DIR / f'{spec["name"]}.png'
+        if not image.is_file() or native_size(image.read_bytes()) != site_content.SHARE_SIZE:
+            errors.append(f'Share image missing or not {site_content.SHARE_SIZE}: {spec["name"]}')
+        for path in spec['paths']:
+            page = output / path.lstrip('/') / 'index.html'
+            if not page.is_file():
+                errors.append(f'Listed page does not exist: {path}')
+                continue
+            content = page.read_text()
+            if f'{site["origin"]}{path}</loc>' not in sitemap: errors.append(f'Sitemap omits {path}')
+            for needle in (f'property="og:image" content="{site["origin"]}/{site_content.SHARE_DIR}/{spec["name"]}.png"', 'property="og:title"', 'property="og:description"', 'name="twitter:card"'):
+                if content.count(needle) != 1: errors.append(f'{path} needs exactly one {needle.split(" content")[0]}')
+    listed = {path for spec in site_content.share_specs(root) for path in spec['paths']}
+    for location in re.findall(r'<loc>(.*?)</loc>', sitemap):
+        if location.removeprefix(site['origin']) not in listed: errors.append(f'Sitemap page has no share card: {location}')
+    return errors
+
+
 def verify(deep: bool = False) -> None:
     output = ROOT / 'dist'
     errors = []
@@ -75,6 +123,7 @@ def verify(deep: bool = False) -> None:
         errors.append('Maritime Three.js vendor differs from pinned source')
     if not (library.parent / 'THREE-LICENSE.txt').is_file():
         errors.append('Maritime Three.js license is missing')
+    errors.extend(content_errors(output))
     forbidden = {'.env', 'AGENTS.md', 'SESSION.md', 'task.md', 'config.example.js'}
     for file in output.rglob('*'):
         if file.name in forbidden or '.tmp' in file.relative_to(output).parts: errors.append(f'Private scaffold shipped: {file}')

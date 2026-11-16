@@ -6,9 +6,9 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 # Knowledge index
 | File | Type | Date | Summary |
 |---|---|---|---|
-| [context.md](context.md) | domain | 2026-11-15 | Brand, dual goal (Showcase/Credibility + Craft/Playground), and current surface |
-| [SESSION.md](SESSION.md) | log | 2026-11-12 | Launch handoff |
-| [DECISIONS.md](DECISIONS.md) | decision | 2026-11-08 | Static architecture, released content and full-book bounded views |
+| [context.md](context.md) | domain | 2026-11-16 | Brand, dual goal (Showcase/Credibility + Craft/Playground), and current surface |
+| [SESSION.md](SESSION.md) | log | 2026-11-16 | Showcase front door handoff; earlier launch handoffs |
+| [DECISIONS.md](DECISIONS.md) | decision | 2026-11-16 | Static architecture, released content, full-book bounded views, one experiments list and build-time share tags |
 | [ERRORS.md](ERRORS.md) | errors | 2026-11-08 | Image aspect ratio, splash clearance and fullscreen flex sizing fixes |
 | [domain/content.md](domain/content.md) | domain | 2026-11-07 | Availability and asset provenance |
 | [procedural/deploy_site.md](procedural/deploy_site.md) | procedural | 2026-11-08 | Build, checks, deployment |
@@ -36,3 +36,4 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [domain/maritime-combat-evidence.md](domain/maritime-combat-evidence.md) | domain | 2026-11-08 | Twelve combat episode sets, source boundaries and material-specific effects |
 
 | [domain/maritime-progressive-damage.md](domain/maritime-progressive-damage.md) | domain | 2026-11-08 | Source-backed damage, single and paired ship tracking, and Replay Desk navigation |
+| [../directives/maintain_showcase.md](../directives/maintain_showcase.md) | procedural | 2026-11-16 | Add an experiment or page: one list, share images, checks |

@@ -36,3 +36,26 @@
 .screenshot-viewer-toolbar button{min-height:44px;padding:4px 14px;border:1px solid var(--ink);border-radius:6px;background:var(--paper);color:var(--ink);cursor:pointer}
 .screenshot-viewer img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 145px);margin:0 auto;filter:drop-shadow(4px 8px 7px #0002)}
 .screenshot-original{display:inline-block;margin-top:10px;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+
+/* Experiment status line and the home page's compact list; both are generated from data/experiments.json. */
+.experiment-meta{font:9px/1.6 var(--mono);letter-spacing:.045em;color:var(--muted);margin-top:9px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.experiment-meta i{height:6px;width:6px;border-radius:50%;display:inline-block;background:#36704b;flex:none}
+.experiment-meta-prototype i{background:var(--orange)}
+.experiment-more{list-style:none;margin:40px 0 0;padding:0;border-bottom:1px solid var(--line)}
+.experiment-more a{display:grid;grid-template-columns:44px minmax(170px,1fr) 2fr auto 22px;gap:20px;align-items:baseline;padding:19px 4px;border-top:1px solid var(--line);transition:background .18s}
+.experiment-more a:hover{background:#ebe7dc}
+.experiment-more a:hover .experiment-more-arrow{color:var(--orange)}
+.experiment-more-number,.experiment-more-meta{font:10px/1.6 var(--mono);letter-spacing:.045em;color:var(--muted)}
+.experiment-more-title{font-size:21px;font-weight:700;letter-spacing:-.035em}
+.experiment-more-tagline{font-size:14px;color:var(--muted)}
+.experiment-more-meta{white-space:nowrap}
+.experiment-more-arrow{font-size:18px;line-height:1;text-align:right}
+.experiment-all{margin-top:34px}
+@media(max-width:800px){
+.experiment-more{margin-top:28px}
+.experiment-more a{grid-template-columns:30px 1fr 18px;gap:4px 10px;padding:16px 2px}
+.experiment-more-title{font-size:19px}
+.experiment-more-tagline,.experiment-more-meta{grid-column:2}
+.experiment-more-arrow{grid-column:3;grid-row:1}
+.experiment-all{margin-top:26px}
+}

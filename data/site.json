@@ -1,0 +1,55 @@
+{
+  "origin": "https://zeropagelabs.com",
+  "analytics": {"goatcounter": ""},
+  "pages": [
+    {
+      "path": "/",
+      "share": "home",
+      "eyebrow": "AN INDEPENDENT PLAYGROUND",
+      "title": "Small projects.\nStrange _possibilities._",
+      "deck": "Games, watchfaces, historical atlases and browser experiments by Daniel Bally.",
+      "alt": "Zero Page Labs. Small projects. Strange possibilities.",
+      "art": {"kind": "asterisk"}
+    },
+    {
+      "path": "/thumbwords/",
+      "share": "thumbwords",
+      "eyebrow": "WORD GAMES FOR IPHONE & IPAD",
+      "title": "Thumbwords",
+      "deck": "Six retro keypad word games.",
+      "alt": "Thumbwords: the game library on an iPhone screen",
+      "art": {"kind": "phone", "src": "/assets/thumbwords-library-current.png", "background": "#cbd5bd"}
+    },
+    {
+      "path": "/watchfaces/",
+      "share": "watchfaces",
+      "eyebrow": "WATCHFACES FOR PEBBLE",
+      "title": "Time, with\n_character._",
+      "deck": "Analog oddities, crisp digits, and a little retro affection.",
+      "alt": "Two Pebble Time 2 watches showing watchfaces by Daniel Bally",
+      "art": {"kind": "watches", "background": "#30372e", "screens": ["/assets/share-watch-one.png", "/assets/share-watch-two.png"]}
+    },
+    {
+      "path": "/gridcore/",
+      "share": "gridcore",
+      "eyebrow": "SPECIFICATION & INTERACTIVE EXPERIMENT",
+      "title": "Gridcore",
+      "deck": "Less surface. More structure.",
+      "alt": "Gridcore: an amber wireframe terrain on black",
+      "art": {"kind": "contain", "src": "/assets/gridcore-structure.svg", "background": "#000"}
+    },
+    {
+      "path": "/gridcore/demo/",
+      "share": "gridcore"
+    },
+    {
+      "path": "/experiments/",
+      "share": "experiments",
+      "eyebrow": "THE EXPERIMENTS",
+      "title": "Good questions.\n_Odd outcomes._",
+      "deck": "{count_word} browser experiments: historical atlases, a warship cutaway, and playgrounds for images and words.",
+      "alt": "Zero Page Labs experiments, with two featured covers",
+      "art": {"kind": "featured"}
+    }
+  ]
+}

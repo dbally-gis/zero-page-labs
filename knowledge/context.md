@@ -21,3 +21,6 @@ Warm paper (`#f4f1e9`), electric orange, oversized DM Sans, italic Georgia, IBM 
   - **Lexical** (`/experiments/lexical/`): 3D/2D word-occurrence book explorer (default: complete Sherlock Holmes).
   - **Rack Lab** (`/experiments/rack-lab/`): Browser 3D-printable card rack configurator and COME AT ME! STL export.
   - **COME AT ME** (`/experiments/come-at-me/`): Tabletop card game prototype showcase with invite-only browser playtest queue (`private-demo/`).
+
+## Showcase plumbing (2026-11-16)
+Experiment cards, catalogue numbers (04 onward, publication order), status and added dates come from `data/experiments.json`. The home page features the entries marked `featured` and lists the rest. Every sitemap page has a 1200×630 share image in `assets/share/`, with tags added at build time. A visitor counter is wired for GoatCounter and off until configured in `data/site.json`.

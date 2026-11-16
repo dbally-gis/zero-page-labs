@@ -30,6 +30,8 @@ def build() -> None:
     styles.sort(key=lambda style: order.index(style) if style in order else len(order))
     filters = '<button type="button" data-filter="All" aria-pressed="true">All faces</button>' + ''.join(f'<button type="button" data-filter="{escape(style, quote=True)}" aria-pressed="false">{escape(style)}</button>' for style in styles)
     substitutions = {'{{WATCH_COUNT}}': str(len(faces)), '{{FEATURE_ONE_IMAGE}}': featured_one['image'], '{{FEATURE_ONE_NAME}}': escape(featured_one['name']), '{{FEATURE_TWO_IMAGE}}': featured_two['image'], '{{FEATURE_TWO_NAME}}': escape(featured_two['name']), '{{WATCH_FILTERS}}': filters}
+    import site_content
+    substitutions.update(site_content.substitutions(ROOT))
     for page in output.rglob('*.html'):
         content = page.read_text()
         for marker, value in substitutions.items():
@@ -44,6 +46,7 @@ def build() -> None:
         cards.append(f'''<article class="watch-card" data-style="{d['style']}"><a href="{d['url']}" aria-label="{d['name']} — view in the Pebble appstore"><div class="watch-image"><span class="pebble-device"><span class="pebble-glass" aria-hidden="true"></span><img class="pebble-screen" src="{d['image']}" alt="{d['name']} watchface shown on Pebble Time 2" width="200" height="228" loading="lazy"><img class="pebble-hardware" src="/assets/pebble-time-2-frame.png" alt="" width="488" height="700" loading="lazy"></span></div><div class="watch-info"><h2>{d['name']}</h2><span>{d['style'].upper()}</span></div><p>{d['description']}</p><span class="store-link">Pebble appstore ↗</span></a>{source_link}</article>''')
     gallery = output / 'watchfaces/index.html'
     gallery.write_text(gallery.read_text().replace('{{WATCH_CARDS}}', '\n'.join(cards)))
+    site_content.finish_pages(ROOT, output)
     import os
     import subprocess
     import hashlib

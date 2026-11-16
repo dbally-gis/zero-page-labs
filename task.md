@@ -568,3 +568,34 @@ Local verification: 235 Node tests, 17 Python tests, deep build verification, an
 - [x] A two-finger pinch changes zoom in 3D.
 - [x] A two-finger drag pans the zoomed 3D view.
 - [x] Gesture changes preserve the selected event.
+
+## Showcase front door — 2026-11-16
+Goal: the home page and shared links present the showcase as it is now, from one list of experiments.
+- [x] `data/experiments.json` lists all seven experiments.
+- [x] The Experiments page shows each of the seven experiments exactly once.
+- [x] The Experiments page cards are generated from the list at build time.
+- [x] The home page features Biblical Travels as a full card.
+- [x] The home page features Inside HMS Bellona as a full card.
+- [x] The home page links each of the other five experiments.
+- [x] Experiment numbers run 04 to 10 in publication order.
+- [x] Each experiment card shows a status.
+- [x] Each experiment card shows the date it was added.
+- [x] The home page hero line mentions the historical work.
+- [x] The home page search description mentions historical atlases.
+- [x] Each of the 13 sitemap pages has one `og:image` tag.
+- [x] Each `og:image` file is a 1200×630 PNG.
+- [x] Each of the 13 sitemap pages has a `twitter:card` tag.
+- [x] The build fails verification when a share image is older than its text or artwork.
+- [x] Share images do not depend on the hourly watchface catalog.
+- [x] No visitor counter script ships while `analytics.goatcounter` is empty.
+- [x] Python tests pass (44).
+- [x] Node tests pass (240).
+- [x] `verify_site.py --deep` passes.
+- [x] Home page checked at 1440 px.
+- [x] Home page checked at 390 px.
+- [x] Experiments page checked at 1440 px.
+- [x] Experiments page checked at 390 px.
+- [ ] Daniel chooses a visitor counter and creates the account.
+- [ ] Daniel chooses a public contact method for the About section.
+- [ ] Merged to main and deployed.
+- [ ] A shared link shows its preview image on one real platform after deployment.

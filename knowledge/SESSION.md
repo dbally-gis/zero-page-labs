@@ -3,6 +3,25 @@ generated_by: "OpenAI Codex (exact model variant not exposed)"
 timestamp: "2026-11-07T17:04:06.403311-06:00"
 ---
 
+## 2026-11-16 Showcase front door
+
+Goal: make the home page and shared links present the showcase as it is now.
+Agent: Claude Code CLI
+Handoff-from: Antigravity AI
+Handoff-type: pickup
+Status: Committed on branch `claude/showcase-front-door` (worktree `/Users/danielbally/Git/.tmp/zpl-showcase-front-door`), based on `reconcile-review-fixes` (f2f5f8a), and merged to `main` for deployment on Daniel's instruction. See the deployment note below for the live result.
+
+- Experiments now come from `data/experiments.json`; the home page features Biblical Travels and Bellona and lists the other five. Cards carry a number, status and added date.
+- Every sitemap page gets a 1200×630 share image from `assets/share/`, with tags added at build time.
+- Home hero line, search description and About text mention the historical work.
+- 44 Python tests, 240 Node tests and `verify_site.py --deep` pass. Home and Experiments pages viewed at 1440 and 390 px from a local build.
+- Independent verifier (2026-11-16): nine of ten claims passed; it failed the numbering claim because COME AT ME was published before Rack Lab on the same day. Fixed (COME AT ME 07, Rack Lab 08), along with escaped share-tag values, a stricter counter-code check, a check that the shipped image is the recorded one, a check for unlisted experiment folders, and a stacked compact list below 800 px. The fixes were retested but not re-verified independently.
+- Open: Daniel to choose a visitor counter and a public contact method. `reconcile-review-fixes` is four commits ahead of `origin/main` and one behind, so those four commits are not live either.
+- Next: commit, merge to main, let the workflow deploy, then paste one link into a real platform to confirm the preview image.
+
+S.D.G.: a visitor arriving from a shared link sees a picture of the piece, and one arriving at the home page meets the two strongest pieces first.
+Feynman gap: no share image has been fetched by a real platform; previews are unconfirmed until the site is deployed.
+
 ## 2026-11-09 Rack Lab publication
 
 Goal: Publish the Rack Lab configurator under Experiments with the COME AT ME! preset and a direct STL.

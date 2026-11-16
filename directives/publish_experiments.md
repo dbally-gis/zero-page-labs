@@ -42,3 +42,6 @@ Coverage checks require episode/source sets for Diu,Lepanto,Gravelines,Downs,Qui
 
 ## Learnings — 2026-11-09 Rack Lab
 The public adaptation lives in `experiments-source/rack-lab`. Keep the workshop repo independent. Run `python3 execution/build_experiments.py --rack-lab --install` after changes. Commit source, generated `experiments/rack-lab`, and `data/rack-lab-build.json` together. The static app starts on COME AT ME! for new visitors, keeps returning visitors’ saved settings, and uses browser-local STL geometry without the workshop slicer API. The direct STL lives in the adaptation’s `public` folder. When changing that preset, export and independently verify the replacement STL, then update the expected SHA-256 in `execution/test_experiments.mjs`. Verify a generated export, the fixed download, and the WebGL-disabled fallback before publishing.
+
+## Learnings — 2026-11-16 Listing an experiment
+A published experiment must also be added to `data/experiments.json` and `sitemap.xml`, and given a share image; the build stops if an `experiments/<slug>/` page is not in the list. Follow `directives/maintain_showcase.md`.

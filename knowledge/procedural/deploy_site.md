@@ -4,7 +4,7 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 ---
 
 # Build and verify
-1. Edit source HTML, `style.css`, `src/app.js`, or `data/watchfaces.json`.
+1. Edit source HTML, `style.css`, `src/app.js`, or `data/watchfaces.json`. Experiment cards and share images are not edited in HTML: change `data/experiments.json` or `data/site.json` and follow `directives/maintain_showcase.md`.
 2. Run `python3 execution/build_site.py`.
 3. Run `python3 execution/verify_site.py`.
 4. Serve `dist/` locally for desktop/mobile browser QA.

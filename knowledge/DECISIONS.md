@@ -47,3 +47,14 @@ Fresh Lexical visits show a complete-book point cloud before focused threads. Us
 
 ## Visit memory and genuinely unfiltered intro — 2026-11-08
 Separate introduction visibility from the selected view. Overview draws all mapped word points without highlighted paths; an explicit word choice introduces its thread. Remember a validated compact view locally after the intro is seen, preserving explicit shared links and replaying without replacing the saved view. Built-ins use source IDs instead of duplicated text; custom text remains local and bounded.
+
+## 2026-11-16 — One list of experiments; share tags added at build time
+- **Decision:** `data/experiments.json` is the only place an experiment's title, number, date, status and card text live. `execution/site_content.py` renders the Experiments page cards and the home page section from it. Numbers are derived from list order, which must be oldest first.
+- **Why:** the cards were hand-written on two pages. The home page showed three of seven experiments and the numbering had drifted (06, 04, 05 on one page; 07, 06, 04, 05 on the other).
+- **Decision:** share tags (`og:image`, `twitter:card`, missing `og:title`/`og:description`/canonical) are added to `dist/` pages by the build, never to source pages.
+- **Why:** Lexical and Rack Lab are attested bundles; editing their `index.html` would break the source/output hash check. One injection point also covers all 13 pages.
+- **Decision:** share images are photographed locally with Chrome by `execution/build_share_cards.py` and committed. `data/share-cards.json` records a hash of each card's text and artwork and a hash of the image file; `verify_site.py` fails when a card is stale or the shipped image is not the recorded one. It cannot tell whether an image was photographed with the right fonts, so look at each new image.
+- **Alternatives considered:** rendering images in CI (needs a browser in the hourly job); drawing them with Pillow (would not match the site's type).
+- **Decision:** the watchfaces share image uses two fixed copies (`assets/share-watch-one.png`, `-two.png`), not catalog files.
+- **Why:** catalog image names change when the hourly sync runs. A share image tied to them would go stale and fail the unattended build, which has no browser to rebuild it.
+- **Decision:** the visitor counter is wired for GoatCounter and stays off until `analytics.goatcounter` in `data/site.json` holds a site code. Daniel has not chosen a provider; GoatCounter is Claude Code's suggestion.
