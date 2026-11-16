@@ -597,5 +597,5 @@ Goal: the home page and shared links present the showcase as it is now, from one
 - [x] Experiments page checked at 390 px.
 - [ ] Daniel chooses a visitor counter and creates the account.
 - [ ] Daniel chooses a public contact method for the About section.
-- [ ] Merged to main and deployed.
+- [x] Merged to main and deployed.
 - [ ] A shared link shows its preview image on one real platform after deployment.

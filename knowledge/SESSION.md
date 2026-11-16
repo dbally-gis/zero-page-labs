@@ -17,10 +17,11 @@ Status: Committed on branch `claude/showcase-front-door` (worktree `/Users/danie
 - 44 Python tests, 240 Node tests and `verify_site.py --deep` pass. Home and Experiments pages viewed at 1440 and 390 px from a local build.
 - Independent verifier (2026-11-16): nine of ten claims passed; it failed the numbering claim because COME AT ME was published before Rack Lab on the same day. Fixed (COME AT ME 07, Rack Lab 08), along with escaped share-tag values, a stricter counter-code check, a check that the shipped image is the recorded one, a check for unlisted experiment folders, and a stacked compact list below 800 px. The fixes were retested but not re-verified independently.
 - Open: Daniel to choose a visitor counter and a public contact method. `reconcile-review-fixes` is four commits ahead of `origin/main` and one behind, so those four commits are not live either.
-- Next: commit, merge to main, let the workflow deploy, then paste one link into a real platform to confirm the preview image.
+- Deployed 2026-11-16: pushed merge commit `92dc319` to `main`; GitHub run 43891554079 passed tests, build, deep verification and the Render deploy. The public `deployment.json` reports `92dc319`. Checked on zeropagelabs.com: new hero line and description, seven experiments numbered 10 to 04, all 12 share images served as PNG, and `og:image` present on the Lexical, Rack Lab, Bellona and Gridcore demo pages. This deploy also published the four `reconcile-review-fixes` commits (Bellona models, Maritime graphics and fixes, Substack links).
+- Next: paste one link into a real platform to confirm the preview image. The main checkout is still on `reconcile-review-fixes` and local `main` is stale; both can be fast-forwarded to `origin/main`.
 
 S.D.G.: a visitor arriving from a shared link sees a picture of the piece, and one arriving at the home page meets the two strongest pieces first.
-Feynman gap: no share image has been fetched by a real platform; previews are unconfirmed until the site is deployed.
+Feynman gap: no share image has been fetched by a real platform (LinkedIn, X, Messages); the tags and images are live but an actual preview is unconfirmed.
 
 ## 2026-11-09 Rack Lab publication
 
@@ -124,6 +125,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-12 14:30 — commit: Add clickable atlas events and a space-time cube layer | experiments/biblical-travels/atlas.css,experiments/biblical-travels/atlas.mjs,experiments/biblical-travels/index.html,knowledge/SESSION.md,task.md
 - 2026-11-15 21:06 — commit: Give Bellona realistic hull, rig and crew models | execution/test_experiments.mjs,experiments/bellona/figure.mjs,experiments/bellona/gun-scene.mjs,experiments/bellona/index.html,experiments/bellona/scene.mjs
 - 2026-11-15 21:06 — commit: Upgrade Maritime scene graphics | execution/test_maritime.mjs,experiments/maritime/hull.mjs,experiments/maritime/maritime.mjs,experiments/maritime/scene.mjs,experiments/maritime/shot-effects.mjs
+- 2026-11-16 08:34 — commit: Generate experiment cards from one list and add share images | README.md,assets/share-watch-one.png,assets/share-watch-two.png,assets/share/bellona.png,assets/share/biblical-travels.png
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
