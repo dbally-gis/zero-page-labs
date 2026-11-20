@@ -1,5 +1,14 @@
 [
   {
+    "name": "Day Clock",
+    "slug": "day-clock",
+    "url": "https://apps.repebble.com/day-clock_dcbdf56b56c14d5eaa13fa86",
+    "image": "/assets/catalog-dcbdf56b56c14d5eaa13fa86.gif",
+    "style": "Other",
+    "description": "Make every day a game day.",
+    "source_image": "https://assets.repebble.com/screenshots/dcbdf56b56c14d5eaa13fa86/emery/db86e58d-220b-44e8-b809-7f2bcf685df7.gif"
+  },
+  {
     "name": "Day Drive",
     "slug": "day-drive",
     "url": "https://apps.repebble.com/day-drive_dfb5443154bf45869e39b70e",

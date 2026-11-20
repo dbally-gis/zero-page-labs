@@ -3,10 +3,19 @@
   "observedAt": "2026-11-20",
   "pagination": {
     "loadedPages": 3,
-    "entries": 49,
+    "entries": 50,
     "reachedBottom": true
   },
   "entries": [
+    {
+      "name": "Day Clock",
+      "url": "https://apps.repebble.com/day-clock_dcbdf56b56c14d5eaa13fa86",
+      "category": "Faces",
+      "description": "Make every day a game day.\n\nDay Clock turns the hours until midnight into a bold sports scoreboard. Watch the seconds count down, follow your quarter or hockey period, and keep the actual local time in view below.\n\n\u2022 Four-quarter mode: four six-hour quarters.\n\u2022 Hockey mode: three eight-hour periods.\n\u2022 Six colors: Amber, Ice White, Electric Blue, Mint, Red, and Orchid.\n\u2022 Actual time in 12-hour, 24-hour, or watch-default format.\n\u2022 Optional date in YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY format.\n\u2022 Native layouts for Pebble Time 2 and Pebble Round 2.\n\nThe countdown resets at local midnight and follows your watch\u2019s local clock. No phone connection or location needed for timekeeping. Seconds update every second.",
+      "thumbnail": "https://assets.repebble.com/screenshots/dcbdf56b56c14d5eaa13fa86/emery/db86e58d-220b-44e8-b809-7f2bcf685df7.gif",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/dcbdf56b56c14d5eaa13fa86/emery/db86e58d-220b-44e8-b809-7f2bcf685df7.gif"
+    },
     {
       "name": "Day Drive",
       "url": "https://apps.repebble.com/day-drive_dfb5443154bf45869e39b70e",
