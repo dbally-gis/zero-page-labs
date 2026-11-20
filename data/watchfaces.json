@@ -1,5 +1,41 @@
 [
   {
+    "name": "Day Drive",
+    "slug": "day-drive",
+    "url": "https://apps.repebble.com/day-drive_dfb5443154bf45869e39b70e",
+    "image": "/assets/catalog-dfb5443154bf45869e39b70e.gif",
+    "style": "Other",
+    "description": "A driving scene that follows your day, from clear morning roads to dusk, night, rain, and snow.",
+    "source_image": "https://assets.repebble.com/screenshots/dfb5443154bf45869e39b70e/emery/b2999d12-9ecb-4a64-a4a5-0980815a4dd3.gif"
+  },
+  {
+    "name": "Pocket Arcade",
+    "slug": "pocket-arcade",
+    "url": "https://apps.repebble.com/pocket-arcade_345b43271da74e3d8dc213a5",
+    "image": "/assets/catalog-345b43271da74e3d8dc213a5.gif",
+    "style": "Other",
+    "description": "A tiny arcade cabinet with a real clock on its screen.",
+    "source_image": "https://assets.repebble.com/screenshots/345b43271da74e3d8dc213a5/emery/7dea4e12-d8ab-424c-a1a6-f25b95b0eaf2.gif"
+  },
+  {
+    "name": "Night Drive",
+    "slug": "night-drive",
+    "url": "https://apps.repebble.com/night-drive_35f8525f8370470fb53e7179",
+    "image": "/assets/catalog-35f8525f8370470fb53e7179.gif",
+    "style": "Other",
+    "description": "Your time, glowing on the dashboard of a rainy midnight drive.",
+    "source_image": "https://assets.repebble.com/screenshots/35f8525f8370470fb53e7179/emery/3613fe1a-53de-4d6a-802a-b134b5cc1764.gif"
+  },
+  {
+    "name": "After Hours",
+    "slug": "after-hours",
+    "url": "https://apps.repebble.com/after-hours_062c8f6eb79c4a3b86be8c96",
+    "image": "/assets/catalog-062c8f6eb79c4a3b86be8c96.gif",
+    "style": "Other",
+    "description": "A tiny desk, a glowing CRT clock, and a window that follows your day.",
+    "source_image": "https://assets.repebble.com/screenshots/062c8f6eb79c4a3b86be8c96/emery/e6b8feee-7928-4f0a-bfde-faae0e8387ac.gif"
+  },
+  {
     "name": "Window Seat",
     "slug": "window-seat",
     "url": "https://apps.repebble.com/window-seat_aca3bb65eafa438ebb7474e0",
