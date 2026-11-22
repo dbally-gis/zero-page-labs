@@ -3,6 +3,24 @@ generated_by: "OpenAI Codex (exact model variant not exposed)"
 timestamp: "2026-11-07T17:04:06.403311-06:00"
 ---
 
+## 2026-11-21 COME AT ME showcase at seven cards
+
+Goal: make the public COME AT ME page describe and show the 7-card game.
+Agent: Claude Code CLI
+Handoff-from: OpenAI Codex
+Handoff-type: pickup
+Status: Edited and checked in worktree `/Users/danielbally/Git/.tmp/zpl-cam-7-card` on branch `claude/come-at-me-7-card`, based on `origin/main` (4bd8a69). Not committed, not pushed, not live. Waiting for Daniel to watch the new clip.
+
+- 2026-11-21 21:30 — Page copy, description tag, listing summary and tagline now say seven cards. Daniel chose to keep the 8-slot rack, so the rack text says its eight slots hold the seven-card row with one spare; Rack Lab and the STL are unchanged.
+- 2026-11-21 21:30 — Replaced `gameplay.mp4` (first take in the default dark look: 24.2 s, 1280 x 720, 15 fps, 349 KB; superseded by the Toybox take below), `gameplay.vtt` (five cues) and `gameplay-poster.jpg` with a recording of the 7-card game. The recorder is `scripts/record_showcase_clip.mjs` in Wrecko; it plays the new `showcase-clip` fixture, leaves out the pass-the-device screens, and derives caption times from scene lengths. Rebuilt the stale `come-at-me` share card.
+- 2026-11-21 21:30 — Checks: `build_site.py` and `verify_site.py` pass (14 pages); `test_experiments.mjs` 117 of 117; share cards current; Chrome at 1280 px and 390 px shows the seven-card copy, plays the clip, lists five contiguous captions, and has no overflow, failed requests or console errors.
+- Last Known State: local only. The live page still says eight cards and plays the 8-card clip.
+- 2026-11-21 21:45 — Independent verifier (read-only, fresh context): PASS on every ticked item in this contract and Wrecko's. It viewed 25 frames and a per-second sheet of the clip, re-ran the recorder to scratch, and confirmed the media files match the recorder output byte for byte and that nothing is deployed. Acted on its findings: the demo invite email (`private-demo/invite-mail.mjs`) said eight cards and now says seven; the recorder now checks that Ben's Slot 1 holds the 1, refuses clips of a minute or more, refuses under 8 captured frames a second, and refuses an output folder outside `.tmp/`. Not acted on: the card fan's earlier art (replaced on 2026-11-22, below); Rack Lab's preset note "slot numbers 1 to 8 … matching the rulebook" (`experiments-source/rack-lab/src/geometry/templates.ts:31`); the "Save replay (for testers)" link visible on the poster and share card; caption 3 naming the Fix-It marker while the screen shows only the broken row.
+- 2026-11-22 08:50 — Daniel watched the clip: he likes the idea but not the dark default look, and asked for Toybox. Re-recorded with `SKIN=toybox` (now the recorder's default): 24.3 s, 1280 x 720, 15 fps, 466 KB, five cues. The click ring is now dark with a white halo and clears at once, so it reads on the light background and no longer ghosts onto the next screen. Replaced the video, captions and poster together from one run, rebuilt the `come-at-me` share card, and re-ran the checks: `verify_site.py` PASS, `test_experiments.mjs` 117 of 117, share cards current, built media byte-match the recorder output, Chrome at 1280 px and 390 px passes. The Toybox re-record was checked by the builder only; the verifier's PASS above was on the dark recording of the same match and page.
+- 2026-11-22 09:10 — Daniel pointed out that the hero still showed the earlier card art. Replaced the three fan images with the current print faces from Wrecko's `print/out/tgc-bridge/` (built 2026-11-17): `card-42.jpg`, `card-trade.jpg`, `card-deflect.jpg`, each cropped from the 750 x 1125 bleed image to the 675 x 1050 trim area and scaled to 450 x 700. Removed `number-42.jpg`, `power-trade-one-for-one.png` and `power-deflect.jpg`; the already unreferenced `power-trade.jpg` is left in place. Alt text rewritten for the new art. Checks: `verify_site.py` PASS, 117 of 117 tests, share cards current, Chrome at 1280 px and 390 px loads all three at 450 x 700 with no overflow or errors. Checked by the builder only. The earlier preview on port 4399 showed Daniel a cached copy of the dark clip, because `python3 -m http.server` sends no cache header; the preview now runs on port 4402 with `Cache-Control: no-store`.
+- S.D.G.: a visitor or publisher reading the page sees the game Daniel is actually pitching, and the clip, captions and invite email agree with the demo they are then sent.
+- Feynman gap: the clip's pacing and the click ring are a look-and-feel call that only Daniel can make; nobody has watched it at full speed yet. The invite email change takes effect only when the playtest service redeploys.
+
 ## 2026-11-16 Showcase front door
 
 Goal: make the home page and shared links present the showcase as it is now.

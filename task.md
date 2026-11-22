@@ -599,3 +599,32 @@ Goal: the home page and shared links present the showcase as it is now, from one
 - [ ] Daniel chooses a public contact method for the About section.
 - [x] Merged to main and deployed.
 - [ ] A shared link shows its preview image on one real platform after deployment.
+
+## COME AT ME showcase at seven cards — 2026-11-21
+
+Target: Daniel's request to update the showcase page after the game moved to 7-card rows and numbers 1–44. He chose to re-record the gameplay clip and to keep the 8-slot rack with corrected wording. Owner: Claude Code CLI. The clip is recorded by `scripts/record_showcase_clip.mjs` in the Wrecko repo from its `showcase-clip` fixture.
+
+- [x] The COME AT ME page's opening line says seven cards.
+- [x] The COME AT ME page's description tag says seven cards.
+- [x] The Experiments listing summary for COME AT ME says seven cards.
+- [x] The home page tagline for COME AT ME says seven cards.
+- [x] The clip's final screen reads "All 7 cards are in order".
+- [x] The clip is 1280 x 720.
+- [x] The captions file has five cues.
+- [x] Each caption cue starts where the one before it ends.
+- [x] No caption cue says eight.
+- [x] The transcript names the 44 repair card.
+- [x] The poster is 1280 x 720.
+- [x] The poster shows the seven-card final scores.
+- [x] The rack text says the eight slots hold the seven-card row with one spare.
+- [x] `build_share_cards.py --check` reports every share card current.
+- [x] `verify_site.py` passes.
+- [x] The COME AT ME page has no horizontal overflow at 390 px.
+- [x] The COME AT ME page logs no console errors at 1280 px.
+- [x] The clip is recorded in the Toybox look.
+- [x] The hero's number 42 card is the current print face.
+- [x] The hero's Trade card is the current print face.
+- [x] The hero's Deflect card is the current print face.
+- [x] Each hero card image is cropped to the card's trim size.
+- [x] Daniel has watched the clip and approved it.
+- [ ] The change is live on zeropagelabs.com.

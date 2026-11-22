@@ -22,7 +22,7 @@ function inviteCard(url, expires) {
         <h1 style="margin:0;color:#fbf1d8;font-family:'Arial Black',Arial,sans-serif;font-size:52px;line-height:.95;letter-spacing:-2px;font-weight:900">COME AT<br>ME!</h1>
       </td></tr>
       <tr><td bgcolor="#fbf1d8" style="background-color:#fbf1d8;padding:24px;color:#182230">
-        <p style="margin:0 0 18px;font-size:16px;line-height:1.55">You're invited to play the browser demo. Put eight cards in order, call “Come At Me,” and survive one last shot from each opponent.</p>
+        <p style="margin:0 0 18px;font-size:16px;line-height:1.55">You're invited to play the browser demo. Put seven cards in order, call “Come At Me,” and survive one last shot from each opponent.</p>
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
           <tr><td align="center" bgcolor="#ffca54" style="background-color:#ffca54;border:1px solid #182230">
             <a href="${href}" style="display:block;padding:15px 18px;color:#182230;font-size:18px;font-weight:bold;text-decoration:none;mso-padding-alt:0"><!--[if mso]><i style="mso-font-width:150%;mso-text-raise:24pt" hidden>&emsp;</i><![endif]--><span style="mso-text-raise:12pt">Play the demo</span><!--[if mso]><i style="mso-font-width:150%" hidden>&emsp;&#8203;</i><![endif]--></a>

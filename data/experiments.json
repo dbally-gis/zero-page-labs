@@ -47,10 +47,10 @@
       "added": "2026-11-09",
       "status": "prototype",
       "status_note": "INVITE-ONLY DEMO",
-      "summary": "Get eight cards in order, call “Come At Me,” and survive one last shot from each opponent.",
-      "tagline": "Get eight cards in order and survive one last shot.",
+      "summary": "Get seven cards in order, call “Come At Me,” and survive one last shot from each opponent.",
+      "tagline": "Get seven cards in order and survive one last shot.",
       "cta": "Explore the prototype",
-      "cover": {"src": "/experiments/come-at-me/media/gameplay-poster.jpg", "alt": "Eight ordered cards on the COME AT ME prototype table", "width": 1280, "height": 720, "label": "Open the COME AT ME prototype"},
+      "cover": {"src": "/experiments/come-at-me/media/gameplay-poster.jpg", "alt": "Final scores on the COME AT ME prototype, with Ana’s seven cards in order", "width": 1280, "height": 720, "label": "Open the COME AT ME prototype"},
       "links": []
     },
     {
