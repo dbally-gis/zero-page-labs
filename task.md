@@ -627,4 +627,4 @@ Target: Daniel's request to update the showcase page after the game moved to 7-c
 - [x] The hero's Deflect card is the current print face.
 - [x] Each hero card image is cropped to the card's trim size.
 - [x] Daniel has watched the clip and approved it.
-- [ ] The change is live on zeropagelabs.com.
+- [x] The change is live on zeropagelabs.com.
