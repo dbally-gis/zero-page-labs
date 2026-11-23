@@ -1,5 +1,14 @@
 [
   {
+    "name": "Shadow Type",
+    "slug": "shadow-type",
+    "url": "https://apps.repebble.com/shadow-type_ec6182efc936432f8dfae472",
+    "image": "/assets/catalog-ec6182efc936432f8dfae472.png",
+    "style": "Other",
+    "description": "A stacked typographic clock whose shadow shifts with the local time.",
+    "source_image": "https://assets.repebble.com/screenshots/ec6182efc936432f8dfae472/emery/332af27f-43d4-444c-9866-8b69be633d50.png"
+  },
+  {
     "name": "Day Clock",
     "slug": "day-clock",
     "url": "https://apps.repebble.com/day-clock_dcbdf56b56c14d5eaa13fa86",

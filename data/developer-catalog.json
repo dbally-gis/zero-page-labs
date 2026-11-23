@@ -3,10 +3,28 @@
   "observedAt": "2026-11-23",
   "pagination": {
     "loadedPages": 3,
-    "entries": 50,
+    "entries": 52,
     "reachedBottom": true
   },
   "entries": [
+    {
+      "name": "Shadow Type",
+      "url": "https://apps.repebble.com/shadow-type_ec6182efc936432f8dfae472",
+      "category": "Faces",
+      "description": "A stacked typographic clock whose shadow shifts with the local time.\n\n\u2022 Watch the shadow change direction and length through the day.\n\u2022 Choose four color palettes, with a hatched light or dark look on monochrome watches.\n\u2022 Use your watch\u2019s clock format or pick 12- or 24-hour time.\n\u2022 Pick a date format or hide the date.",
+      "thumbnail": "https://assets.repebble.com/screenshots/ec6182efc936432f8dfae472/basalt/46635939-6363-4312-8b37-e1c5d80f3896.gif",
+      "release_version": "0.2.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/ec6182efc936432f8dfae472/emery/21da392e-94f3-4683-9510-b45d39f161d7.gif"
+    },
+    {
+      "name": "Last Done",
+      "url": "https://apps.repebble.com/last-done_addbc301666c4ad2b61c1cbd",
+      "category": "Tools & Utilities",
+      "description": "When did I last do that? Log three everyday routines right from your Pebble.\n\n\u2022 Use Up and Down to choose a task.\n\u2022 Press Select to log it. Hold Select to undo your last entry.\n\u2022 See the elapsed time and the local time you logged it.\n\u2022 Rename your three tasks in the Pebble app. Logging works offline.",
+      "thumbnail": "https://assets.repebble.com/screenshots/addbc301666c4ad2b61c1cbd/basalt/2c6da37c-2d29-40e3-bb32-135226242b22.gif",
+      "release_version": "0.1.0",
+      "time2_preview": "https://assets.repebble.com/screenshots/addbc301666c4ad2b61c1cbd/emery/d8b0fc48-cd2f-4086-8615-aa2666187f6f.gif"
+    },
     {
       "name": "Day Clock",
       "url": "https://apps.repebble.com/day-clock_dcbdf56b56c14d5eaa13fa86",
