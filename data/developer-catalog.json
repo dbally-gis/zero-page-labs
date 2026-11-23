@@ -1,6 +1,6 @@
 {
   "source": "https://apps.repebble.com/apps/dev/daniel-bally_e8468a0ff28edd5791d1bced",
-  "observedAt": "2026-11-22",
+  "observedAt": "2026-11-23",
   "pagination": {
     "loadedPages": 3,
     "entries": 50,
@@ -48,8 +48,8 @@
       "url": "https://apps.repebble.com/after-hours_062c8f6eb79c4a3b86be8c96",
       "category": "Faces",
       "description": "A tiny desk, a glowing CRT clock, and a window that follows your day.\n\nThe window changes automatically with local time and current weather. Day, dusk, night, and rain previews are available. Current weather uses approximate phone location and Open-Meteo. Weather readings expire after 90 minutes, then the window follows time of day. Weather can be disabled.\n\nChoose your setup\n\u2022 Four clock colors\n\u2022 Watch-default, 12-hour, or 24-hour time\n\u2022 Date Off, YYYY-MM-DD, MM/DD/YYYY, or DD/MM/YYYY\n\u2022 Settings saved on the watch\n\nMade for Pebble Time 2 and Pebble Round 2. Configure it in the Pebble app.\n\nOriginal scene artwork. The preview GIF cycles settings faster than normal watch use.",
-      "thumbnail": "https://assets.repebble.com/screenshots/062c8f6eb79c4a3b86be8c96/chalk/60385a14-6430-414f-9cdb-882577cceb03.gif",
-      "release_version": "0.1.2",
+      "thumbnail": "https://assets.repebble.com/screenshots/062c8f6eb79c4a3b86be8c96/basalt/022f2447-1682-47c5-8bf4-8efcf9a4d4f2.gif",
+      "release_version": "0.1.3",
       "time2_preview": "https://assets.repebble.com/screenshots/062c8f6eb79c4a3b86be8c96/emery/e6b8feee-7928-4f0a-bfde-faae0e8387ac.gif"
     },
     {
@@ -138,8 +138,8 @@
       "url": "https://apps.repebble.com/railway_b882652051884d01bfcabfdf",
       "category": "Faces",
       "description": "A clear analog dial inspired by railway clocks.\n\nBold batons, flat hands, and an optional lollipop seconds hand. Optional digital time, date, and battery percentage.\n\nMake it yours:\n- Six color palettes.\n- Custom background, text, and accent colors.\n- Watch default, 12-hour, or 24-hour main time.\n- Optional date, with ISO, US, or European numeric formats.\n\nThe animated preview cycles through the palettes. Your selected colors stay steady on the watch.\n\nNative layouts for Pebble Time 2, the original Time Round, and Round 2.",
-      "thumbnail": "https://assets.repebble.com/screenshots/b882652051884d01bfcabfdf/chalk/79c2236d-31f3-4b4a-86fc-2c26e09c816c.gif",
-      "release_version": "0.1.1",
+      "thumbnail": "https://assets.repebble.com/screenshots/b882652051884d01bfcabfdf/basalt/2c5300e7-777c-4f2c-8d24-bf423e1d2e65.gif",
+      "release_version": "0.1.2",
       "time2_preview": "https://assets.repebble.com/screenshots/b882652051884d01bfcabfdf/emery/f38b7def-f816-4b6f-aa36-792e65349d5b.gif"
     },
     {
