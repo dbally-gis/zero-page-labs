@@ -640,3 +640,11 @@ Surface: static build, shared analytics script, privacy notice. Publish through 
 - [x] Fresh independent review passes.
 - [x] Production serves the analytics script.
 - [x] Analytics receives a real browser visit.
+
+## 2026-11-25 — Realistic Bellona card
+- [x] Bellona cover uses a realistic ship illustration.
+- [x] Home page shows the replacement cover.
+- [x] Experiments index shows the replacement cover.
+- [x] Share card fingerprints match the changed cover.
+- [x] Deep site verification passes.
+- [ ] Public site serves the replacement cover.

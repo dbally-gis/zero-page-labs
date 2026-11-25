@@ -10,9 +10,20 @@
       "summary": "Make perfectly good pictures worse. Stack 24 retro effects, mutate a test signal, or bend a photo of your own.",
       "tagline": "Stack 24 retro effects on a photo of your own.",
       "cta": "Bend the signal",
-      "cover": {"src": "/assets/experiment-retro.svg", "alt": "A broken color-bar test signal", "width": 960, "height": 640, "label": "Open Retro-Glitch Studio"},
+      "cover": {
+        "src": "/assets/experiment-retro.svg",
+        "alt": "A broken color-bar test signal",
+        "width": 960,
+        "height": 640,
+        "label": "Open Retro-Glitch Studio"
+      },
       "note": "RUNS IN YOUR BROWSER · PNG EXPORT",
-      "links": [{"label": "Browser edition on GitHub ↗", "href": "https://github.com/dbally-gis/zero-page-labs/tree/main/experiments/retro-glitch"}]
+      "links": [
+        {
+          "label": "Browser edition on GitHub ↗",
+          "href": "https://github.com/dbally-gis/zero-page-labs/tree/main/experiments/retro-glitch"
+        }
+      ]
     },
     {
       "slug": "lexical",
@@ -23,9 +34,20 @@
       "summary": "Take your words for a walk. Follow a passage through 3D space, or trace recurring words across its pages.",
       "tagline": "Follow a passage through 3D space.",
       "cta": "Explore the words",
-      "cover": {"src": "/assets/experiment-lexical.svg", "alt": "Colored word paths connecting page-like layers", "width": 960, "height": 640, "label": "Open Lexical"},
+      "cover": {
+        "src": "/assets/experiment-lexical.svg",
+        "alt": "Colored word paths connecting page-like layers",
+        "width": 960,
+        "height": 640,
+        "label": "Open Lexical"
+      },
       "note": "PASTE A PASSAGE · YOUR TEXT STAYS LOCAL",
-      "links": [{"label": "Original project on GitHub ↗", "href": "https://github.com/globe-and-atlas/lexical"}]
+      "links": [
+        {
+          "label": "Original project on GitHub ↗",
+          "href": "https://github.com/globe-and-atlas/lexical"
+        }
+      ]
     },
     {
       "slug": "maritime",
@@ -36,9 +58,20 @@
       "summary": "Watch history unfold. Explore twelve landmark naval encounters through moving charts, follow a ship, and discover the decisions behind the formations.",
       "tagline": "Twelve landmark naval encounters on moving charts.",
       "cta": "Explore the battles",
-      "cover": {"src": "/assets/experiment-maritime.svg", "alt": "Two sailing columns approaching a fleet line on a teal tactical chart", "width": 960, "height": 640, "label": "Open Maritime battle atlas"},
+      "cover": {
+        "src": "/assets/experiment-maritime.svg",
+        "alt": "Two sailing columns approaching a fleet line on a teal tactical chart",
+        "width": 960,
+        "height": 640,
+        "label": "Open Maritime battle atlas"
+      },
       "note": "1509–1898 · INTERACTIVE HISTORICAL ATLAS",
-      "links": [{"label": "Explore the source on GitHub ↗", "href": "https://github.com/dbally-gis/zero-page-labs/tree/main/experiments/maritime"}]
+      "links": [
+        {
+          "label": "Explore the source on GitHub ↗",
+          "href": "https://github.com/dbally-gis/zero-page-labs/tree/main/experiments/maritime"
+        }
+      ]
     },
     {
       "slug": "come-at-me",
@@ -50,7 +83,13 @@
       "summary": "Get seven cards in order, call “Come At Me,” and survive one last shot from each opponent.",
       "tagline": "Get seven cards in order and survive one last shot.",
       "cta": "Explore the prototype",
-      "cover": {"src": "/experiments/come-at-me/media/gameplay-poster.jpg", "alt": "Final scores on the COME AT ME prototype, with Ana’s seven cards in order", "width": 1280, "height": 720, "label": "Open the COME AT ME prototype"},
+      "cover": {
+        "src": "/experiments/come-at-me/media/gameplay-poster.jpg",
+        "alt": "Final scores on the COME AT ME prototype, with Ana’s seven cards in order",
+        "width": 1280,
+        "height": 720,
+        "label": "Open the COME AT ME prototype"
+      },
       "links": []
     },
     {
@@ -62,9 +101,21 @@
       "summary": "Design a card holder you can 3D print. Start with the eight-slot COME AT ME! rack for Bridge cards, then adjust the fit or print the preset as-is.",
       "tagline": "Design a card holder you can 3D print.",
       "cta": "Open Rack Lab",
-      "cover": {"src": "/assets/experiment-rack-lab.png", "alt": "A 3D preview of the eight-slot COME AT ME! card rack with raised front lettering", "width": 900, "height": 760, "label": "Open Rack Lab"},
+      "cover": {
+        "src": "/assets/experiment-rack-lab.png",
+        "alt": "A 3D preview of the eight-slot COME AT ME! card rack with raised front lettering",
+        "width": 900,
+        "height": 760,
+        "label": "Open Rack Lab"
+      },
       "note": "BROWSER CONFIGURATOR · STL EXPORT",
-      "links": [{"label": "Download the COME AT ME! STL ↓", "href": "/experiments/rack-lab/come-at-me-8-slot.stl", "download": true}]
+      "links": [
+        {
+          "label": "Download the COME AT ME! STL ↓",
+          "href": "/experiments/rack-lab/come-at-me-8-slot.stl",
+          "download": true
+        }
+      ]
     },
     {
       "slug": "bellona",
@@ -76,7 +127,13 @@
       "summary": "Open a 1760 warship deck by deck. Read the original Admiralty plans and step through a square-rigged tack.",
       "tagline": "A 1760 warship, opened deck by deck.",
       "cta": "Explore the ship",
-      "cover": {"src": "/assets/experiment-bellona.svg", "alt": "Wooden warship with three masts and stacked gun decks on a drafting grid", "width": 960, "height": 640, "label": "Open the HMS Bellona cutaway"},
+      "cover": {
+        "src": "/assets/experiment-bellona-realistic.png",
+        "alt": "Realistic wooden model illustration of HMS Bellona with detailed rigging and an opened gun deck",
+        "width": 1536,
+        "height": 1024,
+        "label": "Open the HMS Bellona cutaway"
+      },
       "note": "3D CUTAWAY · GUIDED TACK",
       "links": []
     },
@@ -90,7 +147,13 @@
       "summary": "Follow Jesus through the Gospels or switch between people at shared stops in Acts. Read the passage behind each event.",
       "tagline": "The Gospels and Acts as journeys on a map.",
       "cta": "Open the atlas",
-      "cover": {"src": "/assets/experiment-biblical-travels.svg", "alt": "Routes crossing on an eastern Mediterranean map", "width": 960, "height": 640, "label": "Open Biblical Travels"},
+      "cover": {
+        "src": "/assets/experiment-biblical-travels.svg",
+        "alt": "Routes crossing on an eastern Mediterranean map",
+        "width": 960,
+        "height": 640,
+        "label": "Open Biblical Travels"
+      },
       "note": "GOSPELS & ACTS · VERSE LINKS AT EACH STOP",
       "links": []
     }

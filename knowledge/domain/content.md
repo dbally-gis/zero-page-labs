@@ -21,3 +21,6 @@ Verify visibility through GitHub before linking a project. Public source invento
 
 ## Lexical example texts
 Public examples are bundled in experiments-source/lexical/src/text-examples.js; original passages require no attribution to external authors or text-fetch services. Metadata specifies view, focus terms, and the guide. Keep focus terms in the rendered word set even when they are outside the frequency top8. Changing examples resets prior corpus filters. Selecting custom text clears example identity. The picker remains visible independently of the input panel.
+
+## 2026-11-25 — Bellona cover illustration
+Replaced the schematic card with `assets/experiment-bellona-realistic.png` (1536×1024), generated using built-in imagegen. Artistic model-ship illustration, not a documentary photograph or verified reconstruction. Direction: photorealistic wooden Admiralty model, three masts, furled sails, two gun decks, partial hull cutaway, warm ivory studio background, no text. Original SVG retained. Home and Experiments consume the catalog cover; Bellona and Experiments share cards were regenerated.
