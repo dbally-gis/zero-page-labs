@@ -27,3 +27,6 @@ Replaced the schematic card with `assets/experiment-bellona-realistic.png` (1536
 
 ## 2026-11-25 — Maritime cover illustration
 `assets/experiment-maritime-realistic.png` replaces the schematic fleet card. Built-in imagegen produced a realistic age-of-sail fleet scene in teal water, cream canvas, and warm light. This is an artistic illustration, not a documentary reconstruction. Exact prompt: `data/maritime-cover-generation.json`. Original SVG retained. Maritime share card regenerated; 15-page deep verification and share-card freshness passed. Chrome confirmed the full ship composition in the actual card.
+
+## 2026-11-25 — Biblical Travels cover illustration
+`assets/experiment-biblical-travels-realistic.png` replaces the flat map with a realistic Galilee-inspired journey scene: anonymous travelers, olive trees, a stone path, and a lakeside village. Artistic illustration, not a verified reconstruction of a particular site or biblical event. Generated with built-in imagegen; exact prompt in `data/biblical-cover-generation.json`. Original SVG retained. Shared catalog updates homepage and Experiments; Biblical Travels and Experiments share images regenerated. Deep verification passed 15 pages; share-card freshness passed; local desktop and 375px checks passed.

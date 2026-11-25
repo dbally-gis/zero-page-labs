@@ -655,3 +655,11 @@ Surface: static build, shared analytics script, privacy notice. Publish through 
 - [x] Maritime share card matches the replacement image.
 - [x] Deep site verification passes.
 - [x] Public site serves the replacement image.
+
+## 2026-11-25 — Realistic Biblical Travels cover
+- [x] Biblical Travels uses the realistic journey illustration.
+- [x] Homepage loads the replacement image.
+- [x] Experiments index loads the replacement image.
+- [x] Share-card freshness verification passes.
+- [x] Deep site verification passes.
+- [ ] Public site serves the replacement image.

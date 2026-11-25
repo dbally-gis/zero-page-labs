@@ -148,10 +148,10 @@
       "tagline": "The Gospels and Acts as journeys on a map.",
       "cta": "Open the atlas",
       "cover": {
-        "src": "/assets/experiment-biblical-travels.svg",
-        "alt": "Routes crossing on an eastern Mediterranean map",
-        "width": 960,
-        "height": 640,
+        "src": "/assets/experiment-biblical-travels-realistic.png",
+        "alt": "Realistic illustration of travelers following a stone path through olive trees toward an ancient Galilee lakeside village",
+        "width": 1536,
+        "height": 1024,
         "label": "Open Biblical Travels"
       },
       "note": "GOSPELS & ACTS · VERSE LINKS AT EACH STOP",
