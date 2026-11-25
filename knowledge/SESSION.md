@@ -146,6 +146,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-15 21:06 — commit: Upgrade Maritime scene graphics | execution/test_maritime.mjs,experiments/maritime/hull.mjs,experiments/maritime/maritime.mjs,experiments/maritime/scene.mjs,experiments/maritime/shot-effects.mjs
 - 2026-11-16 08:34 — commit: Generate experiment cards from one list and add share images | README.md,assets/share-watch-one.png,assets/share-watch-two.png,assets/share/bellona.png,assets/share/biblical-travels.png
 - 2026-11-22 08:53 — commit: Show the seven-card COME AT ME game on the showcase | assets/share/come-at-me.png,data/experiments.json,data/share-cards.json,experiments/come-at-me/index.html,experiments/come-at-me/media/card-42.jpg
+- 2026-11-25 09:09 — commit: Add consent-based Google Analytics traffic reporting | execution/build_site.py,execution/test_automatic_catalog.py,execution/verify_site.py,knowledge/INDEX.md,knowledge/SESSION.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -553,4 +554,6 @@ Verdict: pending — user approved Analytics agreements
 Status: GA4 account and stream created. Implementing consent-gated tracking in an isolated worktree.
 Verification: 44 Python tests, 240 Node tests, deep verification of 15 pages passed. Local Chrome confirmed no Google loader before opt-in or after decline across navigation; 375px prompt has no overflow. Fresh independent review passed after preserving UTM labels.
 S.D.G.: Daniel can see which Zero Page Labs projects attract visits and where visitors come from.
-Feynman gap: Production deployment and GA receipt pending.
+Status: Published 7101b9b through successful GitHub Actions run 45642001299. Public deployment fingerprint matches. Live Chrome loaded the tag after opt-in; GA Realtime visibly recorded 1 active user, the homepage title, first_visit, page_view, and session_start. This first visit is our verification visit, not evidence of external audience demand.
+S.D.G.: Daniel can compare traffic to Zero Page Labs pages and identify referral sources.
+Feynman gap: Collection verified live; accumulated acquisition reports need real visitor traffic. Visitors declining consent or blocking analytics are not counted.

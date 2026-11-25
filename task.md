@@ -638,5 +638,5 @@ Surface: static build, shared analytics script, privacy notice. Publish through 
 - [x] Privacy notice explains Google Analytics.
 - [x] Deep site verification passes.
 - [x] Fresh independent review passes.
-- [ ] Production serves the analytics script.
-- [ ] Analytics receives a real browser visit.
+- [x] Production serves the analytics script.
+- [x] Analytics receives a real browser visit.
