@@ -647,4 +647,4 @@ Surface: static build, shared analytics script, privacy notice. Publish through 
 - [x] Experiments index shows the replacement cover.
 - [x] Share card fingerprints match the changed cover.
 - [x] Deep site verification passes.
-- [ ] Public site serves the replacement cover.
+- [x] Public site serves the replacement cover.
