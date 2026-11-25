@@ -648,3 +648,10 @@ Surface: static build, shared analytics script, privacy notice. Publish through 
 - [x] Share card fingerprints match the changed cover.
 - [x] Deep site verification passes.
 - [x] Public site serves the replacement cover.
+
+## 2026-11-25 — Realistic Maritime cover
+- [x] Maritime cover uses the new realistic fleet illustration.
+- [x] Experiments index loads the replacement image.
+- [x] Maritime share card matches the replacement image.
+- [x] Deep site verification passes.
+- [ ] Public site serves the replacement image.

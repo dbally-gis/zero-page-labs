@@ -24,3 +24,6 @@ Public examples are bundled in experiments-source/lexical/src/text-examples.js; 
 
 ## 2026-11-25 — Bellona cover illustration
 Replaced the schematic card with `assets/experiment-bellona-realistic.png` (1536×1024), generated using built-in imagegen. Artistic model-ship illustration, not a documentary photograph or verified reconstruction. Direction: photorealistic wooden Admiralty model, three masts, furled sails, two gun decks, partial hull cutaway, warm ivory studio background, no text. Original SVG retained. Home and Experiments consume the catalog cover; Bellona and Experiments share cards were regenerated.
+
+## 2026-11-25 — Maritime cover illustration
+`assets/experiment-maritime-realistic.png` replaces the schematic fleet card. Built-in imagegen produced a realistic age-of-sail fleet scene in teal water, cream canvas, and warm light. This is an artistic illustration, not a documentary reconstruction. Exact prompt: `data/maritime-cover-generation.json`. Original SVG retained. Maritime share card regenerated; 15-page deep verification and share-card freshness passed. Chrome confirmed the full ship composition in the actual card.

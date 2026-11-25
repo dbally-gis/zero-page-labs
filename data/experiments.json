@@ -59,10 +59,10 @@
       "tagline": "Twelve landmark naval encounters on moving charts.",
       "cta": "Explore the battles",
       "cover": {
-        "src": "/assets/experiment-maritime.svg",
-        "alt": "Two sailing columns approaching a fleet line on a teal tactical chart",
-        "width": 960,
-        "height": 640,
+        "src": "/assets/experiment-maritime-realistic.png",
+        "alt": "Realistic historical naval battle illustration with wooden warships under sail approaching an opposing fleet",
+        "width": 1536,
+        "height": 1024,
         "label": "Open Maritime battle atlas"
       },
       "note": "1509–1898 · INTERACTIVE HISTORICAL ATLAS",
