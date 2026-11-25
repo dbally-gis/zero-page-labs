@@ -15,7 +15,7 @@ def build() -> None:
     if output.exists():
         shutil.rmtree(output)
     output.mkdir()
-    for file in ('index.html', 'style.css', 'robots.txt', 'sitemap.xml', '404.html'):
+    for file in ('index.html', 'style.css', 'robots.txt', 'sitemap.xml', '404.html', 'privacy.html'):
         shutil.copyfile(ROOT / file, output / file)
     for directory in ('assets', 'src', 'thumbwords', 'watchfaces', 'gridcore', 'experiments'):
         shutil.copytree(ROOT / directory, output / directory)
@@ -47,6 +47,13 @@ def build() -> None:
     gallery = output / 'watchfaces/index.html'
     gallery.write_text(gallery.read_text().replace('{{WATCH_CARDS}}', '\n'.join(cards)))
     site_content.finish_pages(ROOT, output)
+    # Inject after generated pages exist, including nested experiment entrypoints.
+    for page in output.rglob('*.html'):
+        html = page.read_text()
+        if '<head>' not in html:
+            raise ValueError(f'Missing head in {page.relative_to(output)}')
+        html = html.replace('<head>', '<head><script src="/src/analytics.js" defer></script>', 1)
+        page.write_text(html)
     import os
     import subprocess
     import hashlib

@@ -628,3 +628,15 @@ Target: Daniel's request to update the showcase page after the game moved to 7-c
 - [x] Each hero card image is cropped to the card's trim size.
 - [x] Daniel has watched the clip and approved it.
 - [x] The change is live on zeropagelabs.com.
+
+## 2026-11-25 — Traffic analytics
+Surface: static build, shared analytics script, privacy notice. Publish through existing Render workflow.
+- [x] Built HTML pages each load the shared analytics script exactly once.
+- [x] Google Analytics loads only after visitor opt-in.
+- [x] Declining persists across page navigation.
+- [x] Advertising consent remains denied.
+- [x] Privacy notice explains Google Analytics.
+- [x] Deep site verification passes.
+- [x] Fresh independent review passes.
+- [ ] Production serves the analytics script.
+- [ ] Analytics receives a real browser visit.

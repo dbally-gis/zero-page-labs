@@ -30,3 +30,10 @@ Workflow410738005 is active. Initialpush run https://github.com/dbally-gis/zero-
 
 ## Learnings — 2026-11-08 Public fingerprint caching
 Observed deployment.json headers: Cache-Control public,max-age=0,s-maxage=300 with a Cloudflare cache hit. An earlier release can remain visible at the old cache key while a fresh diagnostic query returns the new source_commit. A queued workflow may wait behind that earlier public-verification step. Read workflow status and compare the exact expected fingerprint; use a fresh diagnostic query to distinguish cache staleness from a failed deployment. Do not cancel another active owner’s release or treat push success as live verification.
+
+## Traffic reporting — 2026-11-25
+Google Analytics web stream `16414445542`, measurement ID `G-RGDHSTD8FE`, site `https://zeropagelabs.com`. Optional account data sharing disabled. Enhanced measurement: page views, scrolls, outbound clicks, downloads. Search, form, video measurement disabled.
+Build injects `/src/analytics.js` into generated HTML after experiment packaging; edit the shared source rather than generated experiment HTML. New visitors must allow analytics before Google loads. Analytics settings permits withdrawal. Page addresses preserve only standard UTM labels; do not put private information in campaign labels. Google signals and ad personalization disabled. The public measurement ID is not a secret.
+Reports: Pages and screens for popularity, Traffic acquisition for sources, Realtime to check collection. Counts begin at activation, omit visitors declining consent or blocking Analytics, and cannot recover historical traffic.
+
+Dashboard: https://analytics.google.com/analytics/web/#/a417473277p565868648/reports/intelligenthome

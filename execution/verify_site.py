@@ -34,6 +34,11 @@ def content_errors(output: Path, root: Path | None = None) -> list[str]:
     errors = []
     experiments = site_content.load_experiments(root)
     site = site_content.load_site(root)
+    for page in output.rglob('*.html'):
+        if page.read_text().count('<script src="/src/analytics.js" defer></script>') != 1:
+            errors.append(f'Expected one analytics loader in {page.relative_to(output)}')
+    if not (output / 'privacy.html').exists():
+        errors.append('Missing privacy notice')
     home = (output / 'index.html').read_text()
     listing = (output / 'experiments/index.html').read_text()
     sitemap = (output / 'sitemap.xml').read_text()

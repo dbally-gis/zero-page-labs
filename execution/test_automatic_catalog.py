@@ -104,7 +104,7 @@ class SyncTests(unittest.TestCase):
             for directory in ('assets','src','thumbwords','watchfaces','gridcore','data','experiments'):
                 shutil.copytree(REPO/directory,root/directory)
             shutil.copytree(REPO/'experiments-source',root/'experiments-source',ignore=shutil.ignore_patterns('node_modules'))
-            for name in ('index.html','style.css','robots.txt','sitemap.xml','404.html'):
+            for name in ('index.html','style.css','robots.txt','sitemap.xml','404.html','privacy.html'):
                 shutil.copyfile(REPO/name,root/name)
             (root/'data/developer-catalog.json').write_text(json.dumps(snapshot(entries[:1])))
             faces=[]

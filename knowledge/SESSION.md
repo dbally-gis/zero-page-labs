@@ -543,3 +543,14 @@ Feynman gap: Physical touch input and the public deployment remain unverified.
 - Note: `python3 -m unittest discover -s execution -p "test_*.py"` failed 5 `test_automatic_catalog.py` cases in the sandbox because `.tmp` symlinks to `/Volumes/Extreme SSD/...` (outside sandbox write scope). Browser visual verification on `reconcile-review-fixes` was not run (Chrome DevTools port unavailable).
 - S.D.G.: Visitors exploring Maritime see historically consistent ship tracks, withdrawals, stern-anchoring, and sourced sinkings (*Santa Teresa*, *Zhiyuan*) alongside the reconciled Bellona/Maritime 3D visual upgrades and Biblical Travels / Rack Lab.
 - Feynman gap: All 240 Node tests and 14-page deep static verification pass after the final edit; live browser rendering of the reconciled branch and `test_automatic_catalog.py` (blocked by `.tmp` symlink) remain unverified in this session.
+
+## 2026-11-25 — Traffic analytics
+Goal: Count views and traffic sources for Zero Page Labs.
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Verdict: pending — user approved Analytics agreements
+Status: GA4 account and stream created. Implementing consent-gated tracking in an isolated worktree.
+Verification: 44 Python tests, 240 Node tests, deep verification of 15 pages passed. Local Chrome confirmed no Google loader before opt-in or after decline across navigation; 375px prompt has no overflow. Fresh independent review passed after preserving UTM labels.
+S.D.G.: Daniel can see which Zero Page Labs projects attract visits and where visitors come from.
+Feynman gap: Production deployment and GA receipt pending.
