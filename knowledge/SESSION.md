@@ -148,6 +148,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-22 08:53 — commit: Show the seven-card COME AT ME game on the showcase | assets/share/come-at-me.png,data/experiments.json,data/share-cards.json,experiments/come-at-me/index.html,experiments/come-at-me/media/card-42.jpg
 - 2026-11-25 09:09 — commit: Add consent-based Google Analytics traffic reporting | execution/build_site.py,execution/test_automatic_catalog.py,execution/verify_site.py,knowledge/INDEX.md,knowledge/SESSION.md
 - 2026-11-25 11:35 — commit: Replace Bellona card drawing with realistic ship illustration | assets/experiment-bellona-realistic.png,assets/share/bellona.png,assets/share/experiments.png,data/experiments.json,data/share-cards.json
+- 2026-11-25 11:41 — commit: Give Maritime card a realistic naval fleet illustration | assets/experiment-maritime-realistic.png,assets/share/maritime.png,data/experiments.json,data/maritime-cover-generation.json,data/share-cards.json
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -563,3 +564,8 @@ Feynman gap: Collection verified live; accumulated acquisition reports need real
 Agent: OpenAI Codex
 Verdict: pending — requested a more realistic Bellona button image
 Status: Published 60a9401. Matching public fingerprint confirmed; live Chrome visibly rendered the new 1536×1024 ship illustration on the homepage. Local mobile 375px had no overflow. Deep verification passed 15 pages; share-card freshness passed. Generated illustration replaces the SVG in shared catalog; original retained.
+
+## 2026-11-25 — Realistic Maritime card
+Agent: OpenAI Codex
+Verdict: pending — requested Maritime realism to match Bellona
+Status: Published d57fb08. Public fingerprint matched. Chrome visibly rendered the realistic fleet illustration on the public Experiments page. Local 375px check had no overflow; deep verification passed 15 pages; share-card freshness passed. Original SVG retained. Prompt recorded in data/maritime-cover-generation.json.

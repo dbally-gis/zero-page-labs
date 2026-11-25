@@ -654,4 +654,4 @@ Surface: static build, shared analytics script, privacy notice. Publish through 
 - [x] Experiments index loads the replacement image.
 - [x] Maritime share card matches the replacement image.
 - [x] Deep site verification passes.
-- [ ] Public site serves the replacement image.
+- [x] Public site serves the replacement image.
