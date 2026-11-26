@@ -688,3 +688,28 @@ Surface: `experiments/projection/`, Experiments catalog, sitemap. Directive: `di
 - [x] A fresh verifier reviews the final output.
 
 Status: published source 5542cf8; public browser verification passed.
+
+## 2026-11-25 — The Westminster Tilt, 1511 (prototype, unlinked)
+Surface: `experiments/westminster-tilt/`. Tests: `execution/test_tilt.mjs`. Not linked from /experiments/ until Daniel approves.
+- [x] The player can choose any of the four 1511 challengers as opponent.
+- [x] A bout runs three courses.
+- [x] Each course resolves into a helm, body, saddle, tilt or miss outcome from the lance-tip height at impact.
+- [x] A spear broken on the body scores 1.
+- [x] A spear broken on the helm scores 2.
+- [x] Unhorsing scores 3.
+- [x] A spear broken on the saddle subtracts 1.
+- [x] A first strike on the tilt subtracts 2.
+- [x] A second strike on the tilt subtracts 3.
+- [x] Three strikes on the tilt forfeit the prize.
+- [x] The verdict ranks unhorsing above three helm strikes, and three helm strikes above most spears.
+- [x] The cheque marks head hits above the top line.
+- [x] The cheque marks body hits below the top line.
+- [x] The cheque marks broken lances on the middle line.
+- [x] The cheque marks faults on the bottom line.
+- [x] Every historical claim on the page links to a source in the sources table.
+- [x] The page states that the cheque format comes from a 1520 cheque.
+- [x] The page states that the Roll's helm hit by Henry did not happen.
+- [x] A full bout plays to a verdict in desktop Chrome.
+- [x] A full bout plays to a verdict at 375 px with touch input.
+- [x] The 375 px page has no horizontal overflow.
+- [x] The browser console shows no errors during a bout.

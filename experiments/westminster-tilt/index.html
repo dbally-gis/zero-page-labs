@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#efe7d4">
+  <title>The Westminster Tilt, 1511 — Zero Page Labs</title>
+  <meta name="description" content="Ride against Henry VIII’s challengers at the Westminster Tournament of February 1511, scored under Tiptoft’s rules on a herald’s cheque.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="tilt.css">
+  <script type="module" src="tilt.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#stage">Skip to the tiltyard</a>
+<header class="topbar">
+  <a href="/" class="brand"><span aria-hidden="true">ø</span> Zero Page Labs</a>
+  <a href="/experiments/">Experiments ↗</a>
+</header>
+
+<main class="tilt">
+  <header class="title-row">
+    <div>
+      <p class="kicker">The herald’s table / 08</p>
+      <h1>The Westminster Tilt, <em>1511</em></h1>
+    </div>
+    <p class="plate">WESTMINSTER · 12–13 FEB 1511<br>FOR THE BIRTH OF A PRINCE</p>
+  </header>
+  <p class="intro">Four challengers have ridden in from the realm of <i>Cuere Noble</i>. Take up a lance against one of them, three courses down the tilt, and let the herald keep score.</p>
+
+  <section class="stage-wrap" aria-label="Tiltyard">
+    <div id="stage" class="stage" tabindex="-1">
+      <svg id="scene" role="img" aria-label="Two jousters charge at each other along the tilt barrier, watched from the queen’s pavilion"></svg>
+
+      <div id="aim" class="aim" hidden>
+        <div class="aim-label" id="aim-label">Steer the red ring onto his helm</div>
+        <svg id="aim-view" role="img" aria-label="Close view of your opponent with your lance tip"></svg>
+      </div>
+
+      <div id="banner" class="banner" role="status" aria-live="polite"></div>
+
+      <div id="choose" class="overlay">
+        <h2>Choose your challenger</h2>
+        <p>You ride as one of the answerers. Each challenger ran under an allegorical name.</p>
+        <div id="cards" class="cards"></div>
+      </div>
+
+      <div id="brief" class="overlay" hidden>
+        <p class="eyebrow">How to ride</p>
+        <h2>You steer the tip of your lance</h2>
+        <ol class="steps">
+          <li>Your horse charges by itself. Just before you meet, a close-up of your opponent opens with your lance tip on it as a <b class="ring">red ring</b>.</li>
+          <li><span class="ctl-keys"><b>Hold the ↑ and ↓ arrow keys</b>, or move the mouse up and down,</span><span class="ctl-touch"><b>Drag your finger up and down</b> anywhere on the picture</span> to steer the ring.</li>
+          <li>The ring bobs with the gallop, so keep correcting. You strike wherever it is at the moment you meet.</li>
+        </ol>
+        <p class="mono">Helm +2 · Body +1 · Saddle −1 · Tilt −2</p>
+        <button type="button" id="ready" class="primary">I’m ready</button>
+      </div>
+
+      <div id="countdown" class="countdown" hidden aria-live="assertive"></div>
+
+      <div id="course-card" class="overlay small" hidden>
+        <p class="eyebrow" id="course-title">Course 1</p>
+        <p id="course-you"></p>
+        <p id="course-them"></p>
+        <button type="button" id="next" class="primary">Next course</button>
+      </div>
+
+      <div id="verdict" class="overlay" hidden>
+        <p class="eyebrow">The herald’s verdict</p>
+        <h2 id="verdict-title"></h2>
+        <p id="verdict-reason"></p>
+        <p id="verdict-score" class="mono"></p>
+        <div class="row">
+          <button type="button" id="again" class="primary">Ride again</button>
+          <button type="button" id="other">Choose another challenger</button>
+        </div>
+      </div>
+    </div>
+    <p class="controls-hint"><b>Controls:</b> <span class="ctl-keys">hold ↑ / ↓ or move the mouse</span><span class="ctl-touch">drag up and down on the picture</span> to steer your lance tip (the red ring) onto the helm. It bobs with the gallop, so keep correcting until you meet.</p>
+  </section>
+
+  <div class="lower">
+    <section class="cheque-panel" aria-labelledby="cheque-h">
+      <h2 id="cheque-h">The herald’s cheque</h2>
+      <svg id="cheque" role="img" aria-label="Score cheque with tally strokes for each rider"></svg>
+      <ul class="legend">
+        <li><b>Top line:</b> a stroke <i>above</i> it is a hit on the head, <i>below</i> it a hit on the body.</li>
+        <li><b>Middle line:</b> lances broken.</li>
+        <li><b>Bottom line:</b> faults.</li>
+      </ul>
+      <p class="small-note">This layout follows a herald’s cheque of 1520, from the jousts at the Field of Cloth of Gold, as described by the <a href="https://stories.sal.org.uk/henryviii/chivalry-and-pageantry/">Society of Antiquaries</a>. We use it here for 1511.</p>
+    </section>
+
+    <section class="history" aria-labelledby="history-h">
+      <h2 id="history-h">What happened at Westminster</h2>
+      <p>On New Year’s Day 1511 Queen Katherine gave birth to a son, Henry, Duke of Cornwall. Henry VIII answered with the most lavish tournament of his reign, held at Westminster on 12 and 13 February. <a href="https://en.wikipedia.org/wiki/The_Westminster_Tournament_Challenge">[challenge]</a></p>
+      <p>The challenge was framed as a fiction: four knights from the realm of <i>Cuere Noble</i> come “to accomplish certain feates of Armes” for the birth of a young prince. They were Sir William Courtenay as <i>Bon Vouloir</i>, Sir Edward Neville as <i>Joyeulx Penser</i>, Sir Thomas Knyvet as <i>Vaillant Desir</i>, and the king himself as <i>Cueur Loyal</i>. Fabrics carried the initials H and K. <a href="https://en.wikipedia.org/wiki/The_Westminster_Tournament_Challenge">[challenge]</a></p>
+      <p>The day is painted on the Westminster Tournament Roll: 36 vellum membranes, almost 60 feet long, now at the College of Arms. In its joust scene the challengers stand at one end, the answerers at the other, and the queen watches from a pavilion. A royal trumpeter, John Blanke, appears twice, the earliest known portrait of a named Black person in Britain. <a href="https://en.wikipedia.org/wiki/1511_Westminster_Tournament_Roll">[roll]</a></p>
+      <p><b>The Roll flatters the king.</b> It shows Henry shattering his lance on his opponent’s helm, the best possible stroke, but he never actually scored that hit. <a href="https://www.medievalists.net/2018/02/grand-gesture-henry-viii-westminster-tournament/">[medievalists]</a></p>
+      <p>The celebration did not last. The prince died on 22 February 1511, aged 52 days. <a href="https://en.wikipedia.org/wiki/Henry,_Duke_of_Cornwall">[prince]</a></p>
+
+      <h3>How a joust was scored</h3>
+      <p>English jousts followed rules set down in 1466 by John Tiptoft, Earl of Worcester, as Constable of England. <a href="https://archives.bodleian.ox.ac.uk/repositories/2/archival_objects/825721">[manuscript]</a> <a href="https://willscommonplacebook.blogspot.com/2012/06/tiptoft-rules-1466.html">[text]</a></p>
+      <ul>
+        <li>A spear broken between the saddle and the helm counts <b>1</b>; broken on the helm, <b>2</b>; broken so as to bear the rider out of the saddle, <b>3</b>.</li>
+        <li>A spear broken on the saddle is disallowed one. Striking the tilt costs two, a second strike three, and three strikes lose the prize.</li>
+        <li>Striking the horse, or a man whose back is turned, loses the prize outright.</li>
+        <li>For the prize, unhorsing ranks first, then meeting coronel to coronel twice, then three strikes in the sight of the helm, then most spears broken.</li>
+      </ul>
+
+      <h3>What we simplified</h3>
+      <ul>
+        <li>A bout here is three courses. Riders’ colours, devices and skill are invented for the game.</li>
+        <li>Your aim only moves up and down, and the target zones are tidier than real armour.</li>
+        <li>Meeting coronel to coronel is left out.</li>
+      </ul>
+
+      <h3>Sources</h3>
+      <ol id="sources" class="sources">
+        <li><a href="https://en.wikipedia.org/wiki/The_Westminster_Tournament_Challenge">The Westminster Tournament Challenge (Wikipedia)</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/1511_Westminster_Tournament_Roll">The 1511 Westminster Tournament Roll (Wikipedia)</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Henry,_Duke_of_Cornwall">Henry, Duke of Cornwall (Wikipedia)</a></li>
+        <li><a href="https://www.medievalists.net/2018/02/grand-gesture-henry-viii-westminster-tournament/">Grand gesture: Henry VIII and the Westminster Tournament (Medievalists.net)</a></li>
+        <li><a href="https://archives.bodleian.ox.ac.uk/repositories/2/archival_objects/825721">Ordinances for jousts, by John Tiptoft, 1466 (Bodleian catalogue)</a></li>
+        <li><a href="https://willscommonplacebook.blogspot.com/2012/06/tiptoft-rules-1466.html">Tiptoft’s ordinances of 1466, transcribed from Harl. MS 69</a></li>
+        <li><a href="https://stories.sal.org.uk/henryviii/chivalry-and-pageantry/">Chivalry and pageantry: reading a 1520 jousting cheque (Society of Antiquaries)</a></li>
+      </ol>
+    </section>
+  </div>
+</main>
+</body>
+</html>

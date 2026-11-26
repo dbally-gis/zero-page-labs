@@ -42,6 +42,51 @@ Status: Committed on branch `claude/showcase-front-door` (worktree `/Users/danie
 S.D.G.: a visitor arriving from a shared link sees a picture of the piece, and one arriving at the home page meets the two strongest pieces first.
 Feynman gap: no share image has been fetched by a real platform (LinkedIn, X, Messages); the tags and images are live but an actual preview is unconfirmed.
 
+## 2026-11-25 The Westminster Tilt, 1511 (jousting history game)
+
+Goal: A playable, sourced joust at the Westminster Tournament of 12–13 Feb 1511, drawn in the manner of the Westminster Roll.
+Agent: Claude Code CLI
+Handoff-from: Claude Code CLI
+Handoff-type: continuation
+Status: Prototype complete, uncommitted, not linked from /experiments/ (page is `noindex`). Contract and checks in task.md (section "The Westminster Tilt, 1511").
+Verdict: reworked — after playing: "make the scene bigger on mobile"; "didn't know I needed to use arrows to guide spear tip and also give a 3 2 1 countdown"
+2026-11-26 rework: phone scene crops to x 350–1250 (svg `preserveAspectRatio slice`, aspect 900/640, full-bleed), ~1.75x taller. Added a "How to ride" card before the first bout, a 3-2-1 countdown before every course, wording that switches on `(pointer: coarse)` (arrow keys/mouse vs drag), and the aim resets to mid-body each course. Then ("make the aim panel overlay the scene on mobile"): phone aim panel floats top-right over the scene (54% width, grid-stacked), and each course scrolls the stage back into view. Chrome QA at 1440 and 375 px: full bouts, no overflow, no errors; 272/272 node tests.
+2026-11-26 painted art ("go ahead, wire them in", after reviewing the renders):
+
+- Art source: imagegen via Codex. Sources are in `/Volumes/Extreme SSD/AI_Workspace_Temp/zero-page-labs/.tmp/tilt-art/` (backdrop, c-/k-/h- per knight). `execution/prepare_tilt_art.py` turns them into `experiments/westminster-tilt/art/` (20 webp, 1.5 MB) plus a generated `meta.mjs` holding lance tip, nose and seat fractions and the barrier band.
+- Scene: `scene.mjs` now draws image sprites. The barrier is the backdrop redrawn and clipped to the barrier band, so the far rider passes behind it. A break clips the lance at the horse's nose. A fall swaps in the riderless horse while the rider sprite (the pixels that differ between knight and horse) tumbles.
+- API change: `createScene(svg, foeId)` and `createAimView(svg, foeId)`. On phones the viewBox is `440 0 900 640`, so the meeting is clear of the aim panel.
+- Cards show the close-up portraits.
+- Open: one QA run logged a console error that didn't recur in 4 more full runs or a frame-by-frame fall test; its message wasn't captured. Trumpeter repainted as John Blanke ("repaint the trumpeter as John Blanke"): a green turban latticed with gold, per sources on the Roll. Only the trumpeter's box from the Codex edit is composited into the original backdrop (`01-backdrop-orig.png` kept), because the edit redrew the rest slightly. The tooltip names him again.
+
+- Path: after FIELDLOGIC (rejected) and a downhill-ski idea (dropped as crowded: Lonely Mountains: Snow Riders, Bonvo Ride), Daniel picked jousting and chose the real 1511 tournament over invented heraldry.
+- Files: `experiments/westminster-tilt/{index.html,tilt.css,rules.mjs,scene.mjs,tilt.mjs}`; tests `execution/test_tilt.mjs` (18). 149/149 node tests pass.
+- Scoring follows Tiptoft’s 1466 ordinances; the cheque layout follows a 1520 cheque (Society of Antiquaries) and the page says so. The page notes the Roll’s helm hit by Henry never happened (Medievalists.net). Every history paragraph links a source; a test enforces that every source URL appears on the page.
+- Browser QA in Chrome at 1440 px (mouse) and 375 px (touch): full bouts reach a verdict, no overflow, console clean. Fixed during QA: aim panel hid the impact; lance angles pointed away from the opponent; mirrored challenger lettering.
+- Open: the scene is small on a phone (overlays stack below it); the HRP jousting page refused fetches, so lance construction and speeds are deliberately not claimed; the challengers' colours and skill are invented (stated on page); no independent verifier run; not tested on a real iPhone.
+
+S.D.G.: Visitors get thirty seconds of lance-timing fun and leave knowing how a Tudor herald actually scored a joust, and that the king’s own Roll flattered him.
+Feynman gap: The cheque format is borrowed from 1520; whether the 1511 cheques used the same lines is unverified.
+
+## 2026-11-25 FIELDLOGIC prototype (no-guess daily mine-deduction)
+
+Goal: Playable prototype of render concept #1 (instrument-panel look) as a ZPL experiment.
+Agent: Claude Code CLI
+Handoff-from: OpenAI Codex
+Handoff-type: new-project
+Status: Prototype complete, uncommitted, not linked from /experiments/ (page is `noindex`). A site build would still copy it to dist/ at an unlisted URL.
+Verdict: rejected — "ehhh ... not a fan" (after the tutorial); he pivoted to a downhill-skiing idea
+
+- Files: `experiments/fieldlogic/{index.html,fieldlogic.css,engine.mjs,game.mjs}`, tests in `execution/test_fieldlogic.mjs`.
+- Engine: seeded daily board (local date, #1 = 2026-11-25), 16×16 / 40 mines, auto-opened start area; boards are regenerated until a deduction-only solver (single, pair and mine-count rules) clears them (~1.5 attempts, <1 ms).
+- Tests: 10 new engine tests, including an exhaustive-enumeration oracle that confirms every solver deduction is forced on small boards; 127/127 node tests pass.
+- Browser QA (Playwright, 1440 and 375 px): hint-only playthrough wins, share text, streak and reload persistence work; no overflow; console clean.
+- Tutorial (`tutorial.mjs`, added after Daniel said he doesn't know how to play): four hands-on lessons (count, full number frees neighbours, number forces mines, small real board with Hint). Auto-opens on first visit; "How to play" reopens it. 14 engine/tutorial tests; 131/131 node tests pass; Chrome walk-through at 1440 and 375 px passed. Fixed: the "seen" flag now saves synchronously (the dialog close event lost a fast reload).
+- Open: name "FIELDLOGIC" not trademark-checked; mobile cells are ~19 px (tight on a phone); no independent verifier run yet; not tested on a real iPhone/Safari.
+
+S.D.G.: Puzzle players get a daily board that never forces a coin-flip; the share line could eventually carry visitors to Thumbwords.
+Feynman gap: Whether people find 40-mine no-guess boards satisfying (too easy?) is untested; the solver proves solvability, not fun.
+
 ## 2026-11-09 Rack Lab publication
 
 Goal: Publish the Rack Lab configurator under Experiments with the COME AT ME! preset and a direct STL.
