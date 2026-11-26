@@ -59,3 +59,13 @@ export function play(settings, secondsPerMinim, onStep, onEnd) {
     setTimeout(() => out.disconnect(), 300);
   };
 }
+
+/** Sound one chord briefly (tapping a column on the stick). */
+export function playChord(midis, dur = 0.9) {
+  ctx ??= new (window.AudioContext || window.webkitAudioContext)();
+  if (ctx.state === 'suspended') ctx.resume();
+  const out = ctx.createGain(); out.gain.value = 0.8; out.connect(ctx.destination);
+  const t0 = ctx.currentTime + 0.03;
+  midis.forEach((m, v) => voiceNote(out, m, t0, dur, PAN[v]));
+  setTimeout(() => out.disconnect(), (dur + 0.4) * 1000);
+}

@@ -73,7 +73,7 @@ export function drawScore(svg, settings, tone) {
     const g = el('g', { class: 'staff' }, svg);
     const top = staffTop(v), clef = CLEFS[voice];
     for (let i = 0; i < 5; i++) el('line', { x1: LEFT - 30, x2: width - 8, y1: top + i * LINE, y2: top + i * LINE, class: 'line' }, g);
-    el('text', { x: 6, y: top + STAFF_H / 2 + 4, class: 'voice' }, g).textContent = voice;
+    el('text', { x: 6, y: top + STAFF_H / 2 + 4, class: `voice v${v}` }, g).textContent = ['Soprano', 'Alto', 'Tenor', 'Bass'][v];
     el('text', { x: LEFT - 28, y: top + (clef.glyph === '𝄢' ? LINE * 1.6 : LINE * 3.4), class: 'clef' }, g).textContent = clef.glyph;
     if (clef.eight) el('text', { x: LEFT - 18, y: top + STAFF_H + 15, class: 'eight' }, g).textContent = '8';
     if (mollis) el('text', { x: LEFT + 2, y: yOf(v, clef.flat) + 4, class: 'acc' }, g).textContent = '♭';

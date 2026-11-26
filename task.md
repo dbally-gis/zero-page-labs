@@ -739,6 +739,11 @@ Daniel: "let's try 1" then "build it". Experiment at `experiments/arca/`.
 - [x] Each figure on the slat shows the note it becomes.
 - [x] The rack shows both pinakes with the chosen rod lifted on the chosen board.
 - [x] The page is listed in `data/experiments.json`, with no `noindex` tag and a canonical link ("push to zpl").
+- [x] The page opens with three illustrated panels explaining the box, the stick and the four singers ("love the idea, dumb it down for me further").
+- [x] The page's controls and explanations use plain words: stick, board, scale, rhythm, soprano/alto/tenor/bass, stressed/unstressed.
+- [x] A scale ladder shows each singer's step for the selected chord.
+- [x] Tapping a column on the stick plays that chord.
+- [x] The scale ladder follows the music during playback.
 - [x] A full compose-and-play run works in desktop Chrome with a mouse.
 - [x] A full compose-and-play run works at 375 px with touch.
 - [x] The 375 px page has no horizontal overflow.

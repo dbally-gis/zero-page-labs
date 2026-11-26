@@ -26,63 +26,82 @@
     </div>
     <p class="plate">MUSURGIA UNIVERSALIS · ROME 1650<br>SYNTAGMA I · PLAIN COUNTERPOINT</p>
   </header>
-  <ol class="steps-strip" aria-label="How to use it">
-    <li><b>1</b> Choose Latin words</li>
-    <li><b>2</b> The ark picks a rod by counting syllables</li>
-    <li><b>3</b> You choose one of its rows of numbers</li>
-    <li><b>4</b> The numbers become notes. Press Play</li>
-  </ol>
-  <p class="intro">In 1650 the Jesuit scholar Athanasius Kircher described a wooden box that let anyone set a Latin text for four voices without knowing any counterpoint. You count the syllables, pull the matching rod, pick one of its rows of numbers and a rhythm, and read off the music. Try it.</p>
+  <p class="intro">In 1650 the scholar Athanasius Kircher built a box that writes music for four singers. You don’t need to know any music. Here is the whole idea:</p>
+
+  <section class="story" aria-label="The idea in three pictures">
+    <figure>
+      <img src="art/box.webp" alt="An open wooden chest holding a row of upright wooden sticks, each covered in small numbers" width="720" height="540">
+      <figcaption><b>1</b> A box of sticks. Each stick is painted with little blocks of numbers.</figcaption>
+    </figure>
+    <figure>
+      <img src="art/pull.webp" alt="A hand pulling one numbered stick up out of the chest" width="720" height="540">
+      <figcaption><b>2</b> Count the syllables in your words, and pull out the stick for that many.</figcaption>
+    </figure>
+    <figure>
+      <img src="art/sing.webp" alt="Four singers, from a choirboy to an old man, singing around a lectern with a numbered stick beside the music" width="720" height="540">
+      <figcaption><b>3</b> Each block has four rows of numbers, one for each singer. A number says which step of the scale to sing.</figcaption>
+    </figure>
+  </section>
+  <p class="story-note">Illustrations: the real ark’s sticks carry Kircher’s own tables, shown below. <button type="button" id="hero-play" class="play small">▶ Hear it</button></p>
 
   <div class="workbench">
     <section class="card text-card" aria-labelledby="t1">
-      <p class="step">1 · The words</p>
-      <h2 id="t1">Choose a text</h2>
-      <label class="field">Text
+      <p class="step">Step 1</p>
+      <h2 id="t1">Pick the words</h2>
+      <label class="field">Latin words to sing
         <select id="preset"></select>
       </label>
-      <label class="field">Or write your own <span class="hint-inline">(hyphens between syllables; a ` before a stressed syllable)</span>
-        <textarea id="text" rows="3" spellcheck="false"></textarea>
-      </label>
-      <p class="label">Phrases <span class="hint-inline">tap the second-to-last syllable to mark it long or short</span></p>
+      <details class="own">
+        <summary>Write your own words</summary>
+        <label class="field">Put hyphens between syllables, and a ` before each stressed syllable
+          <textarea id="text" rows="3" spellcheck="false"></textarea>
+        </label>
+      </details>
+      <p class="label">The ark reads your words in short pieces</p>
       <ol id="phrases" class="phrases"></ol>
+      <p class="tip">Tap the second-to-last syllable to switch it between <b>stressed</b> and <b>unstressed</b>. It decides which board the stick comes from.</p>
       <div class="row2">
-        <label class="field">Tone
+        <label class="field">Scale
           <select id="tone"></select>
         </label>
-        <label class="field">Metre
+        <label class="field">Rhythm
           <select id="meter"></select>
         </label>
+      </div>
+      <div class="ladder-wrap">
+        <p class="label">Your scale: each number is a step up</p>
+        <div class="ladder" id="ladder" aria-hidden="true"></div>
+        <ul class="voice-key" id="voice-key"></ul>
       </div>
     </section>
 
     <section class="card rod-card" id="rod" aria-labelledby="t2" tabindex="-1">
-      <p class="step">2 · The rod</p>
-      <h2 id="t2">Pull the rod, pick a row</h2>
+      <p class="step">Step 2</p>
+      <h2 id="t2">The ark pulls a stick</h2>
       <ol class="how" id="how" aria-live="polite"></ol>
       <div class="racks" id="racks" aria-hidden="true"></div>
       <div class="slat" id="slat"></div>
-      <p class="slat-key">Big figures are Kircher’s numbers; small letters are the notes they become in your tone.</p>
+      <p class="slat-key">Tap a column to hear that chord and see it on the scale.</p>
       <div class="pickers">
         <div class="picker">
-          <span class="label">Row of numbers</span>
-          <div class="spin"><button type="button" id="v-prev" aria-label="Previous row">◀</button><output id="v-out"></output><button type="button" id="v-next" aria-label="Next row">▶</button></div>
+          <span class="label">Try another block</span>
+          <div class="spin"><button type="button" id="v-prev" aria-label="Previous block">◀</button><output id="v-out"></output><button type="button" id="v-next" aria-label="Next block">▶</button></div>
         </div>
         <div class="picker">
-          <span class="label">Rhythm</span>
+          <span class="label">Try another rhythm</span>
           <div class="spin"><button type="button" id="r-prev" aria-label="Previous rhythm">◀</button><output id="r-out"></output><button type="button" id="r-next" aria-label="Next rhythm">▶</button></div>
           <div class="rhythm" id="rhythm"></div>
         </div>
       </div>
-      <button type="button" id="lots" class="ghost">Draw lots for every phrase</button>
+      <button type="button" id="lots" class="ghost">Surprise me: pick at random</button>
     </section>
   </div>
 
   <section class="card score-card" aria-labelledby="t3">
     <div class="score-head">
       <div>
-        <p class="step">3 · The music</p>
-        <h2 id="t3">Four voices</h2>
+        <p class="step">Step 3</p>
+        <h2 id="t3">Listen: four singers</h2>
       </div>
       <button type="button" id="play" class="play">▶ Play</button>
     </div>
@@ -91,7 +110,7 @@
   </section>
 
   <section class="history">
-    <h2>How the ark worked</h2>
+    <h2>The details, for the curious</h2>
     <p>Kircher’s <i>Arca Musarithmica</i> appears in Book VIII of his <i>Musurgia Universalis</i> (Rome, 1650). The ark was a box of wooden rods, each painted with tables of numbers. For plain four-part writing (his first <i>syntagma</i>) the rods are grouped in boards called <i>pinakes</i>. The first two pinakes are for prose: Pinax I for phrases whose second-to-last syllable is long, Pinax II for those where it is short. Each has a rod for phrases of two, three, four, five and six syllables.</p>
     <p>A rod holds ten blocks of four rows of numbers, one row for each voice: Cantus, Altus, Tenor and Bassus. The numbers 1 to 8 are steps of the scale of the chosen tone, with 1 and 8 the final. Under the numbers, the rod gives rhythms for duple and triple time. Choose one block and one rhythm, map the numbers to notes, and the four voices are written.</p>
     <h3>What this version decides</h3>
