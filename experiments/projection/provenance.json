@@ -1,0 +1,14 @@
+{
+  "projection-engine.js": {
+    "source": "gnss-field-instrument/OrbitalAtlas/projection-engine.js",
+    "sha256": "6fedcc4e42252be5dcf36c838556fe5bb78eb4ee61469343101ab932f086cc6b"
+  },
+  "earth-coastlines.json": {
+    "source": "gnss-field-instrument/GNSSFieldInstrument/earth-coastlines.json",
+    "sha256": "3d8f01d6fa0467a6aefd1c6945a709d507fe00b9f453496df17b959eff578a62"
+  },
+  "projection-licenses.txt": {
+    "source": "gnss-field-instrument/OrbitalAtlas/projection-licenses.txt",
+    "sha256": "04804cf5b913d905842989b0a93127d586f3e707ac79eb8619ee0fb0f5bee453"
+  }
+}

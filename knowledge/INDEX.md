@@ -37,3 +37,5 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 
 | [domain/maritime-progressive-damage.md](domain/maritime-progressive-damage.md) | domain | 2026-11-08 | Source-backed damage, single and paired ship tracking, and Replay Desk navigation |
 | [../directives/maintain_showcase.md](../directives/maintain_showcase.md) | procedural | 2026-11-16 | Add an experiment or page: one list, share images, checks |
+
+| [domain/projection-cabinet.md](domain/projection-cabinet.md) | domain | 2026-11-26 | Orbits projection engine provenance, reference orientation, construction parity and validation |

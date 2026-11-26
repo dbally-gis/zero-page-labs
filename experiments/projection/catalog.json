@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Equirectangular",
+    "explanation": "Equally spaced latitude and longitude. Shapes stretch toward the poles."
+  },
+  {
+    "name": "Mercator",
+    "explanation": "Local angles are preserved. Polar area grows dramatically; the poles are omitted."
+  },
+  {
+    "name": "Transverse Mercator",
+    "explanation": "Mercator turned sideways. A 75\u00b0 cap keeps this regional view away from its singularities."
+  },
+  {
+    "name": "Miller",
+    "explanation": "A cylindrical compromise with reduced polar stretching; neither equal-area nor conformal."
+  },
+  {
+    "name": "Gall-Peters",
+    "explanation": "Equal-area with 45\u00b0 standard parallels. Shape stretches differently by latitude."
+  },
+  {
+    "name": "Lambert cylindrical equal-area",
+    "explanation": "Equal-area cylindrical map. Poles flatten into lines; the equator is the standard parallel."
+  },
+  {
+    "name": "Sinusoidal",
+    "explanation": "Equal-area; parallels keep their length. Distortion grows away from the central meridian."
+  },
+  {
+    "name": "Mollweide",
+    "explanation": "Equal-area elliptical world map. Shapes compress near the edge."
+  },
+  {
+    "name": "Robinson",
+    "explanation": "A compromise designed for a readable world map; it preserves neither area nor angles."
+  },
+  {
+    "name": "Equal Earth",
+    "explanation": "Equal-area world map with curved meridians. Circle areas stay equal while shapes change."
+  },
+  {
+    "name": "Natural Earth",
+    "explanation": "A world-map compromise with gently rounded edges; area is not preserved."
+  },
+  {
+    "name": "Winkel Tripel",
+    "explanation": "A compromise designed to balance area, angle and distance distortion."
+  },
+  {
+    "name": "Hammer",
+    "explanation": "An equal-area elliptical map. Regions stretch toward the outer boundary."
+  },
+  {
+    "name": "Aitoff",
+    "explanation": "A modified azimuthal world map. Not equal-area or globally equidistant."
+  },
+  {
+    "name": "Eckert IV",
+    "explanation": "Equal-area pseudocylindrical map; curved meridians and straight parallels."
+  },
+  {
+    "name": "Eckert VI",
+    "explanation": "Equal-area pseudocylindrical map; sinusoidal meridians."
+  },
+  {
+    "name": "Bonne",
+    "explanation": "Equal-area heart-shaped map with a 45\u00b0 standard parallel."
+  },
+  {
+    "name": "Albers",
+    "explanation": "Equal-area conic. This reference view uses standard parallels of 20\u00b0 and 50\u00b0."
+  },
+  {
+    "name": "Lambert conformal conic",
+    "explanation": "Conformal conic: local angles preserved. An 80\u00b0 regional cap excludes polar singularities."
+  },
+  {
+    "name": "Azimuthal equidistant",
+    "explanation": "Distances from the center are preserved on this spherical model. The antipode is trimmed."
+  },
+  {
+    "name": "Lambert azimuthal equal-area",
+    "explanation": "Equal-area azimuthal map. Shapes stretch away from the center; the antipode is trimmed."
+  },
+  {
+    "name": "Orthographic",
+    "explanation": "The globe seen from infinity. Only the facing hemisphere is visible."
+  },
+  {
+    "name": "Stereographic",
+    "explanation": "Conformal azimuthal map. This 140\u00b0 cap omits the singularity at the antipode."
+  },
+  {
+    "name": "Dymaxion",
+    "explanation": "Fuller/Airocean: the sphere unfolds over an icosahedron. The canonical continent-friendly arrangement stays fixed."
+  }
+]

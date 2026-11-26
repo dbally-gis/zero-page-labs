@@ -156,6 +156,25 @@
       },
       "note": "GOSPELS & ACTS · VERSE LINKS AT EACH STOP",
       "links": []
+    },
+    {
+      "slug": "projection",
+      "title": "Projection cabinet",
+      "category": "GEOGRAPHY · FROM ORBITS",
+      "added": "2026-11-26",
+      "status": "live",
+      "summary": "Unfold Earth into 24 map projections. Watch equal-sized circles stretch, compare shapes and areas, and discover what every flat map gives up.",
+      "tagline": "One Earth, 24 map projections. See what changes.",
+      "cta": "Explore the projections",
+      "cover": {
+        "src": "/assets/experiment-projection.svg",
+        "alt": "A globe unfolding into an equal-area world map with blue distortion circles",
+        "width": 960,
+        "height": 640,
+        "label": "Open Projection cabinet"
+      },
+      "note": "24 PROJECTIONS · CONSTRUCTION LAB",
+      "links": []
     }
   ]
 }

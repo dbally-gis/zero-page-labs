@@ -583,3 +583,15 @@ Verdict: kept — "good. update zero page labs lexical thumbnail with this"
 Status: Approved exact generated image copied into assets. Deep verification and share freshness passed. Local browser preview was interrupted by detached debugger; public verification pending.
 
 Publication verified: commit 654f355 matches public deployment fingerprint. Public Experiments references the approved asset; decoded public PNG pixels equal the approved image exactly (CDN re-encodes PNG bytes). Live Chrome visibly rendered the final card beside Maritime.
+
+## 2026-11-26 — Projection cabinet browser port
+Goal: Make Orbits’ Projection cabinet available as a Zero Page Labs experiment.
+Agent: OpenAI Codex
+Handoff-from: Claude Code CLI
+Handoff-type: continuation
+Status: Reusing the bundled Orbits engine and geographic reference data; implementing isolated browser UI.
+Verdict: pending — "just the Projection portion of the Orbits app copied to zero page labs"
+
+Projection checkpoint: isolated `codex/orbits-projection` worktree based on latest `origin/main` preserves newer showcase registry, imagery, 47-watchface catalog and unrelated dirty source-checkout work. Uses generated experiment registry entries rather than handwritten cards. Static deep build and 242 Node tests pass; independent re-review passes after Albers wording and keyboard fixes. Publication pending.
+S.D.G.: Curious visitors can see how map projections change shape and area, then inspect the geometric construction.
+Feynman gap: Browser desktop/mobile layout and interactions passed; physical touch and public deployment remain unverified.

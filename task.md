@@ -670,3 +670,21 @@ Surface: static build, shared analytics script, privacy notice. Publish through 
 - [x] Share-card freshness verification passes.
 - [x] Deep site verification passes.
 - [x] Public site serves the approved image.
+
+## 2026-11-26 — Orbits Projection cabinet browser edition
+
+Surface: `experiments/projection/`, Experiments catalog, sitemap. Directive: `directives/publish_experiments.md`. Execution: existing static build and verification. Source: Orbits bundled engine, coastlines, license notices. Preserve unrelated dirty work. No source-app changes.
+
+- [x] The browser selector exposes the 24 Orbits projection identities.
+- [x] Unfold changes the canvas between globe and selected map.
+- [x] Distortion circles can be toggled.
+- [x] Each projection has its Orbits explanation.
+- [x] Reset restores the opening view.
+- [x] The Experiments catalog links to the cabinet.
+- [x] The copied engine matches the source SHA-256.
+- [x] The static build passes deep verification.
+- [x] Desktop browser interaction passes.
+- [x] A 375px viewport has no horizontal overflow.
+- [x] A fresh verifier reviews the final output.
+
+Status: implementation verified; release pending.
