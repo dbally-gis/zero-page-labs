@@ -150,6 +150,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-25 11:35 — commit: Replace Bellona card drawing with realistic ship illustration | assets/experiment-bellona-realistic.png,assets/share/bellona.png,assets/share/experiments.png,data/experiments.json,data/share-cards.json
 - 2026-11-25 11:41 — commit: Give Maritime card a realistic naval fleet illustration | assets/experiment-maritime-realistic.png,assets/share/maritime.png,data/experiments.json,data/maritime-cover-generation.json,data/share-cards.json
 - 2026-11-25 11:50 — commit: Give Biblical Travels a realistic Galilee journey cover | assets/experiment-biblical-travels-realistic.png,assets/share/biblical-travels.png,assets/share/experiments.png,data/biblical-cover-generation.json,data/experiments.json
+- 2026-11-25 19:11 — commit: Publish approved Lexical word-thread thumbnail | assets/experiment-lexical-realistic.png,assets/share/lexical.png,data/experiments.json,data/share-cards.json,knowledge/SESSION.md
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -580,3 +581,5 @@ Status: Published 845cf79. Public fingerprint matched. Live Chrome visibly rende
 Agent: OpenAI Codex
 Verdict: kept — "good. update zero page labs lexical thumbnail with this"
 Status: Approved exact generated image copied into assets. Deep verification and share freshness passed. Local browser preview was interrupted by detached debugger; public verification pending.
+
+Publication verified: commit 654f355 matches public deployment fingerprint. Public Experiments references the approved asset; decoded public PNG pixels equal the approved image exactly (CDN re-encodes PNG bytes). Live Chrome visibly rendered the final card beside Maritime.
