@@ -687,4 +687,4 @@ Surface: `experiments/projection/`, Experiments catalog, sitemap. Directive: `di
 - [x] A 375px viewport has no horizontal overflow.
 - [x] A fresh verifier reviews the final output.
 
-Status: implementation verified; release pending.
+Status: published source 5542cf8; public browser verification passed.

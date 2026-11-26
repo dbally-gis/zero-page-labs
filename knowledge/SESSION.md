@@ -151,6 +151,8 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-25 11:41 — commit: Give Maritime card a realistic naval fleet illustration | assets/experiment-maritime-realistic.png,assets/share/maritime.png,data/experiments.json,data/maritime-cover-generation.json,data/share-cards.json
 - 2026-11-25 11:50 — commit: Give Biblical Travels a realistic Galilee journey cover | assets/experiment-biblical-travels-realistic.png,assets/share/biblical-travels.png,assets/share/experiments.png,data/biblical-cover-generation.json,data/experiments.json
 - 2026-11-25 19:11 — commit: Publish approved Lexical word-thread thumbnail | assets/experiment-lexical-realistic.png,assets/share/lexical.png,data/experiments.json,data/share-cards.json,knowledge/SESSION.md
+- 2026-11-26 08:54 — commit: Add Orbits Projection cabinet browser experiment | assets/experiment-projection.svg,assets/share/projection.png,data/experiments.json,data/share-cards.json,execution/test_projection.mjs
+- 2026-11-26 08:54 — commit: Add Orbits Projection cabinet browser experiment | assets/experiment-projection.svg,assets/share/experiments.png,assets/share/projection.png,data/experiments.json,data/share-cards.json
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -595,3 +597,8 @@ Verdict: pending — "just the Projection portion of the Orbits app copied to ze
 Projection checkpoint: isolated `codex/orbits-projection` worktree based on latest `origin/main` preserves newer showcase registry, imagery, 47-watchface catalog and unrelated dirty source-checkout work. Uses generated experiment registry entries rather than handwritten cards. Static deep build and 242 Node tests pass; independent re-review passes after Albers wording and keyboard fixes. Publication pending.
 S.D.G.: Curious visitors can see how map projections change shape and area, then inspect the geometric construction.
 Feynman gap: Browser desktop/mobile layout and interactions passed; physical touch and public deployment remain unverified.
+
+### Projection public verification — 2026-11-26
+Published source `5542cf8`. Public `https://zeropagelabs.com/experiments/projection/` loaded the cabinet; Dymaxion selection, Mercator construction, reset and 375px layout passed with no horizontal overflow or console warnings/errors.
+S.D.G.: Visitors can explore Orbits’ projection teaching tools directly from Zero Page Labs without installing the app.
+Feynman gap: Live browser behavior is verified; physical touch remains untested.
