@@ -194,6 +194,25 @@
       },
       "note": "DAILY · SENTINEL-2 IMAGERY",
       "links": []
+    },
+    {
+      "slug": "arca",
+      "title": "The Composing Ark, 1650",
+      "category": "MUSIC · HISTORY",
+      "added": "2026-11-26",
+      "status": "live",
+      "summary": "Compose four-part music the way Athanasius Kircher's 1650 Arca Musarithmica did. Choose Latin words, let the ark pick a rod of numbers, choose a row, and hear the counterpoint, with every note from Kircher's own tables.",
+      "tagline": "Kircher's 1650 music machine: numbers in, four voices out.",
+      "cta": "Pull a rod",
+      "cover": {
+        "src": "/assets/experiment-arca.jpg",
+        "alt": "The ark's lifted rod: Kircher's numbers for four voices with the notes they become, under the syllables A-ve Ma-ri-a",
+        "width": 960,
+        "height": 640,
+        "label": "Open The Composing Ark"
+      },
+      "note": "KIRCHER 1650 · FOUR VOICES · PLAYS IN YOUR BROWSER",
+      "links": []
     }
   ]
 }

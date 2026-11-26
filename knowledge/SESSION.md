@@ -3,6 +3,27 @@ generated_by: "OpenAI Codex (exact model variant not exposed)"
 timestamp: "2026-11-07T17:04:06.403311-06:00"
 ---
 
+## 2026-11-26 The Composing Ark, 1650 (Kircher's Arca Musarithmica)
+
+Agent: Claude Code CLI
+Handoff-from: none
+Handoff-type: new-project
+Goal: A playable recreation of Kircher's composing box, picked from Kircher ideas ("let's try 1", "build it").
+Status: Live on zeropagelabs.com at /experiments/arca/ (pushed to main 2026-11-26 on "push to zpl"), listed as an experiment. Contract in task.md (Composing Ark section), all checks pass.
+Verdict: reworked — "i like it but don't understand it. the drawing/illustration doesn't seem to clearly relate to the selection I made"
+
+- Clarity rework after that verdict: a 4-step how-to strip; the rod card now lists, for the selected phrase, the syllable count -> rod, the second-to-last syllable's length -> pinax, and the tone's number-to-note key; the rack shows both pinakes with the chosen board directly above its slat (it used to hang under the wrong board when Pinax I was chosen); every slat figure shows the note it becomes. Cover is a real screenshot of the rod card, not the AI render (which had decorative fake notation).
+- Data decision (Daniel chose "Transcribe from Kircher"): Cashner's arca1650.info transcription is all-rights-reserved (README and package.yaml, despite a BSD LICENSE file), so Pinax I and II (prose, 2–6 syllables, 10 blocks per rod) were transcribed independently by two agents from the public-domain Google Books scan of Musurgia Universalis Bk VIII (pages 61–62 of the PDF in Cashner's repo), then diffed against Cashner only to find disagreements. 9 digit/rhythm disagreements out of ~2,000 figures were ruled on against the scan and the harmony; 5 digits and 3 triple rhythms are emendations of probable misprints (a 6th disagreement was a re-reading of a blotted figure, not an emendation), each listed in `tables.json` `emendations`.
+- Triple time: the print often leaves note values to the rule of perfection; `resolvePattern` applies mensural perfection by search (fill whole groups of three, most notes on the beat, perfect final). All 47 triple patterns resolve.
+- Tone table (12 tones, degrees 1–8) follows Kircher's Iconismus XIV as reported in Cashner's research; Tone VIII equals VII there. Not independently re-read from the plate.
+- Octave placement is our own DP (range + smallest leaps); musica ficta beyond the tone table is not applied; only prose pinakes; modern notation.
+- What differs from arca1650.info: the user turns the rod to choose block and rhythm (Kircher's intent) and sees the numbers light up as the music plays; runs entirely in the browser.
+- Independent verifier: 268/268 sampled figures (16 blocks, seed 20261126) match the scan; emendations make musical sense. It failed the build on: phrase splitting that crashed or dropped a trailing 1-syllable word; voices placed independently so the bass was not lowest in 246 of 4,000 chords; a false page claim that the triple-time print has no dots; inconsistent emendation counts; duple rests of unclear value. All fixed: DP phrasing (2-6, word breaks preferred, nothing dropped), top-down octave placement with no crossing and the bass always lowest (about 4% of notes then sit outside the nominal range, bass at worst 7 semitones low, stated on the page), corrected text, 8 emendations (5 figures, 3 rhythms), unclear duple rests fill out a semibreve. Open: tones I/IX and VII/VIII are identical in the source table; Pinax I rod II block 8 Tenor note 1 is a blot read as 2 (4 would clash).
+- QA: Chrome 1440 mouse and 375 touch: presets x metres all render, rod/rhythm spinners, long/short toggle, draw lots, playback with score and slat highlighting; no overflow, no console errors. `execution/test_arca.mjs` 19 tests.
+
+S.D.G.: anyone can feel how a 1650 machine turned numbers into four-part harmony, and see Kircher's own figures doing it.
+Feynman gap: the tone table and voice ranges come from Cashner's reading, not our own reading of the plates; nobody has heard it on a real phone speaker yet.
+
 ## 2026-11-26 UNVEIL (hex-reveal satellite guessing game)
 
 Agent: Claude Code CLI

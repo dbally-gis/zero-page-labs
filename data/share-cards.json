@@ -1,4 +1,8 @@
 {
+  "arca": {
+    "image": "69398858dfb4af652eda3f2e72a535b1b2989e04e3f5bea461fc1252867ef98e",
+    "inputs": "5ce2e5d729e9a24a11c872e7d227518b3a27d027ed83d2117ffd35dad4b95b34"
+  },
   "bellona": {
     "image": "56bc8478466747c6350727b42fa262a6c49a9a3b98ff94ef502e32286e47baaa",
     "inputs": "71fc6a0b0ba6e968bb0c6d6299231af2539367e0e78cc2dbb72e65b0e0741e56"
@@ -12,8 +16,8 @@
     "inputs": "4217bfe0c1f738b4bc62e646c3f266ad4043f502442ced687aa1e8c1239b1e6d"
   },
   "experiments": {
-    "image": "f245b49af0f7175cfd58bb0c07bfeb5344d514243b0a8b51b8987ff7cb3d80e3",
-    "inputs": "3ec7f821ebc684c9bbab747a2567b3714ca2811c6b4325728e9be28e248b0076"
+    "image": "ff3a5ddcea2909c6469c37344b5e1181fed44d662ce29e429cca12246d40b803",
+    "inputs": "fff9247ce7b1dc207161ae007d47e7089429c8d0f6c37080ca9936b095edbe2f"
   },
   "gridcore": {
     "image": "33073d6599278e89b301aa8e64a9b4f40c1aeac0f1cd2dfa16a7f5cd836eba99",

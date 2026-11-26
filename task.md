@@ -717,3 +717,29 @@ Daniel: "i like reveal, lets do this for zpl". Experiment at `experiments/unveil
 - [x] On desktop the side panel is exactly as tall as the square board ("off balance with the square map").
 - [x] On desktop the solved result, including Copy result and Practice another, is visible without scrolling the page at 1280x760.
 - [x] On phones the score strip and answers attach directly under the board.
+
+## 2026-11-26 — The Composing Ark, 1650 (Kircher's Arca Musarithmica, Syntagma I)
+
+Daniel: "let's try 1" then "build it". Experiment at `experiments/arca/`.
+
+- [x] Every note comes from Kircher's Syntagma I tables, not invented data (Pinax I and II transcribed from the 1650 scan; 8 emendations (5 figures, 3 rhythms) listed in tables.json).
+- [x] Every syllable count the tables cover produces four voices of equal length.
+- [x] The chosen tone (mode) sets the pitches the numbers map to.
+- [x] The chosen metre sets the note values.
+- [x] A phrase's penultimate syllable, marked long or short, selects the matching column.
+- [x] The user can step through the permutations offered for a phrase.
+- [x] Playback sounds all four voices in time.
+- [x] Playback highlights the chord currently sounding.
+- [x] The score shows the four voices on staves with the text underlaid.
+- [x] The lifted slat shows the numbers used for the current phrase.
+- [x] The page credits Kircher 1650 and the transcription source it used.
+- [x] The page states what Kircher left unspecified and what this version decided.
+- [x] The rod area states, for the selected phrase, its syllable count, its second-to-last syllable's length and the chosen pinax ("don't understand it ... doesn't seem to clearly relate to the selection").
+- [x] The rod area shows the chosen tone's number-to-note key.
+- [x] Each figure on the slat shows the note it becomes.
+- [x] The rack shows both pinakes with the chosen rod lifted on the chosen board.
+- [x] The page is listed in `data/experiments.json`, with no `noindex` tag and a canonical link ("push to zpl").
+- [x] A full compose-and-play run works in desktop Chrome with a mouse.
+- [x] A full compose-and-play run works at 375 px with touch.
+- [x] The 375 px page has no horizontal overflow.
+- [x] The browser console shows no errors during a run.

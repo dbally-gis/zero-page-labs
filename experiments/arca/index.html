@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#efe6d2">
+  <title>The Composing Ark, 1650 — Zero Page Labs</title>
+  <meta name="description" content="Compose four-part music the way Athanasius Kircher's Arca Musarithmica did in 1650: pick a Latin text, pull the rod, choose a row, and hear the counterpoint.">
+  <link rel="canonical" href="https://zeropagelabs.com/experiments/arca/">
+  <link rel="icon" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="arca.css">
+  <script type="module" src="arca.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#rod">Skip to the ark</a>
+<header class="topbar">
+  <a href="/" class="brand"><span aria-hidden="true">ø</span> Zero Page Labs</a>
+  <a href="/experiments/">Experiments ↗</a>
+</header>
+
+<main class="ark">
+  <header class="title-row">
+    <div>
+      <p class="kicker">Kircher’s Arca Musarithmica</p>
+      <h1>The Composing Ark, <em>1650</em></h1>
+    </div>
+    <p class="plate">MUSURGIA UNIVERSALIS · ROME 1650<br>SYNTAGMA I · PLAIN COUNTERPOINT</p>
+  </header>
+  <ol class="steps-strip" aria-label="How to use it">
+    <li><b>1</b> Choose Latin words</li>
+    <li><b>2</b> The ark picks a rod by counting syllables</li>
+    <li><b>3</b> You choose one of its rows of numbers</li>
+    <li><b>4</b> The numbers become notes. Press Play</li>
+  </ol>
+  <p class="intro">In 1650 the Jesuit scholar Athanasius Kircher described a wooden box that let anyone set a Latin text for four voices without knowing any counterpoint. You count the syllables, pull the matching rod, pick one of its rows of numbers and a rhythm, and read off the music. Try it.</p>
+
+  <div class="workbench">
+    <section class="card text-card" aria-labelledby="t1">
+      <p class="step">1 · The words</p>
+      <h2 id="t1">Choose a text</h2>
+      <label class="field">Text
+        <select id="preset"></select>
+      </label>
+      <label class="field">Or write your own <span class="hint-inline">(hyphens between syllables; a ` before a stressed syllable)</span>
+        <textarea id="text" rows="3" spellcheck="false"></textarea>
+      </label>
+      <p class="label">Phrases <span class="hint-inline">tap the second-to-last syllable to mark it long or short</span></p>
+      <ol id="phrases" class="phrases"></ol>
+      <div class="row2">
+        <label class="field">Tone
+          <select id="tone"></select>
+        </label>
+        <label class="field">Metre
+          <select id="meter"></select>
+        </label>
+      </div>
+    </section>
+
+    <section class="card rod-card" id="rod" aria-labelledby="t2" tabindex="-1">
+      <p class="step">2 · The rod</p>
+      <h2 id="t2">Pull the rod, pick a row</h2>
+      <ol class="how" id="how" aria-live="polite"></ol>
+      <div class="racks" id="racks" aria-hidden="true"></div>
+      <div class="slat" id="slat"></div>
+      <p class="slat-key">Big figures are Kircher’s numbers; small letters are the notes they become in your tone.</p>
+      <div class="pickers">
+        <div class="picker">
+          <span class="label">Row of numbers</span>
+          <div class="spin"><button type="button" id="v-prev" aria-label="Previous row">◀</button><output id="v-out"></output><button type="button" id="v-next" aria-label="Next row">▶</button></div>
+        </div>
+        <div class="picker">
+          <span class="label">Rhythm</span>
+          <div class="spin"><button type="button" id="r-prev" aria-label="Previous rhythm">◀</button><output id="r-out"></output><button type="button" id="r-next" aria-label="Next rhythm">▶</button></div>
+          <div class="rhythm" id="rhythm"></div>
+        </div>
+      </div>
+      <button type="button" id="lots" class="ghost">Draw lots for every phrase</button>
+    </section>
+  </div>
+
+  <section class="card score-card" aria-labelledby="t3">
+    <div class="score-head">
+      <div>
+        <p class="step">3 · The music</p>
+        <h2 id="t3">Four voices</h2>
+      </div>
+      <button type="button" id="play" class="play">▶ Play</button>
+    </div>
+    <div class="score-wrap" id="score-wrap"><svg id="score" role="img" aria-label="Four-voice score of the composed setting"></svg></div>
+    <p class="error" id="error" hidden></p>
+  </section>
+
+  <section class="history">
+    <h2>How the ark worked</h2>
+    <p>Kircher’s <i>Arca Musarithmica</i> appears in Book VIII of his <i>Musurgia Universalis</i> (Rome, 1650). The ark was a box of wooden rods, each painted with tables of numbers. For plain four-part writing (his first <i>syntagma</i>) the rods are grouped in boards called <i>pinakes</i>. The first two pinakes are for prose: Pinax I for phrases whose second-to-last syllable is long, Pinax II for those where it is short. Each has a rod for phrases of two, three, four, five and six syllables.</p>
+    <p>A rod holds ten blocks of four rows of numbers, one row for each voice: Cantus, Altus, Tenor and Bassus. The numbers 1 to 8 are steps of the scale of the chosen tone, with 1 and 8 the final. Under the numbers, the rod gives rhythms for duple and triple time. Choose one block and one rhythm, map the numbers to notes, and the four voices are written.</p>
+    <h3>What this version decides</h3>
+    <ul>
+      <li>Kircher left the choice of block and rhythm to the user, and so does this version. The “draw lots” button picks at random.</li>
+      <li>Which octave each note goes in is chosen here by a simple rule: keep each voice in its usual range, never above the voice over it, with the bass always lowest, and take the smallest leaps. Keeping the harmony right comes first, so now and then the bass dips below its usual range, as Kircher allowed.</li>
+      <li>The tones use the pitches of Kircher’s tone table, including its raised sevenths. His further rules for accidentals (<i>musica ficta</i>) are not applied.</li>
+      <li>Five figures and three triple-time rhythms in the 1650 print look like misprints: a figure that makes a dissonance, or a rhythm that cannot fill its groups of three. They are corrected here, and each one is listed, with what was printed, in the <a href="tables.json">transcribed data</a>.</li>
+      <li>In triple time the print often leaves a note’s length to the old rule of perfection: an undotted breve or semibreve may be worth three units or two. Here it is worked out so that each pattern fills whole groups of three. Rests whose value is unclear in the print are given the value that fits.</li>
+      <li>Only the two prose pinakes are here. Kircher’s pinakes for poetic metres, and his florid style, are not.</li>
+      <li>The score uses modern notes and clefs, and splits lines longer than six syllables into phrases of two to six, at word breaks where it can.</li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li>Athanasius Kircher, <i>Musurgia Universalis</i> (Rome, 1650), Book VIII. The numbers and rhythms here were transcribed for this page from the public-domain scan of Pinax I and Pinax II.</li>
+      <li>Andrew A. Cashner, <a href="https://arca1650.info/">ARCA MUSARITHMICA</a>, a scholarly reconstruction with his own transcription and software. Used here only to check our transcription.</li>
+      <li><a href="https://en.wikipedia.org/wiki/Arca_Musarithmica">Arca Musarithmica</a> (Wikipedia).</li>
+      <li>Jim Bumgardner, <a href="https://archive.bridgesmathart.org/2009/bridges2009-21.html">“Kircher’s Mechanical Composer: A Software Implementation”</a>, Bridges 2009.</li>
+    </ol>
+  </section>
+</main>
+</body>
+</html>
