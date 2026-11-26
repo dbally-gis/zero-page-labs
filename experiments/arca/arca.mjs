@@ -183,12 +183,7 @@ function spin(key, d) {
   const c = counts(tables, p, $('meter').value);
   const n = key === 'vperm' ? c.vperms : c.rperms;
   choices[active][key] = (choices[active][key] + d + n) % n;
-  $('hero-play').addEventListener('click', () => {
-  document.querySelector('.score-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  if (!stop) $('play').click();
-});
-
-render();
+  render();
 }
 $('v-prev').addEventListener('click', () => spin('vperm', -1));
 $('v-next').addEventListener('click', () => spin('vperm', 1));
@@ -248,6 +243,11 @@ $('play').addEventListener('click', () => {
       focus = c.e.index; markFocus(); drawLadder();
     }
   }, () => stopPlay());
+});
+
+$('hero-play').addEventListener('click', () => {
+  document.querySelector('.score-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (!stop) $('play').click();
 });
 
 render();
