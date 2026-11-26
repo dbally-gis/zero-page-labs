@@ -663,3 +663,10 @@ Surface: static build, shared analytics script, privacy notice. Publish through 
 - [x] Share-card freshness verification passes.
 - [x] Deep site verification passes.
 - [x] Public site serves the replacement image.
+
+## 2026-11-25 — Approved Lexical thumbnail
+- [ ] Lexical catalog cover references the approved image.
+- [ ] Experiments index loads the approved image.
+- [ ] Share-card freshness verification passes.
+- [ ] Deep site verification passes.
+- [ ] Public site serves the approved image.

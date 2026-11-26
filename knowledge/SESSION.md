@@ -575,3 +575,8 @@ Status: Published d57fb08. Public fingerprint matched. Chrome visibly rendered t
 Agent: OpenAI Codex
 Verdict: pending — requested Biblical Travels realism to match the other updated cards
 Status: Published 845cf79. Public fingerprint matched. Live Chrome visibly rendered the new journey illustration on the homepage beside Bellona. Local desktop and 375px card checks passed; deep verification passed 15 pages; share-card freshness passed. Original SVG retained. Exact prompt: data/biblical-cover-generation.json.
+
+## 2026-11-25 — Publish approved Lexical thumbnail
+Agent: OpenAI Codex
+Verdict: kept — "good. update zero page labs lexical thumbnail with this"
+Status: Approved exact generated image copied into assets. Deep verification and share freshness passed. Local browser preview was interrupted by detached debugger; public verification pending.

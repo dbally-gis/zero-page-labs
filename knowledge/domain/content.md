@@ -30,3 +30,6 @@ Replaced the schematic card with `assets/experiment-bellona-realistic.png` (1536
 
 ## 2026-11-25 — Biblical Travels cover illustration
 `assets/experiment-biblical-travels-realistic.png` replaces the flat map with a realistic Galilee-inspired journey scene: anonymous travelers, olive trees, a stone path, and a lakeside village. Artistic illustration, not a verified reconstruction of a particular site or biblical event. Generated with built-in imagegen; exact prompt in `data/biblical-cover-generation.json`. Original SVG retained. Shared catalog updates homepage and Experiments; Biblical Travels and Experiments share images regenerated. Deep verification passed 15 pages; share-card freshness passed; local desktop and 375px checks passed.
+
+## 2026-11-25 — Approved Lexical cover
+Published artwork source: `assets/experiment-lexical-realistic.png`, copied unchanged from generated image `exec-6ccac657-8b48-4595-9f26-44afcca5fcb8.png`. Daniel approved: "good. update zero page labs lexical thumbnail with this". Five distinct pages; blue river, yellow home, red memory. Original SVG retained. Catalog replacement updates Experiments card; Lexical share image regenerated. Deep build verification passed 15 pages; share freshness passed.

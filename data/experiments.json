@@ -35,10 +35,10 @@
       "tagline": "Follow a passage through 3D space.",
       "cta": "Explore the words",
       "cover": {
-        "src": "/assets/experiment-lexical.svg",
-        "alt": "Colored word paths connecting page-like layers",
-        "width": 960,
-        "height": 640,
+        "src": "/assets/experiment-lexical-realistic.png",
+        "alt": "Five printed pages linked by blue river, gold home, and red memory threads in a dark studio",
+        "width": 1536,
+        "height": 1024,
         "label": "Open Lexical"
       },
       "note": "PASTE A PASSAGE · YOUR TEXT STAYS LOCAL",
