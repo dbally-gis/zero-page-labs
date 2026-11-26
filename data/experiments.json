@@ -175,6 +175,25 @@
       },
       "note": "24 PROJECTIONS · CONSTRUCTION LAB",
       "links": []
+    },
+    {
+      "slug": "unveil",
+      "title": "UNVEIL",
+      "category": "GEOGRAPHY · DAILY PUZZLE",
+      "added": "2026-11-26",
+      "status": "live",
+      "summary": "A real Sentinel-2 satellite scene hides under hexagons. Lift as few as you can, then say what it is: crater, delta, glacier, mine. A new place every day, 63 in all.",
+      "tagline": "Lift the hexagons. Name the place from space.",
+      "cta": "Play today's scene",
+      "cover": {
+        "src": "/assets/experiment-unveil.jpg",
+        "alt": "Slate hexagon tiles over a satellite image, a few lifted to show green evaporation ponds",
+        "width": 960,
+        "height": 640,
+        "label": "Open UNVEIL"
+      },
+      "note": "DAILY · SENTINEL-2 IMAGERY",
+      "links": []
     }
   ]
 }

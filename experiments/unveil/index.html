@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f1b2d">
+  <title>UNVEIL — Zero Page Labs</title>
+  <meta name="description" content="A real Sentinel-2 satellite scene hides under hexagons. Lift as few as you can, then say what it is. A new place every day.">
+  <link rel="canonical" href="https://zeropagelabs.com/experiments/unveil/">
+  <link rel="icon" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="unveil.css">
+  <script type="module" src="unveil.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#board">Skip to the board</a>
+<header class="topbar">
+  <a href="/" class="brand"><span aria-hidden="true">ø</span> Zero Page Labs</a>
+  <a href="/experiments/">Experiments ↗</a>
+</header>
+
+<main class="unveil">
+  <header class="title-row">
+    <div>
+      <p class="kicker" id="kicker">Daily scene</p>
+      <h1>UNVEIL</h1>
+    </div>
+    <p class="plate">SENTINEL-2 · TRUE COLOUR<br>ONE SCENE A DAY</p>
+  </header>
+  <p class="intro">A real satellite scene hides under the hexagons. Lift as few as you can, then say what it is.</p>
+
+  <div class="game">
+    <div class="board-wrap">
+      <svg id="board" class="board" viewBox="0 0 960 960" role="group" aria-label="Satellite scene covered by hexagon tiles"></svg>
+    </div>
+
+    <aside class="panel" aria-live="polite">
+      <div class="status">
+        <div><span class="label">Tiles lifted</span><b id="lifted">0</b><span class="of" id="total"></span></div>
+        <div><span class="label">Score</span><b id="score">100</b></div>
+      </div>
+      <div class="panel-body">
+      <button type="button" id="today" class="back" hidden>← Back to today’s scene</button>
+      <p class="hint" id="hint">Tap a hexagon to lift it.</p>
+
+      <div id="guess">
+        <p class="label">What is it?</p>
+        <div class="options" id="options"></div>
+      </div>
+
+      <section id="result" class="result" hidden>
+        <p class="label" id="result-line"></p>
+        <h2 id="result-name"></h2>
+        <p class="mono" id="result-where"></p>
+        <p id="result-why"></p>
+        <p><a id="result-link" target="_blank" rel="noopener">Read more ↗</a></p>
+        <p class="small" id="share-note" hidden>Copied. It doesn’t give the answer away.</p>
+      </section>
+      </div>
+      <ul class="rules" aria-label="Scoring">
+        <li><b>Free</b>first tile</li>
+        <li><b>−4</b>each tile after</li>
+        <li><b>−20</b>wrong guess</li>
+      </ul>
+      <div class="actions" id="actions" hidden>
+        <button type="button" id="share" class="primary">Copy result</button>
+        <button type="button" id="practice">Practice another</button>
+      </div>
+    </aside>
+  </div>
+
+  <section class="about">
+    <h2>About the pictures</h2>
+    <p>Every scene is a real place, photographed from about 786 km up by the European Space Agency’s Sentinel-2 satellites. Each is a true-colour mosaic of the least cloudy passes over a season or a year. The satellites see about 10 metres to a pixel; the scenes here run from 6 to 200 km across, so most are scaled down.</p>
+    <p>A new scene comes up at your local midnight; everyone gets the same scene on the same date. Practice scenes are random and don’t count.</p>
+    <p class="small">Contains modified Copernicus Sentinel data (2024–2025), processed through the <a href="https://dataspace.copernicus.eu/">Copernicus Data Space Ecosystem</a>. Notes on each place draw on the linked Wikipedia articles.</p>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,130 @@
+:root {
+  --navy: #0f1b2d;
+  --navy-2: #172740;
+  --paper: #efe5cf;
+  --ink: #1c2433;
+  --muted: #8a96aa;
+  --amber: #e2a23b;
+  --amber-2: #f0c069;
+  --slate: #4c5d78;
+  --slate-2: #5d7090;
+  --red: #c9573f;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { background: var(--navy); color: var(--paper); font: 16px/1.55 var(--serif); }
+a { color: var(--amber-2); }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 12px; top: 12px; z-index: 9; background: var(--paper); color: var(--ink); padding: 6px 10px; }
+
+.topbar { display: flex; justify-content: space-between; padding: 14px 24px; font: 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.topbar a { color: var(--muted); text-decoration: none; }
+.topbar a:hover { color: var(--amber-2); }
+
+.unveil { max-width: 1180px; margin: 0 auto; padding: 4px 24px 60px; }
+.title-row { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; border-bottom: 1px solid rgba(239,229,207,.2); padding-bottom: 10px; }
+.kicker { margin: 0 0 4px; font: 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--amber); }
+h1 { margin: 0; font-size: clamp(38px, 6vw, 64px); font-weight: 500; letter-spacing: .14em; line-height: 1; }
+.plate { margin: 0; font: 12px/1.5 var(--mono); letter-spacing: .08em; text-align: right; color: var(--muted); }
+.intro { max-width: 680px; font-size: 18px; margin: 14px 0 18px; }
+
+/* Board and panel are one unit: the panel is exactly as tall as the square board. */
+.game { --S: min(calc(100vw - 480px), max(440px, calc(100vh - 250px)), 760px);
+  display: grid; grid-template-columns: var(--S) 360px; justify-content: center; gap: 24px; align-items: start; }
+.board-wrap { position: relative; }
+.board {
+  display: block; width: var(--S); aspect-ratio: 1; margin: 0 auto;
+  border: 1px solid rgba(226,162,59,.55); border-radius: 4px; background: var(--navy-2);
+  touch-action: manipulation; user-select: none; -webkit-user-select: none;
+}
+.tile { fill: var(--slate); stroke: #263247; stroke-width: 2.5; cursor: pointer; transform-box: fill-box; transform-origin: center; transition: fill .15s, transform .38s cubic-bezier(.5, 0, .75, 0), opacity .38s; }
+.tile:nth-child(3n) { fill: #4a5a74; }
+.tile:nth-child(5n+1) { fill: #50627e; }
+.tile:focus { outline: none; }
+.tile:hover, .tile:focus-visible { fill: var(--slate-2); }
+.tile:focus-visible { stroke: var(--amber); stroke-width: 4; }
+.tile.lift { transform: perspective(600px) rotateY(88deg) scale(.9); opacity: 0; pointer-events: none; }
+.board.solved .tile { cursor: default; }
+.edge { fill: none; stroke: var(--amber); stroke-width: 3; opacity: .0; transition: opacity .4s; pointer-events: none; }
+.board.solved .edge { opacity: .7; }
+
+.panel { height: var(--S); display: flex; flex-direction: column; background: var(--paper); color: var(--ink); border-radius: 4px; border: 1px solid rgba(226,162,59,.6); overflow: hidden; }
+.status { padding: 16px 18px 12px; }
+.panel-body { flex: 1; overflow-y: auto; padding: 12px 18px 14px; display: flex; flex-direction: column; }
+.panel-body .hint { margin-top: 0; }
+#guess { margin-top: auto; }           /* answers sit at the foot, by the scoring rules */
+.panel.solved #guess { margin-top: 0; }
+.actions { display: flex; gap: 8px; padding: 12px 18px; border-top: 1px solid rgba(28,36,51,.2); background: #e8dcc0; }
+.actions button { flex: 1; min-height: 44px; border-radius: 4px; cursor: pointer; border: 1px solid rgba(28,36,51,.45); background: #f7efdc; color: var(--ink); font: 600 15px/1.2 var(--serif); }
+.actions button.primary { background: var(--navy); color: var(--paper); border-color: var(--navy); }
+.rules { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(28,36,51,.2); background: #e8dcc0; }
+.rules li { padding: 10px 6px; text-align: center; font: 11px/1.25 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: #5b6476; }
+.rules li + li { border-left: 1px solid rgba(28,36,51,.15); }
+.rules b { display: block; font: 600 18px/1.2 var(--serif); letter-spacing: 0; text-transform: none; color: var(--ink); }
+/* Once solved, only the guesses made stay; the result gets the room. */
+.panel.solved .options button:not(.right) { display: none; }
+.panel.solved .rules { display: none; }
+.status { display: flex; gap: 22px; border-bottom: 1px solid rgba(28,36,51,.2); padding-bottom: 10px; }
+.status b { display: block; font: 600 30px/1.1 var(--serif); }
+.status .of { font: 13px var(--mono); color: #6b7487; margin-left: 4px; }
+.status div:first-child b { display: inline; }
+.label { display: block; margin: 0 0 4px; font: 11px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #6b7487; }
+.hint { font-size: 15px; color: #4b5466; margin: 12px 0 14px; }
+.options { display: grid; gap: 8px; }
+.options button, .row button {
+  min-height: 46px; padding: 10px 14px; border-radius: 4px; cursor: pointer; text-align: left;
+  border: 1px solid rgba(28,36,51,.45); background: #f7efdc; color: var(--ink); font: 600 17px/1.2 var(--serif);
+  transition: background .12s, transform .12s;
+}
+.options button:hover:not(:disabled) { background: #fff7e6; transform: translateX(2px); }
+.options button:disabled { cursor: default; opacity: .45; }
+.options button.wrong { text-decoration: line-through; color: var(--red); }
+.options button.right { background: var(--amber); border-color: #a86f13; text-decoration: none; opacity: 1; }
+.options button.shake { animation: shake .35s; }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+button.primary { background: var(--navy); color: var(--paper); border-color: var(--navy); }
+
+.result { margin-top: 14px; border-top: 1px solid rgba(28,36,51,.2); padding-top: 12px; }
+.result h2 { margin: 0 0 2px; font-size: 24px; line-height: 1.2; }
+.result p { margin: 0 0 8px; font-size: 15px; }
+.mono { font: 13px/1.5 var(--mono) !important; color: #4b5466; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.row button { text-align: center; font-size: 15px; min-height: 44px; }
+.small { font-size: 13px; color: var(--muted); }
+.panel .small { color: #4b5466; }
+.panel a { color: #8a4b0b; }
+.back { margin: 10px 0 0; padding: 0; border: 0; background: none; color: #8a4b0b; font: 600 14px var(--serif); cursor: pointer; text-decoration: underline; }
+
+.about { max-width: 720px; margin-top: 40px; color: #cfd6e2; }
+.about h2 { font-size: 22px; margin: 0 0 8px; color: var(--paper); }
+
+@media (max-width: 860px) {
+  .game { grid-template-columns: 1fr; gap: 0; }
+  .board { width: 100%; border-bottom: 0; border-radius: 4px 4px 0 0; }
+  /* The panel hangs off the bottom of the board, score strip first */
+  .panel { height: auto; border-radius: 0 0 4px 4px; }
+  .status { padding: 10px 14px; background: var(--navy-2); color: var(--paper); gap: 0; justify-content: space-between; border-bottom: 1px solid rgba(226,162,59,.5); }
+  .status > div { display: flex; align-items: baseline; gap: 8px; }
+  .status .label { color: var(--muted); margin: 0; }
+  .status b { font-size: 22px; }
+  .status .of { color: var(--muted); }
+  .panel-body { overflow: visible; padding: 10px 14px 12px; }
+  .actions { padding: 10px 14px; }
+  .hint { margin: 10px 0 8px; font-size: 14px; }
+  .options { grid-template-columns: 1fr 1fr; }
+  .rules li { padding: 8px 4px; }
+}
+@media (max-width: 600px) {
+  .unveil { padding: 4px 12px 40px; }
+  .plate { text-align: left; }
+  .intro { font-size: 16px; margin: 10px 0 12px; }
+  .board-wrap { margin: 0 -12px; }
+  .board { border-left: 0; border-right: 0; border-radius: 0; }
+  .panel { margin: 0 -12px; border-left: 0; border-right: 0; border-radius: 0; }
+  .options button { font-size: 15px; padding: 8px 10px; }
+  .status b { font-size: 26px; }
+}
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } .options button.shake { animation: none; } }

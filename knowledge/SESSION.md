@@ -3,6 +3,26 @@ generated_by: "OpenAI Codex (exact model variant not exposed)"
 timestamp: "2026-11-07T17:04:06.403311-06:00"
 ---
 
+## 2026-11-26 UNVEIL (hex-reveal satellite guessing game)
+
+Agent: Claude Code CLI
+Handoff-from: none
+Handoff-type: new-project
+Goal: Daniel picked the satellite-reveal idea from the hexagon list and renders ("i like reveal, lets do this for zpl").
+Status: Live on zeropagelabs.com at /experiments/unveil/ (pushed to main 2026-11-26 after "add in another few dozen locations and then push to zpl"); listed on /experiments/ (the site build requires every published experiment to be registered). Contract in task.md (UNVEIL section), all checks pass.
+Verdict: pending — Daniel hasn't played it yet
+
+- 63 curated sites in `sites.json` (24 first, then 39 more; Chott el Djerid and Yangshuo were dropped because their scenes showed nothing recognisable) (answer, 3 decoys, why-note, Wikipedia link). Imagery is real Sentinel-2 L2A, least-cloudy mosaics fetched once by `execution/fetch_unveil_imagery.py` from the Copernicus Data Space Process API (credentials: `CDSE_CLIENT_ID/SECRET` from env/.env; this run borrowed Limn's `config.js` values via env, never written to the repo). Sites with salt, snow or ice use `"bright": true` (a gentler tone curve); `year`/`maxcc` override per site (Manicouagan and Lena needed 2024, maxcc 30).
+- Daily site is a seeded shuffle walked one per local calendar day from 2026-11-26; progress saved in localStorage per date; practice mode excludes today's site.
+- Scoring: 100, first tile free, −4 per tile, −20 per wrong guess, floor 0. 68 pointy-top hexes, R=80 on a 960 board.
+- QA: Chrome 1440 mouse and 375 touch, full rounds, reload, practice, wrong guesses; no overflow, no console errors; `execution/test_unveil.mjs` 19 tests.
+- Independent verifier: PASS on all 21 contract items. Fixed after its report: Ucayali region, unreadable link colour on the cream panel, arguable decoys (Uyuni, Great Salt Lake, Aral), Kufra re-centred, Natron note, Etna seam (2024), back-to-today mid-practice, storage try/catch, midnight rollover, About wording, hex-coverage test now reaches the edges. Left as is: image filenames and sites.json reveal answers to anyone using devtools.
+- Mistake this session: a sed "redaction" printed Limn's CDSE client secret into the local transcript. Told Daniel to rotate it.
+
+S.D.G.: visitors get a one-minute daily puzzle that teaches them to read real satellite imagery, and each answer explains why the place looks the way it does.
+Feynman gap: no real-iPhone test; whether 68 tiles at −4 makes the scoring feel right is untested with a person.
+- Layout ("fix the uiux /mobbin since it's off balance with the square map yet long portrait text"): Mobbin references (Uxcel, NYT Games, Tripadvisor Travel Games) -> desktop panel locked to the board's height (score header, answers anchored at the foot, scoring-rules footer that becomes Copy/Practice actions once solved; only the right answer stays after solving); phone gets a score strip attached under the board and a 2x2 answer grid.
+
 ## 2026-11-21 COME AT ME showcase at seven cards
 
 Goal: make the public COME AT ME page describe and show the 7-card game.

@@ -688,3 +688,32 @@ Surface: `experiments/projection/`, Experiments catalog, sitemap. Directive: `di
 - [x] A fresh verifier reviews the final output.
 
 Status: published source 5542cf8; public browser verification passed.
+
+## 2026-11-26 — UNVEIL (hex-reveal satellite guessing game, prototype, unlinked)
+
+Daniel: "i like reveal, lets do this for zpl". Experiment at `experiments/unveil/`.
+
+- [x] Every site in `sites.json` has a saved Sentinel-2 image in `experiments/unveil/img/`.
+- [x] Every site has exactly one correct answer and three decoys, all different.
+- [x] Every site has an https "learn more" link.
+- [x] The daily site is the same for every visitor on a given date.
+- [x] Consecutive dates give different sites until the list is used up.
+- [x] The first tile flip is free.
+- [x] Each further flip lowers the score.
+- [x] A wrong guess lowers the score.
+- [x] A wrong guess disables that option.
+- [x] The score never goes below zero.
+- [x] A correct guess uncovers the whole image.
+- [x] A correct guess shows the site's name, coordinates and explanation.
+- [x] The page shows the Copernicus Sentinel attribution.
+- [x] Today's result survives a page reload.
+- [x] Practice mode serves a site other than today's.
+- [x] A full round plays to the result card in desktop Chrome with a mouse.
+- [x] A full round plays to the result card at 375 px with touch.
+- [x] The 375 px page has no horizontal overflow.
+- [x] The browser console shows no errors during a round.
+- [x] The page is listed in `data/experiments.json` (superseded "unlinked" when Daniel said "push to zpl"; the site build requires every published experiment to be listed).
+- [x] The page carries no `noindex` tag and has a canonical link.
+- [x] On desktop the side panel is exactly as tall as the square board ("off balance with the square map").
+- [x] On desktop the solved result, including Copy result and Practice another, is visible without scrolling the page at 1280x760.
+- [x] On phones the score strip and answers attach directly under the board.
