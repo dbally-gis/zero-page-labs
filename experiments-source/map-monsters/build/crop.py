@@ -1,14 +1,13 @@
 """Cut crops listed in crops.json from the downloaded scans, and write a labelled check sheet.
 
 Boxes are in source pixels, or in pixels of a `basis`-wide version of the source when `basis` is given.
-Run with python -I: the scans are untrusted downloads.
+The rebuild entry point verifies source hashes before invoking this script.
 """
 import json
 from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-Image.MAX_IMAGE_PIXELS = None
 ROOT = Path(__file__).resolve().parent.parent
 SPEC = json.loads((ROOT / "build" / "crops.json").read_text())
 OUT = ROOT / "crops"
@@ -16,6 +15,7 @@ OUT.mkdir(exist_ok=True)
 
 
 def main() -> None:
+    (ROOT / 'build' / 'views').mkdir(parents=True, exist_ok=True)
     cache: dict[str, Image.Image] = {}
     thumbs = []
     for name, s in SPEC.items():

@@ -1,23 +1,18 @@
 // Three plates, two views each. The hash (#ix-sources, #x, ...) picks both so any view can be linked.
 // Older links (#illustrated, #sources) open Plate VIII.
-const PLATES = ['viii', 'ix', 'x'];
-const VIEWS = ['illustrated', 'sources'];
-const state = { plate: 'viii', view: 'illustrated' };
-
-function parse(hash) {
-  const [a, b] = hash.replace(/^#/, '').split('-');
-  if (VIEWS.includes(a)) return { plate: 'viii', view: a };
-  return {
-    plate: PLATES.includes(a) ? a : 'viii',
-    view: VIEWS.includes(b) ? b : 'illustrated',
-  };
-}
+import { parse } from './state.mjs';
+const state = { plate: 'viii', view: 'sources' };
 
 function render(push) {
-  document.querySelectorAll('.tabs button[data-plate]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.plate === state.plate)));
-  document.querySelectorAll('.tabs button[data-view]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.view === state.view)));
+  document.querySelectorAll('.tabs button').forEach(b => {
+    const selected = b.dataset.plate ? b.dataset.plate === state.plate : b.dataset.view === state.view;
+    b.setAttribute('aria-selected', String(selected));
+    b.tabIndex = selected ? 0 : -1;
+    b.setAttribute('aria-controls', `${state.plate}-${state.view}`);
+  });
   document.querySelectorAll('section.view').forEach(s => { s.hidden = !(s.dataset.plate === state.plate && s.dataset.view === state.view); });
-  if (push) history.replaceState(null, '', `#${state.plate}${state.view === 'sources' ? '-sources' : ''}`);
+  document.querySelectorAll('[data-catalogue]').forEach(s => { s.hidden = s.dataset.catalogue !== state.plate; });
+  if (push) history.pushState(null, '', `#${state.plate}-${state.view}`);
 }
 
 document.querySelectorAll('.tabs').forEach(group => {
@@ -28,9 +23,10 @@ document.querySelectorAll('.tabs').forEach(group => {
     render(true);
   }));
   group.addEventListener('keydown', e => {
-    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+    e.preventDefault();
     const i = buttons.findIndex(b => b.getAttribute('aria-selected') === 'true');
-    const next = buttons[(i + (e.key === 'ArrowRight' ? 1 : buttons.length - 1)) % buttons.length];
+    const next = buttons[e.key === 'Home' ? 0 : e.key === 'End' ? buttons.length - 1 : (i + (e.key === 'ArrowRight' ? 1 : buttons.length - 1)) % buttons.length];
     next.click();
     next.focus();
   });
@@ -43,6 +39,25 @@ document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', 
   document.getElementById('plate').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }));
 
-window.addEventListener('hashchange', () => { Object.assign(state, parse(location.hash)); render(false); });
+window.addEventListener('hashchange', () => {
+  if (/^#(?:viii|ix|x|sources|illustrated)(?:-|$)/.test(location.hash) || !location.hash) {
+    Object.assign(state, parse(location.hash));
+    render(false);
+  }
+});
 Object.assign(state, parse(location.hash));
 render(false);
+
+// Specimen deep links select their own plate without resetting the view.
+function revealSpecimen() {
+  if (!location.hash.startsWith('#specimen-')) return;
+  const entry = document.getElementById(location.hash.slice(1));
+  if (!entry) return;
+  state.plate = entry.closest('[data-catalogue]').dataset.catalogue;
+  state.view = 'sources';
+  render(false);
+  entry.open = true;
+  entry.scrollIntoView({ block: 'start' });
+}
+window.addEventListener('hashchange', revealSpecimen);
+revealSpecimen();

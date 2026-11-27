@@ -773,3 +773,23 @@ Contract:
 - [x] execution/test_longitude.mjs passes.
 
 Verifier (fresh context) failed the first build: ship could walk inland after "Land ho" in daylight; wrong coasts (Normandy, east Hispaniola) scored as arrival; hourly night collision checks; no Scilly. Fixed: quarter-hour land checks, ship held at last safe point, arrival = land sighted within a per-voyage radius of the destination, Scilly traced by hand, gazetteer names for Channel/Hispaniola coasts; regression tests added (33 pass) and the verifier's own probes rerun clean.
+
+## 2026-11-27 — Map Monsters accuracy and completeness
+Surface: experiments/map-monsters and experiments-source/map-monsters. Execution: execution/rebuild_map_monsters.py, build_site.py, verify_site.py. Output: revised static page, source plates, tracked provenance manifest. Preserve the existing illustrated images as explicitly labelled legacy interpretations. No push or deployment is requested.
+
+- [x] A fresh visit opens Plate VIII from the sources.
+- [x] Explicit illustrated deep links retain their meaning.
+- [x] Plate X describes parallel traditions rather than a retreat into the sky.
+- [x] Each occupied source cell has a readable catalogue entry.
+- [x] Each catalogue entry links to its source context.
+- [x] The unnamed horned head carries an adjacent tentative identification.
+- [x] Date decisions cite edition-level evidence.
+- [x] A tracked manifest enumerates the crop inputs.
+- [x] Rebuild verifies input checksums.
+- [x] Rebuild creates missing output directories.
+- [x] The rebuild produces the three published WebP source plates.
+- [x] Targeted tests pass.
+- [x] The deep site verifier passes.
+- [x] Desktop browser checks pass.
+- [x] Mobile browser checks pass.
+- [x] A fresh independent verifier reports no unresolved blocker.

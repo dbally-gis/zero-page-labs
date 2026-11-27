@@ -1,0 +1,28 @@
+{
+  "checked": "2026-11-27",
+  "viii": {
+    "image": "experiments/map-monsters/img/illustrated.webp",
+    "prompt": null,
+    "references": [
+      "renders/d2b-referenced.png"
+    ],
+    "note": "Original generation prompt was not present in the inherited files. Do not reconstruct or claim exact reproducibility."
+  },
+  "ix": {
+    "image": "experiments/map-monsters/img/ix-illustrated.webp",
+    "prompt": "renders/prompt-ix.txt",
+    "references": [
+      "renders/map-monsters-plate-ix-real.png",
+      "renders/d2b-referenced.png"
+    ]
+  },
+  "x": {
+    "image": "experiments/map-monsters/img/x-illustrated.webp",
+    "prompt": "renders/prompt-x.txt",
+    "references": [
+      "renders/map-monsters-plate-x-real.png",
+      "renders/d2b-referenced.png"
+    ]
+  },
+  "note": "Reference PNGs are local untracked originals. Source reference plates precede this review\u2019s caption corrections. Published artistic images are preserved, not regenerated."
+}

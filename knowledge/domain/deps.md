@@ -13,3 +13,7 @@ Lexical's public adaptation uses the existing React18/Three0.160/postprocessing6
 
 ## 2026-11-08 — Maritime dimensional preview
 Three.js0.160.1 is vendored from the existing locked Lexical dependency into experiments/maritime/vendor/three-0.160.1.module.min.js, with its MIT license. No CDN or new package install is required for static publication. data/maritime-vendor.json records its SHA256; execution/verify_site.py rejects a changed or missing library. The optional scene dynamically imports the self-contained ES module, while replay and the classic SVG remain independent.
+
+## 2026-11-27 — Map Monsters plate rebuild
+
+Recorded the installed, tested Pillow 12.3.0 in `experiments-source/map-monsters/requirements.txt`. No dependency was installed or upgraded. macOS Baskerville is required by the existing renderer; Python isolation does not sandbox decoding.

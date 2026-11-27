@@ -44,6 +44,25 @@ h2 { margin: 0 0 10px; font-size: 24px; font-weight: 500; }
 .sources li { margin: 0 0 8px; }
 .sources b { font-weight: 600; }
 .small { font-size: 14px; color: var(--muted); }
+.collection-note { max-width: 740px; color: var(--muted); font-size: 15px; }
+.reading { margin-top: 40px; border-top: 1px solid var(--rule); padding-top: 20px; }
+.reading p { max-width: 740px; }
+.reading dt { margin-top: 20px; font-weight: bold; }
+.reading dd { margin: 8px 0 0; color: var(--muted); }
+.specimens { display: grid; gap: 8px; }
+.specimen { border: 1px solid var(--rule); padding: 0 16px; min-width: 0; }
+.specimen summary { cursor: pointer; padding: 14px 0; font-size: 19px; }
+.specimen summary span { display: inline-block; min-width: 104px; color: var(--red); font: 12px/1.4 var(--mono); }
+.specimen[open] { background: rgba(239, 229, 207, .035); }
+.specimen .caption { color: var(--paper); font-style: italic; }
+.specimen p { color: var(--muted); }
+.specimen figure { margin: 20px 0; }
+.specimen figure img { max-height: 560px; width: auto; margin: 0 auto; }
+.specimen figcaption { margin-top: 8px; font-size: 14px; }
+.specimen a, .reading a { overflow-wrap: anywhere; }
+.view[data-view="illustrated"] .note { margin: 0 auto 18px; }
+.specimen:target { border-color: var(--red); }
+summary:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
 
 @media (max-width: 560px) {
   .mm { padding: 4px 14px 48px; }

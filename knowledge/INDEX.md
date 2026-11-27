@@ -14,7 +14,7 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [procedural/deploy_site.md](procedural/deploy_site.md) | procedural | 2026-11-25 | Build, checks, deployment and analytics reporting |
 | [REFLECTIONS.jsonl](REFLECTIONS.jsonl) | reflection | 2026-11-07 | Launch lessons |
 | [archive/launch-and-catalog-20261107.md](archive/launch-and-catalog-20261107.md) | archive | 2026-11-07 | Launch, imagery, catalog and Gridcore checkpoints |
-| [domain/deps.md](domain/deps.md) | domain | 2026-11-07 | Pinned catalog dependencies plus self-contained Maritime Three renderer |
+| [domain/deps.md](domain/deps.md) | domain | 2026-11-27 | Catalog, Maritime renderer and tested Map Monsters Pillow dependency |
 | [../directives/publish_experiments.md](../directives/publish_experiments.md) | procedural | 2026-11-09 | Build, verify and publish public browser experiments |
 | [archive/pre-experiments-20261107.md](archive/pre-experiments-20261107.md) | archive | 2026-11-07 | Prior hourly catalog automation handoff preserved before Experiments work |
 | [domain/experiments-readiness.md](domain/experiments-readiness.md) | domain | 2026-11-07 | Release rubric, resolved blockers, evidence and physical-device follow-up |
@@ -39,3 +39,6 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [../directives/maintain_showcase.md](../directives/maintain_showcase.md) | procedural | 2026-11-16 | Add an experiment or page: one list, share images, checks |
 
 | [domain/projection-cabinet.md](domain/projection-cabinet.md) | domain | 2026-11-26 | Orbits projection engine provenance, reference orientation, construction parity and validation |
+
+| [domain/map-monsters-evidence.md](domain/map-monsters-evidence.md) | domain | 2026-11-27 | Date evidence, interpretation boundaries, source catalogue and rebuild provenance |
+| [procedural/rebuild_map_monsters.md](procedural/rebuild_map_monsters.md) | procedural | 2026-11-27 | Checksum-verified source plates, catalogue generation and browser checks |

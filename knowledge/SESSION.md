@@ -669,3 +669,26 @@ Feynman gap: Browser desktop/mobile layout and interactions passed; physical tou
 Published source `5542cf8`. Public `https://zeropagelabs.com/experiments/projection/` loaded the cabinet; Dymaxion selection, Mercator construction, reset and 375px layout passed with no horizontal overflow or console warnings/errors.
 S.D.G.: Visitors can explore Orbits’ projection teaching tools directly from Zero Page Labs without installing the app.
 Feynman gap: Live browser behavior is verified; physical touch remains untested.
+
+## 2026-11-27 — Map Monsters evidence and catalogue
+Goal: Implement the accuracy/completeness review; make source scans the default.
+Agent: OpenAI Codex
+Handoff-from: Claude Code CLI
+Handoff-type: cold-eyes
+Status: Implemented and verified locally in /Users/danielbally/Git/.tmp/zpl-map-monsters-review, branch codex/map-monsters-review. No commit, push or deployment performed. Copied source-package additions and scan cache; original staged checkout remains untouched.
+Verdict: kept — "Looks good, push it to Zero Page Labs and verify the live page."
+
+- Result: source scans default; 30 specimen entries with 31 highlighted scan contexts; revised scope/interpretation notes; corrected three source plates; date evidence and image-model provenance boundaries; checksum manifest for 25 scans; maintained rebuild command with recovery failure tests. Experiment listing and share card updated.
+- Dates: Montfort An X (1801–1802); 1873 Logy Bay specimen with photograph c. 1873–74. These are deliberately bounded dates. Montfort reproduction edition remains unverified; original Plate VIII prompt was not inherited. See domain/map-monsters-evidence.md.
+- Verification: offline full plate/catalogue rebuild passed; 25 input hashes passed; recovered three missing exact download URLs matched original bytes; 50 Python tests passed; 120 Node tests passed; 20-page deep verification passed; git diff --check passed. Browser at 1280px and 375px passed default, view switching, Back, Home keyboard selection, specimen deep link/expansion, rendered scan contexts, overflow and console checks. Fresh independent review passed after two minor corrections.
+- Local preview: http://127.0.0.1:5198/experiments/map-monsters/ (temporary Python server). Closing audit: the collection is more inspectable and appropriately bounded, but it remains a selected visual essay rather than an exhaustive history or fully authenticated image catalogue.
+S.D.G.: Curious readers can inspect historical creature images in context and distinguish the pictured evidence from editorial interpretation.
+Feynman gap: Exact bath-photo exposure date, Montfort reproduction edition, missing Plate VIII prompt, physical touch and public deployment remain unverified; these limits are documented.
+
+## 2026-11-27 — Publish Map Monsters review
+Goal: Publish the approved source catalogue and verify production.
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Publishing branch codex/map-monsters-review after aligning its base with current origin/main. Production verification pending.
+Verdict: kept — "Looks good, push it to Zero Page Labs and verify the live page."

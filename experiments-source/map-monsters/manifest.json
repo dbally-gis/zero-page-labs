@@ -1,0 +1,718 @@
+{
+  "version": 1,
+  "checked": "2026-11-27",
+  "sources": {
+    "aldro_098.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Ulyssis_Aldrovandi_BHL41765098.jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Ulyssis_Aldrovandi_BHL41765098.jpg/1920px-Ulyssis_Aldrovandi_BHL41765098.jpg",
+      "rights": "Public domain",
+      "sha256": "f0ead04d1c0f929a9284921bc2752e2d1fe26e3842b2c9cdd802c7940522ddbb",
+      "size": [
+        1920,
+        2963
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "aldro_387.png": {
+      "page": "https://commons.wikimedia.org/wiki/File:Serpentum,_et_draconum_historiae_387.png",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Serpentum%2C_et_draconum_historiae_387.png",
+      "rights": "Public domain",
+      "sha256": "99c98a86f5f9bd102580eacd36e695a83c0c713ae96ce987a5640d199e8d1fc1",
+      "size": [
+        1576,
+        1076
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "alecton_1861.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:French_corvette_Alecton_attempts_to_capture_a_giant_squid.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/French_corvette_Alecton_attempts_to_capture_a_giant_squid.jpg",
+      "rights": "Public domain",
+      "sha256": "b4e6b93529c3f9542ae58df591fb6d905b6058470fce08ce883d89203b0d5417",
+      "size": [
+        1280,
+        851
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "bermuda_1860.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_great_sea-serpent,_found_in_Hungary_Bay,_Bermuda,_on_January_22,_1860_-_from_a_sketch_by_W.D._Munro._LCCN2001695531.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/The_great_sea-serpent%2C_found_in_Hungary_Bay%2C_Bermuda%2C_on_January_22%2C_1860_-_from_a_sketch_by_W.D._Munro._LCCN2001695531.jpg",
+      "rights": "Public domain",
+      "sha256": "290667fe9c82ed07f3a86e8f1d93d361de3b09f2acfc662052fb9eda6abb3308",
+      "size": [
+        4096,
+        3284
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "carta_marina.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Carta_Marina.jpeg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Carta_Marina.jpeg",
+      "rights": "Public domain",
+      "sha256": "1fd3debb10d5f96ca117b0747c99dba8f17b9bc8d7543da68b03b19a1a7a0571",
+      "size": [
+        5016,
+        3715
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "daedalus_loc.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_great_sea_serpent._The_sea_serpent_when_first_seen_from_H(er)_M(ajesty%27s)_S(hip)_DAEDALUS_LCCN2003680172.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/The_great_sea_serpent._The_sea_serpent_when_first_seen_from_H%28er%29_M%28ajesty%27s%29_S%28hip%29_DAEDALUS_LCCN2003680172.jpg",
+      "rights": "Public domain",
+      "sha256": "9be75cf4a2b8ec6956452ca01a732d4c7f9aa80dab63839a8bd36eec4e213b51",
+      "size": [
+        1536,
+        1211
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "edge_1625.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Kaart_van_Spitsbergen_van_Thomas_Edge,_1625_Greneland_(titel_op_object),_NG-1988-23.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Kaart_van_Spitsbergen_van_Thomas_Edge%2C_1625_Greneland_%28titel_op_object%29%2C_NG-1988-23.jpg",
+      "rights": "CC0",
+      "sha256": "e7cb61fa7a0f9f71c7a29db4c09f41e09206e34d87c8e038134b56af6122483c",
+      "size": [
+        4884,
+        4146
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "egede_1734b.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Hans_Egede_sea_serpent_1734.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Hans_Egede_sea_serpent_1734.jpg",
+      "rights": "Public domain",
+      "sha256": "3902964334f3fe119f450ce0ab8bc87b50b562c0df43c0af546053b0f6b1e28b",
+      "size": [
+        1002,
+        529
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "gerritsz_walrus.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Hessel_Gerritsz_-_Walruses_on_Spitsbergen.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Hessel_Gerritsz_-_Walruses_on_Spitsbergen.jpg",
+      "rights": "Public domain",
+      "sha256": "17ac352fed547ad9721ceb48beedda79c817d437b7d2a91a5c54a6823a3a33a7",
+      "size": [
+        1563,
+        1224
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "hev_draco.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Draco_Hevelius_-_Prodromus_astronomiae_1690_(5590223).jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Draco_Hevelius_-_Prodromus_astronomiae_1690_%285590223%29.jpg/3840px-Draco_Hevelius_-_Prodromus_astronomiae_1690_%285590223%29.jpg",
+      "rights": "Public domain",
+      "sha256": "98861fbbe8cb2265ec8b31b27c33ab147b6c20bb2de5360254cad05e169f456c",
+      "size": [
+        3840,
+        3032
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "hev_hydra.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Johannes_Hevelius_-_Hydra.jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Johannes_Hevelius_-_Hydra.jpg/1920px-Johannes_Hevelius_-_Hydra.jpg",
+      "rights": "Public domain",
+      "sha256": "6d1812e3ec6be6ef24c4c4ff8bce03adc9ffeb30aec5f0332c908e69ff1909ae",
+      "size": [
+        1920,
+        1573
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "islandia_full.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Island_1590_Theatrum_Orbis_Terrarum_Ortelius.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Island_1590_Theatrum_Orbis_Terrarum_Ortelius.jpg",
+      "rights": "Public domain",
+      "sha256": "1fb67eaf0151f121d2945b2de0a5de733df8e43abb2094ae1d596430ed8afa11",
+      "size": [
+        9843,
+        6681
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "lenox_asia.png": {
+      "page": "https://commons.wikimedia.org/wiki/File:Lenox_Globe_Asia.png",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/Lenox_Globe_Asia.png",
+      "rights": "CC0",
+      "sha256": "759d7d556ce9d26526d03519a47e2dbdfb54b1005acc44775e8347d2caf4b56e",
+      "size": [
+        2387,
+        2386
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "logy_1873.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Logy_Bay_giant_squid,_1873.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Logy_Bay_giant_squid%2C_1873.jpg",
+      "rights": "Public domain",
+      "sha256": "0132ac9167c026d020b76f3fa8262213be324aa2bcbea42434ad491b063be18b",
+      "size": [
+        895,
+        1470
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "montfort_1801.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Denys_de_Montfort_Poulpe_Colossal.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Denys_de_Montfort_Poulpe_Colossal.jpg",
+      "rights": "Public domain",
+      "sha256": "121856a858b7717deaca1b26d237a74f5c650c7dce0bc787a15d254812a20f8f",
+      "size": [
+        3072,
+        2304
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "olaus_polyp_1555.png": {
+      "page": "https://commons.wikimedia.org/wiki/File:Olaus1555-p763-polypis.png",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Olaus1555-p763-polypis.png",
+      "rights": "Public domain",
+      "sha256": "9224e8be204a8d4c02753c77c61f8296cb0a1e6310af7d8f53277b625fcb92b3",
+      "size": [
+        511,
+        306
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "psalter_dragons.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Psalter_World_Map,_c.1265_dragons.jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Psalter_World_Map%2C_c.1265_dragons.jpg/1920px-Psalter_World_Map%2C_c.1265_dragons.jpg",
+      "rights": "Public domain",
+      "sha256": "7fcd2e350402ba53a2433306f1064841987f0a6c6267c7ba4a8779b590b12591",
+      "size": [
+        1920,
+        335
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "scoresby_narwal.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:An_account_of_the_Arctic_regions_with_a_history_and_description_of_the_northern_whale-fishery_(1820)_(14778424544).jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/An_account_of_the_Arctic_regions_with_a_history_and_description_of_the_northern_whale-fishery_%281820%29_%2814778424544%29.jpg",
+      "rights": "No restrictions",
+      "sha256": "ec35e1e8ed921c925e73b22aab09b83d203d1141a8f74dcad42d55ddfa359500",
+      "size": [
+        3152,
+        1872
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "scoresby_whale_n602.jpg": {
+      "page": "https://archive.org/details/accountofarcticr02scor/page/n602",
+      "download_url": "https://archive.org/download/accountofarcticr02scor/page/n602_w2000.jpg",
+      "rights": "Public domain (1820)",
+      "sha256": "8874f41a912dc229d3c0d5c094239fda284fc2b83de6ff367194456d3fc3d044",
+      "size": [
+        1880,
+        3298
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "seba_hydra.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Albertus_Seba_-_Hydra.jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Albertus_Seba_-_Hydra.jpg/1920px-Albertus_Seba_-_Hydra.jpg",
+      "rights": "Public domain",
+      "sha256": "970953d586d0ebecdde5cf8f86cde0b135dba480166fcfc0aca5cf23da91a540",
+      "size": [
+        1920,
+        1484
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "viladestes_whaling.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Whaling_Cropped_from_1413_Portolan_chart_by_Mecia_de_Viladestes.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Whaling_Cropped_from_1413_Portolan_chart_by_Mecia_de_Viladestes.jpg",
+      "rights": "Public domain",
+      "sha256": "d5bdf14b9370d3e76b45f4bc2c953d36393456faced27c72894298054cc2ade0",
+      "size": [
+        1664,
+        1536
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "wald_s2_full.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Carta_marina_navigatoria_Portvgallen_navigationes,_atqve_tocius_cogniti_orbis_terre_marisqve_formam_natvram_sitvs_et_terminos_nostris_temporibvs_recognitos_et_ab_antiqvorum_traditione_differentes,_LOC_2016586433-2.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Carta_marina_navigatoria_Portvgallen_navigationes%2C_atqve_tocius_cogniti_orbis_terre_marisqve_formam_natvram_sitvs_et_terminos_nostris_temporibvs_recognitos_et_ab_antiqvorum_traditione_differentes%2C_LOC_2016586433-2.jpg",
+      "rights": "Public domain",
+      "sha256": "0a512513b80dc33484af16d8aa9e399961a7ad31024a1c62af3e83b969889022",
+      "size": [
+        7279,
+        5327
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "webber_full.jpg": {
+      "page": "https://commons.wikimedia.org/wiki/File:Sea_horses._Drawn_by_J._Webber._Engraved_by_E._Scott._The_figures_by_J._Heath._(London,_G._Nicol_and_T._Cadell,_1785)_(IA_dr_sea-horses-drawn-by-j-webber-engraved-by-e-scott-the-figures-by-j-hea-00884012).jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/Sea_horses._Drawn_by_J._Webber._Engraved_by_E._Scott._The_figures_by_J._Heath._%28London%2C_G._Nicol_and_T._Cadell%2C_1785%29_%28IA_dr_sea-horses-drawn-by-j-webber-engraved-by-e-scott-the-figures-by-j-hea-00884012%29.jpg",
+      "rights": "Public domain",
+      "sha256": "07411e45148cd64c20656b1f07b58e583342820461080f65daea3c05ca9db01a",
+      "size": [
+        6700,
+        5300
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "worm_p282.jpg": {
+      "page": "https://www.biodiversitylibrary.org/page/41522056",
+      "download_url": "https://www.biodiversitylibrary.org/pagethumb/41522056,3000,3000",
+      "rights": "Public domain (1655)",
+      "sha256": "5a60b6aed219dd5df2f50abd413275c0f701a8ae55175067f7f13b95bc6832eb",
+      "size": [
+        1935,
+        3000
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "worm_p283.jpg": {
+      "page": "https://www.biodiversitylibrary.org/page/41522057",
+      "download_url": "https://www.biodiversitylibrary.org/pagethumb/41522057,3000,3000",
+      "rights": "Public domain (1655)",
+      "sha256": "e8f67e6269b96f4040cf666213cf79c8235f0a20eab9f9c2f8111c95e6ea94ca",
+      "size": [
+        1935,
+        3000
+      ],
+      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    }
+  },
+  "cells": [
+    {
+      "id": "whale_1413",
+      "plate": "viii",
+      "row": "to 1516",
+      "creature": "Whale",
+      "crops": [
+        "whale_1413"
+      ],
+      "on_map": true,
+      "caption": "Mecia de Viladestes, portolan chart, 1413",
+      "detail": "whaling scene in the North Atlantic",
+      "interpretation": "A whaling scene, rather than evidence that the whale was considered imaginary. The supplied scan is already a detail of the portolan chart.",
+      "evidence": []
+    },
+    {
+      "id": "walrus_1516",
+      "plate": "viii",
+      "row": "to 1516",
+      "creature": "Walrus",
+      "crops": [
+        "walrus_1516"
+      ],
+      "on_map": true,
+      "caption": "Martin Waldseemüller, Carta marina, 1516",
+      "detail": "“Morsus animal ingens quantitate elephantis”",
+      "interpretation": "The label describes an animal as large as an elephant. “Morsus” is read here as a walrus; the comparison concerns size, not a modern species description.",
+      "evidence": []
+    },
+    {
+      "id": "whale_1539",
+      "plate": "viii",
+      "row": "1539",
+      "creature": "Whale",
+      "crops": [
+        "whale_1539"
+      ],
+      "on_map": true,
+      "caption": "Olaus Magnus, Carta marina, 1539",
+      "detail": "“Balena” attacked by “Orcha”",
+      "interpretation": "Balena means whale; Orcha names its attacker. These are historical labels, not precise modern species identifications.",
+      "evidence": []
+    },
+    {
+      "id": "walrus_1539",
+      "plate": "viii",
+      "row": "1539",
+      "creature": "Walrus",
+      "crops": [
+        "walrus_1539"
+      ],
+      "on_map": true,
+      "caption": "Olaus Magnus, Carta marina, 1539",
+      "detail": "“Ros marus piscis”, by “Vardahus”",
+      "interpretation": "Ros marus piscis is the historical walrus label; Vardahus refers to Vardø. Piscis reflects the source’s classification, not modern mammal taxonomy.",
+      "evidence": []
+    },
+    {
+      "id": "unicorn_1539",
+      "plate": "viii",
+      "row": "1539",
+      "creature": "Sea-Unicorn",
+      "crops": [
+        "unicorn_1539"
+      ],
+      "on_map": true,
+      "caption": "Olaus Magnus, Carta marina, 1539",
+      "detail": "unnamed horned head; sea-unicorn? (our reading)",
+      "interpretation": "Tentatively identified here as a sea-unicorn. The horned head has no identifying label; the connection with a narwhal is our interpretation.",
+      "evidence": []
+    },
+    {
+      "id": "whale_1590",
+      "plate": "viii",
+      "row": "1590",
+      "creature": "Whale",
+      "crops": [
+        "whale_1590"
+      ],
+      "on_map": true,
+      "caption": "Abraham Ortelius, Islandia, 1590",
+      "detail": "L · Steipereidur",
+      "interpretation": "L · Steipereidur: a historical Icelandic whale name, associated with the blue whale. The plate preserves the map’s spelling; the picture is not a diagnostic species portrait. Supplied scan: 1983 facsimile of the 1590 map.",
+      "evidence": []
+    },
+    {
+      "id": "walrus_1590",
+      "plate": "viii",
+      "row": "1590",
+      "creature": "Walrus",
+      "crops": [
+        "walrus_1590"
+      ],
+      "on_map": true,
+      "caption": "Abraham Ortelius, Islandia, 1590",
+      "detail": "N · Rostunger",
+      "interpretation": "N · Rostunger: walrus. Supplied scan: 1983 facsimile of Islandia (1590).",
+      "evidence": []
+    },
+    {
+      "id": "unicorn_1590",
+      "plate": "viii",
+      "row": "1590",
+      "creature": "Sea-Unicorn",
+      "crops": [
+        "unicorn_1590"
+      ],
+      "on_map": true,
+      "caption": "Abraham Ortelius, Islandia, 1590",
+      "detail": "A · Nahval",
+      "interpretation": "A · Nahval: narwhal. Supplied scan: 1983 facsimile of Islandia (1590).",
+      "evidence": []
+    },
+    {
+      "id": "whale_1625",
+      "plate": "viii",
+      "row": "1613–55",
+      "creature": "Whale",
+      "crops": [
+        "whale_1625"
+      ],
+      "on_map": true,
+      "caption": "Thomas Edge, in Purchas His Pilgrimes, 1625",
+      "detail": "vignette on the “Greneland” map of Spitsbergen",
+      "interpretation": "A border vignette on a map of Spitsbergen called Greneland. It is included as a map image even though the map appeared in a book.",
+      "evidence": []
+    },
+    {
+      "id": "walrus_1613",
+      "plate": "viii",
+      "row": "1613–55",
+      "creature": "Walrus",
+      "crops": [
+        "walrus_1613"
+      ],
+      "on_map": false,
+      "caption": "Hessel Gerritsz, Histoire du pays nommé Spitsberghe, 1613",
+      "detail": "walrus and calf",
+      "interpretation": "Walrus and calf in a printed account of Spitsbergen. The comparison does not demonstrate influence on the later examples.",
+      "evidence": []
+    },
+    {
+      "id": "unicorn_1655a",
+      "plate": "viii",
+      "row": "1613–55",
+      "creature": "Sea-Unicorn",
+      "crops": [
+        "unicorn_1655a",
+        "unicorn_1655b"
+      ],
+      "on_map": false,
+      "caption": "Ole Worm, Museum Wormianum, 1655",
+      "detail": "“Unicornu marinum”: narwhal and its skull, pp. 282–283",
+      "interpretation": "Unicornu marinum means marine unicorn. Worm’s narwhal illustration is paired with a skull on the next page; these are two crops in one cell.",
+      "evidence": []
+    },
+    {
+      "id": "whale_1820",
+      "plate": "viii",
+      "row": "1784– 1820",
+      "creature": "Whale",
+      "crops": [
+        "whale_1820"
+      ],
+      "on_map": false,
+      "caption": "William Scoresby, Arctic Regions, 1820, pl. XII",
+      "detail": "“Balæna Mysticetus, or Common Whale”",
+      "interpretation": "Balæna Mysticetus, or Common Whale: the bowhead whale, in Scoresby’s 1820 account, plate XII.",
+      "evidence": []
+    },
+    {
+      "id": "walrus_1784",
+      "plate": "viii",
+      "row": "1784– 1820",
+      "creature": "Walrus",
+      "crops": [
+        "walrus_1784"
+      ],
+      "on_map": false,
+      "caption": "John Webber, “Sea Horses”, 1785 printing",
+      "detail": "Cook’s Voyage first published in 1784",
+      "interpretation": "Sea Horses means walruses here. This image’s imprint is 1785; Cook’s Voyage was first published in 1784. The plate now distinguishes those dates.",
+      "evidence": []
+    },
+    {
+      "id": "unicorn_1820",
+      "plate": "viii",
+      "row": "1784– 1820",
+      "creature": "Sea-Unicorn",
+      "crops": [
+        "unicorn_1820"
+      ],
+      "on_map": false,
+      "caption": "William Scoresby, Arctic Regions, 1820, pl. XV",
+      "detail": "“Male Narwal, or Unicorn”",
+      "interpretation": "Male Narwal, or Unicorn: narwhal, Scoresby’s 1820 account, plate XV.",
+      "evidence": []
+    },
+    {
+      "id": "serp_1539",
+      "plate": "ix",
+      "row": "1539–55",
+      "creature": "Sea Serpent",
+      "crops": [
+        "serp_1539"
+      ],
+      "on_map": true,
+      "caption": "Olaus Magnus, Carta marina, 1539",
+      "detail": "a serpent coils round a ship off Norway",
+      "interpretation": "A sea serpent coils around a ship off Norway. Its placement and imagery are documented; the identity of a real animal behind the story is not established here.",
+      "evidence": []
+    },
+    {
+      "id": "polyp_1555",
+      "plate": "ix",
+      "row": "1539–55",
+      "creature": "Kraken",
+      "crops": [
+        "polyp_1555"
+      ],
+      "on_map": false,
+      "caption": "Olaus Magnus, Historia, 1555, p. 763",
+      "detail": "“De Polypis”: a giant crayfish takes a sailor",
+      "interpretation": "De Polypis means On polyps. The illustration resembles a giant crayfish. It is grouped here with kraken imagery for comparison, not identified as a giant squid.",
+      "evidence": []
+    },
+    {
+      "id": "serp_1734",
+      "plate": "ix",
+      "row": "1734–55",
+      "creature": "Sea Serpent",
+      "crops": [
+        "serp_1734"
+      ],
+      "on_map": false,
+      "caption": "Hans Egede’s sea serpent, seen 1734",
+      "detail": "off Greenland; as printed by Pontoppidan, 1753",
+      "interpretation": "A reported sighting in 1734; the reproduction is attributed to Pontoppidan’s 1753 publication. A reported event date is not the date of this printed image.",
+      "evidence": []
+    },
+    {
+      "id": "serp_1848",
+      "plate": "ix",
+      "row": "1801/02–48",
+      "creature": "Sea Serpent",
+      "crops": [
+        "serp_1848"
+      ],
+      "on_map": false,
+      "caption": "Illustrated London News, 28 October 1848",
+      "detail": "“The sea-serpent when first seen from H.M.S. Dædalus”",
+      "interpretation": "An engraving published in the Illustrated London News on 28 October 1848. The Library of Congress record confirms the issue date. This is a representation of a reported sighting, not a photograph.",
+      "evidence": [
+        "https://www.loc.gov/item/2003680172/"
+      ]
+    },
+    {
+      "id": "kraken_1801",
+      "plate": "ix",
+      "row": "1801/02–48",
+      "creature": "Kraken",
+      "crops": [
+        "kraken_1801"
+      ],
+      "on_map": false,
+      "caption": "Montfort, Mollusques II, An X (1801–02)",
+      "detail": "colossal octopus; reproduction’s edition uncertain",
+      "interpretation": "Le poulpe colossal means the colossal octopus. Montfort distinguished this from his kraken octopus. The work’s volume II is dated An X (1801–1802); the exact month is unknown. The supplied reproduction is catalogued as 1810 on Commons and derives from a 1994 book, so its particular printed edition remains uncertain.",
+      "evidence": [
+        "https://www.biodiversitylibrary.org/bibliography/51804",
+        "https://www.biodiversitylibrary.org/item/206416?t=51804"
+      ]
+    },
+    {
+      "id": "serp_1860",
+      "plate": "ix",
+      "row": "1860–61",
+      "creature": "Sea Serpent",
+      "crops": [
+        "serp_1860"
+      ],
+      "on_map": false,
+      "caption": "“The great sea-serpent”, Bermuda, 1860",
+      "detail": "an oarfish; wood engraving after W. D. Munro",
+      "interpretation": "The print calls the animal a sea-serpent; it is identified here as an oarfish. The reported find was 22 January 1860; the engraving appeared in Harper’s Weekly on 3 March 1860.",
+      "evidence": [
+        "https://www.loc.gov/item/2001695531/"
+      ]
+    },
+    {
+      "id": "kraken_1861",
+      "plate": "ix",
+      "row": "1860–61",
+      "creature": "Kraken",
+      "crops": [
+        "kraken_1861"
+      ],
+      "on_map": false,
+      "caption": "The Alecton and the giant squid, 1861",
+      "detail": "off Tenerife; print after E. Rodolphe, 1865",
+      "interpretation": "The Alecton encounter took place on 30 November 1861; the supplied print is dated 1865, after E. Rodolphe. The encounter date and image date differ.",
+      "evidence": []
+    },
+    {
+      "id": "kraken_1873",
+      "plate": "ix",
+      "row": "1873",
+      "creature": "Kraken",
+      "crops": [
+        "kraken_1873"
+      ],
+      "on_map": false,
+      "caption": "Giant squid, Logy Bay, 1873 specimen",
+      "detail": "photograph c. 1873–74; annotated by A. E. Verrill",
+      "interpretation": "The specimen was caught at Logy Bay in 1873. Its head and arms were photographed over Harvey’s sponge bath. Photo dates differ between institutional captions (1873 and 1874); c. 1873–74 avoids asserting an exact exposure date. Verrill’s annotations are distinct from the photograph.",
+      "evidence": [
+        "https://www.mcz.harvard.edu/sites/g/files/omnuum6431/files/mcz/files/mcz_ar_2023-24_web_final_ada.pdf",
+        "https://ocean.si.edu/ocean-life/invertebrates/giant-squid"
+      ]
+    },
+    {
+      "id": "dragon_1265",
+      "plate": "x",
+      "row": "World map c. 1265",
+      "creature": "Dragon",
+      "crops": [
+        "dragon_1265"
+      ],
+      "on_map": true,
+      "caption": "The Psalter map, c. 1265",
+      "detail": "two dragons beneath the world",
+      "interpretation": "Two dragons below the world on the Psalter map. These figures belong to the map’s religious framing; their position is not a mapped animal habitat. The supplied scan is already a detail.",
+      "evidence": []
+    },
+    {
+      "id": "dragon_1510",
+      "plate": "x",
+      "row": "Globe c. 1510",
+      "creature": "Dragon",
+      "crops": [
+        "dragon_1510"
+      ],
+      "on_map": true,
+      "caption": "The Hunt–Lenox globe, c. 1510",
+      "detail": "“HC SVNT DRACONES”, off the coast of Asia",
+      "interpretation": "HC SVNT DRACONES means Here are dragons. This is lettering on a globe, not a drawing of a dragon. The conventional date is c. 1510; it is approximate.",
+      "evidence": []
+    },
+    {
+      "id": "dragon_1640",
+      "plate": "x",
+      "row": "Book 1640",
+      "creature": "Dragon",
+      "crops": [
+        "dragon_1640"
+      ],
+      "on_map": false,
+      "caption": "Ulisse Aldrovandi, Serpentum et draconum historiae, 1640",
+      "detail": "winged dragons flank the title page",
+      "interpretation": "Winged dragons frame the title page of a 1640 natural-history book. This is a decorative setting, not a geographical placement.",
+      "evidence": []
+    },
+    {
+      "id": "hydra_1640",
+      "plate": "x",
+      "row": "Book 1640",
+      "creature": "Hydra",
+      "crops": [
+        "hydra_1640"
+      ],
+      "on_map": false,
+      "caption": "Ulisse Aldrovandi, Serpentum et draconum historiae, 1640",
+      "detail": "the seven-headed hydra, p. 387",
+      "interpretation": "A seven-headed hydra on page 387. Inclusion in a natural-history book does not establish that the depicted animal existed.",
+      "evidence": []
+    },
+    {
+      "id": "dragon_1690",
+      "plate": "x",
+      "row": "Sky 1690",
+      "creature": "Dragon",
+      "crops": [
+        "dragon_1690"
+      ],
+      "on_map": true,
+      "caption": "Johannes Hevelius, star atlas, 1690",
+      "detail": "“Draco” coiled round the pole of the ecliptic",
+      "interpretation": "Draco means dragon. This 1690 star chart illustrates an ancient constellation, already listed by Ptolemy; it is not evidence of dragons moving from earth maps to the sky.",
+      "evidence": [
+        "https://library.cfa.harvard.edu/iau-constellations"
+      ]
+    },
+    {
+      "id": "hydra_1690",
+      "plate": "x",
+      "row": "Sky 1690",
+      "creature": "Hydra",
+      "crops": [
+        "hydra_1690"
+      ],
+      "on_map": true,
+      "caption": "Johannes Hevelius, star atlas, 1690",
+      "detail": "“Hydra”, with Crater and Corvus on its back",
+      "interpretation": "Hydra means water snake; Crater (cup) and Corvus (raven) appear beside it. This constellation is ancient, not a 1690 invention.",
+      "evidence": [
+        "https://library.cfa.harvard.edu/iau-constellations"
+      ]
+    },
+    {
+      "id": "dragon_1734",
+      "plate": "x",
+      "row": "Cabinet 1734",
+      "creature": "Dragon",
+      "crops": [
+        "dragon_1734"
+      ],
+      "on_map": false,
+      "caption": "Albertus Seba, Thesaurus, 1734, pl. CII",
+      "detail": "fig. 2: a flying lizard, later named Draco",
+      "interpretation": "A flying lizard, figure 2 on plate CII. Draco is also a later zoological genus name; that does not establish a biological identity for the earlier mythical dragons.",
+      "evidence": []
+    },
+    {
+      "id": "hydra_1734",
+      "plate": "x",
+      "row": "Cabinet 1734",
+      "creature": "Hydra",
+      "crops": [
+        "hydra_1734"
+      ],
+      "on_map": false,
+      "caption": "Albertus Seba, Thesaurus, 1734, pl. CII",
+      "detail": "fig. 1: the Hamburg hydra, a fake",
+      "interpretation": "The Hamburg hydra, figure 1 on plate CII, is treated here as a fabricated specimen. The cabinet image is a record of a historical claim, not evidence of a living seven-headed animal.",
+      "evidence": []
+    }
+  ]
+}

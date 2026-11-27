@@ -1,6 +1,6 @@
 """Compose the 'Three Monsters Tamed' plate from crops of the real sources.
 
-Layout is fixed here; crops come from crop.py. Run with python -I (crops derive from untrusted downloads).
+Layout is fixed here; crops come from crop.py.
 """
 from pathlib import Path
 
@@ -54,7 +54,7 @@ ROWS = [
     ("1539", [
         (["whale_1539"], True, "Olaus Magnus, Carta marina, 1539", "“Balena” attacked by “Orcha”"),
         (["walrus_1539"], True, "Olaus Magnus, Carta marina, 1539", "“Ros marus piscis”, by “Vardahus”"),
-        (["unicorn_1539"], True, "Olaus Magnus, Carta marina, 1539", "horned head in the sea south of Iceland"),
+        (["unicorn_1539"], True, "Olaus Magnus, Carta marina, 1539", "unnamed horned head; sea-unicorn? (our reading)"),
     ]),
     ("1590", [
         (["whale_1590"], True, "Abraham Ortelius, Islandia, 1590", "L · Steipereidur"),
@@ -68,7 +68,7 @@ ROWS = [
     ]),
     ("1784–\n1820", [
         (["whale_1820"], False, "William Scoresby, Arctic Regions, 1820, pl. XII", "“Balæna Mysticetus, or Common Whale”"),
-        (["walrus_1784"], False, "John Webber, “Sea Horses”, in Cook’s Voyage, 1784", "detail, from the 1785 printing"),
+        (["walrus_1784"], False, "John Webber, “Sea Horses”, 1785 printing", "Cook’s Voyage first published in 1784"),
         (["unicorn_1820"], False, "William Scoresby, Arctic Regions, 1820, pl. XV", "“Male Narwal, or Unicorn”"),
     ]),
 ]
@@ -102,6 +102,7 @@ def marker(d: ImageDraw.ImageDraw, cx: int, cy: int, on_map: bool) -> None:
 
 
 def main() -> None:
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     im = paper()
     d = ImageDraw.Draw(im)
     d.rectangle([34, 34, W - 34, H - 34], outline=RULE, width=4)
@@ -139,7 +140,7 @@ def main() -> None:
             x0 = X0 + LABEL_W + c * COL_W
             cx = x0 + COL_W // 2
             if cell is None:
-                d.multiline_text((cx, y0 + ROW_H // 2), "none found on a map\nbefore 1539", font=font(46, "italic"),
+                d.multiline_text((cx, y0 + ROW_H // 2), "no example included", font=font(46, "italic"),
                                  fill=MUTED, anchor="mm", align="center", spacing=10)
                 continue
             keys, on_map, line1, line2 = cell

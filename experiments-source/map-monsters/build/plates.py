@@ -1,7 +1,7 @@
 """Compose Plates IX and X of Map Monsters from crops of the real sources, in the layout of plate.py.
 
 Usage: plates.py   (writes ../../map-monsters-plate-ix-real.png and ...-x-real.png)
-Run with python -I: crops derive from untrusted downloads.
+Source hashes are verified by the rebuild entry point.
 """
 from pathlib import Path
 
@@ -30,34 +30,34 @@ PLATES = {
             ]),
             ("1734–55", [
                 cell("serp_1734", False, "Hans Egede’s sea serpent, seen 1734", "off Greenland; as printed by Pontoppidan, 1753"),
-                "named by Pontoppidan, 1752–53;\nno picture found",
+                "described by Pontoppidan, 1752–53;\nno image included",
             ]),
-            ("1801–48", [
+            ("1801/02–48", [
                 cell("serp_1848", False, "Illustrated London News, 28 October 1848", "“The sea-serpent when first seen from H.M.S. Dædalus”"),
-                cell("kraken_1801", False, "Pierre Denys de Montfort, Mollusques, c. 1801", "“Le poulpe colossal” drags down a ship"),
+                cell("kraken_1801", False, "Montfort, Mollusques II, An X (1801–02)", "colossal octopus; reproduction’s edition uncertain"),
             ]),
             ("1860–61", [
                 cell("serp_1860", False, "“The great sea-serpent”, Bermuda, 1860", "an oarfish; wood engraving after W. D. Munro"),
                 cell("kraken_1861", False, "The Alecton and the giant squid, 1861", "off Tenerife; print after E. Rodolphe, 1865"),
             ]),
             ("1873", [
-                "never caught",
-                cell("kraken_1873", False, "Giant squid, Logy Bay, Newfoundland, 1873", "photographed on Moses Harvey’s bath; notes by A. E. Verrill"),
+                "no confirmed specimen\nfor these reports",
+                cell("kraken_1873", False, "Giant squid, Logy Bay, 1873 specimen", "photograph c. 1873–74; annotated by A. E. Verrill"),
             ]),
         ],
     },
     "x": {
-        "subtitle": "Plate X. The Dragon’s Retreat, c. 1265–1734",
+        "subtitle": "Plate X. Dragons across Media, c. 1265–1734",
         "cols": ["DRAGON", "HYDRA"],
         "legend": ("drawn on a map, globe or star chart", "printed in a book"),
         "rows": [
             ("World map\nc. 1265", [
                 cell("dragon_1265", True, "The Psalter map, c. 1265", "two dragons beneath the world"),
-                "no hydra on the map",
+                "no example included",
             ]),
             ("Globe\nc. 1510", [
                 cell("dragon_1510", True, "The Hunt–Lenox globe, c. 1510", "“HC SVNT DRACONES”, off the coast of Asia"),
-                "none on the globe",
+                "no example included",
             ]),
             ("Book\n1640", [
                 cell("dragon_1640", False, "Ulisse Aldrovandi, Serpentum et draconum historiae, 1640", "winged dragons flank the title page"),
@@ -145,6 +145,7 @@ def build(key: str, spec: dict) -> Path:
     d.text((W // 2, ly + 54), "Details cut from public-domain scans of the sources named; nothing redrawn.",
            font=P.font(30, "italic"), fill=P.MUTED, anchor="mm")
     out = P.OUT.parent / f"map-monsters-plate-{key}-real.png"
+    out.parent.mkdir(parents=True, exist_ok=True)
     im.save(out)
     print(out, im.size, "table bottom", bottom)
     return out
