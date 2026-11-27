@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#1c1814">
   <title>Map Monsters — Zero Page Labs</title>
-  <meta name="description" content="Whale, walrus and sea-unicorn on maps and in books from 1413 to 1820, as one plate seen two ways: redrawn, and cut from the real scans.">
+  <meta name="description" content="Sea monsters and dragons on maps and in books, 1265–1873, in three plates seen two ways: redrawn, and cut from the real scans.">
   <link rel="canonical" href="https://zeropagelabs.com/experiments/map-monsters/">
   <link rel="icon" href="/assets/favicon.svg">
   <link rel="stylesheet" href="map-monsters.css">
@@ -21,39 +21,76 @@
 <main class="mm">
   <header class="title-row">
     <div>
-      <p class="kicker">Plate VIII · 1413–1820</p>
+      <p class="kicker">Three plates · 1265–1873</p>
       <h1>Map Monsters</h1>
     </div>
-    <p class="intro">Three animals the old mapmakers drew as monsters: the whale, the walrus and the narwhal, or sea-unicorn. Follow each down the plate and watch it settle into the animal over four centuries. See it two ways: redrawn, or cut straight from the maps and books.</p>
+    <p class="intro">What the old mapmakers drew in the sea and at the edges, and what became of it. Some monsters settled into real animals, some half did, and the dragons fled to the sky. Each plate can be seen two ways: redrawn, or cut straight from the maps and books.</p>
   </header>
 
-  <div class="views" role="tablist" aria-label="Choose a view">
-    <button type="button" role="tab" id="tab-illustrated" aria-controls="view-illustrated" aria-selected="true">Illustrated</button>
-    <button type="button" role="tab" id="tab-sources" aria-controls="view-sources" aria-selected="false">From the sources</button>
+  <div class="controls">
+    <div class="tabs plates" role="tablist" aria-label="Choose a plate">
+      <button type="button" role="tab" data-plate="viii" aria-selected="true"><b>VIII</b> Three tamed</button>
+      <button type="button" role="tab" data-plate="ix" aria-selected="false"><b>IX</b> Half-tamed</button>
+      <button type="button" role="tab" data-plate="x" aria-selected="false"><b>X</b> Dragons</button>
+    </div>
+    <div class="tabs views" role="tablist" aria-label="Choose a view">
+      <button type="button" role="tab" data-view="illustrated" aria-selected="true">Illustrated</button>
+      <button type="button" role="tab" data-view="sources" aria-selected="false">From the sources</button>
+    </div>
   </div>
 
   <div id="plate">
-    <section class="view" id="view-illustrated" role="tabpanel" aria-labelledby="tab-illustrated">
+    <!-- Plate VIII -->
+    <section class="view" id="viii-illustrated" data-plate="viii" data-view="illustrated" role="tabpanel" aria-label="Plate VIII, illustrated">
       <a class="plate" href="img/illustrated.webp" target="_blank" rel="noopener">
-        <img src="img/illustrated.webp" width="1086" height="1448" alt="Illustrated plate: whale, walrus and sea-unicorn in five rows from 1413 to 1820, each redrawn after a named map or book, with a red spindle labelled Monstrousness that peaks in 1539">
+        <img src="img/illustrated.webp" width="1086" height="1448" alt="Illustrated Plate VIII: whale, walrus and sea-unicorn in five rows from 1413 to 1820, each redrawn after a named map or book, with a red spindle labelled Monstrousness that peaks in 1539">
       </a>
-      <p class="note"><b>Redrawn, not copied.</b> An image model drew this plate after the sources named in its captions. It follows their spirit, not their lines: the Ortelius walrus and narwhal, for example, look nothing like this on the real map. The Monstrousness spindle is an invention. Switch to <a href="#view-sources" data-view="sources">From the sources</a> to see the originals.</p>
+      <p class="note"><b>Redrawn, not copied.</b> An image model drew this plate after the sources named in its captions. It follows their spirit, not their lines: the Ortelius walrus and narwhal, for example, look nothing like this on the real map. The Monstrousness spindle is an invention. Switch to <a href="#viii-sources" data-go="sources">From the sources</a> to see the originals.</p>
+    </section>
+    <section class="view" id="viii-sources" data-plate="viii" data-view="sources" role="tabpanel" aria-label="Plate VIII, from the sources" hidden>
+      <a class="plate" href="img/sources.webp" target="_blank" rel="noopener">
+        <img src="img/sources-1200.webp" srcset="img/sources-1200.webp 1200w, img/sources.webp 2400w" sizes="(max-width: 860px) 100vw, 820px" width="1200" height="1600" loading="lazy" alt="Plate VIII built from details of public-domain scans: fourteen crops of whale, walrus and narwhal from maps and books, 1413 to 1820">
+      </a>
+      <p class="note"><b>Nothing redrawn.</b> Every picture is a detail cut from a public-domain scan of the source named under it. A filled dot means it was drawn on a map; a ring means it was printed. Open the plate for the full-size version.</p>
     </section>
 
-    <section class="view" id="view-sources" role="tabpanel" aria-labelledby="tab-sources" hidden>
-      <a class="plate" href="img/sources.webp" target="_blank" rel="noopener">
-        <img src="img/sources-1200.webp" srcset="img/sources-1200.webp 1200w, img/sources.webp 2400w" sizes="(max-width: 860px) 100vw, 820px" width="1200" height="1600" alt="The same plate built from details of public-domain scans: fourteen crops from maps and books from 1413 to 1820, each captioned with its source, a filled dot for a map and a ring for a book">
+    <!-- Plate IX -->
+    <section class="view" id="ix-illustrated" data-plate="ix" data-view="illustrated" role="tabpanel" aria-label="Plate IX, illustrated" hidden>
+      <a class="plate" href="img/ix-illustrated.webp" target="_blank" rel="noopener">
+        <img src="img/ix-illustrated.webp" width="1086" height="1448" loading="lazy" alt="Illustrated Plate IX: sea serpent and kraken in five rows from 1539 to 1873, from a red serpent round a ship to an oarfish, and from a giant crayfish to a real giant squid draped over a tub">
       </a>
-      <p class="note"><b>Nothing redrawn.</b> Every picture is a detail cut from a public-domain scan of the source named under it. A filled dot means it was drawn on a map; a ring means it was printed in a book. Open the plate for the full-size version.</p>
+      <p class="note"><b>Redrawn, not copied.</b> An image model drew this plate after the sources named in its captions; it tidies and colours them. Switch to <a href="#ix-sources" data-go="sources">From the sources</a> to see the originals.</p>
+    </section>
+    <section class="view" id="ix-sources" data-plate="ix" data-view="sources" role="tabpanel" aria-label="Plate IX, from the sources" hidden>
+      <a class="plate" href="img/ix-sources.webp" target="_blank" rel="noopener">
+        <img src="img/ix-sources-1200.webp" srcset="img/ix-sources-1200.webp 1200w, img/ix-sources.webp 2400w" sizes="(max-width: 860px) 100vw, 820px" width="1200" height="1600" loading="lazy" alt="Plate IX built from details of public-domain scans: eight images of sea serpents and krakens from a map, books, a newspaper, prints and an 1873 photograph">
+      </a>
+      <p class="note"><b>Nothing redrawn.</b> The kraken ends in a photograph: the giant squid was named in 1857 and caught on film in 1873. The sea serpent never got one; the 1860 Bermuda “serpent” was an oarfish.</p>
+    </section>
+
+    <!-- Plate X -->
+    <section class="view" id="x-illustrated" data-plate="x" data-view="illustrated" role="tabpanel" aria-label="Plate X, illustrated" hidden>
+      <a class="plate" href="img/x-illustrated.webp" target="_blank" rel="noopener">
+        <img src="img/x-illustrated.webp" width="1086" height="1448" loading="lazy" alt="Illustrated Plate X: dragon and hydra on a world map, a globe, in a book, among the stars and in a curiosity cabinet, from about 1265 to 1734">
+      </a>
+      <p class="note"><b>Redrawn, not copied.</b> An image model drew this plate after the sources named in its captions. On the real Psalter map the dragons are pale gold on blue and far rougher. Switch to <a href="#x-sources" data-go="sources">From the sources</a> to see the originals.</p>
+    </section>
+    <section class="view" id="x-sources" data-plate="x" data-view="sources" role="tabpanel" aria-label="Plate X, from the sources" hidden>
+      <a class="plate" href="img/x-sources.webp" target="_blank" rel="noopener">
+        <img src="img/x-sources-1200.webp" srcset="img/x-sources-1200.webp 1200w, img/x-sources.webp 2400w" sizes="(max-width: 860px) 100vw, 820px" width="1200" height="1600" loading="lazy" alt="Plate X built from details of public-domain scans: dragons and hydras on the Psalter map, the Hunt–Lenox globe, Aldrovandi's 1640 book, Hevelius's 1690 star atlas and Seba's 1734 Thesaurus">
+      </a>
+      <p class="note"><b>Nothing redrawn.</b> “Here be dragons” is close to a myth: the Latin phrase is known from globes, not flat maps, and the Hunt–Lenox globe is one of them. Dragons survive on maps today only in the sky, as Draco and Hydra.</p>
     </section>
   </div>
 
   <section class="sources" aria-labelledby="sources-title">
     <h2 id="sources-title">The sources</h2>
+
+    <h3>Plate VIII · Three monsters tamed</h3>
     <ol>
       <li><b>Mecia de Viladestes, portolan chart, 1413.</b> A whaling scene in the North Atlantic. <a href="https://commons.wikimedia.org/wiki/File:Whaling_Cropped_from_1413_Portolan_chart_by_Mecia_de_Viladestes.jpg">Scan ↗</a></li>
       <li><b>Martin Waldseemüller, Carta marina, 1516.</b> The walrus as an elephant: “Morsus animal ingens quantitate elephantis”. <a href="https://commons.wikimedia.org/wiki/File:Carta_marina_navigatoria_Portvgallen_navigationes,_atqve_tocius_cogniti_orbis_terre_marisqve_formam_natvram_sitvs_et_terminos_nostris_temporibvs_recognitos_et_ab_antiqvorum_traditione_differentes,_LOC_2016586433-2.jpg">Library of Congress scan ↗</a></li>
-      <li><b>Olaus Magnus, Carta marina, 1539.</b> The “Balena” attacked by an “Orcha”, the “Ros marus piscis” by Vardahus, and a horned head south of Iceland. <a href="https://commons.wikimedia.org/wiki/File:Carta_Marina.jpeg">Scan ↗</a></li>
+      <li><b>Olaus Magnus, Carta marina, 1539.</b> The “Balena” attacked by an “Orcha”, the “Ros marus piscis” by Vardahus, a horned head south of Iceland, and the sea serpent of Plate IX. <a href="https://commons.wikimedia.org/wiki/File:Carta_Marina.jpeg">Scan ↗</a></li>
       <li><b>Abraham Ortelius, Islandia, 1590.</b> L, Steipereidur; N, Rostunger; A, Nahval. <a href="https://commons.wikimedia.org/wiki/File:Island_1590_Theatrum_Orbis_Terrarum_Ortelius.jpg">Scan of a 1983 facsimile ↗</a></li>
       <li><b>Hessel Gerritsz, Histoire du pays nommé Spitsberghe, 1613.</b> Walrus and calf. <a href="https://commons.wikimedia.org/wiki/File:Hessel_Gerritsz_-_Walruses_on_Spitsbergen.jpg">Scan ↗</a></li>
       <li><b>Thomas Edge, “Greneland”, in Purchas His Pilgrimes, 1625.</b> The whale vignette on the map’s border. <a href="https://commons.wikimedia.org/wiki/File:Kaart_van_Spitsbergen_van_Thomas_Edge,_1625_Greneland_(titel_op_object),_NG-1988-23.jpg">Rijksmuseum scan ↗</a></li>
@@ -61,7 +98,28 @@
       <li><b>John Webber, “Sea Horses”, in Cook’s Voyage, 1784.</b> Detail, from the 1785 printing. <a href="https://commons.wikimedia.org/wiki/File:Sea_horses._Drawn_by_J._Webber._Engraved_by_E._Scott._The_figures_by_J._Heath._(London,_G._Nicol_and_T._Cadell,_1785)_(IA_dr_sea-horses-drawn-by-j-webber-engraved-by-e-scott-the-figures-by-j-hea-00884012).jpg">Scan ↗</a></li>
       <li><b>William Scoresby, An Account of the Arctic Regions, 1820.</b> Plate XII, the common whale, and plate XV, the male narwhal. <a href="https://archive.org/details/accountofarcticr02scor/page/n602">Internet Archive ↗</a> · <a href="https://commons.wikimedia.org/wiki/File:An_account_of_the_Arctic_regions_with_a_history_and_description_of_the_northern_whale-fishery_(1820)_(14778424544).jpg">Plate XV ↗</a></li>
     </ol>
-    <p class="small">The horned head on Olaus Magnus’s map carries no label, so calling it the sea-unicorn is our reading. “None found on a map before 1539” means we found none, not that none exists. All scans are public domain or CC0.</p>
+
+    <h3>Plate IX · Two monsters half-tamed</h3>
+    <ol>
+      <li><b>Olaus Magnus, Historia de gentibus septentrionalibus, 1555, p. 763.</b> “De Polypis”: Olaus drew his polypus as a giant crayfish. <a href="https://commons.wikimedia.org/wiki/File:Olaus1555-p763-polypis.png">Scan ↗</a></li>
+      <li><b>Hans Egede’s sea serpent, seen off Greenland in 1734.</b> The woodcut as reprinted by Erik Pontoppidan, 1753. <a href="https://commons.wikimedia.org/wiki/File:Hans_Egede_sea_serpent_1734.jpg">Scan ↗</a></li>
+      <li><b>Pierre Denys de Montfort, Histoire naturelle des mollusques, c. 1801.</b> “Le poulpe colossal”. <a href="https://commons.wikimedia.org/wiki/File:Denys_de_Montfort_Poulpe_Colossal.jpg">Scan ↗</a></li>
+      <li><b>The Illustrated London News, 28 October 1848, p. 264.</b> “The sea-serpent when first seen from H.M.S. Dædalus”. <a href="https://commons.wikimedia.org/wiki/File:The_great_sea_serpent._The_sea_serpent_when_first_seen_from_H(er)_M(ajesty%27s)_S(hip)_DAEDALUS_LCCN2003680172.jpg">Library of Congress scan ↗</a></li>
+      <li><b>“The great sea-serpent, found in Hungary Bay, Bermuda, on January 22, 1860”.</b> Wood engraving from a sketch by W. D. Munro; the animal is an oarfish. <a href="https://commons.wikimedia.org/wiki/File:The_great_sea-serpent,_found_in_Hungary_Bay,_Bermuda,_on_January_22,_1860_-_from_a_sketch_by_W.D._Munro._LCCN2001695531.jpg">Library of Congress scan ↗</a></li>
+      <li><b>The French corvette Alecton and a giant squid, 30 November 1861.</b> Print after E. Rodolphe, 1865. <a href="https://commons.wikimedia.org/wiki/File:French_corvette_Alecton_attempts_to_capture_a_giant_squid.jpg">Scan ↗</a></li>
+      <li><b>Giant squid from Logy Bay, Newfoundland, November 1873.</b> Photographed over Moses Harvey’s bath, with notes by A. E. Verrill. <a href="https://commons.wikimedia.org/wiki/File:Logy_Bay_giant_squid,_1873.jpg">Scan ↗</a></li>
+    </ol>
+
+    <h3>Plate X · The dragon’s retreat</h3>
+    <ol>
+      <li><b>The Psalter world map, c. 1265.</b> Two dragons beneath the world. <a href="https://commons.wikimedia.org/wiki/File:Psalter_World_Map,_c.1265_dragons.jpg">Scan ↗</a></li>
+      <li><b>The Hunt–Lenox globe, c. 1510.</b> “HC SVNT DRACONES”, off the coast of Asia. New York Public Library photograph. <a href="https://commons.wikimedia.org/wiki/File:Lenox_Globe_Asia.png">Scan ↗</a></li>
+      <li><b>Ulisse Aldrovandi, Serpentum et draconum historiae, 1640.</b> The title page, and the seven-headed hydra on p. 387. <a href="https://commons.wikimedia.org/wiki/File:Ulyssis_Aldrovandi_BHL41765098.jpg">Title page ↗</a> · <a href="https://commons.wikimedia.org/wiki/File:Serpentum,_et_draconum_historiae_387.png">p. 387 ↗</a></li>
+      <li><b>Johannes Hevelius, star atlas (Firmamentum Sobiescianum), 1690.</b> Draco and Hydra. <a href="https://commons.wikimedia.org/wiki/File:Draco_Hevelius_-_Prodromus_astronomiae_1690_(5590223).jpg">Draco ↗</a> · <a href="https://commons.wikimedia.org/wiki/File:Johannes_Hevelius_-_Hydra.jpg">Hydra ↗</a></li>
+      <li><b>Albertus Seba, Thesaurus, vol. I, 1734, plate CII.</b> Fig. 1, the Hamburg hydra; fig. 2, a flying lizard. <a href="https://commons.wikimedia.org/wiki/File:Albertus_Seba_-_Hydra.jpg">Scan ↗</a></li>
+    </ol>
+
+    <p class="small">Some cells are readings, not labels: the horned head on Olaus Magnus’s map carries no name, so calling it the sea-unicorn is ours. Empty cells mean we found no picture, not that none exists. All scans are public domain or CC0.</p>
   </section>
 </main>
 </body>

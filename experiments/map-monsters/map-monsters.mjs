@@ -1,29 +1,48 @@
-// Two views of one plate. The hash (#illustrated or #sources) picks the view so either can be linked.
+// Three plates, two views each. The hash (#ix-sources, #x, ...) picks both so any view can be linked.
+// Older links (#illustrated, #sources) open Plate VIII.
+const PLATES = ['viii', 'ix', 'x'];
 const VIEWS = ['illustrated', 'sources'];
+const state = { plate: 'viii', view: 'illustrated' };
 
-function show(name, push) {
-  if (!VIEWS.includes(name)) name = VIEWS[0];
-  for (const v of VIEWS) {
-    document.getElementById(`tab-${v}`).setAttribute('aria-selected', String(v === name));
-    document.getElementById(`view-${v}`).hidden = v !== name;
-  }
-  if (push) history.replaceState(null, '', `#${name}`);
+function parse(hash) {
+  const [a, b] = hash.replace(/^#/, '').split('-');
+  if (VIEWS.includes(a)) return { plate: 'viii', view: a };
+  return {
+    plate: PLATES.includes(a) ? a : 'viii',
+    view: VIEWS.includes(b) ? b : 'illustrated',
+  };
 }
 
-for (const v of VIEWS) {
-  document.getElementById(`tab-${v}`).addEventListener('click', () => show(v, true));
+function render(push) {
+  document.querySelectorAll('.tabs button[data-plate]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.plate === state.plate)));
+  document.querySelectorAll('.tabs button[data-view]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.view === state.view)));
+  document.querySelectorAll('section.view').forEach(s => { s.hidden = !(s.dataset.plate === state.plate && s.dataset.view === state.view); });
+  if (push) history.replaceState(null, '', `#${state.plate}${state.view === 'sources' ? '-sources' : ''}`);
 }
-document.querySelectorAll('[data-view]').forEach(a => a.addEventListener('click', e => {
+
+document.querySelectorAll('.tabs').forEach(group => {
+  const buttons = [...group.querySelectorAll('button')];
+  buttons.forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.plate) state.plate = b.dataset.plate;
+    if (b.dataset.view) state.view = b.dataset.view;
+    render(true);
+  }));
+  group.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    const i = buttons.findIndex(b => b.getAttribute('aria-selected') === 'true');
+    const next = buttons[(i + (e.key === 'ArrowRight' ? 1 : buttons.length - 1)) % buttons.length];
+    next.click();
+    next.focus();
+  });
+});
+
+document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => {
   e.preventDefault();
-  show(a.dataset.view, true);
+  state.view = a.dataset.go;
+  render(true);
   document.getElementById('plate').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }));
-document.querySelector('.views').addEventListener('keydown', e => {
-  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-  const current = VIEWS.findIndex(v => document.getElementById(`tab-${v}`).getAttribute('aria-selected') === 'true');
-  const next = VIEWS[(current + (e.key === 'ArrowRight' ? 1 : VIEWS.length - 1)) % VIEWS.length];
-  show(next, true);
-  document.getElementById(`tab-${next}`).focus();
-});
-window.addEventListener('hashchange', () => show(location.hash.slice(1), false));
-show(location.hash.slice(1), false);
+
+window.addEventListener('hashchange', () => { Object.assign(state, parse(location.hash)); render(false); });
+Object.assign(state, parse(location.hash));
+render(false);

@@ -239,9 +239,9 @@
       "category": "MAPS · HISTORY",
       "added": "2026-11-27",
       "status": "live",
-      "summary": "Whale, walrus and sea-unicorn on maps and in books from 1413 to 1820, from elephant-walrus to narwhal. One plate, two views: redrawn, or cut straight from the real scans.",
-      "tagline": "Three sea monsters tamed, 1413–1820.",
-      "cta": "See the plate",
+      "summary": "Sea monsters and dragons on maps and in books, 1265–1873: the walrus drawn as an elephant, the kraken that became a giant squid, the dragons that fled to the sky. Three plates, each redrawn or cut straight from the real scans.",
+      "tagline": "Sea monsters and dragons tamed, 1265–1873.",
+      "cta": "See the plates",
       "cover": {
         "src": "/assets/experiment-map-monsters.jpg",
         "alt": "Two versions of one plate side by side: whale, walrus and sea-unicorn redrawn on the left, and cut from old maps and books on the right",
@@ -249,7 +249,7 @@
         "height": 640,
         "label": "Open Map Monsters"
       },
-      "note": "TWO VIEWS · PUBLIC-DOMAIN SCANS",
+      "note": "THREE PLATES · TWO VIEWS · PUBLIC-DOMAIN SCANS",
       "links": []
     }
   ]
