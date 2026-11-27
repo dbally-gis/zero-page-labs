@@ -220,6 +220,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-27 11:31 — commit: Add Map Monsters: one plate of sea monsters on maps, 1413-1820, in two views | assets/experiment-map-monsters.jpg,assets/share/experiments.png,assets/share/map-monsters.png,data/experiments.json,data/share-cards.json
 - 2026-11-27 12:19 — commit: Map Monsters: add Plate IX (sea serpent, kraken) and Plate X (dragons, hydra) | assets/share/map-monsters.png,data/experiments.json,data/share-cards.json,experiments/map-monsters/img/ix-illustrated.webp,experiments/map-monsters/img/ix-sources-1200.webp
 - 2026-11-27 12:55 — commit: Add Map Monsters plate build scripts and crop boxes | experiments-source/map-monsters/.gitignore,experiments-source/map-monsters/README.md,experiments-source/map-monsters/build/crop.py,experiments-source/map-monsters/build/crops.json,experiments-source/map-monsters/build/fetch.py
+- 2026-11-27 16:45 — commit: Make Map Monsters source-led with specimen catalogue and verified provenance | assets/share/map-monsters.png,data/experiments.json,data/share-cards.json,execution/rebuild_map_monsters.py,execution/test_map_monsters.mjs
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -690,5 +691,9 @@ Goal: Publish the approved source catalogue and verify production.
 Agent: OpenAI Codex
 Handoff-from: OpenAI Codex
 Handoff-type: continuation
-Status: Publishing branch codex/map-monsters-review after aligning its base with current origin/main. Production verification pending.
+Status: Published source 80c5874cf6adabf942c262ce51556bd677f9e66e to main. GitHub workflow 46078583579 succeeded. Live deployment.json source_commit matches; content_sha256 5536172d72297c1feeb20d8addf3de1c0edf26cfadb36d5533a7939c3b2a5e72 matches the verified local build.
 Verdict: kept — "Looks good, push it to Zero Page Labs and verify the live page."
+
+Production verification: https://zeropagelabs.com/experiments/map-monsters/ opens on VIII sources. Live desktop1280 and phone375 checks passed source/illustrated switching, browser Back, specimen expansion, tentative identification wording, X specimen deep link, highlighted context image loading, 30 catalogue entries, no horizontal overflow and no console warning/error. Deployment fingerprint was checked with a fresh diagnostic query after the cached prior marker was observed.
+S.D.G.: Visitors can now inspect the published historical images and read the qualifications behind the catalogue.
+Feynman gap: Live browser verification passed; physical touch and the previously documented historical date/provenance uncertainties remain open.
