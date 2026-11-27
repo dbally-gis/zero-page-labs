@@ -1,0 +1,286 @@
+{
+  "whale_1413": {
+    "src": "viladestes_whaling.jpg",
+    "box": [
+      230,
+      560,
+      1640,
+      1440
+    ]
+  },
+  "walrus_1516": {
+    "src": "wald_s2_full.jpg",
+    "box": [
+      5540,
+      1030,
+      6420,
+      1672
+    ]
+  },
+  "whale_1539": {
+    "src": "carta_marina.jpg",
+    "box": [
+      205,
+      1655,
+      745,
+      1935
+    ]
+  },
+  "walrus_1539": {
+    "src": "carta_marina.jpg",
+    "box": [
+      2890,
+      70,
+      3320,
+      300
+    ]
+  },
+  "unicorn_1539": {
+    "src": "carta_marina.jpg",
+    "box": [
+      185,
+      1085,
+      355,
+      1235
+    ]
+  },
+  "whale_1590": {
+    "src": "islandia_full.jpg",
+    "basis": 3840,
+    "box": [
+      2188,
+      2200,
+      2730,
+      2490
+    ]
+  },
+  "walrus_1590": {
+    "src": "islandia_full.jpg",
+    "basis": 3840,
+    "box": [
+      3050,
+      1680,
+      3350,
+      1960
+    ]
+  },
+  "unicorn_1590": {
+    "src": "islandia_full.jpg",
+    "basis": 3840,
+    "box": [
+      2390,
+      42,
+      2860,
+      250
+    ]
+  },
+  "whale_1625": {
+    "src": "edge_1625.jpg",
+    "box": [
+      415,
+      280,
+      1365,
+      950
+    ]
+  },
+  "walrus_1613": {
+    "src": "gerritsz_walrus.jpg",
+    "box": [
+      60,
+      400,
+      1545,
+      1215
+    ]
+  },
+  "unicorn_1655a": {
+    "src": "worm_p282.jpg",
+    "box": [
+      540,
+      1290,
+      1850,
+      1670
+    ]
+  },
+  "unicorn_1655b": {
+    "src": "worm_p283.jpg",
+    "box": [
+      100,
+      815,
+      1390,
+      1215
+    ]
+  },
+  "whale_1820": {
+    "src": "scoresby_whale_n602.jpg",
+    "box": [
+      60,
+      320,
+      1045,
+      2745
+    ],
+    "rotate": -90
+  },
+  "walrus_1784": {
+    "src": "webber_full.jpg",
+    "basis": 3840,
+    "box": [
+      570,
+      1130,
+      2010,
+      1990
+    ]
+  },
+  "unicorn_1820": {
+    "src": "scoresby_narwal.jpg",
+    "box": [
+      0,
+      0,
+      3152,
+      568
+    ]
+  },
+  "serp_1539": {
+    "src": "carta_marina.jpg",
+    "box": [
+      1650,
+      850,
+      2030,
+      1200
+    ]
+  },
+  "polyp_1555": {
+    "src": "olaus_polyp_1555.png",
+    "box": [
+      0,
+      0,
+      511,
+      306
+    ]
+  },
+  "serp_1734": {
+    "src": "egede_1734b.jpg",
+    "box": [
+      0,
+      0,
+      1002,
+      529
+    ]
+  },
+  "serp_1848": {
+    "src": "daedalus_loc.jpg",
+    "box": [
+      40,
+      90,
+      1500,
+      1085
+    ]
+  },
+  "kraken_1801": {
+    "src": "montfort_1801.jpg",
+    "box": [
+      0,
+      0,
+      3072,
+      2304
+    ]
+  },
+  "serp_1860": {
+    "src": "bermuda_1860.jpg",
+    "box": [
+      170,
+      1150,
+      3830,
+      2520
+    ]
+  },
+  "kraken_1861": {
+    "src": "alecton_1861.jpg",
+    "box": [
+      0,
+      0,
+      1280,
+      851
+    ]
+  },
+  "kraken_1873": {
+    "src": "logy_1873.jpg",
+    "box": [
+      0,
+      0,
+      895,
+      1470
+    ]
+  },
+  "dragon_1265": {
+    "src": "psalter_dragons.jpg",
+    "box": [
+      380,
+      150,
+      1560,
+      335
+    ]
+  },
+  "dragon_1510": {
+    "src": "lenox_asia.png",
+    "box": [
+      1180,
+      1130,
+      1640,
+      1370
+    ]
+  },
+  "dragon_1640": {
+    "src": "aldro_098.jpg",
+    "box": [
+      40,
+      990,
+      1890,
+      2110
+    ]
+  },
+  "hydra_1640": {
+    "src": "aldro_387.png",
+    "box": [
+      0,
+      0,
+      1576,
+      1076
+    ]
+  },
+  "dragon_1690": {
+    "src": "hev_draco.jpg",
+    "box": [
+      1150,
+      280,
+      3300,
+      1700
+    ]
+  },
+  "hydra_1690": {
+    "src": "hev_hydra.jpg",
+    "box": [
+      70,
+      180,
+      1830,
+      740
+    ]
+  },
+  "dragon_1734": {
+    "src": "seba_hydra.jpg",
+    "box": [
+      130,
+      40,
+      720,
+      420
+    ]
+  },
+  "hydra_1734": {
+    "src": "seba_hydra.jpg",
+    "box": [
+      60,
+      420,
+      1880,
+      1480
+    ]
+  }
+}

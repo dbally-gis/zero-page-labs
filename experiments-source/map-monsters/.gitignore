@@ -1,0 +1,8 @@
+sources/
+crops/
+build/views/
+renders/*.png
+concepts/
+__pycache__/
+!build/
+renders/*.generation.json
