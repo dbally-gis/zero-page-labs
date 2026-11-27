@@ -16,8 +16,8 @@
     "inputs": "4217bfe0c1f738b4bc62e646c3f266ad4043f502442ced687aa1e8c1239b1e6d"
   },
   "experiments": {
-    "image": "ab14ac8b3ea10243870c43e8ea109691e0559d7fca913583d9fc3b35d49cd264",
-    "inputs": "5bd0930a2ff354a621c408207a58c6712f70c746ec0d2fdc43b167ef714dd52c"
+    "image": "16b16860efcbbcc7b46b5222e65e6d93ed7dc252a2abe1416a02cb9bf688e054",
+    "inputs": "6f62f7cf6283e862695070a179b9e9f8fb3da50c9f833ed8956cb0fadc231966"
   },
   "gridcore": {
     "image": "33073d6599278e89b301aa8e64a9b4f40c1aeac0f1cd2dfa16a7f5cd836eba99",
@@ -34,6 +34,10 @@
   "longitude": {
     "image": "26b7c7dba2fb4aa17aae672db98bae1fa1b9d5389716659724320cf6e6c31ea7",
     "inputs": "31104bdb6fde0993104a0b56eb878ace6c0e820feac30176e8a8f333ba374747"
+  },
+  "map-monsters": {
+    "image": "c7016deb628e84d878e611612a2338ee60dfca4fa7c0b59a4ac49e04a0186c31",
+    "inputs": "ed9d69c9bac9fc3e0451f37b0a2e92a7e9e2238f7f8190d74ed2ba97fc0c010b"
   },
   "maritime": {
     "image": "010a4e5a37135cd4e8f6c286d9d81eb57bd42a3442714f1dd9bec2c7c73c8c9b",

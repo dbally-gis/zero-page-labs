@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#1c1814">
+  <title>Map Monsters — Zero Page Labs</title>
+  <meta name="description" content="Whale, walrus and sea-unicorn on maps and in books from 1413 to 1820, as one plate seen two ways: redrawn, and cut from the real scans.">
+  <link rel="canonical" href="https://zeropagelabs.com/experiments/map-monsters/">
+  <link rel="icon" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="map-monsters.css">
+  <script type="module" src="map-monsters.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#plate">Skip to the plate</a>
+<header class="topbar">
+  <a href="/" class="brand"><span aria-hidden="true">ø</span> Zero Page Labs</a>
+  <a href="/experiments/">Experiments ↗</a>
+</header>
+
+<main class="mm">
+  <header class="title-row">
+    <div>
+      <p class="kicker">Plate VIII · 1413–1820</p>
+      <h1>Map Monsters</h1>
+    </div>
+    <p class="intro">Three animals the old mapmakers drew as monsters: the whale, the walrus and the narwhal, or sea-unicorn. Follow each down the plate and watch it settle into the animal over four centuries. See it two ways: redrawn, or cut straight from the maps and books.</p>
+  </header>
+
+  <div class="views" role="tablist" aria-label="Choose a view">
+    <button type="button" role="tab" id="tab-illustrated" aria-controls="view-illustrated" aria-selected="true">Illustrated</button>
+    <button type="button" role="tab" id="tab-sources" aria-controls="view-sources" aria-selected="false">From the sources</button>
+  </div>
+
+  <div id="plate">
+    <section class="view" id="view-illustrated" role="tabpanel" aria-labelledby="tab-illustrated">
+      <a class="plate" href="img/illustrated.webp" target="_blank" rel="noopener">
+        <img src="img/illustrated.webp" width="1086" height="1448" alt="Illustrated plate: whale, walrus and sea-unicorn in five rows from 1413 to 1820, each redrawn after a named map or book, with a red spindle labelled Monstrousness that peaks in 1539">
+      </a>
+      <p class="note"><b>Redrawn, not copied.</b> An image model drew this plate after the sources named in its captions. It follows their spirit, not their lines: the Ortelius walrus and narwhal, for example, look nothing like this on the real map. The Monstrousness spindle is an invention. Switch to <a href="#view-sources" data-view="sources">From the sources</a> to see the originals.</p>
+    </section>
+
+    <section class="view" id="view-sources" role="tabpanel" aria-labelledby="tab-sources" hidden>
+      <a class="plate" href="img/sources.webp" target="_blank" rel="noopener">
+        <img src="img/sources-1200.webp" srcset="img/sources-1200.webp 1200w, img/sources.webp 2400w" sizes="(max-width: 860px) 100vw, 820px" width="1200" height="1600" alt="The same plate built from details of public-domain scans: fourteen crops from maps and books from 1413 to 1820, each captioned with its source, a filled dot for a map and a ring for a book">
+      </a>
+      <p class="note"><b>Nothing redrawn.</b> Every picture is a detail cut from a public-domain scan of the source named under it. A filled dot means it was drawn on a map; a ring means it was printed in a book. Open the plate for the full-size version.</p>
+    </section>
+  </div>
+
+  <section class="sources" aria-labelledby="sources-title">
+    <h2 id="sources-title">The sources</h2>
+    <ol>
+      <li><b>Mecia de Viladestes, portolan chart, 1413.</b> A whaling scene in the North Atlantic. <a href="https://commons.wikimedia.org/wiki/File:Whaling_Cropped_from_1413_Portolan_chart_by_Mecia_de_Viladestes.jpg">Scan ↗</a></li>
+      <li><b>Martin Waldseemüller, Carta marina, 1516.</b> The walrus as an elephant: “Morsus animal ingens quantitate elephantis”. <a href="https://commons.wikimedia.org/wiki/File:Carta_marina_navigatoria_Portvgallen_navigationes,_atqve_tocius_cogniti_orbis_terre_marisqve_formam_natvram_sitvs_et_terminos_nostris_temporibvs_recognitos_et_ab_antiqvorum_traditione_differentes,_LOC_2016586433-2.jpg">Library of Congress scan ↗</a></li>
+      <li><b>Olaus Magnus, Carta marina, 1539.</b> The “Balena” attacked by an “Orcha”, the “Ros marus piscis” by Vardahus, and a horned head south of Iceland. <a href="https://commons.wikimedia.org/wiki/File:Carta_Marina.jpeg">Scan ↗</a></li>
+      <li><b>Abraham Ortelius, Islandia, 1590.</b> L, Steipereidur; N, Rostunger; A, Nahval. <a href="https://commons.wikimedia.org/wiki/File:Island_1590_Theatrum_Orbis_Terrarum_Ortelius.jpg">Scan of a 1983 facsimile ↗</a></li>
+      <li><b>Hessel Gerritsz, Histoire du pays nommé Spitsberghe, 1613.</b> Walrus and calf. <a href="https://commons.wikimedia.org/wiki/File:Hessel_Gerritsz_-_Walruses_on_Spitsbergen.jpg">Scan ↗</a></li>
+      <li><b>Thomas Edge, “Greneland”, in Purchas His Pilgrimes, 1625.</b> The whale vignette on the map’s border. <a href="https://commons.wikimedia.org/wiki/File:Kaart_van_Spitsbergen_van_Thomas_Edge,_1625_Greneland_(titel_op_object),_NG-1988-23.jpg">Rijksmuseum scan ↗</a></li>
+      <li><b>Ole Worm, Museum Wormianum, 1655.</b> “Unicornu marinum”: the narwhal and its skull, pp. 282–283. <a href="https://www.biodiversitylibrary.org/page/41522056">Biodiversity Heritage Library ↗</a></li>
+      <li><b>John Webber, “Sea Horses”, in Cook’s Voyage, 1784.</b> Detail, from the 1785 printing. <a href="https://commons.wikimedia.org/wiki/File:Sea_horses._Drawn_by_J._Webber._Engraved_by_E._Scott._The_figures_by_J._Heath._(London,_G._Nicol_and_T._Cadell,_1785)_(IA_dr_sea-horses-drawn-by-j-webber-engraved-by-e-scott-the-figures-by-j-hea-00884012).jpg">Scan ↗</a></li>
+      <li><b>William Scoresby, An Account of the Arctic Regions, 1820.</b> Plate XII, the common whale, and plate XV, the male narwhal. <a href="https://archive.org/details/accountofarcticr02scor/page/n602">Internet Archive ↗</a> · <a href="https://commons.wikimedia.org/wiki/File:An_account_of_the_Arctic_regions_with_a_history_and_description_of_the_northern_whale-fishery_(1820)_(14778424544).jpg">Plate XV ↗</a></li>
+    </ol>
+    <p class="small">The horned head on Olaus Magnus’s map carries no label, so calling it the sea-unicorn is our reading. “None found on a map before 1539” means we found none, not that none exists. All scans are public domain or CC0.</p>
+  </section>
+</main>
+</body>
+</html>
