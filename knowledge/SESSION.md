@@ -221,6 +221,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-27 12:19 — commit: Map Monsters: add Plate IX (sea serpent, kraken) and Plate X (dragons, hydra) | assets/share/map-monsters.png,data/experiments.json,data/share-cards.json,experiments/map-monsters/img/ix-illustrated.webp,experiments/map-monsters/img/ix-sources-1200.webp
 - 2026-11-27 12:55 — commit: Add Map Monsters plate build scripts and crop boxes | experiments-source/map-monsters/.gitignore,experiments-source/map-monsters/README.md,experiments-source/map-monsters/build/crop.py,experiments-source/map-monsters/build/crops.json,experiments-source/map-monsters/build/fetch.py
 - 2026-11-27 16:45 — commit: Make Map Monsters source-led with specimen catalogue and verified provenance | assets/share/map-monsters.png,data/experiments.json,data/share-cards.json,execution/rebuild_map_monsters.py,execution/test_map_monsters.mjs
+- 2026-11-27 16:54 — commit: Replace Montfort reproduction with Smithsonian original-edition plate | execution/rebuild_map_monsters.py,execution/test_map_monsters.py,experiments-source/map-monsters/README.md,experiments-source/map-monsters/build/crops.json,experiments-source/map-monsters/build/plates.py
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -703,7 +704,7 @@ Goal: Find an institutional first-edition scan and replace the uncertain reprodu
 Agent: OpenAI Codex
 Handoff-from: OpenAI Codex
 Handoff-type: continuation
-Status: Verified original-edition scan retrieved from Smithsonian Libraries item Histoirenaturel2Deny. Replacement built and locally verified; publishing next.
+Status: Verified original-edition scan retrieved from Smithsonian Libraries item Histoirenaturel2Deny. Published as fd93df429b3a9f5b270322b1a3c16e14b3695d50. Live fingerprint matches; original engraving renders in the public specimen entry.
 Verdict: pending — "Can you find a first-edition Montfort scan to replace the reproduction with the uncertain date?"
 
 - Evidence: title reader n4 states Denys-Montfort, Tome second, F. Dufart, An X. Plate reader n294 states Pl. XXVI, T. 2. P. 256, Le poulpe colossal. Original French edition attribution is supported by the complete institutional copy, printed imprint and original-binding catalogue description. Manifest stores the plate and title-page checksums. An X remains 1801–1802; the month is not newly established.
@@ -711,3 +712,9 @@ Verdict: pending — "Can you find a first-edition Montfort scan to replace the 
 - Verification: 7 targeted Python tests, 3 Node tests, 25 source hashes, title-page hash, 20-page deep verification, desktop/375px image rendering and fresh independent review passed. No browser overflow or console warning/error.
 S.D.G.: Readers can inspect Montfort’s original printed engraving in its authenticated volume rather than rely on a detached later reproduction.
 Feynman gap: Exact Gregorian publication month remains unknown; production verification is pending.
+
+Production check: live /experiments/map-monsters/#specimen-kraken_1801 shows the Smithsonian original-edition caption and source/title links. Replacement context image loads at natural width1041, distinct from the previous reproduction; no horizontal overflow or console warnings/errors. Public deployment.json source_commit fd93df429b3a9f5b270322b1a3c16e14b3695d50; content_sha256 f3e4e162fe8bb320b566b25730289e7165ea85cdb165fe2d4b078a1f27b2d205. Full Python suite:51 passed.
+S.D.G.: Readers can follow the live Montfort image directly to the Smithsonian original volume and its dated title page.
+Feynman gap: The edition is established; An X still does not establish an exact Gregorian publication month.
+
+Release workflow 46079445395 completed successfully in 1m32s after public verification.
