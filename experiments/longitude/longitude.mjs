@@ -146,6 +146,17 @@ function renderHelm() {
   $('c-dest').setAttribute('cx', Math.sin(a) * 98);
   $('c-dest').setAttribute('cy', -Math.cos(a) * 98);
   $('bearing').innerHTML = `${cap(v.to)} lies <b>${E.pointName(course)} · ${Math.round(course)}°</b>, ${miles(dist)} from your reckoning <span class="muted">(red dot)</span>.`;
+  // Charted land on the course line within a day's sail (by reckoning; the chart is public knowledge).
+  let blocked = null;
+  if (s.status === 'sailing') {
+    for (let nm = 5; nm <= 180; nm += 5) {
+      const p = E.move(s.dr, heading, nm);
+      if (E.distNm(p, v.dest) <= (v.arrive ?? v.sight + 20)) break;
+      if (E.landDistance(land, p) <= 2) { const n = E.nearestPlace(places, p); if (n !== v.to) blocked = n; break; }
+    }
+  }
+  $('ahead').hidden = !blocked;
+  if (blocked) $('ahead').textContent = `Land lies on this course: ${placeName(blocked)}. Steer to pass it.`;
   const reach = 180 + 2 * s.sdLon + v.sight;
   $('near').hidden = !(s.status === 'sailing' && s.day > 0 && (dist < reach || E.landDistance(land, s.dr) < 180 + 2 * s.sdLon));
 }
