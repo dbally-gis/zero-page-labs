@@ -42,7 +42,7 @@ PLATES = {
             ]),
             ("1873", [
                 "no confirmed specimen\nfor these reports",
-                cell("kraken_1873", False, "Giant squid, Logy Bay, 1873 specimen", "photograph c. 1873–74; annotated by A. E. Verrill"),
+                cell("kraken_1873", False, "Giant squid, Logy Bay, 1873 specimen", "photographed 2 December 1873; annotated by A. E. Verrill"),
             ]),
         ],
     },

@@ -718,3 +718,15 @@ S.D.G.: Readers can follow the live Montfort image directly to the Smithsonian o
 Feynman gap: The edition is established; An X still does not establish an exact Gregorian publication month.
 
 Release workflow 46079445395 completed successfully in 1m32s after public verification.
+
+## 2026-11-27 — Confirmed squid exposure date
+Goal: Publish the primary-source correction to the squid caption and sources.
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Plate IX, specimen catalogue, page date notes and provenance updated; targeted tests and deep verification passed. Production verification pending.
+Verdict: kept — "Go ahead and update the squid caption and sources with the confirmed date"
+
+Murray’s American Naturalist report (February 1874), pp. 122–123, explicitly dates the two Logy Bay photographs to 2 December 1873. Harvey’s 1899 account, p. 738, places the bath arrangement in photographic rooms. Original negative/earliest print custody remains unestablished.
+S.D.G.: Map Monsters readers can distinguish the photograph’s exact exposure date from the report’s publication year.
+Feynman gap: Production publication remains to be checked.

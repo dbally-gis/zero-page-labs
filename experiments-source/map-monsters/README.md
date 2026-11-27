@@ -33,7 +33,7 @@ Python `-I` isolates imports and environment settings. It does **not** sandbox i
 
 ## Evidence decisions
 
-Montfort’s volume II is dated An X (1801–1802), rather than a secure single year. The Montfort cell uses plate XXVI from the Smithsonian Libraries copy of the original French edition (call number 39088008978892), with its title-page evidence recorded in the manifest. Logy Bay is a 1873 specimen; the bath photograph is conservatively dated c. 1873–1874 because institutional captions conflict. Source dates and event dates are separate. Full evidence notes live in `knowledge/domain/map-monsters-evidence.md` and on the page.
+Montfort’s volume II is dated An X (1801–1802), rather than a secure single year. The Montfort cell uses plate XXVI from the Smithsonian Libraries copy of the original French edition (call number 39088008978892), with its title-page evidence recorded in the manifest. Logy Bay is a November 1873 specimen; Murray’s contemporary report explicitly dates the photographic session to 2 December 1873 (The American Naturalist 8, February 1874, pp. 122–123). Source dates and event dates are separate. Full evidence notes live in `knowledge/domain/map-monsters-evidence.md` and on the page.
 
 ## Verify
 

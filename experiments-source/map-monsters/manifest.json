@@ -154,7 +154,7 @@
         895,
         1470
       ],
-      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+      "edition_note": "Annotated photographic print reproduced digitally via Commons. Murray’s contemporary account dates the photographic session to 2 December 1873; custody of the original negative or earliest print is not established here."
     },
     "olaus_polyp_1555.png": {
       "page": "https://commons.wikimedia.org/wiki/File:Olaus1555-p763-polypis.png",
@@ -604,11 +604,12 @@
       ],
       "on_map": false,
       "caption": "Giant squid, Logy Bay, 1873 specimen",
-      "detail": "photograph c. 1873–74; annotated by A. E. Verrill",
-      "interpretation": "The specimen was caught at Logy Bay in 1873. Its head and arms were photographed over Harvey’s sponge bath. Photo dates differ between institutional captions (1873 and 1874); c. 1873–74 avoids asserting an exact exposure date. Verrill’s annotations are distinct from the photograph.",
+      "detail": "photographed 2 December 1873; annotated by A. E. Verrill",
+      "interpretation": "Caught at Logy Bay in November 1873. Alexander Murray’s contemporary report dates the head-and-arms and body photographs to 2 December 1873, crediting Parsons and McKenna at St. John’s. The report appeared in February 1874; that is its publication date. Harvey later described taking the head and arms in his sponge bath to photographic rooms and suspending them from a crossbar. Verrill’s annotations are distinct from the original photograph.",
       "evidence": [
-        "https://www.mcz.harvard.edu/sites/g/files/omnuum6431/files/mcz/files/mcz_ar_2023-24_web_final_ada.pdf",
-        "https://ocean.si.edu/ocean-life/invertebrates/giant-squid"
+        "https://archive.org/details/mobot31753002156542/page/n132/mode/1up",
+        "https://archive.org/details/mobot31753002156542/page/n133/mode/1up",
+        "https://archive.org/details/wideworldmagazin02lond/page/738/mode/1up"
       ]
     },
     {

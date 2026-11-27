@@ -811,3 +811,11 @@ Surface: Map Monsters Plate IX source image, crop context, manifest and evidence
 - [x] The deep site verifier passes.
 - [x] Browser inspection confirms the replacement image renders.
 - [x] Independent verification reports no unresolved blocker.
+
+## 2026-11-27 — Confirmed squid photograph date
+- [x] Plate IX dates the photograph to 2 December 1873.
+- [x] The specimen entry cites Murray’s contemporary date statement.
+- [x] The specimen entry cites Harvey’s photographic-room account.
+- [x] Targeted caption checks pass.
+- [x] Deep site verification passes.
+- [ ] The production specimen displays the confirmed date.
