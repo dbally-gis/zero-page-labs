@@ -3,6 +3,25 @@ generated_by: "OpenAI Codex (exact model variant not exposed)"
 timestamp: "2026-11-07T17:04:06.403311-06:00"
 ---
 
+## 2026-11-26 Longitude, 1714 (dead-reckoning voyage game)
+
+Agent: Claude Code CLI
+Handoff-from: none
+Handoff-type: new-project
+Goal: A daily game where you navigate by dead reckoning, then sail the same voyage with Harrison's clock. Picked from the idea list after concept renders ("build longitude").
+Status: Pushed live on "push to zpl" 2026-11-26 as experiment 14. Contract in task.md (Longitude section), all ticked. 33 tests pass; browser QA clean at 1440 and 390.
+Verdict: pending
+
+- Model (engine.mjs, pure): hidden true position vs reckoned position. Hidden per-voyage log-line bias (0.94–1.06), steering bias (±3°), current (0.15–0.5 kn, direction random-walks ~22°/day); weather depends only on seed+day, so the clock voyage has identical conditions. Noon sight fixes latitude (±2′) unless overcast (28%); the clock fixes longitude (±1.5′) only on clear noons. Night is hours 6–18 after noon; at night the ship sees nothing and wrecks within 1.5 nm of land or within the destination's reef radius; in daylight she never sails onto land she can see (stops at 3 nm or on first sighting at 14 nm, which fixes her position).
+- Uncertainty band grows linearly per day (0.45 x current x 24 + 0.035 x logged miles), not as a random walk, because current and log errors persist; tuned by simulation to hold the true position ~0.9 of days (test asserts 0.8–0.98).
+- Simulation findings: running down the latitude roughly doubles arrival rate over steering straight at the island in 1714; straight-line clock voyages wreck on night arrival unless they heave to, hence the "Land may be within a day's sail" warning (one day's run + 2σ + sighting range). Straight courses England→Barbados cross the Azores; kept as a hazard.
+- Land: Natural Earth 1:50m land (public domain), downloaded to .tmp/ne/, clipped/simplified by execution/build_longitude_land.py to experiments/longitude/land.json (140 KB, 396 rings; has Barbados, Bermuda, St Helena, Azores; Scilly is not at 50m, so no Scilly voyage).
+- Art: one imagegen sheet (log chip, sandglass, H4), cropped and background keyed to alpha into art/*.webp. Concept renders in .tmp/renders/.
+- Phone layout: the chart is position: sticky at the top so the helm scrolls under it.
+- Independent verifier FAILED the first build: (1) after a daylight 'Land ho' a ship holding course walked inland a few miles a day, never wrecking (the 3 nm check ran after the hour's move); (2) arrival used nearestPlace()===destination on a sparse gazetteer, so Normandy scored as the Lizard and east Hispaniola as Puerto Rico; (3) night collisions only checked hourly; (4) Scilly absent from 1:50m data. Fixed: quarter-hour sub-steps, ship held at the last safe point within 3 nm in daylight, arrival = any land sighted within the voyage's `arrive` radius of `dest` (Puerto Rico's dest moved to the island centre, radius 60, so the Virgin Islands don't count; Lizard 30 so Scilly doesn't; Azores 120 for the central group), Scilly hand-traced in build_longitude_land.py EXTRA_RINGS, gazetteer names added. Also: compass aria-disabled when over, Home/End keys, last-day speed uses hours sailed, stale save record reset, history wording (Scilly fleet 'believed the Channel was open'; H4's 5 s is after its known rate).
+- Ships running down the Lizard's latitude now meet the Scillies (49.93 N vs 49.96 N), Shovell's 1707 trap; the Land ho text says to steer clear.
+- Release: worktree off origin/main, registered in data/experiments.json (14th), cover assets/experiment-longitude.jpg (real chart screenshot), share card, sitemap.
+
 ## 2026-11-26 The Composing Ark, 1650 (Kircher's Arca Musarithmica)
 
 Agent: Claude Code CLI

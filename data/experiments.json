@@ -213,6 +213,25 @@
       },
       "note": "KIRCHER 1650 · FOUR VOICES · PLAYS IN YOUR BROWSER",
       "links": []
+    },
+    {
+      "slug": "longitude",
+      "title": "Longitude, 1714",
+      "category": "GAME · HISTORY",
+      "added": "2026-11-26",
+      "status": "live",
+      "summary": "Navigate an 18th-century ship by dead reckoning. The noon sun gives your latitude; nothing gives your longitude. Find the island before the water runs out, then sail the same voyage again with Harrison's clock. A new voyage every day.",
+      "tagline": "Find the island without knowing how far west you are.",
+      "cta": "Set sail",
+      "cover": {
+        "src": "/assets/experiment-longitude.jpg",
+        "alt": "A Mercator sea chart of the North Atlantic: a dotted reckoned track from Cádiz and the gold track the ship really sailed, ending at Hispaniola beside Puerto Rico",
+        "width": 960,
+        "height": 640,
+        "label": "Open Longitude, 1714"
+      },
+      "note": "DAILY VOYAGE · DEAD RECKONING · HARRISON'S CLOCK",
+      "links": []
     }
   ]
 }

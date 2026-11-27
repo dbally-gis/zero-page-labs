@@ -748,3 +748,28 @@ Daniel: "let's try 1" then "build it". Experiment at `experiments/arca/`.
 - [x] A full compose-and-play run works at 375 px with touch.
 - [x] The 375 px page has no horizontal overflow.
 - [x] The browser console shows no errors during a run.
+
+## 2026-11-26 — Longitude, 1714 (dead-reckoning voyage game)
+
+Contract:
+- [x] The day's voyage is the same for every visitor on the same local date.
+- [x] The player can set the ship's heading by dragging the compass.
+- [x] The player can set the ship's heading with arrow keys.
+- [x] Each "Sail one day" advances the ship by one noon-to-noon run.
+- [x] The chart shows the reckoned position, not the true one, while the voyage is on.
+- [x] A noon sun sight resets reckoned latitude, except on cloudy days.
+- [x] Reckoned longitude is never corrected by a noon sight in the 1714 voyage.
+- [x] Passing within sight of land in daylight stops the ship with "Land ho".
+- [x] Running onto land at night ends the voyage as a wreck.
+- [x] Sighting the destination ends the voyage as a success.
+- [x] Running out of water ends the voyage as a failure.
+- [x] The end screen reveals the true track beside the reckoned track.
+- [x] After a 1714 voyage the same voyage can be sailed again with Harrison's clock.
+- [x] The clock voyage uses the same winds and currents as the 1714 voyage.
+- [x] In the clock voyage each noon fixes longitude as well as latitude.
+- [x] A finished daily voyage survives a page reload.
+- [x] The page has no horizontal overflow at 390 px wide.
+- [x] The page logs no console errors on desktop or phone.
+- [x] execution/test_longitude.mjs passes.
+
+Verifier (fresh context) failed the first build: ship could walk inland after "Land ho" in daylight; wrong coasts (Normandy, east Hispaniola) scored as arrival; hourly night collision checks; no Scilly. Fixed: quarter-hour land checks, ship held at last safe point, arrival = land sighted within a per-voyage radius of the destination, Scilly traced by hand, gazetteer names for Channel/Hispaniola coasts; regression tests added (33 pass) and the verifier's own probes rerun clean.

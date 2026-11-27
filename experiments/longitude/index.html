@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f3ead6">
+  <title>Longitude, 1714 — Zero Page Labs</title>
+  <meta name="description" content="Navigate an 18th-century ship by dead reckoning. The noon sun gives your latitude; nothing gives your longitude. Find the island, then sail the same voyage again with Harrison's clock.">
+  <link rel="canonical" href="https://zeropagelabs.com/experiments/longitude/">
+  <link rel="icon" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="longitude.css">
+  <script type="module" src="longitude.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#helm">Skip to the helm</a>
+<header class="topbar">
+  <a href="/" class="brand"><span aria-hidden="true">ø</span> Zero Page Labs</a>
+  <a href="/experiments/">Experiments ↗</a>
+</header>
+
+<main class="longitude">
+  <header class="title-row">
+    <div>
+      <p class="kicker" id="kicker">Daily voyage</p>
+      <h1>Longitude, <em>1714</em></h1>
+    </div>
+    <p class="plate">DEAD RECKONING · ONE VOYAGE A DAY<br>THEN AGAIN WITH HARRISON’S CLOCK</p>
+  </header>
+
+  <section class="brief" aria-labelledby="route">
+    <div>
+      <h2 id="route">From <span id="from"></span> to <span id="to"></span></h2>
+      <p id="story"></p>
+    </div>
+    <ol class="rules">
+      <li><b>Steer</b> with the compass. Each day the log line measures how far you sailed, and your <i>reckoned</i> position goes on the chart.</li>
+      <li>At <b>noon</b> the sun tells you how far north you are. Nothing tells you how far west. The shaded band shows where you might really be.</li>
+      <li><b>Sight the island</b> before the water runs out. Ships that run onto land in the dark are lost.</li>
+    </ol>
+  </section>
+
+  <div class="game">
+    <div class="chart-wrap">
+      <svg id="chart" class="chart" role="img" aria-label="Chart of the voyage"></svg>
+      <div class="chart-key" aria-hidden="true">
+        <span><i class="k-dr"></i>Your reckoning</span>
+        <span><i class="k-band"></i>Where you might be</span>
+        <span class="k-true-wrap" hidden><i class="k-true"></i>Where you really went</span>
+      </div>
+      <button type="button" id="show-result" class="show-result" hidden>Show result</button>
+      <div class="ending" id="ending" hidden tabindex="-1" aria-live="assertive">
+        <p class="kicker" id="end-kicker"></p>
+        <h2 id="end-title"></h2>
+        <p id="end-text"></p>
+        <div class="compare" id="compare" hidden></div>
+        <div class="end-actions">
+          <button type="button" id="again-clock" class="primary">Sail it again with Harrison’s clock</button>
+          <button type="button" id="share" class="ghost">Copy result</button>
+          <button type="button" id="practice" class="ghost">Try another voyage</button>
+          <button type="button" id="see-chart" class="ghost">See the chart</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="panel" id="helm" tabindex="-1" aria-label="The helm">
+      <div class="status">
+        <div><span class="label">Day</span><b id="day">0</b></div>
+        <div><span class="label">Water left</span><b id="water"></b><span class="unit">days</span></div>
+        <div><span class="label">Mode</span><b id="mode">1714</b></div>
+      </div>
+
+      <div class="helm">
+        <svg id="compass" class="compass" viewBox="-110 -110 220 220" role="slider" tabindex="0"
+             aria-label="Ship's heading" aria-valuemin="0" aria-valuemax="359" aria-valuenow="0"></svg>
+        <div class="helm-side">
+          <p class="label">Steer</p>
+          <p class="heading" id="heading-text"></p>
+          <div class="nudge">
+            <button type="button" data-turn="-15" aria-label="Turn 15 degrees to port">−15°</button>
+            <button type="button" data-turn="-1" aria-label="Turn 1 degree to port">−1°</button>
+            <button type="button" data-turn="1" aria-label="Turn 1 degree to starboard">+1°</button>
+            <button type="button" data-turn="15" aria-label="Turn 15 degrees to starboard">+15°</button>
+          </div>
+          <p class="bearing" id="bearing"></p>
+          <button type="button" id="steer-dest" class="ghost small">Steer straight for it</button>
+        </div>
+      </div>
+
+      <fieldset class="night">
+        <legend class="label">At night</legend>
+        <label><input type="radio" name="night" value="sail" checked> Keep sailing</label>
+        <label><input type="radio" name="night" value="heave"> Heave to <span class="muted">(stop, safer near land)</span></label>
+        <p class="warn" id="near" hidden>Land may be within a day’s sail.</p>
+      </fieldset>
+
+      <div class="sail-row">
+        <button type="button" id="sail" class="primary">Sail one day</button>
+        <button type="button" id="sail3" class="ghost">Sail 3 days</button>
+      </div>
+
+      <div class="noon" aria-live="polite">
+        <p class="label">Noon report</p>
+        <div class="inst"><img src="art/log.webp" alt="" width="56" height="56"><p id="r-log">At anchor off <span id="r-from"></span>. Set a course.</p></div>
+        <div class="inst"><img src="art/glass.webp" alt="" width="28" height="56"><p id="r-sun">The noon sun will give your latitude.</p></div>
+        <div class="inst clock" id="clock-row"><img src="art/clock.webp" alt="" width="45" height="56"><p id="r-clock">No clock at sea can yet keep time well enough to find longitude.</p></div>
+      </div>
+
+      <details class="logbook">
+        <summary>Logbook</summary>
+        <table><thead><tr><th>Day</th><th>Course</th><th>Run</th><th>Noon latitude</th></tr></thead><tbody id="logrows"></tbody></table>
+      </details>
+    </aside>
+  </div>
+
+  <section class="history">
+    <h2>Why longitude was the problem</h2>
+    <p>On 22 October 1707 a British fleet coming home from Gibraltar ran onto the rocks of the Scilly Isles at night. Four ships and between 1,400 and 2,000 men were lost. The fleet believed the Channel was open ahead. The disaster came to stand for the great unsolved problem of the sea: no one could tell how far east or west they were.</p>
+    <p>Latitude is easy: the height of the sun at noon gives it. Longitude needs the time. The Earth turns 15° an hour, so if you know what time it is at Greenwich when the sun is highest where you are, the difference gives your longitude: four minutes of time for every degree. But no clock of the day could keep time on a rolling ship. So navigators used <i>dead reckoning</i>: compass course, plus speed from a knotted <i>log line</i> timed with a sandglass, plus hours sailed. Currents, leeway and a badly marked log made the error grow every day.</p>
+    <p>In 1714 Parliament offered £20,000 for a method good to half a degree. The carpenter and clockmaker John Harrison spent most of his life on it. His fourth clock, H4, a large watch, lost just 5 seconds, after allowing for its known daily rate, on the 81-day voyage to Jamaica in 1761–62, and passed a second trial to Barbados in 1764.</p>
+    <p>Before the clock, the safest way to find an island was to <i>run down the latitude</i>: get to the island’s latitude well to the east of it, then sail due west along that line until it came up over the horizon.</p>
+    <h3>What this version simplifies</h3>
+    <ul>
+      <li>Each voyage has hidden conditions: a current that drifts from day to day, a log line knotted a little long or short, and a small steady steering error. Winds only change your speed, not where you can go.</li>
+      <li>The noon sun sight is good to a couple of miles of latitude, unless the sky is overcast. The clock fix is good to a mile or two of longitude, about what H4 achieved.</li>
+      <li>Land is seen within about 14 miles in daylight. Your destination can be seen from further off, by how high it stands. In the dark you see nothing until you hit it.</li>
+      <li>The shaded band is drawn wide enough to hold your true position about nine times in ten.</li>
+      <li>Coastlines are from Natural Earth (public domain), with the Scilly Isles added by hand. Voyages begin a little offshore.</li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li>Dava Sobel, <i>Longitude</i> (1995).</li>
+      <li>Royal Museums Greenwich, <a href="https://www.rmg.co.uk/stories/topics/harrisons-clocks-longitude-problem">Harrison’s clocks and the longitude problem</a>.</li>
+      <li><a href="https://en.wikipedia.org/wiki/Longitude_rewards">Longitude rewards</a> and <a href="https://en.wikipedia.org/wiki/Scilly_naval_disaster_of_1707">Scilly naval disaster of 1707</a> (Wikipedia).</li>
+      <li><a href="https://www.naturalearthdata.com/">Natural Earth</a> 1:50m land.</li>
+    </ol>
+  </section>
+</main>
+</body>
+</html>
