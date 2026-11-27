@@ -13,13 +13,14 @@ let peek = false;  // ending dismissed to look at the chart
 
 // --- Saving ------------------------------------------------------------------
 function loadSaved() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } }
-function save() {
+function save({ dropClock = false } = {}) {
   if (!game.daily) return;
   try {
     const all = loadSaved();
     const key = E.dateKey(new Date(game.dateMs));
     const rec = all[key]?.v === game.voyage.id ? all[key] : { v: game.voyage.id };
     rec[game.clock ? 'clock' : 'y1714'] = game.orders;
+    if (dropClock) delete rec.clock;
     all[key] = rec;
     for (const k of Object.keys(all).sort().slice(0, -30)) delete all[k];
     localStorage.setItem(KEY, JSON.stringify(all));
@@ -43,6 +44,12 @@ function startPractice() {
   const voyage = pool[Math.floor(Math.random() * pool.length)];
   const seed = (Math.random() * 2 ** 32) >>> 0;
   game = { daily: false, number: null, voyage, seed, clock: false, orders: [], state: E.newVoyage(voyage, seed), first: null };
+  begin();
+}
+function restart() {
+  if (!window.confirm('Start this voyage again from the beginning?')) return;
+  game = { ...game, clock: false, first: null, orders: [], state: E.newVoyage(game.voyage, game.seed) };
+  save({ dropClock: true });
   begin();
 }
 function startClock() {
@@ -250,6 +257,7 @@ function render() {
   $('day').textContent = s.day;
   $('water').textContent = Math.max(0, s.water);
   $('mode').textContent = game.clock ? 'Clock' : '1714';
+  $('restart').hidden = s.day === 0 && !game.clock;
   const sailing = s.status === 'sailing';
   for (const b of document.querySelectorAll('#sail, #sail3, #steer-dest, .nudge button')) b.disabled = !sailing;
   document.querySelector('.panel').classList.toggle('done', !sailing);
@@ -279,6 +287,7 @@ function wire() {
   $('steer-dest').addEventListener('click', () => setHeading(E.rhumb(game.state.dr, game.voyage.dest).course));
   for (const b of document.querySelectorAll('.nudge button')) b.addEventListener('click', () => setHeading(heading + Number(b.dataset.turn)));
   $('again-clock').addEventListener('click', startClock);
+  $('restart').addEventListener('click', restart);
   $('practice').addEventListener('click', startPractice);
   $('see-chart').addEventListener('click', () => { peek = true; renderEnding(); });
   $('show-result').addEventListener('click', () => { peek = false; renderEnding(); });

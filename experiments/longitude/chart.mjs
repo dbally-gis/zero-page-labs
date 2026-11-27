@@ -110,8 +110,17 @@ export function drawChart(svg, { voyage, state, heading, aspect, reveal, ghost }
 
   // The ship, at the reckoned position
   const [lat, lon] = state.dr;
-  const ship = el('g', { class: 'ship', transform: `translate(${X(lon)} ${Y(lat)}) scale(${px})` }, svg);
+  const atSea = state.status === 'sailing';
+  if (atSea) {
+    el('circle', { cx: X(lon), cy: Y(lat), r: 15 * px, class: 'ship-ring' }, svg);
+    el('circle', { cx: X(lon), cy: Y(lat), r: 15 * px, class: 'ship-pulse', style: `--r:${15 * px}` }, svg);
+  }
+  const ship = el('g', { class: 'ship', transform: `translate(${X(lon)} ${Y(lat)}) scale(${px * 1.7})` }, svg);
   el('path', { d: 'M -9 2 L 9 2 L 6 7 L -6 7 Z', class: 'hull' }, ship);
   el('path', { d: 'M -1 1 L -1 -15 L 7 0 Z M -3 1 L -3 -11 L -9 0 Z', class: 'sail' }, ship);
+  if (atSea && state.day === 0) {
+    const left = X(lon) > vb.x + vb.width * 0.6;
+    el('text', { x: X(lon) + (left ? -24 : 24) * px, y: Y(lat) + 5 * px, 'font-size': 15 * px, class: 'here', 'text-anchor': left ? 'end' : 'start' }, svg).textContent = 'You are here';
+  }
   return vb;
 }
