@@ -222,6 +222,7 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-27 12:55 — commit: Add Map Monsters plate build scripts and crop boxes | experiments-source/map-monsters/.gitignore,experiments-source/map-monsters/README.md,experiments-source/map-monsters/build/crop.py,experiments-source/map-monsters/build/crops.json,experiments-source/map-monsters/build/fetch.py
 - 2026-11-27 16:45 — commit: Make Map Monsters source-led with specimen catalogue and verified provenance | assets/share/map-monsters.png,data/experiments.json,data/share-cards.json,execution/rebuild_map_monsters.py,execution/test_map_monsters.mjs
 - 2026-11-27 16:54 — commit: Replace Montfort reproduction with Smithsonian original-edition plate | execution/rebuild_map_monsters.py,execution/test_map_monsters.py,experiments-source/map-monsters/README.md,experiments-source/map-monsters/build/crops.json,experiments-source/map-monsters/build/plates.py
+- 2026-11-27 17:12 — commit: Date Logy Bay squid photograph from contemporary report | experiments-source/map-monsters/README.md,experiments-source/map-monsters/build/plates.py,experiments-source/map-monsters/manifest.json,experiments/map-monsters/img/ix-sources-1200.webp,experiments/map-monsters/img/ix-sources.webp
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -724,9 +725,9 @@ Goal: Publish the primary-source correction to the squid caption and sources.
 Agent: OpenAI Codex
 Handoff-from: OpenAI Codex
 Handoff-type: continuation
-Status: Plate IX, specimen catalogue, page date notes and provenance updated; targeted tests and deep verification passed. Production verification pending.
+Status: Published as 583f56486bc2e7ec8aa8187bddf246fe6653033b. Plate IX, specimen catalogue, page date notes and provenance updated. Workflow 46081170051 succeeded in 59s. Live content fingerprint 445df8c0a312612a42360b780a5351f1c2be349ef10753fa5860580bfacb27e5 matches the local build. Seven Python tests, three Node tests and 20-page deep verification passed. Public browser shows the confirmed date and three primary-source links; specimen image loads at natural width 895, with no overflow at 375px and no console warning/error.
 Verdict: kept — "Go ahead and update the squid caption and sources with the confirmed date"
 
 Murray’s American Naturalist report (February 1874), pp. 122–123, explicitly dates the two Logy Bay photographs to 2 December 1873. Harvey’s 1899 account, p. 738, places the bath arrangement in photographic rooms. Original negative/earliest print custody remains unestablished.
 S.D.G.: Map Monsters readers can distinguish the photograph’s exact exposure date from the report’s publication year.
-Feynman gap: Production publication remains to be checked.
+Feynman gap: Original negative/earliest print custody remains unknown; the exposure date is supported by the visually checked contemporary report and verified on production.

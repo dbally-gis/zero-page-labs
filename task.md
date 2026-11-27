@@ -818,4 +818,4 @@ Surface: Map Monsters Plate IX source image, crop context, manifest and evidence
 - [x] The specimen entry cites Harvey’s photographic-room account.
 - [x] Targeted caption checks pass.
 - [x] Deep site verification passes.
-- [ ] The production specimen displays the confirmed date.
+- [x] The production specimen displays the confirmed date.
