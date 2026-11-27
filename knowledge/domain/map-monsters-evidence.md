@@ -15,7 +15,15 @@ The three plates are selected comparisons of European depictions, mainly norther
 
 The [BHL bibliographic record](https://www.biodiversitylibrary.org/bibliography/51804) explicitly says volumes 1–4 are dated An X, explains the Republican calendar range, and states that exact publication months are unknown. The [Smithsonian copy of volume II](https://www.biodiversitylibrary.org/item/206416?t=51804) is catalogued as 1802; the [Harvard copy](https://www.biodiversitylibrary.org/item/110561?t=51804) is catalogued as 1801. Use **An X (1801–1802)**, not an asserted exact Gregorian publication year. This range is supported by the volume-level catalogue notes.
 
-The supplied [Commons reproduction](https://commons.wikimedia.org/wiki/File:Denys_de_Montfort_Poulpe_Colossal.jpg) has an 1810 date, lists Ellis's 1994 book as its source, and contains archive-photo metadata. It is not established as a scan of the particular first-edition sheet. The source plate and specimen note explicitly distinguish the work's date from the reproduction's unresolved edition. No authenticity claim about this reproduction was added. A direct first-edition replacement would improve this cell when one can be retrieved and compared.
+### Original-edition scan recovered — 2026-11-27
+
+The Montfort cell now uses [Plate XXVI in the Smithsonian Libraries volume-II scan](https://archive.org/details/Histoirenaturel2Deny/page/n294/mode/1up), item `Histoirenaturel2Deny`, call number **39088008978892**. The [title page, reader index n4](https://archive.org/details/Histoirenaturel2Deny/page/n4/mode/1up) visibly states **PAR DENYS-MONTFORT; TOME SECOND; A PARIS; DE L’IMPRIMERIE DE F. DUFART; AN X**. The selected engraving visibly states **Pl. XXVI; T. 2. P. 256; LE POULPE COLOSSAL**. Those inscriptions, the complete institutional volume and its catalogue description identify the original French An X edition rather than an unattached later reproduction. The Smithsonian catalogue describes this copy's original orange paperboard binding and provenance from S. Stillman Berry via Clyde Roper.
+
+The original title page and plate were both retrieved and visually inspected. The manifest stores their exact URLs, plate SHA-256 `ecfc9d5ceece34a151359db448413ab727dedb3500ca265a30dc63cf65c2f791`, title-page checksum and transcriptions. The date remains **An X (1801–1802)**: identification of the edition resolves the reproduction's provenance, not the exact Gregorian publication month.
+
+Earlier source, now superseded: the [Commons reproduction](https://commons.wikimedia.org/wiki/File:Denys_de_Montfort_Poulpe_Colossal.jpg) carried an 1810 date, cited Ellis's 1994 book and contained archive-photo metadata. Its edition was not authenticated. That image is no longer a manifest input or the published source cell; the old local cached file may remain as research history.
+
+Retrieval quirk: this Smithsonian scan's scandata starts `leafNum` at 1, while the reader's `n` index starts at 0. Thus title leaf 5 is reader n4, and plate leaf 295 is reader n294. Requests for n5/n295 return the reverse blank sheets, not the intended pages. Confirm the inscriptions visually; never transfer a leaf number into a reader URL without checking the indexing.
 
 ### Logy Bay: 1873 specimen, photograph c. 1873–1874
 

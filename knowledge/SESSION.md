@@ -697,3 +697,17 @@ Verdict: kept — "Looks good, push it to Zero Page Labs and verify the live pag
 Production verification: https://zeropagelabs.com/experiments/map-monsters/ opens on VIII sources. Live desktop1280 and phone375 checks passed source/illustrated switching, browser Back, specimen expansion, tentative identification wording, X specimen deep link, highlighted context image loading, 30 catalogue entries, no horizontal overflow and no console warning/error. Deployment fingerprint was checked with a fresh diagnostic query after the cached prior marker was observed.
 S.D.G.: Visitors can now inspect the published historical images and read the qualifications behind the catalogue.
 Feynman gap: Live browser verification passed; physical touch and the previously documented historical date/provenance uncertainties remain open.
+
+## 2026-11-27 — Original-edition Montfort scan
+Goal: Find an institutional first-edition scan and replace the uncertain reproduction.
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Verified original-edition scan retrieved from Smithsonian Libraries item Histoirenaturel2Deny. Replacement built and locally verified; publishing next.
+Verdict: pending — "Can you find a first-edition Montfort scan to replace the reproduction with the uncertain date?"
+
+- Evidence: title reader n4 states Denys-Montfort, Tome second, F. Dufart, An X. Plate reader n294 states Pl. XXVI, T. 2. P. 256, Le poulpe colossal. Original French edition attribution is supported by the complete institutional copy, printed imprint and original-binding catalogue description. Manifest stores the plate and title-page checksums. An X remains 1801–1802; the month is not newly established.
+- Changed: replaced Montfort manifest input and crop, rebuilt Plate IX and its context image, updated catalogue/date notes and evidence handoff. Added --plate for targeted rebuilds so unrelated plates remain untouched. Prior Commons source is retained only as superseded research history.
+- Verification: 7 targeted Python tests, 3 Node tests, 25 source hashes, title-page hash, 20-page deep verification, desktop/375px image rendering and fresh independent review passed. No browser overflow or console warning/error.
+S.D.G.: Readers can inspect Montfort’s original printed engraving in its authenticated volume rather than rely on a detached later reproduction.
+Feynman gap: Exact Gregorian publication month remains unknown; production verification is pending.

@@ -156,17 +156,6 @@
       ],
       "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
     },
-    "montfort_1801.jpg": {
-      "page": "https://commons.wikimedia.org/wiki/File:Denys_de_Montfort_Poulpe_Colossal.jpg",
-      "download_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Denys_de_Montfort_Poulpe_Colossal.jpg",
-      "rights": "Public domain",
-      "sha256": "121856a858b7717deaca1b26d237a74f5c650c7dce0bc787a15d254812a20f8f",
-      "size": [
-        3072,
-        2304
-      ],
-      "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
-    },
     "olaus_polyp_1555.png": {
       "page": "https://commons.wikimedia.org/wiki/File:Olaus1555-p763-polypis.png",
       "download_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Olaus1555-p763-polypis.png",
@@ -276,6 +265,29 @@
         3000
       ],
       "edition_note": "Edition as captioned; supplied digital reproduction may be a detail."
+    },
+    "montfort_an_x_smithsonian.jpg": {
+      "page": "https://archive.org/details/Histoirenaturel2Deny/page/n294/mode/1up",
+      "download_url": "https://archive.org/download/Histoirenaturel2Deny/page/n294_w2000.jpg",
+      "rights": "Public domain (Smithsonian Libraries / BHL)",
+      "sha256": "ecfc9d5ceece34a151359db448413ab727dedb3500ca265a30dc63cf65c2f791",
+      "size": [
+        1912,
+        3306
+      ],
+      "edition_note": "Original French edition, volume II, Paris, F. Dufart, An X (1801–1802). Smithsonian Libraries copy, call number 39088008978892. Plate XXVI, facing p. 256.",
+      "edition_evidence": {
+        "institution": "Smithsonian Libraries",
+        "item": "Histoirenaturel2Deny",
+        "call_number": "39088008978892",
+        "title_page": "https://archive.org/details/Histoirenaturel2Deny/page/n4/mode/1up",
+        "title_page_download": "https://archive.org/download/Histoirenaturel2Deny/page/n4_w2000.jpg",
+        "title_page_sha256": "e0e832a56b8a1f2d74bebd41e197ec73a1fdeee22bab0a981ac3157b9381e7fe",
+        "title_page_transcription": "PAR DENYS-MONTFORT. TOME SECOND. A PARIS, DE L’IMPRIMERIE DE F. DUFART. AN X.",
+        "plate_transcription": "Pl. XXVI. T. 2. P. 256. LE POULPE COLOSSAL.",
+        "scandata_leaf": 295,
+        "reader_index": 294
+      }
     }
   },
   "cells": [
@@ -544,11 +556,12 @@
       ],
       "on_map": false,
       "caption": "Montfort, Mollusques II, An X (1801–02)",
-      "detail": "colossal octopus; reproduction’s edition uncertain",
-      "interpretation": "Le poulpe colossal means the colossal octopus. Montfort distinguished this from his kraken octopus. The work’s volume II is dated An X (1801–1802); the exact month is unknown. The supplied reproduction is catalogued as 1810 on Commons and derives from a 1994 book, so its particular printed edition remains uncertain.",
+      "detail": "“Le poulpe colossal”, pl. XXVI · Smithsonian scan",
+      "interpretation": "Le poulpe colossal means the colossal octopus. Montfort distinguished this from his kraken octopus. This is a scan of plate XXVI from the Smithsonian Libraries copy of volume II, original French edition, Paris, F. Dufart, An X (1801–1802). The sheet reads “Pl. XXVI”, “T. 2. P. 256” and “Le poulpe colossal”; the title page verifies the publisher and year. The exact Gregorian publication month remains unknown.",
       "evidence": [
-        "https://www.biodiversitylibrary.org/bibliography/51804",
-        "https://www.biodiversitylibrary.org/item/206416?t=51804"
+        "https://archive.org/details/Histoirenaturel2Deny/page/n4/mode/1up",
+        "https://archive.org/details/Histoirenaturel2Deny",
+        "https://www.biodiversitylibrary.org/bibliography/51804"
       ]
     },
     {

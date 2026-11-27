@@ -12,3 +12,5 @@ For caption changes, update the corresponding manifest cell and the renderer's r
 Run the targeted Python and Node tests named in the README, the site build, and deep verification. If experiment listing text changes, regenerate its share card with `python3 execution/build_share_cards.py`, then rebuild the site. Browser-check the default source view, plate changes, artistic interpretation, browser Back, specimen expansion and a specimen deep link at desktop and 375 px widths. Confirm no overflow or console errors.
 
 Do not infer that a matching checksum authenticates an image's historical attribution: it establishes which digital bytes the plate used. Some supplied scans are already details; only the source record may lead to the complete work.
+
+For a single source replacement, use `--plate viii`, `--plate ix` or `--plate x` to preserve unrelated rendered plates. The catalogue is regenerated in full; only selected plate/context assets are exported.

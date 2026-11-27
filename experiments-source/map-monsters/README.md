@@ -16,7 +16,7 @@ python3 -m pip install -r experiments-source/map-monsters/requirements.txt
 python3 execution/rebuild_map_monsters.py --fetch
 ```
 
-The command downloads missing inputs, verifies SHA-256 checksums, creates output directories, crops the scans, composes three plates, exports 2400/1200 px WebP images, creates highlighted scan-context images, and updates the readable specimen catalogue in `index.html`. Omit `--fetch` for an offline rebuild from the scan cache; use `--verify-only` for checksum validation without rendering. Missing Pillow fails before downloads. A changed upstream image fails checksum verification and is never silently accepted. Check upstream revisions before explicitly updating a manifest entry.
+The command downloads missing inputs, verifies SHA-256 checksums, creates output directories, crops the scans, composes three plates, exports 2400/1200 px WebP images, creates highlighted scan-context images, and updates the readable specimen catalogue in `index.html`. Omit `--fetch` for an offline rebuild from the scan cache; use `--verify-only` for checksum validation without rendering. Use `--plate ix` to rebuild just Plate IX and its scan contexts, preserving the other published plates. Missing Pillow fails before downloads. A changed upstream image fails checksum verification and is never silently accepted. Check upstream revisions before explicitly updating a manifest entry.
 
 The renderer uses macOS Baskerville at `/System/Library/Fonts/Supplemental/Baskerville.ttc`. It requires that font; other operating systems need an explicitly selected equivalent before rebuilding. Pillow’s paper texture is stochastic, so rebuilds reproduce the composition, not identical output bytes. Pillow is used at the version tested for this rebuild; this is not a claim that the version is the latest available.
 
@@ -33,7 +33,7 @@ Python `-I` isolates imports and environment settings. It does **not** sandbox i
 
 ## Evidence decisions
 
-Montfort’s volume II is dated An X (1801–1802), rather than a secure single year. The supplied reproduction’s own edition remains uncertain. Logy Bay is a 1873 specimen; the bath photograph is conservatively dated c. 1873–1874 because institutional captions conflict. Source dates and event dates are separate. Full evidence notes live in `knowledge/domain/map-monsters-evidence.md` and on the page.
+Montfort’s volume II is dated An X (1801–1802), rather than a secure single year. The Montfort cell uses plate XXVI from the Smithsonian Libraries copy of the original French edition (call number 39088008978892), with its title-page evidence recorded in the manifest. Logy Bay is a 1873 specimen; the bath photograph is conservatively dated c. 1873–1874 because institutional captions conflict. Source dates and event dates are separate. Full evidence notes live in `knowledge/domain/map-monsters-evidence.md` and on the page.
 
 ## Verify
 

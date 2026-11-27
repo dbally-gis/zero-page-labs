@@ -92,16 +92,20 @@ def catalogue(manifest: dict, crops: dict) -> str:
     return '\n'.join(parts)
 
 
-def export(manifest: dict) -> None:
+def export(manifest: dict, selected: str | None = None) -> None:
     from PIL import Image, ImageDraw
     crops = json.loads((BASE / 'build/crops.json').read_text())
     output = PUBLIC / 'img'
     (output / 'context').mkdir(parents=True, exist_ok=True)
     for filename, name in [('map-monsters-plate-real.png', 'sources'), ('map-monsters-plate-ix-real.png', 'ix-sources'), ('map-monsters-plate-x-real.png', 'x-sources')]:
+        if selected and name != {'viii': 'sources', 'ix': 'ix-sources', 'x': 'x-sources'}[selected]:
+            continue
         with Image.open(BASE / 'renders' / filename) as plate:
             plate.save(output / f'{name}.webp', quality=90, method=6)
             plate.resize((1200, 1600), Image.Resampling.LANCZOS).save(output / f'{name}-1200.webp', quality=90, method=6)
     for key, spec in crops.items():
+        if selected and not any(key in c['crops'] for c in manifest['cells'] if c['plate'] == selected):
+            continue
         with Image.open(BASE / 'sources' / spec['src']) as original:
             image = original.convert('RGB')
         scale = image.width / spec.get('basis', image.width)
@@ -118,13 +122,14 @@ def export(manifest: dict) -> None:
     before, rest = text.split(start, 1)
     _, after = rest.split(end, 1)
     path.write_text(before + start + '\n' + catalogue(manifest, crops) + '\n' + end + after)
-    LOG.info('Exported three plates, 31 context images and 30 catalogue entries')
+    LOG.info('Exported %s plates and their scan contexts; updated 30 catalogue entries', selected or 'three')
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--fetch', action='store_true', help='Download missing scans; reject changed bytes')
     parser.add_argument('--verify-only', action='store_true', help='Check cache without rebuilding')
+    parser.add_argument('--plate', choices=['viii', 'ix', 'x'], help='Rebuild only one plate and its contexts')
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format='%(levelname)s %(message)s')
     try:
@@ -133,9 +138,13 @@ def main() -> int:
         manifest = json.loads((BASE / 'manifest.json').read_text())
         verify_sources(manifest, args.fetch)
         if not args.verify_only:
-            for script in ('crop.py', 'plate.py', 'plates.py'):
-                subprocess.run([sys.executable, '-I', str(BASE / 'build' / script)], check=True)
-            export(manifest)
+            subprocess.run([sys.executable, '-I', str(BASE / 'build/crop.py')], check=True)
+            if args.plate in (None, 'viii'):
+                subprocess.run([sys.executable, '-I', str(BASE / 'build/plate.py')], check=True)
+            if args.plate != 'viii':
+                command = [sys.executable, '-I', str(BASE / 'build/plates.py')]
+                subprocess.run(command + ([args.plate] if args.plate else []), check=True)
+            export(manifest, args.plate)
         return 0
     except (OSError, ValueError, RuntimeError, subprocess.CalledProcessError) as error:
         LOG.error('%s', error)

@@ -58,3 +58,10 @@ The private-scaffold check inspected absolute path segments and rejected the ent
 
 ## 2026-11-09 Showcase HTML and CSS cached independently
 The COME AT ME! rack preview HTML reached the custom domain while the old stylesheet was still cached. An arbitrary query string and a no-cache request did not refresh the custom-domain HTML in this check. Published the revised stylesheet at `showcase.css`. Verified the release at the Render origin first, then waited for the public HTML to reference the new asset URL.
+
+## 2026-11-27 — Internet Archive leaf numbers can differ from reader indices
+
+Error: Smithsonian Montfort scandata leaf 5/295 requested as reader n5/n295 returned blank reverse sheets.
+Cause: this scan’s scandata is one-based; the reader index is zero-based.
+Fix: use title n4 and plate n294, then visually verify the inscriptions before selecting a source. Derive each scan’s mapping rather than assuming a universal offset.
+Graduated-to: domain/map-monsters-evidence.md, original-edition retrieval notes; manifest edition_evidence stores both leaf and reader indices.

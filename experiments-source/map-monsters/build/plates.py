@@ -34,7 +34,7 @@ PLATES = {
             ]),
             ("1801/02–48", [
                 cell("serp_1848", False, "Illustrated London News, 28 October 1848", "“The sea-serpent when first seen from H.M.S. Dædalus”"),
-                cell("kraken_1801", False, "Montfort, Mollusques II, An X (1801–02)", "colossal octopus; reproduction’s edition uncertain"),
+                cell("kraken_1801", False, "Montfort, Mollusques II, An X (1801–02)", "“Le poulpe colossal”, pl. XXVI · Smithsonian scan"),
             ]),
             ("1860–61", [
                 cell("serp_1860", False, "“The great sea-serpent”, Bermuda, 1860", "an oarfish; wood engraving after W. D. Munro"),
@@ -152,5 +152,9 @@ def build(key: str, spec: dict) -> Path:
 
 
 if __name__ == "__main__":
-    for k, s in PLATES.items():
-        build(k, s)
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('plate', nargs='?', choices=['ix', 'x'])
+    args = parser.parse_args()
+    for k in ([args.plate] if args.plate else PLATES):
+        build(k, PLATES[k])

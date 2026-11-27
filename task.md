@@ -793,3 +793,21 @@ Surface: experiments/map-monsters and experiments-source/map-monsters. Execution
 - [x] Desktop browser checks pass.
 - [x] Mobile browser checks pass.
 - [x] A fresh independent verifier reports no unresolved blocker.
+
+## 2026-11-27 — Replace the Montfort reproduction
+Surface: Map Monsters Plate IX source image, crop context, manifest and evidence notes. Execution: execution/rebuild_map_monsters.py. Preserve An X as 1801–1802 unless primary evidence narrows it. Publication follows the existing approved Zero Page Labs release workflow after verification.
+
+- [x] The replacement scan belongs to a complete original-edition volume.
+- [x] The volume title page identifies Dufart as publisher.
+- [x] The title page bears An X.
+- [x] The selected sheet identifies plate XXVI.
+- [x] The selected sheet bears Le poulpe colossal.
+- [x] The manifest records the institutional scan URL.
+- [x] The manifest records the replacement checksum.
+- [x] Plate IX uses the replacement scan.
+- [x] The specimen context uses the replacement scan.
+- [x] Current copy removes the reproduction-edition uncertainty.
+- [x] The Montfort provenance regression passes.
+- [x] The deep site verifier passes.
+- [x] Browser inspection confirms the replacement image renders.
+- [x] Independent verification reports no unresolved blocker.

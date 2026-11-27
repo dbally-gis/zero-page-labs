@@ -9,7 +9,7 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 | [context.md](context.md) | domain | 2026-11-16 | Brand, dual goal (Showcase/Credibility + Craft/Playground), and current surface |
 | [SESSION.md](SESSION.md) | log | 2026-11-16 | Showcase front door handoff; earlier launch handoffs |
 | [DECISIONS.md](DECISIONS.md) | decision | 2026-11-16 | Static architecture, released content, full-book bounded views, one experiments list and build-time share tags |
-| [ERRORS.md](ERRORS.md) | errors | 2026-11-08 | Image aspect ratio, splash clearance and fullscreen flex sizing fixes |
+| [ERRORS.md](ERRORS.md) | errors | 2026-11-27 | Rendering fixes and Internet Archive leaf-to-reader indexing |
 | [domain/content.md](domain/content.md) | domain | 2026-11-25 | Availability and asset provenance; generated Bellona cover |
 | [procedural/deploy_site.md](procedural/deploy_site.md) | procedural | 2026-11-25 | Build, checks, deployment and analytics reporting |
 | [REFLECTIONS.jsonl](REFLECTIONS.jsonl) | reflection | 2026-11-07 | Launch lessons |

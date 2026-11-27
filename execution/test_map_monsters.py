@@ -13,6 +13,20 @@ import rebuild_map_monsters as build
 
 
 class SourceContract(unittest.TestCase):
+    def test_montfort_uses_institutional_original_with_title_evidence(self):
+        manifest = json.loads((build.BASE / 'manifest.json').read_text())
+        crops = json.loads((build.BASE / 'build/crops.json').read_text())
+        source = manifest['sources'][crops['kraken_1801']['src']]
+        self.assertEqual(source['download_url'], 'https://archive.org/download/Histoirenaturel2Deny/page/n294_w2000.jpg')
+        self.assertEqual(source['sha256'], 'ecfc9d5ceece34a151359db448413ab727dedb3500ca265a30dc63cf65c2f791')
+        evidence = source['edition_evidence']
+        self.assertIn('AN X', evidence['title_page_transcription'])
+        self.assertIn('DUFART', evidence['title_page_transcription'])
+        self.assertEqual(evidence['reader_index'], 294)
+        self.assertEqual(evidence['scandata_leaf'], 295)
+        self.assertIn('XXVI', evidence['plate_transcription'])
+        self.assertIn('/page/n4/', evidence['title_page'])
+
     def test_captions_match_plate_renderers(self):
         sys.path.insert(0, str(build.BASE / 'build'))
         import plate
