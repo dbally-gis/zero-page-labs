@@ -402,6 +402,165 @@
   },
   {
    "floor": 9,
+   "id": "clitherow",
+   "site": "Tollbooth on Ouse Bridge (after imprisonment in York Castle)",
+   "short": "York, Clitherow",
+   "place": "York, England",
+   "lat": 53.9572,
+   "lon": -1.0838,
+   "years": "1586",
+   "sortYear": 1586,
+   "title": "Pressed under a door",
+   "claim": "In York in 1586, Margaret Clitherow refused to enter a plea and was crushed to death under a door loaded with heavy weights.",
+   "verdict": "record",
+   "answer": "She was pressed to death on 25 March 1586 at the tollbooth on Ouse Bridge, under a weighted door, after refusing to plead.",
+   "explanation": "Margaret Clitherow was a butcher's wife in York who converted to Catholicism. She was arrested on 10 March 1586 for harbouring Catholic priests and was held in York Castle. At her trial she refused to plead. If she had pleaded, her children and servants would have been the witnesses against her. English law punished a refusal to plead with peine forte et dure (pressing). On 25 March 1586, Lady Day, she was taken to the tollbooth on Ouse Bridge. She was laid on a sharp stone and a door was placed on her, then weighted until she was crushed to death. Accounts say she died within about fifteen minutes. A contemporary account by her confessor, John Mush, is the main source.",
+   "nuance": "Accounts give the weight as seven or eight hundredweight, about 350–400 kg, and say the door came from her own house. These details go back mainly to John Mush's account, written within months of her death by a priest who admired her. The date is in the Julian calendar used in England at the time, when the year began on 25 March, so her arrest on 10 March was then reckoned as 1585. A few popular sources give a different day, but 25 March is the date in scholarly and encyclopedia accounts. She was canonised in 1970.",
+   "visual": "A small stone tollhouse on the medieval Ouse Bridge in York, with the river below and timber-framed houses crowding the bridge. Inside, a bare flagstone floor and a plain wooden house door leaning against the wall.",
+   "sources": [
+    {
+     "title": "Margaret Clitherow (Catholic Encyclopedia, 1908)",
+     "publisher": "New Advent",
+     "author": "",
+     "year": "1908",
+     "url": "https://www.newadvent.org/cathen/04059b.htm",
+     "supports": "Says she was arrested on 10 March 1586 and committed to the castle, refused to plead, and on Lady Day 1586 was taken to the tollbooth on Ousebridge, where a door was weighted on her until she was crushed to death, in fifteen minutes of agony."
+    },
+    {
+     "title": "An Elizabethan Martyrologist and his Martyr: John Mush and Margaret Clitherow",
+     "publisher": "Studies in Church History, vol. 30 (Cambridge University Press)",
+     "author": "Claire Cross",
+     "year": "1993",
+     "url": "https://www.cambridge.org/core/journals/studies-in-church-history/article/an-elizabethan-martyrologist-and-his-martyr-john-mush-and-margaret-clitherow/71431BDEBF8DC0E75DE22504F34E6609",
+     "supports": "Opens by stating that on 25 March 1586, for refusing to plead on a charge of harbouring Catholic priests, Margaret Clitherow was pressed to death in York."
+    },
+    {
+     "title": "Margaret Clitherow",
+     "publisher": "Historic UK",
+     "author": "Zoe Screti",
+     "year": "",
+     "url": "https://www.historic-uk.com/HistoryUK/HistoryofEngland/Margaret-Clitherow",
+     "supports": "Gives 25 March 1586, the tollbooth on Ouse Bridge, a weight of seven or eight hundredweight, and death within about fifteen minutes."
+    },
+    {
+     "title": "Margaret Clitherow",
+     "publisher": "Wikipedia",
+     "author": "",
+     "year": "",
+     "url": "https://en.wikipedia.org/wiki/Margaret_Clitherow",
+     "supports": "Says the door from her own house was laid on her and loaded with 7–8 hundredweight, that she died within fifteen minutes, and that Mush wrote his account within three months."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "floor": 10,
+   "id": "bridge-of-sighs",
+   "site": "Bridge of Sighs (Ponte dei Sospiri) and the New Prisons (Prigioni Nuove)",
+   "short": "Bridge of Sighs",
+   "place": "Venice, Italy",
+   "lat": 45.434,
+   "lon": 12.341,
+   "years": "c. 1600–1614",
+   "sortYear": 1600,
+   "title": "The bridge that sighed later",
+   "claim": "The Bridge of Sighs was given that name when it was built, around 1600, because prisoners crossing it sighed at their last view of Venice.",
+   "verdict": "myth",
+   "answer": "The name comes from the Romantic period, around 1800, and Byron's 1818 poem spread it in English. It was not the bridge's name when it was built.",
+   "explanation": "The enclosed stone bridge over the Rio di Palazzo was built in the early 1600s, under Doge Marino Grimani, to a design by Antonio Contin. It linked the courts and interrogation rooms of the Doge's Palace with the New Prisons across the canal. Inside, two separate passages kept prisoners going in different directions apart. The Doge's Palace museum says the bridge's famous name 'dates from the Romantic period'. The image of prisoners sighing at a last glimpse of freedom through its small barred windows is a nineteenth-century idea. Byron's Childe Harold's Pilgrimage, Canto IV (1818), opens 'I stood in Venice, on the Bridge of Sighs', and the poem made the English name famous.",
+   "nuance": "Sources give different building dates: some say 1600 to about 1603, and the Doge's Palace museum gives 1614. The New Prisons themselves were begun in the later 1500s, and that work was still being finished in the early 1600s. It is often said that Byron coined the name; Italy's official tourism site reports that story as a popular legend. The Italian form may have been in local use a little before his poem, but nothing ties the name to the time the bridge was built. Most people who crossed it were going between interrogation, trial and the cells, not to execution. The New Prisons were meant to have larger, brighter and airier cells than the old ones in the palace, but the museum notes that parts of the building fell short of this.",
+   "visual": "A small enclosed bridge of white Istrian limestone arches high over a narrow green canal between the Doge's Palace and a plain, heavy prison block. It has two small rectangular windows with stone grilles. Inside, a cramped, dim double corridor leads to cells lined with overlapping larch planks.",
+   "sources": [
+    {
+     "title": "Bridge of Sighs / New Prisons (official museum page)",
+     "publisher": "Fondazione Musei Civici di Venezia – Palazzo Ducale",
+     "author": "",
+     "year": "",
+     "url": "https://palazzoducale.visitmuve.it/en/?p=2418",
+     "supports": "Says the bridge was built to link the palace to the New Prisons, that its famous name 'dates from the Romantic period', and describes the cells and their shortcomings."
+    },
+    {
+     "title": "Bridge of Sighs",
+     "publisher": "Italia.it (Italian National Tourist Board)",
+     "author": "",
+     "year": "",
+     "url": "https://www.italia.it/en/veneto/venice/bridge-of-sighs",
+     "supports": "Says the bridge was built in the early 1600s to a design by Antonio Contin, commissioned by Doge Marino Grimani, and calls Byron's coining of the name a popular legend."
+    },
+    {
+     "title": "Childe Harold's Pilgrimage: Canto the Fourth",
+     "publisher": "Representative Poetry Online, University of Toronto Libraries",
+     "author": "Lord Byron",
+     "year": "1818",
+     "url": "https://rpo.library.utoronto.ca/content/childe-harolds-pilgrimage-canto-fourth",
+     "supports": "Gives the opening line 'I stood in Venice, on the Bridge of Sighs' and 1818 as the year of publication."
+    },
+    {
+     "title": "Bridge of Sighs",
+     "publisher": "Wikipedia",
+     "author": "",
+     "year": "",
+     "url": "https://en.wikipedia.org/wiki/Bridge_of_Sighs",
+     "supports": "Citing Goy (1997), says the bridge was built soon after 1600 to a design by Contin, has two separate passages, and that its name is a Romantic creation of the 19th century."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "floor": 11,
+   "id": "fawkes",
+   "site": "Tower of London",
+   "short": "Guy Fawkes",
+   "place": "London, England",
+   "lat": 51.5081,
+   "lon": -0.0759,
+   "years": "1605",
+   "sortYear": 1605,
+   "title": "The king's written order",
+   "claim": "In November 1605, King James I authorised in writing the torture of Guy Fawkes, telling his interrogators to use 'the gentler tortures' first.",
+   "verdict": "record",
+   "answer": "James's own instruction of 6 November 1605, now held by The National Archives, orders 'the gentler tortures' first and then harsher ones by degrees.",
+   "explanation": "Guy Fawkes was arrested beneath the House of Lords on the night of 4–5 November 1605 and gave his name as John Johnson. He was taken to the Tower of London and at first refused to name the other plotters. On 6 November, James I sent his interrogators a written list of questions for the prisoner. It ended with the instruction: 'The gentler Tortures are to be first used unto him, et sic per gradus ad ima tenditur' (and so by degrees proceeding to the worst). The document survives in The National Archives and was shown in its 2022–23 exhibition 'Treason: People, Power & Plot'. Fawkes's shaky signature on a confession made soon afterwards is generally taken as evidence of what he went through.",
+   "nuance": "Torture was never part of English common law. It was used only under warrants from the Crown or the Privy Council, which is why the king's order matters. Historians are not certain which methods were used on Fawkes, or whether he was put on the rack. The tradition that he was racked rests partly on later accounts. The weak 'Guido' signature, compared with his firmer signature days later, is strong circumstantial evidence, but it does not show the exact treatment.",
+   "visual": "A stone chamber inside the Tower of London, with a heavy timber door, small leaded windows and a plain table holding a quill, ink and a folded paper sealed with red wax. The Thames and the Tower's outer walls show through the window.",
+   "sources": [
+    {
+     "title": "Treason: people, power, and plot (exhibition review)",
+     "publisher": "The Past (Current Publishing)",
+     "author": "Carly Hilts",
+     "year": "2023",
+     "url": "https://the-past.com/review/whats-on/treason-people-power-and-plot/",
+     "supports": "Describes the National Archives exhibition showing James I's 'authorisation to use \"the gentler tortures\" on the accused' and Fawkes's shaky signature on the resulting document."
+    },
+    {
+     "title": "Guy Fawkes",
+     "publisher": "Wikipedia",
+     "author": "",
+     "year": "",
+     "url": "https://en.wikipedia.org/wiki/Guy_Fawkes",
+     "supports": "Citing Fraser (2005) and Northcote Parkinson (1976), says James ordered the torture on 6 November and wrote 'the gentler Tortures are to be first used unto him, et sic per gradus ad ima tenditur', and compares the signatures."
+    },
+    {
+     "title": "What Gunpowder Plot Was (archive.org scan)",
+     "publisher": "Longmans, Green, London",
+     "author": "Samuel Rawson Gardiner",
+     "year": "1897",
+     "url": "https://archive.org/download/whatgunpowderplo00garduoft/whatgunpowderplo00garduoft_djvu.txt",
+     "supports": "Quotes the King's instructions of 6 November 1605: 'If he will not otherwise confess, the gentler tortures are to be first used unto him, et sic per gradus ad ima tenditur.'"
+    },
+    {
+     "title": "A Reading on the Use of Torture in the Criminal Law of England (archive.org scan)",
+     "publisher": "Baldwin and Cradock, London",
+     "author": "David Jardine",
+     "year": "1837",
+     "url": "https://archive.org/download/areadingonuseto01jardgoog/areadingonuseto01jardgoog_djvu.txt",
+     "supports": "Calls it 'the well-known warrant in the King's hand-writing' authorising Fawkes's examination under torture, 'using the gentler tortures first'."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "floor": 12,
    "id": "cachtice",
    "site": "Čachtice Castle",
    "short": "Čachtice Castle",
@@ -446,7 +605,7 @@
    "confidence": "high"
   },
   {
-   "floor": 10,
+   "floor": 13,
    "id": "lancaster",
    "site": "Lancaster Castle",
    "short": "Lancaster Castle",
@@ -499,7 +658,7 @@
    "confidence": "high"
   },
   {
-   "floor": 11,
+   "floor": 14,
    "id": "pignerol",
    "site": "Pignerol fortress",
    "short": "Pignerol",
@@ -544,7 +703,7 @@
    "confidence": "high"
   },
   {
-   "floor": 12,
+   "floor": 15,
    "id": "iron-mask",
    "site": "The Man in the Iron Mask (Pignerol, Exilles, Sainte-Marguerite, Bastille)",
    "short": "The Iron Mask",
@@ -589,7 +748,7 @@
    "confidence": "high"
   },
   {
-   "floor": 13,
+   "floor": 16,
    "id": "dunnottar",
    "site": "Dunnottar Castle",
    "short": "Dunnottar Castle",
@@ -642,7 +801,7 @@
    "confidence": "high"
   },
   {
-   "floor": 14,
+   "floor": 17,
    "id": "peter-paul",
    "site": "Peter and Paul Fortress",
    "short": "Peter and Paul",
@@ -687,7 +846,7 @@
    "confidence": "high"
   },
   {
-   "floor": 15,
+   "floor": 18,
    "id": "marshalsea",
    "site": "Marshalsea prison",
    "short": "Marshalsea",
@@ -724,7 +883,7 @@
    "confidence": "high"
   },
   {
-   "floor": 16,
+   "floor": 19,
    "id": "newgate",
    "site": "Newgate Prison and the Old Bailey",
    "short": "Newgate",
@@ -761,7 +920,7 @@
    "confidence": "high"
   },
   {
-   "floor": 17,
+   "floor": 20,
    "id": "magdeburg",
    "site": "Magdeburg fortress (the Star Fort, or Sternschanze)",
    "short": "Magdeburg",
@@ -822,7 +981,7 @@
    "confidence": "medium"
   },
   {
-   "floor": 18,
+   "floor": 21,
    "id": "black-hole-calcutta",
    "site": "The 'Black Hole', Fort William",
    "short": "Black Hole, Calcutta",
@@ -875,7 +1034,7 @@
    "confidence": "medium"
   },
   {
-   "floor": 19,
+   "floor": 22,
    "id": "piombi-casanova",
    "site": "The Piombi ('the Leads'), Doge's Palace",
    "short": "The Piombi, Venice",
@@ -928,7 +1087,52 @@
    "confidence": "high"
   },
   {
-   "floor": 20,
+   "floor": 23,
+   "id": "shlisselburg",
+   "site": "Shlisselburg Fortress (Oreshek)",
+   "short": "Shlisselburg",
+   "place": "Shlisselburg, Leningrad Oblast, Russia",
+   "lat": 59.9536,
+   "lon": 31.0386,
+   "years": "1756–1764",
+   "sortYear": 1764,
+   "title": "The prisoner who could not be freed",
+   "claim": "The deposed Russian emperor Ivan VI was held in Shlisselburg fortress under orders to kill him if anyone tried to free him, and his guards did so in 1764.",
+   "verdict": "record",
+   "answer": "When Vasily Mirovich tried to free him in July 1764, Ivan VI's jailers killed him under standing orders to put him to death in a rescue attempt.",
+   "explanation": "Ivan VI became emperor as a baby in 1740. He was deposed on 6 December 1741, at about fifteen months old, when Elizabeth seized the throne. He was kept in strict isolation, and from 1756 he was a secret prisoner in Shlisselburg fortress on an island where the Neva leaves Lake Ladoga. His guards had orders that he was to be put to death if anyone tried to free him, and Catherine II renewed these orders after she took the throne in 1762. At midnight on 5 July 1764 (Old Style; 16 July New Style), Sub-lieutenant Vasily Mirovich of the garrison tried to free him. Ivan's two jailers, Captain Vlasiev and Lieutenant Chekin, killed him at once. Mirovich was beheaded in St Petersburg on 15 September 1764 (Old Style).",
+   "nuance": "Ivan was not alone in prison for his whole life. He was held with his family at first, and was separated from them in 1744. He spent his last eight years in Shlisselburg. Sources differ on who first issued the kill order: some name Catherine II, and others say it went back to her predecessors and was renewed. Whether Catherine knew in advance of Mirovich's plot, or encouraged it, was rumoured at the time and has never been proved.",
+   "visual": "A low island fortress of grey stone walls and squat round towers on the water where the broad Neva river leaves Lake Ladoga, under a pale northern sky. Inside, a small whitewashed cell with one high barred window and a narrow cot.",
+   "sources": [
+    {
+     "title": "Ivan VI (Encyclopedia of Russian History)",
+     "publisher": "Encyclopedia.com / Macmillan Reference",
+     "author": "Lindsey Hughes",
+     "year": "2004",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/ivan-vi",
+     "supports": "Says Ivan was imprisoned in Schlüsselburg and killed in 1764 by guards 'acting on orders from St. Petersburg to take extreme measures in the event of an escape attempt'."
+    },
+    {
+     "title": "Mirovich Vasily Yakovlevich",
+     "publisher": "Encyclopaedia of Saint Petersburg (encspb.ru)",
+     "author": "",
+     "year": "",
+     "url": "https://encspb.ru/object/2804023328?lc=en",
+     "supports": "Says Ivan had been a secret prisoner at Shlisselburg since 1756, and that Mirovich tried to free him on the night of 5 July 1764. It says Vlasiev and Chekin killed him on Catherine II's instructions and Mirovich was executed on 15 September 1764."
+    },
+    {
+     "title": "Ivan VI of Russia",
+     "publisher": "Wikipedia",
+     "author": "",
+     "year": "",
+     "url": "https://en.wikipedia.org/wiki/Ivan_VI_of_Russia",
+     "supports": "Gives the deposition of 6 December 1741, the move to Shlisselburg in 1756, and the orders after 1762 that 'the prisoner was to be put to death' if anyone tried to free him. It dates the attempt to midnight on 5 July 1764 (Old Style) and the death to 16 July 1764 (New Style)."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "floor": 24,
    "id": "chateau-d-if",
    "site": "Château d'If",
    "short": "Château d'If",
@@ -989,7 +1193,7 @@
    "confidence": "high"
   },
   {
-   "floor": 21,
+   "floor": 25,
    "id": "mont-saint-michel-cage",
    "site": "Abbey prison, Mont-Saint-Michel",
    "short": "Mont-Saint-Michel",
@@ -1042,7 +1246,7 @@
    "confidence": "medium"
   },
   {
-   "floor": 22,
+   "floor": 26,
    "id": "bastille",
    "site": "The Bastille",
    "short": "The Bastille",
@@ -1095,7 +1299,7 @@
    "confidence": "high"
   },
   {
-   "floor": 23,
+   "floor": 27,
    "id": "iron-maiden-nuremberg",
    "site": "The 'Iron Maiden' of Nuremberg",
    "short": "The Iron Maiden",
@@ -1148,7 +1352,7 @@
    "confidence": "high"
   },
   {
-   "floor": 24,
+   "floor": 28,
    "id": "oubliette",
    "site": "The oubliette (castles everywhere; Warwick Castle as the example)",
    "short": "The oubliette",

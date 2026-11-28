@@ -8,18 +8,18 @@ const { floors } = JSON.parse(readFileSync(new URL('floors.json', dir), 'utf8'))
 const html = readFileSync(new URL('index.html', dir), 'utf8');
 const isWiki = (u) => /(^|\.)wikipedia\.org\//.test(new URL(u).hostname + '/');
 
-test('there are exactly 24 floors, numbered 1 to 24', () => {
-  assert.equal(floors.length, 24);
+test('there are exactly 28 floors, numbered in order', () => {
+  assert.equal(floors.length, 28);
   floors.forEach((f, i) => assert.equal(f.floor, i + 1));
 });
 
 test('floor ids are unique and safe for file names', () => {
-  assert.equal(new Set(floors.map((f) => f.id)).size, 24);
+  assert.equal(new Set(floors.map((f) => f.id)).size, floors.length);
   for (const f of floors) assert.match(f.id, /^[a-z0-9-]+$/);
 });
 
-test('floors 1 to 23 run in date order', () => {
-  for (let i = 1; i < 23; i++) assert.ok(floors[i].sortYear >= floors[i - 1].sortYear, `${floors[i].id} before ${floors[i - 1].id}`);
+test('every floor but the last runs in date order', () => {
+  for (let i = 1; i < floors.length - 1; i++) assert.ok(floors[i].sortYear >= floors[i - 1].sortYear, `${floors[i].id} before ${floors[i - 1].id}`);
 });
 
 test('every floor dates from 1200 to 1800', () => {
@@ -57,7 +57,7 @@ test('every floor cites at least one source that is not Wikipedia', () => {
 
 test('myths and records are each at least a third of the floors', () => {
   const myths = floors.filter((f) => f.verdict === 'myth').length;
-  assert.ok(myths >= 8 && myths <= 16, `myths ${myths}`);
+  assert.ok(myths >= floors.length / 3 && myths <= (floors.length * 2) / 3, `myths ${myths}`);
 });
 
 test('every floor has its illustration on disk', () => {

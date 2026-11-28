@@ -20,6 +20,7 @@ OUT = ROOT / "experiments" / "myth-or-record" / "floors.json"
 FIELDS = ["floor", "id", "site", "short", "place", "lat", "lon", "years", "sortYear", "title", "claim", "verdict",
           "answer", "explanation", "nuance", "visual", "sources", "confidence"]
 LAST = "oubliette"
+EXPECTED = 28  # 24 original floors + Bridge of Sighs and three gruesome truths (2026-11-27)
 
 # Editorial overrides applied on top of the researchers' text. They change voice and
 # wording for readers (no first person, no notes about the research process), add
@@ -32,6 +33,7 @@ SHORT = {
     "mont-saint-michel-cage": "Mont-Saint-Michel", "iron-maiden-nuremberg": "The Iron Maiden",
     "oubliette": "The oubliette", "castel-sant-angelo": "Castel Sant'Angelo", "peter-paul": "Peter and Paul",
     "chateau-d-if": "Château d'If", "marshalsea": "Marshalsea", "pignerol": "Pignerol",
+    "fawkes": "Guy Fawkes", "clitherow": "York, Clitherow", "bridge-of-sighs": "Bridge of Sighs", "shlisselburg": "Shlisselburg",
 }
 EDITS = {
     "carcassonne": {"nuance": "The Inquisition's prison at Carcassonne was in use from the 1200s, but its best-documented years are 1303–1320, so this floor is dated to them. Délicieux's judges waived his chains and bread-and-water diet because of his age and weak hands; Pope John XXII is reported to have overruled them. His trial began on 3 or 12 September 1319; sources differ. Lea's history dates from the 1880s but is still standard, and his description of the 'strict wall' covers inquisitorial prisons in general, not Carcassonne alone."},
@@ -50,6 +52,21 @@ EDITS = {
 # on the researchers' text; the build fails if the text to replace is not found, so a
 # correction can never silently stop applying.
 REPLACE = {
+    "bridge-of-sighs": [
+        ("answer", "The name comes from the Romantic period of the early 1800s,", "The name comes from the Romantic period, around 1800,"),
+        ("nuance", "It is often said that Byron coined the name, but Italy's official tourism site calls that a popular legend.",
+         "It is often said that Byron coined the name; Italy's official tourism site reports that story as a popular legend."),
+    ],
+    "shlisselburg": [
+        ("explanation", "Mirovich was beheaded in St Petersburg on 15 September 1764.", "Mirovich was beheaded in St Petersburg on 15 September 1764 (Old Style)."),
+    ],
+    "fawkes": [
+        ("explanation", "James I sent the Tower a written list of questions for the prisoner.", "James I sent his interrogators a written list of questions for the prisoner."),
+    ],
+    "clitherow": [
+        ("nuance", "The date is in the Julian calendar used in England at the time.",
+         "The date is in the Julian calendar used in England at the time, when the year began on 25 March, so her arrest on 10 March was then reckoned as 1585."),
+    ],
     "black-hole-calcutta": [
         ("claim", "146 prisoners were crammed into Calcutta's 'Black Hole' and 123 of them suffocated, as survivor John Holwell reported.",
          "146 prisoners were crammed into Calcutta's 'Black Hole', and 123 of them suffocated."),
@@ -127,6 +144,19 @@ ANSWERS = {
     "oubliette": "True forgetting pits were rare; many supposed oubliettes were really storerooms, latrines or ice stores.",
 }
 
+# Sources added by the coordinator after the researcher could not reach them; each was
+# opened and the quoted words found in the text (archive.org full-text scans).
+ADD_SOURCES = {
+    "fawkes": [
+        {"title": "What Gunpowder Plot Was (archive.org scan)", "publisher": "Longmans, Green, London", "author": "Samuel Rawson Gardiner", "year": "1897",
+         "url": "https://archive.org/download/whatgunpowderplo00garduoft/whatgunpowderplo00garduoft_djvu.txt",
+         "supports": "Quotes the King's instructions of 6 November 1605: 'If he will not otherwise confess, the gentler tortures are to be first used unto him, et sic per gradus ad ima tenditur.'"},
+        {"title": "A Reading on the Use of Torture in the Criminal Law of England (archive.org scan)", "publisher": "Baldwin and Cradock, London", "author": "David Jardine", "year": "1837",
+         "url": "https://archive.org/download/areadingonuseto01jardgoog/areadingonuseto01jardgoog_djvu.txt",
+         "supports": "Calls it 'the well-known warrant in the King's hand-writing' authorising Fawkes's examination under torture, 'using the gentler tortures first'."},
+    ],
+}
+
 
 def apply_replacements(f: dict) -> None:
     for field, old, new in REPLACE.get(f["id"], []):
@@ -140,13 +170,14 @@ def apply_replacements(f: dict) -> None:
         if old not in f[field]:
             raise SystemExit(f"{f['id']}.{field}: text to replace not found: {old[:60]}")
         f[field] = f[field].replace(old, new)
+    f["sources"] = f["sources"] + ADD_SOURCES.get(f["id"], [])
     drop = DROP_SOURCES.get(f["id"], [])
     f["sources"] = [s for s in f["sources"] if s["url"] not in drop]
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--allow-partial", action="store_true", help="write even if there are fewer than 24 floors")
+    ap.add_argument("--allow-partial", action="store_true", help="write even if the count is not EXPECTED")
     args = ap.parse_args()
     floors: list[dict] = []
     for path in sorted(SRC.glob("research_*.json")):
@@ -156,17 +187,17 @@ def main() -> int:
     if dupes:
         print(f"Duplicate ids: {sorted(dupes)}", file=sys.stderr)
         return 1
-    if len(floors) != 24 and not args.allow_partial:
-        print(f"Expected 24 floors, found {len(floors)}", file=sys.stderr)
+    if len(floors) != EXPECTED and not args.allow_partial:
+        print(f"Expected {EXPECTED} floors, found {len(floors)}", file=sys.stderr)
         return 1
     floors.sort(key=lambda f: (f["id"] == LAST, f["sortYear"]))
     for n, f in enumerate(floors, 1):
         f["floor"] = n
         f["short"] = SHORT.get(f["id"], f["site"])
         apply_replacements(f)
-        if f["id"] not in ANSWERS:
-            raise SystemExit(f"{f['id']}: no one-line answer in ANSWERS")
-        f["answer"] = ANSWERS[f["id"]]
+        f["answer"] = ANSWERS.get(f["id"], f.get("answer", ""))
+        if not f["answer"]:
+            raise SystemExit(f"{f['id']}: no one-line answer")
         f.update(EDITS.get(f["id"], {}))
     clean = [{k: f.get(k, "") for k in FIELDS} for f in floors]
     OUT.write_text(json.dumps({"floors": clean}, ensure_ascii=False, indent=1) + "\n")

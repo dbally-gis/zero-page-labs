@@ -31,11 +31,14 @@ h1 { margin: 0; font-size: clamp(36px, 5.4vw, 62px); font-weight: 600; line-heig
 h1 em { color: var(--red); font-weight: 400; }
 .plate { margin: 0; font: 12px/1.5 var(--mono); letter-spacing: .08em; text-align: right; color: var(--muted); }
 
-.intro { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 28px; align-items: center; margin: 18px 0 8px; }
-.crown { margin: 0; }
-.crown img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
-.lede { font-size: 19px; margin: 0 0 14px; }
+.intro { margin: 16px 0 18px; }
+.intro-text { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+.lede { font-size: 20px; margin: 0; }
 .honest { margin: 0; padding: 10px 14px; border-left: 3px solid var(--stone-dark); background: rgba(139,133,121,.12); font-size: 15px; }
+/* The crown sits on the shaft at exactly its width, so its walls run into the floors. */
+.shaft { min-width: 0; }
+.crown { margin: 0; line-height: 0; }
+.crown img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
 
 /* The descent: a gauge beside a shaft of floors */
 .descent { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 22px; align-items: start; }
@@ -98,7 +101,7 @@ ol.sources { margin: 0; padding-left: 20px; font-size: 14px; }
 
 @media (max-width: 900px) {
   .myth { padding: 4px 12px 40px; }
-  .intro { grid-template-columns: 1fr; gap: 10px; }
+  .intro-text { grid-template-columns: 1fr; gap: 10px; }
   .plate { text-align: left; }
   .descent { grid-template-columns: minmax(0, 1fr); }
   .gauge { position: sticky; top: 0; z-index: 4; max-height: none; overflow: visible; background: var(--paper); padding: 6px 0; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(42,37,32,.2); }

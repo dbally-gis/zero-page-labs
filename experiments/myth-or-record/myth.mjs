@@ -1,4 +1,4 @@
-// Myth or Record? — 24 floors, one claim each, answers saved in this browser.
+// Real or Not? — one claim per floor, answers saved in this browser.
 const $ = (id) => document.getElementById(id);
 const KEY = 'zpl-myth-or-record-v1';
 let floors = [];
@@ -87,9 +87,11 @@ function reset() {
 }
 
 function shareText() {
-  const marks = floors.map((f) => (answers[f.id] === f.verdict ? '🟩' : '🟥')).join('');
+  const marks = floors.map((f) => (answers[f.id] === f.verdict ? '🟩' : '🟥'));
   const score = floors.filter((f) => answers[f.id] === f.verdict).length;
-  return `Real or Not? Prisons and dungeons, 1200–1800\n${score}/${floors.length}\n${marks.slice(0, 12)}\n${marks.slice(12)}\nzeropagelabs.com/experiments/myth-or-record/`;
+  const rows = [];
+  for (let i = 0; i < marks.length; i += 14) rows.push(marks.slice(i, i + 14).join(''));
+  return `Real or Not? Prisons and dungeons, 1200–1800\n${score}/${floors.length}\n${rows.join('\n')}\nzeropagelabs.com/experiments/myth-or-record/`;
 }
 
 async function main() {

@@ -6,7 +6,8 @@ white and the ink keeps its strength; on the page the image is drawn with
 mix-blend-mode: multiply and sits directly on the page's own paper colour.
 
 Usage:
-    python3 execution/prepare_myth_art.py SRC.png OUT.webp [--size 800x600] [--crop-x 0.2,0.8]
+    python3 execution/prepare_myth_art.py SRC.png OUT.webp [--size 800x600] [--crop-x 0.2,0.8] [--bg-from top]
+    Crown: crop 110 px of sky off .tmp/dungeons/crown-wide.png, then --size 1200x446 --bg-from top
 """
 from __future__ import annotations
 
@@ -22,11 +23,14 @@ except ImportError:  # pragma: no cover
     raise SystemExit(1)
 
 
-def whiten(im: Image.Image) -> Image.Image:
+def whiten(im: Image.Image, bg_from: str = "border") -> Image.Image:
     arr = np.asarray(im.convert("RGB")).astype(float)
     h, w, _ = arr.shape
     band = max(4, min(h, w) // 40)
-    border = np.concatenate([arr[:band].reshape(-1, 3), arr[-band:].reshape(-1, 3), arr[:, :band].reshape(-1, 3), arr[:, -band:].reshape(-1, 3)])
+    if bg_from == "top":  # for art whose sides are drawn to the edge, e.g. walls
+        border = arr[:band].reshape(-1, 3)
+    else:
+        border = np.concatenate([arr[:band].reshape(-1, 3), arr[-band:].reshape(-1, 3), arr[:, :band].reshape(-1, 3), arr[:, -band:].reshape(-1, 3)])
     bg = np.median(border, axis=0)
     out = np.clip(arr / np.maximum(bg, 1) * 255 * 1.04, 0, 255)  # slight lift removes paper grain
     return Image.fromarray(out.astype("uint8"), "RGB")
@@ -38,6 +42,7 @@ def main() -> int:
     ap.add_argument("out", type=Path)
     ap.add_argument("--size", default="800x600", help="WxH; the image is cropped to this ratio, then resized")
     ap.add_argument("--crop-x", default="", help="keep this horizontal fraction range first, e.g. 0.2,0.8")
+    ap.add_argument("--bg-from", choices=["border", "top"], default="border", help="where to sample the paper colour")
     args = ap.parse_args()
     if not args.src.exists():
         print(f"Missing {args.src}", file=sys.stderr)
@@ -56,7 +61,7 @@ def main() -> int:
         nh = int(im.width / ratio)
         y0 = (im.height - nh) // 2
         im = im.crop((0, y0, im.width, y0 + nh))
-    im = whiten(im.resize((tw, th), Image.LANCZOS))
+    im = whiten(im.resize((tw, th), Image.LANCZOS), args.bg_from)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     im.save(args.out, quality=80)
     print(f"{args.out} {im.size} {args.out.stat().st_size // 1024} KB")
