@@ -254,19 +254,19 @@
     },
     {
       "slug": "myth-or-record",
-      "title": "Myth or Record?",
+      "title": "Real or Not?",
       "category": "HISTORY · QUIZ",
       "added": "2026-11-27",
       "status": "live",
-      "summary": "Descend a composite tower of 24 real prisons and dungeons, 1200–1800, from the Inquisition's Wall at Carcassonne to the Bastille and the oubliette. At each floor decide: myth or record? Every answer is explained and sourced.",
+      "summary": "Descend a composite tower of 24 real prisons and dungeons, 1200–1800, from the Inquisition's Wall at Carcassonne to the Bastille and the oubliette. At each floor decide: is the famous story real or not? Every answer is sourced.",
       "tagline": "24 real dungeons. Which stories are true?",
       "cta": "Climb down",
       "cover": {
         "src": "/assets/experiment-myth-or-record.jpg",
-        "alt": "Floor 24 of the tower: an engraving of a vaulted room above a narrow shaft into a pit holding storage barrels, beside the claim that castles commonly had oubliettes, answered Myth",
+        "alt": "Floor 24 of the tower: an engraving of a vaulted room above a narrow shaft into a pit holding storage barrels, beside the claim that castles commonly had oubliettes, answered Not real",
         "width": 960,
         "height": 640,
-        "label": "Open Myth or Record?"
+        "label": "Open Real or Not?"
       },
       "note": "24 FLOORS · 1200–1800 · EVERY ANSWER SOURCED",
       "links": []

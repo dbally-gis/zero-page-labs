@@ -74,3 +74,10 @@ test('the page links its stylesheet, script and canonical URL', () => {
   assert.match(html, /src="myth\.mjs"/);
   assert.match(html, /rel="canonical" href="https:\/\/zeropagelabs\.com\/experiments\/myth-or-record\/"/);
 });
+
+test('every floor has a one-sentence answer shown under the verdict', () => {
+  for (const f of floors) {
+    assert.ok(f.answer && f.answer.length > 20 && f.answer.length < 200, f.id);
+    assert.ok(!/^(Real|Not real|Myth|Record)\b/.test(f.answer), `${f.id}: answer should not repeat the verdict`);
+  }
+});

@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "execution" / "myth_research"  # the researchers' raw batches, kept as provenance
 OUT = ROOT / "experiments" / "myth-or-record" / "floors.json"
 FIELDS = ["floor", "id", "site", "short", "place", "lat", "lon", "years", "sortYear", "title", "claim", "verdict",
-          "explanation", "nuance", "visual", "sources", "confidence"]
+          "answer", "explanation", "nuance", "visual", "sources", "confidence"]
 LAST = "oubliette"
 
 # Editorial overrides applied on top of the researchers' text. They change voice and
@@ -98,6 +98,35 @@ DROP_SOURCES = {
     "mont-saint-michel-cage": ["https://en.wikipedia.org/wiki/Louis_Philippe_I"],
 }
 
+# One plain sentence shown under the verdict. Written only from each floor's own
+# (verified) explanation; the full explanation, fine print and sources sit below it.
+ANSWERS = {
+    "carcassonne": "He was sentenced in December 1319 to life in the Inquisition's prison he had fought, and died in early 1320.",
+    "loches": "The cages existed, but no source from Balue's lifetime puts him in one; the Catholic Encyclopedia traces the story to 16th-century Italy.",
+    "daliborka": "Dalibor was a real prisoner, but violins didn't reach Bohemia until about a century after his execution in 1498.",
+    "chillon": "Bonivard spent about two years in rooms in the castle and four in the dungeon. The chained-to-a-pillar picture comes from Byron's poem.",
+    "castel-sant-angelo": "Cellini's own memoir describes the linen rope and the broken leg, and other accounts confirm the escape and recapture.",
+    "st-andrews": "Historic Environment Scotland says the murdered cardinal's body was certainly kept in the bottle dungeon, packed in salt.",
+    "nuremberg": "The cells mostly held people awaiting trial or execution. Punishment was usually branding, flogging or death, not a long sentence.",
+    "little-ease": "A priest was kept there for eighteen months from 1582, and Victorian historians describe it as too small to stand or lie in, though its exact place and size are uncertain.",
+    "cachtice": "The 1611 witnesses accused her of torture and murder, but not blood baths. That story first appears in print around 1729.",
+    "lancaster": "She died in Lancaster Castle while waiting for the August 1612 trials.",
+    "pignerol": "Fouquet died at Pignerol in 1680. The masked prisoner died in the Bastille 23 years later.",
+    "iron-mask": "The Bastille's own officer wrote down a black velvet mask. The iron came later, from legend and Voltaire.",
+    "dunnottar": "About 167 men and women were held in one cellar for some two months in 1685.",
+    "peter-paul": "Alexei died in the fortress on 26 June 1718 (Old Style), two days after his last flogging; exactly how is still debated.",
+    "marshalsea": "The inquiry exposed terrible conditions, and Acton was tried for four murders, but he was acquitted every time.",
+    "newgate": "Gaol fever from Newgate killed the Lord Mayor, two judges and many others at the 1750 sessions.",
+    "magdeburg": "He was held for nearly ten years and chained to the wall after his escape attempts.",
+    "black-hole-calcutta": "Many died that night, but the 146 and 123 come from one survivor's pamphlet, and historians think far fewer were inside.",
+    "piombi-casanova": "Venice's own records punish the jailer for the escape and pay for repairing the hole they broke out through.",
+    "chateau-d-if": "Mirabeau was held there for some months from 1774 on a royal order. Dantès and Faria are fiction.",
+    "mont-saint-michel-cage": "Louis-Philippe, who saw it as a boy, remembered it as made of great pieces of wood, and the architect Corroyer, who studied the abbey, wrote in 1877 that it was wood.",
+    "bastille": "Four forgers, two men judged mad and one count: seven prisoners in all.",
+    "iron-maiden-nuremberg": "No medieval use is recorded. The story appears in the 1790s, and the cabinets shown were assembled in the 1800s.",
+    "oubliette": "True forgetting pits were rare; many supposed oubliettes were really storerooms, latrines or ice stores.",
+}
+
 
 def apply_replacements(f: dict) -> None:
     for field, old, new in REPLACE.get(f["id"], []):
@@ -135,6 +164,9 @@ def main() -> int:
         f["floor"] = n
         f["short"] = SHORT.get(f["id"], f["site"])
         apply_replacements(f)
+        if f["id"] not in ANSWERS:
+            raise SystemExit(f"{f['id']}: no one-line answer in ANSWERS")
+        f["answer"] = ANSWERS[f["id"]]
         f.update(EDITS.get(f["id"], {}))
     clean = [{k: f.get(k, "") for k in FIELDS} for f in floors]
     OUT.write_text(json.dumps({"floors": clean}, ensure_ascii=False, indent=1) + "\n")

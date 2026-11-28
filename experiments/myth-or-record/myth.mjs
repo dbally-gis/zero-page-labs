@@ -8,7 +8,7 @@ function load() { try { answers = JSON.parse(localStorage.getItem(KEY)) || {}; }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch { /* private mode */ } }
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const label = (v) => (v === 'myth' ? 'Myth' : 'Record');
+const label = (v) => (v === 'myth' ? 'Not real' : 'Real');
 
 function sourceItem(s) {
   const who = [s.author, s.publisher, s.year].filter(Boolean).map(esc).join(', ');
@@ -29,16 +29,20 @@ function floorHTML(f) {
       <p class="where">Floor ${f.floor} · ${esc(f.years)} · ${esc(f.place)}</p>
       <h2>${esc(f.title)}</h2>
       <p class="claim">“${esc(f.claim)}”</p>
-      <div class="choose" role="group" aria-label="Myth or record?">
-        <button type="button" data-pick="myth" ${a ? 'disabled' : ''} class="${a === 'myth' ? 'picked' : ''}">Myth</button>
-        <button type="button" data-pick="record" ${a ? 'disabled' : ''} class="${a === 'record' ? 'picked' : ''}">Record</button>
+      <div class="choose" role="group" aria-label="Real or not?">
+        <button type="button" data-pick="record" ${a ? 'disabled' : ''} class="${a === 'record' ? 'picked' : ''}">Real</button>
+        <button type="button" data-pick="myth" ${a ? 'disabled' : ''} class="${a === 'myth' ? 'picked' : ''}">Not real</button>
       </div>
       ${a ? `
       <div class="reveal" tabindex="-1">
         <p class="verdict ${right ? 'right' : 'wrong'}"><b>${label(f.verdict)}.</b> ${right ? 'You got it.' : `You said ${label(a).toLowerCase()}.`}</p>
-        <p>${esc(f.explanation)}</p>
-        ${f.nuance ? `<p class="nuance"><b>What’s simplified:</b> ${esc(f.nuance)}</p>` : ''}
-        <details class="sources"><summary>Sources (${f.sources.length})</summary><ol>${f.sources.map(sourceItem).join('')}</ol></details>
+        <p class="answer">${esc(f.answer)}</p>
+        <details class="more"><summary>The evidence</summary>
+          <p>${esc(f.explanation)}</p>
+          ${f.nuance ? `<p class="nuance"><b>Fine print:</b> ${esc(f.nuance)}</p>` : ''}
+          <p class="src-head">Sources</p>
+          <ol class="sources">${f.sources.map(sourceItem).join('')}</ol>
+        </details>
       </div>` : ''}
     </div>
   </li>`;
@@ -60,7 +64,7 @@ function render() {
   if (finished) {
     $('result-title').textContent = `${score} of ${floors.length} right`;
     const myths = floors.filter((f) => f.verdict === 'myth').length;
-    $('result-text').textContent = `${myths} of these ${floors.length} stories turned out to be myths, and ${floors.length - myths} are on the record. ${score >= 18 ? 'A sharp eye for a tall tale.' : score >= 12 ? 'The legends fooled you now and then, as they fooled the Victorians.' : 'The legends got you. They got most of the 1800s too.'}`;
+    $('result-text').textContent = `${myths} of these ${floors.length} stories turned out not to be real, and ${floors.length - myths} are real. ${score >= 18 ? 'A sharp eye for a tall tale.' : score >= 12 ? 'The legends fooled you now and then, as they fooled the Victorians.' : 'The legends got you. They got most of the 1800s too.'}`;
   }
 }
 
@@ -85,7 +89,7 @@ function reset() {
 function shareText() {
   const marks = floors.map((f) => (answers[f.id] === f.verdict ? '🟩' : '🟥')).join('');
   const score = floors.filter((f) => answers[f.id] === f.verdict).length;
-  return `Myth or Record? Prisons and dungeons, 1200–1800\n${score}/${floors.length}\n${marks.slice(0, 12)}\n${marks.slice(12)}\nzeropagelabs.com/experiments/myth-or-record/`;
+  return `Real or Not? Prisons and dungeons, 1200–1800\n${score}/${floors.length}\n${marks.slice(0, 12)}\n${marks.slice(12)}\nzeropagelabs.com/experiments/myth-or-record/`;
 }
 
 async function main() {

@@ -76,8 +76,12 @@ h1 em { color: var(--red); font-weight: 400; }
 .verdict.right b { color: var(--green); }
 .verdict.wrong b { color: var(--red); }
 .nuance { padding: 8px 12px; background: rgba(126,42,31,.08); border-left: 3px solid var(--red); font-size: 15px; }
-.sources summary { cursor: pointer; font: 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.sources ol { margin: 8px 0 0; padding-left: 20px; font-size: 14px; }
+.answer { font-size: 18px; }
+.more { margin-top: 4px; }
+.more summary { cursor: pointer; font: 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--red); padding: 4px 0; }
+.more[open] summary { margin-bottom: 8px; }
+.src-head { margin: 12px 0 4px !important; font: 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+ol.sources { margin: 0; padding-left: 20px; font-size: 14px; }
 .sources li { margin-bottom: 6px; overflow-wrap: anywhere; }
 .supports { color: var(--muted); }
 
