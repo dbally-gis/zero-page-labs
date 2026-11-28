@@ -65,3 +65,10 @@ Error: Smithsonian Montfort scandata leaf 5/295 requested as reader n5/n295 retu
 Cause: this scan’s scandata is one-based; the reader index is zero-based.
 Fix: use title n4 and plate n294, then visually verify the inscriptions before selecting a source. Derive each scan’s mapping rather than assuming a universal offset.
 Graduated-to: domain/map-monsters-evidence.md, original-edition retrieval notes; manifest edition_evidence stores both leaf and reader indices.
+
+## 2026-11-27 — Places atlas ordinary-anchor initialization
+- Error: Returning early for #atlas before setting article visibility left four case studies visible on a fresh skip-link URL.
+- Cause: The ordinary-anchor preservation branch assumed a previous case selection existed.
+- Fix: Initialize active to California, always apply visibility and aria-current, and preserve active for ordinary anchors. Scroll only for a case identity.
+- Verification: Fresh reload at #atlas shows only California; later #atlas preserves Kong, independently checked.
+- Graduated-to: experiments/places-that-werent/places.mjs.

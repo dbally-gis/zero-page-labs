@@ -238,6 +238,8 @@ Source blockers resolved: static hosting adaptation; proxy removal; bounded inta
 - 2026-11-27 16:45 — commit: Make Map Monsters source-led with specimen catalogue and verified provenance | assets/share/map-monsters.png,data/experiments.json,data/share-cards.json,execution/rebuild_map_monsters.py,execution/test_map_monsters.mjs
 - 2026-11-27 16:54 — commit: Replace Montfort reproduction with Smithsonian original-edition plate | execution/rebuild_map_monsters.py,execution/test_map_monsters.py,experiments-source/map-monsters/README.md,experiments-source/map-monsters/build/crops.json,experiments-source/map-monsters/build/plates.py
 - 2026-11-27 17:12 — commit: Date Logy Bay squid photograph from contemporary report | experiments-source/map-monsters/README.md,experiments-source/map-monsters/build/plates.py,experiments-source/map-monsters/manifest.json,experiments/map-monsters/img/ix-sources-1200.webp,experiments/map-monsters/img/ix-sources.webp
+- 2026-11-27 23:00 — commit: Add Places That Weren’t source-led map atlas | assets/experiment-places-that-werent.jpg,assets/share/experiments.png,assets/share/places-that-werent.png,data/experiments.json,data/share-cards.json
+- 2026-11-27 23:01 — commit: Add Places That Weren’t source-led map atlas | assets/experiment-places-that-werent.jpg,assets/share/experiments.png,assets/share/places-that-werent.png,data/experiments.json,data/share-cards.json
 ## Published result
 Source commit324794cfc3053c3e771cb5deefd928722785206e. GitHub run42430166067 passed tests, build, Render deployment, and public fingerprint verification. Live homepage Experiments section and /experiments/ observed. Live Retro mutation completed3effects with export ready; live Lexical switched to Throughline with398mapped nodes. Console error/warning logs empty on these live checks. Screenshot:.tmp/experiments-live.jpg. Ready for public experiment use within documented limits; physical iPhone/Safari testing remains open.
 
@@ -746,3 +748,20 @@ Verdict: kept — "Go ahead and update the squid caption and sources with the co
 Murray’s American Naturalist report (February 1874), pp. 122–123, explicitly dates the two Logy Bay photographs to 2 December 1873. Harvey’s 1899 account, p. 738, places the bath arrangement in photographic rooms. Original negative/earliest print custody remains unestablished.
 S.D.G.: Map Monsters readers can distinguish the photograph’s exact exposure date from the report’s publication year.
 Feynman gap: Original negative/earliest print custody remains unknown; the exposure date is supported by the visually checked contemporary report and verified on production.
+
+## 2026-11-27 — Places That Weren’t
+Goal: Build a source-led companion to Map Monsters using real scans and verified evidence.
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Status: Local implementation complete in codex/places-that-werent. Preview http://127.0.0.1:5202/experiments/places-that-werent/. No production push requested.
+Verdict: kept — “Looks good, push Places That Weren’t to Zero Page Labs and verify the live page.”
+
+- Built: Four case studies with checksum-recorded historical scans, detail/whole-sheet controls, source notes, selected-date chronology and shareable native hash links. Added a reciprocal Map Monsters link, catalogue entry, cover, sitemap and share cards.
+- Sources: LOC California c. 1650 and Zeno 1558; Princeton Pinkerton sheet 1813 / atlas 1815; Rumsey Ortelius 1570, 10000.011. Primary collection records are distinguished from institutional historical interpretation.
+- Verification: Full Python suite, targeted Node checks, share-card freshness, deep 22-page verification passed. Desktop 1440 and phone 375 browser checks exercised selection, source/detail switching, evidence expansion, browser Back and fresh #atlas loading. Images load, with no horizontal overflow or console warning/error. Independent creator-verifier passed source identity, dating, input hashes and code after a direct #atlas initialization fix.
+- Handoff: Source HTML generated from experiments-source/places-that-werent/template.html and cases.json by execution/build_places.py. Run with --fetch for missing source scans. Local source cache ignored; public images tracked. Publication remains a separate user decision.
+S.D.G.: Curious map readers can inspect how four historical geographical claims became convincing pictures and follow the evidence that revised them.
+Feynman gap: No production deployment or physical-touch device test; desktop and 375px browser checks plus independent source review establish the local result.
+
+Production release approved. Status: preparing the verified source for main; live checks pending.

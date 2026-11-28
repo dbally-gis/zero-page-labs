@@ -270,6 +270,25 @@
       },
       "note": "28 FLOORS · 1200–1800 · EVERY ANSWER SOURCED",
       "links": []
+    },
+    {
+      "slug": "places-that-werent",
+      "title": "Places That Weren’t",
+      "category": "MAPS · HISTORY",
+      "added": "2026-11-27",
+      "status": "live",
+      "summary": "Four geographical claims made convincing by old maps: California as an island, Frisland, the Mountains of Kong and Terra Australis. Real scans, map details and evidence notes.",
+      "tagline": "Places old maps made convincing.",
+      "cta": "Explore the atlas",
+      "cover": {
+        "src": "/assets/experiment-places-that-werent.jpg",
+        "alt": "A seventeenth-century manuscript chart shows California as an island, its northern coastline closed by a sea passage",
+        "width": 960,
+        "height": 640,
+        "label": "Open Places That Weren’t"
+      },
+      "note": "FOUR CASES · REAL MAP SCANS · VERIFIED SOURCES",
+      "links": []
     }
   ]
 }

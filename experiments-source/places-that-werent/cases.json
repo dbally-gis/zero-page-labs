@@ -1,0 +1,229 @@
+{
+  "checked": "2026-11-27",
+  "cases": [
+    {
+      "id": "california",
+      "name": "California, detached",
+      "short": "California",
+      "date": "c. 1650",
+      "year": 1650,
+      "kind": "A real place, misdrawn",
+      "region": "Western North America",
+      "maker": "Johannes Vingboons",
+      "title": "Map of California shown as an island",
+      "holder": "Library of Congress · G3291.S12 coll .H3",
+      "crop": [
+        0.27,
+        0.1,
+        0.7,
+        0.72
+      ],
+      "look": "Follow the water across California’s northern edge. The gulf has become a passage to the Pacific.",
+      "claim": "An island where a peninsula should be.",
+      "story": "This manuscript gives California a closed northern coast. It turns a real peninsula into a long island, separated from the mainland by a continuous sea passage. The mistake concerns the shape of the land, not the existence of California.",
+      "change": "Kino’s overland journeys of 1698–1701 supplied evidence for a connection to the mainland. His map circulated in print in 1705, but island versions continued to be published. Correction travelled unevenly.",
+      "limit": "The current LOC record dates this sheet about 1650; older LOC exhibitions called it 1639. We follow the catalogue’s approximate date. The island tradition was never the only representation of California.",
+      "milestones": [
+        [
+          "c. 1650",
+          "This manuscript closes the northern coastline."
+        ],
+        [
+          "1698–1701",
+          "Kino investigates the land connection."
+        ],
+        [
+          "1705",
+          "Kino’s map appears in print."
+        ]
+      ],
+      "record": "https://www.loc.gov/item/99443375/",
+      "download": "https://upload.wikimedia.org/wikipedia/commons/0/04/Map_of_California_shown_as_an_island._LOC_99443375.jpg",
+      "rights": "Public-domain historical map; LOC scan via Wikimedia Commons.",
+      "sources": [
+        [
+          "Map catalogue · Library of Congress",
+          "https://www.loc.gov/item/99443375/"
+        ],
+        [
+          "Scan mirror and rights · Wikimedia Commons",
+          "https://commons.wikimedia.org/wiki/File:Map_of_California_shown_as_an_island._LOC_99443375.jpg"
+        ],
+        [
+          "Kino and the island tradition · Library of Congress",
+          "https://www.loc.gov/exhibits/treasures/tr11a.html#obj38"
+        ],
+        [
+          "1701 manuscript / later printing · University of Arizona",
+          "https://geodata.lib.arizona.edu/catalog/uarizona-pimeriaalta-newmissionsofjesuits-kino-1701"
+        ],
+        [
+          "1650 date · LOC Free to Use and Reuse",
+          "https://www.loc.gov/free-to-use/discovery-and-exploration/"
+        ]
+      ],
+      "input_sha256": "79d46071f1a6cc6300e7537092a43b129eb1509b6e0d6774b7f9431cb6bc5274"
+    },
+    {
+      "id": "frisland",
+      "name": "Frisland, fully furnished",
+      "short": "Frisland",
+      "date": "1558",
+      "year": 1558,
+      "kind": "A phantom island",
+      "region": "North Atlantic",
+      "maker": "Nicolò Zeno the younger",
+      "title": "Septentrionalium partium nova tabula",
+      "holder": "Library of Congress · G9110 1558 .Z4",
+      "crop": [
+        0.25,
+        0.58,
+        0.46,
+        0.81
+      ],
+      "look": "Find FRISLANDA below Iceland: a separate island, complete with bays and named settlements.",
+      "claim": "An island made persuasive by detail.",
+      "story": "South of Iceland, Zeno drew Frisland with a coastline and place names. His 1558 publication presented the geography as the legacy of family voyages in the fourteenth century. The publication date is secure; the claimed medieval origin is disputed.",
+      "change": "Mercator incorporated Zeno’s geography into his 1569 world map, helping it circulate. Later criticism challenged the voyage account and its sources. Frisland does not correspond to a separate island in the position shown.",
+      "limit": "This is a phantom island, not land known to have sunk. The origins of the underlying story remain debated; there is no single year when every publisher stopped using it.",
+      "milestones": [
+        [
+          "1558",
+          "Zeno publishes the map shown here."
+        ],
+        [
+          "1569",
+          "Mercator adopts Zeno’s geography."
+        ],
+        [
+          "1898",
+          "F. W. Lucas publishes a major critique."
+        ]
+      ],
+      "record": "https://blogs.loc.gov/maps/2019/10/the-mysterious-island/",
+      "download": "https://blogs.loc.gov/maps/files/2019/10/FrislandZenoMap-1.jpg",
+      "rights": "Public-domain historical map; scan courtesy of Library of Congress.",
+      "sources": [
+        [
+          "Map scan and history · Library of Congress",
+          "https://blogs.loc.gov/maps/2019/10/the-mysterious-island/"
+        ],
+        [
+          "Transmission and criticism · Osher Map Library",
+          "https://oshermaps.org/exhibitions/map-commentaries/renaissance-rhetoric-of-discovery/"
+        ]
+      ],
+      "input_sha256": "7336c07512753832e2069515a548054cfd5ee7fd2b8db8a2f4ba41a33922f42b"
+    },
+    {
+      "id": "kong",
+      "name": "The Mountains of Kong",
+      "short": "Mountains of Kong",
+      "date": "1813",
+      "year": 1813,
+      "kind": "A conjectural mountain chain",
+      "region": "West Africa",
+      "maker": "John Pinkerton",
+      "title": "Western Africa",
+      "holder": "Princeton University Library · Historic Maps Collection",
+      "crop": [
+        0.2,
+        0.25,
+        0.98,
+        0.68
+      ],
+      "look": "Follow the dark east–west ridge across the sheet, just below the widely spaced name KONG.",
+      "claim": "A mountain barrier that made a theory work.",
+      "story": "Pinkerton’s map draws a long mountain chain across West Africa. It belongs to a tradition associated with James Rennell’s 1798 mapping: a supposed barrier helped explain the Niger River’s course. Later maps repeated the chain with considerable confidence.",
+      "change": "Binger’s 1887–1889 expedition helped overturn the supposed continuous range. The error was the continent-scale arrangement on European maps; the region, its communities and its local terrain were real.",
+      "limit": "The sheet is dated 1813; Princeton identifies its atlas as the London 1815 edition. Kong is also a real place name. This case does not claim that West Africa has no mountains or that local people lacked geographical knowledge.",
+      "milestones": [
+        [
+          "1798",
+          "Rennell maps the conjectural chain."
+        ],
+        [
+          "1813 / 1815",
+          "This sheet / its atlas edition."
+        ],
+        [
+          "1887–1889",
+          "Binger’s expedition challenges the range."
+        ]
+      ],
+      "record": "https://static-prod.lib.princeton.edu/visual_materials/maps/websites/africa/maps-central/central.html",
+      "download": "https://static-prod.lib.princeton.edu/visual_materials/maps/websites/africa/maps-central/1813%20pinkerton.jpg",
+      "rights": "Public-domain historical map; scan courtesy of Princeton University Library.",
+      "sources": [
+        [
+          "Map, edition and history · Princeton University Library",
+          "https://static-prod.lib.princeton.edu/visual_materials/maps/websites/africa/maps-central/central.html"
+        ],
+        [
+          "Scholarly study · Journal of African History",
+          "https://www.cambridge.org/core/journals/journal-of-african-history/article/abs/from-the-best-authorities-the-mountains-of-kong-in-the-cartography-of-west-africa/25D7E0376A0889142FFA6DF737285E98"
+        ]
+      ],
+      "input_sha256": "8f758eef23bdc8f3d9d106e5bbdced26195bb5db3f1b5c1f378ad818f0da33b5"
+    },
+    {
+      "id": "terra-australis",
+      "name": "A continent to balance the world",
+      "short": "Terra Australis",
+      "date": "1570",
+      "year": 1570,
+      "kind": "A hypothetical continent",
+      "region": "Southern hemisphere",
+      "maker": "Abraham Ortelius · engraved by Frans Hogenberg",
+      "title": "Typus orbis terrarum",
+      "holder": "David Rumsey Map Collection · 10000.011",
+      "crop": [
+        0.12,
+        0.39,
+        0.89,
+        0.79
+      ],
+      "look": "Read TERRA AVSTRALIS NONDVM COGNITA along the enormous landmass at the bottom of the world.",
+      "claim": "An unknown coast drawn with conviction.",
+      "story": "Ortelius’s world map gives the southern hemisphere an enormous continent. Terra Australis combined inherited geographical ideas with incomplete reports of southern lands. Here it reaches toward Tierra del Fuego and across southern oceans.",
+      "change": "Voyages progressively constrained that imagined landmass. Cook’s southern voyage of 1772–1775 searched waters assigned to it, yet he still allowed for land near the pole. Antarctica’s existence does not authenticate the vast coastline drawn here.",
+      "limit": "The conjectural continent is not a surveyed map of Antarctica. This scan is the uncoloured 1570 atlas sheet catalogued by the Rumsey collection, not the coloured 1574 copy shown in some exhibitions.",
+      "milestones": [
+        [
+          "1570",
+          "Ortelius publishes this world map."
+        ],
+        [
+          "1616",
+          "Voyagers round Cape Horn."
+        ],
+        [
+          "1772–1775",
+          "Cook searches the southern seas."
+        ]
+      ],
+      "record": "https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~275224~90048541:-1--Typus-Orbis-Terrarum-",
+      "download": "https://www.davidrumsey.com/luna/servlet/iiif/RUMSEY~8~1~275224~90048541/full/2400,/0/default.jpg",
+      "rights": "Public-domain original; image credit: David Rumsey Map Collection, David Rumsey Map Center, Stanford University Libraries. Reproduced under the collection’s publication permission.",
+      "sources": [
+        [
+          "1570 sheet · David Rumsey Map Collection",
+          "https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~275224~90048541:-1--Typus-Orbis-Terrarum-"
+        ],
+        [
+          "Southern-continent tradition · Osher Map Library",
+          "https://oshermaps.org/exhibitions/to-the-ends-of-the-earth/section-1/"
+        ],
+        [
+          "Cook’s search · Gonville & Caius College",
+          "https://www.cai.cam.ac.uk/discover/library/online-exhibitions/safe-return-doubtful/terra-australis"
+        ],
+        [
+          "Image reuse · David Rumsey Map Collection",
+          "https://www.davidrumsey.com/about/copyright-and-permissions"
+        ]
+      ],
+      "input_sha256": "8a7d04fceb55e9e6dfa440e17ddf7a01745f54ce9fc9c78f55679b0577d621f0"
+    }
+  ]
+}

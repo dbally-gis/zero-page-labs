@@ -42,3 +42,5 @@ timestamp: "2026-11-07T16:31:28.188948-06:00"
 
 | [domain/map-monsters-evidence.md](domain/map-monsters-evidence.md) | domain | 2026-11-27 | Date evidence, interpretation boundaries, source catalogue and rebuild provenance |
 | [procedural/rebuild_map_monsters.md](procedural/rebuild_map_monsters.md) | procedural | 2026-11-27 | Checksum-verified source plates, catalogue generation and browser checks |
+
+| [domain/places-that-werent-evidence.md](domain/places-that-werent-evidence.md) | domain | 2026-11-27 | Four map claims, edition distinctions, scan provenance and local QA |

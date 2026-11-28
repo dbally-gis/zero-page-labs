@@ -844,3 +844,30 @@ Contract:
 - [x] A test file checks the data (24 floors, order, two sources each, verdict balance).
 
 Research: three agents, eight sites each, every URL opened; 23 sources spot-checked by phrase, all matched. Independent verifier FAILED the first build (Black Hole claim a wording trick; two editorial overrides changed meaning; Lancaster "ringleader" unsourced; Magdeburg overstated; Newgate URL wrong; Nuremberg misread; Mont-Saint-Michel weak date; five images leaned toward myths). All fixed via REPLACE/EDITS in execution/assemble_myth_floors.py and regenerated art; re-review PASS.
+
+## 2026-11-27 — Places That Weren’t
+Surface: experiments/places-that-werent, experiments-source/places-that-werent, catalogue and companion links. Directives: maintain_showcase.md, publish_experiments.md. Execution: existing site build; a deterministic image preparation script. Output: archival atlas with four case studies. Publication approved: “Looks good, push Places That Weren’t to Zero Page Labs and verify the live page.” Preserve existing worktrees.
+- [x] California has an identified map scan.
+- [x] Frisland has an identified map scan.
+- [x] Mountains of Kong has an identified map scan.
+- [x] Terra Australis has an identified map scan.
+- [x] Each of California, Frisland, Kong and Terra Australis has evidence links.
+- [x] Each case distinguishes map date from later evidence.
+- [x] Selecting a case updates the URL.
+- [x] Browser Back restores the previous case.
+- [x] A full-sheet view preserves access to the uncropped scan.
+- [x] Map Monsters links to the companion.
+- [x] The experiment appears in the site catalogue.
+- [x] Asset checksums are recorded.
+- [x] Targeted tests pass.
+- [x] Deep site verification passes.
+- [x] Desktop browser verification passes.
+- [x] A 375px viewport has no horizontal overflow.
+- [x] An independent verifier reviews the final artifact.
+
+## Places That Weren’t — production verification
+- [ ] The public deployment matches the release fingerprint.
+- [ ] The live atlas loads four case scans.
+- [ ] Live whole-sheet switching works.
+- [ ] The public catalogue lists Places That Weren’t.
+- [ ] Live Map Monsters links to Places That Weren’t.

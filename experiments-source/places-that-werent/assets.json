@@ -1,0 +1,86 @@
+{
+  "california-sheet.webp": {
+    "sha256": "fef0703a84fbf0b64672c6ce5159173776638ee7c8d7430bdff047b5a460f7e7",
+    "size": [
+      2400,
+      1712
+    ]
+  },
+  "california-detail.webp": {
+    "sha256": "3f8de27f5487f88f1ce848dd5e01cc36147f9c4e573d79974ba9be2228a13215",
+    "size": [
+      1750,
+      1800
+    ]
+  },
+  "california-thumb.webp": {
+    "sha256": "8170ee83da46485844812e17ee920d502384c6d2178b5eb45c60511de3e2fde7",
+    "size": [
+      400,
+      220
+    ]
+  },
+  "frisland-sheet.webp": {
+    "sha256": "bb4ed9352091479956137c50d757e9b68d2934e4cf0eb1241c87cbab6eb04ff5",
+    "size": [
+      2400,
+      1797
+    ]
+  },
+  "frisland-detail.webp": {
+    "sha256": "df1c5dd1c1a758e87d4aa7a754701f417e0f80564abebfb1b304b597ec422361",
+    "size": [
+      769,
+      631
+    ]
+  },
+  "frisland-thumb.webp": {
+    "sha256": "df552a8747699bd0181276ec1d3e57bb3df33cd9e7940b96b5738e07ae1d046a",
+    "size": [
+      400,
+      220
+    ]
+  },
+  "kong-sheet.webp": {
+    "sha256": "0e328c56db2975fff6cd28dc8278a07833a871db83b0c16d99357e008a885bce",
+    "size": [
+      2400,
+      1766
+    ]
+  },
+  "kong-detail.webp": {
+    "sha256": "b49494d75f8ddb98f66e164c7c2b7921259820c10006a939935319d1c486dc56",
+    "size": [
+      2206,
+      896
+    ]
+  },
+  "kong-thumb.webp": {
+    "sha256": "daf2d0868f8e4c144e26a04218fbd8d5a1ba3b607e159735f7aced28c8161753",
+    "size": [
+      400,
+      220
+    ]
+  },
+  "terra-australis-sheet.webp": {
+    "sha256": "1a82a03ca877cc52329252d3f76473e49c29ca29d993f96939329806ffca5a75",
+    "size": [
+      2400,
+      1692
+    ]
+  },
+  "terra-australis-detail.webp": {
+    "sha256": "441f9362cc9b3b5413e77393d9bf29226bf3b7de5ae741ccbf3af349b75780a9",
+    "size": [
+      1848,
+      677
+    ]
+  },
+  "terra-australis-thumb.webp": {
+    "sha256": "0f790289a92d3aa9a0a569ce97162b5afb4ade398de5ed5068c2ee4563e00460",
+    "size": [
+      400,
+      220
+    ]
+  }
+}
