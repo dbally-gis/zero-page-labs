@@ -866,8 +866,8 @@ Surface: experiments/places-that-werent, experiments-source/places-that-werent, 
 - [x] An independent verifier reviews the final artifact.
 
 ## Places That Weren’t — production verification
-- [ ] The public deployment matches the release fingerprint.
-- [ ] The live atlas loads four case scans.
-- [ ] Live whole-sheet switching works.
-- [ ] The public catalogue lists Places That Weren’t.
-- [ ] Live Map Monsters links to Places That Weren’t.
+- [x] The public deployment matches the release fingerprint.
+- [x] The live atlas loads four case scans.
+- [x] Live whole-sheet switching works.
+- [x] The public catalogue lists Places That Weren’t.
+- [x] Live Map Monsters links to Places That Weren’t.

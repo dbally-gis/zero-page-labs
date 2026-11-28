@@ -754,7 +754,7 @@ Goal: Build a source-led companion to Map Monsters using real scans and verified
 Agent: OpenAI Codex
 Handoff-from: OpenAI Codex
 Handoff-type: continuation
-Status: Local implementation complete in codex/places-that-werent. Preview http://127.0.0.1:5202/experiments/places-that-werent/. No production push requested.
+Status: Published at https://zeropagelabs.com/experiments/places-that-werent/ as 4d6d64400e3c88494b61a94f9c492ca04228ceee. Production browser verification passed.
 Verdict: kept — “Looks good, push Places That Weren’t to Zero Page Labs and verify the live page.”
 
 - Built: Four case studies with checksum-recorded historical scans, detail/whole-sheet controls, source notes, selected-date chronology and shareable native hash links. Added a reciprocal Map Monsters link, catalogue entry, cover, sitemap and share cards.
@@ -765,3 +765,14 @@ S.D.G.: Curious map readers can inspect how four historical geographical claims 
 Feynman gap: No production deployment or physical-touch device test; desktop and 375px browser checks plus independent source review establish the local result.
 
 Production release approved. Status: preparing the verified source for main; live checks pending.
+
+## Places That Weren’t — production result
+Agent: OpenAI Codex
+Handoff-from: OpenAI Codex
+Handoff-type: continuation
+Verdict: kept — “Looks good, push Places That Weren’t to Zero Page Labs and verify the live page.”
+Status: Published and verified. Incorporated upstream 3f7cd06 without discarding the other experiment’s changes. Release 4d6d64400e3c88494b61a94f9c492ca04228ceee; workflow 46110188569 succeeded in 1m16s. Public content_sha256 8814ef13dacc105f9498c5a5664d1c37aa01782caf05c71136f77b23d0aa68d0 matches the checked local build.
+
+Checks: 54 Python tests, 5 targeted Node checks, share-card freshness and 22-page deep verification passed after upstream integration. Live browser confirmed California/Frisland/Kong/Terra Australis selection and image loading, Terra Australis whole-sheet/detail switching and four evidence links, browser Back to Kong, no horizontal overflow at 375px, no console warning/error, public catalogue heading/links and Map Monsters companion link. Production verification is complete; original local-only status notes above describe the previous review checkpoint.
+S.D.G.: Visitors can explore the published four-case atlas directly from Map Monsters and the Zero Page Labs catalogue.
+Feynman gap: Production commit, fingerprint and browser flows are verified; physical-device touch testing remains unperformed.

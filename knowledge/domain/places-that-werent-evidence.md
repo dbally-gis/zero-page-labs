@@ -24,4 +24,4 @@ Several direct download endpoints returned 403 or an unhelpful thumbnail. The se
 
 ## QA
 
-Local browser, build and independent review results are recorded in SESSION.md. This session prepares local work; production publication is not part of the current request.
+Local browser, build and independent review results are recorded in SESSION.md. Published after Daniel’s approval as 4d6d64400e3c88494b61a94f9c492ca04228ceee. Public fingerprint and browser checks passed; see SESSION.md for release evidence.
