@@ -1,0 +1,354 @@
+[
+ {
+  "floor": 9,
+  "id": "cachtice",
+  "site": "Čachtice Castle",
+  "place": "Čachtice, Slovakia",
+  "lat": 48.7245,
+  "lon": 17.7615,
+  "years": "1610–1614",
+  "sortYear": 1610,
+  "title": "The Blood Countess",
+  "claim": "Witnesses at the 1611 trial of Elizabeth Báthory's servants said she bathed in young women's blood to stay young.",
+  "verdict": "myth",
+  "explanation": "Elizabeth Báthory was arrested at Čachtice at the end of December 1610 and held there until she died in August 1614. Servants' testimony accused her of beating, burning and torturing young women. None of it mentions bathing in blood. The blood-bath story first appears in print about 1729, in the Jesuit László Turóczi's Tragica Historia, more than a century after her death. The Polish historian Adam Szabelski notes that while the case was being prepared, no one accused her of anything like it. When the witness statements were published in 1817, they showed the bathing tale was legend. The killings she was accused of are on record. The blood baths are not.",
+  "nuance": "This floor tests only the blood-bath story, not whether she was guilty, which historians still argue about. Szabelski argues she was the victim of a political plot. His article is cited only for where the legend came from. Her confinement is also disputed: the palatine Thurzó wrote that she was locked in a bricked room, but church visit records from July 1614 suggest she could move about the castle. That is why the claim avoids 'walled up alive'. The arrest date is given as 29 December, 30 December or New Year's Eve 1610.",
+  "visual": "A hilltop castle in western Slovakia, now a ruin. Sources do not describe the rooms she was kept in. Thurzó's 'bricked room' contradicts later visit records, so the space is unknown.",
+  "sources": [
+   {
+    "title": "Postać Elżbiety Batory w historiografii (The Figure of Elisabeth Bathory in Historiography)",
+    "publisher": "Studia Europaea Gnesnensia 9 (2014), Adam Mickiewicz University, DOI 10.14746/SEG.2014.9.6",
+    "author": "Adam Szabelski",
+    "year": "2014",
+    "url": "https://pressto.amu.edu.pl/index.php/seg/article/download/2454/2437/4582",
+    "supports": "Says no one accused her of blood baths while her trial was being prepared, and that the story was first written down about 1729 by László Turóczi (Tragica Historia, in Ungaria suis cum regibus compendio data)."
+   },
+   {
+    "title": "The Blood Countess: 10 Facts About Elizabeth Báthory",
+    "publisher": "History Hit",
+    "author": "Léonie Chao-Fong",
+    "year": "2021",
+    "url": "https://historyhit.com/?p=11325",
+    "supports": "Says the witness accounts were first published in 1817 and showed the blood-bathing stories were legend, and that she stayed imprisoned at the castle until her death in 1614."
+   },
+   {
+    "title": "Elizabeth Báthory",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Elizabeth_B%C3%A1thory",
+    "supports": "Says the legend first appeared in print in 1729 in Turóczi's Tragica Historia and that the witness accounts contain no blood baths. Also gives Thurzó's 'bricked room' against the July 1614 visit records, and her death on 21 August 1614."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened all three. Read the Szabelski PDF text directly (Polish, pp. 97–98). Also opened nationalgeographic.com (Ronan O'Connell, 2022): it dates Turóczi's account to 1744, a later retelling, so it is not cited."
+ },
+ {
+  "floor": 10,
+  "id": "lancaster",
+  "site": "Lancaster Castle",
+  "place": "Lancaster, England",
+  "lat": 54.0497,
+  "lon": -2.8053,
+  "years": "1612",
+  "sortYear": 1612,
+  "title": "The Pendle witches' gaol",
+  "claim": "Old Demdike, named as the ringleader of the Pendle witches, died in Lancaster Castle before she could be tried.",
+  "verdict": "record",
+  "explanation": "In spring 1612 Elizabeth Southerns, known as Old Demdike, and others from the Pendle area were sent to Lancaster gaol to wait for the August assizes. The trials ran from 18 to 19 August 1612, and ten of the condemned were hanged on the moor above the town on 20 August. Demdike was never tried. Lancaster Castle's own history says the 80-year-old 'had died in prison at Lancaster Castle whilst awaiting trial'. The historian Robert Poole likewise records that of those imprisoned, one died in gaol. Thomas Potts, the court clerk, printed the official account in 1613 and names her as the ringleader.",
+  "nuance": "Tradition, repeated by the castle itself, says the accused were held in a dungeon below the Well Tower (also called the Witches' Tower). No document from 1612 names the cell, so the claim leaves the Well Tower out. Her exact date of death is not recorded. Potts's text on Project Gutenberg was unreachable (HTTP 503), so his wording is not quoted.",
+  "visual": "Lancaster Castle's own pages say the accused were held in 'the same dungeon below the Well Tower', an underground space. That rests on tradition, and no size or layout is given.",
+  "sources": [
+   {
+    "title": "Lancashire Witch Trials",
+    "publisher": "Lancaster Castle",
+    "author": "",
+    "year": "",
+    "url": "https://lancastercastle.com/history-heritage/lancashire-witch-trials",
+    "supports": "Says Old Demdike, aged 80, died in prison at Lancaster Castle while awaiting trial, and that the August 1612 assize trial lasted three days."
+   },
+   {
+    "title": "The Pendle Witches",
+    "publisher": "Lancaster Castle",
+    "author": "",
+    "year": "",
+    "url": "https://lancastercastle.com/the-pendle-witches",
+    "supports": "Says the accused were held in Lancaster Castle awaiting the August Assize, the trials began on 18 August 1612, the most famous of the witches died before trial, and ten were hanged on 20 August 1612."
+   },
+   {
+    "title": "The Lancashire Witches 1612–2012",
+    "publisher": "The Public Domain Review",
+    "author": "Robert Poole",
+    "year": "2012",
+    "url": "https://publicdomainreview.org/essay/the-lancashire-witches-1612-2012/",
+    "supports": "Independent scholar's account: Demdike was sent to Lancaster gaol in early April to await trial, and of those imprisoned at the castle one died in gaol."
+   },
+   {
+    "title": "The Pendle Witches",
+    "publisher": "Historic UK",
+    "author": "Ellen Castelow",
+    "year": "2019",
+    "url": "https://www.historic-uk.com/CultureUK/The-Pendle-Witches/",
+    "supports": "Says Old Demdike never reached trial and died in the dungeon where they were held, and gives the trial dates as 17–19 August 1612."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened all four. Also opened lancastercastle.com's Samlesbury witches page ('held in the same dungeon below the Well Tower'), used for the visual. Gutenberg (Potts) returned 503 and is not cited."
+ },
+ {
+  "floor": 11,
+  "id": "pignerol",
+  "site": "Pignerol fortress",
+  "place": "Pinerolo, Piedmont, Italy (then French)",
+  "lat": 44.886,
+  "lon": 7.331,
+  "years": "1665–1680",
+  "sortYear": 1665,
+  "title": "The fallen finance minister",
+  "claim": "Nicolas Fouquet, Louis XIV's disgraced finance minister, left Pignerol alive and became the Man in the Iron Mask.",
+  "verdict": "myth",
+  "explanation": "Fouquet was arrested in September 1661. On 20 December 1664 the court sentenced him to banishment, and Louis XIV personally changed that to life imprisonment. He was taken to the Alpine fortress of Pignerol, guarded by Saint-Mars, and held there in strict confinement for about fifteen years. Official records give his death at Pignerol on 23 March 1680. The masked prisoner died in the Bastille on 19 November 1703, twenty-three years later. Fouquet has been put forward as the masked man, but the 1911 Encyclopaedia Britannica says he 'undoubtedly died at Pignerol in 1680' and that 'the facts are a sufficient refutation' of the idea. There is a real link: the leading candidate, Eustache Dauger, served as one of Fouquet's valets in prison.",
+  "nuance": "No death certificate was drawn up, and that gap keeps the survival theories going. The official record is still treated as reliable. Larousse says sixteen years and Wikipedia says fifteen. The difference depends on whether the count starts at his transfer in December 1664.",
+  "visual": "A walled citadel above Pinerolo in the Alps. None of the sources checked describe Fouquet's rooms, so the interior is unknown.",
+  "sources": [
+   {
+    "title": "Iron Mask (1911 Encyclopædia Britannica)",
+    "publisher": "Wikisource",
+    "author": "Hugh Chisholm",
+    "year": "1911",
+    "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Iron_Mask",
+    "supports": "Says Fouquet 'undoubtedly died at Pignerol in 1680', lists him among the proposed identities and rejects him, and gives Saint-Mars's command of Pignerol, late 1664 to 1681."
+   },
+   {
+    "title": "Fouquet (Nicolas)",
+    "publisher": "Larousse Encyclopédie",
+    "author": "",
+    "year": "",
+    "url": "https://www.larousse.fr/encyclopedie/personnage/Fouquet/187131",
+    "supports": "Gives the 20 December 1664 sentence of banishment, changed by the king to life imprisonment, his confinement in the Pignerol fortress, and his death at Pignerol in 1680."
+   },
+   {
+    "title": "Nicolas Fouquet",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Nicolas_Fouquet",
+    "supports": "Says he was taken to Pignerol in December 1664, that official records give his death there on 23 March 1680, and that no death certificate was made."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened all three. Britannica.com (print/article/214847) returned 403 and is not cited."
+ },
+ {
+  "floor": 12,
+  "id": "iron-mask",
+  "site": "The Man in the Iron Mask (Pignerol, Exilles, Sainte-Marguerite, Bastille)",
+  "place": "Bastille, Paris, France",
+  "lat": 48.8532,
+  "lon": 2.3692,
+  "years": "1669–1703",
+  "sortYear": 1669,
+  "title": "Iron or velvet?",
+  "claim": "The Man in the Iron Mask's face was hidden behind a mask made of iron.",
+  "verdict": "myth",
+  "explanation": "The prisoner was moved with his jailer Saint-Mars from Pignerol to Exilles (1681), to the island of Sainte-Marguerite (1687), and finally to the Bastille in September 1698. Étienne du Junca, the king's lieutenant at the Bastille, kept a journal of eyewitness entries. On 19 November 1703 he recorded the death of 'the unknown prisoner, always masked with a black velvet mask'. The 1911 Encyclopaedia Britannica finds no evidence that the mask was anything but black velvet, and says that 'only afterwards' did legend turn it into iron. Voltaire did most to spread the story, in Le Siècle de Louis XIV (1751) and later writings. The French history site Hérodote puts it plainly: 'un masque de velours noir (et non de fer)'.",
+  "nuance": "The prisoner and the mask are both on record. Only the iron is myth. Who the prisoner was is still unsettled. Eustache Dauger is the leading candidate, and the 1911 Britannica also discusses Mattioli. The burial name appears as 'Marchioly' and 'Marchiali'.",
+  "visual": "A prisoner whose face is covered by a black velvet mask. The rooms in the Bastille and in the earlier fortresses are not described in the sources checked.",
+  "sources": [
+   {
+    "title": "Iron Mask (1911 Encyclopædia Britannica)",
+    "publisher": "Wikisource",
+    "author": "Hugh Chisholm",
+    "year": "1911",
+    "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Iron_Mask",
+    "supports": "Quotes du Junca's 1703 entry ('always masked with a black velvet mask'), says the iron came later from legend, gives Voltaire's role, and gives Saint-Mars's moves from Pignerol to Exilles, Sainte-Marguerite and the Bastille."
+   },
+   {
+    "title": "19 novembre 1703 : mort du Masque de fer",
+    "publisher": "Hérodote.net",
+    "author": "Camille Vignolle",
+    "year": "",
+    "url": "https://www.herodote.net/19_novembre_1703-evenement-17031119.php",
+    "supports": "Says the mask was 'de velours noir (et non de fer)', gives the route Pignerol (to 1681), Exilles (to 1687), Sainte-Marguerite (to 1698), Bastille, and the death on 19 November 1703."
+   },
+   {
+    "title": "Man in the Iron Mask",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Man_in_the_Iron_Mask",
+    "supports": "Quotes du Junca's 'mask of black velvet', says Voltaire later misreported it as iron, and records Saint-Mars taking up the Bastille post on 18 September 1698."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened all three. Also opened the earlymodernfrance.org PDF by Sarah Madry: it does not discuss the mask's material, so it is not cited. Do not reuse Hérodote's line that Voltaire claimed a twin brother. In 1771 Voltaire said an older half-brother, as the 1911 Britannica records."
+ },
+ {
+  "floor": 13,
+  "id": "dunnottar",
+  "site": "Dunnottar Castle",
+  "place": "near Stonehaven, Aberdeenshire, Scotland",
+  "lat": 56.9459,
+  "lon": -2.1971,
+  "years": "1685",
+  "sortYear": 1685,
+  "title": "The Whigs' Vault",
+  "claim": "In 1685 about 167 Covenanter men and women were packed into a single vault at Dunnottar Castle.",
+  "verdict": "record",
+  "explanation": "In 1685, with a rising feared in the south of Scotland, Covenanters held in Edinburgh were marched north to Dunnottar. In May, 167 prisoners, 122 men and 45 women, were locked into a cellar below one of the buildings in the courtyard. It became known as the Whigs' Vault. The 1911 Encyclopaedia Britannica records 'no fewer than 167' held in that dungeon, and the castle's own history gives the same total. They were held for about two months with little fresh air and no facilities. Some died of starvation and disease, and others were killed trying to escape. Most survivors were then shipped to the colonies as forced labour.",
+  "nuance": "The total of 167 is consistent across sources, but the split varies: 122 men and 45 women in Undiscovered Scotland, 47 women on covenanter.org.uk, and 112 men on a transcribed site plaque. Death counts vary and are left out. 'About 167' allows for that. The castle's site says 'over 167'.",
+  "visual": "A single vaulted cellar beneath one of the buildings in the courtyard of a cliff-top castle, with little fresh air and no facilities. Sources checked give no dimensions or window details.",
+  "sources": [
+   {
+    "title": "Dunnottar Castle (1911 Encyclopædia Britannica)",
+    "publisher": "Wikisource",
+    "author": "",
+    "year": "1911",
+    "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Dunnottar_Castle",
+    "supports": "'In 1685 the castle was converted into a Covenanters' prison … no fewer than 167 being confined in a dungeon, called therefrom the Whigs' Vault.'"
+   },
+   {
+    "title": "History",
+    "publisher": "Dunnottar Castle",
+    "author": "",
+    "year": "",
+    "url": "https://www.dunnottarcastle.co.uk/history",
+    "supports": "The castle's own history: in 1685 over 167 Covenanters and Whigs were imprisoned in a cellar in terrible conditions."
+   },
+   {
+    "title": "Dunnottar Castle Feature Page",
+    "publisher": "Undiscovered Scotland",
+    "author": "",
+    "year": "",
+    "url": "https://www.undiscoveredscotland.co.uk/stonehaven/dunnottarcastle/index.html",
+    "supports": "Gives May 1685, 167 prisoners (122 men, 45 women), the vault below a building in the Quadrangle, about two months' confinement, deaths from starvation, disease and escape attempts, and transportation."
+   },
+   {
+    "title": "Dunnottar Castle",
+    "publisher": "covenanter.org.uk",
+    "author": "",
+    "year": "",
+    "url": "https://www.covenanter.org.uk/dunnottar_castle.html",
+    "supports": "Says prisoners were moved from Edinburgh because a rebellion was feared, describes a single room with little fresh air and no facilities, and says most were banished to the Americas."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened all four. trove.scot (Canmore) and thereformation.info returned 403 and are not cited."
+ },
+ {
+  "floor": 14,
+  "id": "peter-paul",
+  "site": "Peter and Paul Fortress",
+  "place": "St Petersburg, Russia",
+  "lat": 59.95,
+  "lon": 30.3166,
+  "years": "1718",
+  "sortYear": 1718,
+  "title": "The tsar's son",
+  "claim": "Peter the Great's son and heir, Alexei, died a prisoner in St Petersburg's fortress in 1718, two days after a flogging with the knout.",
+  "verdict": "record",
+  "explanation": "Tsarevich Alexei fled abroad, was lured home, and was forced to 'confess', which implicated his friends. In June 1718 he was held in the guardhouse of the St Petersburg citadel, the Peter and Paul Fortress. On 19 June he received 25 strokes of the knout, a heavy whip, and on 24 June fifteen more. A court of 127 senators and officials sentenced him to death for treason. He died in the fortress on 26 June 1718 (Old Style; 7 July by the modern calendar). The 1911 Encyclopaedia Britannica notes that 'the natural inference is that he was not intended to survive' the flogging.",
+  "nuance": "Exactly how he died is not settled: the official account blamed illness, and some writers argue he was killed in secret. The claim keeps to what all sources agree on: place, year, and the flogging two days before. Dates are Old Style.",
+  "visual": "A guardhouse inside the walled island fortress on the Neva. Sources checked do not describe his cell. The famous Trubetskoy Bastion prison was built only in 1870–72, so it should not be drawn.",
+  "sources": [
+   {
+    "title": "Alexius Petrovich (1911 Encyclopædia Britannica)",
+    "publisher": "Wikisource",
+    "author": "",
+    "year": "1911",
+    "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Alexius_Petrovich",
+    "supports": "Gives the 25 knout strokes on 19 June and 15 on 24 June, the senate's death sentence, confinement 'in the guardhouse of the citadel of St Petersburg', and death two days after the last flogging."
+   },
+   {
+    "title": "Peter the Great Tortured and Killed His Own Son",
+    "publisher": "History.com",
+    "author": "Jesse Greenspan",
+    "year": "2018",
+    "url": "https://www.history.com/articles/peter-the-great-tortured-killed-own-son",
+    "supports": "Says he was whipped 25 times on 19 June 1718, tortured again five days later, and died of his wounds on 26 June (7 July New Style)."
+   },
+   {
+    "title": "Alexei Petrovich, Tsarevich of Russia",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Alexei_Petrovich,_Tsarevich_of_Russia",
+    "supports": "Gives his death on 26 June (O.S.) 1718 in the Peter and Paul Fortress, the 127-member court's death sentence on 24 June, and the knout floggings."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened all three. Britannica.com returned 403. spbmuseum.ru (Trubetskoy Bastion page) and encspb.ru entries opened but do not cover 1718, so they are not cited."
+ },
+ {
+  "floor": 15,
+  "id": "marshalsea",
+  "site": "Marshalsea prison",
+  "place": "Southwark, London, England",
+  "lat": 51.5017,
+  "lon": -0.0925,
+  "years": "1729",
+  "sortYear": 1729,
+  "title": "Oglethorpe's gaols committee",
+  "claim": "After Oglethorpe's 1729 inquiry exposed the Marshalsea, its warden William Acton was convicted of murdering a prisoner.",
+  "verdict": "myth",
+  "explanation": "In 1729 a House of Commons committee chaired by James Oglethorpe inspected the Marshalsea. Its report describes over 330 poor debtors on the 'common side', with 32 to 40 people locked overnight in a room about 16 by 14 feet, some in hammocks above others. In the spring 'not less than Eight or Ten usually died every 24 Hours'. The Commons asked the King to have the Attorney-General prosecute the wardens William Acton and John Darby. Acton was tried at Kingston for the murders of Thomas Bliss, Captain John Bromfield, Robert Newton and James Thompson, and was acquitted each time. The suffering is on record. The conviction never happened.",
+  "nuance": "Sources disagree on the date of the Bliss trial: All the Year Round (1867) gives 6 July 1729 and a printed trial account reportedly gives 1 August 1729. The claim avoids a date. The 'Eight or Ten' a day figure is the report's description of the worst period, before the committee's intervention.",
+  "visual": "A brick-walled common side for poor debtors. In George's Ward, 32 to 40 people were locked overnight in a room about 16 by 14 feet, some slung in hammocks above those on the floor. A damp, uncovered 'Strong Room' was used for punishment.",
+  "sources": [
+   {
+    "title": "A Report from the Committee appointed to Enquire into the State of the Goals of this Kingdom: Relating to the Marshalsea Prison (1729), ch. 14 in The Publications of James Edward Oglethorpe",
+    "publisher": "University of Georgia Press (Manifold)",
+    "author": "James Edward Oglethorpe (committee report)",
+    "year": "1729",
+    "url": "https://ugapress.manifoldapp.org/read/1a695407-f524-4099-a15e-9fe50d7d6792/section/79f462c0-7e5e-4523-ad46-c7133f389621",
+    "supports": "The report text and editor's note give the overcrowding and death figures, the Commons resolution to prosecute Acton and Darby, and that Acton was tried for four murders and 'found innocent in each trial'."
+   },
+   {
+    "title": "All the Year Round, vol. XVIII, p. 252",
+    "publisher": "Dickens Journals Online",
+    "author": "",
+    "year": "1867",
+    "url": "https://djo.org.uk/all-the-year-round/volume-xviii/page-252.html",
+    "supports": "Says Acton was tried for the murder of Bliss at the Kingston assizes and acquitted, and that other charges also ended in acquittal. Also describes the Strong Room."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened both. Mpg.de catalogue (403) and Wellcome Collection (410) failed and are not cited."
+ },
+ {
+  "floor": 16,
+  "id": "newgate",
+  "site": "Newgate Prison and the Old Bailey",
+  "place": "City of London, England",
+  "lat": 51.5155,
+  "lon": -0.1018,
+  "years": "1750",
+  "sortYear": 1750,
+  "title": "The Black Assize",
+  "claim": "In 1750 gaol fever carried from Newgate into the Old Bailey courtroom killed the Lord Mayor of London.",
+  "verdict": "record",
+  "explanation": "Newgate was so overcrowded and filthy that 'gaol fever', a typhus-type disease, was always present. At the spring 1750 sessions in the courthouse next door, prisoners brought the infection into court on their bodies and clothes. John Noorthouck's 1773 History of London names the dead: Lord Mayor Sir Samuel Pennant, Alderman Sir Daniel Lambert, Baron Clarke of the Exchequer, Judge Abney of the Common Pleas, the under-sheriff, most of the Middlesex jury and several spectators. The architectural historian Harold Kalman puts the toll at sixty. Afterwards Newgate was cleaned and fitted with ventilators. Seven of the eleven workmen who installed them caught the fever, and one died.",
+  "nuance": "Noorthouck says the May 1750 sessions and Kalman says April 1750, so the claim gives only the year. The total varies: Noorthouck gives no number and Kalman says sixty. Linking gaol fever to typhus is the modern identification.",
+  "visual": "An overcrowded, filthy gaol with foul air, next door to the sessions house where crowded courtroom audiences sat close to the prisoners.",
+  "sources": [
+   {
+    "title": "A New History of London Including Westminster and Southwark, Book 1, ch. 21: 1745–1755",
+    "publisher": "British History Online",
+    "author": "John Noorthouck",
+    "year": "1773",
+    "url": "https://www.british-history.ac.uk/node/39350",
+    "supports": "Names the dead of the May 1750 Old Bailey sessions (Pennant, Lambert, Clarke, Abney, Cox, most of the jury), traces the infection to overcrowded Newgate, and records the ventilators installed afterwards."
+   },
+   {
+    "title": "Newgate Prison",
+    "publisher": "Architectural History, vol. 12 (Cambridge University Press)",
+    "author": "Harold D. Kalman",
+    "year": "1969",
+    "url": "https://www.cambridge.org/core/product/C146C290D5B33736C5B86C92A01B83AD",
+    "supports": "Says the fever spread to the adjoining sessions house in April 1750, that sixty died including the Lord Mayor, two judges and an alderman, and that seven of eleven ventilator workmen caught it."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened both. The Kalman article was seen through its Cambridge Core extract only, not the full text. oldbaileyonline.org returned 403 and is not cited."
+ }
+]

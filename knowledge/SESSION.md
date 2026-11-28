@@ -3,6 +3,20 @@ generated_by: "OpenAI Codex (exact model variant not exposed)"
 timestamp: "2026-11-07T17:04:06.403311-06:00"
 ---
 
+## 2026-11-27 Myth or Record? Prisons and dungeons, 1200–1800
+
+Agent: Claude Code CLI
+Handoff-from: none
+Handoff-type: new-project
+Goal: "a compendium of medieval dungeons 1200s–1800s", option A from the concept render: one composite tower, 24 real sites in date order, Myth/Record at each floor; "historically accurate and defensible and cited; anything fantastical or adjusted clearly noted".
+Status: Pushed live on "push to zpl when the review passes" (2026-11-27). Contract in task.md all ticked. 13 data tests; browser QA clean at 1440 and 390.
+Verdict: pending
+
+- Pipeline: three research agents (8 sites each) wrote JSON with claims, verdicts, explanations, nuance, visual notes and opened-URL sources; kept as provenance in execution/myth_research/. execution/assemble_myth_floors.py sorts by sortYear (oubliette last), renumbers, and applies EDITS (voice: no first person or research-process talk; short gauge names) and REPLACE (exact find-and-replace corrections that fail the build if their target text disappears) and DROP_SOURCES.
+- Verification: all 88 URLs fetched (two sites block bots: radio.cz, larousse.fr; the verifier later fetched Larousse); 23 phrase spot-checks matched; Manifold (Oglethorpe report) needs a real browser. Independent verifier FAILED the first build; fixes listed in task.md; re-review PASS. Open: radio.cz (Daliborka source 2) never opened by us or the verifier.
+- Art: execution/generate_myth_art.py + execution/myth_art_briefs.json (hand briefs, specific where sources describe the room) + execution/prepare_myth_art.py (divides out the paper tone so multiply-blend sits on the page). Images labelled "Illustration, not a likeness"; briefs avoid depicting myths as fact (no ring on Chillon's pillar, no bricked door at Čachtice, barrels in the oubliette).
+- Lesson: editorial rewording of researched text is where meaning drifted (two of my overrides overstated); keep corrections as exact replacements and have the verifier diff overrides against the raw research.
+
 ## 2026-11-26 Longitude, 1714 (dead-reckoning voyage game)
 
 Agent: Claude Code CLI

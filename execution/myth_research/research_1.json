@@ -1,0 +1,394 @@
+[
+ {
+  "floor": 1,
+  "id": "carcassonne",
+  "site": "Carcassonne",
+  "place": "Carcassonne, Languedoc, France",
+  "lat": 43.2065,
+  "lon": 2.364,
+  "years": "1303–1320",
+  "sortYear": 1306,
+  "title": "The Inquisition's Wall",
+  "claim": "Bernard Délicieux, the friar who led protests against Carcassonne's Inquisition prison, was himself sentenced in 1319 to spend the rest of his life inside it.",
+  "verdict": "record",
+  "explanation": "The Inquisition's prison at Carcassonne was called the 'Mur' (the Wall). Its harsher regime, the 'murus strictus', meant a small, dark cell, bread and water, and chains on the feet, sometimes chained to the wall. Townspeople stormed the Wall in 1303 and freed its prisoners, and the Franciscan Bernard Délicieux, the Inquisition's loudest critic, was present. In April 1306 two papal cardinals came to Carcassonne, heard forty prisoners complain of hunger, bad bedding and cruel keepers, and dismissed the jailers. The Inquisition later won. At the end of his trial on 8 December 1319, Délicieux was sentenced to life imprisonment in the inquisitorial prison of Carcassonne, and he died in early 1320.",
+  "nuance": "The topic hint said '1280s'. The best-documented and verifiable events are 1303–1320, so the claim was moved there. Délicieux's judges ordered his chains and bread-and-water diet waived because of his age and weak hands, but according to Wikipedia Pope John XXII overruled them. The trial's start date is given as 3 or 12 September 1319. Lea's work is 19th-century, though still standard. The 'murus strictus' description is his general account of inquisitorial prisons, not of Carcassonne alone.",
+  "visual": "A prison building outside the walls of the walled Cité, divided into a milder 'large' wall with corridors and a 'strict' wall of small, dark, separate cells. Archaeologists reported finding its doorway and remains in gardens in front of the ramparts (2014). Its full layout is not known.",
+  "sources": [
+   {
+    "title": "A History of the Inquisition of the Middle Ages, vol. 1 (pp. 486–487, 'Penance of Imprisonment')",
+    "publisher": "Harper & Brothers (scan on Internet Archive)",
+    "author": "Henry Charles Lea",
+    "year": "1906 (first published 1887)",
+    "url": "https://archive.org/download/historyofinquis01leah/historyofinquis01leah_djvu.txt",
+    "supports": "Defines murus largus and murus strictus (smallest, darkest cells, chains on the feet, sometimes chained to the wall; bread and water) and says cardinals investigated the Carcassonne prison and eased its rigours."
+   },
+   {
+    "title": "A History of the Inquisition of the Middle Ages, vol. 2 (pp. 93–94, 101)",
+    "publisher": "Harper & Brothers (scan on Internet Archive)",
+    "author": "Henry Charles Lea",
+    "year": "1906 (first published 1887)",
+    "url": "https://archive.org/download/historyofinquis02leah/historyofinquis02leah_djvu.txt",
+    "supports": "Cardinals' session at Carcassonne on 16 April 1306, their visit to 40 prisoners and the dismissal of jailers, and Délicieux's sentence of 8 December 1319 to life imprisonment 'in the inquisitorial prison of Carcassonne'."
+   },
+   {
+    "title": "The Carcassonne prison of the Inquisition called 'the Wall' was recently found",
+    "publisher": "Medieval Histories (medieval.eu)",
+    "author": "",
+    "year": "2014",
+    "url": "https://www.medieval.eu/the-carcassonne-prison-of-the-inquisition-called-the-wall-was-recently-found/",
+    "supports": "Reports the discovery of the prison door by Calvayrac and Baudreu, the Mur Large / Mur Strict division, the 1303 storming, and Délicieux's 1319 life sentence and death in 1320."
+   },
+   {
+    "title": "Bernard Délicieux",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Bernard_D%C3%A9licieux",
+    "supports": "Trial at Carcassonne in 1319, life sentence in solitary confinement, the waived penance overruled by John XXII, and death in early 1320."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened both Lea archive.org text files and read the quoted passages. Opened the medieval.eu article and the Wikipedia article."
+ },
+ {
+  "floor": 2,
+  "id": "loches",
+  "site": "Loches",
+  "place": "Loches, Touraine, France",
+  "lat": 47.1264,
+  "lon": 0.9963,
+  "years": "1469–1480",
+  "sortYear": 1469,
+  "title": "The King's Little Girls",
+  "claim": "Cardinal Jean Balue spent eleven years locked in one of Louis XI's iron cages.",
+  "verdict": "myth",
+  "explanation": "The imprisonment is real. Louis XI arrested Cardinal Jean Balue for treason in 1469 and held him until 1480, when the pope secured his release. The cages were real too. Philippe de Commynes, Louis XI's own adviser, describes the king's cruel prisons of iron, or of wood plated with iron. Commynes was held in one of them for eight months, and he was confined at Loches in 1487. But no contemporary evidence puts Balue in a cage. Commynes names Balue's fellow plotter, the Bishop of Verdun, as the first man caged, for fourteen years. The Catholic Encyclopedia calls Balue's cage 'baseless' and says the story began in 16th-century Italy, and the Columbia Encyclopedia calls it 'unproved'.",
+  "nuance": "The verdict rests on the absence of evidence. Nothing proves Balue was never caged, but no source from his lifetime says he was. Where he was held is also unclear: some accounts say Loches, others the château of Onzain near Blois. The cage shown at Loches today is a reconstruction. The nickname 'fillettes du roi' is traditional, and I did not confirm it in any source I opened.",
+  "visual": "Commynes describes cages of iron, or of wood covered with iron plates inside and out, too small for comfort. The dimensions of any cage at Loches are not documented in the sources I checked. The cage shown in the Loches keep today is a modern reconstruction.",
+  "sources": [
+   {
+    "title": "Medieval Sourcebook: Philippe de Commynes, Portrait of Louis XI (from The Memoirs of Philip de Commines, trans. A. R. Scoble, vol. II, pp. 75–81)",
+    "publisher": "Internet Medieval Sourcebook, Fordham University",
+    "author": "Philippe de Commynes; ed. Paul Halsall",
+    "year": "c. 1498 (trans. 1884)",
+    "url": "https://sourcebooks.web.fordham.edu/source/commynes1.asp",
+    "supports": "An eyewitness says Louis XI built cages of iron and iron-plated wood, that the Bishop of Verdun was the first put in one (for fourteen years), and that Commynes himself spent eight months in one. Balue is not mentioned."
+   },
+   {
+    "title": "Jean Balue",
+    "publisher": "Catholic Encyclopedia (New Advent)",
+    "author": "",
+    "year": "1907",
+    "url": "https://www.newadvent.org/cathen/02241b.htm",
+    "supports": "Balue was held captive 1469–80 (eleven years), was freed through papal intervention in 1480, and 'the baseless story of his detention in an iron cage originated in Italy in the sixteenth century.'"
+   },
+   {
+    "title": "Balue, Jean",
+    "publisher": "Columbia Encyclopedia, 6th ed. (Encyclopedia.com)",
+    "author": "",
+    "year": "",
+    "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/balue-jean",
+    "supports": "Louis held Balue prisoner from 1469 to 1480; 'The legend that Balue was kept in an iron cage is unproved.'"
+   },
+   {
+    "title": "Philippe de Commines",
+    "publisher": "Catholic Encyclopedia (New Advent)",
+    "author": "",
+    "year": "1908",
+    "url": "https://www.newadvent.org/cathen/04163a.htm",
+    "supports": "In 1487 Commynes was 'confined at Loches in one of the iron cages used by Louis XI', which ties the cages to Loches."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened the Fordham Commynes page, both New Advent articles and the Encyclopedia.com entry. Britannica's Balue entry returned 403, so it is not cited."
+ },
+ {
+  "floor": 3,
+  "id": "daliborka",
+  "site": "Daliborka Tower, Prague Castle",
+  "place": "Prague Castle, Prague, Czech Republic",
+  "lat": 50.0921,
+  "lon": 14.4045,
+  "years": "1498",
+  "sortYear": 1498,
+  "title": "Dalibor's Fiddle",
+  "claim": "While imprisoned in the tower in 1498, the knight Dalibor of Kozojedy taught himself the violin, and crowds gathered below to hear him play.",
+  "verdict": "myth",
+  "explanation": "Dalibor of Kozojedy was real. He was the first prisoner of the new artillery tower at Prague Castle, which was built around 1496, and he was beheaded in 1498 for siding with rebellious serfs on a neighbouring estate. The violin story is legend. Prague's official tourism board points out that the first violins did not reach Bohemia until about a century after his death. The story probably grew out of a saying, 'necessity taught Dalibor to fiddle', which is often read as a grim joke about torture making a prisoner 'sing'. As a nobleman, Dalibor seems to have had a private cell with windows and a stove, and a duller stay than the tales suggest.",
+  "nuance": "Even the torture explanation is uncertain. A castle guide quoted by Radio Prague says the saying's origin is still unclear and notes that nobles could not legally be tortured. Writers have retold the legend in very different ways, from Jirásek to Smetana's 1868 opera 'Dalibor'.",
+  "visual": "A round stone artillery tower in the castle's fortifications at the end of Golden Lane. Its lower level served as a dungeon until 1781. Dalibor's own cell is described as private, with windows and a stove.",
+  "sources": [
+   {
+    "title": "About Daliborka (Legends of Prague)",
+    "publisher": "Prague City Tourism (prague.eu)",
+    "author": "",
+    "year": "",
+    "url": "https://prague.eu/en/about-daliborka/",
+    "supports": "Tells the legend, then says 'the first violins did not arrive in Bohemia until about a hundred years after Dalibor's execution' and that the saying likely means suffering on the rack forced him to confess."
+   },
+   {
+    "title": "Daliborka: Prague Castle's medieval prison whose first inmate inspired a national legend",
+    "publisher": "Radio Prague International",
+    "author": "Thomas McEnchroe",
+    "year": "2020",
+    "url": "https://english.radio.cz/node/8687322",
+    "supports": "The tower was built around 1496 and Dalibor was its first prisoner, executed in 1498. As a noble he had a private cell with windows and a stove; a guide says the 'fiddle' may be a torture device but the origin is unclear."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened prague.eu/en/about-daliborka and the Radio Prague article. The hrad.cz Golden Lane page returned 403, so it is not cited."
+ },
+ {
+  "floor": 4,
+  "id": "nuremberg",
+  "site": "Nuremberg 'Hole' Prisons",
+  "place": "Old Town Hall (Altes Rathaus), Nuremberg, Franconia, Germany",
+  "lat": 49.454,
+  "lon": 11.077,
+  "years": "1500s–1600s",
+  "sortYear": 1550,
+  "title": "The Hole Under the Town Hall",
+  "claim": "Prisoners in Nuremberg's 'hole' cells beneath the town hall were usually serving long prison sentences there.",
+  "verdict": "myth",
+  "explanation": "The Lochgefängnisse (hole prisons) were cut from the vaults of a former bread house when Nuremberg built its town hall in the 14th century. The town hall was also the law court. The city's museums say the cells were reserved mainly for people awaiting trial and people condemned to death. They were a holding pen, not a place to serve a sentence. Prisoners sat in darkness in small wood-lined cells and paid for their own food. In a vault called the 'chapel', they could be tortured to extract confessions, by methods the city court chose. Punishments themselves were usually physical: branding, flogging or execution outside the walls. The sculptor Veit Stoss, held here for forgery, was branded rather than jailed.",
+  "nuance": "'Usually' matters. A few people may have stayed longer, but other towers, such as the debtors' tower, served as the city's regular prisons. Most sources available online come from the City of Nuremberg's museum and tourism bodies, which is why confidence is medium. Torture was not abolished in Bavaria until 1813.",
+  "visual": "A low, vaulted cellar under the Old Town Hall with a row of tiny cells about 2 × 2 m, lined with wooden planks on floor, walls and ceiling. Each held a plank bed, a bench and a board for a table, with a heating basin in winter. There was also a larger vault (the 'chapel') used for torture, plus a forge, kitchen and well room.",
+  "sources": [
+   {
+    "title": "Mittelalterliche Lochgefängnisse",
+    "publisher": "Museen der Stadt Nürnberg",
+    "author": "",
+    "year": "",
+    "url": "https://museen.nuernberg.de/lochgefaengnisse/",
+    "supports": "The cells were 'vor allem Untersuchungsgefangenen und Todeskandidaten vorbehalten' (mainly for those awaiting trial and those facing execution); lists cells, torture chamber, forge, prison kitchen and well room."
+   },
+   {
+    "title": "From bread house to prison",
+    "publisher": "Museums of the City of Nuremberg",
+    "author": "",
+    "year": "",
+    "url": "https://museums.nuernberg.de/medieval-dungeons/from-bread-house-to-prison",
+    "supports": "The town hall plans included a prison 'because the City Hall also served as the law court'; the bread-house shops became cells; Veit Stoss was the most famous inmate and was branded."
+   },
+   {
+    "title": "Medieval Dungeons",
+    "publisher": "Congress- und Tourismus-Zentrale Nürnberg",
+    "author": "",
+    "year": "",
+    "url": "https://tourismus.nuernberg.de/en/discover/places-of-interest/location/medieval-dungeons/",
+    "supports": "Cells for prisoners 'awaiting trial or in custody until their execution'; wood-lined cells, total darkness, prisoners paying their own board; the 'chapel' used for torture."
+   },
+   {
+    "title": "Lochgefängnisse",
+    "publisher": "Wikipedia (German)",
+    "author": "",
+    "year": "",
+    "url": "https://de.wikipedia.org/wiki/Lochgefängnisse",
+    "supports": "Pre-trial detention until sentence was carried out; not a regular prison except for those awaiting execution; about 2 × 2 m cells; other towers served as prisons."
+   }
+  ],
+  "confidence": "medium",
+  "checked": "Opened all four URLs. The 'judgment and sentencing' museum subpage was opened too, but it does not address the purpose of imprisonment."
+ },
+ {
+  "floor": 5,
+  "id": "little-ease",
+  "site": "Tower of London",
+  "place": "Tower of London, London, England",
+  "lat": 51.5081,
+  "lon": -0.0759,
+  "years": "1500s–1600s",
+  "sortYear": 1582,
+  "title": "Little Ease",
+  "claim": "The Tower of London had a cell called 'Little Ease', so small that a prisoner could neither stand upright nor lie down.",
+  "verdict": "record",
+  "explanation": "Little Ease was a real place of punishment. Bishop Challoner's 18th-century martyrology, compiled from contemporary Catholic accounts, records that the priest Stephen Rousham was sent to the Tower in 1582 and 'thrust down into that dungeon, which is called Little Ease', where he was kept for eighteen months and thirteen days. Victorian historians of the Tower describe it the same way. Thornbury's 'Old and New London' says it was 'so small that a prisoner could not stand erect, or even lie down at full length'. De Ros (1866) places a dark cell of that name in the vaults of the White Tower, with a heavy door and no opening for light or air.",
+  "nuance": "Its exact location and size are uncertain. Sources say beneath the White Tower, but no one knows for sure which space it was, and figures such as '4 feet square' are not well sourced. The tradition that Guy Fawkes was held there in 1605 is unproven, and W. G. Bell (1921) even doubted it held prisoners at all. Other London prisons, such as Bridewell, had their own 'Little Ease'.",
+  "visual": "A tiny, pitch-dark stone cell in the vaults beneath the White Tower, closed by a heavy door with no window or air vent, and too cramped to stand or lie full length. Its exact dimensions and location are unknown.",
+  "sources": [
+   {
+    "title": "Memoirs of Missionary Priests, vol. I (account of Stephen Rousham)",
+    "publisher": "Mark Wardle, Manchester (scan on Internet Archive)",
+    "author": "Richard Challoner",
+    "year": "1741; this edition c. 1803",
+    "url": "https://archive.org/download/memoirsofmission01chaliala/memoirsofmission01chaliala_djvu.txt",
+    "supports": "Rousham was sent to the Tower in 1582 and 'thrust down into that dungeon, which is called Little Ease', where he spent eighteen months and thirteen days."
+   },
+   {
+    "title": "The Tower: (part 2 of 2), in Old and New London: Volume 2, pp. 77–95",
+    "publisher": "Cassell, Petter & Galpin / British History Online",
+    "author": "Walter Thornbury",
+    "year": "1878",
+    "url": "https://www.british-history.ac.uk/node/37752",
+    "supports": "A torture chamber 'called... Little Ease, because it was so small that a prisoner could not stand erect, or even lie down at full length.'"
+   },
+   {
+    "title": "Memorials of the Tower of London (chapter 'The White Tower')",
+    "publisher": "Tufts Digital Library",
+    "author": "William Lennox De Ros",
+    "year": "1866",
+    "url": "https://dl.tufts.edu/teiviewer/parent/ms35tk73c/chapter/c2",
+    "supports": "A dark cell at the south-east corner of the White Tower vaults, with a heavy door and no aperture for light or air, 'known by the ominous name of Little Ease'."
+   },
+   {
+    "title": "Little Ease",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Little_Ease",
+    "supports": "Location beneath the White Tower is uncertain; Campion and Fawkes traditions; Bell's doubts; other 'little eases' existed elsewhere."
+   }
+  ],
+  "confidence": "medium",
+  "checked": "Opened the Challoner archive.org text and read the Rousham passage. Also opened the BHO node 37752, the Tufts De Ros chapter and Wikipedia. The RCT and Historic Royal Palaces pages returned 403 or had no content, so they are not cited."
+ },
+ {
+  "floor": 6,
+  "id": "chillon",
+  "site": "Chillon Castle",
+  "place": "Veytaux, near Montreux, Lake Geneva, Switzerland",
+  "lat": 46.4142,
+  "lon": 6.9275,
+  "years": "1530–1536",
+  "sortYear": 1530,
+  "title": "The Prisoner of Chillon",
+  "claim": "François Bonivard spent all six of his years at Chillon chained to a pillar in the lakeside dungeon.",
+  "verdict": "myth",
+  "explanation": "Bonivard, a Genevan prior who opposed the Duke of Savoy, really was held at Chillon from 1530 until the Bernese freed him in 1536. He was not in the dungeon the whole time. Swiss historians note that for the first two years his noble rank earned him two rooms in the castle. Only when the duke judged this too lenient was he moved underground. Bonivard himself wrote that he was thrust 'into a cell lower than the lake, where I lived four years'. The image of him chained to the fifth pillar comes from Byron's 1816 poem, which Byron subtitled 'A Fable'. Archaeologists have found no trace of a prisoner around the columns.",
+  "nuance": "Accounts differ: one Chillon guide told swissinfo it was only the last six months in the dungeon, and some sources date the start of his imprisonment to 1532. Bonivard's own claim to have worn a path into the rock floor is literary and unconfirmed. Byron also invented the imprisoned brothers. The historical Bonivard had two brothers, but not as fellow prisoners.",
+  "visual": "A vaulted Gothic undercroft cut partly from the rock at lake level, with a row of stone columns and windows onto Lake Geneva. Byron's name is carved on one pillar.",
+  "sources": [
+   {
+    "title": "In the footsteps of the real prisoner of Chillon",
+    "publisher": "SWI swissinfo.ch",
+    "author": "Olivier Pauchard",
+    "year": "2019",
+    "url": "https://www.swissinfo.ch/eng/fran%C3%A7ois-bonivard_in-the-footsteps-of-the-real-prisoner-of-chillon/45163738",
+    "supports": "Captured 1530, freed 1536; first two years in two rooms in the castle, then four years underground; no trace of a prisoner found around the columns."
+   },
+   {
+    "title": "The Works of Lord Byron, Poetry vol. 4: The Prisoner of Chillon (introduction and notes)",
+    "publisher": "John Murray (Wikisource transcription)",
+    "author": "ed. Ernest Hartley Coleridge",
+    "year": "1901",
+    "url": "https://en.wikisource.org/wiki/The_Works_of_Lord_Byron_(ed._Coleridge,_Prothero)/Poetry/Volume_4/The_Prisoner_of_Chillon",
+    "supports": "Quotes Bonivard: 'the captain thrust me into a cell lower than the lake, where I lived four years'; confinement 1530 to 1 February 1536; Byron admits he 'was not sufficiently aware of the history of Bonnivard'; the historical Bonivard had 'but two brothers'."
+   },
+   {
+    "title": "The 'Prisoner of Chillon' lives on",
+    "publisher": "SWI swissinfo.ch",
+    "author": "Dale Bechtel",
+    "year": "2001",
+    "url": "https://www.swissinfo.ch/eng/the--prisoner-of-chillon--lives-on/1847470",
+    "supports": "A Chillon guide says the 'chained to the fifth pillar' detail comes from Byron and cannot be confirmed."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened both swissinfo articles and the Wikisource Coleridge edition. The Historical Dictionary of Switzerland (hls-dhs-dss.ch) and worldhistory.org returned 403, so neither is cited."
+ },
+ {
+  "floor": 7,
+  "id": "castel-sant-angelo",
+  "site": "Castel Sant'Angelo",
+  "place": "Castel Sant'Angelo, Rome, Italy",
+  "lat": 41.9031,
+  "lon": 12.4663,
+  "years": "1538",
+  "sortYear": 1538,
+  "title": "Cellini's Bedsheet Rope",
+  "claim": "Jailed in Castel Sant'Angelo, the goldsmith Benvenuto Cellini escaped down a rope made from his bedsheets and broke his leg in the fall.",
+  "verdict": "record",
+  "explanation": "In 1538 Cellini was imprisoned in the papal fortress, accused of stealing gems from the papal treasury. In his autobiography he describes cutting his bedsheets into strips and sewing them together. He hid the strips, worked a door off its hinges, climbed onto the roof through the latrines and lowered himself down the central keep. He tied the line to a piece of ancient tile jutting from the wall. Knocked out by a fall from the outer wall, he woke to find his 'right leg was broken three inches above the heel' and crawled into Rome on hands and knees. Independent summaries agree that he escaped with bedsheets, broke his leg and was recaptured, then later released through the Cardinal of Ferrara.",
+  "nuance": "The escape's details come from Cellini's own boastful memoir, though the imprisonment, escape and recapture are not in doubt. Dates vary: Symonds says Cellini was sent to prison in 1538, while the Catholic Encyclopedia gives 1537–1539. The 'rope' was strips of linen sewn together rather than knotted sheets.",
+  "visual": "The massive round central keep of Hadrian's former mausoleum, with several stages of high walls below it. Cellini describes climbing to the roof by the latrines and descending on a long band of linen strips rolled on two sticks.",
+  "sources": [
+   {
+    "title": "The Life of Benvenuto Cellini, vol. 2 (Book I, the escape, c. pp. 24–30)",
+    "publisher": "Brentano's (scan on Internet Archive)",
+    "author": "Benvenuto Cellini; trans. John Addington Symonds",
+    "year": "1906",
+    "url": "https://archive.org/download/lifeofbenvenutoc02celliala/lifeofbenvenutoc02celliala_djvu.txt",
+    "supports": "Cellini cut sheets into strips to clear 'the great height of the central keep of Sant' Agnolo', climbed out by the latrines, fell, and found 'my right leg was broken three inches above the heel.'"
+   },
+   {
+    "title": "The Life of Benvenuto Cellini, vol. 1 (Symonds's introduction)",
+    "publisher": "Brentano's (scan on Internet Archive)",
+    "author": "John Addington Symonds",
+    "year": "1906",
+    "url": "https://archive.org/download/lifeofbenvenutoc01celliala/lifeofbenvenutoc01celliala_djvu.txt",
+    "supports": "Refers to 'the judges who sent him to prison in 1538'."
+   },
+   {
+    "title": "Autobiography of Benvenuto Cellini (Research Starter)",
+    "publisher": "EBSCO",
+    "author": "Joanne G. Kashdan",
+    "year": "2022",
+    "url": "https://www.ebsco.com/research-starters/literature-and-writing/autobiography-benvenuto-cellini",
+    "supports": "He escaped 'by using bedsheets to lower himself from the prison tower and over the prison walls' and, 'having broken his leg in flight, he is recaptured.'"
+   },
+   {
+    "title": "Benvenuto Cellini",
+    "publisher": "Catholic Answers Encyclopedia (Catholic Encyclopedia text)",
+    "author": "",
+    "year": "",
+    "url": "https://www.catholic.com/encyclopedia/benvenuto-cellini",
+    "supports": "Accused of stealing Church funds and imprisoned in Sant'Angelo; escaped, was recaptured and treated harshly; Cardinal Ferrara obtained his release."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Downloaded and searched both Symonds archive.org texts. Also opened the EBSCO page, catholic.com and Wikipedia's Cellini article (not cited). Gutenberg was down and the Heidelberg scans were blocked, so neither is cited."
+ },
+ {
+  "floor": 8,
+  "id": "st-andrews",
+  "site": "St Andrews Castle",
+  "place": "St Andrews Castle, Fife, Scotland",
+  "lat": 56.3417,
+  "lon": -2.7905,
+  "years": "1546",
+  "sortYear": 1546,
+  "title": "The Bottle Dungeon",
+  "claim": "After Cardinal David Beaton was murdered in his castle in 1546, his killers dumped his body into the castle's bottle dungeon.",
+  "verdict": "record",
+  "explanation": "In March 1546 Cardinal Beaton had the Protestant preacher George Wishart burned outside St Andrews Castle. On 29 May 1546 a group of Fife lairds got into the castle disguised as masons and murdered the cardinal. According to Historic Environment Scotland, which cares for the castle, they hung his naked body in a pair of sheets from the castle walls, then threw it into the bottle dungeon in the Sea Tower. HES describes the dungeon as 'a dank and airless pit cut out of the solid rock'. Citing John Knox, it says the body was kept there covered in salt to 'keip him frome stinking'. HES states that the body 'was certainly kept' there.",
+  "nuance": "Knox's own wording refers to the Sea Tower, and how long the body lay there (weeks or months) and where it was finally buried are uncertain. Wikipedia places the dungeon under the north-west tower. HES and other sources place it in the Sea Tower, which is the north-west tower of the castle. HES says only that Wishart 'may' have been held in the dungeon.",
+  "visual": "A bottle-shaped pit about 22 ft (7 m) deep, cut into the rock below the Sea Tower. Its only entrance is a narrow neck at the top, opened by a trapdoor in the floor of the tower vault, so prisoners had to be lowered in.",
+  "sources": [
+   {
+    "title": "Statement of Significance: St Andrews Castle (PIC034)",
+    "publisher": "Historic Environment Scotland",
+    "author": "",
+    "year": "last reviewed 2011",
+    "url": "https://app-hes-pubs-prod-neu-01.azurewebsites.net/api/file/4bcc72ad-0de7-4993-8985-ab3c00a5753e",
+    "supports": "Timeline for 1546: the murderers 'hang his naked body in a pair of sheets from the castle walls, before throwing it into the castle's bottle dungeon'; the dungeon is in the Sea Tower and is 'a dank and airless pit cut out of the solid rock'."
+   },
+   {
+    "title": "The macabre murder of Cardinal Beaton",
+    "publisher": "Historic Environment Scotland blog",
+    "author": "Julia Morrison",
+    "year": "2020",
+    "url": "https://blog.historicenvironment.scot/2020/05/the-macabre-murder-of-cardinal-beaton/",
+    "supports": "Murder on 29 May 1546; body thrown into the 'notorious bottle dungeon'; citing Knox, kept there covered in salt to 'keip him frome stinking'."
+   },
+   {
+    "title": "St Andrews Castle: Overview",
+    "publisher": "Historic Environment Scotland",
+    "author": "",
+    "year": "",
+    "url": "https://www.historicenvironment.scot/visit-a-place/places/st-andrews-castle/overview/",
+    "supports": "'Cardinal Beaton's murdered body was certainly kept in the dank and airless hole'; Wishart 'may have been' imprisoned there."
+   },
+   {
+    "title": "St Andrews Castle",
+    "publisher": "Undiscovered Scotland",
+    "author": "",
+    "year": "",
+    "url": "https://www.undiscoveredscotland.co.uk/standrews/standrewscastle/index.html",
+    "supports": "'A bottle shaped pit dug 22ft down into the rock below the Sea Tower', 'accessible only via the narrow neck opening through a trap door from the floor of tower vault'."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened all four URLs. The HES Statement of Significance PDF was downloaded and its text extracted. The HES history page was also opened but does not mention the dungeon. Canmore/Trove returned 403 and the HES large-print guide returned 404, so neither is cited."
+ }
+]

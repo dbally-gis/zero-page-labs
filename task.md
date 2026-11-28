@@ -819,3 +819,28 @@ Surface: Map Monsters Plate IX source image, crop context, manifest and evidence
 - [x] Targeted caption checks pass.
 - [x] Deep site verification passes.
 - [x] The production specimen displays the confirmed date.
+
+## 2026-11-27 — Myth or Record? Prisons and dungeons, 1200–1800
+
+Option A from the concept render: one composite tower, 24 floors, each a real site in date order; the last floor is the oubliette.
+
+Contract:
+- [x] The page has exactly 24 floors.
+- [x] Floors 1–23 are in date order of their claim.
+- [x] Every floor names a real place and its dates.
+- [x] Every floor has one claim the player answers Myth or Record.
+- [x] Every floor's answer reveals an explanation after the player chooses.
+- [x] Every floor cites at least two sources.
+- [x] At least one source on every floor is not Wikipedia.
+- [x] Every cited URL was opened by a researcher, not cited from memory.
+- [x] Every floor whose claim simplifies a disputed story says so in a visible note.
+- [x] The page states that the tower is a composite, not a real building.
+- [x] The page states that floor illustrations are not likenesses.
+- [x] Myth and Record answers are each at least a third of the 24.
+- [x] Answers and score survive a page reload.
+- [x] A reset button clears answers and score.
+- [x] The page has no horizontal overflow at 390 px wide.
+- [x] The page logs no console errors on desktop or phone.
+- [x] A test file checks the data (24 floors, order, two sources each, verdict balance).
+
+Research: three agents, eight sites each, every URL opened; 23 sources spot-checked by phrase, all matched. Independent verifier FAILED the first build (Black Hole claim a wording trick; two editorial overrides changed meaning; Lancaster "ringleader" unsourced; Magdeburg overstated; Newgate URL wrong; Nuremberg misread; Mont-Saint-Michel weak date; five images leaned toward myths). All fixed via REPLACE/EDITS in execution/assemble_myth_floors.py and regenerated art; re-review PASS.

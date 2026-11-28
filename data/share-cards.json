@@ -16,8 +16,8 @@
     "inputs": "4217bfe0c1f738b4bc62e646c3f266ad4043f502442ced687aa1e8c1239b1e6d"
   },
   "experiments": {
-    "image": "16b16860efcbbcc7b46b5222e65e6d93ed7dc252a2abe1416a02cb9bf688e054",
-    "inputs": "6f62f7cf6283e862695070a179b9e9f8fb3da50c9f833ed8956cb0fadc231966"
+    "image": "6c1765329376a8af94f3e647065ccb0c3847d3afa2158d07c26833229d9ce8f3",
+    "inputs": "1808fcc268dc7f2b99aa7522dd9385c879f140fb3cf4abd17ae611b0369a05db"
   },
   "gridcore": {
     "image": "33073d6599278e89b301aa8e64a9b4f40c1aeac0f1cd2dfa16a7f5cd836eba99",
@@ -42,6 +42,10 @@
   "maritime": {
     "image": "010a4e5a37135cd4e8f6c286d9d81eb57bd42a3442714f1dd9bec2c7c73c8c9b",
     "inputs": "37e15edd00783e5e0b70c6047e4f60c9943c708b0d99c405101365df68ec14f8"
+  },
+  "myth-or-record": {
+    "image": "4d4e61e6d5303e41c07c68b0b541641b478d6e189ddc5becc6a5073a03bc7082",
+    "inputs": "68cf3f5b201d42c3c2cd43774839d15700709e6e250e00de905f1bb3a0b57bf5"
   },
   "projection": {
     "image": "52f2e6dfb8ce2c2f5a9e39934e774add5daacdf614ac4b72bfafe3c306bf248b",

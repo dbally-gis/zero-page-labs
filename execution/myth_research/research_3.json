@@ -1,0 +1,442 @@
+[
+ {
+  "floor": 17,
+  "id": "magdeburg",
+  "site": "Magdeburg fortress (the Star Fort, or Sternschanze)",
+  "place": "Magdeburg, Prussia (now Germany)",
+  "lat": 52.13,
+  "lon": 11.64,
+  "years": "1754–1763",
+  "sortYear": 1754,
+  "title": "The prisoner in 68 pounds of iron",
+  "claim": "Friedrich von der Trenck spent almost ten years in Magdeburg's fortress, chained to the wall of his cell.",
+  "verdict": "record",
+  "explanation": "Trenck was a Prussian officer who had fallen out with Frederick the Great. He was arrested in Danzig and held at Magdeburg for close to ten years, until he was freed in 1763 after Empress Maria Theresa stepped in. The German national biography (1894) says he was chained to the wall so that he could not escape. The Victoria and Albert Museum holds a pewter cup that Trenck engraved in prison in October 1763. One of its scenes shows him chained to a wall by a neck collar and chain marked '68 lbs.' In his memoirs (1787; English edition 1788) he describes a neck collar, an iron belt, a bar between his wrists and a heavy staple in the wall. Historians accept the imprisonment and the chaining.",
+  "nuance": "The 68-pound (about 31 kg) figure is Trenck's own, on the cup he engraved in 1763 and again in his memoirs. No independent record of the weight was found. Sources disagree on the year of his arrest: Wikipedia says 1753, Penkert says 1754. The V&A gives his time at Magdeburg as 'nine years, five months and some days'. The memoirs say the arm irons were taken off a month after they were first put on, when he fell ill.",
+  "visual": "A small cell in a casemate (a vaulted room inside the fortress walls), shut by several doors. The 1788 plate shows Trenck in an iron neck collar with chains hanging from it, an iron belt riveted round his body and a two-foot bar between his handcuffs. Everything is fixed to a thick iron staple in the wall, with a brick seat under the staple, a water jug, and a gravestone carved TRENCK at his feet.",
+  "sources": [
+   {
+    "title": "Trenckbecher (beaker and lid), museum no. M.148-1930",
+    "publisher": "Victoria and Albert Museum",
+    "author": "",
+    "year": "1763 (object)",
+    "url": "https://collections.vam.ac.uk/item/O76784/trenckbecher-beaker-and-lid-baron-von-der",
+    "supports": "Trenck engraved the cup at Magdeburg in October 1763 while still a prisoner; he was confined there 'nine years, five months and some days', was chained to the wall, and one scene marks his collar and chain '68 lbs'."
+   },
+   {
+    "title": "The Life of Baron Frederic Trenck, vol. 1 (trans. Thomas Holcroft), archive.org scan",
+    "publisher": "G. G. J. and J. Robinson, London",
+    "author": "Friedrich von der Trenck",
+    "year": "1788",
+    "url": "https://archive.org/download/lifeofbaronfred01tren/lifeofbaronfred01tren_djvu.txt",
+    "supports": "The frontispiece caption reads 'loaded with 68 pounds weight of irons in the dungeon of Magdeburg', and the explanation of the plate describes the collar, belt, bar and wall staple."
+   },
+   {
+    "title": "The Life of Baron Frederic Trenck (1818 London edition), archive.org scan",
+    "publisher": "D. Jaques, London",
+    "author": "Friedrich von der Trenck",
+    "year": "1818",
+    "url": "https://archive.org/download/lifeofbaronfrede00treniala/lifeofbaronfrede00treniala_djvu.txt",
+    "supports": "Trenck's own account of being locked in behind four doors, in fetters he called 'insupportable to nature'."
+   },
+   {
+    "title": "Trenck, Friedrich Freiherr von der (Allgemeine Deutsche Biographie 38)",
+    "publisher": "Deutsche Biographie (Bavarian Academy of Sciences)",
+    "author": "Pallua-Gall",
+    "year": "1894",
+    "url": "https://www.deutsche-biographie.de/gnd118623796.html",
+    "supports": "He was arrested in Danzig and held at Magdeburg for nearly ten years, chained to the wall so he could not escape, and was freed after Maria Theresa intervened."
+   },
+   {
+    "title": "CANDIDE: TRENCK 'redivivus' – Ein Politicum! (Komparatistik 2018)",
+    "publisher": "Aisthesis Verlag / Goethe University Frankfurt repository",
+    "author": "Sibylle Penkert",
+    "year": "2019",
+    "url": "https://publikationen.ub.uni-frankfurt.de/files/58129/Komparatistik_2018_Penkert.pdf",
+    "supports": "He was arrested in Danzig in 1754 and kept chained for almost ten years in the 'Sternschanze' at Magdeburg; his 'Blood Bible' from that imprisonment survives in the Prussian Privy State Archives."
+   }
+  ],
+  "confidence": "medium",
+  "checked": "Opened: V&A object page; both archive.org Holcroft texts (searched for the chain passages); deutsche-biographie.de ADB entry; Penkert PDF (downloaded and searched); en.wikipedia Trenck (not cited, too thin)."
+ },
+ {
+  "floor": 18,
+  "id": "black-hole-calcutta",
+  "site": "The 'Black Hole', Fort William",
+  "place": "Calcutta (Kolkata), Bengal, India",
+  "lat": 22.57,
+  "lon": 88.35,
+  "years": "20–21 June 1756",
+  "sortYear": 1756,
+  "title": "Counting the Black Hole",
+  "claim": "On one night in 1756, 146 prisoners were crammed into Calcutta's 'Black Hole' and 123 of them suffocated, as survivor John Holwell reported.",
+  "verdict": "myth",
+  "explanation": "Something terrible did happen. After the Nawab of Bengal's forces took Fort William, British prisoners spent the night of 20 June 1756 locked in the fort's small punishment cell, and many died. The famous figures, though, come from one survivor, John Zephaniah Holwell, whose 1758 pamphlet says 123 of 146 prisoners smothered. Holwell himself put the room at about 18 feet square, and from 1896 critics argued that 146 people could not fit in it. In a 1959 study, the historian Brijen Gupta noted that Indian scholars had come to accept Jadunath Sarkar's view that 'probably not more than sixty' were confined. Gupta named twenty-one survivors. Most historians accept that the event happened but treat Holwell's numbers as greatly exaggerated.",
+  "nuance": "The verdict is on the 146 and 123 figures, not on whether the event happened. In 1915–16 J. H. Little called the whole story a 'gigantic hoax'. Most later historians do not go that far. Estimates of the true numbers vary: the commonly quoted 64 in and 21 survivors is credited to Gupta by Britannica and History Today, but both pages refused automated access, and Wikipedia credits it to Wolpert or Prior. I could only read the first page and notes of Gupta's article, and the number 64 did not appear in them. Sources disagree on the room's size: Holwell gives a cube of about 18 feet, while Wikipedia gives 14 by 18 feet.",
+  "visual": "In Holwell's words, a 'cube of about eighteen feet': closed by solid walls to the east and south, a wall and door to the north, and open only to the west through two small windows 'strongly barred with iron', on a close, sultry night.",
+  "sources": [
+   {
+    "title": "A Genuine Narrative of the Deplorable Deaths of the English Gentlemen, and Others, who were Suffocated in the Black-Hole (archive.org scan)",
+    "publisher": "A. Millar, London",
+    "author": "J. Z. Holwell",
+    "year": "1758",
+    "url": "https://archive.org/download/a-genuine-narrative-of-the-deplorable-deaths/A_Genuine_Narrative_of_the_Deplorable_De_djvu.txt",
+    "supports": "The source of the figures ('of one hundred and forty-six prisoners, one hundred and twenty-three were smothered'), the date (night of 20 June 1756) and the room ('a cube of about eighteen feet', two barred windows)."
+   },
+   {
+    "title": "The Black Hole Incident (Journal of Asian Studies 19:1, pp. 53–63)",
+    "publisher": "Cambridge University Press / Association for Asian Studies",
+    "author": "Brijen K. Gupta",
+    "year": "1959",
+    "url": "https://www.cambridge.org/core/journals/journal-of-asian-studies/article/black-hole-incident/FA6A19D654E4D5C55A44518B6B586546",
+    "supports": "Records the dispute over Holwell's count of 123 dead, cites Jadunath Sarkar's view that 'probably not more than sixty were confined', and names twenty-one survivors."
+   },
+   {
+    "title": "History and Myth out of Calcutta",
+    "publisher": "UCLA Center for India and South Asia",
+    "author": "",
+    "year": "2006",
+    "url": "https://www.international.ucla.edu/southasia/article/44098",
+    "supports": "Holwell's account is the main source and others are hard to find; Bholanath Chunder argued in 1896 that 146 people could not fit; J. H. Little in 1916 called the story a 'giant hoax'."
+   },
+   {
+    "title": "Black Hole of Calcutta",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Black_Hole_of_Calcutta",
+    "supports": "Gives the date (night of 20 June 1756), the 14 by 18 feet room, and lower modern estimates (for example 64 confined and 21 survivors)."
+   }
+  ],
+  "confidence": "medium",
+  "checked": "Opened: Holwell 1758 archive.org text (figures and room passages); Cambridge abstract page for Gupta 1959; UCLA article; en.wikipedia. Britannica, History Today and worldhistory.org refused access (403) and are not cited."
+ },
+ {
+  "floor": 19,
+  "id": "piombi-casanova",
+  "site": "The Piombi ('the Leads'), Doge's Palace",
+  "place": "Venice, Republic of Venice (now Italy)",
+  "lat": 45.4337,
+  "lon": 12.3404,
+  "years": "1755–1756",
+  "sortYear": 1756,
+  "title": "Casanova over the rooftops",
+  "claim": "Giacomo Casanova really escaped from the Piombi prison by breaking out onto the lead roof of the Doge's Palace.",
+  "verdict": "record",
+  "explanation": "Casanova was locked in the Piombi, the cells under the Doge's Palace's lead roof, in 1755 and sentenced to five years. On the night of 31 October 1756 he and a fellow prisoner, the monk Marino Balbi, broke through the ceiling and out onto the sloping roof. They climbed back in through a dormer window and walked out of the palace at dawn. The detailed story is Casanova's own, written in 1787. Venice's own records back up the core of it, though. A note by the State Inquisitors dated 10 June 1757 punishes the jailer for the 'flight, on the first of November last, from the Piombi' of Balbi and Casanova. A repair bill also lists the cost of sealing 'the hole where they fled'.",
+  "nuance": "Only Casanova describes the route over the roof and through the palace. Some 19th- and 20th-century critics, Rinaldo Fulin among them, argued that the Inquisitors or his friends had quietly helped him. The archivist Charles Samaran (1922) says none of them produced firm proof. The night began on 31 October (the date of the farewell note Casanova left) and the official record dates the flight to 1 November. The cells shown to visitors today are reconstructions.",
+  "visual": "Six or seven cells made by dividing the palace attic with wooden partitions, thickly studded with nails and strengthened with iron plates, directly under a steep roof covered in lead sheets (piombi). Casanova's two cells have been rebuilt and are on the museum's Secret Itineraries tour.",
+  "sources": [
+   {
+    "title": "Histoire de ma fuite des prisons de la République de Venise qu'on appelle les Plombs, introduction and notes by Charles Samaran (archive.org scan)",
+    "publisher": "Éditions Bossard, Paris",
+    "author": "Giacomo Casanova; ed. Charles Samaran",
+    "year": "1922 (text of the 1788 first edition)",
+    "url": "https://archive.org/download/histoiredemafuit00casa/histoiredemafuit00casa_djvu.txt",
+    "supports": "Contains Casanova's account of the roof escape and his note dated 31 October 1756. Samaran's notes quote the Inquisitors' annotation of 10 June 1757 dating the flight of Balbi and Casanova from the Piombi to 1 November, and a repair bill for 'il foro dove è fugiti'."
+   },
+   {
+    "title": "Itinerari segreti di Palazzo Ducale (visitor booklet)",
+    "publisher": "Fondazione Musei Civici di Venezia",
+    "author": "",
+    "year": "2025",
+    "url": "https://www.visitmuve.it/wp-content/uploads/2025/10/itinerari-segreti-ducale-ITA-riv.pdf",
+    "supports": "The Piombi were six or seven attic cells under the lead roof with nailed, iron-plated wooden partitions; Casanova was held there and described them; his first and second cells are on the tour."
+   },
+   {
+    "title": "Special itineraries",
+    "publisher": "Palazzo Ducale, Fondazione Musei Civici di Venezia",
+    "author": "",
+    "year": "",
+    "url": "https://palazzoducale.visitmuve.it/en/layout-and-collections/special-itineraries/",
+    "supports": "The Piombi held Council of Ten prisoners, take their name from the lead roof, and Casanova's rebuilt cells are part of the tour."
+   },
+   {
+    "title": "Giacomo Casanova",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Giacomo_Casanova",
+    "supports": "Arrested 26 July 1755, sentenced to five years on 12 September; with Balbi he broke through to the roof, re-entered by a dormer window and left the palace by gondola."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened: archive.org Samaran 1922 text (searched for the escape night, the farewell note and the archive notes); visitmuve 2025 PDF (downloaded and read); palazzoducale special-itineraries page; en.wikipedia Casanova."
+ },
+ {
+  "floor": 20,
+  "id": "chateau-d-if",
+  "site": "Château d'If",
+  "place": "Île d'If, off Marseille, France",
+  "lat": 43.2799,
+  "lon": 5.3254,
+  "years": "1774–1775",
+  "sortYear": 1774,
+  "title": "Mirabeau, not Monte Cristo",
+  "claim": "The Château d'If, made famous by Dumas's Count of Monte Cristo, really held the young Count of Mirabeau, locked up in 1774 by royal order.",
+  "verdict": "record",
+  "explanation": "Edmond Dantès and the Abbé Faria are characters in Dumas's serial novel. The French Ministry of Culture's heritage record says Dumas placed their cells in the fort 'in a fictional way'. The fort did hold real prisoners, though, among them hundreds of Protestants, revolutionaries and the future revolutionary leader Mirabeau. The Centre des monuments nationaux, which runs the site, says Mirabeau was held there for a few months. Provence's tourism publication dates his arrival to 1774 and says he was held under a lettre de cachet, a royal order allowing imprisonment without trial. It was obtained by his father to punish his debts and wild living. The 'Dantès' and 'Faria' cells came later: their names were painted over the doors to keep the legend alive.",
+  "nuance": "The detail about his father comes from French Wikipedia, which cites Roger Duchêne, Le château d'If et les îles (1996). The English Wikipedia gives 1774–1775. The real priest José Custódio de Faria is said to have inspired Dumas, and Wikipedia calls any stay of his at If 'disputed'. No opened source shows he was a prisoner there. The tunnel hole between the two show cells was dug by a guard. French Wikipedia says the Dantès cell is a reconstruction for tourists. Sources differ on when visitors were first shown it: My Provence says 1848, while French Wikipedia says work 'for the legend' was already under way during informal visits in 1844.",
+  "visual": "A square three-storey fort with round towers on a bare limestone island. The poorest prisoners were kept in dark, damp cells at the base of the towers ('culs de tour') or in crowded shared rooms on the ground floor. Paying prisoners had single rooms ('pistoles') in former officers' quarters on the first floor.",
+  "sources": [
+   {
+    "title": "Histoire du château d'If",
+    "publisher": "Centre des monuments nationaux",
+    "author": "",
+    "year": "",
+    "url": "https://www.chateau-if.fr/decouvrir/histoire-du-chateau-d-if",
+    "supports": "Mirabeau was 'interné quelques mois'; describes the 'culs de tour', the shared ground-floor rooms and the paid 'pistoles'; mentions Dantès and Faria as Dumas's characters."
+   },
+   {
+    "title": "Château d'If (Mérimée notice PA00081333)",
+    "publisher": "Ministère de la Culture (POP)",
+    "author": "",
+    "year": "",
+    "url": "https://pop.culture.gouv.fr/notice/merimee/PA00081333",
+    "supports": "It was a prison for centuries that held Mirabeau and Cadoudal, and Dumas placed the cells of Dantès and Faria there fictionally."
+   },
+   {
+    "title": "Le château d'If, entre mythe et réalité",
+    "publisher": "My Provence (Provence Tourisme)",
+    "author": "Virginie d'Humières",
+    "year": "2020",
+    "url": "https://www.myprovence.fr/ca-s-agite-dans-le-local/sous-toutes-les-coutumes/reportage/bouches-du-rhone/le-chateau-dif-entre-mythe-et-realite",
+    "supports": "The famous hole was dug by a guard, and the Dantès and Faria names were painted over the cells 'to keep the myth alive'."
+   },
+   {
+    "title": "Château d'If (site guide)",
+    "publisher": "My Provence (Provence Tourisme)",
+    "author": "",
+    "year": "",
+    "url": "https://www.myprovence.fr/les-guides/culture/site-monument/marseille/chateau-dif",
+    "supports": "'Mirabeau enfermé en 1774 sur lettre de cachet'."
+   },
+   {
+    "title": "Château d'If",
+    "publisher": "Wikipédia (French)",
+    "author": "",
+    "year": "",
+    "url": "https://fr.wikipedia.org/wiki/Ch%C3%A2teau_d%27If",
+    "supports": "Mirabeau was held for a few months between 1774 and 1775 at his father's request, citing Duchêne (1996); the Dantès cell is a reconstruction for tourists."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened: chateau-if.fr history and Monte-Cristo pages; POP Mérimée notice; both myprovence.fr pages; fr.wikipedia and en.wikipedia Château d'If; History Hit (not cited)."
+ },
+ {
+  "floor": 21,
+  "id": "mont-saint-michel-cage",
+  "site": "Abbey prison, Mont-Saint-Michel",
+  "place": "Mont-Saint-Michel, Normandy, France",
+  "lat": 48.636,
+  "lon": -1.5115,
+  "years": "1745–1788",
+  "sortYear": 1777,
+  "title": "The 'iron' cage made of wood",
+  "claim": "Mont-Saint-Michel's notorious prison cage, the 'iron cage' blamed on Louis XI, was made of iron.",
+  "verdict": "myth",
+  "explanation": "The abbey held state prisoners from the late Middle Ages until 1863, and its most feared object was a cage. Legend called it Louis XI's 'iron cage'. The Manche departmental archives describe the iron cage as famous 'but legendary'. Two people who saw the real thing say otherwise. Édouard Corroyer, the government architect who studied the abbey, wrote in 1877 that the 'famous cage, called iron, was in fact of wood'. The future King Louis-Philippe saw it as a boy and remembered it in his memoirs as 'made of great pieces of wood', standing in a horrible, damp cell. The prior told him it was hardly ever used, only for a day or two as a special punishment. A gazetteer (newspaper writer) known as Dubourg was held in it in 1745, Corroyer says.",
+  "nuance": "Sources disagree on how the cage ended. Corroyer says it was destroyed in 1777 during a visit by the Count of Artois. Louis-Philippe, though, saw it later, on a visit with Madame de Genlis that English Wikipedia dates to 1788 (that sentence is marked 'citation needed'). He says only its door was taken off then and the cage was not destroyed in front of them. The school anthology that reprints his memoir dates the visit to 1777, but Louis-Philippe was born in 1773, so that date looks wrong. Louis-Philippe's claim that the gazetteer spent seventeen years in the cage for writing against Louis XIV was what the monks told visitors, and is not confirmed. The cage shown today is a reconstruction. I could not reach Étienne Dupont's 1913 history of the prisons.",
+  "visual": "A cage built of thick wooden beams inside a dark, damp vaulted cell of the abbey. French Wikipedia says that, according to legend, it hung beneath a vault. One post had a flower scratched into it with a nail by a prisoner.",
+  "sources": [
+   {
+    "title": "Description de l'abbaye du Mont Saint-Michel et de ses abords (archive.org scan)",
+    "publisher": "Dumoulin, Paris",
+    "author": "Édouard Corroyer",
+    "year": "1877",
+    "url": "https://archive.org/download/descriptiondelab00corr/descriptiondelab00corr_djvu.txt",
+    "supports": "Footnote to the historical notice (pp. 33–34): 'Cette fameuse cage, dite de fer, mais qui était en bois, fut détruite en 1777, lors de la visite du Comte d'Artois'; Dubourg was held in it in 1745."
+   },
+   {
+    "title": "Le Mont-Saint-Michel (educational anthology, including an extract of Louis-Philippe's Mémoires quoted via Lucien Bély)",
+    "publisher": "Lycée Laplace / Académie de Normandie",
+    "author": "",
+    "year": "2008",
+    "url": "https://media.ac-normandie.fr/environnement_educatif/innovation/publication_mont_saint_michel_laplace.pdf",
+    "supports": "Louis-Philippe's eyewitness account: the cage was 'formée par de grosses pièces de bois', rarely used, and only its door was removed during his visit."
+   },
+   {
+    "title": "Le Mont Saint-Michel, prison (story)",
+    "publisher": "Archives départementales de la Manche (Google Arts & Culture)",
+    "author": "",
+    "year": "",
+    "url": "https://artsandculture.google.com/story/fgWRo6GtNJTcKw",
+    "supports": "Louis XI was the first king to imprison people at the abbey; the 'iron cage' is 'tristement célèbre mais légendaire'; 147 prisoners were held there between 1685 and 1789."
+   },
+   {
+    "title": "Abbaye du Mont-Saint-Michel",
+    "publisher": "Wikipédia (French)",
+    "author": "",
+    "year": "",
+    "url": "https://fr.wikipedia.org/wiki/Abbaye_du_Mont-Saint-Michel",
+    "supports": "According to legend, Louis XI installed a 'fillette', a cage of wood and iron hung beneath a vault, in the Romanesque abbot's lodging."
+   },
+   {
+    "title": "Louis Philippe I",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Louis_Philippe_I",
+    "supports": "Dates Louis-Philippe's visit to the Mont-Saint-Michel prison with Madame de Genlis to 1788 (the sentence is tagged 'citation needed')."
+   }
+  ],
+  "confidence": "medium",
+  "checked": "Opened: archive.org Corroyer text (searched for the cage passage); ac-normandie PDF (downloaded and read, pp. 56–58); Google Arts & Culture story and reconstruction asset; fr.wikipedia abbey page; en.wikipedia Louis Philippe I."
+ },
+ {
+  "floor": 22,
+  "id": "iron-maiden-nuremberg",
+  "site": "The 'Iron Maiden' of Nuremberg",
+  "place": "Nuremberg, Holy Roman Empire (now Germany)",
+  "lat": 49.4578,
+  "lon": 11.0757,
+  "years": "c. 1793 (legend); 1800s (objects)",
+  "sortYear": 1793,
+  "title": "The maiden who never killed",
+  "claim": "The Iron Maiden of Nuremberg was a medieval torture device used to execute prisoners.",
+  "verdict": "myth",
+  "explanation": "No medieval record of an iron maiden being used has been found. The story first appears at the end of the 18th century. Johann Philipp Siebenkees, a professor at Altdorf, published it in 1793, claiming a coin forger was executed in one in Nuremberg on 14 August 1515. Historians think he probably made the story up. The spiked cabinets shown in the 19th century were put together for display. Wolfgang Schild, a historian of criminal law, argued that they were assembled from museum objects and reworked from early-modern 'shame cloaks', which were barrels or mantles worn as a public humiliation punishment. The Medieval Crime Museum in Rothenburg owns a 19th-century copy of the Nuremberg maiden. Its own label says the device was used for shame punishments, not torture or killing, and that 'the dangerous nails were added later'.",
+  "nuance": "Siebenkees's 1793 date and his 1515 execution story come from German Wikipedia, which cites Der Spiegel (2022); I could not open the Spiegel article. Konieczny (Medievalists.net) says only that the story first appears 'around the end of the 18th century', in a Nuremberg guidebook by Siebenkees. One popular source mentions a 1784 guidebook, but I could not open it. The Nuremberg original was destroyed in Allied bombing in 1944 or 1945, depending on the source. An execution in 1515 would in any case be early modern rather than medieval. The 1793 sortYear places this floor after the Bastille floor (1789).",
+  "visual": "A tall, hinged iron cabinet shaped roughly like a woman or a mummy case, with doors lined inside with spikes. The Rothenburg piece is a 19th-century copy of the Nuremberg maiden, and the museum says its nails were added later.",
+  "sources": [
+   {
+    "title": "Medieval Crime Museum",
+    "publisher": "Stadt Rothenburg ob der Tauber",
+    "author": "",
+    "year": "",
+    "url": "https://www.rothenburg.de/en/entdecken/museen/mittelalterliches-kriminalmuseum",
+    "supports": "'Iron Maiden: no torture!': it was not used for torture or murder but for shame punishments, and 'the dangerous nails were added later'."
+   },
+   {
+    "title": "Medieval torture devices",
+    "publisher": "Medievalists.net",
+    "author": "Peter Konieczny",
+    "year": "2023",
+    "url": "https://www.medievalists.net/2023/12/medieval-torture-devices/",
+    "supports": "The iron maiden is first mentioned at the end of the 18th century by Siebenkees, who probably invented the story; it was displayed in the 19th century and the artefact was later judged a fake."
+   },
+   {
+    "title": "Eiserne Jungfrau",
+    "publisher": "Wikipedia (German)",
+    "author": "",
+    "year": "",
+    "url": "https://de.wikipedia.org/wiki/Eiserne_Jungfrau",
+    "supports": "Siebenkees spread the story in 1793 (citing Der Spiegel, 2022); Wolfgang Schild, Die Eiserne Jungfrau. Dichtung und Wahrheit (Rothenburg museum series no. 3), sees surviving devices as reinterpreted shame cloaks; the Rothenburg copy was auctioned in the early 1960s."
+   },
+   {
+    "title": "Iron maiden",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Iron_maiden",
+    "supports": "Siebenkees's claim of a first use on 14 August 1515; the Nuremberg maiden was possibly displayed from 1802; the original was lost in the 1945 bombing; Schild's view that iron maidens were assembled from museum artefacts."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened: rothenburg.de museum page; medievalists.net 2023 article; de.wikipedia and en.wikipedia. War History Online and the Science Museum Group record were also opened and not cited (thin or misleading)."
+ },
+ {
+  "floor": 23,
+  "id": "bastille",
+  "site": "The Bastille",
+  "place": "Paris, France",
+  "lat": 48.8532,
+  "lon": 2.3692,
+  "years": "14 July 1789",
+  "sortYear": 1789,
+  "title": "Seven prisoners",
+  "claim": "When crowds stormed the Bastille on 14 July 1789, the great royal prison held just seven prisoners.",
+  "verdict": "record",
+  "explanation": "The fortress-prison that stood for royal tyranny was almost empty when it fell. Four of its prisoners were forgers (Béchade, Laroche, La Corrège and Pujade), held over a forged bill of exchange. Two men were considered mad: Tavernier, and an Irish-born man named Whyte, or de Whyte. The seventh was the Comte de Solages, locked up at his family's request for sexual misconduct. The Marquis de Sade, its most famous recent inmate, had been moved out about ten days earlier after shouting to people in the street that prisoners were being murdered. The crowd mainly wanted the gunpowder stored there, and it freed all seven.",
+  "nuance": "Sources describe Tavernier differently. Some call him mentally ill, others a man linked to a plot against Louis XV some thirty years earlier. The count of seven and the split of four forgers, two 'madmen' and one nobleman are not in dispute. Sade was moved to the Charenton asylum in early July 1789.",
+  "visual": "A massive fortress with eight towers joined by curtain walls, about 24 m (78 ft) high and 3 m thick at the base, surrounded by water-filled ditches. Most prisoners lived in eight-sided tower rooms with a stove or fireplace, simple furniture and usually a window. The rooms under the roofs were the worst, and the underground cells were hardly used by then.",
+  "sources": [
+   {
+    "title": "Le Guichet du Savoir: question on the prisoners of the Bastille in 1789",
+    "publisher": "Bibliothèque municipale de Lyon",
+    "author": "BML, Civilisation department",
+    "year": "2019",
+    "url": "https://www.guichetdusavoir.org/question/voir/64695",
+    "supports": "Lists the seven: forgers Béchade, Laroche, La Corrège and Pujade; the Comte de Solages, held at his family's request; Tavernier and De Whyte, considered mad. Recommends Quétel, Petitfils and others for further reading."
+   },
+   {
+    "title": "A French mob storms the Bastille",
+    "publisher": "History.com (A&E Television Networks)",
+    "author": "Jesse Greenspan",
+    "year": "2014 (updated 2025)",
+    "url": "https://www.history.com/articles/a-french-mob-storms-the-bastille-225-years-ago",
+    "supports": "The Bastille was 'down to seven prisoners': four forgers, two considered mentally ill and one held at his family's request; Sade had been removed beforehand."
+   },
+   {
+    "title": "Storming of the Bastille",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Storming_of_the_Bastille",
+    "supports": "Seven prisoners, naming Whyte, Tavernier and Solages; the four forgers were held under Grand Châtelet warrants; Sade was transferred out ten days earlier (citing Schama 1989)."
+   },
+   {
+    "title": "Bastille",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Bastille",
+    "supports": "The fortress's dimensions and the conditions in prisoners' rooms; the seven prisoners on 14 July 1789."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened: guichetdusavoir.org answer; history.com article; en.wikipedia Storming of the Bastille and Bastille."
+ },
+ {
+  "floor": 24,
+  "id": "oubliette",
+  "site": "The oubliette (castles everywhere; Warwick Castle as the example)",
+  "place": "Warwick Castle, England, and castles across Europe",
+  "lat": 52.2795,
+  "lon": -1.585,
+  "years": "medieval castles; myth popular in the 1800s",
+  "sortYear": 1800,
+  "title": "The myth that invented the dungeon",
+  "claim": "Medieval castles commonly had oubliettes: pits where prisoners were dropped through a trapdoor and left to be forgotten.",
+  "verdict": "myth",
+  "explanation": "Castles did hold prisoners, but purpose-built 'forgetting pits' were rare. Even Viollet-le-Duc, whose 19th-century dictionary gave the oubliette its classic illustrated description, complained that every medieval castle showed visitors an oubliette when real examples were 'very rarely' found. He accepted only three, and suspected that one (Chinon) was a latrine and that the Bastille's was probably an ice store. He quoted the writer and monuments inspector Prosper Mérimée, who warned that the Middle Ages were too often painted 'in atrocious colours'. Modern historians agree that many 'dungeons' and 'oubliettes' were storerooms, cellars, ice chambers, cisterns or latrines. The famous pit at Warwick Castle is more likely a latrine. The dread of the oubliette owes more to Romantic novels, such as Walter Scott's Ivanhoe (1819), than to medieval practice.",
+  "nuance": "Two adjustments to the brief. First, Viollet-le-Duc was more of a sceptic than a promoter: he fixed the popular image in his dictionary but still accepted Pierrefonds as a true oubliette. Second, the word oubliette did exist in medieval French (Wikipedia gives 1374, without a source). What became common only later was the belief that oubliettes were everywhere. Leap Castle's 'three cartloads of bones' story was left out because I could trace it only to popular and tourist accounts, not to a documented find. Chris Bishop's 2019 study of the medieval dungeon in popular imagination is quoted by Medievalists.net, but its full text is restricted.",
+  "visual": "The legend pictures a narrow shaft under a trapdoor in a vaulted floor, dropping into a dark pit. Viollet-le-Duc's 'Bastille oubliette' was a vaulted six-sided chamber with an inverted cone at its centre, probably an ice store. Warwick's supposed oubliette is a short shaft under an iron grille that opens into a larger chamber.",
+  "sources": [
+   {
+    "title": "Dictionnaire raisonné de l'architecture française du XIe au XVIe siècle, tome 6: 'Oubliettes' (Wikisource)",
+    "publisher": "Wikisource (B. Bance / A. Morel, Paris)",
+    "author": "Eugène Viollet-le-Duc",
+    "year": "1854–1868",
+    "url": "https://fr.wikisource.org/wiki/Dictionnaire_raisonn%C3%A9_de_l%E2%80%99architecture_fran%C3%A7aise_du_XIe_au_XVIe_si%C3%A8cle/Oubliettes",
+    "supports": "'Il n'y a pas de château du moyen âge dans lequel on ne montre des oubliettes' yet genuine pits are 'très-rarement' found; only three are plausible (Chinon possibly a latrine, the Bastille possibly an ice store, Pierrefonds accepted); quotes Mérimée's warning."
+   },
+   {
+    "title": "Did Medieval Castles Really Have Dungeons?",
+    "publisher": "Medievalists.net",
+    "author": "",
+    "year": "2026",
+    "url": "https://www.medievalists.net/2026/08/did-medieval-castles-really-have-dungeons/",
+    "supports": "There is little evidence for purpose-built underground cells; storerooms, cellars, ice chambers and latrines were later mistaken for dungeons; Warwick's 'dungeon' was more likely a latrine; Scott's Ivanhoe (1819) shaped the image; cites Chris Bishop (2019)."
+   },
+   {
+    "title": "Our own dark hearts: re-evaluating the medieval dungeon",
+    "publisher": "Journal of the Australian Early Medieval Association (ANU Open Research)",
+    "author": "Chris Bishop",
+    "year": "2019",
+    "url": "https://openresearch-repository.anu.edu.au/items/1bbaf52b-c598-4fb8-b41d-c6ff7a71a55f",
+    "supports": "A scholarly study of the medieval dungeon as 'it exists in the popular imagination' (abstract only; full text restricted)."
+   },
+   {
+    "title": "Dungeon",
+    "publisher": "Wikipedia",
+    "author": "",
+    "year": "",
+    "url": "https://en.wikipedia.org/wiki/Dungeon",
+    "supports": "Many supposed dungeons or oubliettes were water cisterns or latrines (citing Bottomley 1979) and most castles never had long-term prisons (citing Hull 2006); earliest English use of 'oubliette' is in Ivanhoe (1819, OED); Warwick's shaft has an iron grille."
+   }
+  ],
+  "confidence": "high",
+  "checked": "Opened: fr.wikisource Viollet-le-Duc entry; medievalists.net 2026 article; ANU repository record; en.wikipedia Dungeon; history.co.uk 'Oubliettes in the UK' (opened, not cited, because it repeats the popular myth)."
+ }
+]
